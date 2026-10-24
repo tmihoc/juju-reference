@@ -25,8 +25,6 @@ Where things live:
   live queue and session notes (the live files live in the ggarch repo,
   untracked there by convention).
 
-Not tracked, deliberately: `talk/` (personal talk drafts).
-
 Everything here is work-in-progress notes and research, not documentation;
 the documentation itself is in the PR. The 4.1 code is the source of truth
 for every claim the pages make.
