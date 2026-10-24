@@ -1,0 +1,62 @@
+[
+ {
+  "table": "charm_device"
+ },
+ {
+  "table": "application_storage_directive"
+ },
+ {
+  "table": "log_transfer_progress"
+ },
+ {
+  "table": "cloud_defaults"
+ },
+ {
+  "table": "unit_state_charm"
+ },
+ {
+  "table": "cloud_auth_type"
+ },
+ {
+  "table": "operation_action"
+ },
+ {
+  "table": "unit_storage_directive"
+ },
+ {
+  "table": "model_secret_backend"
+ },
+ {
+  "table": "cloud_region_defaults"
+ },
+ {
+  "table": "operator_status"
+ },
+ {
+  "table": "machine_virtual_ssh_host_key"
+ },
+ {
+  "table": "application_remote_offerer_relation_macaroon"
+ },
+ {
+  "table": "machine_requires_reboot"
+ },
+ {
+  "table": "annotation_charm"
+ },
+ {
+  "table": "charm_hash"
+ },
+ {
+  "table": "unit_virtual_ssh_host_key"
+ },
+ {
+  "table": "annotation_unit"
+ },
+ {
+  "table": "resource_retrieved_by"
+ },
+ {
+  "table": "application_scale"
+ }
+]

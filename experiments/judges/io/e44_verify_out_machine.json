@@ -1,0 +1,945 @@
+[
+ {
+  "id": "A-Q01",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "MaxWait( in apiserver/common",
+   "normalizeWait|scheduleWithForceWait in domain/removal/service"
+  ],
+  "evidence_checked": [
+   {
+    "file": "apiserver/common/destroy.go",
+    "line": 14,
+    "ok": true,
+    "note": "MaxWait returns 1 minute when pointer nil"
+   },
+   {
+    "file": "cmd/juju/machine/remove.go",
+    "line": 155,
+    "ok": true,
+    "note": "only when --no-wait: maxWait=&0s; otherwise nil is sent"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 447,
+    "ok": true,
+    "note": "DestroyMachineWithParams passes common.MaxWait(args.MaxWait)"
+   }
+  ],
+  "note": "Default is applied server-side (nil -> 1 min); with force and wait>0 service schedules an immediate normal job plus a forced job at now+wait (domain/removal/service/service.go scheduleWithForceWait); without --force the wait is zeroed by normalizeWait. Single fact in 2-3 files."
+ },
+ {
+  "id": "A-Q02",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "machine_status_value",
+   "KnownMachineStatus",
+   "MachineStatusType in domain/status/status.go"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/schema/model/sql/0018-machine.sql",
+    "line": 209,
+    "ok": true,
+    "note": "(0,'error')"
+   },
+   {
+    "file": "domain/schema/model/sql/0018-machine.sql",
+    "line": 213,
+    "ok": true,
+    "note": "(4,'down')"
+   },
+   {
+    "file": "domain/schema/model/sql/0017-machine-cloud-instance.sql",
+    "line": 73,
+    "ok": true,
+    "note": "instance statuses 0 unknown..4 provisioning error"
+   }
+  ],
+  "note": "Matches schema table, domain/status MachineStatusType and core/status KnownMachineStatus (domain adds an in-memory MachineStatusUnknown=5 not stored in table). Easy single-file fact."
+ },
+ {
+  "id": "A-Q03",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "ExecuteReboot callers",
+   "scheduleAction",
+   "writeScript"
+  ],
+  "evidence_checked": [
+   {
+    "file": "cmd/jujuagentd/reboot/reboot.go",
+    "line": 28,
+    "ok": true,
+    "note": "timeout=10min used in waitForContainersOrTimeout; error 'Timeout reached waiting for containers to shutdown' returned from ExecuteReboot before stopDeployedUnits/ScheduleAction"
+   },
+   {
+    "file": "cmd/jujuagentd/reboot/reboot.go",
+    "line": 29,
+    "ok": true,
+    "note": "rebootAfter=15 passed to ScheduleAction"
+   },
+   {
+    "file": "cmd/jujuagentd/reboot/rebootshim.go",
+    "line": 82,
+    "ok": true,
+    "note": "ShouldReboot -> -r, ShouldShutdown -> -h, then 'now'; script is 'sleep %d' then shutdown, run via nohup sh script &"
+   }
+  ],
+  "note": "Container poll is every 1s up to 10 min; then unit agents are stopped, then script 'sleep 15; shutdown -r|-h now'. Needs reboot.go + rebootshim.go (same package)."
+ },
+ {
+  "id": "A-Q04",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": "Name.Validate: regex allows repeated /type/N, then explicit strings.Count('/')>2 rejects, so 0/lxd/0 passes and 0/lxd/0/lxd/1 fails"
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": "Raised by State.ShouldRebootOrShutdown (domain/machine/state/reboot.go:169) when the machine's parent itself has a parent"
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "has too many containers",
+   "GrandParentNotSupported",
+   "nested container"
+  ],
+  "evidence_checked": [
+   {
+    "file": "core/machine/machine.go",
+    "line": 49,
+    "ok": true,
+    "note": "Count('/')>2"
+   },
+   {
+    "file": "core/machine/machine.go",
+    "line": 50,
+    "ok": true,
+    "note": "message + coreerrors.NotValid"
+   },
+   {
+    "file": "domain/machine/errors/errors.go",
+    "line": 37,
+    "ok": true,
+    "note": "ConstError grandparent machine are not supported currently"
+   }
+  ],
+  "note": "Validate is invoked e.g. by Service.GetMachineUUID. The grandparent error is a DB-level guard (name validation would already prevent such names). Two files."
+ },
+ {
+  "id": "A-Q05",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "jobCheckMaxInterval",
+   "WatchRemovals",
+   "NamespaceForWatchRemovals"
+  ],
+  "evidence_checked": [
+   {
+    "file": "internal/worker/removal/worker.go",
+    "line": 24,
+    "ok": true,
+    "note": "10s const"
+   },
+   {
+    "file": "internal/worker/removal/worker.go",
+    "line": 159,
+    "ok": true,
+    "note": "ScheduledFor.After(now) -> debug 'not due until', continue"
+   }
+  ],
+  "note": "Minor nuance: the watcher uses changestream.Changed (create|update), not deletes; and the worker handles all removal job types, not only machines. Single file."
+ },
+ {
+  "id": "A-Q06",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "MessageWaitForMachine",
+   "removal_type_id 1 = unit (0028-cleanup.sql)",
+   "prepareReprovisionUnitTransferStatements"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 419,
+    "ok": true,
+    "note": "NextValue on application sequence namespace -> new ordinal/name"
+   },
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 295,
+    "ok": true,
+    "note": "mark: life dead, password_hash NULL, algorithm NULL"
+   },
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 345,
+    "ok": true,
+    "note": "removal row type 1 (unit), force FALSE, scheduled_for=updatedAt"
+   },
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 453,
+    "ok": true,
+    "note": "WorkloadMessage 'waiting for machine'; AgentStatusID allocating, workload waiting"
+   }
+  ],
+  "note": "Also moved to the replacement: annotations, port ranges, unit_resource, storage directives/owners/attachments, tasks, secrets; charm/relation state reset; presence row deleted; principal links rebuilt. Needs one long file."
+ },
+ {
+  "id": "A-Q07",
+  "ground_truth_verdict": "partly",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "partly",
+    "corrected": "Provisioner task only acts once the machine's life is Dead (classifyMachine returns None for a Dying machine that has an instance id); only then it stops the instance and calls MarkForRemoval -> MarkMachinesForRemoval -> removalService.MarkInstanceAsDead."
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "MarkMachinesForRemoval",
+   "MarkInstanceAsDead",
+   "classifyMachine",
+   "MarkMachineAsDead",
+   "EnsureDead in apiserver/facades/agent/machine/machiner.go"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 80,
+    "ok": true,
+    "note": "UPDATE machine_cloud_instance life_id=1 (machine UPDATE at line 71)"
+   },
+   {
+    "file": "domain/removal/service/machine.go",
+    "line": 253,
+    "ok": true,
+    "note": "returns 'machine instance %q is not dead' with EntityNotDead + RemovalJobIncomplete; ExecuteJob swallows Incomplete at debug level"
+   },
+   {
+    "file": "internal/provisionertask/provisioner_task.go",
+    "line": 647,
+    "ok": true,
+    "note": "MarkForRemoval after doStopInstances, only for machines classified Dead"
+   },
+   {
+    "file": "internal/worker/machiner/machiner.go",
+    "line": 171,
+    "ok": true,
+    "note": "EnsureDead after setting status Stopped; units/storage -> retry quietly; containers -> error/restart"
+   }
+  ],
+  "note": "GT lists provisioner step before machiner step, implying that order; actual order is machiner EnsureDead (machine Dead) -> provisioner stops instance and marks instance dead -> removal job deletes. DeleteMachine also returns incomplete 'waiting for machine to be dead before deletion' while machine is dying. Multi-file (4+)."
+ },
+ {
+  "id": "A-Q08",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": "Flag is cleared by r.client.ClearReboot (caller's own machine) just before returning ErrRebootMachine/ErrShutdownMachine; the comment explains it avoids a reboot loop if apiserver/controller is shut down"
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "ClearReboot",
+   "RebootActionGetter",
+   "WatchMachineReboot",
+   "machineToCareForReboot"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 180,
+    "ok": true,
+    "note": "early exit when parent flagged"
+   },
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 198,
+    "ok": true,
+    "note": "parentShouldReboot -> ShouldShutdown"
+   },
+   {
+    "file": "internal/worker/reboot/reboot.go",
+    "line": 93,
+    "ok": true,
+    "note": "ClearReboot when err != nil, after taking machine lock (NoCancel, never released)"
+   }
+  ],
+  "note": "Container's own flag is not cleared when the parent triggers its shutdown (it clears only the calling machine's flag); flag deleted on machine removal. Two-three files."
+ },
+ {
+  "id": "A-Q09",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "partly",
+    "corrected": "WatchModelMachines (used by provisioner/firewaller) filters machine_reprovision for Changed (create|update) with a non-container predicate; WatchModelMachineLifeAndStartTimes (used by instancepoller) also includes machine_reprovision Changed but without the container filter."
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "NamespaceForWatchMachineReprovision",
+   "ChangeLogTriggersForMachineReprovision",
+   "WatchModelMachineLifeAndStartTimes",
+   "clearReprovisionStmt"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 257,
+    "ok": true,
+    "note": "INSERT INTO machine_reprovision in detach txn"
+   },
+   {
+    "file": "domain/machine/service/watcher.go",
+    "line": 251,
+    "ok": true,
+    "note": "PredicateFilter Changed + notContainer; second at line 272 w/o container filter"
+   },
+   {
+    "file": "domain/machine/state/machine_cloud_instance.go",
+    "line": 316,
+    "ok": true,
+    "note": "only when instID.Valid in SetMachineCloudInstance (called by provisioner SetInstanceInfo)"
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 742,
+    "ok": true,
+    "note": "removeBasicMachineData deletes machine_reprovision row"
+   }
+  ],
+  "note": "Trigger key column is machine_name. Delete events are not included (Changed only). Multi-file."
+ },
+ {
+  "id": "A-Q10",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": "The check is BlockChange (domain/blockcommand ChangeBlock), enabled via 'juju disable-command all'; there is no 'change' CLI target. RemoveBlock/DestroyBlock do not stop reprovision."
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "ChangeAllowed",
+   "HasPermission",
+   "ModelMigrationMode",
+   "IsUpgrading",
+   "toAPIValue in cmd/juju/block"
+  ],
+  "evidence_checked": [
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 395,
+    "ok": true,
+    "note": "CanWrite first"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 584,
+    "ok": true,
+    "note": "CanWrite->checkAccess(WriteAccess)->HasPermission on model tag; EqualOrGreaterModelAccessThan so write or admin"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 399,
+    "ok": true,
+    "note": "ChangeAllowed -> OperationBlockedError"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 416,
+    "ok": true,
+    "note": "any migration mode != none (exporting/importing)"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 428,
+    "ok": true,
+    "note": "IsUpgrading"
+   }
+  ],
+  "note": "Permission/block failures are returned as call errors, migration/upgrade as ErrorResult.Error. Several files for permission semantics."
+ },
+ {
+  "id": "A-Q11",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": "Also requires eligibility checks first (not container/controller/manual/no child containers/no model-scoped storage/no existing request) and DB-level recheck of agent presence and instance id inside the detach transaction"
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "MachineProviderInstanceRunning",
+   "MachineAgentPresent",
+   "IsMachineAgentPresent"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 106,
+    "ok": true,
+    "note": "Status==Running"
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 107,
+    "ok": true,
+    "note": "wrapped error format machine %q instance %q: %w matches the quoted message"
+   },
+   {
+    "file": "domain/machine/errors/errors.go",
+    "line": 85,
+    "ok": true,
+    "note": "text matches"
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 85,
+    "ok": true,
+    "note": "agent present checked before provider query"
+   }
+  ],
+  "note": "Remediation advice in GT is not stated in code, only the mechanism. Missing instance (no instances/nil) or any non-running status leads to detach. One file."
+ },
+ {
+  "id": "A-Q12",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "no-wait",
+   "NotValidf"
+  ],
+  "evidence_checked": [
+   {
+    "file": "cmd/juju/machine/remove.go",
+    "line": 109,
+    "ok": true,
+    "note": "in Init"
+   },
+   {
+    "file": "cmd/juju/machine/remove.go",
+    "line": 110,
+    "ok": true,
+    "note": "NotValidf appends ' not valid'"
+   },
+   {
+    "file": "cmd/juju/machine/remove_test.go",
+    "line": 158,
+    "ok": true,
+    "note": "test expects exact text"
+   }
+  ],
+  "note": "Single easily found fact (Init in remove.go)."
+ },
+ {
+  "id": "A-Q13",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "partly",
+    "corrected": "Without force, EnsureMachineNotAliveCascade fails if any child container machine has life<2 (alive or dying) -> 'machine has containers' (checked first), or any unit directly on the machine with life<2 (alive or dying, not only alive) -> 'machine has units'."
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "MachineHasContainers",
+   "EnsureMachineNotAliveCascade",
+   "removing machine failed",
+   "dry-run"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 155,
+    "ok": true,
+    "note": "format string at 154-155; unit selection u.life_id < 2 at line 125"
+   },
+   {
+    "file": "domain/removal/errors/errors.go",
+    "line": 53,
+    "ok": true,
+    "note": "MachineHasUnits text"
+   },
+   {
+    "file": "cmd/juju/machine/remove.go",
+    "line": 56,
+    "ok": true,
+    "note": "doc text; 'removing machine failed' annotation at line 250"
+   }
+  ],
+  "note": "Containers are checked before units. --force cascades units, child machines and storage to dying. Two files."
+ },
+ {
+  "id": "A-Q14",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "max.?machines|MaxMachines|maxMachine",
+   "machine.?(quota|ceiling)|ModelQuota",
+   "too many machines|TooManyMachines",
+   "MachineLimit|machine_limit",
+   "MaxInstances|max-instances",
+   "QuotaLimitExceeded usages (only charm state kv and relation endpoint capacity)",
+   "machine_count (only read-only model info/metrics)"
+  ],
+  "evidence_checked": [],
+  "note": "No machine-count limit anywhere; machine_count only appears in model info/charm metrics, QuotaLimitExceeded is used for charm state KV and relation endpoint capacity."
+ },
+ {
+  "id": "A-Q15",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": "machine_requires_reboot has machine_uuid (PK) and created_at only"
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "reboot.*(reason|comment|history|message|note|why|audit)",
+   "reason.*reboot",
+   "juju-reboot SetFlags (only --now)",
+   "requires_reboot usages",
+   "RequestReboot"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/schema/model/sql/0018-machine.sql",
+    "line": 187,
+    "ok": true,
+    "note": "table definition"
+   },
+   {
+    "file": "internal/worker/uniter/runner/jujuc/reboot.go",
+    "line": 75,
+    "ok": true,
+    "note": "juju-reboot has only --now flag"
+   }
+  ],
+  "note": "No reason/comment/history; row is deleted when cleared (and on machine removal)."
+ },
+ {
+  "id": "A-Q16",
+  "ground_truth_verdict": "partly",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "partly",
+    "corrected": "No reprovision-specific attempt counter or limit exists (only guard against a concurrent request: MachineReprovisionAlreadyExists). However, the replacement instance goes through the normal provisioner whose StartInstance retry applies: RetryCount 10, RetryDelay 10s (up to 11 attempts), after which the machine is set to error status."
+   }
+  ],
+  "unanswerable_verdict": "exists",
+  "new_greps": [
+   "retryStrategyCount|RetryStartInstanceStrategy",
+   "retry-provisioning",
+   "reprovision.*(attempt|retr|backoff|max|limit|cooldown|count)",
+   "reprovision.*(auto|automatic)",
+   "reprovision_count|ReprovisionCount"
+  ],
+  "evidence_checked": [
+   {
+    "file": "internal/worker/computeprovisioner/computeprovisioner.go",
+    "line": 34,
+    "ok": true,
+    "note": "retryStrategyDelay=10s, retryStrategyCount=10"
+   },
+   {
+    "file": "internal/provisionertask/provisioner_task.go",
+    "line": 1488,
+    "ok": true,
+    "note": "attemptsLeft loop with fixed RetryDelay, then setErrorStatus"
+   }
+  ],
+  "note": "Reprovision itself is one-off and has no retry/back-off, but a reprovisioned machine is pending again, so the generic start-instance retry (10 retries, 10 s fixed delay; juju retry-provisioning for manual retry) applies; the question is therefore answerable depending on reading. Consider whether to keep it as unanswerable."
+ },
+ {
+  "id": "B-e44_m_lookup",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": "Data is JSON {\"old-instance-id\": \"<id>\"}, set on both machine_status and machine_cloud_instance_status"
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "reprovisioningStatusMessage",
+   "old-instance-id",
+   "prepareReprovisionStatusStatements"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 32,
+    "ok": true,
+    "note": "const"
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 125,
+    "ok": true,
+    "note": "single key map"
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 137,
+    "ok": true,
+    "note": "machine status id pending (line 133) and instance status pending"
+   }
+  ],
+  "note": "Status history also records the same message/data. Single file."
+ },
+ {
+  "id": "B-e44_m_mechanism",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": "Note the grandparent existence check (error GrandParentNotSupported) runs before any flag check; then parent flag, then own flag"
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "ShouldRebootOrShutdown",
+   "GetRebootAction"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 180,
+    "ok": true,
+    "note": ""
+   },
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 198,
+    "ok": true,
+    "note": ""
+   },
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 202,
+    "ok": true,
+    "note": ""
+   }
+  ],
+  "note": "Single function, easily found; GetRebootAction doc in apiserver/common/machinereboot.go mentions 'parent or grandparent' but the code rejects grandparents."
+ },
+ {
+  "id": "B-e44_m_failure",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": "True on the DeleteMachine path (wrapped 'checking for dependents' + RemovalJobIncomplete). The same message text from MarkMachineAsDead/MarkInstanceAsDead is not wrapped as incomplete."
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": "Force also skips the child-container check inside DeleteMachine's !force block"
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "checkNoMachineDependents",
+   "checkNoMachineChildren",
+   "RemovalJobIncomplete",
+   "MarkInstanceAsDead"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 680,
+    "ok": true,
+    "note": ""
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 633,
+    "ok": true,
+    "note": "life_id != 2 (dead)"
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 587,
+    "ok": true,
+    "note": ""
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 566,
+    "ok": true,
+    "note": ""
+   }
+  ],
+  "note": "In DeleteMachine non-forced path earlier gates (machine and instance must be dead) mean this specific error needs units to exist on a dead machine; still code says exactly what GT says. One file."
+ },
+ {
+  "id": "B-e44_m_unanswerable",
+  "ground_truth_verdict": "partly",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "reprovision_count|ReprovisionCount|reprovisionGeneration",
+   "permanent.?fail|PermanentlyFailed",
+   "MachineReprovisionAlreadyExists",
+   "reprovision.*(attempt|retr|backoff|max|limit|cooldown|count)"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/machine/state/state.go",
+    "line": 470,
+    "ok": true,
+    "note": "HasReprovision -> MachineReprovisionAlreadyExists"
+   },
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 176,
+    "ok": true,
+    "note": "same guard in detach txn"
+   }
+  ],
+  "note": "No count/limit/permanent-failed state. GT's 'only guard' is overstated: other eligibility guards exist (not alive, container, controller, manual, child containers, model-scoped storage, agent present, instance running) but none is count-based; suggest rewording to 'the only history-related guard'."
+ }
+]

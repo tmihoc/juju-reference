@@ -1,0 +1,17 @@
+{
+"Q1": "The `access or greater` error appears when you grant a level the user already holds or a greater one. No action is needed; the user already has that access.",
+"Q2": "Changing controller access requires controller superuser access, but the excerpts cut off before stating what changing model access requires. The documentation does not say.",
+"Q3": "The documentation does not say.",
+"Q4": "Revoking the `read` level deletes the permission record outright. A revoke that takes the level back to `read` is the same write as the one that removes the grant.",
+"Q5": "No. Revoking the last model admin fails with `user is the last model admin for 1 or more models`; first grant admin on the model to another user.",
+"Q6": "The documentation says there are ten valid level-object pairs (the schema's combination lookup). The excerpts do not list which levels are valid for an offer, so the documentation does not say.",
+"Q7": "An external user's effective level is the greater of their own grants and those of `everyone@external`. The checks resolve this each time they read the user's access; nothing is stored or cached.",
+"Q8": "No. A user cannot change their own cloud access; trying gives the error `cannot change your own cloud access`, and you should ask another cloud admin or a controller superuser.",
+"Q9": "The natural key is the pair of object and user: a unique index allows exactly one permission per user per object.",
+"Q10": "Granting to an external user that Juju has not seen yet creates that user as a side effect, so the permission record has someone to name.",
+"Q11": "No. The access domain exposes no watch surfaces; user and permission changes are read on demand, not watched.",
+"Q12": "Controller access is covered by the provider's `jaas_access_controller` resource (with `jaas_access_cloud` for cloud access), which applies when using JAAS.",
+"Q13": "The client validates before sending and refuses a controller level paired with a model or offer, with the error `You have specified a controller access permission \"<level>\"...`. Name a model or offer level, or drop the model or offer.",
+"P1": "The documentation does not say.",
+"P2": "The documentation does not say."
+}

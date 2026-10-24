@@ -1,0 +1,100 @@
+[
+ {
+  "key": "relation:41",
+  "page": "relation",
+  "claim": "all units can read all of the application's databags.",
+  "prior_kind": "other",
+  "prior_note": "read access not verified"
+ },
+ {
+  "key": "relation:17",
+  "page": "relation",
+  "claim": "For example, monitoring, logging, or system-administration agents such as `ntp`, `telegraf`, `nrpe`, and `canonical-livepatch`.",
+  "prior_kind": "example",
+  "prior_note": "charm examples"
+ },
+ {
+  "key": "secret:52",
+  "page": "secret",
+  "claim": "The following is an example of how this might be done:",
+  "prior_kind": "example",
+  "prior_note": "example lead-in"
+ },
+ {
+  "key": "machine:14",
+  "page": "machine",
+  "claim": "For example, `ubuntu@22.04` or `ubuntu@22.04/stable`.",
+  "prior_kind": "example",
+  "prior_note": "example strings"
+ },
+ {
+  "key": "cloud:3",
+  "page": "cloud",
+  "claim": "Juju can also make use of environments which are not clouds per se, but which Juju can nonetheless treat as a cloud.",
+  "prior_kind": "rationale",
+  "prior_note": "framing"
+ },
+ {
+  "key": "secret:56",
+  "page": "secret",
+  "claim": "Like a relation has a \"provider\" and a \"requirer\", so a secret has an \"owner\" and an \"observer\" -- though these need not coincide with the applications' roles in the relation.",
+  "prior_kind": "definition",
+  "prior_note": "analogy"
+ },
+ {
+  "key": "cloud:5",
+  "page": "cloud",
+  "claim": "Because of this, in Juju a cloud is sometimes also called, more generally, a substrate.",
+  "prior_kind": "definition",
+  "prior_note": "term synonym"
+ },
+ {
+  "key": "secret:76",
+  "page": "secret",
+  "claim": "A user secret's lifecycle consists of:",
+  "prior_kind": "other",
+  "prior_note": "list lead-in"
+ },
+ {
+  "key": "relation:32",
+  "page": "relation",
+  "claim": "`remote-76cd96ab50f146b284912afd1cc13a0e`.",
+  "prior_kind": "example",
+  "prior_note": "example token"
+ },
+ {
+  "key": "relation:26",
+  "page": "relation",
+  "claim": "Note that these config values can only be set at bootstrap time, and are read-only thereafter.",
+  "prior_kind": "other",
+  "prior_note": "read-only after bootstrap not found"
+ },
+ {
+  "key": "relation:36",
+  "page": "relation",
+  "claim": "When you create a relation between two applications, this results in the creation of relation databags.",
+  "prior_kind": "other",
+  "prior_note": "databag creation not verified"
+ },
+ {
+  "key": "relation:14",
+  "page": "relation",
+  "claim": "The `juju-info` endpoint is intended to be consumed by a subordinate charm whose `metadata.yaml` / `charmcraft.yaml` declares an explicit `requires` endpoint with interface `juju-info` (typically with name `juju-info` and `scope: container`).",
+  "prior_kind": "guidance",
+  "prior_note": "subordinate convention"
+ },
+ {
+  "key": "secret:29",
+  "page": "secret",
+  "claim": "A secret backend is a service that is used to store sensitive content which Juju manages as secrets.",
+  "prior_kind": "definition",
+  "prior_note": "definition"
+ },
+ {
+  "key": "relation:7",
+  "page": "relation",
+  "claim": "A subordinate charm is by definition a charm deployed on the same machine as the principal charm it is intended to accompany.",
+  "prior_kind": "definition",
+  "prior_note": "definition"
+ }
+]

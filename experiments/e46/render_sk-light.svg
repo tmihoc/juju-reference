@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1012.8" height="174.0" viewBox="0 0 1012.8 174.0">
+<defs>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-open" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-open-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-hollow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-hollow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+</defs>
+<g id="ggarch-nodes">
+<rect x="20.0" y="20.0" width="183.20000000000002" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<text x="111.60000000000001" y="41.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">user</text>
+<rect x="25.0" y="24.0" width="14" height="14" fill="#E95420" stroke="none" rx="2" ry="2" />
+<path d="M27.5,31.0 L37.0,31.0" stroke="#FFFFFF" stroke-width="1.5" />
+<rect x="283.20000000000005" y="20.0" width="183.20000000000002" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<text x="374.80000000000007" y="41.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">user_public_ssh_key</text>
+<rect x="288.20000000000005" y="24.0" width="14" height="14" fill="#E95420" stroke="none" rx="2" ry="2" />
+<path d="M290.70000000000005,31.0 L300.20000000000005,31.0" stroke="#FFFFFF" stroke-width="1.5" />
+<rect x="250.8" y="112.0" width="248.0" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<text x="374.8" y="133.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">ssh_fingerprint_hash_algorithm</text>
+<rect x="255.8" y="116.0" width="14" height="14" fill="#E95420" stroke="none" rx="2" ry="2" />
+<path d="M258.3,123.0 L267.8,123.0" stroke="#FFFFFF" stroke-width="1.5" />
+<rect x="546.4000000000001" y="20.0" width="183.20000000000002" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<text x="638.0000000000001" y="41.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">model_authorized_keys</text>
+<rect x="551.4000000000001" y="24.0" width="14" height="14" fill="#E95420" stroke="none" rx="2" ry="2" />
+<path d="M553.9000000000001,31.0 L563.4000000000001,31.0" stroke="#FFFFFF" stroke-width="1.5" />
+<rect x="809.5999999999999" y="20.0" width="183.20000000000002" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<text x="901.1999999999999" y="41.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">model</text>
+<rect x="814.5999999999999" y="24.0" width="14" height="14" fill="#E95420" stroke="none" rx="2" ry="2" />
+<path d="M817.0999999999999,31.0 L826.5999999999999,31.0" stroke="#FFFFFF" stroke-width="1.5" />
+</g>
+<g id="ggarch-edges">
+<path d="M 546.4 41.0 L 466.4 41.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="535.4" y="41.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">m</text>
+<text x="477.4" y="41.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<path d="M 729.6 41.0 L 809.6 41.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="740.6" y="41.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">m</text>
+<text x="798.6" y="41.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<path d="M 374.8 62.0 L 374.8 112.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="374.8" y="73.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">m</text>
+<text x="374.8" y="101.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<path d="M 283.2 41.0 L 203.2 41.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="272.2" y="41.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">m</text>
+<text x="214.2" y="41.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+</g>
+<g id="ggarch-annotations"></g>
+</svg>

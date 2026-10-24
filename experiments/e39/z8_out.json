@@ -1,0 +1,202 @@
+[
+ {
+  "id": 0,
+  "verdict": "true",
+  "access": "read",
+  "role": "incidental",
+  "chain": "SecretsManagerAPI.GetSecretRevisionContentInfo (secrets.go:574) -> SecretService.GetSecretValue (domain/secret/service/service.go:634) -> canRead (service/access.go:392) -> getSecretAccess (access.go:95) -> State.GetSecretAccess (domain/secret/state/state.go:3049)",
+  "evidence": "GetSecretAccess runs SELECT sr.role FROM v_secret_permission sp JOIN secret_role sr ON sr.id = sp.role_id (state.go:3053-3055). Permission check before the revision value is read; a second getSecretAccess for the application runs when the unit lacks view role."
+ },
+ {
+  "id": 1,
+  "verdict": "true",
+  "access": "write",
+  "role": "subject",
+  "chain": "StorageProvisionerAPIv4 (embeds v5->v6->StorageProvisionerAPI).RemoveVolumeAttachmentPlan (storageprovisioner.go:745) -> removeVolumeAttachmentPlan (:783) -> removalService.MarkVolumeAttachmentPlanAsDead (domain/removal/service/storage.go:786) -> State.MarkVolumeAttachmentPlanAsDead (domain/removal/state/model/storage.go:1839)",
+  "evidence": "State fn runs UPDATE storage_volume_attachment_plan SET life_id = 2 (plus exists/remaining-count SELECTs on the same table); service also calls GetVolumeAttachmentPlanLife. The earlier getVolumeAttachmentPlanUUID lookup (storageprovisioning GetVolumeAttachmentPlanUUIDForVolumeIDMachine) reads the table too."
+ },
+ {
+  "id": 2,
+  "verdict": "true",
+  "access": "read",
+  "role": "subject",
+  "chain": "StorageProvisionerAPIv4 -> v5 -> StorageProvisionerAPIv6.VolumeBlockDevices (storageprovisioner.go:1406) -> StorageProvisionerAPI.VolumeBlockDevices (:1265) -> storageProvisioningService.GetVolumeAttachmentUUIDForVolumeIDMachine (service/volume.go:654) -> State.GetVolumeAttachmentUUIDForVolumeNetNode (domain/storageprovisioning/state/volume.go:408, FROM storage_volume_attachment at :426); then GetBlockDeviceForVolumeAttachment (service/volume.go:818 -> state/volume.go:943, FROM storage_volume_attachment at :956)",
+  "evidence": "Both lookups SELECT from storage_volume_attachment to resolve the attachment UUID and its block_device_uuid."
+ },
+ {
+  "id": 3,
+  "verdict": "true",
+  "access": "write",
+  "role": "subject",
+  "chain": "StorageProvisionerAPI.SetVolumeAttachmentPlanBlockInfo (storageprovisioner.go:2312) -> setVolumeAttachmentPlanBlockInfo (:2353) -> blockDeviceService.MatchOrCreateBlockDevice (domain/blockdevice/service/service.go:189) -> State.GetBlockDevicesForMachine (SELECT FROM block_device, state.go:~631) then State.CreateBlockDevice -> insertBlockDevices (state.go:548 INSERT INTO block_device)",
+  "evidence": "Reads block_device rows for the machine to match, and inserts a new block_device row (and block_device_link_device rows) when none matches. Skipped when the supplied BlockDevice is nil or empty."
+ },
+ {
+  "id": 4,
+  "verdict": "true",
+  "access": "read",
+  "role": "incidental",
+  "chain": "resources.API.AddPendingResources (facade.go:179) -> addPendingResources (:278) -> resourceService.AddResourcesBeforeApplication (domain/resource/service/resource.go:690) -> State.AddResourcesBeforeApplication (domain/resource/state/resource.go:1396) -> getCharmUUID (:1471)",
+  "evidence": "getCharmUUID runs SELECT ... FROM charm AS v LEFT JOIN charm_source ... WHERE reference_name/revision/source (resource.go:1487-1491) to find the charm_uuid used for the INSERT INTO resource. The method only looks up charm; it never writes charm."
+ },
+ {
+  "id": 5,
+  "verdict": "true",
+  "access": "read",
+  "role": "subject",
+  "chain": "UniterAPI.WatchConfigSettingsHash (uniter.go:2729) -> watchHashes -> watchOneUnitHashes -> applicationService.WatchApplicationConfigHash (domain/application/service/service.go:502) -> State.InitialWatchStatementApplicationConfigHash (domain/application/state/application.go:1167)",
+  "evidence": "Initial query is SELECT ... FROM application_config_hash ach JOIN application a JOIN charm c (application.go:1173); the watcher namespace is also application_config_hash (:1198), so later changes are driven by that table."
+ },
+ {
+  "id": 6,
+  "verdict": "true",
+  "access": "write",
+  "role": "incidental",
+  "chain": "UniterAPI.DestroyAllSubordinates (uniter.go:675) -> destroySubordinates (:2345) -> removalService.RemoveUnit (domain/removal/service/unit.go:85) -> State.EnsureUnitNotAliveCascade (domain/removal/state/model/unit.go:58) -> ensureUnitNotAliveCascade (:78) -> ensureUnitStorageAttachmentsNotAlive (:131)",
+  "evidence": "For each subordinate unit: SELECT FROM storage_attachment WHERE unit_uuid=... AND life_id<2, then UPDATE storage_attachment SET life_id=1 (unit.go:139,164). Cascade side effect of destroying the subordinates; storage instances are not destroyed (destroyStorage=false) but attachments are still advanced to dying."
+ },
+ {
+  "id": 7,
+  "verdict": "true",
+  "access": "read",
+  "role": "incidental",
+  "chain": "CrossModelRelationsAPIv3.WatchRelationsSuspendedStatus (crossmodelrelations.go:612) -> relationService.GetRelationKeyByUUID (domain/relation/service/relation.go:1285) -> State.GetRelationEndpoints (domain/relation/state/relation.go:944) -> getRelationEndpoints (:965); also Service.GetRelationLifeSuspendedStatus (service/relation.go:977) -> State.GetRelationLifeSuspendedStatus (state/relation.go:666) -> getRelationEndpoints",
+  "evidence": "getRelationEndpoints runs SELECT FROM v_relation_endpoint WHERE relation_uuid=... (relation.go:~980). Used to build the relation key and in the returned change; the watcher itself watches relation life/suspended tables."
+ },
+ {
+  "id": 8,
+  "verdict": "false",
+  "access": "none",
+  "role": "none",
+  "chain": "Facade.AllAddresses (sshclient/facade.go:190) -> checkIsModelAdmin (:92) -> authorizer.HasPermission -> access PermissionState.ReadUserAccessLevelForTarget; getAllEntityAddresses -> machineService.GetMachineUUID / applicationService.GetUnitMachineName / networkService.GetMachineAddresses",
+  "evidence": "Permission read (domain/access/state/permission.go:291) queries v_user_auth and v_permission only; v_permission is permission+access_type+object_type tables (schema 0017-user-permission.sql:90). The model-joined views (v_permission_model) and targetExists (FROM model, permission.go:794) are not on this path. The rest touches machine (name->uuid, net_node), unit (GetUnitMachineName), and v_ip_address_with_names/subnet (network/state/address.go). modelTag/modelType are fixed at facade construction, not queried."
+ },
+ {
+  "id": 9,
+  "verdict": "true",
+  "access": "read",
+  "role": "subject",
+  "chain": "UserManagerAPI.UserInfo (usermanager.go:312) -> accessService.GetAllUsers / GetUserByName -> UserState.GetAllUsers (domain/access/state/user.go:219) / GetUserByName (:354)",
+  "evidence": "Both run SELECT ... FROM v_user_auth. infoForUser (usermanager.go:385) additionally calls ReadUserAccessLevelForTarget (permission.go:308 FROM v_user_auth) and hasControllerAdminAccess also reads it."
+ },
+ {
+  "id": 10,
+  "verdict": "true",
+  "access": "read",
+  "role": "incidental",
+  "chain": "APIv22(*APIBase).Expose (application.go:960) -> applicationService.MergeExposeSettings (domain/application/service/exposed.go:102) -> State.GetApplicationUUIDByName (state/application.go:2511) -> getApplicationUUID (:3269)",
+  "evidence": "getApplicationUUID runs SELECT a.uuid FROM application AS a JOIN charm AS c ... WHERE a.name = ... (application.go:3272). Only a name->uuid lookup; MergeExposeSettings itself writes application_exposed_endpoint_cidr / _space, not application."
+ },
+ {
+  "id": 11,
+  "verdict": "true",
+  "access": "read",
+  "role": "incidental",
+  "chain": "CloudAPI.Credential (cloud.go:632) -> cloudService.Cloud (cloud.go:659, inside the credentialSchemas closure) -> Service.Cloud (domain/cloud/service/service.go:117) -> State.Cloud (domain/cloud/state/state.go:59) -> LoadClouds (:160); also credentialService.CloudCredentialsForOwner -> State.CloudCredentialsForOwner (domain/credential/state/state.go:~559, JOIN cloud)",
+  "evidence": "LoadClouds selects from v_cloud_auth (cloud + auth type view) and the credential query JOINs cloud ON cc.cloud_uuid = cloud.uuid. Main subject is cloud_credential; cloud is read to resolve cloud type/credential schemas."
+ },
+ {
+  "id": 12,
+  "verdict": "true",
+  "access": "read",
+  "role": "incidental",
+  "chain": "APIV5 (embeds APIV6, legacy.go:19) -> API.Prechecks (migrationtarget.go:292) -> migration.TargetPrecheck (internal/migration/precheck.go:215) -> cloudService.ListAll (:246) -> Service.ListAll (domain/cloud/service/service.go:108) -> State.ListClouds (domain/cloud/state/state.go:43) -> LoadClouds (:160) -> loadRegions (:281)",
+  "evidence": "loadRegions runs SELECT FROM cloud_region WHERE cloud_uuid IN (...) (state.go:284). The precheck only wants cloud names, but ListAll loads every cloud with its regions."
+ },
+ {
+  "id": 13,
+  "verdict": "true",
+  "access": "read",
+  "role": "incidental",
+  "chain": "UniterAPI.GetUnitContext (uniter.go:3337; UniterAPIv19 embeds it) -> getUnitContext -> getIAASUnitContext (:3375) -> applicationService.GetIAASUnitContext (domain/application/service/unit.go:1552) -> State.GetIAASUnitContext (domain/application/state/unit.go:2345) -> getUnitPrivateAddress (:2606)",
+  "evidence": "Query joins net_node, link_layer_device and ip_address to pick the unit private address (unit.go:2644-2646). IAAS models only; the CAAS branch (GetCAASUnitContext) does not touch ip_address."
+ },
+ {
+  "id": 14,
+  "verdict": "true",
+  "access": "read",
+  "role": "incidental",
+  "chain": "SecretsManagerAPI.SecretsRotated (secrets.go:887) -> secretsTriggers.SecretRotated -> SecretService.SecretRotated (domain/secret/service/service.go:878) -> secretState.GetRotationExpiryInfo (state/state.go:1696)",
+  "evidence": "The query does ... FROM secret_metadata sm JOIN secret_revision sr JOIN secret_rotate_policy sp LEFT JOIN secret_rotation sro LEFT JOIN secret_revision_expire sre (state.go:1708-1712) to read the latest expire time. The write goes to secret_rotation (State.SecretRotated :3708); secret_revision_expire is only read."
+ },
+ {
+  "id": 15,
+  "verdict": "true",
+  "access": "read",
+  "role": "incidental",
+  "chain": "APIv19 -> ... -> APIBase.UnitsInfo (application.go:2185) -> unitResultForUnit -> relationData (:2313) -> relationService.ApplicationRelationsInfo (domain/relation/service/relation.go:464) -> State.ApplicationRelationsInfo (domain/relation/state/relation.go:318) -> getEveryRelationForApplicationID (:3857) and getApplicationSettingsByRelAndApp (:~395)",
+  "evidence": "Queries SELECT FROM relation AS r JOIN relation_endpoint ... (relation.go:3857, and JOIN relation AS r at :~420). Relation data is one returned section of the unit info (RelationData), not the main subject, which is the unit."
+ },
+ {
+  "id": 16,
+  "verdict": "true",
+  "access": "write",
+  "role": "incidental",
+  "chain": "deployApplicationLocalRepo.Deploy (deploy.go:90) -> applicationService.CreateIAASApplication / CreateCAASApplication (domain/application/service/provider.go:133) -> State.CreateIAASApplication (state/application.go:97) -> insertApplication -> addCharm (state/state.go:~104) -> addCharmActions (state.go:536)",
+  "evidence": "addCharmActions runs INSERT INTO charm_action (state.go:542) when insertApplication finds no existing charm for the reference name/revision (application.go:~326) and the charm declares actions. If the charm row already exists, no insert occurs."
+ },
+ {
+  "id": 17,
+  "verdict": "true",
+  "access": "read",
+  "role": "subject",
+  "chain": "APIBase.GetCharmURLOrigin (application.go:864) -> applicationService.GetApplicationCharmOrigin (domain/application/service/application.go:~1398) -> State.GetApplicationCharmOrigin (state/application.go:2613)",
+  "evidence": "Query is FROM v_application_origin AS v JOIN charm_source AS cs ON v.source_id = cs.id (application.go:2627), supplying the origin Source returned to the client."
+ },
+ {
+  "id": 18,
+  "verdict": "false",
+  "access": "none",
+  "role": "none",
+  "chain": "StorageAPIv6 -> StorageAPI.AddToUnit (storage.go:1109) -> addOneStorage (:1137) -> applicationService.AddStorageForIAASUnit/CAASUnit (domain/application/service/provider.go:1203) -> State.AddStorageForIAASUnit (domain/application/state/storage.go:2151) -> addStorageForUnit (:2072)",
+  "evidence": "Path reads unit (getUnitLifeAndNetNode, FROM unit), storage directive/instance/attachment tables and inserts storage_instance, storage_attachment, machine_volume/filesystem. It uses life_id columns directly and never queries the life lookup table. Only the SQL that joins life in the application state (checkApplicationAlive, unitstate.go:307) is called from insertUnit/AddIAASUnits, not from storage add."
+ },
+ {
+  "id": 19,
+  "verdict": "true",
+  "access": "write",
+  "role": "incidental",
+  "chain": "APIv22(*APIBase).AddUnits (addunit.go:24) -> addApplicationUnits -> applicationService.AddIAASUnits (domain/application/service/provider.go:~338) -> State.AddIAASUnits (domain/application/state/unit.go:~485) -> InsertIAASUnit (state/unitstate.go:~100) -> insertMachineFilesystemOwnership (unitstate.go:161, :1269)",
+  "evidence": "INSERT INTO machine_filesystem (*) at unitstate.go:1282, executed only when the unit's storage args carry FilesystemsToOwn (non-empty). Also state/storage.go has LEFT JOIN machine_filesystem reads for storage lookups. IAAS only (CAAS returns NotSupported)."
+ },
+ {
+  "id": 20,
+  "verdict": "false",
+  "access": "none",
+  "role": "none",
+  "chain": "MachineManagerAPIv11 -> MachineManagerAPI.DestroyMachineWithParams (machinemanager.go:442) -> destroyMachine (:446) -> machineService.GetMachineUUID/GetMachineContainers/SetKeepInstance, applicationService.GetUnitNamesAndUUIDsOnMachine, storageService.ClassifyStorageForUnitRemoval, removalService.RemoveMachine (domain/removal/service/machine.go:74)",
+  "evidence": "Reads/writes machine, unit, storage, net_node and removal job tables (EnsureMachineNotAliveCascade etc.). A repo-wide search of domain/ state SQL shows FROM/JOIN/UPDATE cloud only in access, cloud, credential, modeldefaults, modelmigration, model controller state and provisioner controller state, none on this path. The access permission read (CanWrite) uses v_user_auth/v_permission; cloud joins in access/state/permission.go are in AllModelAccessForOwner and targetExists, not the read path."
+ },
+ {
+  "id": 21,
+  "verdict": "false",
+  "access": "none",
+  "role": "none",
+  "chain": "UniterAPI.SetState (uniter/unitstate.go:64) -> unitStateService.SetState (domain/unitstate/service/unitstate.go:16) -> State.SetUnitState (domain/unitstate/state/state.go:115)",
+  "evidence": "SetUnitState touches unit (name->uuid), unit_state (ensure row, UPDATE uniter/storage/secret state), unit_state_charm (DELETE/INSERT), unit_state_relation (DELETE, relation lookup, INSERT). The only FROM model queries in domain/unitstate/state are GetModelUUID (state.go:356) and modelExists (commithook.go:704), used by the CommitHookChanges path and not by SetState."
+ },
+ {
+  "id": 22,
+  "verdict": "false",
+  "access": "none",
+  "role": "none",
+  "chain": "APIV6 (embeds *API) -> API.Abort (migrationtarget.go:379) -> removalServiceGetter(...).RemoveMigratingModel (domain/removal/service/model.go:114) -> modelState.IsControllerModel (state/model/model.go:536), controllerState.IsMigratingModel (state/controller/model.go:120 -> model_migration_import), MarkMigratingModelAsDead (:147 -> UPDATE model SET life_id = 2, UPDATE model_migration_import)",
+  "evidence": "Touches model (controller and model DBs), model_migration_import and model_migration_import_phase_type. life_id columns are used directly, no query reads or writes the life lookup table; the model-DB getModelLife reads model_life, a different table."
+ },
+ {
+  "id": 23,
+  "verdict": "true",
+  "access": "read",
+  "role": "incidental",
+  "chain": "APIV8.Prechecks (migrationtarget.go:619) -> targetPrechecks (:899) -> migrationImportService.PrecheckImport (domain/modelmigration/service/prechecks.go:26) -> precheckCloudImageMetadata (:~50) -> controllerState.GetConflictingCloudImageMetadata (domain/modelmigration/state/controller/prechecks.go:~343)",
+  "evidence": "Query is FROM cloud_image_metadata AS cim JOIN architecture AS a ON cim.architecture_id = a.id WHERE cim.source='custom' (prechecks.go:363). Runs only when the request carries CloudImageMetadata rows; used for a non-fatal warning. Same file also reads cloud_region in CheckCloudRegion (prechecks.go:45)."
+ },
+ {
+  "id": 24,
+  "verdict": "false",
+  "access": "none",
+  "role": "none",
+  "chain": "APIv21 (embeds APIv22 -> APIBase).UnitsInfo (application.go:2185) -> unitResultForUnit -> applicationService (GetUnitLife, GetUnitWorkloadVersion, GetCharmLocatorByApplicationName, GetUnitMachineName, GetUnitK8sPodInfo, GetUnitUUID), networkService.GetUnitPublicAddress, portService.GetUnitOpenedPorts, relationService.ApplicationRelationsInfo (domain/relation/state/relation.go:318)",
+  "evidence": "Checked every state function on the path, including ApplicationRelationsInfo, getEveryRelationForApplicationID, getUnitsRelationData and getRelationEndpointIdentifiers: they read unit, application, charm, relation*, application_endpoint, v_relation_endpoint and use life_id columns directly. The only SQL joining the life table in these domains sit in relation getRelationLife/checkLife/subordinate helpers and application checkApplicationAlive, none called from UnitsInfo."
+ }
+]

@@ -1,0 +1,1332 @@
+{
+ "access": {
+  "svc_methods": 33,
+  "create": 8,
+  "change": 9,
+  "remove": 3,
+  "read": 7,
+  "watch": 0,
+  "other": 6,
+  "errors": 18,
+  "migration": true,
+  "facades": 10,
+  "facade_kinds": {
+   "client": 10
+  },
+  "workers": 2,
+  "worker_names": [
+   "bootstrap",
+   "controlsocket"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "agentbinary": {
+  "svc_methods": 5,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 4,
+  "watch": 0,
+  "other": 1,
+  "errors": 6,
+  "migration": false,
+  "facades": 5,
+  "facade_kinds": {
+   "client": 5
+  },
+  "workers": 2,
+  "worker_names": [
+   "agentbinaryfetcher",
+   "computeprovisioner"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "agentpassword": {
+  "svc_methods": 19,
+  "create": 0,
+  "change": 9,
+  "remove": 0,
+  "read": 4,
+  "watch": 0,
+  "other": 6,
+  "errors": 3,
+  "migration": true,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": false
+ },
+ "agentprovisioner": {
+  "svc_methods": 3,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 0,
+  "watch": 0,
+  "other": 3,
+  "errors": 0,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "annotation": {
+  "svc_methods": 4,
+  "create": 0,
+  "change": 2,
+  "remove": 0,
+  "read": 2,
+  "watch": 0,
+  "other": 0,
+  "errors": 4,
+  "migration": true,
+  "facades": 1,
+  "facade_kinds": {
+   "client": 1
+  },
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "application": {
+  "svc_methods": 155,
+  "create": 10,
+  "change": 19,
+  "remove": 0,
+  "read": 92,
+  "watch": 15,
+  "other": 19,
+  "errors": 78,
+  "migration": true,
+  "facades": 39,
+  "facade_kinds": {
+   "controller": 2,
+   "agent": 13,
+   "client": 24
+  },
+  "workers": 9,
+  "worker_names": [
+   "asynccharmdownloader",
+   "bootstrap",
+   "caasapplicationprovisioner",
+   "caasfirewaller",
+   "charmrevisioner",
+   "firewaller"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "autocert": {
+  "svc_methods": 3,
+  "create": 0,
+  "change": 0,
+  "remove": 1,
+  "read": 1,
+  "watch": 0,
+  "other": 1,
+  "errors": 1,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "blockcommand": {
+  "svc_methods": 5,
+  "create": 0,
+  "change": 0,
+  "remove": 1,
+  "read": 2,
+  "watch": 0,
+  "other": 2,
+  "errors": 2,
+  "migration": true,
+  "facades": 5,
+  "facade_kinds": {
+   "client": 5
+  },
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "blockdevice": {
+  "svc_methods": 7,
+  "create": 0,
+  "change": 2,
+  "remove": 0,
+  "read": 3,
+  "watch": 1,
+  "other": 1,
+  "errors": 1,
+  "migration": true,
+  "facades": 4,
+  "facade_kinds": {
+   "agent": 4
+  },
+  "workers": 1,
+  "worker_names": [
+   "storageprovisioner"
+  ],
+  "has_state": true,
+  "doc_go": false
+ },
+ "changestream": {
+  "svc_methods": 1,
+  "create": 0,
+  "change": 0,
+  "remove": 1,
+  "read": 0,
+  "watch": 0,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 1,
+  "worker_names": [
+   "changestreampruner"
+  ],
+  "has_state": true,
+  "doc_go": false
+ },
+ "cloud": {
+  "svc_methods": 8,
+  "create": 1,
+  "change": 1,
+  "remove": 1,
+  "read": 1,
+  "watch": 2,
+  "other": 2,
+  "errors": 3,
+  "migration": false,
+  "facades": 7,
+  "facade_kinds": {
+   "controller": 1,
+   "agent": 1,
+   "client": 5
+  },
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "cloudimagemetadata": {
+  "svc_methods": 5,
+  "create": 1,
+  "change": 0,
+  "remove": 1,
+  "read": 2,
+  "watch": 0,
+  "other": 1,
+  "errors": 4,
+  "migration": true,
+  "facades": 3,
+  "facade_kinds": {
+   "client": 3
+  },
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "constraints": {
+  "svc_methods": 0,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 0,
+  "watch": 0,
+  "other": 0,
+  "errors": 0,
+  "migration": true,
+  "facades": 2,
+  "facade_kinds": {
+   "client": 2
+  },
+  "workers": 0,
+  "worker_names": [],
+  "has_state": false,
+  "doc_go": false
+ },
+ "containerimageresourcestore": {
+  "svc_methods": 3,
+  "create": 0,
+  "change": 0,
+  "remove": 1,
+  "read": 1,
+  "watch": 0,
+  "other": 1,
+  "errors": 3,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": false
+ },
+ "controller": {
+  "svc_methods": 5,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 4,
+  "watch": 0,
+  "other": 1,
+  "errors": 1,
+  "migration": false,
+  "facades": 5,
+  "facade_kinds": {
+   "agent": 1,
+   "client": 4
+  },
+  "workers": 5,
+  "worker_names": [
+   "apiaddresssetter",
+   "apiremotecaller",
+   "bootstrap",
+   "dbaccessor",
+   "proxyupdater"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "controllerconfig": {
+  "svc_methods": 5,
+  "create": 0,
+  "change": 1,
+  "remove": 0,
+  "read": 2,
+  "watch": 1,
+  "other": 1,
+  "errors": 0,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": false
+ },
+ "controllernode": {
+  "svc_methods": 21,
+  "create": 2,
+  "change": 2,
+  "remove": 0,
+  "read": 12,
+  "watch": 5,
+  "other": 0,
+  "errors": 5,
+  "migration": false,
+  "facades": 2,
+  "facade_kinds": {
+   "agent": 1,
+   "client": 1
+  },
+  "workers": 5,
+  "worker_names": [
+   "apiaddresssetter",
+   "apiremotecaller",
+   "bootstrap",
+   "dbaccessor",
+   "proxyupdater"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "controllerupgrader": {
+  "svc_methods": 8,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 0,
+  "watch": 0,
+  "other": 8,
+  "errors": 3,
+  "migration": false,
+  "facades": 1,
+  "facade_kinds": {
+   "client": 1
+  },
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "credential": {
+  "svc_methods": 17,
+  "create": 2,
+  "change": 1,
+  "remove": 1,
+  "read": 5,
+  "watch": 2,
+  "other": 6,
+  "errors": 5,
+  "migration": true,
+  "facades": 5,
+  "facade_kinds": {
+   "controller": 1,
+   "agent": 1,
+   "client": 3
+  },
+  "workers": 1,
+  "worker_names": [
+   "credentialvalidator"
+  ],
+  "has_state": true,
+  "doc_go": false
+ },
+ "crossmodelrelation": {
+  "svc_methods": 49,
+  "create": 10,
+  "change": 8,
+  "remove": 0,
+  "read": 20,
+  "watch": 8,
+  "other": 3,
+  "errors": 15,
+  "migration": true,
+  "facades": 11,
+  "facade_kinds": {
+   "controller": 3,
+   "agent": 2,
+   "client": 6
+  },
+  "workers": 1,
+  "worker_names": [
+   "remoterelationconsumer"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "deployment": {
+  "svc_methods": 0,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 0,
+  "watch": 0,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 19,
+  "facade_kinds": {
+   "agent": 2,
+   "client": 17
+  },
+  "workers": 7,
+  "worker_names": [
+   "asynccharmdownloader",
+   "bootstrap",
+   "caasapplicationprovisioner",
+   "charmrevisioner",
+   "firewaller",
+   "migrationmaster"
+  ],
+  "has_state": false,
+  "doc_go": false
+ },
+ "export": {
+  "svc_methods": 3,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 1,
+  "watch": 0,
+  "other": 2,
+  "errors": 0,
+  "migration": false,
+  "facades": 2,
+  "facade_kinds": {
+   "controller": 1,
+   "client": 1
+  },
+  "workers": 2,
+  "worker_names": [
+   "backupcreation",
+   "migrationmaster"
+  ],
+  "has_state": true,
+  "doc_go": false
+ },
+ "externalcontroller": {
+  "svc_methods": 7,
+  "create": 1,
+  "change": 1,
+  "remove": 0,
+  "read": 0,
+  "watch": 1,
+  "other": 4,
+  "errors": 1,
+  "migration": true,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 2,
+  "worker_names": [
+   "apiremoterelationcaller",
+   "externalcontrollerupdater"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "flag": {
+  "svc_methods": 2,
+  "create": 0,
+  "change": 1,
+  "remove": 0,
+  "read": 1,
+  "watch": 0,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "ipaddress": {
+  "svc_methods": 0,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 0,
+  "watch": 0,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": false,
+  "doc_go": true
+ },
+ "keymanager": {
+  "svc_methods": 7,
+  "create": 3,
+  "change": 0,
+  "remove": 2,
+  "read": 2,
+  "watch": 0,
+  "other": 0,
+  "errors": 5,
+  "migration": true,
+  "facades": 1,
+  "facade_kinds": {
+   "client": 1
+  },
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "keyupdater": {
+  "svc_methods": 4,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 2,
+  "watch": 1,
+  "other": 1,
+  "errors": 0,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "lease": {
+  "svc_methods": 11,
+  "create": 1,
+  "change": 5,
+  "remove": 1,
+  "read": 1,
+  "watch": 0,
+  "other": 3,
+  "errors": 0,
+  "migration": true,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 1,
+  "worker_names": [
+   "lease"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "life": {
+  "svc_methods": 0,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 0,
+  "watch": 0,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 5,
+  "facade_kinds": {
+   "controller": 1,
+   "agent": 4
+  },
+  "workers": 1,
+  "worker_names": [
+   "storageprovisioner"
+  ],
+  "has_state": false,
+  "doc_go": false
+ },
+ "logging": {
+  "svc_methods": 5,
+  "create": 0,
+  "change": 1,
+  "remove": 1,
+  "read": 2,
+  "watch": 1,
+  "other": 0,
+  "errors": 1,
+  "migration": false,
+  "facades": 3,
+  "facade_kinds": {
+   "agent": 3
+  },
+  "workers": 1,
+  "worker_names": [
+   "controlsocket"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "macaroon": {
+  "svc_methods": 8,
+  "create": 1,
+  "change": 0,
+  "remove": 0,
+  "read": 6,
+  "watch": 0,
+  "other": 1,
+  "errors": 4,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 1,
+  "worker_names": [
+   "bootstrap"
+  ],
+  "has_state": true,
+  "doc_go": false
+ },
+ "machine": {
+  "svc_methods": 50,
+  "create": 3,
+  "change": 5,
+  "remove": 0,
+  "read": 26,
+  "watch": 9,
+  "other": 7,
+  "errors": 23,
+  "migration": true,
+  "facades": 19,
+  "facade_kinds": {
+   "agent": 14,
+   "client": 5
+  },
+  "workers": 4,
+  "worker_names": [
+   "computeprovisioner",
+   "firewaller",
+   "instancepoller",
+   "storageprovisioner"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "model": {
+  "svc_methods": 58,
+  "create": 6,
+  "change": 2,
+  "remove": 2,
+  "read": 27,
+  "watch": 9,
+  "other": 12,
+  "errors": 13,
+  "migration": true,
+  "facades": 19,
+  "facade_kinds": {
+   "controller": 3,
+   "agent": 4,
+   "client": 12
+  },
+  "workers": 10,
+  "worker_names": [
+   "apiremoterelationcaller",
+   "credentialvalidator",
+   "errors.go",
+   "migrationflag",
+   "migrationmaster",
+   "modellife"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "modelagent": {
+  "svc_methods": 27,
+  "create": 0,
+  "change": 4,
+  "remove": 0,
+  "read": 12,
+  "watch": 3,
+  "other": 8,
+  "errors": 8,
+  "migration": true,
+  "facades": 2,
+  "facade_kinds": {
+   "client": 2
+  },
+  "workers": 1,
+  "worker_names": [
+   "toolsversionchecker"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "modelconfig": {
+  "svc_methods": 8,
+  "create": 0,
+  "change": 2,
+  "remove": 0,
+  "read": 1,
+  "watch": 2,
+  "other": 3,
+  "errors": 0,
+  "migration": true,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": false
+ },
+ "modeldefaults": {
+  "svc_methods": 7,
+  "create": 0,
+  "change": 2,
+  "remove": 2,
+  "read": 0,
+  "watch": 0,
+  "other": 3,
+  "errors": 0,
+  "migration": false,
+  "facades": 1,
+  "facade_kinds": {
+   "client": 1
+  },
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": false
+ },
+ "modelimport": {
+  "svc_methods": 0,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 0,
+  "watch": 0,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 1,
+  "facade_kinds": {
+   "controller": 1
+  },
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "modelmigration": {
+  "svc_methods": 47,
+  "create": 2,
+  "change": 9,
+  "remove": 2,
+  "read": 10,
+  "watch": 6,
+  "other": 18,
+  "errors": 13,
+  "migration": true,
+  "facades": 6,
+  "facade_kinds": {
+   "controller": 2,
+   "agent": 1,
+   "client": 3
+  },
+  "workers": 2,
+  "worker_names": [
+   "migrationflag",
+   "migrationmaster"
+  ],
+  "has_state": true,
+  "doc_go": false
+ },
+ "modelprovider": {
+  "svc_methods": 2,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 2,
+  "watch": 0,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "network": {
+  "svc_methods": 40,
+  "create": 4,
+  "change": 5,
+  "remove": 2,
+  "read": 18,
+  "watch": 2,
+  "other": 9,
+  "errors": 10,
+  "migration": true,
+  "facades": 12,
+  "facade_kinds": {
+   "agent": 5,
+   "client": 7
+  },
+  "workers": 3,
+  "worker_names": [
+   "apiaddresssetter",
+   "bootstrap",
+   "instancepoller"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "objectstore": {
+  "svc_methods": 19,
+  "create": 1,
+  "change": 1,
+  "remove": 1,
+  "read": 10,
+  "watch": 3,
+  "other": 3,
+  "errors": 16,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 4,
+  "worker_names": [
+   "controlsocket",
+   "objectstore",
+   "objectstoredrainer",
+   "objectstores3caller"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "operation": {
+  "svc_methods": 19,
+  "create": 4,
+  "change": 0,
+  "remove": 2,
+  "read": 7,
+  "watch": 3,
+  "other": 3,
+  "errors": 3,
+  "migration": true,
+  "facades": 5,
+  "facade_kinds": {
+   "agent": 3,
+   "client": 2
+  },
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "port": {
+  "svc_methods": 9,
+  "create": 1,
+  "change": 0,
+  "remove": 0,
+  "read": 6,
+  "watch": 2,
+  "other": 0,
+  "errors": 3,
+  "migration": true,
+  "facades": 2,
+  "facade_kinds": {
+   "client": 2
+  },
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": false
+ },
+ "provisioner": {
+  "svc_methods": 2,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 2,
+  "watch": 0,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 2,
+  "facade_kinds": {
+   "agent": 2
+  },
+  "workers": 1,
+  "worker_names": [
+   "computeprovisioner"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "proxy": {
+  "svc_methods": 2,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 2,
+  "watch": 0,
+  "other": 0,
+  "errors": 3,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": false,
+  "doc_go": false
+ },
+ "recovery": {
+  "svc_methods": 0,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 0,
+  "watch": 0,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": true
+ },
+ "relation": {
+  "svc_methods": 36,
+  "create": 3,
+  "change": 4,
+  "remove": 0,
+  "read": 20,
+  "watch": 5,
+  "other": 4,
+  "errors": 22,
+  "migration": true,
+  "facades": 12,
+  "facade_kinds": {
+   "controller": 4,
+   "agent": 3,
+   "client": 5
+  },
+  "workers": 2,
+  "worker_names": [
+   "firewaller",
+   "remoterelationconsumer"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "removal": {
+  "svc_methods": 29,
+  "create": 0,
+  "change": 7,
+  "remove": 17,
+  "read": 1,
+  "watch": 2,
+  "other": 2,
+  "errors": 22,
+  "migration": false,
+  "facades": 13,
+  "facade_kinds": {
+   "controller": 1,
+   "agent": 4,
+   "client": 8
+  },
+  "workers": 5,
+  "worker_names": [
+   "caasapplicationprovisioner",
+   "remoterelationconsumer",
+   "removal",
+   "storageprovisioner",
+   "undertaker"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "resolve": {
+  "svc_methods": 5,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 2,
+  "watch": 1,
+  "other": 2,
+  "errors": 4,
+  "migration": false,
+  "facades": 4,
+  "facade_kinds": {
+   "agent": 2,
+   "client": 2
+  },
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": false
+ },
+ "resource": {
+  "svc_methods": 19,
+  "create": 2,
+  "change": 3,
+  "remove": 3,
+  "read": 8,
+  "watch": 0,
+  "other": 3,
+  "errors": 14,
+  "migration": true,
+  "facades": 4,
+  "facade_kinds": {
+   "agent": 2,
+   "client": 2
+  },
+  "workers": 1,
+  "worker_names": [
+   "charmrevisioner"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "schema": {
+  "svc_methods": 0,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 0,
+  "watch": 0,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 2,
+  "worker_names": [
+   "dbaccessor",
+   "upgradedatabase"
+  ],
+  "has_state": false,
+  "doc_go": true
+ },
+ "secret": {
+  "svc_methods": 39,
+  "create": 3,
+  "change": 4,
+  "remove": 2,
+  "read": 21,
+  "watch": 6,
+  "other": 3,
+  "errors": 10,
+  "migration": true,
+  "facades": 15,
+  "facade_kinds": {
+   "controller": 5,
+   "agent": 4,
+   "client": 6
+  },
+  "workers": 2,
+  "worker_names": [
+   "secretsdrainworker",
+   "uniter"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "secretbackend": {
+  "svc_methods": 19,
+  "create": 3,
+  "change": 2,
+  "remove": 1,
+  "read": 6,
+  "watch": 2,
+  "other": 5,
+  "errors": 7,
+  "migration": false,
+  "facades": 11,
+  "facade_kinds": {
+   "controller": 4,
+   "agent": 2,
+   "client": 5
+  },
+  "workers": 1,
+  "worker_names": [
+   "secretsdrainworker"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "sequence": {
+  "svc_methods": 0,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 0,
+  "watch": 0,
+  "other": 0,
+  "errors": 1,
+  "migration": true,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": false
+ },
+ "services": {
+  "svc_methods": 0,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 0,
+  "watch": 0,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 5,
+  "worker_names": [
+   "domainservices",
+   "objectstoreservices",
+   "providerservices",
+   "traceservices",
+   "upgradeservices"
+  ],
+  "has_state": false,
+  "doc_go": true
+ },
+ "ssh": {
+  "svc_methods": 16,
+  "create": 1,
+  "change": 1,
+  "remove": 1,
+  "read": 4,
+  "watch": 2,
+  "other": 7,
+  "errors": 1,
+  "migration": false,
+  "facades": 1,
+  "facade_kinds": {
+   "agent": 1
+  },
+  "workers": 2,
+  "worker_names": [
+   "sshserver",
+   "sshtunneler"
+  ],
+  "has_state": true,
+  "doc_go": false
+ },
+ "status": {
+  "svc_methods": 49,
+  "create": 1,
+  "change": 14,
+  "remove": 2,
+  "read": 27,
+  "watch": 1,
+  "other": 4,
+  "errors": 10,
+  "migration": true,
+  "facades": 6,
+  "facade_kinds": {
+   "agent": 1,
+   "client": 5
+  },
+  "workers": 1,
+  "worker_names": [
+   "bootstrap"
+  ],
+  "has_state": true,
+  "doc_go": false
+ },
+ "storage": {
+  "svc_methods": 27,
+  "create": 6,
+  "change": 2,
+  "remove": 1,
+  "read": 16,
+  "watch": 0,
+  "other": 2,
+  "errors": 15,
+  "migration": true,
+  "facades": 18,
+  "facade_kinds": {
+   "agent": 4,
+   "client": 14
+  },
+  "workers": 3,
+  "worker_names": [
+   "bootstrap",
+   "caasapplicationprovisioner",
+   "storageprovisioner"
+  ],
+  "has_state": true,
+  "doc_go": false
+ },
+ "storageprovisioning": {
+  "svc_methods": 56,
+  "create": 1,
+  "change": 7,
+  "remove": 0,
+  "read": 36,
+  "watch": 12,
+  "other": 0,
+  "errors": 10,
+  "migration": false,
+  "facades": 3,
+  "facade_kinds": {
+   "agent": 3
+  },
+  "workers": 2,
+  "worker_names": [
+   "caasapplicationprovisioner",
+   "storageprovisioner"
+  ],
+  "has_state": true,
+  "doc_go": false
+ },
+ "testing": {
+  "svc_methods": 0,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 0,
+  "watch": 0,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 0,
+  "worker_names": [],
+  "has_state": false,
+  "doc_go": false
+ },
+ "tracing": {
+  "svc_methods": 5,
+  "create": 0,
+  "change": 2,
+  "remove": 0,
+  "read": 2,
+  "watch": 1,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 4,
+  "facade_kinds": {
+   "agent": 4
+  },
+  "workers": 3,
+  "worker_names": [
+   "caasmodeloperator",
+   "controlsocket",
+   "trace"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "unitless": {
+  "svc_methods": 4,
+  "create": 0,
+  "change": 0,
+  "remove": 0,
+  "read": 2,
+  "watch": 2,
+  "other": 0,
+  "errors": 0,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 1,
+  "worker_names": [
+   "unitless"
+  ],
+  "has_state": true,
+  "doc_go": true
+ },
+ "unitstate": {
+  "svc_methods": 4,
+  "create": 0,
+  "change": 1,
+  "remove": 0,
+  "read": 2,
+  "watch": 0,
+  "other": 1,
+  "errors": 1,
+  "migration": true,
+  "facades": 4,
+  "facade_kinds": {
+   "agent": 4
+  },
+  "workers": 0,
+  "worker_names": [],
+  "has_state": true,
+  "doc_go": false
+ },
+ "upgrade": {
+  "svc_methods": 12,
+  "create": 1,
+  "change": 4,
+  "remove": 0,
+  "read": 2,
+  "watch": 2,
+  "other": 3,
+  "errors": 3,
+  "migration": false,
+  "facades": 0,
+  "facade_kinds": {},
+  "workers": 2,
+  "worker_names": [
+   "upgradedatabase",
+   "upgradestepscontroller"
+  ],
+  "has_state": true,
+  "doc_go": false
+ }
+}

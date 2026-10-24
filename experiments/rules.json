@@ -1,0 +1,242 @@
+[
+ {
+  "page": "charm",
+  "filed": "E",
+  "text": "Deletion is bookkeeping: the charm record and its satellites go only when no application and no unit still references the charm.",
+  "id": 1
+ },
+ {
+  "page": "user",
+  "filed": "P",
+  "text": "A removed user's name is retired: the records are kept for audit and the name cannot be re-created while the removed record is the active one.",
+  "id": 2
+ },
+ {
+  "page": "resource-charm",
+  "filed": "P",
+  "text": "The unit's selection is immutable: the application can move on to a newer record while the unit keeps pointing at the one it runs, until its charm update drops the copy.",
+  "id": 3
+ },
+ {
+  "page": "placement-directive",
+  "filed": "D",
+  "text": "Bootstrap accepts only the unscoped key-value forms; the model does not exist yet to place into.",
+  "id": 4
+ },
+ {
+  "page": "model",
+  "filed": "E",
+  "text": "The controller never deletes its own database: the model's Dqlite database goes last, after all cloud resources are released.",
+  "id": 5
+ },
+ {
+  "page": "unit",
+  "filed": "E",
+  "text": "The leader owns the application status write, the peer relation settings read and secret access.",
+  "id": 6
+ },
+ {
+  "page": "application",
+  "filed": "E",
+  "text": "Resources are immutable records: a refresh that replaces an application's resource schedules a removal job for the displaced record, which deletes it once no unit references it (see the resource's execution layer).",
+  "id": 7
+ },
+ {
+  "page": "relation",
+  "filed": "E",
+  "text": "A unit entering a container-scoped relation gets its subordinate unit created, placed on the principal unit's machine.",
+  "id": 8
+ },
+ {
+  "page": "unit",
+  "filed": "P",
+  "text": "Every satellite's foreign key points at the unit; the co-location pair's two pointers both land in the unit's own records.",
+  "id": 9
+ },
+ {
+  "page": "application",
+  "filed": "P",
+  "text": "Every satellite's foreign key points at the application's id; the charm's endpoint definition an endpoint instantiates lives on the charm side (the endpoint record carries the charm endpoint's id).",
+  "id": 10
+ },
+ {
+  "page": "action",
+  "filed": "E",
+  "text": "The enqueue checks existence, not life: a target that no longer exists fails its own task; the operation still enqueues.",
+  "id": 11
+ },
+ {
+  "page": "bundle",
+  "filed": "D",
+  "text": "The first document is the base and the rest are overlays: relations append, machines overwrite, and an overlay application with no properties removes the base's application.",
+  "id": 12
+ },
+ {
+  "page": "offer",
+  "filed": "D",
+  "text": "An offer URL has the form `[<source>:][<qualifier>/]<model-name>.<offer-name>`, optionally with a `:<relation-endpoint>` suffix. The model name must be a valid model name, and the offer name follows the application-name rules.",
+  "id": 13
+ },
+ {
+  "page": "application",
+  "filed": "E",
+  "text": "The total size of the configuration keys and values is capped at 16 MB.",
+  "id": 14
+ },
+ {
+  "page": "charm",
+  "filed": "P",
+  "text": "A sequenced revision is created with the revision unset.",
+  "id": 15
+ },
+ {
+  "page": "access",
+  "filed": "D",
+  "text": "A user cannot change their own cloud access.",
+  "id": 16
+ },
+ {
+  "page": "relation",
+  "filed": "D",
+  "text": "The endpoint's relation limit, the charm's per-endpoint quota, must not be exceeded.",
+  "id": 17
+ },
+ {
+  "page": "unit",
+  "filed": "E",
+  "text": "Only a unit whose agent status is `error` can be resolved, and the resolution mode is honoured once, then cleared.",
+  "id": 18
+ },
+ {
+  "page": "space",
+  "filed": "E",
+  "text": "With the `local` method, the default LXD bridge satisfies every space requirement whatever its own space, host devices are never bridged, each guest device takes its address from the host bridge by DHCP, and negative space constraints are not enforced. One bridge serves all the spaces that select it.",
+  "id": 19
+ },
+ {
+  "page": "charm",
+  "filed": "E",
+  "text": "The archive lands asynchronously, and the available flag flips in the same UPDATE that stamps the archive path.",
+  "id": 20
+ },
+ {
+  "page": "ssh-key",
+  "filed": "P",
+  "text": "A removed or disabled user's keys drop out of the view as their state changes; no rewrite of the association is needed.",
+  "id": 21
+ },
+ {
+  "page": "secret",
+  "filed": "D",
+  "text": "A rotation policy and a next rotation time always come together; one without the other is invalid.",
+  "id": 22
+ },
+ {
+  "page": "charm",
+  "filed": "P",
+  "text": "A charm is unmodifiable after it lands: the schema triggers refuse updates to the charm-defined records (the actions, the config schema, the containers and their mounts are the schema's own comment: \"unmodifiable, only insertions and deletions are allowed\"); the charm-defined records take insertions and deletions, never updates.",
+  "id": 23
+ },
+ {
+  "page": "charm",
+  "filed": "P",
+  "text": "A local or Charmhub charm carries an architecture; a cross-model charm must not.",
+  "id": 24
+ },
+ {
+  "page": "action",
+  "filed": "P",
+  "text": "The operation completes when its last active task does; the user-visible status is computed from the tasks at query time, never stored.",
+  "id": 25
+ },
+ {
+  "page": "ssh-key",
+  "filed": "P",
+  "text": "The association is the only model-facing record: a model authorises keys by pointing at records and holds no copy of the material.",
+  "id": 26
+ },
+ {
+  "page": "application",
+  "filed": "D",
+  "text": "The name is unique per model: the creation path checks the model's existing applications before it writes.",
+  "id": 27
+ },
+ {
+  "page": "access",
+  "filed": "D",
+  "text": "A grant must name one of the valid level-per-object combinations (the schema's combination lookup). The client validates before sending and refuses a controller level paired with a model or offer.",
+  "id": 28
+ },
+ {
+  "page": "space",
+  "filed": "D",
+  "text": "A space name uses lowercase letters and digits, with hyphens between segments. `alpha` is the default space every model starts with.",
+  "id": 29
+ },
+ {
+  "page": "charm",
+  "filed": "P",
+  "text": "The record set is written in one transaction per charm: the metadata, the relations, the config schema, the actions, the storage, device, container and resource definitions, the terms, tags and categories, and the manifest bases all carry the charm's UUID as their pointer.",
+  "id": 30
+ },
+ {
+  "page": "application",
+  "filed": "P",
+  "text": "A config record's type mirrors the charm schema's type for that key; the value is nullable (a key set to no value).",
+  "id": 31
+ },
+ {
+  "page": "user",
+  "filed": "D",
+  "text": "The user name must be a valid user name: lowercase letters, or the `name@qualifier` form for external identities.",
+  "id": 32
+ },
+ {
+  "page": "unit",
+  "filed": "D",
+  "text": "The name is unique per model; the creation path mints the next number from the application's sequence.",
+  "id": 33
+ },
+ {
+  "page": "application",
+  "filed": "D",
+  "text": "Every creating or mutating operation requires model write access.",
+  "id": 34
+ },
+ {
+  "page": "secret",
+  "filed": "P",
+  "text": "Revisions are unique per secret: one record per secret ID and revision number.",
+  "id": 35
+ },
+ {
+  "page": "charm",
+  "filed": "D",
+  "text": "No `~user` namespace, no query, fragment or user-info part.",
+  "id": 36
+ },
+ {
+  "page": "secret",
+  "filed": "E",
+  "text": "A grant cannot change its scope or subject type; a role change is an update of the role alone.",
+  "id": 37
+ },
+ {
+  "page": "ssh-key",
+  "filed": "D",
+  "text": "The comment `juju-system-key` is reserved: the controller's own key carries it (see the SSH key's machinery), and a user key carrying that comment is refused.",
+  "id": 38
+ },
+ {
+  "page": "model",
+  "filed": "E",
+  "text": "The controller model is removed only with the force option, and a model that holds persistent storage is removed only when the request says what to do with the storage.",
+  "id": 39
+ },
+ {
+  "page": "subnet",
+  "filed": "E",
+  "text": "No path deletes a subnet in the current code: the removal surface exists (the state deletes the record and its satellites in one transaction) but has no non-test caller, and the reload's own comment says it does not delete subnets the provider dropped.",
+  "id": 40
+ }
+]

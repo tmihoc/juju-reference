@@ -1,0 +1,345 @@
+[
+ {
+  "key": "sshkey-new:1",
+  "tier": "n/a",
+  "evidence": "Definition; keys are listed via apiserver/facades/client/keymanager/keymanager.go ListKeys",
+  "verdict": "n/a",
+  "note": "Generic definition."
+ },
+ {
+  "key": "sshkey-new:2",
+  "tier": "A",
+  "evidence": "internal/worker/sshserver/authorization.go:35-65 (model key check before session)",
+  "verdict": "include",
+  "note": "User-facing: juju ssh through the controller."
+ },
+ {
+  "key": "sshkey-new:3",
+  "tier": "A",
+  "evidence": "internal/cloudconfig/userdatacfg.go:670-679 SetUbuntuUser: Name ubuntu, Sudo ALL=(ALL) NOPASSWD:ALL",
+  "verdict": "include",
+  "note": "Visible on any cloud-init provisioned machine. 'Every machine' is too broad for k8s (no machines) and untested for manual."
+ },
+ {
+  "key": "sshkey-new:4",
+  "tier": "B",
+  "evidence": "domain/schema/controller/sql/0021-user-ssh-keys.sql:13 table user_public_ssh_key (user_uuid FK to user)",
+  "verdict": "include",
+  "note": "Keys are visible only in the controller DB shell as a table; the API shows only the per-model list. Keep as the data-model statement."
+ },
+ {
+  "key": "sshkey-new:5",
+  "tier": "B",
+  "evidence": "add: domain/keymanager/state/state.go:197; last-model cleanup state.go DeletePublicKeysForUser deleteUnusedUserKeys; user removal domain/access/state/user.go:517-527; model removal domain/removal/state/controller/model.go:427",
+  "verdict": "include",
+  "note": "Add/import is tier A; the three deletions are visible only in DB shell (and by ssh failing). Model removal deletes only model_authorized_keys rows, not user_public_ssh_key rows: a key left unreferenced by that route stays stored until a later delete cleanup."
+ },
+ {
+  "key": "sshkey-new:6",
+  "tier": "B",
+  "evidence": "0021 unique indexes per user; 0022-model-authorized-keys.sql:1-8 composite PK (model_uuid,user_public_ssh_key_id)",
+  "verdict": "include",
+  "note": "Cardinality shown by DB schema; DB shell users need it."
+ },
+ {
+  "key": "sshkey-new:7",
+  "tier": "B",
+  "evidence": "0021-user-ssh-keys.sql:14-26 columns comment, fingerprint_hash_algorithm_id, fingerprint, public_key, user_uuid",
+  "verdict": "include",
+  "note": "Table and columns are the DB shell interface. The algorithm is stored as an id referencing ssh_fingerprint_hash_algorithm."
+ },
+ {
+  "key": "sshkey-new:8",
+  "tier": "B",
+  "evidence": "0021-user-ssh-keys.sql:28-32 unique indexes (user_uuid,fingerprint) and (user_uuid,public_key); state.go ensureUserPublicKey reuses an existing row",
+  "verdict": "include",
+  "note": "Rule enforced per user; visible effect through the API is that a key reused on a second model shares one row. Keep the rule, drop index names."
+ },
+ {
+  "key": "sshkey-new:9",
+  "tier": "A",
+  "evidence": "domain/controller/types.go:9 ControllerSSHKeyComment = \"juju-system-key\"; domain/keymanager/service/service.go:96-98 reserved set",
+  "verdict": "include",
+  "note": "Operators see the comment juju-system-key rejected on add/import."
+ },
+ {
+  "key": "sshkey-new:10",
+  "tier": "A",
+  "evidence": "cmd/jujuagentd/agent/bootstrap.go:371-391 ensureKeys (returns early for k8s) sets ControllerConfig[system-ssh-keys]; controller/configschema.go:299; cmd/juju/commands/bootstrap.go:1518 rejects user setting",
+  "verdict": "include",
+  "note": "Config key is user-visible via controller-config; the private half goes to SystemIdentity in agent info (not user-visible). 'Machine cloud' is correct (k8s skips). Not user-configurable at bootstrap."
+ },
+ {
+  "key": "sshkey-new:11",
+  "tier": "A",
+  "evidence": "domain/keymanager/service/service.go:152-160 and 296-306 reject only comments in reservedPublicKeyComments",
+  "verdict": "include",
+  "note": "Wording 'the same comment' is ambiguous; only the reserved comment juju-system-key is rejected, other duplicate comments are accepted. Reword to 'carries the reserved comment'."
+ },
+ {
+  "key": "sshkey-new:12",
+  "tier": "A",
+  "evidence": "rpc/params/apierror.go:270 CodeUserKeyAlreadyExists = \"public key already exists\"; keymanager.go AddKeys case PublicKeyAlreadyExists; state.go AddPublicKeysForUser PK conflict on model_authorized_keys",
+  "verdict": "include",
+  "note": "Code is client-visible; message text is 'one or more public keys to be added for user ... already exist'. The error rolls back the whole batch (single txn), so other keys in the same call are not added; 'None needed' holds only for a single key. Import uses ON CONFLICT DO NOTHING instead."
+ },
+ {
+  "key": "sshkey-new:13",
+  "tier": "A",
+  "evidence": "domain/keymanager/state/state.go EnsurePublicKeysForUser ON CONFLICT DO NOTHING; service.go ImportPublicKeysForUser doc",
+  "verdict": "include",
+  "note": "ImportKeys path only."
+ },
+ {
+  "key": "sshkey-new:14",
+  "tier": "A",
+  "evidence": "rpc/params/apierror.go:266 CodeUserKeyInvalidKey = \"invalid public key\"; keymanager.go AddKeys/ImportKeys InvalidPublicKey case",
+  "verdict": "include",
+  "note": "Code is client-visible. Remediation about authorized_keys format is consistent with internal/ssh ParsePublicKey use."
+ },
+ {
+  "key": "sshkey-new:15",
+  "tier": "D",
+  "evidence": "domain/keymanager/errors/errors.go ReservedCommentViolation = \"key contains a reserved comment\" is internal; keymanager.go maps it to CodeUserKeyInvalidComment (\"invalid public key comment\", apierror.go:262)",
+  "verdict": "move to code documentation",
+  "note": "The string 'key contains a reserved comment' never reaches the client; the code the client sees is 'invalid public key comment' with message '... contains a restricted comment'. Re-head the entry with the code."
+ },
+ {
+  "key": "sshkey-new:16",
+  "tier": "A",
+  "evidence": "apiserver/facades/client/keymanager/keymanager.go AddKeys: \"one or more public keys to be added for user %q contains a restricted comment\"; ImportKeys similar",
+  "verdict": "include",
+  "note": "Matches; this is the real client message."
+ },
+ {
+  "key": "sshkey-new:17",
+  "tier": "B",
+  "evidence": "0021-user-ssh-keys.sql:6-11 inserts (0,'md5'),(1,'sha256'); domain/keymanager/service/service.go:158 and :326 always write SHA256",
+  "verdict": "move to code documentation",
+  "note": "Lookup table; schema allows md5 and sha256 but the keymanager service always writes sha256. No operator need beyond stating that fingerprints are sha256."
+ },
+ {
+  "key": "sshkey-new:18",
+  "tier": "B",
+  "evidence": "0022-model-authorized-keys.sql:1-7 table model_authorized_keys",
+  "verdict": "include",
+  "note": "Table in DB shell; link rows are what ssh-keys lists."
+ },
+ {
+  "key": "sshkey-new:19",
+  "tier": "B",
+  "evidence": "0022 view v_model_authorized_keys filters u.removed=FALSE and ua.disabled=FALSE; domain/ssh/state/controller/state.go:115-120 applies the same filter to SSH authentication",
+  "verdict": "include",
+  "note": "Observable in DB shell and as behaviour (a disabled user's key stops working for ssh). Removed users' keys are in any case deleted at removal (user.go:517)."
+ },
+ {
+  "key": "sshkey-new:20",
+  "tier": "B",
+  "evidence": "0022-model-authorized-keys.sql view definition; used by keymanager/state/state.go GetAllUsersPublicKeys",
+  "verdict": "include",
+  "note": "View name is DB shell visible. 'The keys stay stored' holds for disabled users."
+ },
+ {
+  "key": "sshkey-new:21",
+  "tier": "A",
+  "evidence": "apiserver/facades/client/keymanager/register.go:18 MustRegister KeyManager v1; keymanager.go ListKeys/AddKeys/ImportKeys/DeleteKeys",
+  "verdict": "include",
+  "note": "Facade KeyManager version 1."
+ },
+ {
+  "key": "sshkey-new:22",
+  "tier": "A",
+  "evidence": "keymanager.go ListKeys, AddKeys, DeleteKeys use api.authedUser; ImportKeys uses user.NewName(arg.User)",
+  "verdict": "include",
+  "note": "Correct for list/add/delete, wrong for import: ImportKeys resolves the user from the call's User field, not the authenticated identity. Fix the claim."
+ },
+ {
+  "key": "sshkey-new:23",
+  "tier": "A",
+  "evidence": "keymanager.go ListKeys -> ListPublicKeysForUser joined on model_authorized_keys (state.go GetPublicKeysForUser)",
+  "verdict": "include",
+  "note": "Matches."
+ },
+ {
+  "key": "sshkey-new:24",
+  "tier": "A",
+  "evidence": "keymanager.go checkCanRead: write access or HasPermission ReadAccess on model",
+  "verdict": "include",
+  "note": "Matches."
+ },
+ {
+  "key": "sshkey-new:25",
+  "tier": "A",
+  "evidence": "keymanager.go checkCanRead calls checkCanWrite first; apiserver/common/model/permissions.go:20-40 HasModelAdmin: superuser or model admin",
+  "verdict": "include",
+  "note": "Matches; controller superuser also qualifies."
+ },
+ {
+  "key": "sshkey-new:26",
+  "tier": "A",
+  "evidence": "keymanager.go ListKeys: arg.Mode == params.SSHListModeFingerprint returns Fingerprint else Key; cmd/juju/sshkeys/list_sshkeys.go:73 --full",
+  "verdict": "include",
+  "note": "Matches."
+ },
+ {
+  "key": "sshkey-new:27",
+  "tier": "A",
+  "evidence": "keymanager.go AddKeys -> AddPublicKeysForUser (state.go:197 inserts key and model_authorized_keys row)",
+  "verdict": "include",
+  "note": "Matches."
+ },
+ {
+  "key": "sshkey-new:28",
+  "tier": "A",
+  "evidence": "keymanager.go AddKeys: checkCanWrite then check.ChangeAllowed; apiserver/common/block.go:54",
+  "verdict": "include",
+  "note": "Admin includes controller superuser."
+ },
+ {
+  "key": "sshkey-new:29",
+  "tier": "A",
+  "evidence": "rpc/params/apierror.go:262,266,270 codes; keymanager.go AddKeys error cases",
+  "verdict": "include",
+  "note": "Codes are right (reserved comment maps to 'invalid public key comment'), but the heading for the reserved comment in claim 15 uses the internal string."
+ },
+ {
+  "key": "sshkey-new:30",
+  "tier": "A",
+  "evidence": "keymanager.go ImportKeys -> ImportPublicKeysForUser (service.go:261)",
+  "verdict": "include",
+  "note": "Matches."
+ },
+ {
+  "key": "sshkey-new:31",
+  "tier": "A",
+  "evidence": "internal/ssh/importer/importer.go:68-69 resolvers gh and lp; doc lines 27-28",
+  "verdict": "include",
+  "note": "Matches (lp:~name or lp:name, gh:name)."
+ },
+ {
+  "key": "sshkey-new:32",
+  "tier": "A",
+  "evidence": "keymanager.go ImportKeys: checkCanWrite and ChangeAllowed",
+  "verdict": "include",
+  "note": "Matches."
+ },
+ {
+  "key": "sshkey-new:33",
+  "tier": "A",
+  "evidence": "state.go EnsurePublicKeysForUser ON CONFLICT DO NOTHING; service.go ImportPublicKeysForUser doc",
+  "verdict": "include",
+  "note": "Matches."
+ },
+ {
+  "key": "sshkey-new:34",
+  "tier": "A",
+  "evidence": "keymanager.go ImportKeys: CodeUserKeyUnknownKeySource = \"unknown user public key source\" (apierror.go:278); internal string domain/keymanager/errors/errors.go UnknownImportSource",
+  "verdict": "include",
+  "note": "Client sees the code 'unknown user public key source', not 'unknown import source'. Any unregistered scheme (including none) triggers it. Rename the heading to the code."
+ },
+ {
+  "key": "sshkey-new:35",
+  "tier": "A",
+  "evidence": "apierror.go:282 CodeUserKeySourceSubjectNotFound = \"key source subject not found\"; internal ImportSubjectNotFound",
+  "verdict": "include",
+  "note": "Client sees 'key source subject not found'. Rename the heading."
+ },
+ {
+  "key": "sshkey-new:36",
+  "tier": "A",
+  "evidence": "state.go DeletePublicKeysForUser findKeysStmt: comment OR fingerprint OR public_key IN targets",
+  "verdict": "include",
+  "note": "Matches; fingerprint is SHA256."
+ },
+ {
+  "key": "sshkey-new:37",
+  "tier": "B",
+  "evidence": "state.go DeletePublicKeysForUser deleteUnusedUserKeys (DELETE FROM user_public_ssh_key where no model_authorized_keys row)",
+  "verdict": "include",
+  "note": "Visible only in DB shell; effect is that the key vanishes from the user record."
+ },
+ {
+  "key": "sshkey-new:38",
+  "tier": "A",
+  "evidence": "keymanager.go DeleteKeys: checkCanWrite, check.RemoveAllowed; block.go:61-69 RemoveAllowed checks remove block then change block",
+  "verdict": "include",
+  "note": "Matches."
+ },
+ {
+  "key": "sshkey-new:39",
+  "tier": "B",
+  "evidence": "domain/access/state/user.go:505-535 RemoveUser deletes model_authorized_keys rows and user_public_ssh_key rows",
+  "verdict": "include",
+  "note": "Visible via juju remove-user then DB shell or ssh failing."
+ },
+ {
+  "key": "sshkey-new:40",
+  "tier": "B",
+  "evidence": "domain/removal/state/controller/model.go:427 and domain/model/state/controller/state.go:948 DELETE FROM model_authorized_keys WHERE model_uuid",
+  "verdict": "include",
+  "note": "Only authorisations are deleted; user_public_ssh_key rows are kept."
+ },
+ {
+  "key": "sshkey-new:41",
+  "tier": "A",
+  "evidence": "cmd/juju/sshkeys/add_sshkeys.go:59, import_sshkeys.go:63, list_sshkeys.go:58 and :73 (--full), remove_sshkeys.go:49",
+  "verdict": "include",
+  "note": "Matches."
+ },
+ {
+  "key": "sshkey-new:42",
+  "tier": "C",
+  "evidence": "internal/worker/sshserver/server.go:192 PublicKeyHandler (authentication.go:36) then authorization.go:35 Authorize",
+  "verdict": "include",
+  "note": "User-facing behaviour of juju ssh; also a spanning fact."
+ },
+ {
+  "key": "sshkey-new:43",
+  "tier": "C",
+  "evidence": "authentication.go:36-50 compares against keys from internal/worker/sshserver/manifold.go:294 PublicKeys -> domain/ssh/state/controller/state.go:104-120 (global, not model scoped, excludes removed/disabled)",
+  "verdict": "include",
+  "note": "Matches; add that disabled and removed users are excluded."
+ },
+ {
+  "key": "sshkey-new:44",
+  "tier": "C",
+  "evidence": "authorization.go:44-62; domain/access/service/permission.go:135-175 HasSSHAccessToModel (model admin or controller superuser); HasPublicKeyInModel",
+  "verdict": "include",
+  "note": "Matches."
+ },
+ {
+  "key": "sshkey-new:45",
+  "tier": "A",
+  "evidence": "internal/worker/sshserver/authorization.go:60-63 message: public key %q used to authenticate is not associated with model %q, add the key to the model or specify a different key",
+  "verdict": "include",
+  "note": "The %q values are the key's comment and the model UUID."
+ },
+ {
+  "key": "sshkey-new:46",
+  "tier": "C",
+  "evidence": "apiserver/facades/agent/keyupdater/authorisedkeys.go WatchAuthorisedKeys and AuthorisedKeys; api/facadeversions.go:61 KeyUpdater v1",
+  "verdict": "include",
+  "note": "Spanning fact between agent and controller."
+ },
+ {
+  "key": "sshkey-new:47",
+  "tier": "C",
+  "evidence": "authorisedkeys.go:21-29 doc: 'current agents no longer consume it'; no KeyUpdater client under api/agent/ (grep shows only api/facadeversions.go)",
+  "verdict": "include",
+  "note": "Spanning fact; the facade remains for older agents and 3.6 migrations."
+ },
+ {
+  "key": "sshkey-new:48",
+  "tier": "C",
+  "evidence": "domain/export/state/controller/export.go:200,543 ModelAuthorizedKeys; domain/keymanager/modelmigration/import.go:105-140 model.AuthorizedKeys() import",
+  "verdict": "include",
+  "note": "Matches."
+ },
+ {
+  "key": "sshkey-new:49",
+  "tier": "C",
+  "evidence": "domain/keymanager/modelmigration/import.go:160-205 executeModelConfigAuthorizedKeys drops keys where strings.Contains(pk, \"juju-system-key\") for the legacy model-config key authorized-keys",
+  "verdict": "include",
+  "note": "Applies only to keys read from the legacy model-config authorized-keys path, not to the description's AuthorizedKeys list."
+ }
+]

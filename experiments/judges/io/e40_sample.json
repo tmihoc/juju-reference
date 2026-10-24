@@ -1,0 +1,356 @@
+[
+ {
+  "id": "C18",
+  "status": "partial",
+  "basis": [
+   "code",
+   "judge"
+  ],
+  "claim": "Interface has one entry shape per channel type (API facade, HTTP route, CLI, hook tool, local socket, charm metadata); HTTP routes are generated, not enumerated.",
+  "strength": "route counts disagree across entries: 13 (E20b census), more than 6 more (E21c), about 28 (E21d red team), 19 handlers found (E30)",
+  "crit": "'generated, not enumerated' is the supported part; 'at least 19' in the skeleton is not established. Whether channel types share one entry shape is untested (stated in E20b)",
+  "plan": [
+   [
+    1118,
+    1118
+   ],
+   [
+    1197,
+    1197
+   ],
+   [
+    1267,
+    1267
+   ],
+   [
+    1309,
+    1309
+   ]
+  ],
+  "nums": [
+   "13 HTTP routes",
+   "19 HTTP handlers",
+   "about 28"
+  ],
+  "skel": [
+   19
+  ]
+ },
+ {
+  "id": "C24",
+  "status": "open",
+  "basis": [
+   "code",
+   "user"
+  ],
+  "claim": "Whether an entity page has a failure part is undecided; errors are authored once under the rule or operation that raises them, and the lookup by message is one generated index keyed by what the client sees (facade code and message), not the Go constant text.",
+  "strength": "E22 census (95% of strings map to one constant); E33 I5 finding; user instruction not to add error sections",
+  "crit": "E21d criterion 4 FAILED as measured (proxy stricter than the rule; ambiguous criterion)",
+  "plan": [
+   [
+    1111,
+    1111
+   ],
+   [
+    1209,
+    1209
+   ],
+   [
+    1306,
+    1306
+   ],
+   [
+    1345,
+    1345
+   ]
+  ],
+  "nums": [
+   "386",
+   "367 distinct strings"
+  ],
+  "skel": [
+   23
+  ]
+ },
+ {
+  "id": "C26",
+  "status": "partial",
+  "basis": [
+   "code",
+   "judge"
+  ],
+  "claim": "Operation entries state the block kind chain: RemoveAllowed also checks the change block, DestroyAllowed checks destroy and remove (and change); block kinds are asymmetric (storage removal and secrets and offers check none).",
+  "strength": "chain re-verified here; the asymmetry (which operations check none) is the E21d agent's and not re-verified",
+  "crit": "",
+  "plan": [
+   [
+    1198,
+    1198
+   ],
+   [
+    1309,
+    1309
+   ]
+  ],
+  "nums": [
+   "RemoveAllowed"
+  ],
+  "skel": [
+   32,
+   41,
+   52
+  ]
+ },
+ {
+  "id": "C27",
+  "status": "partial",
+  "basis": [
+   "code",
+   "judge"
+  ],
+  "claim": "A configuration key has one home, the entity it configures; per-key flags come from the key's own schema and a missing flag is not printed.",
+  "strength": "no Mandatory, Secret or Immutable flag in controller/configschema.go (spot-check, E21b); keys without an owner recur in 3 of 5 topics (E21)",
+  "crit": "E21d red team: the home rule needs a tie-break (storage pool attributes, the model secret backend setting, storage-default-block-source); the rule is untested on topics with keys (TODOS)",
+  "plan": [
+   [
+    1123,
+    1123
+   ],
+   [
+    1163,
+    1163
+   ],
+   [
+    1166,
+    1166
+   ],
+   [
+    1309,
+    1309
+   ]
+  ],
+  "nums": [
+   "3 of the 5 topics"
+  ],
+  "skel": [
+   24,
+   31
+  ]
+ },
+ {
+  "id": "C35",
+  "status": "partial",
+  "basis": [
+   "judge"
+  ],
+  "claim": "The parts are closed and the entries are open: the exposed artifacts fit a part in 94.5%, about 95%, 98.6% and 96.9% over four rounds, and each round brings new recurring sub-kinds.",
+  "strength": "four agent fit tests, 20 topics, one agent each, findings spot-checked",
+  "crit": "fit thresholds: E21 pass, E21b borderline FAIL, E21c pass, E21d pass; the no-recurring-gap criterion FAILED in rounds 1, 2 and 4 and passed in round 3",
+  "plan": [
+   [
+    1121,
+    1121
+   ],
+   [
+    1161,
+    1161
+   ],
+   [
+    1191,
+    1191
+   ],
+   [
+    1302,
+    1302
+   ],
+   [
+    1310,
+    1310
+   ]
+  ],
+  "nums": [
+   "94.5%",
+   "98.6%",
+   "96.9%"
+  ],
+  "skel": [
+   39
+  ]
+ },
+ {
+  "id": "C46",
+  "status": "supported",
+  "basis": [
+   "code"
+  ],
+  "claim": "Association tables have one home and are shown on the other page by a pointer; 18 such tables were found by the audit.",
+  "strength": "adjudicated against the code (E34 M2)",
+  "crit": "H of E34 revised by M2",
+  "plan": [
+   [
+    1377,
+    1377
+   ]
+  ],
+  "nums": [
+   "18"
+  ],
+  "skel": []
+ },
+ {
+  "id": "C53",
+  "status": "partial",
+  "basis": [
+   "code"
+  ],
+  "claim": "A group whose lead table has a mandatory reference into exactly one other page and which no table of another page references is an anchored section of that page (12 of 45 chunks); the same key shape with dependents is a page.",
+  "strength": "E41 on the replayed 4.1 DDL; stable on 4.0.15 (13 of 13); no judge",
+  "crit": "E41 registered predictions 5 of 5 and 10 of 10 met; check (b) questions four sections (permission, resource, ssh-key, model-migration); the association-dependent variant that fixes three of them is POST HOC and untested on held-out data; the rule cannot place telemetry, agent-version, zone, link-layer-device, external-controller, object-store (no mandatory owner)",
+  "plan": [
+   [
+    1499,
+    1499
+   ],
+   [
+    1481,
+    1482
+   ],
+   [
+    1549,
+    1555
+   ]
+  ],
+  "nums": [
+   "port_range",
+   "13 of 13",
+   "12 sections and 33 pages"
+  ],
+  "skel": []
+ },
+ {
+  "id": "C54",
+  "status": "partial",
+  "basis": [
+   "code",
+   "judge",
+   "precedent"
+  ],
+  "claim": "The two storage directive tables belong with their owners (application and unit) by the weak-table rule, against the E34 audit that moved them to storage because the existing storage page documents them.",
+  "strength": "E34 move rests on precedent (the existing page); E38c rule and judge (storage directives on application and unit) rest on keys",
+  "crit": "by the 2026-10-20 correction, precedent does not decide",
+  "plan": [
+   [
+    1375,
+    1375
+   ],
+   [
+    1495,
+    1495
+   ],
+   [
+    1497,
+    1497
+   ]
+  ],
+  "nums": [
+   "storage directives"
+  ],
+  "skel": []
+ },
+ {
+  "id": "C56",
+  "status": "partial",
+  "basis": [
+   "code"
+  ],
+  "claim": "The call graph over-approximates, and reach is mostly context: 14 of 19 confirmed pairs are reads and 13 incidental; it tells what a channel can touch, not what the channel is about.",
+  "strength": "E30 K1 to K4 passed but eight tuning changes were made after seeing results (criteria fixed before, choices not)",
+  "crit": "E33 I3: the measure does not discriminate at group level",
+  "plan": [
+   [
+    1267,
+    1272
+   ],
+   [
+    1521,
+    1521
+   ],
+   [
+    1342,
+    1342
+   ]
+  ],
+  "nums": [
+   "24 of 26",
+   "24 of 24",
+   "135 tool calls"
+  ],
+  "skel": []
+ },
+ {
+  "id": "C58",
+  "status": "partial",
+  "basis": [
+   "code"
+  ],
+  "claim": "The weak-table rule gives the home of a table; the page-unit decision for the rest of the manifest is therefore: weak tables go to the owner, strong tables are pages unless C53 shows existence dependence.",
+  "strength": "follows from C52 and C53 (E41 gives the section rule for strong tables)",
+  "crit": "E38c proposed table moves are 'proposed, not applied' (manifest v3)",
+  "plan": [
+   [
+    1498,
+    1499
+   ]
+  ],
+  "nums": [
+   "manifest version 3"
+  ],
+  "skel": []
+ },
+ {
+  "id": "C59",
+  "status": "partial",
+  "basis": [
+   "judge"
+  ],
+  "claim": "The ssh-key page written with the pattern fails 5 of 49 claims (10%, at the limit), four of the five by the author's own errors (two carried over from the old page unchecked, two generalisations across operations).",
+  "strength": "one judge, 23 tool calls for 49 claims; true share probably higher",
+  "crit": "E32 passed narrowly (limit 10%) against 28% on old pages (E27)",
+  "plan": [
+   [
+    1297,
+    1299
+   ]
+  ],
+  "nums": [
+   "5 of 49",
+   "47 of 49",
+   "23 tool calls"
+  ],
+  "skel": []
+ },
+ {
+  "id": "C60",
+  "status": "user",
+  "basis": [
+   "user"
+  ],
+  "claim": "The docs inclusion test counts the database shell (juju-db-repl) as user-facing, so data-model sections stay in docs/; 2 of 49 claims of the ssh-key page are internal only and 12 more are shell-only.",
+  "strength": "user decision, 2026-10-20",
+  "crit": "E33 I5 passed under that instruction",
+  "plan": [
+   [
+    1344,
+    1344
+   ],
+   [
+    1360,
+    1360
+   ]
+  ],
+  "nums": [
+   "2 of 49"
+  ],
+  "skel": []
+ }
+]

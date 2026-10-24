@@ -1,0 +1,202 @@
+[
+ {
+  "id": 0,
+  "facade_package": "apiserver/facades/agent/secretsmanager",
+  "method": "GetSecretRevisionContentInfo",
+  "tier": "agent",
+  "type_and_method": "*github.com/juju/juju/apiserver/facades/agent/secretsmanager.SecretsManagerAPI).GetSecretRevisionContentInfo",
+  "table": "secret_role"
+ },
+ {
+  "id": 1,
+  "facade_package": "apiserver/facades/agent/storageprovisioner",
+  "method": "RemoveVolumeAttachmentPlan",
+  "tier": "agent",
+  "type_and_method": "StorageProvisionerAPIv4.RemoveVolumeAttachmentPlan",
+  "table": "storage_volume_attachment_plan"
+ },
+ {
+  "id": 2,
+  "facade_package": "apiserver/facades/agent/storageprovisioner",
+  "method": "VolumeBlockDevices",
+  "tier": "agent",
+  "type_and_method": "StorageProvisionerAPIv4.VolumeBlockDevices",
+  "table": "storage_volume_attachment"
+ },
+ {
+  "id": 3,
+  "facade_package": "apiserver/facades/agent/storageprovisioner",
+  "method": "SetVolumeAttachmentPlanBlockInfo",
+  "tier": "agent",
+  "type_and_method": "*github.com/juju/juju/apiserver/facades/agent/storageprovisioner.StorageProvisionerAPI).SetVolumeAttachmentPlanBlockInfo",
+  "table": "block_device"
+ },
+ {
+  "id": 4,
+  "facade_package": "apiserver/facades/client/resources",
+  "method": "AddPendingResources",
+  "tier": "client",
+  "type_and_method": "*github.com/juju/juju/apiserver/facades/client/resources.API).AddPendingResources",
+  "table": "charm"
+ },
+ {
+  "id": 5,
+  "facade_package": "apiserver/facades/agent/uniter",
+  "method": "WatchConfigSettingsHash",
+  "tier": "agent",
+  "type_and_method": "UniterAPIv20.WatchConfigSettingsHash",
+  "table": "application_config_hash"
+ },
+ {
+  "id": 6,
+  "facade_package": "apiserver/facades/agent/uniter",
+  "method": "DestroyAllSubordinates",
+  "tier": "agent",
+  "type_and_method": "*github.com/juju/juju/apiserver/facades/agent/uniter.UniterAPI).DestroyAllSubordinates",
+  "table": "storage_attachment"
+ },
+ {
+  "id": 7,
+  "facade_package": "apiserver/facades/controller/crossmodelrelations",
+  "method": "WatchRelationsSuspendedStatus",
+  "tier": "controller",
+  "type_and_method": "*github.com/juju/juju/apiserver/facades/controller/crossmodelrelations.CrossModelRelationsAPIv3).WatchRelationsSuspendedStatus",
+  "table": "v_relation_endpoint"
+ },
+ {
+  "id": 8,
+  "facade_package": "apiserver/facades/client/sshclient",
+  "method": "AllAddresses",
+  "tier": "client",
+  "type_and_method": "*github.com/juju/juju/apiserver/facades/client/sshclient.Facade).AllAddresses",
+  "table": "model"
+ },
+ {
+  "id": 9,
+  "facade_package": "apiserver/facades/client/usermanager",
+  "method": "UserInfo",
+  "tier": "client",
+  "type_and_method": "*github.com/juju/juju/apiserver/facades/client/usermanager.UserManagerAPI).UserInfo",
+  "table": "v_user_auth"
+ },
+ {
+  "id": 10,
+  "facade_package": "apiserver/facades/client/application",
+  "method": "Expose",
+  "tier": "client",
+  "type_and_method": "APIv22.Expose",
+  "table": "application"
+ },
+ {
+  "id": 11,
+  "facade_package": "apiserver/facades/client/cloud",
+  "method": "Credential",
+  "tier": "client",
+  "type_and_method": "*github.com/juju/juju/apiserver/facades/client/cloud.CloudAPI).Credential",
+  "table": "cloud"
+ },
+ {
+  "id": 12,
+  "facade_package": "apiserver/facades/controller/migrationtarget",
+  "method": "Prechecks",
+  "tier": "controller",
+  "type_and_method": "APIV5.Prechecks",
+  "table": "cloud_region"
+ },
+ {
+  "id": 13,
+  "facade_package": "apiserver/facades/agent/uniter",
+  "method": "GetUnitContext",
+  "tier": "agent",
+  "type_and_method": "UniterAPIv19.GetUnitContext",
+  "table": "ip_address"
+ },
+ {
+  "id": 14,
+  "facade_package": "apiserver/facades/agent/secretsmanager",
+  "method": "SecretsRotated",
+  "tier": "agent",
+  "type_and_method": "*github.com/juju/juju/apiserver/facades/agent/secretsmanager.SecretsManagerAPI).SecretsRotated",
+  "table": "secret_revision_expire"
+ },
+ {
+  "id": 15,
+  "facade_package": "apiserver/facades/client/application",
+  "method": "UnitsInfo",
+  "tier": "client",
+  "type_and_method": "APIv19.UnitsInfo",
+  "table": "relation"
+ },
+ {
+  "id": 16,
+  "facade_package": "apiserver/facades/client/application",
+  "method": "Deploy",
+  "tier": "client",
+  "type_and_method": "deployApplicationLocalRepo.Deploy",
+  "table": "charm_action"
+ },
+ {
+  "id": 17,
+  "facade_package": "apiserver/facades/client/application",
+  "method": "GetCharmURLOrigin",
+  "tier": "client",
+  "type_and_method": "APIv19.GetCharmURLOrigin",
+  "table": "charm_source"
+ },
+ {
+  "id": 18,
+  "facade_package": "apiserver/facades/client/storage",
+  "method": "AddToUnit",
+  "tier": "client",
+  "type_and_method": "StorageAPIv6.AddToUnit",
+  "table": "life"
+ },
+ {
+  "id": 19,
+  "facade_package": "apiserver/facades/client/application",
+  "method": "AddUnits",
+  "tier": "client",
+  "type_and_method": "APIv22.AddUnits",
+  "table": "machine_filesystem"
+ },
+ {
+  "id": 20,
+  "facade_package": "apiserver/facades/client/machinemanager",
+  "method": "DestroyMachineWithParams",
+  "tier": "client",
+  "type_and_method": "MachineManagerAPIv11.DestroyMachineWithParams",
+  "table": "cloud"
+ },
+ {
+  "id": 21,
+  "facade_package": "apiserver/facades/agent/uniter",
+  "method": "SetState",
+  "tier": "agent",
+  "type_and_method": "*github.com/juju/juju/apiserver/facades/agent/uniter.UniterAPI).SetState",
+  "table": "model"
+ },
+ {
+  "id": 22,
+  "facade_package": "apiserver/facades/controller/migrationtarget",
+  "method": "Abort",
+  "tier": "controller",
+  "type_and_method": "APIV6.Abort",
+  "table": "life"
+ },
+ {
+  "id": 23,
+  "facade_package": "apiserver/facades/controller/migrationtarget",
+  "method": "Prechecks",
+  "tier": "controller",
+  "type_and_method": "*github.com/juju/juju/apiserver/facades/controller/migrationtarget.APIV8).Prechecks",
+  "table": "architecture"
+ },
+ {
+  "id": 24,
+  "facade_package": "apiserver/facades/client/application",
+  "method": "UnitsInfo",
+  "tier": "client",
+  "type_and_method": "APIv21.UnitsInfo",
+  "table": "life"
+ }
+]

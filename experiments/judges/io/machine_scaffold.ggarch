@@ -1,0 +1,378 @@
+model "Schema" {
+
+  nodes {
+    architecture [type: record, label: "architecture",
+                 ground: "model:architecture"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    availability_zone [type: record, label: "availability_zone",
+                 ground: "model:availability_zone"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    container_type [type: record, label: "container_type",
+                 ground: "model:container_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    instance_tag [type: record, label: "instance_tag",
+                 ground: "model:instance_tag"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", fk: true]
+        tag [label: "tag", type: "text"]
+      }
+    }
+
+    life [type: record, label: "life",
+                 ground: "model:life"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    machine [type: record, label: "machine",
+                 ground: "model:machine"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        net_node_uuid [label: "net_node_uuid", type: "text", fk: true]
+        life_id [label: "life_id", type: "int", fk: true]
+        nonce [label: "nonce", type: "text", null: true]
+        password_hash_algorithm_id [label: "password_hash_algorithm_id", type: "text", fk: true, null: true]
+        password_hash [label: "password_hash", type: "text", null: true]
+        force_destroyed [label: "force_destroyed", type: "bool", null: true]
+        agent_started_at [label: "agent_started_at", type: "datetime", null: true]
+        hostname [label: "hostname", type: "text", null: true]
+        keep_instance [label: "keep_instance", type: "bool", null: true]
+      }
+    }
+
+    machine_agent_presence [type: record, label: "machine_agent_presence",
+                 ground: "model:machine_agent_presence"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        last_seen [label: "last_seen", type: "datetime", null: true]
+      }
+    }
+
+    machine_agent_version [type: record, label: "machine_agent_version",
+                 ground: "model:machine_agent_version"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        version [label: "version", type: "text"]
+        architecture_id [label: "architecture_id", type: "int", fk: true]
+      }
+    }
+
+    machine_cloud_instance [type: record, label: "machine_cloud_instance",
+                 ground: "model:machine_cloud_instance"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        life_id [label: "life_id", type: "int", fk: true]
+        instance_id [label: "instance_id", type: "text", null: true]
+        display_name [label: "display_name", type: "text", null: true]
+        arch [label: "arch", type: "text", null: true]
+        availability_zone_uuid [label: "availability_zone_uuid", type: "text", fk: true, null: true]
+        cpu_cores [label: "cpu_cores", type: "int", null: true]
+        cpu_power [label: "cpu_power", type: "int", null: true]
+        mem [label: "mem", type: "int", null: true]
+        root_disk [label: "root_disk", type: "int", null: true]
+        root_disk_source [label: "root_disk_source", type: "text", null: true]
+        virt_type [label: "virt_type", type: "text", null: true]
+      }
+    }
+
+    machine_cloud_instance_status [type: record, label: "machine_cloud_instance_status",
+                 ground: "model:machine_cloud_instance_status"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        status_id [label: "status_id", type: "int", fk: true]
+        message [label: "message", type: "text", null: true]
+        data [label: "data", type: "text", null: true]
+        updated_at [label: "updated_at", type: "datetime", null: true]
+      }
+    }
+
+    machine_cloud_instance_status_value [type: record, label: "machine_cloud_instance_status_value",
+                 ground: "model:machine_cloud_instance_status_value"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        status [label: "status", type: "text"]
+      }
+    }
+
+    machine_constraint [type: record, label: "machine_constraint",
+                 ground: "model:machine_constraint"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        constraint_uuid [label: "constraint_uuid", type: "text"]
+      }
+    }
+
+    machine_container_type [type: record, label: "machine_container_type",
+                 ground: "model:machine_container_type"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        container_type_id [label: "container_type_id", type: "int", fk: true]
+      }
+    }
+
+    machine_filesystem [type: record, label: "machine_filesystem",
+                 ground: "model:machine_filesystem"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", fk: true]
+        filesystem_uuid [label: "filesystem_uuid", type: "text", fk: true]
+      }
+    }
+
+    machine_lxd_profile [type: record, label: "machine_lxd_profile",
+                 ground: "model:machine_lxd_profile"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", fk: true]
+        name [label: "name", type: "text"]
+        array_index [label: "array_index", type: "int"]
+      }
+    }
+
+    machine_manual [type: record, label: "machine_manual",
+                 ground: "model:machine_manual"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+      }
+    }
+
+    machine_parent [type: record, label: "machine_parent",
+                 ground: "model:machine_parent"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        parent_uuid [label: "parent_uuid", type: "text", fk: true]
+      }
+    }
+
+    machine_placement [type: record, label: "machine_placement",
+                 ground: "model:machine_placement"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        scope_id [label: "scope_id", type: "int", fk: true]
+        directive [label: "directive", type: "text"]
+      }
+    }
+
+    machine_placement_scope [type: record, label: "machine_placement_scope",
+                 ground: "model:machine_placement_scope"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    machine_platform [type: record, label: "machine_platform",
+                 ground: "model:machine_platform"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", fk: true]
+        os_id [label: "os_id", type: "text", fk: true]
+        channel [label: "channel", type: "text", null: true]
+        architecture_id [label: "architecture_id", type: "int", fk: true]
+      }
+    }
+
+    machine_reprovision [type: record, label: "machine_reprovision",
+                 ground: "model:machine_reprovision"] {
+      fields {
+        machine_name [label: "machine_name", type: "text", pk: true, fk: true]
+        requested_at [label: "requested_at", type: "datetime"]
+      }
+    }
+
+    machine_requires_reboot [type: record, label: "machine_requires_reboot",
+                 ground: "model:machine_requires_reboot"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        created_at [label: "created_at", type: "datetime"]
+      }
+    }
+
+    machine_ssh_host_key [type: record, label: "machine_ssh_host_key",
+                 ground: "model:machine_ssh_host_key"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        machine_uuid [label: "machine_uuid", type: "text", fk: true]
+        ssh_key [label: "ssh_key", type: "text"]
+      }
+    }
+
+    machine_status [type: record, label: "machine_status",
+                 ground: "model:machine_status"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        status_id [label: "status_id", type: "int", fk: true]
+        message [label: "message", type: "text", null: true]
+        data [label: "data", type: "text", null: true]
+        updated_at [label: "updated_at", type: "datetime", null: true]
+      }
+    }
+
+    machine_status_value [type: record, label: "machine_status_value",
+                 ground: "model:machine_status_value"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        status [label: "status", type: "text"]
+      }
+    }
+
+    machine_virtual_ssh_host_key [type: record, label: "machine_virtual_ssh_host_key",
+                 ground: "model:machine_virtual_ssh_host_key"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        algorithm_type_id [label: "algorithm_type_id", type: "int", fk: true]
+        ssh_key [label: "ssh_key", type: "text"]
+      }
+    }
+
+    machine_volume [type: record, label: "machine_volume",
+                 ground: "model:machine_volume"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", fk: true]
+        volume_uuid [label: "volume_uuid", type: "text", fk: true]
+      }
+    }
+
+    net_node [type: record, label: "net_node",
+                 ground: "model:net_node"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+      }
+    }
+
+    os [type: record, label: "os",
+                 ground: "model:os"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    password_hash_algorithm [type: record, label: "password_hash_algorithm",
+                 ground: "model:password_hash_algorithm"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    ssh_connection_request [type: record, label: "ssh_connection_request",
+                 ground: "model:ssh_connection_request"] {
+      fields {
+        tunnel_id [label: "tunnel_id", type: "text", pk: true]
+        machine_uuid [label: "machine_uuid", type: "text", fk: true]
+        expires_at [label: "expires_at", type: "datetime"]
+        controller_addresses [label: "controller_addresses", type: "text"]
+        unit_port [label: "unit_port", type: "int"]
+        ephemeral_public_key [label: "ephemeral_public_key", type: "blob"]
+      }
+    }
+
+    ssh_key_algorithm_type [type: record, label: "ssh_key_algorithm_type",
+                 ground: "model:ssh_key_algorithm_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        type [label: "type", type: "text"]
+      }
+    }
+
+    storage_filesystem [type: record, label: "storage_filesystem",
+                 ground: "model:storage_filesystem"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        filesystem_id [label: "filesystem_id", type: "text"]
+        life_id [label: "life_id", type: "int", fk: true]
+        provision_scope_id [label: "provision_scope_id", type: "int", fk: true]
+        provider_id [label: "provider_id", type: "text", null: true]
+        size_mib [label: "size_mib", type: "int", null: true]
+        obliterate_on_cleanup [label: "obliterate_on_cleanup", type: "bool", null: true]
+      }
+    }
+
+    storage_provision_scope [type: record, label: "storage_provision_scope",
+                 ground: "model:storage_provision_scope"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        scope [label: "scope", type: "text"]
+      }
+    }
+
+    storage_volume [type: record, label: "storage_volume",
+                 ground: "model:storage_volume"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        volume_id [label: "volume_id", type: "text"]
+        life_id [label: "life_id", type: "int", fk: true]
+        provision_scope_id [label: "provision_scope_id", type: "int", fk: true]
+        provider_id [label: "provider_id", type: "text", null: true]
+        size_mib [label: "size_mib", type: "int", null: true]
+        hardware_id [label: "hardware_id", type: "text", null: true]
+        wwn [label: "wwn", type: "text", null: true]
+        persistent [label: "persistent", type: "bool", null: true]
+        obliterate_on_cleanup [label: "obliterate_on_cleanup", type: "bool", null: true]
+      }
+    }
+
+  }
+
+  edges {
+    instance_tag.machine_uuid -> machine.uuid [type: data]
+    machine.net_node_uuid -> net_node.uuid [type: data]
+    machine.life_id -> life.id [type: data]
+    machine.password_hash_algorithm_id -> password_hash_algorithm.id [type: data]
+    machine_agent_presence.machine_uuid -> machine.uuid [type: data]
+    machine_agent_version.machine_uuid -> machine.uuid [type: data]
+    machine_agent_version.architecture_id -> architecture.id [type: data]
+    machine_cloud_instance.machine_uuid -> machine.uuid [type: data]
+    machine_cloud_instance.life_id -> life.id [type: data]
+    machine_cloud_instance.availability_zone_uuid -> availability_zone.uuid [type: data]
+    machine_cloud_instance_status.machine_uuid -> machine_cloud_instance.machine_uuid [type: data]
+    machine_cloud_instance_status.status_id -> machine_cloud_instance_status_value.id [type: data]
+    machine_constraint.machine_uuid -> machine.uuid [type: data]
+    machine_container_type.machine_uuid -> machine.uuid [type: data]
+    machine_container_type.container_type_id -> container_type.id [type: data]
+    machine_filesystem.machine_uuid -> machine.uuid [type: data]
+    machine_filesystem.filesystem_uuid -> storage_filesystem.uuid [type: data]
+    machine_lxd_profile.machine_uuid -> machine.uuid [type: data]
+    machine_manual.machine_uuid -> machine.uuid [type: data]
+    machine_parent.machine_uuid -> machine.uuid [type: data]
+    machine_parent.parent_uuid -> machine.uuid [type: data]
+    machine_placement.machine_uuid -> machine.uuid [type: data]
+    machine_placement.scope_id -> machine_placement_scope.id [type: data]
+    machine_platform.machine_uuid -> machine.uuid [type: data]
+    machine_platform.os_id -> os.id [type: data]
+    machine_platform.architecture_id -> architecture.id [type: data]
+    machine_reprovision.machine_name -> machine.name [type: data]
+    machine_requires_reboot.machine_uuid -> machine.uuid [type: data]
+    machine_ssh_host_key.machine_uuid -> machine.uuid [type: data]
+    machine_status.machine_uuid -> machine.uuid [type: data]
+    machine_status.status_id -> machine_status_value.id [type: data]
+    machine_virtual_ssh_host_key.machine_uuid -> machine.uuid [type: data]
+    machine_virtual_ssh_host_key.algorithm_type_id -> ssh_key_algorithm_type.id [type: data]
+    machine_volume.machine_uuid -> machine.uuid [type: data]
+    machine_volume.volume_uuid -> storage_volume.uuid [type: data]
+    ssh_connection_request.machine_uuid -> machine.uuid [type: data]
+    storage_filesystem.life_id -> life.id [type: data]
+    storage_filesystem.provision_scope_id -> storage_provision_scope.id [type: data]
+    storage_volume.life_id -> life.id [type: data]
+    storage_volume.provision_scope_id -> storage_provision_scope.id [type: data]
+  }
+
+  style { extends: juju }
+
+}

@@ -1,0 +1,116 @@
+[
+  {
+    "id": "ssh-key-lookup",
+    "type": "lookup",
+    "question": "When I import SSH keys into a model from an external service instead of pasting them, which prefixes can I put in front of the account name, and which service does each one stand for?",
+    "ground_truth": "Two prefixes are understood: gh: (GitHub, e.g. gh:tlm) and lp: (Launchpad, e.g. lp:~wallyworld). Any other scheme is rejected as an unknown import source.",
+    "key_facts": [
+      "gh: imports keys from GitHub",
+      "lp: imports keys from Launchpad",
+      "no other scheme has a resolver; an unknown scheme gives an 'unknown import source' error"
+    ],
+    "evidence": [
+      {
+        "file": "internal/ssh/importer/importer.go",
+        "line": 68,
+        "quote": "\"gh\": &GithubResolver{client},"
+      },
+      {
+        "file": "internal/ssh/importer/importer.go",
+        "line": 69,
+        "quote": "\"lp\": &LaunchpadResolver{client},"
+      },
+      {
+        "file": "domain/keymanager/service/service.go",
+        "line": 279,
+        "quote": "case errors.Is(err, importererrors.NoResolver):"
+      }
+    ],
+    "greps": [],
+    "cross_area": false
+  },
+  {
+    "id": "ssh-key-mechanism",
+    "type": "mechanism",
+    "question": "A model is migrated into this controller from an older 3.x controller where the SSH keys were still stored in the model's configuration. What happens to those keys during import, which user ends up owning them, and are all of them kept?",
+    "ground_truth": "The keys are read from the model config 'authorized-keys' value and split into individual keys. Any key whose text contains the comment juju-system-key (the old controller's own key) is discarded with a warning so the source controller cannot ssh in after migration. The remaining keys are added to the model under the admin user.",
+    "key_facts": [
+      "keys come from the 'authorized-keys' entry in the migrated model config",
+      "keys containing the comment 'juju-system-key' are dropped, with a warning logged, to stop the source controller keeping access",
+      "all remaining keys are added to the admin user for the imported model"
+    ],
+    "evidence": [
+      {
+        "file": "domain/keymanager/modelmigration/import.go",
+        "line": 198,
+        "quote": "if strings.Contains(pk, controller.ControllerSSHKeyComment) {"
+      },
+      {
+        "file": "domain/keymanager/modelmigration/import.go",
+        "line": 212,
+        "quote": "adminUser, err := i.userService.GetUserByName(ctx, user.AdminUserName)"
+      },
+      {
+        "file": "domain/controller/types.go",
+        "line": 9,
+        "quote": "ControllerSSHKeyComment = \"juju-system-key\""
+      },
+      {
+        "file": "domain/keymanager/modelmigration/import.go",
+        "line": 32,
+        "quote": "modelConfigKeyAuthorizeKeys = \"authorized-keys\""
+      }
+    ],
+    "greps": [],
+    "cross_area": true
+  },
+  {
+    "id": "ssh-key-failure",
+    "type": "failure",
+    "question": "I added several SSH keys to my user, and 'juju ssh' to a model through the controller fails with 'public key ... used to authenticate is not associated with model ...'. What does this error mean and how do I fix it?",
+    "ground_truth": "The key presented during authentication is one of the user's controller-wide registered keys, but keys are added per model, and the key being used has not been added to the target model (after the user's SSH access to the model was already confirmed). Add that key to the model, or connect with a different key that is associated with the model.",
+    "key_facts": [
+      "error text: public key %q used to authenticate is not associated with model %q, add the key to the model or specify a different key",
+      "authentication is controller scoped but keys are added per model, so the model membership is checked once the model is known",
+      "the check happens after the user's SSH access to the model has passed",
+      "fix: add the key to the model or present another key that is associated with it"
+    ],
+    "evidence": [
+      {
+        "file": "internal/worker/sshserver/authorization.go",
+        "line": 61,
+        "quote": "is not associated with model %q, add the key to the model or specify a different key"
+      },
+      {
+        "file": "internal/worker/sshserver/authorization.go",
+        "line": 51,
+        "quote": "The key used during authentication is controller scoped, but keys are"
+      },
+      {
+        "file": "internal/worker/sshserver/authorization.go",
+        "line": 56,
+        "quote": "inModel, err := a.access.HasPublicKeyInModel(ctx, ctx.User(), userKey.PublicKey, destination)"
+      }
+    ],
+    "greps": [],
+    "cross_area": true
+  },
+  {
+    "id": "ssh-key-unanswerable",
+    "type": "unanswerable",
+    "question": "What is the maximum number of SSH keys that can be added to a model, or to a single user on a model, before further additions are refused?",
+    "ground_truth": "The documentation does not say: no limit on the number of SSH keys per model or per user is defined.",
+    "key_facts": [
+      "no maximum or quota on the number of keys is defined"
+    ],
+    "evidence": [],
+    "greps": [
+      "grep -rniE 'maxkeys|max_keys|maxpublickeys|maxSSHKeys|keylimit|too many (ssh )?keys|max.*authorized.?keys|authorized.?keys.*(limit|maximum)' (only matched unrelated Split* helper names)",
+      "grep -rniE 'quota' | grep -iE key (only charm state key-size and relation settings quotas)",
+      "grep -rniE '(number|count|num) of (public |ssh |authori[sz]ed )?keys' (no matches)",
+      "grep -rniE 'maximum number|too many|exceed' in keymanager, keyupdater, internal/ssh, sshkeyupdater and keymanager facade (no matches)",
+      "grep -rniE 'CHECK *\\(' in 0021-user-ssh-keys.sql and 0022-model-authorized-keys.sql (no matches)"
+    ],
+    "cross_area": false
+  }
+]

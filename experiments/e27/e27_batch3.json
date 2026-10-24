@@ -1,0 +1,222 @@
+[
+ {
+  "key": "user:1",
+  "page": "user",
+  "claim": "In Juju, a user is any person able to log in to a Juju controller."
+ },
+ {
+  "key": "user:2",
+  "page": "user",
+  "claim": "Users can be created in two ways: Implicitly by bootstrapping a controller into a cloud or explicitly by adding a user to a controller (`juju add-user`)."
+ },
+ {
+  "key": "user:3",
+  "page": "user",
+  "claim": "A user logs in to a Juju controller using a username and a password."
+ },
+ {
+  "key": "user:4",
+  "page": "user",
+  "claim": "The user created implicitly gets the username `admin` and  is prompted to create a password the first time they attempt to log out."
+ },
+ {
+  "key": "user:5",
+  "page": "user",
+  "claim": "A user created explicitly gets the username assigned to them when being added (via `juju add-user`) and is prompted to create login details when they register the new controller with their Juju client."
+ },
+ {
+  "key": "user:6",
+  "page": "user",
+  "claim": "Every user is associated with an access level."
+ },
+ {
+  "key": "user:7",
+  "page": "user",
+  "claim": "The default level for the user created implicitly (`admin`) is the controller `superuser` access level, which means they can do everything at the level of the entire controller."
+ },
+ {
+  "key": "user:8",
+  "page": "user",
+  "claim": "The default level for a user created explicitly is the controller `login` level, which means they can do nothing on the controller other than register it with their client and log in to it -- for anything more they must be granted a higher level explicitly."
+ },
+ {
+  "key": "user:9",
+  "page": "user",
+  "claim": "A Juju user may have different abilities, according to the access level they have been granted."
+ },
+ {
+  "key": "user:10",
+  "page": "user",
+  "claim": "This document describes the various access levels and the corresponding abilities."
+ },
+ {
+  "key": "user:11",
+  "page": "user",
+  "claim": "Abilities: Log in to the controller."
+ },
+ {
+  "key": "user:12",
+  "page": "user",
+  "claim": "Granted: Automatically by bootstrapping a controller or by having the username 'admin'."
+ },
+ {
+  "key": "user:13",
+  "page": "user",
+  "claim": "Abilities: Do anything that it is possible to do at the level of a controller."
+ },
+ {
+  "key": "user:14",
+  "page": "user",
+  "claim": "A controller can manage models on many clouds."
+ },
+ {
+  "key": "user:15",
+  "page": "user",
+  "claim": "With cloud-level access you can give a user permission to access one cloud but not another related to that controller."
+ },
+ {
+  "key": "user:16",
+  "page": "user",
+  "claim": "Granted: Via command-juju-grant-cloud."
+ },
+ {
+  "key": "user:17",
+  "page": "user",
+  "claim": "Grant another user model-level permissions."
+ },
+ {
+  "key": "user:18",
+  "page": "user",
+  "claim": "Granted: Via command-juju-grant-cloud."
+ },
+ {
+  "key": "user:19",
+  "page": "user",
+  "claim": "Abilities: You can do anything that it is possible to do at the level of a cloud."
+ },
+ {
+  "key": "user:20",
+  "page": "user",
+  "claim": "Abilities: View the content of a model without changing it."
+ },
+ {
+  "key": "user:21",
+  "page": "user",
+  "claim": "Abilities: Deploy and manage applications on the model."
+ },
+ {
+  "key": "user:22",
+  "page": "user",
+  "claim": "Abilities: Do anything that it is possible to do at the level of a model."
+ },
+ {
+  "key": "user:23",
+  "page": "user",
+  "claim": "Abilities: View offers during a search with command-juju-find-offers."
+ },
+ {
+  "key": "user:24",
+  "page": "user",
+  "claim": "Abilities: Relate an application to the offer."
+ },
+ {
+  "key": "user:25",
+  "page": "user",
+  "claim": "Abilities: You can do anything that it is possible to do at the level of an offer."
+ },
+ {
+  "key": "action:1",
+  "page": "action",
+  "claim": "Actions are defined by a  charm to allow a user with the right access level to interact with an application in ways specific to the application."
+ },
+ {
+  "key": "action:2",
+  "page": "action",
+  "claim": "This may include anything from creating a snapshot of a database, adding a user to a system, dumping debug information, etc."
+ },
+ {
+  "key": "action:3",
+  "page": "action",
+  "claim": "An action is triggered via the juju-cli and applied to one or more units."
+ },
+ {
+  "key": "action:4",
+  "page": "action",
+  "claim": "It is run with parameters supplied by the user and records the success/fail status and any results for subsequent perusal."
+ },
+ {
+  "key": "action:5",
+  "page": "action",
+  "claim": "The default behaviour is that the juju-cli blocks and waits for the action to complete."
+ },
+ {
+  "key": "action:6",
+  "page": "action",
+  "claim": "This synchronous behaviour allows actions to be easily included in command-line pipelines."
+ },
+ {
+  "key": "action:7",
+  "page": "action",
+  "claim": "As an action is executing, any progress messages as reported by the action are logged to the terminal."
+ },
+ {
+  "key": "action:8",
+  "page": "action",
+  "claim": "When the action completes, the result is printed."
+ },
+ {
+  "key": "action:9",
+  "page": "action",
+  "claim": "An action result is a map of key values, containing data set by the action as it runs, plus the overall exit code of the action process itself, as well as the content of stdout and stderr."
+ },
+ {
+  "key": "action:10",
+  "page": "action",
+  "claim": "The execution of an action is organised into tasks and operations."
+ },
+ {
+  "key": "action:11",
+  "page": "action",
+  "claim": "The code used to implement an action can call any hook command as well as the following action commands:"
+ },
+ {
+  "key": "action:12",
+  "page": "action",
+  "claim": "`action-log`: to report a progress message"
+ },
+ {
+  "key": "action:13",
+  "page": "action",
+  "claim": "`action-get`: to get the value of a named action parameter as supplied by the user"
+ },
+ {
+  "key": "action:14",
+  "page": "action",
+  "claim": "`action-set`: to set a value in the action results map"
+ },
+ {
+  "key": "action:15",
+  "page": "action",
+  "claim": "`action-fail`: to mark the action as failed along with a failure message"
+ },
+ {
+  "key": "action:16",
+  "page": "action",
+  "claim": "Actions operate in an execution environment similar to a hook."
+ },
+ {
+  "key": "action:17",
+  "page": "action",
+  "claim": "As such, they're executed with all the generic environment variables plus the following action-specific environment variables:"
+ },
+ {
+  "key": "action:18",
+  "page": "action",
+  "claim": "`JUJU_ACTION_NAME` holds the name of the action."
+ },
+ {
+  "key": "action:19",
+  "page": "action",
+  "claim": "`JUJU_ACTION_UUID` holds the UUID of the action."
+ }
+]

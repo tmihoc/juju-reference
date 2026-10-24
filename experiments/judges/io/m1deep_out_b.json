@@ -1,0 +1,926 @@
+[
+ {
+  "table": "unit_workload_version",
+  "page": "unit",
+  "alt": "status",
+  "evidence": "domain/application/state/unitstate.go:780",
+  "note": "one row per unit (unit_uuid PK, FK unit) holding workload version reported by the charm; written in application/state/unitstate.go:780"
+ },
+ {
+  "table": "storage_volume_attachment_plan_attr",
+  "page": "storage",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0011-storage.sql:488",
+  "note": "key/value attributes of a storage_volume_attachment_plan (FK plan uuid); storage provisioning detail"
+ },
+ {
+  "table": "charm",
+  "page": "charm",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0015-charm.sql:33",
+  "note": "nexus table of all charm data: reference_name, revision, source, architecture, availability"
+ },
+ {
+  "table": "provider_network",
+  "page": "subnet",
+  "alt": "space",
+  "evidence": "domain/network/state/subnet.go:186",
+  "note": "provider network ids linked to subnets via provider_network_subnet; inserted in network/state/subnet.go:186 alongside subnet writes"
+ },
+ {
+  "table": "model_config",
+  "page": "model",
+  "alt": "model-defaults",
+  "evidence": "domain/modelconfig/state/state.go:171",
+  "note": "per-model key/value config, written by modelconfig state (INSERT INTO model_config); the model's own settings, not defaults"
+ },
+ {
+  "table": "application",
+  "page": "application",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0019-application.sql:1",
+  "note": "application row: name, life, charm, default space"
+ },
+ {
+  "table": "bakery_config",
+  "page": "controller",
+  "alt": "user",
+  "evidence": "domain/macaroon/state/config.go:57",
+  "note": "singleton of bakery key pairs (local users, external users, offers) for the controller; macaroon state writes it"
+ },
+ {
+  "table": "model_migration_export",
+  "page": "model-migration",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0011-model-migration.sql:96",
+  "note": "one row per export migration attempt: target controller, current phase"
+ },
+ {
+  "table": "secret_permission",
+  "page": "secret",
+  "alt": "permission",
+  "evidence": "domain/schema/model/sql/0012-secret.sql:286",
+  "note": "ACL of a secret: subject (unit/app/model) role and scope; FK secret_metadata, not user/model access"
+ },
+ {
+  "table": "cloud_credential",
+  "page": "credential",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0005-cloud.sql:134",
+  "note": "credential metadata per cloud/owner/name with revoked/invalid flags"
+ },
+ {
+  "table": "link_layer_device_dns_address",
+  "page": "link-layer-device",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0021-network.sql:101",
+  "note": "DNS server addresses of a link layer device (FK device_uuid)"
+ },
+ {
+  "table": "secret_backend_rotation",
+  "page": "secret-backend",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0018-secret-backend.sql:61",
+  "note": "next token rotation time of a secret backend (FK backend_uuid)"
+ },
+ {
+  "table": "unit_state_relation",
+  "page": "unit",
+  "alt": "relation",
+  "evidence": "domain/unitstate/state/state.go:316",
+  "note": "unit-local relation state key/values stored on hook commit with uniter state; keyed by unit_uuid; written in unitstate/state/state.go:316"
+ },
+ {
+  "table": "controller_ssh_server_port",
+  "page": "ssh",
+  "alt": "controller",
+  "evidence": "domain/schema/controller/sql/0029-ssh.sql:31",
+  "note": "singleton port the controller embedded SSH jump server listens on; owned by controller charm, SSH worker watches it"
+ },
+ {
+  "table": "model",
+  "page": "model",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0004-read-only-model.sql:8",
+  "note": "model: controller schema has full model row (cloud, credential, type, life, qualifier); model schema has read-only denormalised copy"
+ },
+ {
+  "table": "pending_application_resource",
+  "page": "resource",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0023-resource.sql:82",
+  "note": "resource linked to an application not yet created (FK resource)"
+ },
+ {
+  "table": "storage_volume_attachment",
+  "page": "storage",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0011-storage.sql:307",
+  "note": "attachment of a storage volume to a net node, with block device and provider id"
+ },
+ {
+  "table": "object_store_backend",
+  "page": "object-store",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0014-objectstore-metadata.sql:53",
+  "note": "object store backend (file or s3) with life and type; singleton file backend inserted by default"
+ },
+ {
+  "table": "provider_space",
+  "page": "space",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0008-space.sql:8",
+  "note": "provider id of a space (FK space_uuid)"
+ },
+ {
+  "table": "model_migration_import_external_controller_model",
+  "page": "model-migration",
+  "alt": "external-controller",
+  "evidence": "domain/modelmigration/state/controller/import.go:541",
+  "note": "durable handoff Import to Activate mapping offerer model to external controller; FK model_migration_import"
+ },
+ {
+  "table": "model_migration_redirect",
+  "page": "model-migration",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0011-model-migration.sql:139",
+  "note": "redirect snapshot for a model that finished REAP (target controller, addresses, CA cert)"
+ },
+ {
+  "table": "unit_resolved",
+  "page": "unit",
+  "alt": "status",
+  "evidence": "domain/resolve/state/state.go:136",
+  "note": "unit resolve mode (retry-hooks/no-hooks), PK unit_uuid; written by resolve/state/state.go:136"
+ },
+ {
+  "table": "external_model",
+  "page": "external-controller",
+  "alt": "offer",
+  "evidence": "domain/externalcontroller/state/state.go:251",
+  "note": "maps a model uuid to an external controller (FK external_controller); written by externalcontroller state"
+ },
+ {
+  "table": "relation_status",
+  "page": "relation",
+  "alt": "status",
+  "evidence": "domain/status/state/model/modelstate.go:584",
+  "note": "status of a relation (joined/broken/suspended...), PK relation_uuid; written in application/peer_relation.go and crossmodelrelation"
+ },
+ {
+  "table": "machine_parent",
+  "page": "machine",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0018-machine.sql:83",
+  "note": "parent/child machine (container) relationship"
+ },
+ {
+  "table": "model_database_deletion",
+  "page": "database",
+  "alt": "model-migration",
+  "evidence": "domain/modelmigration/state/controller/abort.go:284",
+  "note": "stages dqlite namespaces of purged models for the model DB deleter worker; staged by migration REAP/abort (abort.go:284); rows are about databases, not the migration"
+ },
+ {
+  "table": "annotation_storage_filesystem",
+  "page": "annotation",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0013-annotations.sql:74",
+  "note": "annotations (key/value) on storage filesystems"
+ },
+ {
+  "table": "offer_endpoint",
+  "page": "offer",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0032-offer.sql:15",
+  "note": "join table: application endpoints included in an offer"
+ },
+ {
+  "table": "charm_extra_binding",
+  "page": "charm",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0015-charm.sql:303",
+  "note": "extra binding names declared in charm metadata"
+ },
+ {
+  "table": "secret_application_owner",
+  "page": "secret",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0012-secret.sql:166",
+  "note": "application owner of a secret with label (FK secret_metadata)"
+ },
+ {
+  "table": "user",
+  "page": "user",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0015-user.sql:1",
+  "note": "controller user accounts"
+ },
+ {
+  "table": "secret_value_ref",
+  "page": "secret",
+  "alt": "secret-backend",
+  "evidence": "domain/schema/model/sql/0012-secret.sql:85",
+  "note": "external backend reference for a secret revision content (backend_uuid + revision_id)"
+ },
+ {
+  "table": "application_remote_offerer",
+  "page": "offer",
+  "alt": "application",
+  "evidence": "domain/crossmodelrelation/state/model/remoteapplication.go:457",
+  "note": "synthetic remote offerer application in the consumer model holding offer_url, offerer model/controller uuid and macaroon; written in crossmodelrelation remoteapplication.go:457"
+ },
+ {
+  "table": "storage_pool_attribute",
+  "page": "storage",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0011-storage.sql:44",
+  "note": "key/value attributes of a storage pool"
+ },
+ {
+  "table": "log_transfer_progress",
+  "page": "model-migration",
+  "alt": null,
+  "evidence": "domain/modelmigration/state/model/state.go:409",
+  "note": "log-transfer checkpoint for migration target; written by modelmigration"
+ },
+ {
+  "table": "machine_container_type",
+  "page": "machine",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0018-machine.sql:273",
+  "note": "container type (none/lxd) of a machine"
+ },
+ {
+  "table": "instance_tag",
+  "page": "machine",
+  "alt": "constraint",
+  "evidence": "domain/machine/state/machine_cloud_instance.go:211",
+  "note": "tags applied to the cloud instance of a machine (FK machine); written in machine/state/machine_cloud_instance.go:211"
+ },
+ {
+  "table": "charm_tag",
+  "page": "charm",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0015-charm.sql:333",
+  "note": "charmhub tags in charm metadata"
+ },
+ {
+  "table": "annotation_charm",
+  "page": "annotation",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0013-annotations.sql:18",
+  "note": "annotations on charms"
+ },
+ {
+  "table": "secret_backend_config",
+  "page": "secret-backend",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0018-secret-backend.sql:46",
+  "note": "name/content config pairs of a secret backend"
+ },
+ {
+  "table": "secret_backend_reference",
+  "page": "secret-backend",
+  "alt": "secret",
+  "evidence": "domain/secretbackend/state/state.go:1090",
+  "note": "tracks which model/secret revision uses which backend; written in secretbackend/state/state.go:1090"
+ },
+ {
+  "table": "secret_remote_unit_consumer",
+  "page": "secret",
+  "alt": "offer",
+  "evidence": "domain/schema/model/sql/0012-secret.sql:239",
+  "note": "tracked revisions of remote (consuming-model) units for cross-model secrets; FK secret_metadata"
+ },
+ {
+  "table": "cloud",
+  "page": "cloud",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0005-cloud.sql:53",
+  "note": "cloud definitions: type, endpoint, TLS skip"
+ },
+ {
+  "table": "k8s_service",
+  "page": "application",
+  "alt": "unit",
+  "evidence": "domain/application/state/k8sservice.go:136",
+  "note": "k8s service for an application (application_uuid unique); written application/state/k8sservice.go:136"
+ },
+ {
+  "table": "secret_backend",
+  "page": "secret-backend",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0018-secret-backend.sql:30",
+  "note": "secret backend definitions (name, type, origin)"
+ },
+ {
+  "table": "application_storage_directive",
+  "page": "storage",
+  "alt": "application",
+  "evidence": "domain/application/state/storage.go:1127",
+  "note": "storage directive (pool,size,count) per application per charm storage name; FK charm_storage and storage_pool; written application/state/storage.go:1127"
+ },
+ {
+  "table": "availability_zone",
+  "page": "zone",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0009-subnet.sql:45",
+  "note": "availability zones (uuid,name)"
+ },
+ {
+  "table": "charm_category",
+  "page": "charm",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0015-charm.sql:319",
+  "note": "charmhub categories in charm metadata"
+ },
+ {
+  "table": "model_migrating",
+  "page": "model-migration",
+  "alt": "model",
+  "evidence": "domain/model/state/model/state.go:97",
+  "note": "marks a model DB as being imported; written by model/state/model/state.go:97 in CreateImportingModel"
+ },
+ {
+  "table": "lease",
+  "page": "lease",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0002-lease.sql:14",
+  "note": "leases (leadership, singular controller, backup creation) with holder and expiry"
+ },
+ {
+  "table": "secret_revision",
+  "page": "secret",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0012-secret.sql:126",
+  "note": "revisions of a secret"
+ },
+ {
+  "table": "annotation_unit",
+  "page": "annotation",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0013-annotations.sql:40",
+  "note": "annotations on units"
+ },
+ {
+  "table": "k8s_pod_port",
+  "page": "unit",
+  "alt": "port",
+  "evidence": "domain/application/state/unitstate.go:625",
+  "note": "ports reported for the k8s pod of a unit (FK k8s_pod); written application/state/unitstate.go:625; not opened-port ranges"
+ },
+ {
+  "table": "storage_unit_owner",
+  "page": "storage",
+  "alt": "unit",
+  "evidence": "domain/schema/model/sql/0011-storage.sql:176",
+  "note": "which unit owns a storage instance (distinct from attachment)"
+ },
+ {
+  "table": "relation_application_setting",
+  "page": "relation",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0024-relation.sql:194",
+  "note": "application-level relation settings per relation endpoint"
+ },
+ {
+  "table": "object_store_metadata",
+  "page": "object-store",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0006-objectstore-metadata.sql:1",
+  "note": "blob metadata (sha256, sha384, size) for the object store; exists in both schemas"
+ },
+ {
+  "table": "storage_attachment",
+  "page": "storage",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0011-storage.sql:190",
+  "note": "attachment of storage instance to unit"
+ },
+ {
+  "table": "application_setting",
+  "page": "application",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0019-application.sql:206",
+  "note": "application settings (trust flag)"
+ },
+ {
+  "table": "charm_device",
+  "page": "charm",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0015-charm.sql:416",
+  "note": "device requirements declared in charm metadata"
+ },
+ {
+  "table": "relation_unit_setting_archive",
+  "page": "relation",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0024-relation.sql:180",
+  "note": "archived unit relation settings kept after unit departs, per relation"
+ },
+ {
+  "table": "secret",
+  "page": "secret",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0012-secret.sql:22",
+  "note": "secret id root table"
+ },
+ {
+  "table": "machine_lxd_profile",
+  "page": "machine",
+  "alt": "charm",
+  "evidence": "domain/schema/model/sql/0018-machine.sql:252",
+  "note": "lxd profiles applied to a machine (FK machine)"
+ },
+ {
+  "table": "charm_storage_property",
+  "page": "charm",
+  "alt": "storage",
+  "evidence": "domain/schema/model/sql/0015-charm.sql:399",
+  "note": "properties of a charm storage definition (FK charm_storage)"
+ },
+ {
+  "table": "unit_state",
+  "page": "unit",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0020-unit.sql:97",
+  "note": "uniter, storage and secret state of unit stored by hook commit"
+ },
+ {
+  "table": "cloud_region",
+  "page": "cloud",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0005-cloud.sql:93",
+  "note": "regions of a cloud"
+ },
+ {
+  "table": "unit_agent_presence",
+  "page": "unit",
+  "alt": "status",
+  "evidence": "domain/status/state/model/modelstate.go:1118",
+  "note": "last_seen of unit agent, written in status/state/model/modelstate.go:1118"
+ },
+ {
+  "table": "operation_task",
+  "page": "action",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0033-operation.sql:44",
+  "note": "task of an operation (action or exec) on a receiver"
+ },
+ {
+  "table": "macaroon_root_key",
+  "page": "controller",
+  "alt": "user",
+  "evidence": "domain/macaroon/state/rootkeys.go:136",
+  "note": "macaroon root keys for the controller bakery root key store; macaroon/state/rootkeys.go:136"
+ },
+ {
+  "table": "application_constraint",
+  "page": "constraint",
+  "alt": "application",
+  "evidence": "domain/application/state/application.go:2869",
+  "note": "links application to a constraint row (FK \"constraint\"); written application/state/application.go:2869"
+ },
+ {
+  "table": "change_log_witness",
+  "page": "database",
+  "alt": "controller",
+  "evidence": "internal/changestream/stream/stream.go:550",
+  "note": "changestream watermark per controller node used to prune change_log; written in internal/changestream/stream/stream.go:550"
+ },
+ {
+  "table": "application_remote_offerer_relation_macaroon",
+  "page": "relation",
+  "alt": "offer",
+  "evidence": "domain/schema/model/sql/0034-cross-model-relation.sql:62",
+  "note": "macaroon for authenticating a relation against the offering model; PK relation_uuid"
+ },
+ {
+  "table": "storage_filesystem_status",
+  "page": "storage",
+  "alt": "status",
+  "evidence": "domain/status/state/model/storage.go:184",
+  "note": "status of a storage filesystem; written in status/state/model/storage.go:184"
+ },
+ {
+  "table": "unit_principal",
+  "page": "unit",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0020-unit.sql:44",
+  "note": "principal unit of a subordinate unit"
+ },
+ {
+  "table": "secret_deleted_value_ref",
+  "page": "secret",
+  "alt": "secret-backend",
+  "evidence": "domain/removal/state/model/secret.go:452",
+  "note": "deleted revisions whose external content must still be removed; written removal/state/model/secret.go:452"
+ },
+ {
+  "table": "model_namespace",
+  "page": "database",
+  "alt": "model",
+  "evidence": "domain/model/state/controller/state.go:1755",
+  "note": "mapping of model uuid to dqlite namespace database, inserted in model/state/controller/state.go:1755"
+ },
+ {
+  "table": "constraint",
+  "page": "constraint",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0014-constraint.sql:5",
+  "note": "constraint values (arch, cpu, mem, etc.)"
+ },
+ {
+  "table": "relation_network_ingress",
+  "page": "relation",
+  "alt": "offer",
+  "evidence": "domain/crossmodelrelation/state/model/relation_network.go:34",
+  "note": "ingress CIDRs for a relation, cross-model; written crossmodelrelation/state/model/relation_network.go:34"
+ },
+ {
+  "table": "secret_model_owner",
+  "page": "secret",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0012-secret.sql:204",
+  "note": "model-owned secret with label"
+ },
+ {
+  "table": "controller",
+  "page": "controller",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0004-controller.sql:1",
+  "note": "controller singleton: uuid, model uuid, target version, certs"
+ },
+ {
+  "table": "external_controller_address",
+  "page": "external-controller",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0006-external-controller.sql:7",
+  "note": "addresses of an external controller"
+ },
+ {
+  "table": "machine",
+  "page": "machine",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0018-machine.sql:1",
+  "note": "machine row"
+ },
+ {
+  "table": "relation_endpoint",
+  "page": "relation",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0024-relation.sql:64",
+  "note": "links a relation to application endpoints (one for peer, two otherwise)"
+ },
+ {
+  "table": "storage_filesystem_attachment",
+  "page": "storage",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0011-storage.sql:421",
+  "note": "attachment of filesystem to net node with mount point"
+ },
+ {
+  "table": "model_migration_export_status",
+  "page": "model-migration",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0011-model-migration.sql:213",
+  "note": "free-form status message of export migration"
+ },
+ {
+  "table": "annotation_machine",
+  "page": "annotation",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0013-annotations.sql:28",
+  "note": "annotations on machines"
+ },
+ {
+  "table": "secret_unit_consumer",
+  "page": "secret",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0012-secret.sql:215",
+  "note": "secret tracked revision consumed by a unit"
+ },
+ {
+  "table": "provider_ip_address",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "domain/network/state/linklayer_merge.go:175",
+  "note": "provider id of an ip_address (FK ip_address) which belongs to a link layer device; written network/state/linklayer_merge.go:175"
+ },
+ {
+  "table": "cloud_auth_type",
+  "page": "cloud",
+  "alt": "credential",
+  "evidence": "domain/cloud/state/state.go:486",
+  "note": "auth types supported by a cloud; written cloud/state/state.go:486"
+ },
+ {
+  "table": "machine_cloud_instance_status",
+  "page": "machine",
+  "alt": "status",
+  "evidence": "domain/machine/state/placement.go:461",
+  "note": "status of the machine's cloud instance (FK machine_cloud_instance); written machine/state/placement.go:461"
+ },
+ {
+  "table": "secret_metadata",
+  "page": "secret",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0012-secret.sql:59",
+  "note": "secret metadata (version, rotate policy, timestamps)"
+ },
+ {
+  "table": "operation_action",
+  "page": "action",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0033-operation.sql:27",
+  "note": "links operation to its charm_action"
+ },
+ {
+  "table": "charm_term",
+  "page": "charm",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0015-charm.sql:473",
+  "note": "terms in charm metadata"
+ },
+ {
+  "table": "resource",
+  "page": "resource",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0023-resource.sql:30",
+  "note": "resource revision of charm resource, origin and state"
+ },
+ {
+  "table": "k8s_pod_status",
+  "page": "unit",
+  "alt": "status",
+  "evidence": "domain/status/state/model/modelstate.go:1555",
+  "note": "status of the k8s pod of a unit (PK unit_uuid, FK unit); inserted in status/state/model/modelstate.go:1555 and application/state/unit.go:2847"
+ },
+ {
+  "table": "charm_container_mount",
+  "page": "charm",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0015-charm.sql:516",
+  "note": "storage mounts of charm containers"
+ },
+ {
+  "table": "controller_ssh_host_key",
+  "page": "ssh",
+  "alt": "controller",
+  "evidence": "domain/ssh/bootstrap/bootstrap.go:47",
+  "note": "host key of controller SSH jump server, singleton; inserted in ssh/bootstrap/bootstrap.go:47"
+ },
+ {
+  "table": "provider_subnet",
+  "page": "subnet",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0009-subnet.sql:11",
+  "note": "provider id of subnet"
+ },
+ {
+  "table": "resource_file_store",
+  "page": "resource",
+  "alt": "object-store",
+  "evidence": "domain/schema/model/sql/0023-resource.sql:147",
+  "note": "link from file resource to its object-store blob with size and sha384"
+ },
+ {
+  "table": "secret_rotation",
+  "page": "secret",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0012-secret.sql:76",
+  "note": "next rotation time of a secret"
+ },
+ {
+  "table": "charm_container",
+  "page": "charm",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0015-charm.sql:486",
+  "note": "containers declared in charm metadata"
+ },
+ {
+  "table": "model_migration_export_target_auth",
+  "page": "model-migration",
+  "alt": "external-controller",
+  "evidence": "domain/schema/controller/sql/0011-model-migration.sql:171",
+  "note": "per-migration auth material to connect to target controller"
+ },
+ {
+  "table": "model_migration_redirect_user",
+  "page": "model-migration",
+  "alt": "permission",
+  "evidence": "domain/modelmigration/state/controller/state.go:1977",
+  "note": "snapshot of model access of users captured at migration time; written modelmigration/state/controller/state.go:1977"
+ },
+ {
+  "table": "space",
+  "page": "space",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0008-space.sql:1",
+  "note": "spaces (alpha default inserted)"
+ },
+ {
+  "table": "upgrade_info",
+  "page": "upgrade",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0012-upgrade-info.sql:16",
+  "note": "controller upgrade record with previous/target version and state"
+ },
+ {
+  "table": "relation_unit_departure",
+  "page": "relation",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0024-relation.sql:130",
+  "note": "retains departed relation unit names until relation removal"
+ },
+ {
+  "table": "model_authorized_keys",
+  "page": "ssh-key",
+  "alt": "model",
+  "evidence": "domain/keymanager/state/state.go:214",
+  "note": "links model to authorized user public ssh keys; written keymanager/state/state.go:214"
+ },
+ {
+  "table": "charm_relation",
+  "page": "charm",
+  "alt": "relation",
+  "evidence": "domain/schema/model/sql/0015-charm.sql:260",
+  "note": "relation endpoints (role, interface, scope) declared in charm metadata, FK charm"
+ },
+ {
+  "table": "application_exposed_endpoint_space",
+  "page": "application",
+  "alt": "space",
+  "evidence": "domain/application/state/exposed.go:393",
+  "note": "expose settings of application endpoints per space; written application/state/exposed.go:393"
+ },
+ {
+  "table": "net_node_fqdn_address",
+  "page": "unit",
+  "alt": "machine",
+  "evidence": "domain/application/state/unitstate.go:599",
+  "note": "join net node to FQDN addresses; written for k8s pod FQDN (application/state/unitstate.go:599) and k8s service; net node is machine or unit/service; page judgement weak"
+ },
+ {
+  "table": "autocert_cache",
+  "page": "controller",
+  "alt": "database",
+  "evidence": "domain/autocert/state/state.go:51",
+  "note": "golang autocert TLS certificate cache for the controller API; autocert/doc.go; no better page"
+ },
+ {
+  "table": "operator_status",
+  "page": "application",
+  "alt": "status",
+  "evidence": "domain/status/state/model/modelstate.go:363",
+  "note": "k8s operator status per application (PK application_uuid); written status/state/model/modelstate.go:363"
+ },
+ {
+  "table": "controller_config",
+  "page": "controller",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0008-controller-config.sql:1",
+  "note": "controller config key/values"
+ },
+ {
+  "table": "charm_storage",
+  "page": "charm",
+  "alt": "storage",
+  "evidence": "domain/schema/model/sql/0015-charm.sql:358",
+  "note": "storage requirements declared in charm metadata, FK charm; referenced by storage directives"
+ },
+ {
+  "table": "flag",
+  "page": "controller",
+  "alt": "status",
+  "evidence": "domain/flag/state/state.go:43",
+  "note": "global boolean operational flags (e.g. bootstrap done) in controller DB; flag/state/state.go:43; set in internal/worker/bootstrap/worker.go:120"
+ },
+ {
+  "table": "relation",
+  "page": "relation",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0024-relation.sql:84",
+  "note": "relation row: relation_id, life, suspended, scope"
+ },
+ {
+  "table": "constraint_zone",
+  "page": "constraint",
+  "alt": "zone",
+  "evidence": "domain/schema/model/sql/0014-constraint.sql:73",
+  "note": "zone constraint values of a constraint row"
+ },
+ {
+  "table": "upgrade_info_controller_node",
+  "page": "upgrade",
+  "alt": "controller",
+  "evidence": "domain/schema/controller/sql/0012-upgrade-info.sql:31",
+  "note": "per controller node upgrade completion for an upgrade_info"
+ },
+ {
+  "table": "storage_instance_filesystem",
+  "page": "storage",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0011-storage.sql:407",
+  "note": "link storage instance to filesystem"
+ },
+ {
+  "table": "agent_binary_store",
+  "page": "agent-version",
+  "alt": "object-store",
+  "evidence": "domain/agentbinary/state/model/state.go:150",
+  "note": "agent binaries by version/architecture with object store reference; in model and controller schemas; agentbinary/state/model/state.go:150"
+ },
+ {
+  "table": "net_node_hostname_address",
+  "page": "unit",
+  "alt": "machine",
+  "evidence": "domain/modelimport/state/model/import.go:513",
+  "note": "join net node to hostname addresses; written only by modelimport (import.go:513) and removal for machine/synthetic units; weak: name and FK only"
+ },
+ {
+  "table": "secret_reservation",
+  "page": "secret",
+  "alt": null,
+  "evidence": "domain/secret/state/state.go:182",
+  "note": "reserved secret ids by unit before persistence; written secret/state/state.go:182"
+ },
+ {
+  "table": "relation_unit_settings_hash",
+  "page": "relation",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0024-relation.sql:162",
+  "note": "hash of relation unit settings for watchers"
+ },
+ {
+  "table": "operation_task_status",
+  "page": "action",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0033-operation.sql:113",
+  "note": "status of an operation task"
+ },
+ {
+  "table": "storage_instance",
+  "page": "storage",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0011-storage.sql:144",
+  "note": "storage instance row"
+ },
+ {
+  "table": "controller_api_address",
+  "page": "controller",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0010-controller-node.sql:34",
+  "note": "API addresses of controller nodes"
+ },
+ {
+  "table": "controller_node_nonce",
+  "page": "controller",
+  "alt": "unit",
+  "evidence": "domain/agentpassword/state/controllerstate.go:222",
+  "note": "nonce authenticating controller pod ordinal for UnitIntroduction; written agentpassword/state/controllerstate.go:222"
+ },
+ {
+  "table": "annotation_storage_volume",
+  "page": "annotation",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0013-annotations.sql:62",
+  "note": "annotations on storage volumes"
+ },
+ {
+  "table": "unit_agent_version",
+  "page": "agent-version",
+  "alt": "unit",
+  "evidence": "domain/modelagent/state/model/state.go:1521",
+  "note": "reported agent version per unit (version, architecture); written modelagent/state/model/state.go:1521"
+ },
+ {
+  "table": "removal",
+  "page": "removal",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0028-cleanup.sql:32",
+  "note": "queued removal jobs with type, entity, schedule"
+ },
+ {
+  "table": "operation_unit_task",
+  "page": "action",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0033-operation.sql:65",
+  "note": "links task to its unit receiver"
+ },
+ {
+  "table": "storage_instance_volume",
+  "page": "storage",
+  "alt": null,
+  "evidence": "domain/schema/model/sql/0011-storage.sql:293",
+  "note": "link storage instance to volume"
+ },
+ {
+  "table": "user_activation_key",
+  "page": "user",
+  "alt": null,
+  "evidence": "domain/schema/controller/sql/0015-user.sql:41",
+  "note": "activation key for user authentication"
+ }
+]

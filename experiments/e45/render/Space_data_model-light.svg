@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="337.20000000000005" height="294.0" viewBox="0 0 337.20000000000005 294.0">
+<defs>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-open" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-open-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-hollow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-hollow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+</defs>
+<g id="ggarch-nodes">
+<rect x="44.0" y="164.0" width="89.6" height="60.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<text x="88.8" y="194.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Space</text>
+<rect x="49.0" y="168.0" width="14" height="14" fill="#E95420" stroke="none" rx="2" ry="2" />
+<path d="M51.5,175.0 L61.0,175.0" stroke="#FFFFFF" stroke-width="1.5" />
+<rect x="44.0" y="44.0" width="89.6" height="60.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<text x="88.8" y="64.89999999999999" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Provider</text>
+<text x="88.8" y="83.1" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">space</text>
+<rect x="49.0" y="48.0" width="14" height="14" fill="#E95420" stroke="none" rx="2" ry="2" />
+<path d="M51.5,55.0 L61.0,55.0" stroke="#FFFFFF" stroke-width="1.5" />
+<rect x="203.60000000000002" y="164.0" width="89.6" height="60.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<text x="248.40000000000003" y="194.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Subnet</text>
+<rect x="208.60000000000002" y="168.0" width="14" height="14" fill="#E95420" stroke="none" rx="2" ry="2" />
+<path d="M211.10000000000002,175.0 L220.60000000000002,175.0" stroke="#FFFFFF" stroke-width="1.5" />
+<rect x="226.60000000000002" y="168.0" width="14" height="14" fill="none" stroke="#E95420" stroke-width="1.2" rx="2" ry="2" />
+<path d="M230.10000000000002,178.5 L237.60000000000002,171.0" stroke="#E95420" stroke-width="1.4" />
+<path d="M233.60000000000002,171.0 L237.60000000000002,171.0 L237.60000000000002,175.0" fill="none" stroke="#E95420" stroke-width="1.4" />
+</g>
+<g id="ggarch-edges">
+<path d="M 88.8 104.0 L 88.8 164.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="88.8" y="115.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<text x="88.8" y="153.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<path d="M 203.6 194.0 L 133.6 194.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" stroke-dasharray="6,3" />
+<text x="192.6" y="194.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">m</text>
+<text x="144.6" y="194.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+</g>
+<g id="ggarch-annotations">
+<rect x="20.0" y="20.0" width="297.20000000000005" height="254.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" />
+<text x="168.60000000000002" y="261.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="middle" dominant-baseline="central">Model database</text>
+</g>
+</svg>

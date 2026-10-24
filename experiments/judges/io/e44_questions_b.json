@@ -1,0 +1,495 @@
+[
+ {
+  "id": "B-e44_m_lookup",
+  "type": "lookup",
+  "question": "After Juju accepts a reprovision request for a lost machine and moves it back to pending, what message does the machine's status carry, and what extra data does that status record about the old cloud instance?",
+  "ground_truth": "The machine (and its cloud instance) status is set to pending with the message \"reprovisioning requested\"; the status data holds one key, \"old-instance-id\", containing the ID of the instance that was detached.",
+  "key_facts": [
+   "status message is \"reprovisioning requested\"",
+   "machine status and instance status are both set to pending",
+   "status data contains the key \"old-instance-id\" with the detached instance ID"
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 32,
+    "quote": "const reprovisioningStatusMessage = \"reprovisioning requested\""
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 125,
+    "quote": "\"old-instance-id\": expectedInstanceID.String(),"
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 137,
+    "quote": "instanceStatusID, err := domainstatus.EncodeCloudInstanceStatus(domainstatus.InstanceStatusPending)"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_m_lookup",
+  "page": "machine",
+  "verifier": "true"
+ },
+ {
+  "id": "B-e44_m_mechanism",
+  "type": "mechanism",
+  "question": "A container machine is hosted on a parent machine, and both have been flagged as needing a reboot. What action is the container told to take, and what happens if only the parent is flagged versus only the container?",
+  "ground_truth": "The container is told to shut down (not reboot) whenever its parent is flagged for reboot, regardless of its own flag, since the parent's reboot takes the container down anyway. If only the container is flagged it reboots; if neither is flagged it does nothing.",
+  "key_facts": [
+   "parent flagged -> container action is shutdown, even if the container is also flagged",
+   "only the container flagged (parent not flagged or no parent) -> reboot",
+   "neither flagged -> do nothing",
+   "the parent's flag is checked first; only a parent and no grandparent is supported"
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 180,
+    "quote": "return nil // early exit, no need to check current machine reboot, it will shutdown anyway"
+   },
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 198,
+    "quote": "return machine.ShouldShutdown, nil"
+   },
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 202,
+    "quote": "return machine.ShouldReboot, nil"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_m_mechanism",
+  "page": "machine",
+  "verifier": "true"
+ },
+ {
+  "id": "B-e44_m_failure",
+  "type": "failure",
+  "question": "I removed a machine from the model and the removal keeps being retried with the error \"cannot delete machine ..., it hosts has 1 unit(s)\". What causes this, and what makes the machine deletion go through?",
+  "ground_truth": "A non-forced machine deletion counts the units on the machine's network node whose life is not dead; if any remain, it fails with this error (marked as machine-has-units and as an incomplete removal job, so it is retried). It succeeds once all units on the machine are dead/removed, or if the removal is forced, which skips the dependents check.",
+  "key_facts": [
+   "the error is raised when units hosted on the machine are not yet dead (unit life != dead)",
+   "the job is flagged as incomplete so it is retried later",
+   "forcing the removal skips the dependents check",
+   "dependents also include child containers and storage (filesystems/volumes)"
+  ],
+  "evidence": [
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 680,
+    "quote": "cannot delete machine %q, it hosts has %d unit(s)"
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 633,
+    "quote": "AND unit.life_id != 2"
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 587,
+    "quote": "return errors.Errorf(\"checking for dependents: %w\", err).Add(removalerrors.RemovalJobIncomplete)"
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 566,
+    "quote": "if !force {"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_m_failure",
+  "page": "machine",
+  "verifier": "true"
+ },
+ {
+  "id": "B-e44_m_unanswerable",
+  "type": "unanswerable",
+  "question": "How many times can a single machine be reprovisioned before Juju stops trying and marks it as permanently failed?",
+  "ground_truth": "The documentation does not say: no maximum number of reprovisions, retry counter or permanent-failure state is defined; the only guard is that a reprovision request cannot be made while one already exists for the machine.",
+  "key_facts": [
+   "no reprovision count or limit is defined"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE 'maxReprovision|MaxReprovision|reprovisionAttempts|reprovision.*(limit|max)' -> no results",
+   "grep -rniE 'reprovision.*(cooldown|backoff|rate.?limit)' -> no results",
+   "grep -rniE 'reprovision.*(retries|attempt)|reprovision.*count|reprovision.*(cap|threshold|quota)' -> no results (only unrelated Capture matches)",
+   "grep -rniE 'times.*reprovision|reprovision.*times|maxMachine|max-machines|max_machines' -> no results"
+  ],
+  "cross_area": false,
+  "orig_id": "e44_m_unanswerable",
+  "page": "machine",
+  "verifier": "partly"
+ },
+ {
+  "id": "B-e44_q2_controller_1",
+  "type": "lookup",
+  "question": "What port does the Juju controller's embedded SSH server listen on by default, and what restrictions apply if I set a different port in the controller configuration?",
+  "ground_truth": "The default SSH server port is 17022 (config key ssh-server-port). A configured value must be a positive integer and must not equal the controller's api-port.",
+  "key_facts": [
+   "Default ssh-server-port is 17022",
+   "The value must be positive (non-positive is rejected as not valid)",
+   "The value must not match api-port"
+  ],
+  "evidence": [
+   {
+    "file": "controller/config.go",
+    "line": 274,
+    "quote": "DefaultSSHServerPort = 17022"
+   },
+   {
+    "file": "controller/config.go",
+    "line": 1228,
+    "quote": "non-positive integer for ssh-server-port"
+   },
+   {
+    "file": "controller/config.go",
+    "line": 1230,
+    "quote": "ssh-server-port matching api-port"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_q2_controller_1",
+  "page": "controller",
+  "verifier": "true"
+ },
+ {
+  "id": "B-e44_q2_controller_2",
+  "type": "mechanism",
+  "question": "When a unit of the controller application is removed from the controller model, what happens to the matching controller node record, and what is deleted versus kept?",
+  "ground_truth": "Only for the controller application in the controller model, the unit's number is used as the controller ID. The node is first marked dying (life 1), then its API/client/agent/peer addresses, reported agent version, password, nonce and upgrade info rows are deleted, and finally it is marked dead (life 2) with its dqlite node ID and bind address set to NULL. The controller_node row itself is retained as a tombstone so delayed controller workers cannot recreate it.",
+  "key_facts": [
+   "Applies only to the controller application in the controller model, using the unit number as controller ID",
+   "Node goes to dying, dependent rows (addresses, agent version, password, nonce, upgrade info) are deleted",
+   "Node is then marked dead with dqlite_node_id and dqlite_bind_address cleared",
+   "The controller_node row is kept as a tombstone"
+  ],
+  "evidence": [
+   {
+    "file": "domain/removal/service/unit.go",
+    "line": 341,
+    "quote": "if applicationName != coreapplication.ControllerApplicationName {"
+   },
+   {
+    "file": "domain/removal/state/controller/controller_node.go",
+    "line": 15,
+    "quote": "The controller node is retained"
+   },
+   {
+    "file": "domain/removal/state/controller/controller_node.go",
+    "line": 91,
+    "quote": "SET life_id = 2,"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_q2_controller_2",
+  "page": "controller",
+  "verifier": "true"
+ },
+ {
+  "id": "B-e44_q2_controller_3",
+  "type": "failure",
+  "question": "I ran `juju destroy-controller` on my controller without any extra flags and it refused with \"The controller has live models\". Why does it do this and how do I proceed?",
+  "ground_truth": "The command checks the hosted models and, if any is still alive and --destroy-all-models was not given, fails with 'cannot destroy controller \"<name>\"' / 'The controller has live models', listing them. Re-run the command with the --destroy-all-models option.",
+  "key_facts": [
+   "Error text: cannot destroy controller \"<name>\" ... The controller has live models",
+   "Cause: hosted models are still alive and --destroy-all-models was not specified",
+   "Fix: run destroy-controller again with --destroy-all-models"
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 283,
+    "quote": "if !c.destroyModels {"
+   },
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 437,
+    "quote": "The controller has live models. If you want"
+   },
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 439,
+    "quote": "run this command again with the --destroy-all-models"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_q2_controller_3",
+  "page": "controller",
+  "verifier": "true"
+ },
+ {
+  "id": "B-e44_q2_controller_4",
+  "type": "unanswerable",
+  "question": "Does Juju keep a history of controller configuration changes, and can I roll the controller configuration back to an earlier revision?",
+  "ground_truth": "The documentation does not say; no controller configuration history or rollback is defined. Controller config is stored as a current key/value table, updates upsert or delete keys in place.",
+  "key_facts": [
+   "No history or revision of controller config is defined",
+   "No rollback operation exists"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE 'config.?history|configHistory|history.*controller.?config|controller.?config.*history' (no matches)",
+   "grep -rniE '(rollback|roll back|revert|undo|previous).{0,30}controller.?config|controller.?config.{0,30}(rollback|revert|undo|previous)' (no matches)",
+   "grep -rniE 'controller_config_(log|audit|snapshot|version)' (no matches)",
+   "grep -rniE 'controller.?config.{0,40}(audit|changelog|changed.?by|updated.?at|modified)' (only unrelated auditconfigupdater worker)"
+  ],
+  "cross_area": false,
+  "orig_id": "e44_q2_controller_4",
+  "page": "controller",
+  "verifier": "true"
+ },
+ {
+  "id": "B-e44_q2_access_1",
+  "type": "lookup",
+  "question": "Which access levels can be granted to a user on a cloud?",
+  "ground_truth": "Only two levels are valid on a cloud: add-model and admin.",
+  "key_facts": [
+   "add-model is a valid cloud access level",
+   "admin is a valid cloud access level",
+   "No other level (read, write, consume, login, superuser) is valid on a cloud"
+  ],
+  "evidence": [
+   {
+    "file": "core/permission/access.go",
+    "line": 193,
+    "quote": "case AddModelAccess, AdminAccess:"
+   },
+   {
+    "file": "domain/schema/controller/sql/0017-user-permission.sql",
+    "line": 50,
+    "quote": "(0, 3, 0), -- admin, cloud"
+   },
+   {
+    "file": "domain/schema/controller/sql/0017-user-permission.sql",
+    "line": 51,
+    "quote": "(1, 5, 0), -- add-model, cloud"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_q2_access_1",
+  "page": "access",
+  "verifier": "true"
+ },
+ {
+  "id": "B-e44_q2_access_2",
+  "type": "mechanism",
+  "question": "If I revoke the superuser level from a user on the controller, what access do they end up with? And what happens to their access if I then revoke login as well?",
+  "ground_truth": "Revoking superuser on a controller downgrades the user to login. Revoking login then leaves no access, and the user's permission record on the controller is deleted.",
+  "key_facts": [
+   "Revoking superuser on a controller gives login access",
+   "Revoking login on a controller results in no access",
+   "When the resulting access is none, the permission row is deleted rather than updated"
+  ],
+  "evidence": [
+   {
+    "file": "core/permission/access.go",
+    "line": 369,
+    "quote": "// * Superuser gets you Login"
+   },
+   {
+    "file": "core/permission/access.go",
+    "line": 370,
+    "quote": "// * Login gets you NoAccess"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 963,
+    "quote": "if newAccess == corepermission.NoAccess {"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_q2_access_2",
+  "page": "access",
+  "verifier": "true"
+ },
+ {
+  "id": "B-e44_q2_access_3",
+  "type": "failure",
+  "question": "I ran a grant giving a user read access on a model, and it failed with a message saying the user already has the access \"or greater\". What causes this and what should I do?",
+  "ground_truth": "The error reads: user \"<name>\" already has \"<level>\" access or greater. It occurs when the user's current access level on the target is equal to or greater than the level being granted (e.g. granting read to a user who already has read, write or admin). Nothing needs changing; to give a different level, grant a strictly higher one (or revoke first to lower it).",
+  "key_facts": [
+   "Message format: user \"<name>\" already has \"<level>\" access or greater",
+   "Cause: the user's existing level on that target is equal to or greater than the requested level",
+   "Grant only succeeds if the requested level is strictly higher than the current one (otherwise the existing permission is left unchanged)"
+  ],
+  "evidence": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 917,
+    "quote": "\"user %q already has %q %w\", args.Subject, grantAccess"
+   },
+   {
+    "file": "domain/access/errors/errors.go",
+    "line": 60,
+    "quote": "PermissionAccessGreater = errors.ConstError(\"access or greater\")"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 916,
+    "quote": "if aSpec.EqualOrGreaterThan(grantAccess) {"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_q2_access_3",
+  "page": "access",
+  "verifier": "true"
+ },
+ {
+  "id": "B-e44_q2_access_4",
+  "type": "unanswerable",
+  "question": "Can I grant a user access to a model or offer for a limited time, so that the permission expires automatically after a set duration?",
+  "ground_truth": "The documentation does not say; no expiry, TTL or time-limited permission concept is defined for permissions.",
+  "key_facts": [
+   "No expiry/TTL field exists on permissions",
+   "The documentation does not define time-limited grants"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -riE 'expir.*(permission|grant|access)|(permission|grant|access).*expir' in domain/access, core/permission, cmd/juju/model, apiserver/facades/client -> no matches",
+   "grep -riE 'temporary access|temporary grant|time-limited|timelimited|grant.{0,20}(ttl|duration|until|valid_until|expires)' over whole code -> only firewall/API port test helpers (unrelated)",
+   "grep -riE '(valid_until|expires_at|expiry|not_after|lease_duration)' in domain/schema/controller/sql -> only lease and macaroon tables, not permission",
+   "grep -riE '(expir|ttl|lifetime|validity|notafter)' in core/permission, domain/access/state/permission.go, cmd/juju/model/grantrevoke*.go -> no matches"
+  ],
+  "cross_area": false,
+  "orig_id": "e44_q2_access_4",
+  "page": "access",
+  "verifier": "true"
+ },
+ {
+  "id": "B-ssh-key-lookup",
+  "type": "lookup",
+  "question": "When I import SSH keys into a model from an external service instead of pasting them, which prefixes can I put in front of the account name, and which service does each one stand for?",
+  "ground_truth": "Two prefixes are understood: gh: (GitHub, e.g. gh:tlm) and lp: (Launchpad, e.g. lp:~wallyworld). Any other scheme is rejected as an unknown import source.",
+  "key_facts": [
+   "gh: imports keys from GitHub",
+   "lp: imports keys from Launchpad",
+   "At service/facade level an unknown scheme yields UnknownImportSource ('cannot import from key source %q for user %q, unknown source'); but the juju import-ssh-key CLI Init rejects other prefixes first with 'prefix in Key ID ... not supported, only lp: and gh: are allowed'."
+  ],
+  "evidence": [
+   {
+    "file": "internal/ssh/importer/importer.go",
+    "line": 68,
+    "quote": "\"gh\": &GithubResolver{client},"
+   },
+   {
+    "file": "internal/ssh/importer/importer.go",
+    "line": 69,
+    "quote": "\"lp\": &LaunchpadResolver{client},"
+   },
+   {
+    "file": "domain/keymanager/service/service.go",
+    "line": 279,
+    "quote": "case errors.Is(err, importererrors.NoResolver):"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "ssh-key-lookup",
+  "page": "ssh-key",
+  "verifier": "partly"
+ },
+ {
+  "id": "B-ssh-key-mechanism",
+  "type": "mechanism",
+  "question": "A model is migrated into this controller from an older 3.x controller where the SSH keys were still stored in the model's configuration. What happens to those keys during import, which user ends up owning them, and are all of them kept?",
+  "ground_truth": "The keys are read from the model config 'authorized-keys' value and split into individual keys. Any key whose text contains the comment juju-system-key (the old controller's own key) is discarded with a warning so the source controller cannot ssh in after migration. The remaining keys are added to the model under the admin user.",
+  "key_facts": [
+   "keys come from the 'authorized-keys' entry in the migrated model config",
+   "keys containing the comment 'juju-system-key' are dropped, with a warning logged, to stop the source controller keeping access",
+   "all remaining keys are added to the admin user for the imported model"
+  ],
+  "evidence": [
+   {
+    "file": "domain/keymanager/modelmigration/import.go",
+    "line": 198,
+    "quote": "if strings.Contains(pk, controller.ControllerSSHKeyComment) {"
+   },
+   {
+    "file": "domain/keymanager/modelmigration/import.go",
+    "line": 212,
+    "quote": "adminUser, err := i.userService.GetUserByName(ctx, user.AdminUserName)"
+   },
+   {
+    "file": "domain/controller/types.go",
+    "line": 9,
+    "quote": "ControllerSSHKeyComment = \"juju-system-key\""
+   },
+   {
+    "file": "domain/keymanager/modelmigration/import.go",
+    "line": 32,
+    "quote": "modelConfigKeyAuthorizeKeys = \"authorized-keys\""
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "ssh-key-mechanism",
+  "page": "ssh-key",
+  "verifier": "true"
+ },
+ {
+  "id": "B-ssh-key-failure",
+  "type": "failure",
+  "question": "I added several SSH keys to my user, and 'juju ssh' to a model through the controller fails with 'public key ... used to authenticate is not associated with model ...'. What does this error mean and how do I fix it?",
+  "ground_truth": "The key presented during authentication is one of the user's controller-wide registered keys, but keys are added per model, and the key being used has not been added to the target model (after the user's SSH access to the model was already confirmed). Add that key to the model, or connect with a different key that is associated with the model.",
+  "key_facts": [
+   "error text: public key %q used to authenticate is not associated with model %q, add the key to the model or specify a different key",
+   "authentication is controller scoped but keys are added per model, so the model membership is checked once the model is known",
+   "the check happens after the user's SSH access to the model has passed",
+   "fix: add the key to the model or present another key that is associated with it"
+  ],
+  "evidence": [
+   {
+    "file": "internal/worker/sshserver/authorization.go",
+    "line": 61,
+    "quote": "is not associated with model %q, add the key to the model or specify a different key"
+   },
+   {
+    "file": "internal/worker/sshserver/authorization.go",
+    "line": 51,
+    "quote": "The key used during authentication is controller scoped, but keys are"
+   },
+   {
+    "file": "internal/worker/sshserver/authorization.go",
+    "line": 56,
+    "quote": "inModel, err := a.access.HasPublicKeyInModel(ctx, ctx.User(), userKey.PublicKey, destination)"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "ssh-key-failure",
+  "page": "ssh-key",
+  "verifier": "true"
+ },
+ {
+  "id": "B-ssh-key-unanswerable",
+  "type": "unanswerable",
+  "question": "What is the maximum number of SSH keys that can be added to a model, or to a single user on a model, before further additions are refused?",
+  "ground_truth": "The documentation does not say: no limit on the number of SSH keys per model or per user is defined.",
+  "key_facts": [
+   "no maximum or quota on the number of keys is defined"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE 'maxkeys|max_keys|maxpublickeys|maxSSHKeys|keylimit|too many (ssh )?keys|max.*authorized.?keys|authorized.?keys.*(limit|maximum)' (only matched unrelated Split* helper names)",
+   "grep -rniE 'quota' | grep -iE key (only charm state key-size and relation settings quotas)",
+   "grep -rniE '(number|count|num) of (public |ssh |authori[sz]ed )?keys' (no matches)",
+   "grep -rniE 'maximum number|too many|exceed' in keymanager, keyupdater, internal/ssh, sshkeyupdater and keymanager facade (no matches)",
+   "grep -rniE 'CHECK *\\(' in 0021-user-ssh-keys.sql and 0022-model-authorized-keys.sql (no matches)"
+  ],
+  "cross_area": false,
+  "orig_id": "ssh-key-unanswerable",
+  "page": "ssh-key",
+  "verifier": "true"
+ }
+]

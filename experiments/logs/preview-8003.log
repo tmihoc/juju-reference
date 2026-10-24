@@ -1,0 +1,1109 @@
+Running Sphinx v7.4.7
+loading translations [en]... done
+sphinx_design found.
+sphinx_design is now configured.
+sphinx_tabs.tabs found.
+sphinx_tabs.tabs is now configured.
+sphinx_reredirects found.
+sphinx_reredirects is now configured.
+canonical.youtube-links not found.
+canonical.youtube-links will not be configured.
+canonical.related-links not found.
+canonical.related-links will not be configured.
+canonical.custom-rst-roles not found.
+canonical.custom-rst-roles will not be configured.
+canonical.terminal-output not found.
+canonical.terminal-output will not be configured.
+canonical.contributor-listing not found.
+canonical.contributor-listing will not be configured.
+sphinx_copybutton found.
+sphinx_copybutton is now configured.
+sphinxext.opengraph found.
+sphinxext.opengraph is now configured.
+sphinxcontrib.jquery found.
+sphinxcontrib.jquery is now configured.
+notfound.extension found.
+notfound.extension is now configured.
+sphinxcontrib.cairosvgconverter found.
+sphinxcontrib.cairosvgconverter is now configured.
+sphinx_last_updated_by_git found.
+sphinx_last_updated_by_git is now configured.
+matplotlib is not installed, social cards will not be generated
+canonical-sphinx is deprecated and will be removed from the Sphinx Stack in a future release. Please switch to the Ulwazi theme. Guidance is available in the Sphinx Stack documentation: https://documentation.ubuntu.com/sphinx-stack/latest/how-to/switch-to-ulwazi/
+loading pickled environment... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions={'colon_fence', 'linkify', 'substitution', 'deflist'}, disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=0, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+llms.txt generation is disabled (llms_txt_enabled=False), skipping...
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [dirhtml]: targets for 342 source files that are out of date
+updating environment: 0 added, 0 changed, 0 removed
+reading sources... 
+getting Git timestamps for source files... 
+getting Git timestamps for dependencies... 
+looking for now-outdated files... none found
+preparing documents... done
+copying assets... 
+copying static files... Copying the source path /home/dora/git/misc/juju-diagrams/docs/.sphinx/_static/tag.png to /home/dora/git/misc/juju-diagrams/docs/_build/_static/tag.png will overwrite data, as a file already exists at the destination path and the content does not match.
+Copying the source path /home/dora/git/misc/docs-venv/lib/python3.14/site-packages/canonical_sphinx/theme/static/tag.png to /home/dora/git/misc/juju-diagrams/docs/_build/_static/tag.png will overwrite data, as a file already exists at the destination path and the content does not match.
+done
+copying extra files... done
+copying assets: done
+writing output... [  4%] explanation/index .. howto/manage-credentials
+writing output... [  9%] howto/manage-juju .. howto/manage-the-databases
+writing output... [ 13%] howto/manage-the-juju-dashboard .. reference/action
+writing output... [ 17%] reference/agent .. reference/cloud/list-of-supported-clouds/microk8s
+writing output... [ 22%] reference/cloud/list-of-supported-clouds/microsoft-aks .. reference/credential
+writing output... [ 26%] reference/database .. reference/hook-command/list-of-hook-commands/is-leader
+writing output... [ 30%] reference/hook-command/list-of-hook-commands/juju-log .. reference/hook-command/list-of-hook-commands/secret-ids
+writing output... [ 35%] reference/hook-command/list-of-hook-commands/secret-info-get .. reference/juju
+writing output... [ 39%] reference/juju-cli .. reference/juju-cli/list-of-juju-cli-commands/add-user
+writing output... [ 43%] reference/juju-cli/list-of-juju-cli-commands/attach-resource .. reference/juju-cli/list-of-juju-cli-commands/create-backup
+writing output... [ 48%] reference/juju-cli/list-of-juju-cli-commands/create-storage-pool .. reference/juju-cli/list-of-juju-cli-commands/disable-user
+writing output... [ 52%] reference/juju-cli/list-of-juju-cli-commands/disabled-commands .. reference/juju-cli/list-of-juju-cli-commands/grant-secret
+writing output... [ 57%] reference/juju-cli/list-of-juju-cli-commands/help .. reference/juju-cli/list-of-juju-cli-commands/model-constraints
+writing output... [ 61%] reference/juju-cli/list-of-juju-cli-commands/model-defaults .. reference/juju-cli/list-of-juju-cli-commands/remove-k8s
+writing output... [ 65%] reference/juju-cli/list-of-juju-cli-commands/remove-machine .. reference/juju-cli/list-of-juju-cli-commands/resolved
+writing output... [ 70%] reference/juju-cli/list-of-juju-cli-commands/resources .. reference/juju-cli/list-of-juju-cli-commands/set-model-constraints
+writing output... [ 74%] reference/juju-cli/list-of-juju-cli-commands/show-action .. reference/juju-cli/list-of-juju-cli-commands/show-task
+writing output... [ 78%] reference/juju-cli/list-of-juju-cli-commands/show-unit .. reference/juju-cli/list-of-juju-cli-commands/unregister
+writing output... [ 83%] reference/juju-cli/list-of-juju-cli-commands/update-cloud .. reference/juju-db-repl
+writing output... [ 87%] reference/juju-web-cli .. reference/resource-compute
+writing output... [ 91%] reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/index .. reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_status
+writing output... [ 96%] reference/scaling .. releasenotes/juju_4.0.x/juju_4.0.0
+writing output... [100%] releasenotes/juju_4.0.x/juju_4.0.1 .. tutorial/index
+
+generating indices... genindex done
+Creating redirect 'user/reference/charm/charm-naming-guidelines/index.html' to 'https://canonical-charmcraft.readthedocs-hosted.com/en/stable/'.
+Creating redirect 'reference/charm/charm-naming-guidelines/index.html' to 'https://canonical-charmcraft.readthedocs-hosted.com/en/stable/'.
+Creating redirect 'user/reference/charm/charm-maturity/index.html' to 'https://canonical.com/juju/docs/ops/latest/explanation/charm-maturity/'.
+Creating redirect 'reference/charm/charm-maturity/index.html' to 'https://canonical.com/juju/docs/ops/latest/explanation/charm-maturity/'.
+Creating redirect 'contributor/reference/agent/index.html' to 'https://pkg.go.dev/github.com/juju/juju/cmd/jujuagentd/agent'.
+Creating redirect 'contributor/reference/dependency-package/index.html' to 'https://pkg.go.dev/github.com/juju/worker/v5/dependency'.
+Creating redirect 'contributor/reference/catacomb-package/index.html' to 'https://pkg.go.dev/github.com/juju/worker/v5/catacomb'.
+Creating redirect 'contributor/reference/worker/index.html' to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Creating redirect 'contributor/reference/worker-interface/index.html' to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Creating redirect 'contributor/reference/worker-package/index.html' to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Creating redirect 'contributor/reference/tomb-package/index.html' to 'https://pkg.go.dev/gopkg.in/tomb.v2'.
+Creating redirect 'contributor/reference/entity-lifecycle/index.html' to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Creating redirect 'contributor/unsorted/death-and-destruction/index.html' to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Creating redirect 'contributor/unsorted/lifecycles/index.html' to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Creating redirect 'contributor/reference/cve/index.html' to 'https://github.com/juju/juju/security'.
+Creating redirect 'contributor/reference/conventional-commits/index.html' to 'https://github.com/juju/juju/blob/HEAD/.github/instructions/agent-commit.instructions.md'.
+Creating redirect 'contributor/howto/merge-forward/index.html' to 'https://github.com/juju/juju/blob/HEAD/CONTRIBUTING.md'.
+Creating redirect 'contributor/howto/write-tests/index.html' to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Creating redirect 'contributor/howto/write-a-unit-test/index.html' to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Creating redirect 'contributor/howto/create-a-unit-test-suite/index.html' to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Creating redirect 'contributor/howto/create-unit-test-suite/index.html' to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Creating redirect 'contributor/unsorted/debugging-races/index.html' to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Creating redirect 'contributor/reference/testing/index.html' to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Creating redirect 'contributor/reference/testing/unit-testing/index.html' to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Creating redirect 'contributor/reference/testing/unit-testing/util-suite/index.html' to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Creating redirect 'contributor/reference/testing/unit-testing/checker/index.html' to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Creating redirect 'contributor/reference/testing/unit-testing/unit-test-suite/index.html' to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Creating redirect 'contributor/howto/write-an-integration-test/index.html' to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Creating redirect 'contributor/reference/testing/integration-testing/index.html' to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Creating redirect 'contributor/reference/testing/integration-testing/integration-test-suite/index.html' to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Creating redirect 'contributor/reference/testing/integration-testing/test-include/index.html' to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Creating redirect 'contributor/reference/testing/integration-testing/test-includes/index.html' to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+writing additional pages... search done
+copying images... [  2%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-d83f8009ce5db0b6a6b0df9d2f6fc90ca7e4e2bd.svg
+copying images... [  4%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-5564e8d60a6065be3c4a9d4f42cdbe0def9fa9f2.svg
+copying images... [  6%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-86280fc74140e1f69cbfb5ee8fdf2a91c26397af.svg
+copying images... [  8%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-00b575ae391a4d0b240c3826723ee0dc7f94ad95.svg
+copying images... [ 10%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-c0500555705dbd78862a2f914d49edae11e8e91b.svg
+copying images... [ 12%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-89dbadb88e6e1252ed910a7a18fb78864aef0c9b.svg
+copying images... [ 15%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-5f4c1d87047619a78a4bf5791d17ee33f9c32abd.svg
+copying images... [ 17%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-c194add14d3b4916be481e3695fc2a7d5b020040.svg
+copying images... [ 19%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-798282e8b79ac9694643b7b588237c5331ee267c.svg
+copying images... [ 21%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-c7311b3536a2b2c594090007015867caad0df1cf.svg
+copying images... [ 23%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-c673602497e407eca61b58d44b9ab85e1798ef7d.svg
+copying images... [ 25%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-2f2c0b4afc45110dce0d64a31ab44efa36762880.svg
+copying images... [ 27%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-8acf8a9c6c8518abbe0335f60f08fc44baef2a7e.svg
+copying images... [ 29%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-39048f078b3116849fdacdd79a0f972e82001ee3.svg
+copying images... [ 31%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-66cbd6869ca9d8af4fe4812bb79763b0668f67e1.svg
+copying images... [ 33%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-4b210029c1448466857360d0e407dfe176564629.svg
+copying images... [ 35%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-ef2ebe11817fc4c88cfc9d32fb6778eb043eeccc.svg
+copying images... [ 38%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-977dc23164f371c9bdd31fc9c07c62d2eff4cdfb.svg
+copying images... [ 40%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-da98fd937b2781310be7679ac80bb6da1b8bab52.svg
+copying images... [ 42%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-b351ac982a1748982b3cb8d9a8ec917b4b2c5e72.svg
+copying images... [ 44%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-c7d6ba43e33f0fed3d1df8de984f28ae56f3e606.svg
+copying images... [ 46%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-8b1c969be9cf39bb827a5a56c2d004526e3adb43.svg
+copying images... [ 48%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-7bd01cd88b2fd2504cb8e8bfbeaa21fd14d47718.svg
+copying images... [ 50%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-fa0f20aa002c247dd6e3c2ae3df64d628130b282.svg
+copying images... [ 52%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-4a56c92dfb6193e544e3ce26aaec15324c1d6c2d.svg
+copying images... [ 54%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-cfba0178f654c06abb0723ef503f283f980ad2d8.svg
+copying images... [ 56%] howto/manage-the-juju-dashboard-upgrade.png
+copying images... [ 58%] reference/juju-dashboard.png
+copying images... [ 60%] reference/juju-dashboard-group-by.png
+copying images... [ 62%] reference/juju-dashboard-search-and-filtering.png
+copying images... [ 65%] reference/juju-dashboard-model-details-view.png
+copying images... [ 67%] reference/juju-dashboard-unit-view.png
+copying images... [ 69%] reference/juju-dashboard-machine-view-1.png
+copying images... [ 71%] reference/juju-dashboard-machine-view-2.png
+copying images... [ 73%] reference/juju-dashboard-relations-view.png
+copying images... [ 75%] reference/juju-dashboard-configuring-applications.png
+copying images... [ 77%] reference/juju-dashboard-controllers-view.png
+copying images... [ 79%] reference/juju-dashboard-model-access-management-1.png
+copying images... [ 81%] reference/juju-dashboard-model-access-management-2.png
+copying images... [ 83%] reference/juju-dashboard-running-actions-1.png
+copying images... [ 85%] reference/juju-dashboard-running-actions-2.png
+copying images... [ 88%] reference/juju-dashboard-running-actions-on-multiple-applications-1.png
+copying images... [ 90%] reference/juju-dashboard-running-actions-on-multiple-applications-2.png
+copying images... [ 92%] reference/juju-dashboard-viewing-action-logs.png
+copying images... [ 94%] reference/juju-web-cli-1.png
+copying images... [ 96%] reference/juju-web-cli-2.png
+copying images... [ 98%] reference/juju-web-cli-3.png
+copying images... [100%] reference/juju-web-cli-4.png
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+sphinx-sitemap: doc-sitemap.xml was generated for URL https://canonical.com/juju/docs/juju-cli/local/ in /home/dora/git/misc/juju-diagrams/docs/_build/doc-sitemap.xml
+Writing redirects...
+(good) releasenotes/juju_2.9.x/index.html --> releasenotes/index.html
+(good) reference/juju/juju-roadmap-and-releases/index.html --> releasenotes/index.html
+(good) reference/plugin/index.html --> reference/index.html
+(good) reference/plugin/list-of-known-juju-plugins/#list-of-known-juju-plugins/index.html --> reference/index.html
+(good) reference/plugin/list-of-known-juju-plugins/plugin-juju-stash/index.html --> reference/index.html
+(good) reference/plugin/plugin-flags/index.html --> reference/index.html
+(good) howto/manage-plugins/index.html --> howto/index.html
+(good) reference/plugin/list-of-known-juju-plugins/plugin-juju-metadata/index.html --> reference/juju-cli/plugin-juju-metadata/index.html
+(good) reference/cloud/list-of-supported-clouds/the-manual-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/unmanaged/index.html
+(good) reference/cloud/list-of-supported-clouds/the-unmanaged-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/unmanaged/index.html
+(good) reference/charm/charm-development-best-practices/index.html --> reference/charm/index.html
+(good) explanation/performance-with-juju/index.html --> explanation/juju-performance/index.html
+(good) reference/juju/juju-architecture/index.html --> explanation/architecture/index.html
+(good) explanation/juju-architecture/index.html --> explanation/architecture/index.html
+(good) user/reference/charm/channel/index.html --> reference/charm/index.html
+(good) user/reference/charm/revision/index.html --> reference/charm/index.html
+(good) user/reference/charm/charm-taxonomy/index.html --> reference/charm/index.html
+(good) contributor/unsorted/bootstrapping/index.html --> reference/index.html
+(good) contributor/unsorted/managing-complexity/index.html --> reference/index.html
+(good) contributor/unsorted/commands/index.html --> reference/index.html
+(good) contributor/unsorted/hacking-state/index.html --> reference/index.html
+(good) contributor/unsorted/cross-platform-development/index.html --> howto/compile-and-run-juju-agents-on-different-architectures/index.html
+(good) contributor/unsorted/FAQ/index.html --> reference/index.html
+(good) contributor/unsorted/entity-creation/index.html --> reference/index.html
+(good) contributor/unsorted/api-best-practices/index.html --> reference/index.html
+(good) contributor/unsorted/api-design-specification/index.html --> reference/index.html
+(good) contributor/unsorted/api-implementation-guide/index.html --> reference/index.html
+(good) contributor/unsorted/charms-in-action/index.html --> reference/index.html
+(good) contributor/unsorted/implementing-effective-config-structs/index.html --> reference/index.html
+(good) contributor/unsorted/review-checklist/index.html --> reference/index.html
+(good) contributor/unsorted/styleguide/index.html --> reference/index.html
+(good) contributor/unsorted/system-ssh-key/index.html --> reference/index.html
+(good) contributor/unsorted/test-failure-FAQ/index.html --> reference/index.html
+(good) contributor/unsorted/third-party-go-clients/index.html --> reference/index.html
+(good) contributor/unsorted/what-we-run-and-why/index.html --> reference/index.html
+(good) contributor/unsorted/simplestreams-metadata/index.html --> reference/metadata/index.html
+(good) contributor/unsorted/high-availability/index.html --> reference/high-availability/index.html
+(good) contributor/unsorted/observing-mongodb-performance/index.html --> reference/database/index.html
+(good) contributor/unsorted/writing-workers/index.html --> howto/writing-workers/index.html
+(good) contributor/unsorted/index.html --> reference/index.html
+(good) contributor/tutorial/index.html --> reference/index.html
+(good) contributor/howto/compile-and-run-juju-agents-on-different-architectures/index.html --> howto/compile-and-run-juju-agents-on-different-architectures/index.html
+(good) contributor/howto/debug-a-dqlite-core-dump-issue/index.html --> howto/debug-a-dqlite-core-dump-issue/index.html
+(good) contributor/reference/writing-workers/index.html --> howto/writing-workers/index.html
+(good) contributor/reference/high-availability/index.html --> reference/high-availability/index.html
+(good) contributor/reference/binary-containeragent/index.html --> reference/containeragent/index.html
+(good) contributor/howto/index.html --> howto/index.html
+(good) contributor/reference/index.html --> reference/index.html
+(good) contributor/index.html --> reference/index.html
+(good) user/explanation/application-modelling/index.html --> explanation/index.html
+(good) explanation/application-modelling/index.html --> explanation/index.html
+(good) user/explanation/charming-history/index.html --> explanation/index.html
+(good) explanation/charming-history/index.html --> explanation/index.html
+(good) user/explanation/charms-vs-kubernetes-operators/index.html --> explanation/index.html
+(good) explanation/charms-vs-kubernetes-operators/index.html --> explanation/index.html
+(good) user/explanation/index.html --> explanation/index.html
+(good) user/explanation/juju-security/index.html --> explanation/juju-security/index.html
+(good) user/explanation/performance-with-juju/index.html --> explanation/juju-performance/index.html
+(good) user/howto/define-resource-tags-in-a-cloud/index.html --> howto/define-resource-tags-in-a-cloud/index.html
+(good) user/howto/fan-container-networking/index.html --> howto/index.html
+(good) user/howto/index.html --> howto/index.html
+(good) user/howto/manage-actions/index.html --> howto/manage-actions/index.html
+(good) user/howto/manage-applications/index.html --> howto/manage-applications/index.html
+(good) user/howto/manage-charm-resources/index.html --> howto/manage-charm-resources/index.html
+(good) user/howto/manage-charms/index.html --> howto/manage-charms/index.html
+(good) user/howto/manage-clouds/index.html --> howto/manage-clouds/index.html
+(good) user/howto/manage-controllers/index.html --> howto/manage-controllers/index.html
+(good) user/howto/manage-credentials/index.html --> howto/manage-credentials/index.html
+(good) user/howto/manage-juju/index.html --> howto/manage-juju/index.html
+(good) user/howto/manage-logs/index.html --> howto/manage-logs/index.html
+(good) user/howto/manage-machines/index.html --> howto/manage-machines/index.html
+(good) user/howto/manage-metadata/index.html --> howto/manage-metadata/index.html
+(good) user/howto/manage-models/index.html --> howto/manage-models/index.html
+(good) user/howto/manage-offers/index.html --> howto/manage-offers/index.html
+(good) user/howto/manage-plugins/index.html --> howto/manage-plugins/index.html
+(good) user/howto/manage-relations/index.html --> howto/manage-relations/index.html
+(good) user/howto/manage-secret-backends/index.html --> howto/manage-secret-backends/index.html
+(good) user/howto/manage-secrets/index.html --> howto/manage-secrets/index.html
+(good) user/howto/manage-spaces/index.html --> howto/manage-spaces/index.html
+(good) user/howto/manage-ssh-keys/index.html --> howto/manage-ssh-keys/index.html
+(good) user/howto/manage-storage-pools/index.html --> howto/manage-storage-pools/index.html
+(good) user/howto/manage-storage/index.html --> howto/manage-storage/index.html
+(good) user/howto/manage-subnets/index.html --> howto/manage-subnets/index.html
+(good) user/howto/manage-the-juju-dashboard/index.html --> howto/manage-the-juju-dashboard/index.html
+(good) user/howto/manage-units/index.html --> howto/manage-units/index.html
+(good) user/howto/manage-users/index.html --> howto/manage-users/index.html
+(good) user/howto/manage-your-deployment/harden-your-deployment/index.html --> howto/manage-your-juju-deployment/harden-your-juju-deployment/index.html
+(good) user/howto/manage-your-deployment/index.html --> howto/manage-your-juju-deployment/set-up-your-juju-deployment-local-testing-and-development/index.html
+(good) user/howto/manage-your-deployment/manage-your-deployment-environment/index.html --> howto/manage-your-juju-deployment/set-up-your-juju-deployment-local-testing-and-development/index.html
+(good) user/howto/manage-your-deployment/take-your-deployment-offline/index.html --> howto/manage-your-juju-deployment/set-up-your-juju-deployment-offline/index.html
+(good) howto/manage-your-deployment/take-your-deployment-offline/index.html --> howto/manage-your-juju-deployment/set-up-your-juju-deployment-offline/index.html
+(good) user/howto/manage-your-deployment/troubleshoot-your-deployment/index.html --> howto/manage-your-juju-deployment/troubleshoot-your-juju-deployment/index.html
+(good) user/howto/manage-your-deployment/upgrade-your-deployment/index.html --> howto/manage-your-juju-deployment/troubleshoot-your-juju-deployment/index.html
+(good) user/index.html --> index.html
+(good) user/reference/action/index.html --> reference/action/index.html
+(good) user/reference/agent/index.html --> reference/agent/index.html
+(good) user/reference/application/index.html --> reference/application/index.html
+(good) user/reference/bundle/index.html --> reference/bundle/index.html
+(good) user/reference/charm/charm-development-best-practices/index.html --> reference/charm/charm-development-best-practices/index.html
+(good) user/reference/charm/index.html --> reference/charm/index.html
+(good) user/reference/cloud/index.html --> reference/cloud/index.html
+(good) user/reference/cloud/kubernetes-clouds-and-juju/index.html --> reference/cloud/list-of-supported-clouds/index.html
+(good) user/reference/cloud/list-of-supported-clouds/index.html --> reference/cloud/list-of-supported-clouds/index.html
+(good) user/reference/cloud/list-of-supported-clouds/the-amazon-ec2-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/amazon-ec2/index.html
+(good) user/reference/cloud/list-of-supported-clouds/the-amazon-eks-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/amazon-eks/index.html
+(good) user/reference/cloud/list-of-supported-clouds/the-google-gce-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/google-gce/index.html
+(good) user/reference/cloud/list-of-supported-clouds/the-google-gke-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/google-gke/index.html
+(good) user/reference/cloud/list-of-supported-clouds/the-lxd-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/lxd/index.html
+(good) user/reference/cloud/list-of-supported-clouds/the-maas-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/maas/index.html
+(good) user/reference/cloud/list-of-supported-clouds/the-manual-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/unmanaged/index.html
+(good) user/reference/cloud/list-of-supported-clouds/the-microk8s-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/microk8s/index.html
+(good) user/reference/cloud/list-of-supported-clouds/the-microsoft-aks-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/microsoft-aks/index.html
+(good) user/reference/cloud/list-of-supported-clouds/the-microsoft-azure-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/microsoft-azure/index.html
+(good) user/reference/cloud/list-of-supported-clouds/the-openstack-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/openstack/index.html
+(good) user/reference/cloud/list-of-supported-clouds/the-oracle-oci-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/oracle-oci/index.html
+(good) user/reference/cloud/list-of-supported-clouds/the-vmware-vsphere-cloud-and-juj/index.html --> reference/cloud/list-of-supported-clouds/vmware-vsphere/index.html
+(good) user/reference/configuration/controller-config-audit-log-exclude-methods/index.html --> reference/configuration/controller-config-audit-log-exclude-methods/index.html
+(good) user/reference/configuration/controller-config-juju-mgmt-space/index.html --> reference/configuration/controller-config-juju-mgmt-space/index.html
+(good) user/reference/configuration/index.html --> reference/configuration/index.html
+(good) user/reference/configuration/list-of-controller-configuration-key/index.html --> reference/configuration/list-of-controller-configuration-keys/index.html
+(good) user/reference/configuration/list-of-model-configuration-key/index.html --> reference/configuration/list-of-model-configuration-keys/index.html
+(good) user/reference/constraint/index.html --> reference/constraint/index.html
+(good) user/reference/containeragent/index.html --> reference/containeragent/index.html
+(good) user/reference/controller/index.html --> reference/controller/index.html
+(good) user/reference/credentia/index.html --> reference/credential/index.html
+(good) user/reference/high-availability/index.html --> reference/high-availability/index.html
+(good) user/reference/hook-commands/index.html --> reference/hook-command/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/action-fail/index.html --> reference/hook-command/list-of-hook-commands/action-fail/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/action-get/index.html --> reference/hook-command/list-of-hook-commands/action-get/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/action-log/index.html --> reference/hook-command/list-of-hook-commands/action-log/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/action-set/index.html --> reference/hook-command/list-of-hook-commands/action-set/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/application-version-set/index.html --> reference/hook-command/list-of-hook-commands/application-version-set/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/close-port/index.html --> reference/hook-command/list-of-hook-commands/close-port/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/config-get/index.html --> reference/hook-command/list-of-hook-commands/config-get/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/credential-get/index.html --> reference/hook-command/list-of-hook-commands/credential-get/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/goal-state/index.html --> reference/hook-command/list-of-hook-commands/goal-state/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/index.html --> reference/hook-command/list-of-hook-commands/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/is-leader/index.html --> reference/hook-command/list-of-hook-commands/is-leader/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/juju-log/index.html --> reference/hook-command/list-of-hook-commands/juju-log/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/juju-reboot/index.html --> reference/hook-command/list-of-hook-commands/juju-reboot/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/network-get/index.html --> reference/hook-command/list-of-hook-commands/network-get/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/open-port/index.html --> reference/hook-command/list-of-hook-commands/open-port/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/opened-port/index.html --> reference/hook-command/list-of-hook-commands/opened-ports/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/relation-get/index.html --> reference/hook-command/list-of-hook-commands/relation-get/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/relation-ids/index.html --> reference/hook-command/list-of-hook-commands/relation-ids/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/relation-list/index.html --> reference/hook-command/list-of-hook-commands/relation-list/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/relation-model-get/index.html --> reference/hook-command/list-of-hook-commands/relation-model-get/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/relation-se/index.html --> reference/hook-command/list-of-hook-commands/relation-set/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/resource-ge/index.html --> reference/hook-command/list-of-hook-commands/resource-get/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/secret-add/index.html --> reference/hook-command/list-of-hook-commands/secret-add/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/secret-get/index.html --> reference/hook-command/list-of-hook-commands/secret-get/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/secret-grant/index.html --> reference/hook-command/list-of-hook-commands/secret-grant/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/secret-ids/index.html --> reference/hook-command/list-of-hook-commands/secret-ids/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/secret-info-get/index.html --> reference/hook-command/list-of-hook-commands/secret-info-get/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/secret-remove/index.html --> reference/hook-command/list-of-hook-commands/secret-remove/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/secret-revoke/index.html --> reference/hook-command/list-of-hook-commands/secret-revoke/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/secret-set/index.html --> reference/hook-command/list-of-hook-commands/secret-set/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/state-delete/index.html --> reference/hook-command/list-of-hook-commands/state-delete/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/state-get/index.html --> reference/hook-command/list-of-hook-commands/state-get/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/state-set/index.html --> reference/hook-command/list-of-hook-commands/state-set/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/status-get/index.html --> reference/hook-command/list-of-hook-commands/status-get/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/status-set/index.html --> reference/hook-command/list-of-hook-commands/status-set/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/storage-add/index.html --> reference/hook-command/list-of-hook-commands/storage-add/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/storage-get/index.html --> reference/hook-command/list-of-hook-commands/storage-get/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/storage-list/index.html --> reference/hook-command/list-of-hook-commands/storage-list/index.html
+(good) user/reference/hook-commands/list-of-hook-commands/unit-get/index.html --> reference/hook-command/list-of-hook-commands/unit-get/index.html
+(good) user/reference/hook/index.html --> reference/hook/index.html
+(good) user/reference/index.html --> reference/index.html
+(good) user/reference/juju-cli/index.html --> reference/juju-cli/index.html
+(good) user/reference/juju-cli/juju-environment-variables/index.html --> reference/juju-cli/juju-environment-variables/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/actions/index.html --> reference/juju-cli/list-of-juju-cli-commands/actions/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/add-cloud/index.html --> reference/juju-cli/list-of-juju-cli-commands/add-cloud/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/add-credential/index.html --> reference/juju-cli/list-of-juju-cli-commands/add-credential/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/add-k8s/index.html --> reference/juju-cli/list-of-juju-cli-commands/add-k8s/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/add-machine/index.html --> reference/juju-cli/list-of-juju-cli-commands/add-machine/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/add-model/index.html --> reference/juju-cli/list-of-juju-cli-commands/add-model/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/add-secret-backend/index.html --> reference/juju-cli/list-of-juju-cli-commands/add-secret-backend/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/add-secret/index.html --> reference/juju-cli/list-of-juju-cli-commands/add-secret/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/add-space/index.html --> reference/juju-cli/list-of-juju-cli-commands/add-space/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/add-ssh-key/index.html --> reference/juju-cli/list-of-juju-cli-commands/add-ssh-key/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/add-storage/index.html --> reference/juju-cli/list-of-juju-cli-commands/add-storage/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/add-unit/index.html --> reference/juju-cli/list-of-juju-cli-commands/add-unit/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/add-user/index.html --> reference/juju-cli/list-of-juju-cli-commands/add-user/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/attach-resource/index.html --> reference/juju-cli/list-of-juju-cli-commands/attach-resource/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/attach-storage/index.html --> reference/juju-cli/list-of-juju-cli-commands/attach-storage/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/autoload-credentials/index.html --> reference/juju-cli/list-of-juju-cli-commands/autoload-credentials/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/bind/index.html --> reference/juju-cli/list-of-juju-cli-commands/bind/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/bootstrap/index.html --> reference/juju-cli/list-of-juju-cli-commands/bootstrap/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/cancel-task/index.html --> reference/juju-cli/list-of-juju-cli-commands/cancel-task/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/change-user-password/index.html --> reference/juju-cli/list-of-juju-cli-commands/change-user-password/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/charm-resources/index.html --> reference/juju-cli/list-of-juju-cli-commands/charm-resources/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/clouds/index.html --> reference/juju-cli/list-of-juju-cli-commands/clouds/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/config/index.html --> reference/juju-cli/list-of-juju-cli-commands/config/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/constraints/index.html --> reference/juju-cli/list-of-juju-cli-commands/constraints/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/consume/index.html --> reference/juju-cli/list-of-juju-cli-commands/consume/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/controller-config/index.html --> reference/juju-cli/list-of-juju-cli-commands/controller-config/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/controllers/index.html --> reference/juju-cli/list-of-juju-cli-commands/controllers/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/create-backup/index.html --> reference/juju-cli/list-of-juju-cli-commands/create-backup/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/create-storage-pool/index.html --> reference/juju-cli/list-of-juju-cli-commands/create-storage-pool/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/credentials/index.html --> reference/juju-cli/list-of-juju-cli-commands/credentials/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/dashboard/index.html --> reference/juju-cli/list-of-juju-cli-commands/dashboard/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/debug-code/index.html --> reference/juju-cli/list-of-juju-cli-commands/debug-code/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/debug-hooks/index.html --> reference/juju-cli/list-of-juju-cli-commands/debug-hooks/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/debug-log/index.html --> reference/juju-cli/list-of-juju-cli-commands/debug-log/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/default-credential/index.html --> reference/juju-cli/list-of-juju-cli-commands/default-credential/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/default-region/index.html --> reference/juju-cli/list-of-juju-cli-commands/default-region/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/deploy/index.html --> reference/juju-cli/list-of-juju-cli-commands/deploy/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/destroy-controlle/index.html --> reference/juju-cli/list-of-juju-cli-commands/destroy-controller/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/destroy-model/index.html --> reference/juju-cli/list-of-juju-cli-commands/destroy-model/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/detach-storage/index.html --> reference/juju-cli/list-of-juju-cli-commands/detach-storage/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/diff-bundle/index.html --> reference/juju-cli/list-of-juju-cli-commands/diff-bundle/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/disable-command/index.html --> reference/juju-cli/list-of-juju-cli-commands/disable-command/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/disable-user/index.html --> reference/juju-cli/list-of-juju-cli-commands/disable-user/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/disabled-commands/index.html --> reference/juju-cli/list-of-juju-cli-commands/disabled-commands/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/documentation/index.html --> reference/juju-cli/list-of-juju-cli-commands/documentation/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/download/index.html --> reference/juju-cli/list-of-juju-cli-commands/download/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/enable-command/index.html --> reference/juju-cli/list-of-juju-cli-commands/enable-command/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/enable-destroy-controller/index.html --> reference/juju-cli/list-of-juju-cli-commands/enable-destroy-controller/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/enable-user/index.html --> reference/juju-cli/list-of-juju-cli-commands/enable-user/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/exec/index.html --> reference/juju-cli/list-of-juju-cli-commands/exec/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/export-bundle/index.html --> reference/juju-cli/list-of-juju-cli-commands/export-bundle/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/expose/index.html --> reference/juju-cli/list-of-juju-cli-commands/expose/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/find-offers/index.html --> reference/juju-cli/list-of-juju-cli-commands/find-offers/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/find/index.html --> reference/juju-cli/list-of-juju-cli-commands/find/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/firewall-rules/index.html --> reference/juju-cli/list-of-juju-cli-commands/firewall-rules/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/grant-cloud/index.html --> reference/juju-cli/list-of-juju-cli-commands/grant-cloud/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/grant-secret/index.html --> reference/juju-cli/list-of-juju-cli-commands/grant-secret/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/grant/index.html --> reference/juju-cli/list-of-juju-cli-commands/grant/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/help/index.html --> reference/juju-cli/list-of-juju-cli-commands/help/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/import-filesystem/index.html --> reference/juju-cli/list-of-juju-cli-commands/import-filesystem/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/import-ssh-key/index.html --> reference/juju-cli/list-of-juju-cli-commands/import-ssh-key/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/index.html --> reference/juju-cli/list-of-juju-cli-commands/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/info/index.html --> reference/juju-cli/list-of-juju-cli-commands/info/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/integrate/index.html --> reference/juju-cli/list-of-juju-cli-commands/integrate/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/kill-controller/index.html --> reference/juju-cli/list-of-juju-cli-commands/kill-controller/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/login/index.html --> reference/juju-cli/list-of-juju-cli-commands/login/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/logout/index.html --> reference/juju-cli/list-of-juju-cli-commands/logout/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/machines/index.html --> reference/juju-cli/list-of-juju-cli-commands/machines/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/migrate/index.html --> reference/juju-cli/list-of-juju-cli-commands/migrate/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/model-config/index.html --> reference/juju-cli/list-of-juju-cli-commands/model-config/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/model-constraints/index.html --> reference/juju-cli/list-of-juju-cli-commands/model-constraints/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/model-defaults/index.html --> reference/juju-cli/list-of-juju-cli-commands/model-defaults/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/models/index.html --> reference/juju-cli/list-of-juju-cli-commands/models/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/move-to-space/index.html --> reference/juju-cli/list-of-juju-cli-commands/move-to-space/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/offer/index.html --> reference/juju-cli/list-of-juju-cli-commands/offer/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/offers/index.html --> reference/juju-cli/list-of-juju-cli-commands/offers/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/operations/index.html --> reference/juju-cli/list-of-juju-cli-commands/operations/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/refresh/index.html --> reference/juju-cli/list-of-juju-cli-commands/refresh/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/regions/index.html --> reference/juju-cli/list-of-juju-cli-commands/regions/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/register/index.html --> reference/juju-cli/list-of-juju-cli-commands/register/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/reload-spaces/index.html --> reference/juju-cli/list-of-juju-cli-commands/reload-spaces/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-application/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-application/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-cloud/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-cloud/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-credential/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-credential/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-k8s/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-k8s/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-machine/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-machine/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-offer/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-offer/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-relation/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-relation/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-saas/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-saas/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-secret-backend/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-secret-backend/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-secret/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-secret/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-space/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-space/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-ssh-key/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-ssh-key/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-storage-pool/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-storage-pool/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-storage/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-storage/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-unit/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-unit/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/remove-user/index.html --> reference/juju-cli/list-of-juju-cli-commands/remove-user/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/rename-space/index.html --> reference/juju-cli/list-of-juju-cli-commands/rename-space/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/resolved/index.html --> reference/juju-cli/list-of-juju-cli-commands/resolved/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/resources/index.html --> reference/juju-cli/list-of-juju-cli-commands/resources/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/resume-relation/index.html --> reference/juju-cli/list-of-juju-cli-commands/resume-relation/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/retry-provisioning/index.html --> reference/juju-cli/list-of-juju-cli-commands/retry-provisioning/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/revoke-cloud/index.html --> reference/juju-cli/list-of-juju-cli-commands/revoke-cloud/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/revoke-secret/index.html --> reference/juju-cli/list-of-juju-cli-commands/revoke-secret/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/revoke/index.html --> reference/juju-cli/list-of-juju-cli-commands/revoke/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/run/index.html --> reference/juju-cli/list-of-juju-cli-commands/run/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/scale-application/index.html --> reference/juju-cli/list-of-juju-cli-commands/scale-application/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/scp/index.html --> reference/juju-cli/list-of-juju-cli-commands/scp/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/secret-backends/index.html --> reference/juju-cli/list-of-juju-cli-commands/secret-backends/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/secrets/index.html --> reference/juju-cli/list-of-juju-cli-commands/secrets/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/set-constraints/index.html --> reference/juju-cli/list-of-juju-cli-commands/set-constraints/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/set-credential/index.html --> reference/juju-cli/list-of-juju-cli-commands/set-credential/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/set-firewall-rule/index.html --> reference/juju-cli/list-of-juju-cli-commands/set-firewall-rule/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/set-model-constraints/index.html --> reference/juju-cli/list-of-juju-cli-commands/set-model-constraints/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-action/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-action/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-application/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-application/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-cloud/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-cloud/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-controller/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-controller/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-credential/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-credential/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-machine/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-machine/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-model/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-model/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-offer/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-offer/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-operation/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-operation/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-secret-backend/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-secret-backend/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-secret/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-secret/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-space/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-space/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-status-log/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-status-log/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-storage/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-storage/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-task/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-task/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-unit/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-unit/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/show-user/index.html --> reference/juju-cli/list-of-juju-cli-commands/show-user/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/spaces/index.html --> reference/juju-cli/list-of-juju-cli-commands/spaces/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/ssh-keys/index.html --> reference/juju-cli/list-of-juju-cli-commands/ssh-keys/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/ssh/index.html --> reference/juju-cli/list-of-juju-cli-commands/ssh/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/status/index.html --> reference/juju-cli/list-of-juju-cli-commands/status/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/storage-pools/index.html --> reference/juju-cli/list-of-juju-cli-commands/storage-pools/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/storage/index.html --> reference/juju-cli/list-of-juju-cli-commands/storage/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/subnets/index.html --> reference/juju-cli/list-of-juju-cli-commands/subnets/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/suspend-relation/index.html --> reference/juju-cli/list-of-juju-cli-commands/suspend-relation/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/swith/index.html --> reference/juju-cli/list-of-juju-cli-commands/switch/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/sync-agent-binary/index.html --> reference/juju-cli/list-of-juju-cli-commands/sync-agent-binary/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/trust/index.html --> reference/juju-cli/list-of-juju-cli-commands/trust/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/unexpose/index.html --> reference/juju-cli/list-of-juju-cli-commands/unexpose/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/unregister/index.html --> reference/juju-cli/list-of-juju-cli-commands/unregister/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/update-cloud/index.html --> reference/juju-cli/list-of-juju-cli-commands/update-cloud/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/update-credential/index.html --> reference/juju-cli/list-of-juju-cli-commands/update-credential/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/update-k8s/index.html --> reference/juju-cli/list-of-juju-cli-commands/update-k8s/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/update-public-clouds/index.html --> reference/juju-cli/list-of-juju-cli-commands/update-public-clouds/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/update-secret-backend/index.html --> reference/juju-cli/list-of-juju-cli-commands/update-secret-backend/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/update-secret/index.html --> reference/juju-cli/list-of-juju-cli-commands/update-secret/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/update-storage-pool/index.html --> reference/juju-cli/list-of-juju-cli-commands/update-storage-pool/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/upgrade-controller/index.html --> reference/juju-cli/list-of-juju-cli-commands/upgrade-controller/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/upgrade-model/index.html --> reference/juju-cli/list-of-juju-cli-commands/upgrade-model/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/users/index.html --> reference/juju-cli/list-of-juju-cli-commands/users/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/version/index.html --> reference/juju-cli/list-of-juju-cli-commands/version/index.html
+(good) user/reference/juju-cli/list-of-juju-cli-commands/whoami/index.html --> reference/juju-cli/list-of-juju-cli-commands/whoami/index.html
+(good) user/reference/juju-dashboard/index.html --> reference/juju-dashboard/index.html
+(good) user/reference/juju-web-cli/index.html --> reference/juju-web-cli/index.html
+(good) user/reference/juju/index.html --> reference/juju/index.html
+(good) user/reference/juju/juju-architecture/index.html --> explanation/architecture/index.html
+(good) user/reference/juju/juju-cross-version-compatibilit/index.html --> reference/juju/juju-cross-version-compatibility/index.html
+(good) user/reference/juju/juju-roadmap-and-releases/index.html --> releasenotes/index.html
+(good) user/reference/jujuc/index.html --> reference/jujuc/index.html
+(good) user/reference/jujud/index.html --> reference/jujuagentd/index.html
+(good) reference/jujud/index.html --> reference/jujuagentd/index.html
+(good) user/reference/log/index.html --> reference/log/index.html
+(good) user/reference/machine/index.html --> reference/machine/index.html
+(good) user/reference/model/index.html --> reference/model/index.html
+(good) user/reference/offer/index.html --> reference/offer/index.html
+(good) user/reference/pebble/index.html --> reference/pebble/index.html
+(good) user/reference/placement-directive/index.html --> reference/placement-directive/index.html
+(good) user/reference/plugin/index.html --> reference/index.html
+(good) user/reference/plugin/list-of-known-juju-plugins/index.html --> reference/index.html
+(good) user/reference/plugin/list-of-known-juju-plugins/plugin-juju-metadata/index.html --> reference/juju-cli/plugin-juju-metadata/index.html
+(good) user/reference/plugin/list-of-known-juju-plugins/plugin-juju-stash/index.html --> reference/index.html
+(good) user/reference/plugin/plugin-flags/index.html --> reference/index.html
+(good) user/reference/relation/index.html --> reference/relation/index.html
+(good) user/reference/removing-things/index.html --> reference/removing-things/index.html
+(good) user/reference/resource-charm/index.html --> reference/resource-charm/index.html
+(good) user/reference/resource-compute/index.html --> reference/resource-compute/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-dumplogs/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-dumplogs/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-exec/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-exec/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-introspect/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-introspect/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_controller_agent_name/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_controller_agent_name/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_cpu_profile/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_cpu_profile/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_engine_report/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_engine_report/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_goroutines/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_goroutines/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_heap_profile/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_heap_profile/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_machine_agent_name/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_machine_agent_name/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_machine_lock/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_machine_lock/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_metrics/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_metrics/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_pubsub_report/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/index.html
+(good) reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_pubsub_report/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_start_unit/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/index.html
+(good) reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_start_unit/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_statetracker_report/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/index.html
+(good) reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_statetracker_report/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_stop_unit/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/index.html
+(good) reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_stop_unit/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_agent_name/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_agent_name/index.html
+(good) user/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_status/index.html --> reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_status/index.html
+(good) user/reference/scaling/index.html --> reference/scaling/index.html
+(good) user/reference/script/index.html --> reference/script/index.html
+(good) user/reference/secret/index.html --> reference/secret/index.html
+(good) user/reference/space/index.html --> reference/space/index.html
+(good) user/reference/ssh-key/index.html --> reference/ssh-key/index.html
+(good) user/reference/status/index.html --> reference/status/index.html
+(good) user/reference/storage/index.html --> reference/storage/index.html
+(good) user/reference/subnet/index.html --> reference/subnet/index.html
+(good) user/reference/telemetry/index.html --> reference/telemetry/index.html
+(good) user/reference/unit/index.html --> reference/unit/index.html
+(good) user/reference/upgrading-things/index.html --> howto/manage-your-juju-deployment/upgrade-your-juju-deployment/index.html
+(good) reference/upgrading-things/index.html --> howto/manage-your-juju-deployment/upgrade-your-juju-deployment/index.html
+(good) user/reference/user/index.html --> reference/user/index.html
+(good) user/reference/zone/index.html --> reference/zone/index.html
+(good) user/tutorial/index.html --> tutorial/index.html
+(good) reference/cloud/machine-clouds-and-juju/index.html --> reference/cloud/list-of-supported-clouds/index.html
+(good) reference/cloud/kubernetes-clouds-and-juju/index.html --> reference/cloud/list-of-supported-clouds/index.html
+(good) reference/cloud/list-of-supported-clouds/the-amazon-ec2-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/amazon-ec2/index.html
+(good) reference/cloud/list-of-supported-clouds/the-amazon-eks-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/amazon-eks/index.html
+(good) reference/cloud/list-of-supported-clouds/the-canonical-ks-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/canonical-kubernetes/index.html
+(good) reference/cloud/list-of-supported-clouds/the-equinix-metal-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/index.html
+(good) reference/cloud/list-of-supported-clouds/the-google-gce-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/google-gce/index.html
+(good) reference/cloud/list-of-supported-clouds/the-google-gke-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/google-gke/index.html
+(good) reference/cloud/list-of-supported-clouds/the-lxd-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/lxd/index.html
+(good) reference/cloud/list-of-supported-clouds/the-maas-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/maas/index.html
+(good) reference/cloud/list-of-supported-clouds/the-microk8s-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/microk8s/index.html
+(good) reference/cloud/list-of-supported-clouds/the-microsoft-aks-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/microsoft-aks/index.html
+(good) reference/cloud/list-of-supported-clouds/the-microsoft-azure-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/microsoft-azure/index.html
+(good) reference/cloud/list-of-supported-clouds/the-openstack-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/openstack/index.html
+(good) reference/cloud/list-of-supported-clouds/the-oracle-oci-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/oracle-oci/index.html
+(good) reference/cloud/list-of-supported-clouds/the-vmware-vsphere-cloud-and-juju/index.html --> reference/cloud/list-of-supported-clouds/vmware-vsphere/index.html
+(good) howto/upgrade-your-juju-deployment-from-36-to-40/index.html --> howto/upgrade-your-juju-deployment-from-36-to-41/index.html
+build succeeded.
+
+The HTML pages are in _build.
+[32m[sphinx-autobuild] [36mStarting initial build[0m
+[32m[sphinx-autobuild] [34m> python -m sphinx build . _build -c . -d .sphinx/.doctrees -b dirhtml -j auto -D llms_txt_enabled=0[0m
+[32m[sphinx-autobuild] [36mServing on http://127.0.0.1:8003[0m
+[32m[sphinx-autobuild] [36mWaiting to detect changes...[0m
+Running Sphinx v7.4.7
+loading translations [en]... done
+sphinx_design found.
+sphinx_design is now configured.
+sphinx_tabs.tabs found.
+sphinx_tabs.tabs is now configured.
+sphinx_reredirects found.
+sphinx_reredirects is now configured.
+canonical.youtube-links not found.
+canonical.youtube-links will not be configured.
+canonical.related-links not found.
+canonical.related-links will not be configured.
+canonical.custom-rst-roles not found.
+canonical.custom-rst-roles will not be configured.
+canonical.terminal-output not found.
+canonical.terminal-output will not be configured.
+canonical.contributor-listing not found.
+canonical.contributor-listing will not be configured.
+sphinx_copybutton found.
+sphinx_copybutton is now configured.
+sphinxext.opengraph found.
+sphinxext.opengraph is now configured.
+sphinxcontrib.jquery found.
+sphinxcontrib.jquery is now configured.
+notfound.extension found.
+notfound.extension is now configured.
+sphinxcontrib.cairosvgconverter found.
+sphinxcontrib.cairosvgconverter is now configured.
+sphinx_last_updated_by_git found.
+sphinx_last_updated_by_git is now configured.
+matplotlib is not installed, social cards will not be generated
+canonical-sphinx is deprecated and will be removed from the Sphinx Stack in a future release. Please switch to the Ulwazi theme. Guidance is available in the Sphinx Stack documentation: https://documentation.ubuntu.com/sphinx-stack/latest/how-to/switch-to-ulwazi/
+loading pickled environment... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions={'substitution', 'colon_fence', 'linkify', 'deflist'}, disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=0, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+llms.txt generation is disabled (llms_txt_enabled=False), skipping...
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [dirhtml]: targets for 0 source files that are out of date
+updating environment: 0 added, 7 changed, 0 removed
+reading sources... [ 14%] explanation/architecture
+reading sources... [ 29%] explanation/juju-ssh
+reading sources... [ 43%] reference/action
+reading sources... [ 57%] reference/high-availability
+reading sources... [ 71%] reference/model
+reading sources... [ 86%] reference/relation
+reading sources... [100%] tutorial/index
+
+getting Git timestamps for source files... [ 33%] explanation
+getting Git timestamps for source files... [ 67%] reference
+getting Git timestamps for source files... [100%] tutorial
+
+getting Git timestamps for dependencies... [100%] .
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... Copying the source path /home/dora/git/misc/juju-diagrams/docs/.sphinx/_static/tag.png to /home/dora/git/misc/juju-diagrams/docs/_build/_static/tag.png will overwrite data, as a file already exists at the destination path and the content does not match.
+Copying the source path /home/dora/git/misc/docs-venv/lib/python3.14/site-packages/canonical_sphinx/theme/static/tag.png to /home/dora/git/misc/juju-diagrams/docs/_build/_static/tag.png will overwrite data, as a file already exists at the destination path and the content does not match.
+done
+copying extra files... done
+copying assets: done
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+WARNING: ggarch slideshow parse error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+WARNING: ggarch slideshow parse error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+writing output... [ 11%] explanation/index
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+writing output... [ 22%] explanation/juju-ssh
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+writing output... [ 33%] index
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+writing output... [ 44%] reference/action
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+WARNING: ggarch slideshow parse error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+writing output... [ 56%] reference/high-availability
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+writing output... [ 67%] reference/index
+writing output... [ 78%] reference/model
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+WARNING: ggarch parse/validate error: Unexpected token Token('EDGE_KW', 'edge') at line 137, column 3.
+Expected one of: 
+	* STATE
+	* DIAGRAM
+	* MODEL
+	* $END
+	* SEQUENCE
+Previous tokens: [Token('RBRACE', '}')]
+
+writing output... [ 89%] reference/relation
+writing output... [100%] tutorial/index
+
+generating indices... genindex done
+Overwriting 'user/reference/charm/charm-naming-guidelines/index.html' with redirect to 'https://canonical-charmcraft.readthedocs-hosted.com/en/stable/'.
+Overwriting 'reference/charm/charm-naming-guidelines/index.html' with redirect to 'https://canonical-charmcraft.readthedocs-hosted.com/en/stable/'.
+Overwriting 'user/reference/charm/charm-maturity/index.html' with redirect to 'https://canonical.com/juju/docs/ops/latest/explanation/charm-maturity/'.
+Overwriting 'reference/charm/charm-maturity/index.html' with redirect to 'https://canonical.com/juju/docs/ops/latest/explanation/charm-maturity/'.
+Overwriting 'contributor/reference/agent/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/cmd/jujuagentd/agent'.
+Overwriting 'contributor/reference/dependency-package/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5/dependency'.
+Overwriting 'contributor/reference/catacomb-package/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5/catacomb'.
+Overwriting 'contributor/reference/worker/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Overwriting 'contributor/reference/worker-interface/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Overwriting 'contributor/reference/worker-package/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Overwriting 'contributor/reference/tomb-package/index.html' with redirect to 'https://pkg.go.dev/gopkg.in/tomb.v2'.
+Overwriting 'contributor/reference/entity-lifecycle/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Overwriting 'contributor/unsorted/death-and-destruction/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Overwriting 'contributor/unsorted/lifecycles/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Overwriting 'contributor/reference/cve/index.html' with redirect to 'https://github.com/juju/juju/security'.
+Overwriting 'contributor/reference/conventional-commits/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/.github/instructions/agent-commit.instructions.md'.
+Overwriting 'contributor/howto/merge-forward/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/CONTRIBUTING.md'.
+Overwriting 'contributor/howto/write-tests/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/write-a-unit-test/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/create-a-unit-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/create-unit-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/unsorted/debugging-races/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/util-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/checker/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/unit-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/write-an-integration-test/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/integration-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/test-include/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/test-includes/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+sphinx-sitemap: doc-sitemap.xml was generated for URL https://canonical.com/juju/docs/juju-cli/local/ in /home/dora/git/misc/juju-diagrams/docs/_build/doc-sitemap.xml
+Writing redirects...
+build succeeded, 19 warnings.
+
+The HTML pages are in _build.
+[32m[sphinx-autobuild] [36mDetected changes (juju.ggarch)[0m
+[32m[sphinx-autobuild] [36mRebuilding...[0m
+[32m[sphinx-autobuild] [34m> python -m sphinx build . _build -c . -d .sphinx/.doctrees -b dirhtml -j auto -D llms_txt_enabled=0[0m
+[32m[sphinx-autobuild] [36mServing on http://127.0.0.1:8003[0m
+Running Sphinx v7.4.7
+loading translations [en]... done
+sphinx_design found.
+sphinx_design is now configured.
+sphinx_tabs.tabs found.
+sphinx_tabs.tabs is now configured.
+sphinx_reredirects found.
+sphinx_reredirects is now configured.
+canonical.youtube-links not found.
+canonical.youtube-links will not be configured.
+canonical.related-links not found.
+canonical.related-links will not be configured.
+canonical.custom-rst-roles not found.
+canonical.custom-rst-roles will not be configured.
+canonical.terminal-output not found.
+canonical.terminal-output will not be configured.
+canonical.contributor-listing not found.
+canonical.contributor-listing will not be configured.
+sphinx_copybutton found.
+sphinx_copybutton is now configured.
+sphinxext.opengraph found.
+sphinxext.opengraph is now configured.
+sphinxcontrib.jquery found.
+sphinxcontrib.jquery is now configured.
+notfound.extension found.
+notfound.extension is now configured.
+sphinxcontrib.cairosvgconverter found.
+sphinxcontrib.cairosvgconverter is now configured.
+sphinx_last_updated_by_git found.
+sphinx_last_updated_by_git is now configured.
+matplotlib is not installed, social cards will not be generated
+canonical-sphinx is deprecated and will be removed from the Sphinx Stack in a future release. Please switch to the Ulwazi theme. Guidance is available in the Sphinx Stack documentation: https://documentation.ubuntu.com/sphinx-stack/latest/how-to/switch-to-ulwazi/
+loading pickled environment... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions={'linkify', 'colon_fence', 'deflist', 'substitution'}, disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=0, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+llms.txt generation is disabled (llms_txt_enabled=False), skipping...
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [dirhtml]: targets for 1 source files that are out of date
+updating environment: 0 added, 7 changed, 0 removed
+reading sources... [ 14%] explanation/architecture
+reading sources... [ 29%] explanation/juju-ssh
+reading sources... [ 43%] reference/action
+reading sources... [ 57%] reference/high-availability
+reading sources... [ 71%] reference/model
+reading sources... [ 86%] reference/relation
+reading sources... [100%] tutorial/index
+
+getting Git timestamps for source files... [ 33%] reference
+getting Git timestamps for source files... [ 67%] explanation
+getting Git timestamps for source files... [100%] tutorial
+
+getting Git timestamps for dependencies... [100%] .
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... Copying the source path /home/dora/git/misc/juju-diagrams/docs/.sphinx/_static/tag.png to /home/dora/git/misc/juju-diagrams/docs/_build/_static/tag.png will overwrite data, as a file already exists at the destination path and the content does not match.
+Copying the source path /home/dora/git/misc/docs-venv/lib/python3.14/site-packages/canonical_sphinx/theme/static/tag.png to /home/dora/git/misc/juju-diagrams/docs/_build/_static/tag.png will overwrite data, as a file already exists at the destination path and the content does not match.
+done
+copying extra files... done
+copying assets: done
+writing output... [ 11%] explanation/index
+writing output... [ 22%] explanation/juju-ssh
+writing output... [ 33%] index
+writing output... [ 44%] reference/action
+writing output... [ 56%] reference/high-availability
+writing output... [ 67%] reference/index
+writing output... [ 78%] reference/model
+writing output... [ 89%] reference/relation
+writing output... [100%] tutorial/index
+
+generating indices... genindex done
+Overwriting 'user/reference/charm/charm-naming-guidelines/index.html' with redirect to 'https://canonical-charmcraft.readthedocs-hosted.com/en/stable/'.
+Overwriting 'reference/charm/charm-naming-guidelines/index.html' with redirect to 'https://canonical-charmcraft.readthedocs-hosted.com/en/stable/'.
+Overwriting 'user/reference/charm/charm-maturity/index.html' with redirect to 'https://canonical.com/juju/docs/ops/latest/explanation/charm-maturity/'.
+Overwriting 'reference/charm/charm-maturity/index.html' with redirect to 'https://canonical.com/juju/docs/ops/latest/explanation/charm-maturity/'.
+Overwriting 'contributor/reference/agent/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/cmd/jujuagentd/agent'.
+Overwriting 'contributor/reference/dependency-package/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5/dependency'.
+Overwriting 'contributor/reference/catacomb-package/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5/catacomb'.
+Overwriting 'contributor/reference/worker/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Overwriting 'contributor/reference/worker-interface/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Overwriting 'contributor/reference/worker-package/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Overwriting 'contributor/reference/tomb-package/index.html' with redirect to 'https://pkg.go.dev/gopkg.in/tomb.v2'.
+Overwriting 'contributor/reference/entity-lifecycle/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Overwriting 'contributor/unsorted/death-and-destruction/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Overwriting 'contributor/unsorted/lifecycles/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Overwriting 'contributor/reference/cve/index.html' with redirect to 'https://github.com/juju/juju/security'.
+Overwriting 'contributor/reference/conventional-commits/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/.github/instructions/agent-commit.instructions.md'.
+Overwriting 'contributor/howto/merge-forward/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/CONTRIBUTING.md'.
+Overwriting 'contributor/howto/write-tests/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/write-a-unit-test/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/create-a-unit-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/create-unit-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/unsorted/debugging-races/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/util-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/checker/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/unit-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/write-an-integration-test/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/integration-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/test-include/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/test-includes/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+writing additional pages... search done
+copying images... [  4%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-52a3cc7cb13b060eef0adce624b093b0b4d6d369.svg
+copying images... [  8%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-d21353c83fc132af909c44743a87f2e6d59ed298.svg
+copying images... [ 12%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-68c0fb3efbf69e6102bebc5711a0dfe2e50028b6.svg
+copying images... [ 15%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-0ce7648638d1282c60f7645a471d3c75948ec2ad.svg
+copying images... [ 19%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-42f03af6d3a4b01a34fd3201730243c149ff8866.svg
+copying images... [ 23%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-4d67b880977b3b5d82d6cc81f1398674083c6f90.svg
+copying images... [ 27%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-adf661fa96b1d811b047266389eb45b51cf4e66c.svg
+copying images... [ 31%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-367ae8141743a4bcf152b1af9a446369fa20b8ad.svg
+copying images... [ 35%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-5210ef520b48d9e046288046b76056000a79a9ee.svg
+copying images... [ 38%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-c59bbfb34b6442b55516500071be8465a2610723.svg
+copying images... [ 42%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-96af19c893c2572b80fddea1a8e6ba5f35da9673.svg
+copying images... [ 46%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-5823c6265cfcd278bf03328cbaff55464221a132.svg
+copying images... [ 50%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-b10d3461cc2944784bdd01f531c397abb255355c.svg
+copying images... [ 54%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-ce91eaf44e9a237167aee527d1caf6ee269f7f02.svg
+copying images... [ 58%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-f976e8c52f9aadf499daa4d0cb1a36f8da2d0e22.svg
+copying images... [ 62%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-77485b2b1e20e7c7d25ca272ae02c37e4b88bf6f.svg
+copying images... [ 65%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-4c0e7e12c71069158335c573e75a2574cf69b81d.svg
+copying images... [ 69%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-ebd89670ee96059dc2c7813056c3b1319a09baad.svg
+copying images... [ 73%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-0b898bcd75a48c9268eba8018eb2db05c26d5b7d.svg
+copying images... [ 77%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-92c7fc60881fb694dd88c2ce7ea37ea30ef72117.svg
+copying images... [ 81%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-889eb1488227b026b4835bb9134202421abd2836.svg
+copying images... [ 85%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-2b96691f705e0223b775e167a29edd8380647025.svg
+copying images... [ 88%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-b47b9421729f15f35464735dca7d4b15a25cc3e8.svg
+copying images... [ 92%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-ccd4a1126a02441db01a8eaacb8a2ab7f6845e9a.svg
+copying images... [ 96%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-4535db002856670f12545bfd3f896d9adc92265b.svg
+copying images... [100%] /home/dora/git/misc/juju-diagrams/docs/_build/_images/ggarch-2c0813bd86679142ef05b9cbbdec2854f234dc07.svg
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+sphinx-sitemap: doc-sitemap.xml was generated for URL https://canonical.com/juju/docs/juju-cli/local/ in /home/dora/git/misc/juju-diagrams/docs/_build/doc-sitemap.xml
+Writing redirects...
+build succeeded.
+
+The HTML pages are in _build.
+[32m[sphinx-autobuild] [36mDetected changes (juju.ggarch, tutorial/index.md)[0m
+[32m[sphinx-autobuild] [36mRebuilding...[0m
+[32m[sphinx-autobuild] [34m> python -m sphinx build . _build -c . -d .sphinx/.doctrees -b dirhtml -j auto -D llms_txt_enabled=0[0m
+[32m[sphinx-autobuild] [36mServing on http://127.0.0.1:8003[0m
+Running Sphinx v7.4.7
+loading translations [en]... done
+sphinx_design found.
+sphinx_design is now configured.
+sphinx_tabs.tabs found.
+sphinx_tabs.tabs is now configured.
+sphinx_reredirects found.
+sphinx_reredirects is now configured.
+canonical.youtube-links not found.
+canonical.youtube-links will not be configured.
+canonical.related-links not found.
+canonical.related-links will not be configured.
+canonical.custom-rst-roles not found.
+canonical.custom-rst-roles will not be configured.
+canonical.terminal-output not found.
+canonical.terminal-output will not be configured.
+canonical.contributor-listing not found.
+canonical.contributor-listing will not be configured.
+sphinx_copybutton found.
+sphinx_copybutton is now configured.
+sphinxext.opengraph found.
+sphinxext.opengraph is now configured.
+sphinxcontrib.jquery found.
+sphinxcontrib.jquery is now configured.
+notfound.extension found.
+notfound.extension is now configured.
+sphinxcontrib.cairosvgconverter found.
+sphinxcontrib.cairosvgconverter is now configured.
+sphinx_last_updated_by_git found.
+sphinx_last_updated_by_git is now configured.
+matplotlib is not installed, social cards will not be generated
+canonical-sphinx is deprecated and will be removed from the Sphinx Stack in a future release. Please switch to the Ulwazi theme. Guidance is available in the Sphinx Stack documentation: https://documentation.ubuntu.com/sphinx-stack/latest/how-to/switch-to-ulwazi/
+loading pickled environment... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions={'deflist', 'colon_fence', 'linkify', 'substitution'}, disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=0, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+llms.txt generation is disabled (llms_txt_enabled=False), skipping...
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [dirhtml]: targets for 0 source files that are out of date
+updating environment: 0 added, 1 changed, 0 removed
+reading sources... [100%] tutorial/index
+
+getting Git timestamps for source files... [100%] tutorial
+
+getting Git timestamps for dependencies... [100%] .
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... Copying the source path /home/dora/git/misc/juju-diagrams/docs/.sphinx/_static/tag.png to /home/dora/git/misc/juju-diagrams/docs/_build/_static/tag.png will overwrite data, as a file already exists at the destination path and the content does not match.
+Copying the source path /home/dora/git/misc/docs-venv/lib/python3.14/site-packages/canonical_sphinx/theme/static/tag.png to /home/dora/git/misc/juju-diagrams/docs/_build/_static/tag.png will overwrite data, as a file already exists at the destination path and the content does not match.
+done
+copying extra files... done
+copying assets: done
+writing output... [100%] tutorial/index
+
+generating indices... genindex done
+Overwriting 'user/reference/charm/charm-naming-guidelines/index.html' with redirect to 'https://canonical-charmcraft.readthedocs-hosted.com/en/stable/'.
+Overwriting 'reference/charm/charm-naming-guidelines/index.html' with redirect to 'https://canonical-charmcraft.readthedocs-hosted.com/en/stable/'.
+Overwriting 'user/reference/charm/charm-maturity/index.html' with redirect to 'https://canonical.com/juju/docs/ops/latest/explanation/charm-maturity/'.
+Overwriting 'reference/charm/charm-maturity/index.html' with redirect to 'https://canonical.com/juju/docs/ops/latest/explanation/charm-maturity/'.
+Overwriting 'contributor/reference/agent/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/cmd/jujuagentd/agent'.
+Overwriting 'contributor/reference/dependency-package/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5/dependency'.
+Overwriting 'contributor/reference/catacomb-package/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5/catacomb'.
+Overwriting 'contributor/reference/worker/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Overwriting 'contributor/reference/worker-interface/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Overwriting 'contributor/reference/worker-package/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Overwriting 'contributor/reference/tomb-package/index.html' with redirect to 'https://pkg.go.dev/gopkg.in/tomb.v2'.
+Overwriting 'contributor/reference/entity-lifecycle/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Overwriting 'contributor/unsorted/death-and-destruction/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Overwriting 'contributor/unsorted/lifecycles/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Overwriting 'contributor/reference/cve/index.html' with redirect to 'https://github.com/juju/juju/security'.
+Overwriting 'contributor/reference/conventional-commits/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/.github/instructions/agent-commit.instructions.md'.
+Overwriting 'contributor/howto/merge-forward/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/CONTRIBUTING.md'.
+Overwriting 'contributor/howto/write-tests/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/write-a-unit-test/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/create-a-unit-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/create-unit-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/unsorted/debugging-races/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/util-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/checker/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/unit-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/write-an-integration-test/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/integration-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/test-include/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/test-includes/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+sphinx-sitemap: doc-sitemap.xml was generated for URL https://canonical.com/juju/docs/juju-cli/local/ in /home/dora/git/misc/juju-diagrams/docs/_build/doc-sitemap.xml
+Writing redirects...
+build succeeded.
+
+The HTML pages are in _build.
+[32m[sphinx-autobuild] [36mDetected changes (tutorial/index.md)[0m
+[32m[sphinx-autobuild] [36mRebuilding...[0m
+[32m[sphinx-autobuild] [34m> python -m sphinx build . _build -c . -d .sphinx/.doctrees -b dirhtml -j auto -D llms_txt_enabled=0[0m
+[32m[sphinx-autobuild] [36mServing on http://127.0.0.1:8003[0m

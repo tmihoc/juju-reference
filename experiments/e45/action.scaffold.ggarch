@@ -1,0 +1,258 @@
+model "Schema" {
+
+  nodes {
+    application [type: record, label: "application",
+                 ground: "model:application"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        life_id [label: "life_id", type: "int", fk: true]
+        charm_uuid [label: "charm_uuid", type: "text", fk: true]
+        charm_modified_version [label: "charm_modified_version", type: "int"]
+        charm_upgrade_on_error [label: "charm_upgrade_on_error", type: "bool", null: true]
+        space_uuid [label: "space_uuid", type: "text", fk: true]
+      }
+    }
+
+    architecture [type: record, label: "architecture",
+                 ground: "model:architecture"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    charm [type: record, label: "charm",
+                 ground: "model:charm"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        archive_path [label: "archive_path", type: "text", null: true]
+        object_store_uuid [label: "object_store_uuid", type: "text", fk: true, null: true]
+        available [label: "available", type: "bool", null: true]
+        version [label: "version", type: "text", null: true]
+        lxd_profile [label: "lxd_profile", type: "text", null: true]
+        source_id [label: "source_id", type: "int", fk: true]
+        revision [label: "revision", type: "int"]
+        architecture_id [label: "architecture_id", type: "int", fk: true, null: true]
+        reference_name [label: "reference_name", type: "text"]
+        create_time [label: "create_time", type: "datetime"]
+      }
+    }
+
+    charm_source [type: record, label: "charm_source",
+                 ground: "model:charm_source"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    life [type: record, label: "life",
+                 ground: "model:life"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    machine [type: record, label: "machine",
+                 ground: "model:machine"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        net_node_uuid [label: "net_node_uuid", type: "text", fk: true]
+        life_id [label: "life_id", type: "int", fk: true]
+        nonce [label: "nonce", type: "text", null: true]
+        password_hash_algorithm_id [label: "password_hash_algorithm_id", type: "text", fk: true, null: true]
+        password_hash [label: "password_hash", type: "text", null: true]
+        force_destroyed [label: "force_destroyed", type: "bool", null: true]
+        agent_started_at [label: "agent_started_at", type: "datetime", null: true]
+        hostname [label: "hostname", type: "text", null: true]
+        keep_instance [label: "keep_instance", type: "bool", null: true]
+      }
+    }
+
+    net_node [type: record, label: "net_node",
+                 ground: "model:net_node"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+      }
+    }
+
+    object_store_metadata [type: record, label: "object_store_metadata",
+                 ground: "model:object_store_metadata"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        sha_256 [label: "sha_256", type: "text"]
+        sha_384 [label: "sha_384", type: "text"]
+        size [label: "size", type: "int"]
+      }
+    }
+
+    object_store_metadata_path [type: record, label: "object_store_metadata_path",
+                 ground: "model:object_store_metadata_path"] {
+      fields {
+        path [label: "path", type: "text", pk: true]
+        metadata_uuid [label: "metadata_uuid", type: "text", fk: true]
+      }
+    }
+
+    operation [type: record, label: "operation",
+                 ground: "model:operation"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        operation_id [label: "operation_id", type: "int"]
+        summary [label: "summary", type: "text", null: true]
+        enqueued_at [label: "enqueued_at", type: "timestamp"]
+        started_at [label: "started_at", type: "timestamp", null: true]
+        completed_at [label: "completed_at", type: "timestamp", null: true]
+        parallel [label: "parallel", type: "bool", null: true]
+        execution_group [label: "execution_group", type: "text", null: true]
+      }
+    }
+
+    operation_action [type: record, label: "operation_action",
+                 ground: "model:operation_action"] {
+      fields {
+        operation_uuid [label: "operation_uuid", type: "text", pk: true, fk: true]
+        charm_uuid [label: "charm_uuid", type: "text"]
+        charm_action_key [label: "charm_action_key", type: "text"]
+      }
+    }
+
+    operation_machine_task [type: record, label: "operation_machine_task",
+                 ground: "model:operation_machine_task"] {
+      fields {
+        task_uuid [label: "task_uuid", type: "text", fk: true]
+        machine_uuid [label: "machine_uuid", type: "text", fk: true]
+      }
+    }
+
+    operation_parameter [type: record, label: "operation_parameter",
+                 ground: "model:operation_parameter"] {
+      fields {
+        operation_uuid [label: "operation_uuid", type: "text", fk: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    operation_task [type: record, label: "operation_task",
+                 ground: "model:operation_task"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        operation_uuid [label: "operation_uuid", type: "text", fk: true]
+        task_id [label: "task_id", type: "text"]
+        enqueued_at [label: "enqueued_at", type: "datetime"]
+        started_at [label: "started_at", type: "datetime", null: true]
+        completed_at [label: "completed_at", type: "datetime", null: true]
+      }
+    }
+
+    operation_task_log [type: record, label: "operation_task_log",
+                 ground: "model:operation_task_log"] {
+      fields {
+        task_uuid [label: "task_uuid", type: "text", fk: true]
+        content [label: "content", type: "text"]
+        created_at [label: "created_at", type: "timestamp"]
+      }
+    }
+
+    operation_task_output [type: record, label: "operation_task_output",
+                 ground: "model:operation_task_output"] {
+      fields {
+        task_uuid [label: "task_uuid", type: "text", pk: true, fk: true]
+        store_path [label: "store_path", type: "text", fk: true]
+      }
+    }
+
+    operation_task_status [type: record, label: "operation_task_status",
+                 ground: "model:operation_task_status"] {
+      fields {
+        task_uuid [label: "task_uuid", type: "text", pk: true, fk: true]
+        status_id [label: "status_id", type: "int", fk: true]
+        message [label: "message", type: "text", null: true]
+        updated_at [label: "updated_at", type: "datetime", null: true]
+      }
+    }
+
+    operation_task_status_value [type: record, label: "operation_task_status_value",
+                 ground: "model:operation_task_status_value"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        status [label: "status", type: "text"]
+      }
+    }
+
+    operation_unit_task [type: record, label: "operation_unit_task",
+                 ground: "model:operation_unit_task"] {
+      fields {
+        task_uuid [label: "task_uuid", type: "text", fk: true]
+        unit_uuid [label: "unit_uuid", type: "text", fk: true]
+      }
+    }
+
+    password_hash_algorithm [type: record, label: "password_hash_algorithm",
+                 ground: "model:password_hash_algorithm"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    space [type: record, label: "space",
+                 ground: "model:space"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    unit [type: record, label: "unit",
+                 ground: "model:unit"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        life_id [label: "life_id", type: "int", fk: true]
+        application_uuid [label: "application_uuid", type: "text", fk: true]
+        net_node_uuid [label: "net_node_uuid", type: "text", fk: true]
+        charm_uuid [label: "charm_uuid", type: "text", fk: true]
+        password_hash_algorithm_id [label: "password_hash_algorithm_id", type: "text", fk: true, null: true]
+        password_hash [label: "password_hash", type: "text", null: true]
+      }
+    }
+
+  }
+
+  edges {
+    application.life_id -> life.id [type: data]
+    application.charm_uuid -> charm.uuid [type: data]
+    application.space_uuid -> space.uuid [type: data]
+    charm.source_id -> charm_source.id [type: data]
+    charm.architecture_id -> architecture.id [type: data]
+    charm.object_store_uuid -> object_store_metadata.uuid [type: data]
+    machine.net_node_uuid -> net_node.uuid [type: data]
+    machine.life_id -> life.id [type: data]
+    machine.password_hash_algorithm_id -> password_hash_algorithm.id [type: data]
+    object_store_metadata_path.metadata_uuid -> object_store_metadata.uuid [type: data]
+    operation_action.operation_uuid -> operation.uuid [type: data]
+    operation_machine_task.task_uuid -> operation_task.uuid [type: data]
+    operation_machine_task.machine_uuid -> machine.uuid [type: data]
+    operation_parameter.operation_uuid -> operation.uuid [type: data]
+    operation_task.operation_uuid -> operation.uuid [type: data]
+    operation_task_log.task_uuid -> operation_task.uuid [type: data]
+    operation_task_output.task_uuid -> operation_task.uuid [type: data]
+    operation_task_output.store_path -> object_store_metadata_path.path [type: data]
+    operation_task_status.task_uuid -> operation_task.uuid [type: data]
+    operation_task_status.status_id -> operation_task_status_value.id [type: data]
+    operation_unit_task.task_uuid -> operation_task.uuid [type: data]
+    operation_unit_task.unit_uuid -> unit.uuid [type: data]
+    unit.life_id -> life.id [type: data]
+    unit.application_uuid -> application.uuid [type: data]
+    unit.net_node_uuid -> net_node.uuid [type: data]
+    unit.charm_uuid -> charm.uuid [type: data]
+    unit.password_hash_algorithm_id -> password_hash_algorithm.id [type: data]
+  }
+
+  style { extends: juju }
+
+}

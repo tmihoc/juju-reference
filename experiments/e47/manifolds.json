@@ -1,0 +1,1809 @@
+{
+ "machine": [
+  {
+   "func": "commonManifolds",
+   "key": "agentName",
+   "gates": [],
+   "line": 395,
+   "ctor": "agent.Manifold(config.Agent),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "isBootstrapGateName",
+   "gates": [],
+   "line": 400,
+   "ctor": "gate.ManifoldEx(config.BootstrapLock),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "isBootstrapFlagName",
+   "gates": [],
+   "line": 401,
+   "ctor": "gate.FlagManifold(gate.FlagManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "controllerProxyReadyGateName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 409,
+   "ctor": "gate.ManifoldEx(config.ProxyReadyLock)),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "controllerProxyReadyFlagName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 410,
+   "ctor": "gate.FlagManifold(gate.FlagManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "controllerAgentConfigReadyGateName",
+   "gates": [],
+   "line": 420,
+   "ctor": "gate.ManifoldEx(config.ControllerAgentConfigReadyLock),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "controllerAgentConfigReadyFlagName",
+   "gates": [],
+   "line": 421,
+   "ctor": "gate.FlagManifold(gate.FlagManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "terminationName",
+   "gates": [],
+   "line": 433,
+   "ctor": "terminationworker.Manifold(),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "clockName",
+   "gates": [],
+   "line": 435,
+   "ctor": "clockManifold(config.Clock),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "flightRecorderName",
+   "gates": [],
+   "line": 437,
+   "ctor": "workerflightrecorder.Manifold(config.FlightRecorder),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "isControllerFlagName",
+   "gates": [],
+   "line": 441,
+   "ctor": "util.IsControllerFlagManifold(stateConfigWatcherName, true),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "isNotControllerFlagName",
+   "gates": [],
+   "line": 442,
+   "ctor": "util.IsControllerFlagManifold(stateConfigWatcherName, false)"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "controllerAgentConfigName",
+   "gates": [],
+   "line": 451,
+   "ctor": "controlleragentconfig.Manifold(controlleragentconfig.Manifol"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "stateConfigWatcherName",
+   "gates": [],
+   "line": 464,
+   "ctor": "stateconfigwatcher.Manifold(stateconfigwatcher.ManifoldConfi"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "apiConfigWatcherName",
+   "gates": [],
+   "line": 472,
+   "ctor": "apiconfigwatcher.Manifold(apiconfigwatcher.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "certificateWatcherName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 482,
+   "ctor": "apiservercertwatcher.Manifold(apiservercertwatcher.ManifoldC"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "certificateUpdaterName",
+   "gates": [
+    "ifFullyUpgraded"
+   ],
+   "line": 488,
+   "ctor": "certupdater.Manifold(certupdater.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "apiCallerName",
+   "gates": [],
+   "line": 501,
+   "ctor": "apicaller.Manifold(apicaller.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "upgradeDatabaseGateName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 513,
+   "ctor": "gate.ManifoldEx(config.UpgradeDBLock)),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "upgradeDatabaseFlagName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 514,
+   "ctor": "gate.FlagManifold(gate.FlagManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "upgradeDatabaseName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 523,
+   "ctor": "upgradedatabase.Manifold(upgradedatabase.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "upgradeDomainServicesName",
+   "gates": [],
+   "line": 537,
+   "ctor": "upgradeservices.Manifold(upgradeservices.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "upgradeStepsGateName",
+   "gates": [],
+   "line": 550,
+   "ctor": "gate.ManifoldEx(config.UpgradeStepsLock),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "upgradeStepsFlagName",
+   "gates": [],
+   "line": 551,
+   "ctor": "gate.FlagManifold(gate.FlagManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "upgradeCheckGateName",
+   "gates": [],
+   "line": 562,
+   "ctor": "gate.ManifoldEx(config.UpgradeCheckLock),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "upgradeCheckFlagName",
+   "gates": [],
+   "line": 563,
+   "ctor": "gate.FlagManifold(gate.FlagManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "migrationFortressName",
+   "gates": [
+    "ifFullyUpgraded"
+   ],
+   "line": 581,
+   "ctor": "fortress.Manifold()),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "migrationInactiveFlagName",
+   "gates": [],
+   "line": 582,
+   "ctor": "migrationflag.Manifold(migrationflag.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "migrationMinionName",
+   "gates": [],
+   "line": 588,
+   "ctor": "migrationminion.Manifold(migrationminion.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "isPrimaryControllerFlagName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 604,
+   "ctor": "singular.Manifold(singular.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "isNotPrimaryControllerFlagName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 613,
+   "ctor": "singular.NotPrimaryControllerFlagManifold(isPrimaryControlle"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "loggingConfigUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 619,
+   "ctor": "logger.Manifold(logger.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "apiAddressUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 630,
+   "ctor": "apiaddressupdater.Manifold(apiaddressupdater.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "lokiEndpointUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 636,
+   "ctor": "lokiendpointupdater.Manifold(lokiendpointupdater.ManifoldCon"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "traceConfigUpdaterName",
+   "gates": [
+    "ifNotController",
+    "ifNotMigrating"
+   ],
+   "line": 643,
+   "ctor": "traceconfigupdater.Manifold(traceconfigupdater.ManifoldConfi"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "logRouterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 652,
+   "ctor": "logrouter.Manifold(logrouter.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "identityFileWriterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 670,
+   "ctor": "identityfilewriter.LegacyManifold(identityfilewriter.LegacyM"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "externalControllerUpdaterName",
+   "gates": [
+    "ifNotMigrating",
+    "ifPrimaryController"
+   ],
+   "line": 675,
+   "ctor": "externalcontrollerupdater.Manifold("
+  },
+  {
+   "func": "commonManifolds",
+   "key": "traceServicesName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 683,
+   "ctor": "traceservices.Manifold(traceservices.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "controllerTraceName",
+   "gates": [],
+   "line": 690,
+   "ctor": "trace.ControllerManifold(trace.ControllerManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "traceName",
+   "gates": [],
+   "line": 699,
+   "ctor": "trace.Manifold(trace.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "httpServerArgsName",
+   "gates": [
+    "ifBootstrapComplete"
+   ],
+   "line": 708,
+   "ctor": "httpserverargs.Manifold(httpserverargs.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "httpServerName",
+   "gates": [],
+   "line": 714,
+   "ctor": "httpserver.Manifold(httpserver.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "controllerLogRouterName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 731,
+   "ctor": "logrouter.ControllerManifold(logrouter.ControllerManifoldCon"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "controllerLogSinkName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 746,
+   "ctor": "logsink.Manifold(logsink.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "nonControllerLogSinkName",
+   "gates": [
+    "ifNotController"
+   ],
+   "line": 757,
+   "ctor": "logsink.Manifold(logsink.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "logSinkName",
+   "gates": [],
+   "line": 767,
+   "ctor": "logsinkproxy.Manifold(logsinkproxy.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "backupCreatorName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 773,
+   "ctor": "backupcreation.Manifold(backupcreation.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "apiServerName",
+   "gates": [],
+   "line": 787,
+   "ctor": "apiserver.Manifold(apiserver.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "modelWorkerManagerName",
+   "gates": [
+    "ifFullyUpgraded"
+   ],
+   "line": 822,
+   "ctor": "modelworkermanager.Manifold(modelworkermanager.ManifoldConfi"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "domainServicesName",
+   "gates": [],
+   "line": 838,
+   "ctor": "workerdomainservices.Manifold(workerdomainservices.ManifoldC"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "providerDomainServicesName",
+   "gates": [],
+   "line": 856,
+   "ctor": "providerservices.Manifold(providerservices.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "queryLoggerName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 864,
+   "ctor": "querylogger.Manifold(querylogger.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "dbAccessorName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 871,
+   "ctor": "dbaccessor.Manifold(dbaccessor.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "fileNotifyWatcherName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 883,
+   "ctor": "filenotifywatcher.Manifold(filenotifywatcher.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "changeStreamName",
+   "gates": [],
+   "line": 890,
+   "ctor": "changestream.Manifold(changestream.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "changeStreamPrunerName",
+   "gates": [
+    "ifPrimaryController"
+   ],
+   "line": 901,
+   "ctor": "changestreampruner.Manifold(changestreampruner.ManifoldConfi"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "auditConfigUpdaterName",
+   "gates": [
+    "ifDatabaseUpgradeComplete"
+   ],
+   "line": 909,
+   "ctor": "auditconfigupdater.Manifold(auditconfigupdater.ManifoldConfi"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "leaseExpiryName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 918,
+   "ctor": "leaseexpiry.Manifold(leaseexpiry.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "leaseManagerName",
+   "gates": [],
+   "line": 928,
+   "ctor": "leasemanager.Manifold(leasemanager.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "validCredentialFlagName",
+   "gates": [],
+   "line": 947,
+   "ctor": "credentialvalidator.Manifold(credentialvalidator.ManifoldCon"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "secretBackendRotateName",
+   "gates": [
+    "ifNotMigrating",
+    "ifPrimaryController"
+   ],
+   "line": 954,
+   "ctor": "secretbackendrotate.Manifold("
+  },
+  {
+   "func": "commonManifolds",
+   "key": "controlSocketName",
+   "gates": [
+    "ifDatabaseUpgradeComplete"
+   ],
+   "line": 964,
+   "ctor": "controlsocket.Manifold(controlsocket.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "sshServerName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 978,
+   "ctor": "sshserver.Manifold(sshserver.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "sshTunnelerName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 996,
+   "ctor": "sshtunneler.Manifold(sshtunneler.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "objectStoreFortressName",
+   "gates": [],
+   "line": 1010,
+   "ctor": "fortress.Manifold(),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "objectStoreDrainerName",
+   "gates": [
+    "ifPrimaryController"
+   ],
+   "line": 1011,
+   "ctor": "objectstoredrainer.Manifold(objectstoredrainer.ManifoldConfi"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "objectStoreGuardName",
+   "gates": [
+    "ifNotPrimaryController"
+   ],
+   "line": 1031,
+   "ctor": "objectstoreguard.Manifold(objectstoreguard.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "objectStoreName",
+   "gates": [
+    "ifDatabaseUpgradeComplete"
+   ],
+   "line": 1040,
+   "ctor": "objectstore.Manifold(objectstore.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "objectStoreFacadeName",
+   "gates": [],
+   "line": 1060,
+   "ctor": "objectstorefacade.Manifold(objectstorefacade.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "objectStoreServicesName",
+   "gates": [],
+   "line": 1067,
+   "ctor": "objectstoreservices.Manifold(objectstoreservices.ManifoldCon"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "objectStoreS3CallerName",
+   "gates": [
+    "ifDatabaseUpgradeComplete"
+   ],
+   "line": 1077,
+   "ctor": "objectstores3caller.Manifold(objectstores3caller.ManifoldCon"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "providerTrackerName",
+   "gates": [],
+   "line": 1094,
+   "ctor": "providertracker.MultiTrackerManifold(providertracker.Manifol"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "storageRegistryName",
+   "gates": [],
+   "line": 1111,
+   "ctor": "storageregistry.Manifold(storageregistry.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "httpClientName",
+   "gates": [],
+   "line": 1118,
+   "ctor": "httpclient.Manifold(httpclient.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "apiRemoteCallerName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 1159,
+   "ctor": "apiremotecaller.Manifold(apiremotecaller.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "controllerPresenceName",
+   "gates": [],
+   "line": 1168,
+   "ctor": "controllerpresence.Manifold(controllerpresence.ManifoldConfi"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "apiRemoteRelationCallerName",
+   "gates": [],
+   "line": 1178,
+   "ctor": "apiremoterelationcaller.Manifold(apiremoterelationcaller.Man"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "jwtParserName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 1188,
+   "ctor": "jwtparser.Manifold(jwtparser.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "apiAddressSetterName",
+   "gates": [
+    "ifPrimaryController"
+   ],
+   "line": 1193,
+   "ctor": "apiaddresssetter.Manifold(apiaddresssetter.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "undertakerName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 1201,
+   "ctor": "undertaker.Manifold(undertaker.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "watcherRegistryName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 1212,
+   "ctor": "watcherregistry.Manifold(watcherregistry.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "bootstrapName",
+   "gates": [
+    "ifControllerProxyReady",
+    "ifDatabaseUpgradeComplete"
+   ],
+   "line": 1227,
+   "ctor": "bootstrap.Manifold(bootstrap.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "controllerProxyConfigUpdater",
+   "gates": [
+    "ifController",
+    "ifDatabaseUpgradeComplete"
+   ],
+   "line": 1252,
+   "ctor": "proxyupdater.ControllerManifold(proxyupdater.ControllerManif"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "proxyConfigUpdater",
+   "gates": [
+    "ifNotController",
+    "ifNotMigrating"
+   ],
+   "line": 1267,
+   "ctor": "proxyupdater.Manifold(proxyupdater.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "agentConfigUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 1278,
+   "ctor": "agentconfigupdater.Manifold(agentconfigupdater.ManifoldConfi"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "toolsVersionCheckerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 1288,
+   "ctor": "toolsversionchecker.Manifold(toolsversionchecker.ManifoldCon"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "sshKeyUpdaterWorkerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 1297,
+   "ctor": "sshkeyupdater.Manifold(sshkeyupdater.Output)),"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "sshSessionName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 1299,
+   "ctor": "sshsession.Manifold(sshsession.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "hostKeyReporterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 1308,
+   "ctor": "hostkeyreporter.Manifold(hostkeyreporter.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "machinerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 1319,
+   "ctor": "machiner.Manifold(machiner.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "diskManagerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 1327,
+   "ctor": "diskmanager.Manifold(diskmanager.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "machineActionName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 1332,
+   "ctor": "machineactions.Manifold(machineactions.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "upgraderName",
+   "gates": [],
+   "line": 1347,
+   "ctor": "upgrader.Manifold(upgrader.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "upgradeControllerStepsName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 1361,
+   "ctor": "upgradestepscontroller.Manifold(upgradestepscontroller.Manif"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "upgradeAgentStepsName",
+   "gates": [
+    "ifNotController"
+   ],
+   "line": 1375,
+   "ctor": "upgradestepsagent.Manifold(upgradestepsagent.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "deployerName",
+   "gates": [
+    "ifControllerAgentConfigNeededAndReady",
+    "ifFullyUpgraded"
+   ],
+   "line": 1394,
+   "ctor": "deployer.Manifold(deployer.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "rebootName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 1411,
+   "ctor": "reboot.Manifold(reboot.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "storageProvisionerName",
+   "gates": [
+    "ifNotMigrating",
+    "ifCredentialValid"
+   ],
+   "line": 1420,
+   "ctor": "storageprovisioner.MachineManifold(storageprovisioner.Machin"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "brokerTrackerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 1426,
+   "ctor": "lxdbroker.Manifold(lxdbroker.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "lxdContainerProvisioner",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 1433,
+   "ctor": "containerprovisioner.Manifold(containerprovisioner.ManifoldC"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "machineConverterName",
+   "gates": [
+    "ifNotController",
+    "ifNotMigrating"
+   ],
+   "line": 1440,
+   "ctor": "machineconverter.Manifold(machineconverter.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "machineSetupName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 1452,
+   "ctor": "MachineStartupManifold(MachineStartupConfig{"
+  },
+  {
+   "func": "K8sManifolds",
+   "key": "bootstrapName",
+   "gates": [
+    "ifControllerProxyReady",
+    "ifDatabaseUpgradeComplete"
+   ],
+   "line": 1467,
+   "ctor": "bootstrap.Manifold(bootstrap.ManifoldConfig{"
+  },
+  {
+   "func": "K8sManifolds",
+   "key": "controllerProxyConfigUpdater",
+   "gates": [
+    "ifController",
+    "ifDatabaseUpgradeComplete"
+   ],
+   "line": 1492,
+   "ctor": "proxyupdater.ControllerManifold(proxyupdater.ControllerManif"
+  },
+  {
+   "func": "K8sManifolds",
+   "key": "proxyConfigUpdater",
+   "gates": [
+    "ifNotController",
+    "ifNotMigrating"
+   ],
+   "line": 1507,
+   "ctor": "proxyupdater.Manifold(proxyupdater.ManifoldConfig{"
+  },
+  {
+   "func": "K8sManifolds",
+   "key": "agentConfigUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 1518,
+   "ctor": "agentconfigupdater.Manifold(agentconfigupdater.ManifoldConfi"
+  },
+  {
+   "func": "K8sManifolds",
+   "key": "upgraderName",
+   "gates": [],
+   "line": 1529,
+   "ctor": "caasupgrader.Manifold(caasupgrader.ManifoldConfig{"
+  },
+  {
+   "func": "K8sManifolds",
+   "key": "upgradeControllerStepsName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 1541,
+   "ctor": "upgradestepscontroller.Manifold(upgradestepscontroller.Manif"
+  },
+  {
+   "func": "K8sManifolds",
+   "key": "upgradeAgentStepsName",
+   "gates": [
+    "ifNotController"
+   ],
+   "line": 1555,
+   "ctor": "upgradestepsagent.Manifold(upgradestepsagent.ManifoldConfig{"
+  }
+ ],
+ "model": [
+  {
+   "func": "commonManifolds",
+   "key": "clockName",
+   "gates": [],
+   "line": 169,
+   "ctor": "clockManifold(config.Clock),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "providerServiceFactoriesName",
+   "gates": [],
+   "line": 174,
+   "ctor": "dependency.Manifold{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "domainServicesName",
+   "gates": [],
+   "line": 182,
+   "ctor": "dependency.Manifold{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "leaseManagerName",
+   "gates": [],
+   "line": 190,
+   "ctor": "dependency.Manifold{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "httpClientName",
+   "gates": [],
+   "line": 198,
+   "ctor": "dependency.Manifold{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "apiRemoteRelationCallerName",
+   "gates": [],
+   "line": 207,
+   "ctor": "dependency.Manifold{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "logSinkName",
+   "gates": [],
+   "line": 214,
+   "ctor": "dependency.Manifold{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "loggingConfigUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 223,
+   "ctor": "controllerlogger.Manifold(controllerlogger.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "notDeadFlagName",
+   "gates": [],
+   "line": 234,
+   "ctor": "modellife.Manifold(modellife.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "isResponsibleFlagName",
+   "gates": [],
+   "line": 240,
+   "ctor": "singular.Manifold(singular.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "validCredentialFlagName",
+   "gates": [],
+   "line": 251,
+   "ctor": "credentialvalidator.ModelManifold(credentialvalidator.ModelM"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "migrationFortressName",
+   "gates": [
+    "ifNotDead"
+   ],
+   "line": 271,
+   "ctor": "fortress.Manifold()),"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "migrationInactiveFlagName",
+   "gates": [
+    "ifNotDead"
+   ],
+   "line": 272,
+   "ctor": "migrationflag.ModelManifold(migrationflag.ModelManifoldConfi"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "migrationMasterName",
+   "gates": [
+    "ifNotDead"
+   ],
+   "line": 278,
+   "ctor": "migrationmaster.Manifold(migrationmaster.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "charmRevisionerName",
+   "gates": [
+    "ifResponsible"
+   ],
+   "line": 311,
+   "ctor": "charmrevisioner.Manifold(charmrevisioner.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "remoteRelationConsumerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 323,
+   "ctor": "remoterelationconsumer.Manifold(remoterelationconsumer.Manif"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "removalName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 338,
+   "ctor": "removal.Manifold(removal.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "providerTrackerName",
+   "gates": [
+    "ifCredentialValid",
+    "ifResponsible"
+   ],
+   "line": 346,
+   "ctor": "providertracker.SingularTrackerManifold(config.ModelTag, pro"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "storageProvisionerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 363,
+   "ctor": "storageprovisioner.ModelManifold(storageprovisioner.ModelMan"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "asyncCharmDownloader",
+   "gates": [
+    "ifResponsible"
+   ],
+   "line": 372,
+   "ctor": "asynccharmdownloader.Manifold(asynccharmdownloader.ManifoldC"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "secretsPrunerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 382,
+   "ctor": "secretspruner.Manifold(secretspruner.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "userSecretsDrainWorker",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 389,
+   "ctor": "secretsdrainworker.ModelManifold(secretsdrainworker.ModelMan"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "operationPrunerName",
+   "gates": [
+    "ifResponsible",
+    "ifNotMigrating"
+   ],
+   "line": 398,
+   "ctor": "operationpruner.Manifold(operationpruner.ManifoldConfig{"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "changeStreamPrunerName",
+   "gates": [
+    "ifResponsible",
+    "ifNotMigrating"
+   ],
+   "line": 405,
+   "ctor": "changestreampruner.Manifold(changestreampruner.ManifoldConfi"
+  },
+  {
+   "func": "commonManifolds",
+   "key": "unitlessName",
+   "gates": [
+    "ifResponsible",
+    "ifNotMigrating"
+   ],
+   "line": 417,
+   "ctor": "unitless.Manifold(unitless.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "computeProvisionerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 456,
+   "ctor": "provisioner.Manifold(provisioner.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "firewallerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 465,
+   "ctor": "firewaller.Manifold(firewaller.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "instancePollerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 474,
+   "ctor": "instancepoller.Manifold(instancepoller.ManifoldConfig{"
+  },
+  {
+   "func": "IAASManifolds",
+   "key": "agentBinaryFetcherName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 481,
+   "ctor": "agentbinaryfetcher.Manifold(agentbinaryfetcher.ManifoldConfi"
+  },
+  {
+   "func": "CAASManifolds",
+   "key": "caasFirewallerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 498,
+   "ctor": "caasfirewaller.Manifold("
+  },
+  {
+   "func": "CAASManifolds",
+   "key": "caasModelOperatorName",
+   "gates": [
+    "ifResponsible"
+   ],
+   "line": 509,
+   "ctor": "caasmodeloperator.Manifold(caasmodeloperator.ManifoldConfig{"
+  },
+  {
+   "func": "CAASManifolds",
+   "key": "caasmodelconfigmanagerName",
+   "gates": [
+    "ifResponsible"
+   ],
+   "line": 520,
+   "ctor": "caasmodelconfigmanager.Manifold(caasmodelconfigmanager.Manif"
+  },
+  {
+   "func": "CAASManifolds",
+   "key": "caasApplicationProvisionerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 530,
+   "ctor": "caasapplicationprovisioner.Manifold("
+  }
+ ],
+ "unit": [
+  {
+   "func": "UnitManifolds",
+   "key": "agentName",
+   "gates": [],
+   "line": 118,
+   "ctor": "agent.Manifold(config.Agent),"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "apiConfigWatcherName",
+   "gates": [],
+   "line": 123,
+   "ctor": "apiconfigwatcher.Manifold(apiconfigwatcher.ManifoldConfig{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "apiCallerName",
+   "gates": [],
+   "line": 134,
+   "ctor": "apicaller.Manifold(apicaller.ManifoldConfig{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "s3CallerName",
+   "gates": [],
+   "line": 146,
+   "ctor": "units3caller.Manifold(units3caller.ManifoldConfig{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "httpClientName",
+   "gates": [],
+   "line": 152,
+   "ctor": "dependency.Manifold{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "logRouterName",
+   "gates": [],
+   "line": 161,
+   "ctor": "logrouter.Manifold(logrouter.ManifoldConfig{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "migrationFortressName",
+   "gates": [],
+   "line": 184,
+   "ctor": "fortress.Manifold(),"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "migrationInactiveFlagName",
+   "gates": [],
+   "line": 185,
+   "ctor": "migrationflag.Manifold(migrationflag.ManifoldConfig{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "migrationMinionName",
+   "gates": [],
+   "line": 192,
+   "ctor": "migrationminion.Manifold(migrationminion.ManifoldConfig{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "loggingConfigUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 209,
+   "ctor": "loggerworker.Manifold(loggerworker.ManifoldConfig{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "lokiEndpointUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 217,
+   "ctor": "lokiendpointupdater.Manifold(lokiendpointupdater.ManifoldCon"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "traceConfigUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 224,
+   "ctor": "traceconfigupdater.Manifold(traceconfigupdater.ManifoldConfi"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "apiAddressUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 234,
+   "ctor": "apiaddressupdater.Manifold(apiaddressupdater.ManifoldConfig{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "charmDirName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 243,
+   "ctor": "fortress.Manifold()),"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "leadershipTrackerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 249,
+   "ctor": "leadership.Manifold(leadership.ManifoldConfig{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "hookRetryStrategyName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 258,
+   "ctor": "retrystrategy.Manifold(retrystrategy.ManifoldConfig{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "uniterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 271,
+   "ctor": "uniter.Manifold(uniter.ManifoldConfig{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "traceName",
+   "gates": [],
+   "line": 286,
+   "ctor": "trace.Manifold(trace.ManifoldConfig{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "upgraderName",
+   "gates": [],
+   "line": 297,
+   "ctor": "upgrader.Manifold(upgrader.ManifoldConfig{"
+  },
+  {
+   "func": "UnitManifolds",
+   "key": "secretDrainWorker",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 305,
+   "ctor": "secretsdrainworker.Manifold(secretsdrainworker.ManifoldConfi"
+  }
+ ],
+ "modeloperator": [
+  {
+   "func": "Manifolds",
+   "key": "agentName",
+   "gates": [],
+   "line": 83,
+   "ctor": "agent.Manifold(config.Agent),"
+  },
+  {
+   "func": "Manifolds",
+   "key": "apiConfigWatcherName",
+   "gates": [],
+   "line": 85,
+   "ctor": "apiconfigwatcher.Manifold(apiconfigwatcher.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "apiCallerName",
+   "gates": [],
+   "line": 91,
+   "ctor": "apicaller.Manifold(apicaller.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "httpClientName",
+   "gates": [],
+   "line": 99,
+   "ctor": "httpclient.Manifold(httpclient.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "logRouterName",
+   "gates": [],
+   "line": 116,
+   "ctor": "logrouter.Manifold(logrouter.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "caasAdmissionName",
+   "gates": [],
+   "line": 130,
+   "ctor": "caasadmission.Manifold(caasadmission.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "caasBrokerTrackerName",
+   "gates": [],
+   "line": 142,
+   "ctor": "caasbroker.Manifold(caasbroker.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "caasRBACMapperName",
+   "gates": [],
+   "line": 148,
+   "ctor": "caasrbacmapper.Manifold("
+  },
+  {
+   "func": "Manifolds",
+   "key": "certificateWatcherName",
+   "gates": [],
+   "line": 155,
+   "ctor": "apiservercertwatcher.Manifold(apiservercertwatcher.ManifoldC"
+  },
+  {
+   "func": "Manifolds",
+   "key": "loggingConfigUpdaterName",
+   "gates": [],
+   "line": 163,
+   "ctor": "logger.Manifold(logger.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "modelHTTPServerName",
+   "gates": [],
+   "line": 171,
+   "ctor": "muxhttpserver.Manifold("
+  },
+  {
+   "func": "Manifolds",
+   "key": "upgraderName",
+   "gates": [],
+   "line": 179,
+   "ctor": "caasupgrader.Manifold(caasupgrader.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "upgradeStepsGateName",
+   "gates": [],
+   "line": 186,
+   "ctor": "gate.ManifoldEx(config.UpgradeStepsLock),"
+  }
+ ],
+ "containeragent-unit": [
+  {
+   "func": "Manifolds",
+   "key": "agentName",
+   "gates": [],
+   "line": 176,
+   "ctor": "agent.Manifold(config.Agent),"
+  },
+  {
+   "func": "Manifolds",
+   "key": "apiConfigWatcherName",
+   "gates": [],
+   "line": 181,
+   "ctor": "apiconfigwatcher.Manifold(apiconfigwatcher.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "apiCallerName",
+   "gates": [],
+   "line": 187,
+   "ctor": "apicaller.Manifold(apicaller.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "httpClientName",
+   "gates": [],
+   "line": 195,
+   "ctor": "httpclient.Manifold(httpclient.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "s3CallerName",
+   "gates": [],
+   "line": 213,
+   "ctor": "units3caller.Manifold(units3caller.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "deadFlagName",
+   "gates": [],
+   "line": 219,
+   "ctor": "lifeflag.Manifold(lifeflag.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "notDeadFlagName",
+   "gates": [],
+   "line": 231,
+   "ctor": "lifeflag.Manifold(lifeflag.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "logRouterName",
+   "gates": [
+    "ifNotDead"
+   ],
+   "line": 244,
+   "ctor": "logrouter.Manifold(logrouter.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "upgradeStepsGateName",
+   "gates": [],
+   "line": 263,
+   "ctor": "gate.ManifoldEx(config.UpgradeStepsLock),"
+  },
+  {
+   "func": "Manifolds",
+   "key": "upgradeStepsFlagName",
+   "gates": [],
+   "line": 264,
+   "ctor": "gate.FlagManifold(gate.FlagManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "upgraderName",
+   "gates": [
+    "ifNotDead"
+   ],
+   "line": 269,
+   "ctor": "caasupgrader.Manifold(caasupgrader.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "upgradeAgentStepsName",
+   "gates": [
+    "ifNotDead"
+   ],
+   "line": 280,
+   "ctor": "upgradestepsagent.Manifold(upgradestepsagent.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "migrationFortressName",
+   "gates": [],
+   "line": 303,
+   "ctor": "fortress.Manifold(),"
+  },
+  {
+   "func": "Manifolds",
+   "key": "migrationInactiveFlagName",
+   "gates": [],
+   "line": 304,
+   "ctor": "migrationflag.Manifold(migrationflag.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "migrationMinionName",
+   "gates": [],
+   "line": 310,
+   "ctor": "migrationminion.Manifold(migrationminion.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "proxyConfigUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 325,
+   "ctor": "proxyupdater.Manifold(proxyupdater.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "loggingConfigUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 340,
+   "ctor": "wlogger.Manifold(wlogger.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "lokiEndpointUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 348,
+   "ctor": "lokiendpointupdater.Manifold(lokiendpointupdater.ManifoldCon"
+  },
+  {
+   "func": "Manifolds",
+   "key": "traceConfigUpdaterName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 355,
+   "ctor": "traceconfigupdater.Manifold(traceconfigupdater.ManifoldConfi"
+  },
+  {
+   "func": "Manifolds",
+   "key": "pebbleLokiConfigName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 362,
+   "ctor": "pebblelokiconfig.Manifold(pebblelokiconfig.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "probeHTTPServerName",
+   "gates": [],
+   "line": 373,
+   "ctor": "muxhttpserver.Manifold(muxhttpserver.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "caasProberName",
+   "gates": [],
+   "line": 381,
+   "ctor": "caasprober.Manifold(caasprober.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "caasUniterProberBinderName",
+   "gates": [
+    "ifNotDead"
+   ],
+   "line": 385,
+   "ctor": "caasprobebinder.Manifold(caasprobebinder.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "caasZombieProberBinderName",
+   "gates": [
+    "ifDead"
+   ],
+   "line": 390,
+   "ctor": "caasprobebinder.Manifold(caasprobebinder.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "charmDirName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 400,
+   "ctor": "fortress.Manifold()),"
+  },
+  {
+   "func": "Manifolds",
+   "key": "leadershipTrackerName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 406,
+   "ctor": "leadership.Manifold(leadership.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "hookRetryStrategyName",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 415,
+   "ctor": "retrystrategy.Manifold(retrystrategy.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "uniterName",
+   "gates": [
+    "ifNotMigrating",
+    "ifNotDead"
+   ],
+   "line": 428,
+   "ctor": "uniter.Manifold(uniter.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "traceName",
+   "gates": [],
+   "line": 446,
+   "ctor": "trace.Manifold(trace.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "caasUnitTerminationWorker",
+   "gates": [
+    "ifNotMigrating",
+    "ifNotDead"
+   ],
+   "line": 456,
+   "ctor": "caasunitterminationworker.Manifold(caasunitterminationworker"
+  },
+  {
+   "func": "Manifolds",
+   "key": "secretDrainWorker",
+   "gates": [
+    "ifNotMigrating"
+   ],
+   "line": 465,
+   "ctor": "secretsdrainworker.Manifold(secretsdrainworker.ManifoldConfi"
+  },
+  {
+   "func": "Manifolds",
+   "key": "signalHandlerName",
+   "gates": [
+    "ifDead"
+   ],
+   "line": 476,
+   "ctor": "simplesignalhandler.Manifold(simplesignalhandler.ManifoldCon"
+  }
+ ],
+ "safemode": [
+  {
+   "func": "Manifolds",
+   "key": "agentName",
+   "gates": [],
+   "line": 69,
+   "ctor": "agent.Manifold(config.Agent),"
+  },
+  {
+   "func": "Manifolds",
+   "key": "terminationName",
+   "gates": [],
+   "line": 78,
+   "ctor": "terminationworker.Manifold(),"
+  },
+  {
+   "func": "Manifolds",
+   "key": "isControllerFlagName",
+   "gates": [],
+   "line": 82,
+   "ctor": "util.IsControllerFlagManifold(stateConfigWatcherName, true),"
+  },
+  {
+   "func": "Manifolds",
+   "key": "controllerAgentConfigName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 86,
+   "ctor": "controlleragentconfig.Manifold(controlleragentconfig.Manifol"
+  },
+  {
+   "func": "Manifolds",
+   "key": "stateConfigWatcherName",
+   "gates": [],
+   "line": 99,
+   "ctor": "stateconfigwatcher.Manifold(stateconfigwatcher.ManifoldConfi"
+  },
+  {
+   "func": "Manifolds",
+   "key": "queryLoggerName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 104,
+   "ctor": "querylogger.Manifold(querylogger.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "dbAccessorName",
+   "gates": [
+    "ifController"
+   ],
+   "line": 109,
+   "ctor": "dbaccessor.Manifold(dbaccessor.ManifoldConfig{"
+  }
+ ],
+ "dbrepl": [
+  {
+   "func": "Manifolds",
+   "key": "terminationName",
+   "gates": [],
+   "line": 72,
+   "ctor": "terminationworker.Manifold(),"
+  },
+  {
+   "func": "Manifolds",
+   "key": "controllerAgentConfigName",
+   "gates": [],
+   "line": 76,
+   "ctor": "controlleragentconfig.Manifold("
+  },
+  {
+   "func": "Manifolds",
+   "key": "dbReplAccessorName",
+   "gates": [],
+   "line": 86,
+   "ctor": "dbreplaccessor.Manifold(dbreplaccessor.ManifoldConfig{"
+  },
+  {
+   "func": "Manifolds",
+   "key": "dbReplName",
+   "gates": [],
+   "line": 99,
+   "ctor": "dbrepl.Manifold(dbrepl.ManifoldConfig{"
+  }
+ ]
+}

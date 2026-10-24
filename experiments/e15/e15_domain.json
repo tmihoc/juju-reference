@@ -1,0 +1,988 @@
+{
+ "model": {
+  "rows": [
+   {
+    "domain": "(unowned)",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 21,
+    "n_new": 17,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "agentbinary",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 1,
+    "n_new": 1,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "agentpassword",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 1,
+    "n_new": 1,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "annotation",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 6,
+    "n_new": 6,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "application",
+    "old": [
+     true,
+     true,
+     true
+    ],
+    "new": [
+     true,
+     true,
+     true
+    ],
+    "n_old": 69,
+    "n_new": 76,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "blockcommand",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 1,
+    "n_new": 1,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "blockdevice",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 2,
+    "n_new": 2,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "changestream",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 2,
+    "n_new": 2,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "containerimageresourcestore",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 1,
+    "n_new": 1,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "crossmodelrelation",
+    "old": [
+     true,
+     true,
+     true
+    ],
+    "new": [
+     true,
+     true,
+     true
+    ],
+    "n_old": 16,
+    "n_new": 18,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "machine",
+    "old": [
+     true,
+     true,
+     false
+    ],
+    "new": [
+     true,
+     true,
+     true
+    ],
+    "n_old": 16,
+    "n_new": 22,
+    "touches_C": true,
+    "differs": true
+   },
+   {
+    "domain": "model",
+    "old": [
+     true,
+     true,
+     true
+    ],
+    "new": [
+     true,
+     true,
+     true
+    ],
+    "n_old": 8,
+    "n_new": 8,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "modelagent",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 1,
+    "n_new": 1,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "modelconfig",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 2,
+    "n_new": 2,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "network",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 20,
+    "n_new": 20,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "objectstore",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 3,
+    "n_new": 3,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "operation",
+    "old": [
+     false,
+     true,
+     true
+    ],
+    "new": [
+     false,
+     true,
+     true
+    ],
+    "n_old": 10,
+    "n_new": 9,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "port",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 2,
+    "n_new": 2,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "relation",
+    "old": [
+     false,
+     true,
+     true
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 8,
+    "n_new": 7,
+    "touches_C": true,
+    "differs": true
+   },
+   {
+    "domain": "resolve",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 2,
+    "n_new": 2,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "resource",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 10,
+    "n_new": 6,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "secret",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 8,
+    "n_new": 8,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "sequence",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 1,
+    "n_new": 1,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "ssh",
+    "old": null,
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 0,
+    "n_new": 3,
+    "touches_C": true,
+    "differs": true
+   },
+   {
+    "domain": "status",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 10,
+    "n_new": 10,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "storage",
+    "old": [
+     true,
+     true,
+     false
+    ],
+    "new": [
+     true,
+     true,
+     false
+    ],
+    "n_old": 10,
+    "n_new": 10,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "storageprovisioning",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 1,
+    "n_new": 1,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "unitstate",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 11,
+    "n_new": 10,
+    "touches_C": true,
+    "differs": false
+   }
+  ],
+  "moved_owner": [
+   [
+    "fqdn_address",
+    null,
+    "application"
+   ],
+   [
+    "hostname_address",
+    null,
+    "application"
+   ],
+   [
+    "link_layer_device_route",
+    null,
+    "machine"
+   ],
+   [
+    "net_node_fqdn_address",
+    null,
+    "application"
+   ],
+   [
+    "net_node_hostname_address",
+    null,
+    "machine"
+   ],
+   [
+    "network_address_scope",
+    null,
+    "application"
+   ],
+   [
+    "operation_unit_task",
+    "operation",
+    "machine"
+   ],
+   [
+    "relation",
+    "application",
+    "crossmodelrelation"
+   ],
+   [
+    "relation_network_egress",
+    "relation",
+    "crossmodelrelation"
+   ],
+   [
+    "relation_unit_setting_archive",
+    "relation",
+    "machine"
+   ],
+   [
+    "resource_file_store",
+    "resource",
+    "application"
+   ],
+   [
+    "resource_image_store",
+    "resource",
+    "application"
+   ],
+   [
+    "resource_retrieved_by",
+    "resource",
+    "application"
+   ],
+   [
+    "resource_state",
+    "resource",
+    "application"
+   ],
+   [
+    "unit_state",
+    "unitstate",
+    "machine"
+   ]
+  ]
+ },
+ "controller": {
+  "rows": [
+   {
+    "domain": "(unowned)",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 16,
+    "n_new": 18,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "access",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 7,
+    "n_new": 7,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "agentbinary",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 1,
+    "n_new": 1,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "agentpassword",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 1,
+    "n_new": 2,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "application",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 2,
+    "n_new": 2,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "autocert",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 2,
+    "n_new": 2,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "changestream",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 2,
+    "n_new": 2,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "cloud",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 4,
+    "n_new": 4,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "cloudimagemetadata",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 1,
+    "n_new": 1,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "controllerconfig",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 1,
+    "n_new": 1,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "controllernode",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     true,
+     true,
+     false
+    ],
+    "n_old": 3,
+    "n_new": 6,
+    "touches_C": true,
+    "differs": true
+   },
+   {
+    "domain": "credential",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 2,
+    "n_new": 2,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "externalcontroller",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 3,
+    "n_new": 3,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "flag",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 1,
+    "n_new": 1,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "keymanager",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 3,
+    "n_new": 3,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "lease",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 3,
+    "n_new": 3,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "logging",
+    "old": null,
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 0,
+    "n_new": 1,
+    "touches_C": true,
+    "differs": true
+   },
+   {
+    "domain": "macaroon",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 2,
+    "n_new": 2,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "model",
+    "old": [
+     true,
+     true,
+     true
+    ],
+    "new": [
+     true,
+     true,
+     true
+    ],
+    "n_old": 14,
+    "n_new": 13,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "modeldefaults",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     false,
+     false
+    ],
+    "n_old": 2,
+    "n_new": 2,
+    "touches_C": false,
+    "differs": false
+   },
+   {
+    "domain": "objectstore",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     true,
+     true,
+     false
+    ],
+    "n_old": 5,
+    "n_new": 8,
+    "touches_C": true,
+    "differs": true
+   },
+   {
+    "domain": "secretbackend",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 4,
+    "n_new": 4,
+    "touches_C": true,
+    "differs": false
+   },
+   {
+    "domain": "ssh",
+    "old": null,
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 0,
+    "n_new": 2,
+    "touches_C": true,
+    "differs": true
+   },
+   {
+    "domain": "tracing",
+    "old": [
+     false,
+     false,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 1,
+    "n_new": 2,
+    "touches_C": true,
+    "differs": true
+   },
+   {
+    "domain": "upgrade",
+    "old": [
+     false,
+     true,
+     false
+    ],
+    "new": [
+     false,
+     true,
+     false
+    ],
+    "n_old": 2,
+    "n_new": 2,
+    "touches_C": true,
+    "differs": false
+   }
+  ],
+  "moved_owner": [
+   [
+    "controller",
+    "model",
+    "controllernode"
+   ],
+   [
+    "controller_api_address",
+    "controllernode",
+    null
+   ]
+  ]
+ }
+}

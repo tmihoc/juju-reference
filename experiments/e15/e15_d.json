@@ -1,0 +1,96 @@
+{
+ "model": {
+  "ctx": 92,
+  "C_in_ctx": 65,
+  "only_deleted_files": 22,
+  "named_literal_not_C": 65,
+  "C": 65,
+  "literal": 127,
+  "strict": 83,
+  "C_in_literal": 62,
+  "C_in_strict": 60,
+  "literal_in_C": 62,
+  "strict_in_C": 60,
+  "C_not_named_strict": [
+   "application_scale",
+   "constraint",
+   "relation_application_setting",
+   "relation_unit_setting",
+   "secret_metadata"
+  ],
+  "named_strict_not_C": [
+   "agent_binary_store",
+   "application_k8s_resources_managed",
+   "application_platform",
+   "availability_zone_subnet",
+   "block_device_provenance",
+   "change_log",
+   "charm_hash",
+   "link_layer_device_type",
+   "machine_cloud_instance",
+   "machine_requires_reboot",
+   "model_config",
+   "object_store_metadata_path",
+   "object_store_placement",
+   "offer_connection",
+   "operator_status",
+   "provider_ip_address",
+   "provider_link_layer_device",
+   "provider_subnet",
+   "relation_endpoint",
+   "relation_status",
+   "secret_reservation",
+   "storage_filesystem",
+   "unit"
+  ],
+  "C_not_named_literal": [
+   "application_scale",
+   "relation_application_setting",
+   "relation_unit_setting"
+  ]
+ },
+ "controller": {
+  "ctx": 50,
+  "C_in_ctx": 31,
+  "only_deleted_files": 0,
+  "named_literal_not_C": 23,
+  "C": 32,
+  "literal": 52,
+  "strict": 46,
+  "C_in_literal": 29,
+  "C_in_strict": 28,
+  "literal_in_C": 29,
+  "strict_in_C": 28,
+  "C_not_named_strict": [
+   "controller_api_address",
+   "controller_node",
+   "lease_type",
+   "object_store_drain_info"
+  ],
+  "named_strict_not_C": [
+   "agent_binary_store",
+   "change_log",
+   "model_database_deletion",
+   "model_migration_export",
+   "model_migration_export_minion_sync",
+   "model_migration_export_offer",
+   "model_migration_export_phase",
+   "model_migration_export_status",
+   "model_migration_export_target_auth",
+   "model_migration_import_external_controller_model",
+   "model_migration_import_offer",
+   "model_migration_import_phase_type",
+   "model_migration_phase",
+   "model_migration_redirect",
+   "model_migration_redirect_user",
+   "object_store_metadata_path",
+   "object_store_placement",
+   "permission"
+  ],
+  "C_not_named_literal": [
+   "controller_api_address",
+   "lease_type",
+   "object_store_drain_info"
+  ]
+ }
+}

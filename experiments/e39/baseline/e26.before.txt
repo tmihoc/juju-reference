@@ -1,0 +1,12 @@
+1 application 5 ['agentpassword', 'network', 'objectstore', 'relation', 'status']
+2 machine 3 ['agentpassword', 'network', 'storage']
+3 storage 3 ['application', 'blockdevice', 'network']
+4 crossmodelrelation 3 ['application', 'relation', 'status']
+5 operation 3 ['application', 'machine', 'objectstore']
+6 model 2 ['access', 'cloud']
+7 resource 2 ['application', 'objectstore']
+8 relation 2 ['application', 'network']
+9 modelagent 2 ['agentpassword', 'model']
+10 ssh 2 ['application', 'machine']
+annotation rank 14 1 constraints rank 15 1
+entity (life) domains ['model', 'machine', 'application', 'storage', 'relation', 'crossmodelrelation', 'objectstore', 'controllernode'] median fan-out 2.5

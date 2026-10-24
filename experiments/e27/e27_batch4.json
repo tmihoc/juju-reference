@@ -1,0 +1,167 @@
+[
+ {
+  "key": "application:1",
+  "page": "application",
+  "claim": "In Juju, an application is a running abstraction of a charm in the Juju model."
+ },
+ {
+  "key": "application:2",
+  "page": "application",
+  "claim": "It is whatever software is defined by the charm."
+ },
+ {
+  "key": "application:3",
+  "page": "application",
+  "claim": "This could correspond to a traditional software package but it could also be less or more."
+ },
+ {
+  "key": "application:4",
+  "page": "application",
+  "claim": "An application is always hosted within a model and consists of one or more units."
+ },
+ {
+  "key": "application:5",
+  "page": "application",
+  "claim": "An application can have resources, a configuration, the ability to form relations, and actions."
+ },
+ {
+  "key": "application:6",
+  "page": "application",
+  "claim": "In Juju, an application endpoint is a struct defined in an application's charm's `metadata.yaml` / (since Charmcraft 2.5) `charmcraft.yaml` consisting of"
+ },
+ {
+  "key": "application:7",
+  "page": "application",
+  "claim": "a role (one of `provides`, `requires` = 'can use', or `peers`), and"
+ },
+ {
+  "key": "application:8",
+  "page": "application",
+  "claim": "whose purpose is to help define a relation."
+ },
+ {
+  "key": "application:9",
+  "page": "application",
+  "claim": "For example, the MySQL application deployed from the `mysql` charm has an endpoint called `mysql` with role `provides` and interface `mysql` and this can be used to form  a non-subordinate relation relation with WordPress."
+ },
+ {
+  "key": "application:10",
+  "page": "application",
+  "claim": "All charms have an implicit (not in their `metadata.yaml` / `charmcraft.yaml`) endpoint with name `juju-info`, interface `juju-info`, and role `provides`."
+ },
+ {
+  "key": "application:11",
+  "page": "application",
+  "claim": "This endpoint can be used to form subordinate relations with subordinate charms that have an explicit endpoint with interface `juju-info` and role `requires`."
+ },
+ {
+  "key": "application:12",
+  "page": "application",
+  "claim": "See the-implicit-juju-info-relation-endpoint for details."
+ },
+ {
+  "key": "unit:1",
+  "page": "unit",
+  "claim": "In Juju, a unit is a deployed charm."
+ },
+ {
+  "key": "unit:2",
+  "page": "unit",
+  "claim": "An application\u2019s units occupy machines."
+ },
+ {
+  "key": "unit:3",
+  "page": "unit",
+  "claim": "Simple applications may be deployed with a single application unit, but it is possible for an individual application to have multiple units running on different machines."
+ },
+ {
+  "key": "unit:4",
+  "page": "unit",
+  "claim": "For example, one may deploy a single MongoDB application, and specify that it should run three units (with one machine per unit) so that the replica set is resilient to failures."
+ },
+ {
+  "key": "unit:5",
+  "page": "unit",
+  "claim": "A unit is always named on the pattern `<application>/<unit ID>`, where `<application>` is the name of the application and the `<unit ID>` is its ID number or, for the leader unit, the keyword `leader`."
+ },
+ {
+  "key": "unit:6",
+  "page": "unit",
+  "claim": "For example, `mysql/0` or `mysql/leader`."
+ },
+ {
+  "key": "unit:7",
+  "page": "unit",
+  "claim": "Note: the number designation is a static reference to a unique entity whereas the `leader` designation is a dynamic reference to whichever unit happens to be elected by Juju to be the leader ."
+ },
+ {
+  "key": "unit:8",
+  "page": "unit",
+  "claim": "In Juju, a leader (or application leader) is the application unit that is the authoritative source for an application's status and configuration."
+ },
+ {
+  "key": "unit:9",
+  "page": "unit",
+  "claim": "All units for a given application share the same charm code, the same relations, and the same user-provided configuration but the leader unit is different in that it is responsible for managing the lifecycle of the application as a whole."
+ },
+ {
+  "key": "unit:10",
+  "page": "unit",
+  "claim": "Every application is guaranteed to have at most one leader at any given time."
+ },
+ {
+  "key": "unit:11",
+  "page": "unit",
+  "claim": "Unit agents will each seek to acquire leadership, and maintain it while they have it or wait for the current leader to drop out."
+ },
+ {
+  "key": "unit:12",
+  "page": "unit",
+  "claim": "Internally, even though the replica set shares the same user-provided configuration, each unit may be performing different roles within the replica set, as defined by the charm."
+ },
+ {
+  "key": "unit:13",
+  "page": "unit",
+  "claim": "The leader is denoted by an asterisk in the output to `juju status`."
+ },
+ {
+  "key": "subnet:1",
+  "page": "subnet",
+  "claim": "A subnet is a range of IP addresses in CIDR notation."
+ },
+ {
+  "key": "subnet:2",
+  "page": "subnet",
+  "claim": "Subnets can be grouped to form a space."
+ },
+ {
+  "key": "zone:1",
+  "page": "zone",
+  "claim": "A(n availability) `zone` is a  constraint or a placement directive that can be used to customise where the hardware spawned by Juju is provisioned in order to prevent better redundancy in case of an outage."
+ },
+ {
+  "key": "zone:2",
+  "page": "zone",
+  "claim": "The value of the key consists of the zone(s) available for a given cloud."
+ },
+ {
+  "key": "zone:3",
+  "page": "zone",
+  "claim": "When passed as a constraint you may specify a range of zones (via the constraint-zones key) whereas when passed as a placement directive you may only specify one zone (via the placement-directive-zone key)."
+ },
+ {
+  "key": "zone:4",
+  "page": "zone",
+  "claim": "If you do both -- that is, there is overlap -- the placement directive takes precedence."
+ },
+ {
+  "key": "offer:1",
+  "page": "offer",
+  "claim": "In Juju, an offer represents an application that has been made available for cross-model relations."
+ },
+ {
+  "key": "offer:2",
+  "page": "offer",
+  "claim": "When you are integrating an application with an offer, what you're doing is consume + integrate, where consume = validate that your user has permission to consume the offer + create a local application proxy for the application and integrate is the usual local integrate."
+ }
+]

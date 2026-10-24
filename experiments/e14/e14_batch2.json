@@ -1,0 +1,100 @@
+[
+ {
+  "key": "relation:21",
+  "page": "relation",
+  "claim": "To force the implicit endpoint, name it explicitly on either side:",
+  "prior_kind": "user-procedure",
+  "prior_note": "command example"
+ },
+ {
+  "key": "relation:39",
+  "page": "relation",
+  "claim": "in a non-peer relation, whether regular or subordinate:",
+  "prior_kind": "other",
+  "prior_note": "heading fragment"
+ },
+ {
+  "key": "secret:15",
+  "page": "secret",
+  "claim": "Juju assigns it a URI, for example, `9m4e2mr0ui3e8a215n4g`.",
+  "prior_kind": "example",
+  "prior_note": "example"
+ },
+ {
+  "key": "secret:11",
+  "page": "secret",
+  "claim": "The secret URI can always be used in any content to identify a secret.",
+  "prior_kind": "guidance",
+  "prior_note": "usage advice"
+ },
+ {
+  "key": "secret:44",
+  "page": "secret",
+  "claim": "A minimum configuration must include the `endpoint` and `token`.",
+  "prior_kind": "other",
+  "prior_note": "only endpoint mandatory; token optional"
+ },
+ {
+  "key": "relation:42",
+  "page": "relation",
+  "claim": "That is, whether leader or not, every unit can read its own unit databag as well as every other unit's unit databag as well as the application databag.",
+  "prior_kind": "other",
+  "prior_note": "read access not verified"
+ },
+ {
+  "key": "secret:46",
+  "page": "secret",
+  "claim": "For production you should configure your Vault securely, following recommendations in the upstream Vault documentation.",
+  "prior_kind": "guidance",
+  "prior_note": "advice"
+ },
+ {
+  "key": "secret:51",
+  "page": "secret",
+  "claim": "The service account used to generate the access token must have been configured with a cluster role binding to allow the necessary access privileges.",
+  "prior_kind": "external",
+  "prior_note": "k8s RBAC requirement"
+ },
+ {
+  "key": "relation:38",
+  "page": "relation",
+  "claim": "Each unit involved in a relation gets a local copy of all the databags for that relation.",
+  "prior_kind": "other",
+  "prior_note": "local copy via hook context"
+ },
+ {
+  "key": "cloud:12",
+  "page": "cloud",
+  "claim": "See the relevant cloud reference page for details.",
+  "prior_kind": "cross-reference",
+  "prior_note": "pointer"
+ },
+ {
+  "key": "secret:1",
+  "page": "secret",
+  "claim": "In Juju, a secret is a sensitive bit of information (e.g., account credential, password, certificate, SSH key, API key, encryption key, etc.) that a charm needs to know.",
+  "prior_kind": "definition",
+  "prior_note": "definition of term"
+ },
+ {
+  "key": "relation:19",
+  "page": "relation",
+  "claim": "You integrate against the implicit endpoint the same way as any other endpoint:",
+  "prior_kind": "user-procedure",
+  "prior_note": "command example"
+ },
+ {
+  "key": "machine:10",
+  "page": "machine",
+  "claim": "The examples below illustrate all the various cases:",
+  "prior_kind": "example",
+  "prior_note": "introduces examples"
+ },
+ {
+  "key": "secret:17",
+  "page": "secret",
+  "claim": "URI vs. label:) A leader unit creates an application secret and assigns to it a label in its capacity as the secret owner, for example, `db-password`.",
+  "prior_kind": "example",
+  "prior_note": "example"
+ }
+]

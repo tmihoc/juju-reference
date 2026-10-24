@@ -1,0 +1,556 @@
+[
+ {
+  "key": "sshkey-new:1",
+  "propositions": [
+   "An SSH key is a public SSH key stored by a user on the controller"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/schema/controller/sql/0021-user-ssh-keys.sql:13",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:2",
+  "propositions": [
+   "A model authorises a set of keys",
+   "Holders of the matching private keys can open SSH sessions to the model's machines through the controller"
+  ],
+  "verdict": "holds",
+  "evidence": "internal/worker/sshserver/authorization.go:56",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:3",
+  "propositions": [
+   "Machines have an ubuntu account with passwordless sudo"
+  ],
+  "verdict": "overstated",
+  "evidence": "internal/cloudconfig/userdatacfg.go:678",
+  "correction": "Machines provisioned through cloud-init get an ubuntu user with NOPASSWD sudo; this is set by SetUbuntuUser for unix machines, not for every machine (for example Kubernetes).",
+  "reference_worthy": "maybe",
+  "note": "Sudo: ALL=(ALL) NOPASSWD:ALL"
+ },
+ {
+  "key": "sshkey-new:4",
+  "propositions": [
+   "Keys live in the controller database with users"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/schema/controller/sql/0021-user-ssh-keys.sql:24",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "FK to user(uuid)"
+ },
+ {
+  "key": "sshkey-new:5",
+  "propositions": [
+   "Created on add/import",
+   "Removed when deleted from its last model",
+   "Removed when the user is removed",
+   "Removed when the model is removed"
+  ],
+  "verdict": "overstated",
+  "evidence": "domain/removal/state/controller/model.go:427",
+  "correction": "Model removal deletes only the model_authorized_keys rows; the key rows in user_public_ssh_key stay until the owner deletes them or the user is removed.",
+  "reference_worthy": "yes",
+  "note": "Also keys unused by any model are cleaned only on a delete call for that user (domain/keymanager/state/state.go:647)"
+ },
+ {
+  "key": "sshkey-new:6",
+  "propositions": [
+   "User has many keys",
+   "Key authorised on many models"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/schema/controller/sql/0022-model-authorized-keys.sql:4",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "composite PK (model_uuid, key id)"
+ },
+ {
+  "key": "sshkey-new:7",
+  "propositions": [
+   "Table user_public_ssh_key has owner, comment, public key, fingerprint, algorithm"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/schema/controller/sql/0021-user-ssh-keys.sql:13",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:8",
+  "propositions": [
+   "Unique per user on public key and on fingerprint"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/schema/controller/sql/0021-user-ssh-keys.sql:28",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "unique indexes (user_uuid, fingerprint) and (user_uuid, public_key); ensureUserPublicKey reuses the existing row"
+ },
+ {
+  "key": "sshkey-new:9",
+  "propositions": [
+   "The controller key comment is reserved"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/service/service.go:95",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "value juju-system-key, domain/controller/types.go:9"
+ },
+ {
+  "key": "sshkey-new:10",
+  "propositions": [
+   "Bootstrap generates a keypair on machine clouds",
+   "Private half kept",
+   "Public half stored in config key system-ssh-keys"
+  ],
+  "verdict": "holds",
+  "evidence": "cmd/jujuagentd/agent/bootstrap.go:384",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "k8s returns early (line 375); private key stored as SystemIdentity; config key at controller/config.go:240"
+ },
+ {
+  "key": "sshkey-new:11",
+  "propositions": [
+   "Add or import with reserved comment is refused"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/service/service.go:163",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "also at import line 306"
+ },
+ {
+  "key": "sshkey-new:12",
+  "propositions": [
+   "PublicKeyAlreadyExists is returned when the key is already authorised on the model by add"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/state/state.go:267",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "error const domain/keymanager/errors/errors.go:11; arises from model_authorized_keys primary key conflict"
+ },
+ {
+  "key": "sshkey-new:13",
+  "propositions": [
+   "Import skips already-authorised keys without error"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/state/state.go:312",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "ON CONFLICT DO NOTHING"
+ },
+ {
+  "key": "sshkey-new:14",
+  "propositions": [
+   "invalid public key arises for non-parsable keys on add or import",
+   "Format is an authorized_keys line"
+  ],
+  "verdict": "holds",
+  "evidence": "internal/ssh/authorizedkeys.go:58",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "ssh.ParseAuthorizedKey; also rejects lines that hold more than one key (line 71)"
+ },
+ {
+  "key": "sshkey-new:15",
+  "propositions": [
+   "Error text 'key contains a reserved comment' for add or import with the controller key comment"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/errors/errors.go:24",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:16",
+  "propositions": [
+   "Client sees a 'restricted comment' message"
+  ],
+  "verdict": "holds",
+  "evidence": "apiserver/facades/client/keymanager/keymanager.go:230",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "message differs for add vs import but both say 'restricted comment' (line 353)"
+ },
+ {
+  "key": "sshkey-new:17",
+  "propositions": [
+   "Allowed algorithms md5 and sha256"
+  ],
+  "verdict": "overstated",
+  "evidence": "domain/schema/controller/sql/0021-user-ssh-keys.sql:9",
+  "correction": "The table allows md5 and sha256, but the service always records sha256 (domain/keymanager/service/service.go:174).",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:18",
+  "propositions": [
+   "Table links one key to one model"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/schema/controller/sql/0022-model-authorized-keys.sql:1",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:19",
+  "propositions": [
+   "Effective set excludes removed or disabled users"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/schema/controller/sql/0022-model-authorized-keys.sql:67",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "view requires u.removed = FALSE and ua.disabled = FALSE"
+ },
+ {
+  "key": "sshkey-new:20",
+  "propositions": [
+   "View v_model_authorized_keys derives the set",
+   "Underlying keys stay stored"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/schema/controller/sql/0022-model-authorized-keys.sql:58",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "used in migration export and keyupdater"
+ },
+ {
+  "key": "sshkey-new:21",
+  "propositions": [
+   "Facade lists, adds, imports, deletes keys",
+   "Authorised for the addressed model"
+  ],
+  "verdict": "holds",
+  "evidence": "apiserver/facades/client/keymanager/keymanager.go:38",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:22",
+  "propositions": [
+   "Calls take a user name but the controller ignores it for the authenticated identity"
+  ],
+  "verdict": "overstated",
+  "evidence": "apiserver/facades/client/keymanager/keymanager.go:283",
+  "correction": "List, add and delete use the authenticated user; ImportKeys looks up the user from arg.User, so import does not ignore the parameter.",
+  "reference_worthy": "yes",
+  "note": "ListKeys line 94, AddKeys 189, DeleteKeys 399 use authedUser"
+ },
+ {
+  "key": "sshkey-new:23",
+  "propositions": [
+   "List returns the caller's keys on the model"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/state/state.go:465",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:24",
+  "propositions": [
+   "Read access to the model is needed"
+  ],
+  "verdict": "holds",
+  "evidence": "apiserver/facades/client/keymanager/keymanager.go:44",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:25",
+  "propositions": [
+   "Admin access also qualifies"
+  ],
+  "verdict": "holds",
+  "evidence": "apiserver/facades/client/keymanager/keymanager.go:39",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "checkCanRead tries admin or superuser first"
+ },
+ {
+  "key": "sshkey-new:26",
+  "propositions": [
+   "List mode gives fingerprint or key"
+  ],
+  "verdict": "holds",
+  "evidence": "apiserver/facades/client/keymanager/keymanager.go:145",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:27",
+  "propositions": [
+   "Add stores keys for authed user and authorises them on the model"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/state/state.go:250",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:28",
+  "propositions": [
+   "Admin access required",
+   "Change block must be off"
+  ],
+  "verdict": "overstated",
+  "evidence": "apiserver/facades/client/keymanager/keymanager.go:179",
+  "correction": "Model admin or controller superuser access is required, and the change block must be off.",
+  "reference_worthy": "yes",
+  "note": "HasModelAdmin returns true for superusers (apiserver/common/model/permissions.go:26)"
+ },
+ {
+  "key": "sshkey-new:29",
+  "propositions": [
+   "Three related errors with codes 'public key already exists', 'invalid public key', 'invalid public key comment'"
+  ],
+  "verdict": "holds",
+  "evidence": "rpc/params/apierror.go:262",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "codes at 262, 266, 270; AddKeys maps at keymanager.go:224-259"
+ },
+ {
+  "key": "sshkey-new:30",
+  "propositions": [
+   "Import fetches keys from an outside source and authorises them"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/service/service.go:276",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:31",
+  "propositions": [
+   "Sources are lp: and gh:"
+  ],
+  "verdict": "holds",
+  "evidence": "internal/ssh/importer/importer.go:68",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "resolver map keys gh and lp"
+ },
+ {
+  "key": "sshkey-new:32",
+  "propositions": [
+   "Same authority as add and change block must be off"
+  ],
+  "verdict": "holds",
+  "evidence": "apiserver/facades/client/keymanager/keymanager.go:272",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "same admin/superuser nuance as add"
+ },
+ {
+  "key": "sshkey-new:33",
+  "propositions": [
+   "Import skips already-authorised keys"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/state/state.go:369",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:34",
+  "propositions": [
+   "unknown import source for non-lp/gh prefix"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/service/service.go:279",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "error const errors.go:28; scheme is looked up in resolvers (importer.go:39)"
+ },
+ {
+  "key": "sshkey-new:35",
+  "propositions": [
+   "import subject not found when source has no identity"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/service/service.go:284",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "github.go:85 reports cannot find user"
+ },
+ {
+  "key": "sshkey-new:36",
+  "propositions": [
+   "Delete matches by fingerprint, key text or comment"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/state/state.go:622",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:37",
+  "propositions": [
+   "Keys no model authorises are deleted from the user record"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/state/state.go:647",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "runs at end of DeletePublicKeysForUser"
+ },
+ {
+  "key": "sshkey-new:38",
+  "propositions": [
+   "Admin access required",
+   "Neither remove nor change block may be on"
+  ],
+  "verdict": "holds",
+  "evidence": "apiserver/common/block.go:61",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "RemoveAllowed checks remove then change; DeleteKeys keymanager.go:391"
+ },
+ {
+  "key": "sshkey-new:39",
+  "propositions": [
+   "Removing a user deletes the user's keys and authorisations"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/access/state/user.go:517",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:40",
+  "propositions": [
+   "Removing a model deletes its authorisations"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/removal/state/controller/model.go:427",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "sshkey-new:41",
+  "propositions": [
+   "CLI commands add-ssh-key, import-ssh-key, ssh-keys with --full, remove-ssh-key"
+  ],
+  "verdict": "holds",
+  "evidence": "cmd/juju/sshkeys/list_sshkeys.go:73",
+  "correction": null,
+  "reference_worthy": "maybe",
+  "note": "names at add_sshkeys.go:59, import_sshkeys.go:63, remove_sshkeys.go:49"
+ },
+ {
+  "key": "sshkey-new:42",
+  "propositions": [
+   "SSH server checks in two steps"
+  ],
+  "verdict": "holds",
+  "evidence": "internal/worker/sshserver/authorization.go:36",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "PublicKeyAuthentication then Authorize"
+ },
+ {
+  "key": "sshkey-new:43",
+  "propositions": [
+   "Authentication matches a key stored for the user regardless of model"
+  ],
+  "verdict": "holds",
+  "evidence": "internal/worker/sshserver/authentication.go:42",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "domain/ssh/state/controller/state.go:117 also excludes removed or disabled users"
+ },
+ {
+  "key": "sshkey-new:44",
+  "propositions": [
+   "Needs model admin or controller superuser",
+   "Key must be authorised on the model"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/access/service/permission.go:133",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "authorization.go:56"
+ },
+ {
+  "key": "sshkey-new:45",
+  "propositions": [
+   "Error when key is stored but not authorised on the model"
+  ],
+  "verdict": "holds",
+  "evidence": "internal/worker/sshserver/authorization.go:61",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "message names key comment and model UUID"
+ },
+ {
+  "key": "sshkey-new:46",
+  "propositions": [
+   "Agent facade serves authorised keys and a watcher"
+  ],
+  "verdict": "holds",
+  "evidence": "apiserver/facades/agent/keyupdater/authorisedkeys.go:58",
+  "correction": null,
+  "reference_worthy": "maybe",
+  "note": "WatchAuthorisedKeys line 58, AuthorisedKeys line 147; registered KeyUpdater v1 in api/facadeversions.go:61"
+ },
+ {
+  "key": "sshkey-new:47",
+  "propositions": [
+   "No client of that facade in 4.1 code"
+  ],
+  "verdict": "holds",
+  "evidence": "internal/worker/sshkeyupdater/manifold.go:23",
+  "correction": null,
+  "reference_worthy": "maybe",
+  "note": "api/ has no keyupdater client (grep only hits facadeversions.go); the sshkeyupdater worker takes no API caller"
+ },
+ {
+  "key": "sshkey-new:48",
+  "propositions": [
+   "Migration carries authorised keys"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/modelmigration/state/controller/state.go:1370",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "import at domain/keymanager/modelmigration/import.go:134"
+ },
+ {
+  "key": "sshkey-new:49",
+  "propositions": [
+   "Old-style keys come from model config",
+   "Import drops keys containing the controller comment",
+   "Reason: stop source controller access"
+  ],
+  "verdict": "holds",
+  "evidence": "domain/keymanager/modelmigration/import.go:198",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "uses strings.Contains on the whole key line, not only the comment field"
+ }
+]

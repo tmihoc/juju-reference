@@ -1,0 +1,712 @@
+You are a documentation assistant. Answer each question using ONLY the documentation provided. If the documentation does not contain the answer, say exactly "The documentation does not say." and do not guess. Be concise (1-3 sentences). Do not use any tool except to read THIS one file, and do not read any other file. Reply with ONLY a JSON object mapping each question id to your answer string.
+
+For each question below you are given excerpts retrieved from the documentation (they may be incomplete). Answer from the excerpts only.
+
+### Q1. What does the error `machine constraint violation` mean, and what should I do about it?
+Retrieved documentation excerpts for this question:
+ontainer type or a space that does not exist. *Remediation:* Correct the container type or the space.
+    - **`machine constraint violation`**: *Trigger:* The constraints are set on a machine whose recorded cloud instance has a different architecture from the one required; architecture is the only characteristic compared. *Remediation:* Require the architecture the machine has, or request a new machine.
+- **Special machine kinds:**
+  - **LXD container:** A machine linked to its host by a machine-parent record; provisioned by the host’s agent.
+  - **Manual machine:** Provisioned by the user over SSH; the records keep the manual flag.
+  - **Controller machine:** Derived, not stored; hosts the [controller agent](https://canonical.com/juju/docs/juju-cli/latest/reference/agent.md#controller-age
+---
+oint at, and the name the client types (the designation `0`, `1/lxd/0`), unique per model.
+  - *Related errors:*
+    - **`machine not found`**: *Trigger:* A lookup by machine UUID or name that matches no machine. *Remediation:* Check the model’s machines.
+    - **`machine already exists`**: *Trigger:* A model migration imports a machine whose name the target model already holds. *Remediation:* Migrate into a model that has no machine of that name.
+- **Network identity:** A pointer naming the shared net node; a machine and all units running on it anchor to the same node.
+- **Life:** `alive`, `dying` or `dead`, plus a flag saying whether the cloud instance survives teardown.
+  - *Related error:*
+    - **`machine is dead`**: *Trigger:* An operation on a machine whose life is `dead`. *Remediat
+---
+:*
+    - **`machine is dead`**: *Trigger:* An operation on a machine whose life is `dead`. *Remediation:* None; the machine’s lifecycle has ended.
+- **Base:** The OS channel plus architecture. A satellite record flags manually provisioned machines; containers carry their container type.
+- **Constraints:** A pointer into the [constraint](https://canonical.com/juju/docs/juju-cli/latest/reference/constraint.md#constraint) record.
+- **Parent record (containers only):** Holds two pointers, the child and its host.
+  - *Related error:*
+    - **`machine has no parent`**: *Trigger:* Asking for the parent of a machine that is not a container. *Remediation:* Check that the machine is a container (`<host>/lxd/<n>`).
+- **Cloud instance record:** Tracks the creation state, the hardware (arch, CPU, memor
+---
+ated errors:*
+    - **`entity still alive`**: *Trigger:* Marking a machine `dead` while its life is still `alive`. *Remediation:* Start the removal first, so the machine becomes `dying`.
+    - **`machine has containers`**, **`machine has units`**, **`machine has storage`**: *Trigger:* Marking a machine `dead` while it still hosts containers, units or storage. *Remediation:* Remove or move them first.
+- **Reprovisioning:** `juju reprovision-machine` declares a machine’s cloud instance lost and asks for a replacement. The controller checks eligibility first, then the liveness gates: the machine agent must be absent and the provider must report the instance missing or not running. One transaction then detaches the lost instance, gives the machine’s units new ordinals so the replacement unit a
+
+### Q2. Reprovisioning a machine fails with `machine agent is still present`. Why, and what should I do?
+Retrieved documentation excerpts for this question:
+ated errors:*
+    - **`entity still alive`**: *Trigger:* Marking a machine `dead` while its life is still `alive`. *Remediation:* Start the removal first, so the machine becomes `dying`.
+    - **`machine has containers`**, **`machine has units`**, **`machine has storage`**: *Trigger:* Marking a machine `dead` while it still hosts containers, units or storage. *Remediation:* Remove or move them first.
+- **Reprovisioning:** `juju reprovision-machine` declares a machine’s cloud instance lost and asks for a replacement. The controller checks eligibility first, then the liveness gates: the machine agent must be absent and the provider must report the instance missing or not running. One transaction then detaches the lost instance, gives the machine’s units new ordinals so the replacement unit a
+---
+on then detaches the lost instance, gives the machine’s units new ordinals so the replacement unit agents start with fresh identities, departs the units from their relation scopes while archiving their settings (so the remaining units see a consistent departure), resets the machine-scoped storage state, and returns the machine and its instance to `pending`; the compute provisioner then provisions the replacement.
+  - *Rule:* Only an `alive` machine that is not a container, a controller machine or a manually provisioned machine, hosts no containers, has no model-scoped storage attached, and has no reprovision request pending is eligible.
+  - *Related errors:*
+    - **`machine is not alive`**, **`machine is a container`**, **`machine is a controller machine`**, **`machine is manually provisi
+---
+ **`machine is a container`**, **`machine is a controller machine`**, **`machine is manually provisioned`**, **`machine hosts child containers`**: *Trigger:* The machine is `dying` or `dead`, or is of a kind that cannot be reprovisioned, or hosts containers. *Remediation:* Reprovision only an `alive` machine that is a plain, provider-provisioned host.
+    - **`model-scoped storage attached to machine`**, **`storage scope is ambiguous`**, **`machine storage is not alive`**: *Trigger:* The machine’s attached storage cannot be reset safely. *Remediation:* Detach or remove the storage first.
+    - **`reprovision request already exists`**: *Trigger:* A reprovision request is already pending for the machine. *Remediation:* Wait for the pending request to complete.
+    - **`machine agent is still
+---
+he machine. *Remediation:* Wait for the pending request to complete.
+    - **`machine agent is still present`**: *Trigger:* The machine agent still reports presence. *Remediation:* Stop the agent or confirm the machine is lost.
+    - **`machine provider instance is running`**: *Trigger:* The provider reports the instance as running. *Remediation:* Stop or remove the instance at the provider, then retry.
+    - **`machine cloud instance changed`**: *Trigger:* The machine’s instance differs from the one checked, because a replacement appeared in between. *Remediation:* Retry the command.
+- **Reboot:** The reboot machinery decides whether a machine shuts down, reboots or does nothing: a machine whose parent needs a reboot shuts down, a machine that needs a reboot itself reboots, and otherwise 
+
+### Q3. Can a controller machine or a container be reprovisioned?
+Retrieved documentation excerpts for this question:
+<a id="machine"></a>
+
+# Machine
+
+See also: [How to manage machines](https://canonical.com/juju/docs/juju-cli/latest/howto/manage-machines.md#manage-machines)
+
+In Juju, a **machine** is a [compute resource](https://canonical.com/juju/docs/juju-cli/latest/reference/resource-compute.md#resource-compute) from a machine [cloud](https://canonical.com/juju/docs/juju-cli/latest/reference/cloud.md#cloud): a bare cloud instance, or a LXD container on one, requested implicitly by a deploy or add-unit placement, or explicitly through the controller API.
+
+#### IMPORTANT
+A LXD container is named after its host machine: `0/lxd/5` is LXD container `5` on machine `0`. Containers appear under ‘Machines’ in status outputs.
+
+<a id="machine-declaration-rules"></a>
+
+## Machines in the declaration layer
+
+How cli
+---
+Remediation:* Name the container directly under its host machine.
+    - **`invalid container type "<type>"`**: *Trigger:* A designation or a container constraint names a container type other than `lxd` (the only one 4.1 supports). *Remediation:* Use `lxd`.
+- **Base:** A machine’s **base** identifies its operating system image: the OS name, `@`, and the OS channel as `<track>` or `<track>/<risk>` (`ubuntu@22.04`, `ubuntu@22.04/stable`). A base replaces the older notion of a series.
+- **Machine constraints:** Constraints can be set directly on a machine, as well as on the model or an application.
+  - *Related errors:*
+    - **`invalid machine constraints`**: *Trigger:* The constraints name a container type or a space that does not exist. *Remediation:* Correct the container type or the space
+---
+ontainer type or a space that does not exist. *Remediation:* Correct the container type or the space.
+    - **`machine constraint violation`**: *Trigger:* The constraints are set on a machine whose recorded cloud instance has a different architecture from the one required; architecture is the only characteristic compared. *Remediation:* Require the architecture the machine has, or request a new machine.
+- **Special machine kinds:**
+  - **LXD container:** A machine linked to its host by a machine-parent record; provisioned by the host’s agent.
+  - **Manual machine:** Provisioned by the user over SSH; the records keep the manual flag.
+  - **Controller machine:** Derived, not stored; hosts the [controller agent](https://canonical.com/juju/docs/juju-cli/latest/reference/agent.md#controller-age
+---
+ **`machine is a container`**, **`machine is a controller machine`**, **`machine is manually provisioned`**, **`machine hosts child containers`**: *Trigger:* The machine is `dying` or `dead`, or is of a kind that cannot be reprovisioned, or hosts containers. *Remediation:* Reprovision only an `alive` machine that is a plain, provider-provisioned host.
+    - **`model-scoped storage attached to machine`**, **`storage scope is ambiguous`**, **`machine storage is not alive`**: *Trigger:* The machine’s attached storage cannot be reset safely. *Remediation:* Detach or remove the storage first.
+    - **`reprovision request already exists`**: *Trigger:* A reprovision request is already pending for the machine. *Remediation:* Wait for the pending request to complete.
+    - **`machine agent is still
+
+### Q4. Under what conditions does a machine become dead?
+Retrieved documentation excerpts for this question:
+<a id="machine"></a>
+
+# Machine
+
+See also: [How to manage machines](https://canonical.com/juju/docs/juju-cli/latest/howto/manage-machines.md#manage-machines)
+
+In Juju, a **machine** is a [compute resource](https://canonical.com/juju/docs/juju-cli/latest/reference/resource-compute.md#resource-compute) from a machine [cloud](https://canonical.com/juju/docs/juju-cli/latest/reference/cloud.md#cloud): a bare cloud instance, or a LXD container on one, requested implicitly by a deploy or add-unit placement, or explicitly through the controller API.
+
+#### IMPORTANT
+A LXD container is named after its host machine: `0/lxd/5` is LXD container `5` on machine `0`. Containers appear under ‘Machines’ in status outputs.
+
+<a id="machine-declaration-rules"></a>
+
+## Machines in the declaration layer
+
+How cli
+---
+`lxd`: a new container on a new host; `lxd:25`: on machine 25.
+  - `0/lxd/4`: the existing container `4` on machine `0`.
+  - An empty designation: a new machine.
+  - `lxd` or `lxd:25` with `virt-type=virtual-machine`: a VM instead of a container.
+  - `3,0/lxd/2,lxd:5`: machine 3, container 2 on machine 0, and a new container on machine 5.
+  - Machine clouds only; rejected on Kubernetes models.
+  - *Rule:* Machine numbers are `0` or positive integers without leading zeros.
+  - *Rule:* Containers nest one level deep (`0/lxd/4`, never `0/lxd/0/lxd/0`).
+  - *Related errors:*
+    - **`machine name "<name>" has too many containers`**: *Trigger:* A machine name with more than one container level. *Remediation:* Name the container directly under its host machine.
+    - **`invalid container type "<
+---
+Remediation:* Name the container directly under its host machine.
+    - **`invalid container type "<type>"`**: *Trigger:* A designation or a container constraint names a container type other than `lxd` (the only one 4.1 supports). *Remediation:* Use `lxd`.
+- **Base:** A machine’s **base** identifies its operating system image: the OS name, `@`, and the OS channel as `<track>` or `<track>/<risk>` (`ubuntu@22.04`, `ubuntu@22.04/stable`). A base replaces the older notion of a series.
+- **Machine constraints:** Constraints can be set directly on a machine, as well as on the model or an application.
+  - *Related errors:*
+    - **`invalid machine constraints`**: *Trigger:* The constraints name a container type or a space that does not exist. *Remediation:* Correct the container type or the space
+---
+tance`); the removal service carries out the teardown.
+
+<a id="the-machines-machinery"></a>
+
+<a id="machine-execution-rules"></a>
+
+## Machines in the execution layer
+
+Runtime operations are split between the controller and the individual host machine. The controller orchestrates provisioning through background workers, while the local machine agent, a [Juju agent](https://canonical.com/juju/docs/juju-cli/latest/reference/agent.md#agent), manages internal lifecycle and workload placement.
+
+<a id="machines-and-units"></a>
+
+### Machine operations and status
+
+- **Controller-side provisioning:** The compute provisioner monitors unprovisioned machines, requests cloud instances, and records the instance ID and addresses as they become known.
+- **Agent-side provisioning:** Host machine agents prov
+
+### Q5. What does the error `machine not provisioned` mean?
+Retrieved documentation excerpts for this question:
+oint at, and the name the client types (the designation `0`, `1/lxd/0`), unique per model.
+  - *Related errors:*
+    - **`machine not found`**: *Trigger:* A lookup by machine UUID or name that matches no machine. *Remediation:* Check the model’s machines.
+    - **`machine already exists`**: *Trigger:* A model migration imports a machine whose name the target model already holds. *Remediation:* Migrate into a model that has no machine of that name.
+- **Network identity:** A pointer naming the shared net node; a machine and all units running on it anchor to the same node.
+- **Life:** `alive`, `dying` or `dead`, plus a flag saying whether the cloud instance survives teardown.
+  - *Related error:*
+    - **`machine is dead`**: *Trigger:* An operation on a machine whose life is `dead`. *Remediat
+---
+t>/lxd/<n>`).
+- **Cloud instance record:** Tracks the creation state, the hardware (arch, CPU, memory, root disk, virtualisation type) and the availability zone. Born with the machine; the instance ID stays empty until the cloud reports it.
+  - *Related errors:*
+    - **`machine not provisioned`**: *Trigger:* An action that needs the instance runs before the cloud has reported an instance ID. *Remediation:* Wait until the compute provisioner has recorded the instance.
+    - **`machine cloud instance already exists`**: *Trigger:* Recording an instance for a machine that already has one. *Remediation:* Check for a second provisioner acting on the same machine.
+- **Status records:** Two records.
+  - The agent’s health report: `pending`, `started`, `stopped`, `error`. `down` is never written, 
+---
+ **`machine is a container`**, **`machine is a controller machine`**, **`machine is manually provisioned`**, **`machine hosts child containers`**: *Trigger:* The machine is `dying` or `dead`, or is of a kind that cannot be reprovisioned, or hosts containers. *Remediation:* Reprovision only an `alive` machine that is a plain, provider-provisioned host.
+    - **`model-scoped storage attached to machine`**, **`storage scope is ambiguous`**, **`machine storage is not alive`**: *Trigger:* The machine’s attached storage cannot be reset safely. *Remediation:* Detach or remove the storage first.
+    - **`reprovision request already exists`**: *Trigger:* A reprovision request is already pending for the machine. *Remediation:* Wait for the pending request to complete.
+    - **`machine agent is still
+---
+whose parent needs a reboot shuts down, a machine that needs a reboot itself reboots, and otherwise nothing happens.
+  - *Related error:*
+    - **`grandparent machine are not supported currently`**: *Trigger:* The lookup finds a machine whose parent itself has a parent. *Remediation:* None; name validation refuses containers nested deeper than one level, so the check guards a layout that Juju does not support.
+- **Statuses:** The machine agent reports its status (`pending`, `started`, `stopped`, `error`); the controller and the providers write the instance’s provisioning status (`allocating`, `running`, `provisioning error`).
+
+<a id="machine-watchers"></a>
+
+### Machine watchers
+
+The machine domain’s watchable service exposes real-time change streams rather than polling loops:
+
+- **Machine 
+
+### Q6. Which container types can I name in a machine designation in Juju 4.1?
+Retrieved documentation excerpts for this question:
+<a id="machine"></a>
+
+# Machine
+
+See also: [How to manage machines](https://canonical.com/juju/docs/juju-cli/latest/howto/manage-machines.md#manage-machines)
+
+In Juju, a **machine** is a [compute resource](https://canonical.com/juju/docs/juju-cli/latest/reference/resource-compute.md#resource-compute) from a machine [cloud](https://canonical.com/juju/docs/juju-cli/latest/reference/cloud.md#cloud): a bare cloud instance, or a LXD container on one, requested implicitly by a deploy or add-unit placement, or explicitly through the controller API.
+
+#### IMPORTANT
+A LXD container is named after its host machine: `0/lxd/5` is LXD container `5` on machine `0`. Containers appear under ‘Machines’ in status outputs.
+
+<a id="machine-declaration-rules"></a>
+
+## Machines in the declaration layer
+
+How cli
+---
+`lxd`: a new container on a new host; `lxd:25`: on machine 25.
+  - `0/lxd/4`: the existing container `4` on machine `0`.
+  - An empty designation: a new machine.
+  - `lxd` or `lxd:25` with `virt-type=virtual-machine`: a VM instead of a container.
+  - `3,0/lxd/2,lxd:5`: machine 3, container 2 on machine 0, and a new container on machine 5.
+  - Machine clouds only; rejected on Kubernetes models.
+  - *Rule:* Machine numbers are `0` or positive integers without leading zeros.
+  - *Rule:* Containers nest one level deep (`0/lxd/4`, never `0/lxd/0/lxd/0`).
+  - *Related errors:*
+    - **`machine name "<name>" has too many containers`**: *Trigger:* A machine name with more than one container level. *Remediation:* Name the container directly under its host machine.
+    - **`invalid container type "<
+---
+Remediation:* Name the container directly under its host machine.
+    - **`invalid container type "<type>"`**: *Trigger:* A designation or a container constraint names a container type other than `lxd` (the only one 4.1 supports). *Remediation:* Use `lxd`.
+- **Base:** A machine’s **base** identifies its operating system image: the OS name, `@`, and the OS channel as `<track>` or `<track>/<risk>` (`ubuntu@22.04`, `ubuntu@22.04/stable`). A base replaces the older notion of a series.
+- **Machine constraints:** Constraints can be set directly on a machine, as well as on the model or an application.
+  - *Related errors:*
+    - **`invalid machine constraints`**: *Trigger:* The constraints name a container type or a space that does not exist. *Remediation:* Correct the container type or the space
+---
+[controller agent](https://canonical.com/juju/docs/juju-cli/latest/reference/agent.md#controller-agent) and every model worker.
+
+See also: [Terraform Provider for Juju | Manage machines](https://canonical.com/juju/docs/terraform-provider-juju/latest/howto/manage-machines/#manage-machines)
+
+<a id="the-machine-in-the-data-model"></a>
+
+<a id="machine-persistence-rules"></a>
+
+## Machines in the persistence layer
+
+In the [model database](https://canonical.com/juju/docs/juju-cli/latest/reference/database.md#database), a machine is a native record, distributed across a decoupled set of records.
+
+- **Primary entry:** The single record that anchors a machine: an internal system ID the other records point at, and the name the client types (the designation `0`, `1/lxd/0`), unique per model.
+  - *Rela
+
+### Q7. What does the machine designation `0/lxd/4` refer to?
+Retrieved documentation excerpts for this question:
+<a id="machine"></a>
+
+# Machine
+
+See also: [How to manage machines](https://canonical.com/juju/docs/juju-cli/latest/howto/manage-machines.md#manage-machines)
+
+In Juju, a **machine** is a [compute resource](https://canonical.com/juju/docs/juju-cli/latest/reference/resource-compute.md#resource-compute) from a machine [cloud](https://canonical.com/juju/docs/juju-cli/latest/reference/cloud.md#cloud): a bare cloud instance, or a LXD container on one, requested implicitly by a deploy or add-unit placement, or explicitly through the controller API.
+
+#### IMPORTANT
+A LXD container is named after its host machine: `0/lxd/5` is LXD container `5` on machine `0`. Containers appear under ‘Machines’ in status outputs.
+
+<a id="machine-declaration-rules"></a>
+
+## Machines in the declaration layer
+
+How cli
+---
+atus outputs.
+
+<a id="machine-declaration-rules"></a>
+
+## Machines in the declaration layer
+
+How clients express compute intent and submit targets to the controller API.
+
+- **Explicit creation:** API requests for machines, gated on model [write access](https://canonical.com/juju/docs/juju-cli/latest/reference/user.md#user-access-model-write).
+- **Implicit creation:** Most machines follow from deploy or add-unit placements. A machine usually hosts one unit, and placing several units of the same or of different applications on one machine saves resources.
+- **Target designations:** Comma-separated lists naming new or existing targets.
+  - `0`: an existing machine; `0,4`: machines 0 and 4.
+  - `lxd`: a new container on a new host; `lxd:25`: on machine 25.
+  - `0/lxd/4`: the existing container
+---
+`lxd`: a new container on a new host; `lxd:25`: on machine 25.
+  - `0/lxd/4`: the existing container `4` on machine `0`.
+  - An empty designation: a new machine.
+  - `lxd` or `lxd:25` with `virt-type=virtual-machine`: a VM instead of a container.
+  - `3,0/lxd/2,lxd:5`: machine 3, container 2 on machine 0, and a new container on machine 5.
+  - Machine clouds only; rejected on Kubernetes models.
+  - *Rule:* Machine numbers are `0` or positive integers without leading zeros.
+  - *Rule:* Containers nest one level deep (`0/lxd/4`, never `0/lxd/0/lxd/0`).
+  - *Related errors:*
+    - **`machine name "<name>" has too many containers`**: *Trigger:* A machine name with more than one container level. *Remediation:* Name the container directly under its host machine.
+    - **`invalid container type "<
+---
+ontainer type or a space that does not exist. *Remediation:* Correct the container type or the space.
+    - **`machine constraint violation`**: *Trigger:* The constraints are set on a machine whose recorded cloud instance has a different architecture from the one required; architecture is the only characteristic compared. *Remediation:* Require the architecture the machine has, or request a new machine.
+- **Special machine kinds:**
+  - **LXD container:** A machine linked to its host by a machine-parent record; provisioned by the host’s agent.
+  - **Manual machine:** Provisioned by the user over SSH; the records keep the manual flag.
+  - **Controller machine:** Derived, not stored; hosts the [controller agent](https://canonical.com/juju/docs/juju-cli/latest/reference/agent.md#controller-age
+
+### Q8. How many levels deep can containers be nested, and what happens if I go deeper?
+Retrieved documentation excerpts for this question:
+<a id="machine"></a>
+
+# Machine
+
+See also: [How to manage machines](https://canonical.com/juju/docs/juju-cli/latest/howto/manage-machines.md#manage-machines)
+
+In Juju, a **machine** is a [compute resource](https://canonical.com/juju/docs/juju-cli/latest/reference/resource-compute.md#resource-compute) from a machine [cloud](https://canonical.com/juju/docs/juju-cli/latest/reference/cloud.md#cloud): a bare cloud instance, or a LXD container on one, requested implicitly by a deploy or add-unit placement, or explicitly through the controller API.
+
+#### IMPORTANT
+A LXD container is named after its host machine: `0/lxd/5` is LXD container `5` on machine `0`. Containers appear under ‘Machines’ in status outputs.
+
+<a id="machine-declaration-rules"></a>
+
+## Machines in the declaration layer
+
+How cli
+---
+`lxd`: a new container on a new host; `lxd:25`: on machine 25.
+  - `0/lxd/4`: the existing container `4` on machine `0`.
+  - An empty designation: a new machine.
+  - `lxd` or `lxd:25` with `virt-type=virtual-machine`: a VM instead of a container.
+  - `3,0/lxd/2,lxd:5`: machine 3, container 2 on machine 0, and a new container on machine 5.
+  - Machine clouds only; rejected on Kubernetes models.
+  - *Rule:* Machine numbers are `0` or positive integers without leading zeros.
+  - *Rule:* Containers nest one level deep (`0/lxd/4`, never `0/lxd/0/lxd/0`).
+  - *Related errors:*
+    - **`machine name "<name>" has too many containers`**: *Trigger:* A machine name with more than one container level. *Remediation:* Name the container directly under its host machine.
+    - **`invalid container type "<
+---
+Remediation:* Name the container directly under its host machine.
+    - **`invalid container type "<type>"`**: *Trigger:* A designation or a container constraint names a container type other than `lxd` (the only one 4.1 supports). *Remediation:* Use `lxd`.
+- **Base:** A machine’s **base** identifies its operating system image: the OS name, `@`, and the OS channel as `<track>` or `<track>/<risk>` (`ubuntu@22.04`, `ubuntu@22.04/stable`). A base replaces the older notion of a series.
+- **Machine constraints:** Constraints can be set directly on a machine, as well as on the model or an application.
+  - *Related errors:*
+    - **`invalid machine constraints`**: *Trigger:* The constraints name a container type or a space that does not exist. *Remediation:* Correct the container type or the space
+---
+whose parent needs a reboot shuts down, a machine that needs a reboot itself reboots, and otherwise nothing happens.
+  - *Related error:*
+    - **`grandparent machine are not supported currently`**: *Trigger:* The lookup finds a machine whose parent itself has a parent. *Remediation:* None; name validation refuses containers nested deeper than one level, so the check guards a layout that Juju does not support.
+- **Statuses:** The machine agent reports its status (`pending`, `started`, `stopped`, `error`); the controller and the providers write the instance’s provisioning status (`allocating`, `running`, `provisioning error`).
+
+<a id="machine-watchers"></a>
+
+### Machine watchers
+
+The machine domain’s watchable service exposes real-time change streams rather than polling loops:
+
+- **Machine 
+
+### Q9. What drives the compute provisioner, i.e. what triggers it to provision machines?
+Retrieved documentation excerpts for this question:
+<a id="machine"></a>
+
+# Machine
+
+See also: [How to manage machines](https://canonical.com/juju/docs/juju-cli/latest/howto/manage-machines.md#manage-machines)
+
+In Juju, a **machine** is a [compute resource](https://canonical.com/juju/docs/juju-cli/latest/reference/resource-compute.md#resource-compute) from a machine [cloud](https://canonical.com/juju/docs/juju-cli/latest/reference/cloud.md#cloud): a bare cloud instance, or a LXD container on one, requested implicitly by a deploy or add-unit placement, or explicitly through the controller API.
+
+#### IMPORTANT
+A LXD container is named after its host machine: `0/lxd/5` is LXD container `5` on machine `0`. Containers appear under ‘Machines’ in status outputs.
+
+<a id="machine-declaration-rules"></a>
+
+## Machines in the declaration layer
+
+How cli
+---
+t>/lxd/<n>`).
+- **Cloud instance record:** Tracks the creation state, the hardware (arch, CPU, memory, root disk, virtualisation type) and the availability zone. Born with the machine; the instance ID stays empty until the cloud reports it.
+  - *Related errors:*
+    - **`machine not provisioned`**: *Trigger:* An action that needs the instance runs before the cloud has reported an instance ID. *Remediation:* Wait until the compute provisioner has recorded the instance.
+    - **`machine cloud instance already exists`**: *Trigger:* Recording an instance for a machine that already has one. *Remediation:* Check for a second provisioner acting on the same machine.
+- **Status records:** Two records.
+  - The agent’s health report: `pending`, `started`, `stopped`, `error`. `down` is never written, 
+---
+tance ID and addresses as they become known.
+- **Agent-side provisioning:** Host machine agents provision and manage local LXD containers through the LXD broker, watching them via the controller API.
+- **Manual provisioning:** The controller renders a setup script, executed externally over SSH, after which the host agent registers itself.
+- **Machine removal:** The controller marks the machine `dying`; the agent triggers shutdown once assigned units and storage clear; scheduled jobs purge the records; the machine’s keep-instance flag decides whether the cloud instance is released.
+  - *Rule:* A machine becomes `dead` only when it is `dying` and hosts no containers, units or storage.
+  - *Related errors:*
+    - **`entity still alive`**: *Trigger:* Marking a machine `dead` while its life is 
+---
+domain’s watchable service exposes real-time change streams rather than polling loops:
+
+- **Machine life and dependants:** Drives the local shutdown watcher.
+- **Container life:** Drives host-side container provisioning loops.
+- **Model machines:** Drives the compute provisioner.
+- **Instance states:** Drives the instance poller’s steady-state mirroring (life, start times, cloud instances) and the reboot machinery.
+
+Every watcher fires an initial baseline snapshot on creation, followed by notifications on qualifying changes. See [the watcher pattern](https://canonical.com/juju/docs/juju-cli/latest/reference/watcher.md#watchers).
+
+
+### Q10. I remove a machine that still hosts units. What happens, and which error might I see?
+Retrieved documentation excerpts for this question:
+tance ID and addresses as they become known.
+- **Agent-side provisioning:** Host machine agents provision and manage local LXD containers through the LXD broker, watching them via the controller API.
+- **Manual provisioning:** The controller renders a setup script, executed externally over SSH, after which the host agent registers itself.
+- **Machine removal:** The controller marks the machine `dying`; the agent triggers shutdown once assigned units and storage clear; scheduled jobs purge the records; the machine’s keep-instance flag decides whether the cloud instance is released.
+  - *Rule:* A machine becomes `dead` only when it is `dying` and hosts no containers, units or storage.
+  - *Related errors:*
+    - **`entity still alive`**: *Trigger:* Marking a machine `dead` while its life is 
+---
+ated errors:*
+    - **`entity still alive`**: *Trigger:* Marking a machine `dead` while its life is still `alive`. *Remediation:* Start the removal first, so the machine becomes `dying`.
+    - **`machine has containers`**, **`machine has units`**, **`machine has storage`**: *Trigger:* Marking a machine `dead` while it still hosts containers, units or storage. *Remediation:* Remove or move them first.
+- **Reprovisioning:** `juju reprovision-machine` declares a machine’s cloud instance lost and asks for a replacement. The controller checks eligibility first, then the liveness gates: the machine agent must be absent and the provider must report the instance missing or not running. One transaction then detaches the lost instance, gives the machine’s units new ordinals so the replacement unit a
+---
+on then detaches the lost instance, gives the machine’s units new ordinals so the replacement unit agents start with fresh identities, departs the units from their relation scopes while archiving their settings (so the remaining units see a consistent departure), resets the machine-scoped storage state, and returns the machine and its instance to `pending`; the compute provisioner then provisions the replacement.
+  - *Rule:* Only an `alive` machine that is not a container, a controller machine or a manually provisioned machine, hosts no containers, has no model-scoped storage attached, and has no reprovision request pending is eligible.
+  - *Related errors:*
+    - **`machine is not alive`**, **`machine is a container`**, **`machine is a controller machine`**, **`machine is manually provisi
+---
+whose parent needs a reboot shuts down, a machine that needs a reboot itself reboots, and otherwise nothing happens.
+  - *Related error:*
+    - **`grandparent machine are not supported currently`**: *Trigger:* The lookup finds a machine whose parent itself has a parent. *Remediation:* None; name validation refuses containers nested deeper than one level, so the check guards a layout that Juju does not support.
+- **Statuses:** The machine agent reports its status (`pending`, `started`, `stopped`, `error`); the controller and the providers write the instance’s provisioning status (`allocating`, `running`, `provisioning error`).
+
+<a id="machine-watchers"></a>
+
+### Machine watchers
+
+The machine domain’s watchable service exposes real-time change streams rather than polling loops:
+
+- **Machine 
+
+### Q11. What does the error `grandparent machine are not supported currently` mean?
+Retrieved documentation excerpts for this question:
+ontainer type or a space that does not exist. *Remediation:* Correct the container type or the space.
+    - **`machine constraint violation`**: *Trigger:* The constraints are set on a machine whose recorded cloud instance has a different architecture from the one required; architecture is the only characteristic compared. *Remediation:* Require the architecture the machine has, or request a new machine.
+- **Special machine kinds:**
+  - **LXD container:** A machine linked to its host by a machine-parent record; provisioned by the host’s agent.
+  - **Manual machine:** Provisioned by the user over SSH; the records keep the manual flag.
+  - **Controller machine:** Derived, not stored; hosts the [controller agent](https://canonical.com/juju/docs/juju-cli/latest/reference/agent.md#controller-age
+---
+oint at, and the name the client types (the designation `0`, `1/lxd/0`), unique per model.
+  - *Related errors:*
+    - **`machine not found`**: *Trigger:* A lookup by machine UUID or name that matches no machine. *Remediation:* Check the model’s machines.
+    - **`machine already exists`**: *Trigger:* A model migration imports a machine whose name the target model already holds. *Remediation:* Migrate into a model that has no machine of that name.
+- **Network identity:** A pointer naming the shared net node; a machine and all units running on it anchor to the same node.
+- **Life:** `alive`, `dying` or `dead`, plus a flag saying whether the cloud instance survives teardown.
+  - *Related error:*
+    - **`machine is dead`**: *Trigger:* An operation on a machine whose life is `dead`. *Remediat
+---
+:*
+    - **`machine is dead`**: *Trigger:* An operation on a machine whose life is `dead`. *Remediation:* None; the machine’s lifecycle has ended.
+- **Base:** The OS channel plus architecture. A satellite record flags manually provisioned machines; containers carry their container type.
+- **Constraints:** A pointer into the [constraint](https://canonical.com/juju/docs/juju-cli/latest/reference/constraint.md#constraint) record.
+- **Parent record (containers only):** Holds two pointers, the child and its host.
+  - *Related error:*
+    - **`machine has no parent`**: *Trigger:* Asking for the parent of a machine that is not a container. *Remediation:* Check that the machine is a container (`<host>/lxd/<n>`).
+- **Cloud instance record:** Tracks the creation state, the hardware (arch, CPU, memor
+---
+whose parent needs a reboot shuts down, a machine that needs a reboot itself reboots, and otherwise nothing happens.
+  - *Related error:*
+    - **`grandparent machine are not supported currently`**: *Trigger:* The lookup finds a machine whose parent itself has a parent. *Remediation:* None; name validation refuses containers nested deeper than one level, so the check guards a layout that Juju does not support.
+- **Statuses:** The machine agent reports its status (`pending`, `started`, `stopped`, `error`); the controller and the providers write the instance’s provisioning status (`allocating`, `running`, `provisioning error`).
+
+<a id="machine-watchers"></a>
+
+### Machine watchers
+
+The machine domain’s watchable service exposes real-time change streams rather than polling loops:
+
+- **Machine 
+
+### Q12. Which record holds a machine's hardware details (CPU, memory, root disk), and what else does it hold?
+Retrieved documentation excerpts for this question:
+:*
+    - **`machine is dead`**: *Trigger:* An operation on a machine whose life is `dead`. *Remediation:* None; the machine’s lifecycle has ended.
+- **Base:** The OS channel plus architecture. A satellite record flags manually provisioned machines; containers carry their container type.
+- **Constraints:** A pointer into the [constraint](https://canonical.com/juju/docs/juju-cli/latest/reference/constraint.md#constraint) record.
+- **Parent record (containers only):** Holds two pointers, the child and its host.
+  - *Related error:*
+    - **`machine has no parent`**: *Trigger:* Asking for the parent of a machine that is not a container. *Remediation:* Check that the machine is a container (`<host>/lxd/<n>`).
+- **Cloud instance record:** Tracks the creation state, the hardware (arch, CPU, memor
+---
+t>/lxd/<n>`).
+- **Cloud instance record:** Tracks the creation state, the hardware (arch, CPU, memory, root disk, virtualisation type) and the availability zone. Born with the machine; the instance ID stays empty until the cloud reports it.
+  - *Related errors:*
+    - **`machine not provisioned`**: *Trigger:* An action that needs the instance runs before the cloud has reported an instance ID. *Remediation:* Wait until the compute provisioner has recorded the instance.
+    - **`machine cloud instance already exists`**: *Trigger:* Recording an instance for a machine that already has one. *Remediation:* Check for a second provisioner acting on the same machine.
+- **Status records:** Two records.
+  - The agent’s health report: `pending`, `started`, `stopped`, `error`. `down` is never written, 
+---
+.
+  - The agent’s health report: `pending`, `started`, `stopped`, `error`. `down` is never written, only read when the agent has not been seen recently.
+  - The provisioning lifecycle, written by the controller and by the provider or container broker: `pending`, `allocating`, `running`, `provisioning error`, `unknown`. `provisioning error` is a status value: cloud and container providers record it when allocation fails.
+- **Derived attributes:** Machine kinds are derived rather than stored; the schema’s own views classify a machine (controller, container, manually provisioned) from the records around it.
+
+**Writers:** The machine service inserts the records (`AddMachine`, `SetMachineCloudInstance`); the removal service carries out the teardown.
+
+<a id="the-machines-machinery"></a>
+
+<a id="
+---
+tance ID and addresses as they become known.
+- **Agent-side provisioning:** Host machine agents provision and manage local LXD containers through the LXD broker, watching them via the controller API.
+- **Manual provisioning:** The controller renders a setup script, executed externally over SSH, after which the host agent registers itself.
+- **Machine removal:** The controller marks the machine `dying`; the agent triggers shutdown once assigned units and storage clear; scheduled jobs purge the records; the machine’s keep-instance flag decides whether the cloud instance is released.
+  - *Rule:* A machine becomes `dead` only when it is `dying` and hosts no containers, units or storage.
+  - *Related errors:*
+    - **`entity still alive`**: *Trigger:* Marking a machine `dead` while its life is 
+
+### Q13. Who writes a machine's status?
+Retrieved documentation excerpts for this question:
+<a id="machine"></a>
+
+# Machine
+
+See also: [How to manage machines](https://canonical.com/juju/docs/juju-cli/latest/howto/manage-machines.md#manage-machines)
+
+In Juju, a **machine** is a [compute resource](https://canonical.com/juju/docs/juju-cli/latest/reference/resource-compute.md#resource-compute) from a machine [cloud](https://canonical.com/juju/docs/juju-cli/latest/reference/cloud.md#cloud): a bare cloud instance, or a LXD container on one, requested implicitly by a deploy or add-unit placement, or explicitly through the controller API.
+
+#### IMPORTANT
+A LXD container is named after its host machine: `0/lxd/5` is LXD container `5` on machine `0`. Containers appear under ‘Machines’ in status outputs.
+
+<a id="machine-declaration-rules"></a>
+
+## Machines in the declaration layer
+
+How cli
+---
+.
+  - The agent’s health report: `pending`, `started`, `stopped`, `error`. `down` is never written, only read when the agent has not been seen recently.
+  - The provisioning lifecycle, written by the controller and by the provider or container broker: `pending`, `allocating`, `running`, `provisioning error`, `unknown`. `provisioning error` is a status value: cloud and container providers record it when allocation fails.
+- **Derived attributes:** Machine kinds are derived rather than stored; the schema’s own views classify a machine (controller, container, manually provisioned) from the records around it.
+
+**Writers:** The machine service inserts the records (`AddMachine`, `SetMachineCloudInstance`); the removal service carries out the teardown.
+
+<a id="the-machines-machinery"></a>
+
+<a id="
+---
+tance`); the removal service carries out the teardown.
+
+<a id="the-machines-machinery"></a>
+
+<a id="machine-execution-rules"></a>
+
+## Machines in the execution layer
+
+Runtime operations are split between the controller and the individual host machine. The controller orchestrates provisioning through background workers, while the local machine agent, a [Juju agent](https://canonical.com/juju/docs/juju-cli/latest/reference/agent.md#agent), manages internal lifecycle and workload placement.
+
+<a id="machines-and-units"></a>
+
+### Machine operations and status
+
+- **Controller-side provisioning:** The compute provisioner monitors unprovisioned machines, requests cloud instances, and records the instance ID and addresses as they become known.
+- **Agent-side provisioning:** Host machine agents prov
+---
+whose parent needs a reboot shuts down, a machine that needs a reboot itself reboots, and otherwise nothing happens.
+  - *Related error:*
+    - **`grandparent machine are not supported currently`**: *Trigger:* The lookup finds a machine whose parent itself has a parent. *Remediation:* None; name validation refuses containers nested deeper than one level, so the check guards a layout that Juju does not support.
+- **Statuses:** The machine agent reports its status (`pending`, `started`, `stopped`, `error`); the controller and the providers write the instance’s provisioning status (`allocating`, `running`, `provisioning error`).
+
+<a id="machine-watchers"></a>
+
+### Machine watchers
+
+The machine domain’s watchable service exposes real-time change streams rather than polling loops:
+
+- **Machine 
+
+### Q14. What happens to relation settings of the units on a machine that is reprovisioned?
+Retrieved documentation excerpts for this question:
+atus outputs.
+
+<a id="machine-declaration-rules"></a>
+
+## Machines in the declaration layer
+
+How clients express compute intent and submit targets to the controller API.
+
+- **Explicit creation:** API requests for machines, gated on model [write access](https://canonical.com/juju/docs/juju-cli/latest/reference/user.md#user-access-model-write).
+- **Implicit creation:** Most machines follow from deploy or add-unit placements. A machine usually hosts one unit, and placing several units of the same or of different applications on one machine saves resources.
+- **Target designations:** Comma-separated lists naming new or existing targets.
+  - `0`: an existing machine; `0,4`: machines 0 and 4.
+  - `lxd`: a new container on a new host; `lxd:25`: on machine 25.
+  - `0/lxd/4`: the existing container
+---
+oint at, and the name the client types (the designation `0`, `1/lxd/0`), unique per model.
+  - *Related errors:*
+    - **`machine not found`**: *Trigger:* A lookup by machine UUID or name that matches no machine. *Remediation:* Check the model’s machines.
+    - **`machine already exists`**: *Trigger:* A model migration imports a machine whose name the target model already holds. *Remediation:* Migrate into a model that has no machine of that name.
+- **Network identity:** A pointer naming the shared net node; a machine and all units running on it anchor to the same node.
+- **Life:** `alive`, `dying` or `dead`, plus a flag saying whether the cloud instance survives teardown.
+  - *Related error:*
+    - **`machine is dead`**: *Trigger:* An operation on a machine whose life is `dead`. *Remediat
+---
+on then detaches the lost instance, gives the machine’s units new ordinals so the replacement unit agents start with fresh identities, departs the units from their relation scopes while archiving their settings (so the remaining units see a consistent departure), resets the machine-scoped storage state, and returns the machine and its instance to `pending`; the compute provisioner then provisions the replacement.
+  - *Rule:* Only an `alive` machine that is not a container, a controller machine or a manually provisioned machine, hosts no containers, has no model-scoped storage attached, and has no reprovision request pending is eligible.
+  - *Related errors:*
+    - **`machine is not alive`**, **`machine is a container`**, **`machine is a controller machine`**, **`machine is manually provisi
+---
+ **`machine is a container`**, **`machine is a controller machine`**, **`machine is manually provisioned`**, **`machine hosts child containers`**: *Trigger:* The machine is `dying` or `dead`, or is of a kind that cannot be reprovisioned, or hosts containers. *Remediation:* Reprovision only an `alive` machine that is a plain, provider-provisioned host.
+    - **`model-scoped storage attached to machine`**, **`storage scope is ambiguous`**, **`machine storage is not alive`**: *Trigger:* The machine’s attached storage cannot be reset safely. *Remediation:* Detach or remove the storage first.
+    - **`reprovision request already exists`**: *Trigger:* A reprovision request is already pending for the machine. *Remediation:* Wait for the pending request to complete.
+    - **`machine agent is still
+
+### Q15. Which parts of Juju, besides the machine code, read a machine's cloud instance record?
+Retrieved documentation excerpts for this question:
+ontainer type or a space that does not exist. *Remediation:* Correct the container type or the space.
+    - **`machine constraint violation`**: *Trigger:* The constraints are set on a machine whose recorded cloud instance has a different architecture from the one required; architecture is the only characteristic compared. *Remediation:* Require the architecture the machine has, or request a new machine.
+- **Special machine kinds:**
+  - **LXD container:** A machine linked to its host by a machine-parent record; provisioned by the host’s agent.
+  - **Manual machine:** Provisioned by the user over SSH; the records keep the manual flag.
+  - **Controller machine:** Derived, not stored; hosts the [controller agent](https://canonical.com/juju/docs/juju-cli/latest/reference/agent.md#controller-age
+---
+[controller agent](https://canonical.com/juju/docs/juju-cli/latest/reference/agent.md#controller-agent) and every model worker.
+
+See also: [Terraform Provider for Juju | Manage machines](https://canonical.com/juju/docs/terraform-provider-juju/latest/howto/manage-machines/#manage-machines)
+
+<a id="the-machine-in-the-data-model"></a>
+
+<a id="machine-persistence-rules"></a>
+
+## Machines in the persistence layer
+
+In the [model database](https://canonical.com/juju/docs/juju-cli/latest/reference/database.md#database), a machine is a native record, distributed across a decoupled set of records.
+
+- **Primary entry:** The single record that anchors a machine: an internal system ID the other records point at, and the name the client types (the designation `0`, `1/lxd/0`), unique per model.
+  - *Rela
+---
+:*
+    - **`machine is dead`**: *Trigger:* An operation on a machine whose life is `dead`. *Remediation:* None; the machine’s lifecycle has ended.
+- **Base:** The OS channel plus architecture. A satellite record flags manually provisioned machines; containers carry their container type.
+- **Constraints:** A pointer into the [constraint](https://canonical.com/juju/docs/juju-cli/latest/reference/constraint.md#constraint) record.
+- **Parent record (containers only):** Holds two pointers, the child and its host.
+  - *Related error:*
+    - **`machine has no parent`**: *Trigger:* Asking for the parent of a machine that is not a container. *Remediation:* Check that the machine is a container (`<host>/lxd/<n>`).
+- **Cloud instance record:** Tracks the creation state, the hardware (arch, CPU, memor
+---
+.
+  - The agent’s health report: `pending`, `started`, `stopped`, `error`. `down` is never written, only read when the agent has not been seen recently.
+  - The provisioning lifecycle, written by the controller and by the provider or container broker: `pending`, `allocating`, `running`, `provisioning error`, `unknown`. `provisioning error` is a status value: cloud and container providers record it when allocation fails.
+- **Derived attributes:** Machine kinds are derived rather than stored; the schema’s own views classify a machine (controller, container, manually provisioned) from the records around it.
+
+**Writers:** The machine service inserts the records (`AddMachine`, `SetMachineCloudInstance`); the removal service carries out the teardown.
+
+<a id="the-machines-machinery"></a>
+
+<a id="
+
+### Q16. How many containers can a single host machine run?
+Retrieved documentation excerpts for this question:
+<a id="machine"></a>
+
+# Machine
+
+See also: [How to manage machines](https://canonical.com/juju/docs/juju-cli/latest/howto/manage-machines.md#manage-machines)
+
+In Juju, a **machine** is a [compute resource](https://canonical.com/juju/docs/juju-cli/latest/reference/resource-compute.md#resource-compute) from a machine [cloud](https://canonical.com/juju/docs/juju-cli/latest/reference/cloud.md#cloud): a bare cloud instance, or a LXD container on one, requested implicitly by a deploy or add-unit placement, or explicitly through the controller API.
+
+#### IMPORTANT
+A LXD container is named after its host machine: `0/lxd/5` is LXD container `5` on machine `0`. Containers appear under ‘Machines’ in status outputs.
+
+<a id="machine-declaration-rules"></a>
+
+## Machines in the declaration layer
+
+How cli
+---
+`lxd`: a new container on a new host; `lxd:25`: on machine 25.
+  - `0/lxd/4`: the existing container `4` on machine `0`.
+  - An empty designation: a new machine.
+  - `lxd` or `lxd:25` with `virt-type=virtual-machine`: a VM instead of a container.
+  - `3,0/lxd/2,lxd:5`: machine 3, container 2 on machine 0, and a new container on machine 5.
+  - Machine clouds only; rejected on Kubernetes models.
+  - *Rule:* Machine numbers are `0` or positive integers without leading zeros.
+  - *Rule:* Containers nest one level deep (`0/lxd/4`, never `0/lxd/0/lxd/0`).
+  - *Related errors:*
+    - **`machine name "<name>" has too many containers`**: *Trigger:* A machine name with more than one container level. *Remediation:* Name the container directly under its host machine.
+    - **`invalid container type "<
+---
+Remediation:* Name the container directly under its host machine.
+    - **`invalid container type "<type>"`**: *Trigger:* A designation or a container constraint names a container type other than `lxd` (the only one 4.1 supports). *Remediation:* Use `lxd`.
+- **Base:** A machine’s **base** identifies its operating system image: the OS name, `@`, and the OS channel as `<track>` or `<track>/<risk>` (`ubuntu@22.04`, `ubuntu@22.04/stable`). A base replaces the older notion of a series.
+- **Machine constraints:** Constraints can be set directly on a machine, as well as on the model or an application.
+  - *Related errors:*
+    - **`invalid machine constraints`**: *Trigger:* The constraints name a container type or a space that does not exist. *Remediation:* Correct the container type or the space
+---
+:*
+    - **`machine is dead`**: *Trigger:* An operation on a machine whose life is `dead`. *Remediation:* None; the machine’s lifecycle has ended.
+- **Base:** The OS channel plus architecture. A satellite record flags manually provisioned machines; containers carry their container type.
+- **Constraints:** A pointer into the [constraint](https://canonical.com/juju/docs/juju-cli/latest/reference/constraint.md#constraint) record.
+- **Parent record (containers only):** Holds two pointers, the child and its host.
+  - *Related error:*
+    - **`machine has no parent`**: *Trigger:* Asking for the parent of a machine that is not a container. *Remediation:* Check that the machine is a container (`<host>/lxd/<n>`).
+- **Cloud instance record:** Tracks the creation state, the hardware (arch, CPU, memor
+
+### Q17. Does the reprovision request accept a force option to skip the liveness checks?
+Retrieved documentation excerpts for this question:
+ontainer type or a space that does not exist. *Remediation:* Correct the container type or the space.
+    - **`machine constraint violation`**: *Trigger:* The constraints are set on a machine whose recorded cloud instance has a different architecture from the one required; architecture is the only characteristic compared. *Remediation:* Require the architecture the machine has, or request a new machine.
+- **Special machine kinds:**
+  - **LXD container:** A machine linked to its host by a machine-parent record; provisioned by the host’s agent.
+  - **Manual machine:** Provisioned by the user over SSH; the records keep the manual flag.
+  - **Controller machine:** Derived, not stored; hosts the [controller agent](https://canonical.com/juju/docs/juju-cli/latest/reference/agent.md#controller-age
+---
+ated errors:*
+    - **`entity still alive`**: *Trigger:* Marking a machine `dead` while its life is still `alive`. *Remediation:* Start the removal first, so the machine becomes `dying`.
+    - **`machine has containers`**, **`machine has units`**, **`machine has storage`**: *Trigger:* Marking a machine `dead` while it still hosts containers, units or storage. *Remediation:* Remove or move them first.
+- **Reprovisioning:** `juju reprovision-machine` declares a machine’s cloud instance lost and asks for a replacement. The controller checks eligibility first, then the liveness gates: the machine agent must be absent and the provider must report the instance missing or not running. One transaction then detaches the lost instance, gives the machine’s units new ordinals so the replacement unit a
+---
+on then detaches the lost instance, gives the machine’s units new ordinals so the replacement unit agents start with fresh identities, departs the units from their relation scopes while archiving their settings (so the remaining units see a consistent departure), resets the machine-scoped storage state, and returns the machine and its instance to `pending`; the compute provisioner then provisions the replacement.
+  - *Rule:* Only an `alive` machine that is not a container, a controller machine or a manually provisioned machine, hosts no containers, has no model-scoped storage attached, and has no reprovision request pending is eligible.
+  - *Related errors:*
+    - **`machine is not alive`**, **`machine is a container`**, **`machine is a controller machine`**, **`machine is manually provisi
+---
+ **`machine is a container`**, **`machine is a controller machine`**, **`machine is manually provisioned`**, **`machine hosts child containers`**: *Trigger:* The machine is `dying` or `dead`, or is of a kind that cannot be reprovisioned, or hosts containers. *Remediation:* Reprovision only an `alive` machine that is a plain, provider-provisioned host.
+    - **`model-scoped storage attached to machine`**, **`storage scope is ambiguous`**, **`machine storage is not alive`**: *Trigger:* The machine’s attached storage cannot be reset safely. *Remediation:* Detach or remove the storage first.
+    - **`reprovision request already exists`**: *Trigger:* A reprovision request is already pending for the machine. *Remediation:* Wait for the pending request to complete.
+    - **`machine agent is still

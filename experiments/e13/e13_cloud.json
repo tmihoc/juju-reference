@@ -1,0 +1,50 @@
+[
+ {
+  "id": 1,
+  "claim": "To Juju, a cloud (or backing cloud) is any entity that has an API that can provide compute, networking, and optionally storage resources in order for application units to be deployed on them."
+ },
+ {
+  "id": 2,
+  "claim": "This includes public clouds such as Amazon Web Services, Google Compute Engine, Microsoft Azure and Kubernetes as well as private OpenStack-based clouds."
+ },
+ {
+  "id": 3,
+  "claim": "Juju can also make use of environments which are not clouds per se, but which Juju can nonetheless treat as a cloud."
+ },
+ {
+  "id": 4,
+  "claim": "MAAS and LXD fit into this last category."
+ },
+ {
+  "id": 5,
+  "claim": "Because of this, in Juju a cloud is sometimes also called, more generally, a substrate."
+ },
+ {
+  "id": 6,
+  "claim": "Juju supports two types of cloud: machine clouds and Kubernetes clouds."
+ },
+ {
+  "id": 7,
+  "claim": "A machine cloud is a cloud that provides machine-level infrastructure."
+ },
+ {
+  "id": 8,
+  "claim": "Juju uses the cloud API to provision or allocate machines (bare metal, virtual machines, or system containers), plus the networking and storage resources those machines require."
+ },
+ {
+  "id": 9,
+  "claim": "A Kubernetes cloud is a cloud backed by an existing Kubernetes cluster."
+ },
+ {
+  "id": 10,
+  "claim": "Juju uses the Kubernetes API to deploy and manage applications in that cluster, rather than provisioning machine-level infrastructure directly."
+ },
+ {
+  "id": 11,
+  "claim": "The structure of a cloud definition and its supported authentication types and configuration keys depend on the specific cloud."
+ },
+ {
+  "id": 12,
+  "claim": "See the relevant cloud reference page for details."
+ }
+]

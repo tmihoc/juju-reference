@@ -1,0 +1,290 @@
+[
+ {
+  "id": 1,
+  "text": "Life (a column of `machine`): `alive`, `dying` or `dead`. The cloud instance record has a life of its own, which gates deleting the machine."
+ },
+ {
+  "id": 2,
+  "text": "line, and the `<reason>` is one of the messages in the table below. The Stage"
+ },
+ {
+  "id": 3,
+  "text": "the four kinds of object the grants hang off, and the"
+ },
+ {
+  "id": 4,
+  "text": "The access domain exposes no change streams: user and permission changes are read on demand (the same statement the user reference makes; see user watchers)."
+ },
+ {
+  "id": 5,
+  "text": "Removal (`removal`): Runs the scheduled removal jobs that delete the records of removed entities (see model removal)."
+ },
+ {
+  "id": 6,
+  "text": "The controller model is the one model that runs Juju itself. The controller knows its users, clouds and credentials as a whole, while each model's applications, machines and units are stored with that model."
+ },
+ {
+  "id": 7,
+  "text": "Rule: A machine has at most one pending reprovision request."
+ },
+ {
+  "id": 8,
+  "text": "Every watcher fires an initial baseline snapshot on creation, followed by notifications on qualifying changes. See the watcher pattern."
+ },
+ {
+  "id": 9,
+  "text": "A model is created on a controller.  Both the model and the controller are associated with a cloud (and a cloud credential), though they do not both have to be on the same cloud (this is a scenario where you have a 'multicloud controller'). Any entities added to the model will use resources from that cloud."
+ },
+ {
+  "id": 10,
+  "text": "Juju does not poll for changes to models. Its services publish change streams over the model records, and the workers that act on models subscribe to them."
+ },
+ {
+  "id": 11,
+  "text": "Machine life and dependants: Changes to the machine's life, to the life of its units, and to the removal of the storage the machine provisioned."
+ },
+ {
+  "id": 12,
+  "text": "messages are listed on the user and credential pages (`user not found`,"
+ },
+ {
+  "id": 13,
+  "text": "Undertaker (`undertaker`): Tears down dying models."
+ },
+ {
+  "id": 14,
+  "text": "Model's own records: The model database also carries the model's own records: its configuration, its constraints, its storage pools and the target agent version (the agent version the model's machines should run and the latest one known; see upgrading your deployment)."
+ },
+ {
+  "id": 15,
+  "text": "Reprovision request (`machine_reprovision`): Exists while a reprovision request is pending: the machine's name and the time of the request."
+ },
+ {
+  "id": 16,
+  "text": "Migration (`migration-master`): Drives the model's migration to another controller when the model is the source (see model migration)."
+ },
+ {
+  "id": 17,
+  "text": "`controllers.yaml`: the controllers it has bootstrapped or logged in to."
+ },
+ {
+  "id": 18,
+  "text": "Superuser access: Changing the controller's configuration or destroying it."
+ },
+ {
+  "id": 19,
+  "text": "Configuration (`controller_config`): A key/value set of controller-wide settings. Reading it returns the stored keys together with values that Juju computes from the controller record. Provisioning, key updating and model migration also read it."
+ },
+ {
+  "id": 20,
+  "text": "Its neighbours: the users whose names the grants carry,"
+ },
+ {
+  "id": 21,
+  "text": "Juju does not poll for changes to the controller. Its services publish change streams over the controller records, and the controller's own workers and the agents that need to know subscribe to them."
+ },
+ {
+  "id": 22,
+  "text": "Every watcher fires once immediately when it is created, the initial query being the baseline snapshot, and again on each qualifying change. See the watcher pattern."
+ },
+ {
+  "id": 23,
+  "text": "Replacement: In one transaction, the controller detaches the lost instance; gives the machine's units new ordinals, so the replacement unit agents start with fresh identities; departs the units from their relation scopes and archives their settings, so the remaining units see a consistent departure; resets the machine-scoped storage state; and returns the machine and its instance to `pending`. The compute provisioner then provisions the replacement instance."
+ },
+ {
+  "id": 24,
+  "text": "Rule: A user cannot change their own cloud access."
+ },
+ {
+  "id": 25,
+  "text": "A machine can outlive its cloud instance. Reprovisioning replaces an instance that is lost and keeps the machine itself. A client asks the controller for it (for example, with `juju reprovision-machine`), and the controller works in three stages."
+ },
+ {
+  "id": 26,
+  "text": "In Juju, access is the authority a user holds to act on"
+ },
+ {
+  "id": 27,
+  "text": "Rule: The last model admin cannot be removed."
+ },
+ {
+  "id": 28,
+  "text": "Constraint (`machine_constraint`): Points the machine at its constraint record."
+ },
+ {
+  "id": 29,
+  "text": "A model has records in two places. The controller database holds the model's identity and its life, and the model's own database holds a copy of that identity with everything the model contains."
+ },
+ {
+  "id": 30,
+  "text": "SSH server and tunneler (`ssh-server` and `ssh-tunneler`): Serve the controller's SSH connections and create reverse SSH tunnels to machines."
+ },
+ {
+  "id": 31,
+  "text": "Marking dead: The machiner of the machine agent learns of it through the machine-life and dependants change stream, reports the machine `stopped` and asks the controller to mark it `dead`. The controller refuses until the machine hosts no containers, units or storage, and the machiner asks again whenever one of them goes."
+ },
+ {
+  "id": 32,
+  "text": "Model machines: Machines added to or removed from the model."
+ },
+ {
+  "id": 33,
+  "text": "A controller does the work for each model with a set of model workers, which it starts when the model is activated."
+ },
+ {
+  "id": 34,
+  "text": "Model registry (`model` and `model_namespace`): One record per model the controller serves, kept as described in the model data model. The controller record points at the controller model. Juju works out the controller model, the controller cloud and the controller machine from the records around them instead of flagging them."
+ },
+ {
+  "id": 35,
+  "text": "Permission record: One record per grant, carrying its UUID, the access level and the object kind (stored as records of their own vocabularies), the object's name or UUID, and the granted user's UUID. The natural key is the pair of object and user: a unique index allows exactly one permission per user per object."
+ },
+ {
+  "id": 36,
+  "text": "Every machine operation splits the same way. The model's workers, which run in the controller, act from the cloud's side: they provision the instance and, at the end, delete the records. The machine agent acts from the machine's side: it reports health, runs the units and marks the machine `dead`."
+ },
+ {
+  "id": 37,
+  "text": "Controller configuration: Changes to the controller config record and the controller record."
+ },
+ {
+  "id": 38,
+  "text": "Rule: The log transfer checkpoints its progress in the migrated model's database. An interrupted transfer resumes from the last checkpoint and may replay records after it, so duplicates are possible and no log is missed."
+ },
+ {
+  "id": 39,
+  "text": "Destroying a controller needs superuser access. The cloud the controller was bootstrapped on cannot be removed while the controller stands (see cloud)."
+ },
+ {
+  "id": 40,
+  "text": "In Juju, the controller is the control plane: the running system that implements every change a user asks for."
+ },
+ {
+  "id": 41,
+  "text": "Model migration deletions: Models deleted by a migration's reap"
+ },
+ {
+  "id": 42,
+  "text": "Cross-model relations (`remote-relation-consumer`): Manages the relations, and their settings, where one end is a remote application."
+ },
+ {
+  "id": 43,
+  "text": "Views: Database views resolve each record's identifiers into their type names, one view per object kind and one more for the special `everyone@external` user, whose grants act like a group: any external user inherits a level from `everyone@external` whenever the external user's own is lower."
+ },
+ {
+  "id": 44,
+  "text": "The controller configuration is the controller's key/value record, read and written through the controller config service and watched for changes by the controller's own workers, which subscribe to the controller-configuration change stream. Changing it needs superuser access. See the list of controller configuration keys."
+ },
+ {
+  "id": 45,
+  "text": "Model worker manager (`model-worker-manager`): Subscribes to the activated models change stream. Starts an engine of model workers for every activated model."
+ },
+ {
+  "id": 46,
+  "text": "Of the subscribers, the one closest to the machine is its own agent. The machine agent is the program that runs on a machine: a jujuagentd process that `systemd` keeps running. It connects to the controller's API server as the machine, with the password whose hash the machine's primary record holds, and its workers act on the machine's records and on the machine itself. On a controller machine it is also the controller agent, and the controller-only workers run beside the ones below."
+ },
+ {
+  "id": 47,
+  "text": "In Juju, a machine is a compute resource from a machine cloud: a bare cloud instance, or a LXD container on one, requested implicitly by a deploy or add-unit placement, or explicitly through the controller API."
+ },
+ {
+  "id": 48,
+  "text": "Containers (`broker-tracker` and `lxd-container-provisioner`): Subscribe to the container life change stream. Provision and remove the LXD containers placed on this machine (see machine provisioning)."
+ },
+ {
+  "id": 49,
+  "text": "The controller agent is the program that runs the controller: a jujuagentd process, one for each node of the controller. On machine clouds it is the machine agent of a controller machine, and on Kubernetes it is the agent of the controller container, which has an identity of its own (`controller-<n>`). It hosts the database that holds the controller's records and publishes the change streams over them, and a controller flag switches on the workers that only the controller needs:"
+ },
+ {
+  "id": 50,
+  "text": "Every gated API call a client makes carries a permission check against the permission records. Nothing else enforces access, and the checks run on demand."
+ },
+ {
+  "id": 51,
+  "text": "Nothing polls the machine records. Each change to them is published on a change stream, and the workers and agents that act on machines subscribe."
+ },
+ {
+  "id": 52,
+  "text": "One can deploy multiple applications to the same model. Thus, models allow the logical grouping of applications and infrastructure that work together to deliver a service or product.  Moreover, one can apply common configurations to a whole model. As such, models allow the low-level storage, compute, network and software components to be reasoned about as a single entity as well."
+ },
+ {
+  "id": 53,
+  "text": "A controller's state is stored in two places: first on the machine where you run the Juju client, and then in the controller's own database. The client machine keeps a small set of files that record the controllers, accounts, models, clouds and credentials the client knows about, so that the client can reach a controller once it exists. The controller database holds the controller itself, the models it serves, its high-availability nodes and its configuration."
+ },
+ {
+  "id": 54,
+  "text": "A client reads access where it reads users: `juju show-user` reports a user's access levels, and `juju users` lists the users of a model with theirs. Both are plain reads of the permission records through the user manager facade: nothing is enqueued and nothing waits."
+ },
+ {
+  "id": 55,
+  "text": "Bootstrap turns an empty cloud into a running control plane, in two halves: the client's, then the controller's (for example, with `juju bootstrap`)."
+ },
+ {
+  "id": 56,
+  "text": "A model is created by a user, and owned in perpetuity by that user (or a new user with the same name), though it may also be used by any other user with model access level, within the limits of their level."
+ },
+ {
+  "id": 57,
+  "text": "Kubernetes provisioning (`caas-application-provisioner`, `caas-firewaller`, `caas-model-config-manager`, `caas-model-operator`): On Kubernetes models, create, manage and destroy the Kubernetes resources of each application to match its requested state, and deploy the model operator."
+ },
+ {
+  "id": 58,
+  "text": "Controller-model flag (a column of `model`): A role, not a type. It marks the model that runs Juju itself."
+ },
+ {
+  "id": 59,
+  "text": "From then on the controller creates and manages models. Each model is on one cloud, and the controller requests the model's resources from that cloud. The cloud can be the controller's own or another one, but it has to be a cloud the controller knows, with a credential where the cloud needs one. So a single controller can manage models on several clouds, and one cloud can host many models."
+ },
+ {
+  "id": 60,
+  "text": "A LXD container is named after its host machine: `0/lxd/5` is LXD container `5` on machine `0`. Containers appear under 'Machines' in status outputs."
+ },
+ {
+  "id": 61,
+  "text": "The API addresses: Changes to the addresses the controller's nodes serve on."
+ },
+ {
+  "id": 62,
+  "text": "A machine belongs to one model and hosts the units of one or more applications, usually one. A container machine runs inside a host machine, and a host can run many containers. A machine's cloud instance sits on the model's cloud. A machine outlives the request that created it, so Juju keeps its state in records and acts on the records."
+ },
+ {
+  "id": 63,
+  "text": "Controller record (`model` in the controller database): The authoritative record lives in the controller database, identified by its natural key, the model's name plus the user that qualifies it (the qualifier, which disambiguates same-named models of different owners). The record carries the model's type, its cloud, region and credential, and the controller-model flag (see types of model for what each of those discriminators does)."
+ },
+ {
+  "id": 64,
+  "text": "an object: one grant, naming who is given what"
+ },
+ {
+  "id": 65,
+  "text": "All models: Changes to the controller database's model records, including a model becoming dead."
+ },
+ {
+  "id": 66,
+  "text": "One model: Changes to a single model's record."
+ },
+ {
+  "id": 67,
+  "text": "Access is stored in the controller database as the permission record. A permission has no states: the record exists, or it does not."
+ },
+ {
+  "id": 68,
+  "text": "Once it is running, clients and agents reach the controller through its API server. Clients (the `juju` CLI, the Terraform provider and other tools) and agents all connect to it, and it authenticates each request and routes it to the versioned endpoints for that kind of caller."
+ },
+ {
+  "id": 69,
+  "text": "Block devices (`disk-manager`): Lists the machine's block devices periodically and reports them to the controller."
+ },
+ {
+  "id": 70,
+  "text": "Reach: From the user's side, this same record set is the user's *reach* (see the user's persistence layer)."
+ },
+ {
+  "id": 71,
+  "text": "Rule: Importing a model from a 3.6 controller transforms what 4.1 stores differently: a 3.6 consumer proxy carries one offer connection per relation, and the import creates a synthetic application, an offer connection and a consumer record for each of them; annotations and the controller's API addresses land in their 4.1 tables; and secret grants whose relation key no longer resolves are skipped with a warning."
+ },
+ {
+  "id": 72,
+  "text": "Actions (`machine-action-runner`): Runs the actions addressed to the machine."
+ }
+]

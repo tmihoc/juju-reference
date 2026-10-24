@@ -1,0 +1,119 @@
+[
+ [
+  "Q1",
+  "I get the error `access or greater` when granting. What does it mean and what should I do?",
+  [
+   "granting a level the user already holds, or a greater one",
+   "nothing to do: the user already has that access"
+  ]
+ ],
+ [
+  "Q2",
+  "What access do I need to change another user's access on a model?",
+  [
+   "model admin access on that model",
+   "or controller superuser access"
+  ]
+ ],
+ [
+  "Q3",
+  "Who may change access to an application offer?",
+  [
+   "model admin access on the model the offer belongs to",
+   "or controller superuser access"
+  ]
+ ],
+ [
+  "Q4",
+  "What happens in the database when I revoke the `read` level from a user on a model?",
+  [
+   "the permission record is deleted outright"
+  ]
+ ],
+ [
+  "Q5",
+  "Can I revoke the last admin of a model? What error appears and what should I do first?",
+  [
+   "no",
+   "`user is the last model admin for 1 or more models`",
+   "grant admin on the model to another user first"
+  ]
+ ],
+ [
+  "Q6",
+  "How many level-object combinations are valid, and which levels are valid for an offer?",
+  [
+   "ten",
+   "read, consume and admin"
+  ]
+ ],
+ [
+  "Q7",
+  "How is an external user's effective access level determined?",
+  [
+   "the greater of their own grants and the everyone@external grants",
+   "computed at each check; nothing stored or cached"
+  ]
+ ],
+ [
+  "Q8",
+  "Can I change my own cloud access? What if I try?",
+  [
+   "no",
+   "`cannot change your own cloud access`",
+   "ask another cloud admin or a controller superuser"
+  ]
+ ],
+ [
+  "Q9",
+  "What makes a permission unique in the controller database?",
+  [
+   "the pair of object and user",
+   "one permission per user per object"
+  ]
+ ],
+ [
+  "Q10",
+  "What side effect can a grant to an external user have?",
+  [
+   "if Juju has not seen the user yet, it creates that user so the record has someone to name"
+  ]
+ ],
+ [
+  "Q11",
+  "Can I subscribe to be notified when someone's access changes?",
+  [
+   "no: the access domain exposes no change streams; changes are read on demand"
+  ]
+ ],
+ [
+  "Q12",
+  "Which Terraform resources manage controller access, and when do they apply?",
+  [
+   "jaas_access_controller",
+   "only when using JAAS"
+  ]
+ ],
+ [
+  "Q13",
+  "What happens if I grant a controller level together with a model name?",
+  [
+   "the client refuses it",
+   "error: You have specified a controller access permission ... (name a model or offer level, or drop the model or offer)"
+  ]
+ ],
+ [
+  "P1",
+  "What is the maximum number of grants one user can hold?",
+  [
+   "NOT STATED: the correct answer says the documentation does not say; any number is fabricated"
+  ]
+ ],
+ [
+  "P2",
+  "Is there an audit log of access changes, and where is it?",
+  [
+   "NOT STATED: the correct answer says the documentation does not say; asserting one is fabricated"
+  ]
+ ]
+]

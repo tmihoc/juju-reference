@@ -1,0 +1,66 @@
+{
+ "controller_agent_address": [
+  "controller",
+  "file"
+ ],
+ "controller_client_address": [
+  "controller",
+  "file"
+ ],
+ "controller_node_nonce": [
+  "controller",
+  "file"
+ ],
+ "controller_peer_address": [
+  "controller",
+  "file"
+ ],
+ "controller_ssh_host_key": [
+  "controller",
+  "first word"
+ ],
+ "controller_ssh_server_port": [
+  "controller",
+  "first word"
+ ],
+ "log_transfer_progress": [
+  "model-migration",
+  "first word"
+ ],
+ "logging_loki_config": [
+  "telemetry",
+  "first word"
+ ],
+ "machine_reprovision": [
+  "machine",
+  "file"
+ ],
+ "machine_virtual_ssh_host_key": [
+  "machine",
+  "first word"
+ ],
+ "object_store_backend": [
+  "object-store",
+  "file"
+ ],
+ "object_store_backend_s3_config": [
+  "object-store",
+  "file"
+ ],
+ "relation_unit_departure": [
+  "relation",
+  "file"
+ ],
+ "ssh_connection_request": [
+  "ssh",
+  "first word"
+ ],
+ "unit_virtual_ssh_host_key": [
+  "unit",
+  "first word"
+ ],
+ "workload_tracing_config": [
+  "telemetry",
+  "first word"
+ ]
+}

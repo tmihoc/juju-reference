@@ -1,0 +1,56 @@
+[
+ {
+  "table": "application_constraint",
+  "page": "constraint",
+  "alt": "application",
+  "evidence": "application constraint link"
+ },
+ {
+  "table": "application_storage_directive",
+  "page": "storage",
+  "alt": "application",
+  "evidence": "0011-storage.sql:89 directive names pool, size, count"
+ },
+ {
+  "table": "device_constraint",
+  "page": "constraint",
+  "alt": "application",
+  "evidence": "0019-application.sql:267 device_constraint"
+ },
+ {
+  "table": "device_constraint_attribute",
+  "page": "constraint",
+  "alt": "application",
+  "evidence": "0019-application.sql:267 device_constraint"
+ },
+ {
+  "table": "machine_constraint",
+  "page": "constraint",
+  "alt": "machine",
+  "evidence": "machine_constraint link"
+ },
+ {
+  "table": "model_constraint",
+  "page": "constraint",
+  "alt": "model",
+  "evidence": "model/sql/0005-model.sql:14 links model to constraint row"
+ },
+ {
+  "table": "model_database_deletion",
+  "page": "database",
+  "alt": "model",
+  "evidence": "controller/sql/0030:12 namespace + created_at, pending DB drop"
+ },
+ {
+  "table": "model_namespace",
+  "page": "database",
+  "alt": "model",
+  "evidence": "controller/sql/0007-model.sql:3 maps model to db namespace"
+ },
+ {
+  "table": "unit_storage_directive",
+  "page": "storage",
+  "alt": "unit",
+  "evidence": "model/sql/0011-storage.sql:119 pool/size/count per unit storage"
+ }
+]

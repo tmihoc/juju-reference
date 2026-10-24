@@ -1,0 +1,6 @@
+# The talk drafts are personal material and stay out of the published archive.
+talk/
+
+# Python build junk.
+__pycache__/
+*.pyc

@@ -1,0 +1,111 @@
+[
+  {
+    "id": "e44_q2_controller_1",
+    "type": "lookup",
+    "question": "What port does the Juju controller's embedded SSH server listen on by default, and what restrictions apply if I set a different port in the controller configuration?",
+    "ground_truth": "The default SSH server port is 17022 (config key ssh-server-port). A configured value must be a positive integer and must not equal the controller's api-port.",
+    "key_facts": [
+      "Default ssh-server-port is 17022",
+      "The value must be positive (non-positive is rejected as not valid)",
+      "The value must not match api-port"
+    ],
+    "evidence": [
+      {
+        "file": "controller/config.go",
+        "line": 274,
+        "quote": "DefaultSSHServerPort = 17022"
+      },
+      {
+        "file": "controller/config.go",
+        "line": 1228,
+        "quote": "non-positive integer for ssh-server-port"
+      },
+      {
+        "file": "controller/config.go",
+        "line": 1230,
+        "quote": "ssh-server-port matching api-port"
+      }
+    ],
+    "greps": [],
+    "cross_area": false
+  },
+  {
+    "id": "e44_q2_controller_2",
+    "type": "mechanism",
+    "question": "When a unit of the controller application is removed from the controller model, what happens to the matching controller node record, and what is deleted versus kept?",
+    "ground_truth": "Only for the controller application in the controller model, the unit's number is used as the controller ID. The node is first marked dying (life 1), then its API/client/agent/peer addresses, reported agent version, password, nonce and upgrade info rows are deleted, and finally it is marked dead (life 2) with its dqlite node ID and bind address set to NULL. The controller_node row itself is retained as a tombstone so delayed controller workers cannot recreate it.",
+    "key_facts": [
+      "Applies only to the controller application in the controller model, using the unit number as controller ID",
+      "Node goes to dying, dependent rows (addresses, agent version, password, nonce, upgrade info) are deleted",
+      "Node is then marked dead with dqlite_node_id and dqlite_bind_address cleared",
+      "The controller_node row is kept as a tombstone"
+    ],
+    "evidence": [
+      {
+        "file": "domain/removal/service/unit.go",
+        "line": 341,
+        "quote": "if applicationName != coreapplication.ControllerApplicationName {"
+      },
+      {
+        "file": "domain/removal/state/controller/controller_node.go",
+        "line": 15,
+        "quote": "The controller node is retained"
+      },
+      {
+        "file": "domain/removal/state/controller/controller_node.go",
+        "line": 91,
+        "quote": "SET life_id = 2,"
+      }
+    ],
+    "greps": [],
+    "cross_area": false
+  },
+  {
+    "id": "e44_q2_controller_3",
+    "type": "failure",
+    "question": "I ran `juju destroy-controller` on my controller without any extra flags and it refused with \"The controller has live models\". Why does it do this and how do I proceed?",
+    "ground_truth": "The command checks the hosted models and, if any is still alive and --destroy-all-models was not given, fails with 'cannot destroy controller \"<name>\"' / 'The controller has live models', listing them. Re-run the command with the --destroy-all-models option.",
+    "key_facts": [
+      "Error text: cannot destroy controller \"<name>\" ... The controller has live models",
+      "Cause: hosted models are still alive and --destroy-all-models was not specified",
+      "Fix: run destroy-controller again with --destroy-all-models"
+    ],
+    "evidence": [
+      {
+        "file": "cmd/juju/controller/destroy.go",
+        "line": 283,
+        "quote": "if !c.destroyModels {"
+      },
+      {
+        "file": "cmd/juju/controller/destroy.go",
+        "line": 437,
+        "quote": "The controller has live models. If you want"
+      },
+      {
+        "file": "cmd/juju/controller/destroy.go",
+        "line": 439,
+        "quote": "run this command again with the --destroy-all-models"
+      }
+    ],
+    "greps": [],
+    "cross_area": false
+  },
+  {
+    "id": "e44_q2_controller_4",
+    "type": "unanswerable",
+    "question": "Does Juju keep a history of controller configuration changes, and can I roll the controller configuration back to an earlier revision?",
+    "ground_truth": "The documentation does not say; no controller configuration history or rollback is defined. Controller config is stored as a current key/value table, updates upsert or delete keys in place.",
+    "key_facts": [
+      "No history or revision of controller config is defined",
+      "No rollback operation exists"
+    ],
+    "evidence": [],
+    "greps": [
+      "grep -rniE 'config.?history|configHistory|history.*controller.?config|controller.?config.*history' (no matches)",
+      "grep -rniE '(rollback|roll back|revert|undo|previous).{0,30}controller.?config|controller.?config.{0,30}(rollback|revert|undo|previous)' (no matches)",
+      "grep -rniE 'controller_config_(log|audit|snapshot|version)' (no matches)",
+      "grep -rniE 'controller.?config.{0,40}(audit|changelog|changed.?by|updated.?at|modified)' (only unrelated auditconfigupdater worker)"
+    ],
+    "cross_area": false
+  }
+]

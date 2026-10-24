@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="505.6" height="360.0" viewBox="0 0 505.6 360.0">
+<defs>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-open" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-open-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-hollow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-hollow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+<path d="M 143.1 155.4 L 328.7 57.4" id="d0" />
+<path d="M 145.3 178.8 L 345.3 166.8" id="d1" />
+<path d="M 145.6 304.8 L 345.6 304.8" id="d2" />
+<path d="M 141.5 282.8 L 327.1 46.8" id="d3" />
+<path d="M 149.2 132.2 L 349.2 318.2" id="d4" />
+<path d="M 142.2 330.0 L 342.2 156.0" id="d5" />
+</defs>
+<g id="ggarch-nodes">
+<rect x="331.20000000000005" y="20.0" width="154.4" height="60.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<text x="408.40000000000003" y="40.9" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Local application</text>
+<text x="408.40000000000003" y="59.099999999999994" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">databag</text>
+<rect x="336.20000000000005" y="24.0" width="14" height="14" fill="#E95420" stroke="none" rx="2" ry="2" />
+<path d="M338.70000000000005,31.0 L348.20000000000005,31.0" stroke="#FFFFFF" stroke-width="1.5" />
+<rect x="20.0" y="130.0" width="125.60000000000001" height="60.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" />
+<text x="82.80000000000001" y="160.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Leader unit</text>
+<rect x="345.6" y="130.0" width="125.60000000000001" height="60.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<text x="408.40000000000003" y="150.9" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Leader's unit</text>
+<text x="408.40000000000003" y="169.1" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">databag</text>
+<rect x="350.6" y="134.0" width="14" height="14" fill="#E95420" stroke="none" rx="2" ry="2" />
+<path d="M353.1,141.0 L362.6,141.0" stroke="#FFFFFF" stroke-width="1.5" />
+<rect x="20.0" y="280.0" width="125.60000000000001" height="60.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" />
+<text x="82.80000000000001" y="310.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Other unit</text>
+<rect x="345.6" y="280.0" width="125.60000000000001" height="60.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<text x="408.40000000000003" y="300.90000000000003" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Other unit's</text>
+<text x="408.40000000000003" y="319.1" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">databag</text>
+<rect x="350.6" y="284.0" width="14" height="14" fill="#E95420" stroke="none" rx="2" ry="2" />
+<path d="M353.1,291.0 L362.6,291.0" stroke="#FFFFFF" stroke-width="1.5" />
+</g>
+<g id="ggarch-edges">
+<path d="M 145.6 160.0 L 331.2 62.0" fill="none" stroke="#666666" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d0" startOffset="104.9">
+reads and writes
+</textPath></text>
+<path d="M 145.6 184.0 L 345.6 172.0" fill="none" stroke="#666666" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d1" startOffset="150.3">
+reads and writes
+</textPath></text>
+<path d="M 145.6 310.0 L 345.6 310.0" fill="none" stroke="#666666" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d2" startOffset="100.0">
+reads and writes
+</textPath></text>
+<path d="M 145.6 286.0 L 331.2 50.0" fill="none" stroke="#666666" stroke-width="1" stroke-linejoin="round" stroke-dasharray="3,3" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d3" startOffset="150.1">
+reads
+</textPath></text>
+<path d="M 145.6 136.0 L 345.6 322.0" fill="none" stroke="#666666" stroke-width="1" stroke-linejoin="round" stroke-dasharray="3,3" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d4" startOffset="95.6">
+reads
+</textPath></text>
+<path d="M 145.6 334.0 L 345.6 160.0" fill="none" stroke="#666666" stroke-width="1" stroke-linejoin="round" stroke-dasharray="3,3" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d5" startOffset="132.5">
+reads
+</textPath></text>
+</g>
+<g id="ggarch-annotations"></g>
+</svg>

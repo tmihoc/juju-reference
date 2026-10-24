@@ -1,0 +1,1214 @@
+[
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/deploy.md",
+  "text": "Doing so is not recommended as it can lead to unexpected behaviour.",
+  "id": 1
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_status.md",
+  "text": "On Juju deployed machines, the machine and unit agents run in that single process.",
+  "id": 2
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/enable-command.md",
+  "text": "Juju allows to safeguard deployed models from unintentional damage by preventing execution of operations that could alter model.",
+  "id": 3
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/remove-ssh-key.md",
+  "text": "This command will remove a specified key (or space-separated list of keys) from the model cache and all current units deployed in that model.",
+  "id": 4
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/cloud/list-of-supported-clouds/vmware-vsphere.md",
+  "text": "The IP family depends on the VM network and DHCP configuration.",
+  "id": 5
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/user.md",
+  "text": "Granted: Automatically by bootstrapping a controller or by having the username 'admin'.",
+  "id": 6
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/remove-application.md",
+  "text": "However, when using `--force`, users can also specify `--no-wait`to progress through steps without delay waiting for each step to complete.",
+  "id": 7
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/storage-list.md",
+  "text": "These names can be passed to `storage-get` via the `-s` flag to query the storage attributes.",
+  "id": 8
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/expose.md",
+  "text": "Adjusts the firewall rules and any relevant security mechanisms of the cloud to allow public access to the application.",
+  "id": 9
+ },
+ {
+  "corpus": "err",
+  "source": "reference/space.md",
+  "text": "`host machine not provisioned`: Trigger: The provider must allocate the guest's addresses, but the host has no cloud instance yet. Remediation: Wait until the host is provisioned; the error is reported against the container, not the whole request.",
+  "id": 10
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_status.md",
+  "text": "The `juju_unit_status` introspection function shows the status of the agents running inside a machine agent process.",
+  "id": 11
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/controller-config.md",
+  "text": "Set to a non-zero value (e.g., 60s) if you need to prevent indefinite reads. http-server-write-timeout: type: string description: |- The maximum duration before timing out writes of the HTTP response.",
+  "id": 12
+ },
+ {
+  "corpus": "err",
+  "source": "reference/space.md",
+  "text": "`space requirements unsatisfiable`: Trigger: A container's or VM's space requirements cannot be met by its host (no device or bridge available in the required space). Remediation: Relax the space constraints or extend the host's networking in the required space. The error is retryable: with `local` networking it also covers a default LXD bridge the host has not reported yet.",
+  "id": 13
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/debug-a-dqlite-core-dump-issue.md",
+  "text": "Open the `Makefile` and, in the default (non-`DEBUG_JUJU`) `CGO_LINK_FLAGS` definition (the one carrying `-s -w`), remove the `-s` flag.",
+  "id": 14
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/high-availability.md",
+  "text": "Single instance workers are those declared in the model manifolds configuration that use the `isResponsible` decorator.",
+  "id": 15
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/cloud/list-of-supported-clouds/vmware-vsphere.md",
+  "text": "Template cache: Creates `Juju Controller (<uuid>)/templates/<os>_<track>/` folder.",
+  "id": 16
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/expose.md",
+  "text": "Each `juju expose` invocation always overwrites any previous expose rule for the same endpoint name.",
+  "id": 17
+ },
+ {
+  "corpus": "err",
+  "source": "reference/user.md",
+  "text": "`user unauthorized`: Trigger: The supplied password does not match the stored one, or the user has no password set. Remediation: Supply the right password, or set one (register the controller or have it reset).",
+  "id": 18
+ },
+ {
+  "corpus": "err",
+  "source": "reference/resource-charm.md",
+  "text": "`charm resource not found`: Trigger: Resources are staged for a charm whose definitions do not carry the name: the pending insert points at the charm's definition record, and the composite foreign key refuses the pair. Remediation: Check the name against the charm's metadata.",
+  "id": 19
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/configuration/controller-config-juju-mgmt-space.md",
+  "text": "The `juju-mgmt-space` key is used to apply a network space to the controller.",
+  "id": 20
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/manage-secrets.md",
+  "text": "The command also allows you to specify the type of key, whether you want to supply its value from a file, whether you want to give it a label, etc.",
+  "id": 21
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/secrets.md",
+  "text": "Displays the secrets available for charms to use if granted access.",
+  "id": 22
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/import-ssh-key.md",
+  "text": "Adds a public SSH key from a trusted identity source to a model.",
+  "id": 23
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/cloud/list-of-supported-clouds/reuse/k8s/bootstrap-resources.md",
+  "text": "`StatefulSet`: A `StatefulSet` with the controller pod containing the `api-server` container (Juju API server).",
+  "id": 24
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_agent_name.md",
+  "text": "The `juju_unit_agent_name` macro returns the name of the unit agent that is currently running.",
+  "id": 25
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_machine_lock.md",
+  "text": "You can see that the `namenode/0` unit has the uniter worker holding the hook, and it is running the install hook, and at the time of executing the `juju_machine_lock` command it had been holding the lock for one minute and 42 seconds.",
+  "id": 26
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/configuration/controller-config-audit-log-exclude-methods.md",
+  "text": "The `audit-log-exclude-methods`  is used to exclude information (API calls/methods) from the audit log.",
+  "id": 27
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/show-operation.md",
+  "text": "To block until the result is known completed or failed, use the `--wait` option with a duration, as in `--wait 5s` or `--wait 1h`.",
+  "id": 28
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-introspect.md",
+  "text": "If you wish to introspect a unit agent on the machine, you can specify the agent using `--agent`.",
+  "id": 29
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/update-public-clouds.md",
+  "text": "Use `--client` to update a definition of public cloud(s) on this client.",
+  "id": 30
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/documentation.md",
+  "text": "This command generates a markdown formatted document with all the commands, their descriptions, arguments, and examples.",
+  "id": 31
+ },
+ {
+  "corpus": "err",
+  "source": "reference/space.md",
+  "text": "`space already exists`: Trigger: Adding a space whose name is already taken in the model. Remediation: Choose an unused name.",
+  "id": 32
+ },
+ {
+  "corpus": "err",
+  "source": "reference/machine.md",
+  "text": "`machine has no parent`: Trigger: Asking for the parent of a machine that is not a container. Remediation: Check that the machine is a container (`<host>/lxd/<n>`).",
+  "id": 33
+ },
+ {
+  "corpus": "err",
+  "source": "reference/application.md",
+  "text": "`application is dead`: Trigger: An operation that tolerates a dying application targets a dead one (configuration, scale and constraint writes). Remediation: None; the records are being deleted.",
+  "id": 34
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/high-availability.md",
+  "text": "Agents will try these addresses in random order until they establish a successful controller connection.",
+  "id": 35
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_machine_lock.md",
+  "text": "Where the machine-lock.log file shows the history of the machine lock, the introspection endpoint shows the current status of the lock, whether the agent holds the lock, or is waiting for the lock.",
+  "id": 36
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/deploy.md",
+  "text": "If a channel is specified, it will be used as the source for looking up the charm or bundle from Charmhub.",
+  "id": 37
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/sync-agent-binary.md",
+  "text": "This copies the Juju agent software from the official agent binaries store (located at https://streams.canonical.com/juju) into the controller.",
+  "id": 38
+ },
+ {
+  "corpus": "err",
+  "source": "reference/resource-charm.md",
+  "text": "`resource name not valid`: Trigger: A lookup or a staged set names an empty resource. Remediation: Name the resource exactly as the charm's metadata declares it.",
+  "id": 39
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/show-secret.md",
+  "text": "For controller/model admins, the actual secret content is exposed with the `--reveal` option in the `json` or `yaml` formats.",
+  "id": 40
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/manage-secret-backends.md",
+  "text": "To update a secret backend on the controller, run the `update-secret-backend` command followed by the name of the secret backend.",
+  "id": 41
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/sync-agent-binary.md",
+  "text": "Instead of the above site, a local directory can be specified as source.",
+  "id": 42
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-introspect.md",
+  "text": "The juju-introspect command can be used to expose the agent's introspection socket via HTTP, using the `--listen` flag.",
+  "id": 43
+ },
+ {
+  "corpus": "err",
+  "source": "reference/machine.md",
+  "text": "`machine name \"<name>\" has too many containers`: Trigger: A machine name with more than one container level. Remediation: Name the container directly under its host machine.",
+  "id": 44
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/revoke-secret.md",
+  "text": "Revoke applications' access to view the value of a specified secret.",
+  "id": 45
+ },
+ {
+  "corpus": "err",
+  "source": "reference/machine.md",
+  "text": "`reprovision request already exists`: Trigger: A reprovision request is already pending for the machine. Remediation: Wait for the pending request to complete.",
+  "id": 46
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/compile-and-run-juju-agents-on-different-architectures.md",
+  "text": "Alternatively in this workflow it is commonplace to want to perform Juju upgrades.",
+  "id": 47
+ },
+ {
+  "corpus": "err",
+  "source": "reference/machine.md",
+  "text": "`machine is not alive`, `machine is a container`, `machine is a controller machine`, `machine is manually provisioned`, `machine hosts child containers`: Trigger: The machine is `dying` or `dead`, or is of a kind that cannot be reprovisioned, or hosts containers. Remediation: Reprovision only an `alive` machine that is a plain, provider-provisioned host.",
+  "id": 48
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/update-k8s.md",
+  "text": "Use `--client` to update a Kubernetes cloud definition on this client.",
+  "id": 49
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/offer.md",
+  "text": "By default, the offer is named after the application, unless an offer name is explicitly specified.",
+  "id": 50
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/manage-spaces.md",
+  "text": "This will show you any new spaces (whether added via `add-space` or directly on the provider end), or any new subnets of an existing space.",
+  "id": 51
+ },
+ {
+  "corpus": "err",
+  "source": "reference/application.md",
+  "text": "`charm not found`: Trigger: The charm the operation needs is not in the model's charm records. Remediation: Check the charm reference.",
+  "id": 52
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/offers.md",
+  "text": "The default tabular output shows each user connected (relating to) the offer, and the relation id of the relation.",
+  "id": 53
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-compute.md",
+  "text": "In Juju, a compute resource refers to any machine or Kubernetes container provisioned by Juju.",
+  "id": 54
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/writing-workers.md",
+  "text": "Let's imagine a worker that reads values from a channel and passes them to a handler function.",
+  "id": 55
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/configuration/controller-config-juju-mgmt-space.md",
+  "text": "Juju client communication with controllers is unaffected by this option.",
+  "id": 56
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/application.md",
+  "text": "Rule: Resources are immutable records: a refresh that replaces an application's resource schedules a removal job for the displaced record, which deletes it once no unit references it (see the resource's execution layer).",
+  "id": 57
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/remove-relation.md",
+  "text": "However, at times, there is a need to remove a relation ignoring all operational errors.",
+  "id": 58
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/set-model-constraints.md",
+  "text": "Constraints for a specific application can be viewed with `juju constraints`.",
+  "id": 59
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/offers.md",
+  "text": "The YAML output shows additional information about the source of connections, including the source model UUID.",
+  "id": 60
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/space.md",
+  "text": "In Juju, a (network) space is a logical grouping of subnets that can communicate with one another, used to segment network traffic for performance, for security, or to control the scope of regulatory compliance.",
+  "id": 61
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/cloud/list-of-supported-clouds/maas.md",
+  "text": "placement-directive-zone: If there's no '=' delimiter, assume it's a node name.",
+  "id": 62
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/remove-credential.md",
+  "text": "The credential to be removed is specified by a credential name.",
+  "id": 63
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/action-set.md",
+  "text": "The final result will be a nested object containing the merged results, with any conflicting values overwriting previous values.",
+  "id": 64
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/space.md",
+  "text": "Rule: With the `local` method, the default LXD bridge satisfies every space requirement whatever its own space, host devices are never bridged, each guest device takes its address from the host bridge by DHCP, and negative space constraints are not enforced.",
+  "id": 65
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/storage-list.md",
+  "text": "A storage name may be specified, in which case only storage instances for that named storage will be returned.",
+  "id": 66
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/storage-get.md",
+  "text": "`storage-get` can be used to identify the storage location during `storage-attached` and `storage-detaching` hooks.",
+  "id": 67
+ },
+ {
+  "corpus": "err",
+  "source": "reference/resource-charm.md",
+  "text": "`origin not valid`: Trigger: An import's resource origin is neither `store` nor `upload`. Remediation: The origin is one of the two values.",
+  "id": 68
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/application.md",
+  "text": "Most applications are regular applications: a charm deployed into the model, with its units and their machines or pods.",
+  "id": 69
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/manage-metadata.md",
+  "text": "This is useful when you have specific cloud images that you want Juju to use for creating instances.",
+  "id": 70
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/manage-actions.md",
+  "text": "To debug an action (or more), use the `debug-hooks` command followed by the name of the unit and the name(s) of the action(s).",
+  "id": 71
+ },
+ {
+  "corpus": "explanation",
+  "source": "explanation/juju-performance.md",
+  "text": "It can manage multiple applications, services, and environments responsively and efficiently.",
+  "id": 72
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/help-action-commands.md",
+  "text": "The currently available charm action commands include: action-fail  Sets action fail status with message. action-get   Gets action parameters. action-log   Records a progress message for the current action. action-set   Sets action results.",
+  "id": 73
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/remove-relation.md",
+  "text": "The relation is specified using the relation endpoint names, e.g., `mysql wordpress`, or `mediawiki:db mariadb:db`.",
+  "id": 74
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/credential.md",
+  "text": "Every watcher fires once immediately when it is created, the initial query being the baseline snapshot, and again on each qualifying change.",
+  "id": 75
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/refresh.md",
+  "text": "Storage directives may be added or updated at upgrade time by specifying the `--storage` option, with the same format as specified in `juju deploy`.",
+  "id": 76
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/storage-get.md",
+  "text": "Prints information for the storage instance with the specified ID.",
+  "id": 77
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/set-model-constraints.md",
+  "text": "Model constraints are combined with constraints set for an application with `juju set-constraints` for commands (such as `deploy`) that provision machines/containers for applications.",
+  "id": 78
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/constraint.md",
+  "text": "The constraint records live where the constrained entity lives, in the model database beside their owners.",
+  "id": 79
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/controller-config.md",
+  "text": "Set to a non-zero value (e.g., 60s) if you need to prevent indefinite writes. idle-connection-timeout: type: string description: | The time the controller will wait between resets of all idle connections.",
+  "id": 80
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/deploy.md",
+  "text": "Use the `--to` option to deploy to an existing machine or container by specifying a \"placement directive\".",
+  "id": 81
+ },
+ {
+  "corpus": "explanation",
+  "source": "explanation/juju-ssh.md",
+  "text": "Previously, Juju let users connect directly to machines or the Kubernetes API server by placing users' SSH keys directly on machines or issuing users with a scoped Kubernetes access token.",
+  "id": 82
+ },
+ {
+  "corpus": "err",
+  "source": "reference/application.md",
+  "text": "`charm not resolved`: Trigger: The charm is known but its archive is not yet available. Remediation: Wait for the charm download to finish; check the charm's source.",
+  "id": 83
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/action-set.md",
+  "text": "This map is returned to the user after the completion of the action.",
+  "id": 84
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/cloud/list-of-supported-clouds/reuse/k8s/model-config-keys.md",
+  "text": "`operator-storage`: The storage class used to provision operator storage.",
+  "id": 85
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/refresh.md",
+  "text": "The new charm must declare all relations that the application is currently participating in.",
+  "id": 86
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/constraint.md",
+  "text": "Whether the cloud can honour it is discovered later, at provisioning time, when the compute provisioner asks the cloud for resources (see machine provisioning).",
+  "id": 87
+ },
+ {
+  "corpus": "err",
+  "source": "reference/machine.md",
+  "text": "`invalid container type \"<type>\"`: Trigger: A designation or a container constraint names a container type other than `lxd` (the only one 4.1 supports). Remediation: Use `lxd`.",
+  "id": 88
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/scaling.md",
+  "text": "In the context of a cloud deployment in general, scaling  means modifying the amount of resources allocated to an application, which can be done *vertically* (modifying the memory, CPU, or disk for a cloud resource) or *horizontally* (modifying the number of resource instances), where each can be *more* (up or out) or less (*down or in*).",
+  "id": 89
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/import-ssh-key.md",
+  "text": "If the user has multiple keys on the service, all the keys will be added.",
+  "id": 90
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/configuration/controller-config-audit-log-exclude-methods.md",
+  "text": "There is no definitive API call list available in this documentation.",
+  "id": 91
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/credentials.md",
+  "text": "Use `--client` option to list credentials known locally on this client.",
+  "id": 92
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/machine.md",
+  "text": "A machine usually hosts one unit, and placing several units of the same or of different applications on one machine saves resources.",
+  "id": 93
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/credential.md",
+  "text": "A credential is revoked when the user withdrew it, and invalid when the cloud or the model checks found it unusable; the record keeps the reason.",
+  "id": 94
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/expose.md",
+  "text": "In addition, multiple `juju expose` invocations can be used to specify granular expose rules for different endpoints.",
+  "id": 95
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/cloud/list-of-supported-clouds/reuse/k8s/model-config-keys.md",
+  "text": "`enable-service-links`: Whether Kubernetes service link environment variables are injected into workload pods.",
+  "id": 96
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/scaling.md",
+  "text": "Vertical scaling is handled through constraints and horizontal scaling through units.",
+  "id": 97
+ },
+ {
+  "corpus": "err",
+  "source": "reference/user.md",
+  "text": "`username not valid`: Trigger: A user name with illegal characters or length. Remediation: Use lowercase letters, or the `name@qualifier` form for external identities.",
+  "id": 98
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-charm.md",
+  "text": "Rule: A revision is a non-negative number: the client-facing update refuses a negative revision, and the model import refuses it with its own vocabulary.",
+  "id": 99
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/secret-set.md",
+  "text": "If a value has the `#base64` suffix, it is already in base64 format and no encoding will be performed, otherwise the value will be base64 encoded prior to being stored.",
+  "id": 100
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/opened-ports.md",
+  "text": "Each list entry is formatted as `<port>/<protocol>` (e.g., `80/tcp`) or `<from>-<to>/<protocol>`(e.g., `8080-8088/udp`).",
+  "id": 101
+ },
+ {
+  "corpus": "explanation",
+  "source": "explanation/juju-security.md",
+  "text": "Overview: Juju stores all its state and operational data in databases powered by Dqlite.",
+  "id": 102
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/spaces.md",
+  "text": "Supplying the `--short` option will list just the space names.",
+  "id": 103
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/refresh.md",
+  "text": "Caveat: If you choose this, you will not be able to go back to using a resource from Charmhub.",
+  "id": 104
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/cloud/list-of-supported-clouds/reuse/k8s/model-config-keys.md",
+  "text": "`workload-storage`: The preferred storage class used to provision workload storage.",
+  "id": 105
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/remove-ssh-key.md",
+  "text": "The keys to be removed may be specified by the key's fingerprint using a SHA256 sum or by the text label associated with them.",
+  "id": 106
+ },
+ {
+  "corpus": "err",
+  "source": "reference/machine.md",
+  "text": "`entity still alive`: Trigger: Marking a machine `dead` while its life is still `alive`. Remediation: Start the removal first, so the machine becomes `dying`.",
+  "id": 107
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/update-public-clouds.md",
+  "text": "If any new information for public clouds (such as regions and connection endpoints) are available this command will update Juju accordingly.",
+  "id": 108
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/secret-set.md",
+  "text": "To just update selected metadata like rotate policy, do not specify any secret value.",
+  "id": 109
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/opened-ports.md",
+  "text": "If a port range applies to all endpoints, this will be indicated by the presence of a `*` character (e.g.",
+  "id": 110
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/show-user.md",
+  "text": "By default, the `YAML`format is used and the user name is the current user.",
+  "id": 111
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/manage-your-deployment.md",
+  "text": "The goal of everything in Juju is to help you set up and maintain your cloud deployment, from day 0 to day 2, in the same unified way, on any cloud and even between clouds.",
+  "id": 112
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/enable-command.md",
+  "text": "This is done by disabling certain sets of commands from successful execution.",
+  "id": 113
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/remove-relation.md",
+  "text": "Relations will automatically be removed when using the`juju remove-application` command.",
+  "id": 114
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/is-leader.md",
+  "text": "`is-leader` prints a boolean indicating whether the local unit is guaranteed to be application leader for at least 30 seconds;  if it fails, you should assume that there is no such guarantee.",
+  "id": 115
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/manage-the-juju-dashboard.md",
+  "text": "First, use the `dashboard` command to get the IP address and login credentials to access the dashboard.",
+  "id": 116
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/machine.md",
+  "text": "Base: A machine's base identifies its operating system image: the OS name, `@`, and the OS channel as `<track>` or `<track>/<risk>` (`ubuntu@22.04`, `ubuntu@22.04/stable`).",
+  "id": 117
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/credentials.md",
+  "text": "This command list credentials from this client and credentials from a controller.",
+  "id": 118
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/find-offers.md",
+  "text": "Find which offered application endpoints are available to the current user.",
+  "id": 119
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/user.md",
+  "text": "The `admin` user bootstrap creates is local, with the controller `superuser` level.",
+  "id": 120
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/revoke-cloud.md",
+  "text": "Revoking admin access, from a user who has that permission, will leave that user with `add-model` access.",
+  "id": 121
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/scaling.md",
+  "text": "Horizontal scaling up can be used to achieve high availability (HA) -- though, depending on whether the charm delivering the application supports HA natively or not, you may also have to perform additional steps.",
+  "id": 122
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_machine_lock.md",
+  "text": "You can additionally see that the `resourcemanager/0` unit is waiting to run its install hook.",
+  "id": 123
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli.md",
+  "text": "`juju` has been designed to be backward compatible and can talk to older or newer existing controllers if the controller and the client are on the same major version (e.g., 4.0 and 4.1).",
+  "id": 124
+ },
+ {
+  "corpus": "err",
+  "source": "reference/resource-charm.md",
+  "text": "`resource revision not valid`: Trigger: The import's records carry a negative upload revision. Remediation: A revision counts from zero.",
+  "id": 125
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/show-operation.md",
+  "text": "Show the results returned by an operation with the given ID.",
+  "id": 126
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/containeragent.md",
+  "text": "In Juju, `containeragent` is a binary that implements agent functionality for the units in a Juju deployment on a Kubernetes cloud.",
+  "id": 127
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/credential.md",
+  "text": "How clients add a credential for a cloud and manage its life.",
+  "id": 128
+ },
+ {
+  "corpus": "err",
+  "source": "reference/credential.md",
+  "text": "`credential is not valid for one or more models`: Trigger: The check on update finds the credential unusable for a model that uses it. Remediation: Fix or replace the credential, or force the update.",
+  "id": 129
+ },
+ {
+  "corpus": "err",
+  "source": "reference/application.md",
+  "text": "`units upgrading`: Trigger: The migration's readiness check finds units still upgrading their charms. Remediation: Wait for the upgrades to finish.",
+  "id": 130
+ },
+ {
+  "corpus": "err",
+  "source": "reference/application.md",
+  "text": "`application is not alive`: Trigger: An operation that requires an alive application targets a dying one (adding units, model migration). Remediation: None; the application is being removed.",
+  "id": 131
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/enable-command.md",
+  "text": "Some commands offer a `--force` option that can be used to bypass a block.",
+  "id": 132
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/network-get.md",
+  "text": "`--egress-subnets`: subnets (in CIDR notation) from which traffic on this relation will originate.",
+  "id": 133
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/show-operation.md",
+  "text": "The default behavior without `--wait` or `--watch` is to immediately check and return; if the results are `pending`, then only the available information will be displayed.",
+  "id": 134
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/network-get.md",
+  "text": "`--ingress-address`: the address the local unit should advertise as being used for incoming connections.",
+  "id": 135
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli.md",
+  "text": "At the same time, it is always recommended to be up-to-date with the client and controller where possible.",
+  "id": 136
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/manage-juju.md",
+  "text": "Backing up your `juju` client enables you to regain management control of your controllers and associated cloud environments.",
+  "id": 137
+ },
+ {
+  "corpus": "err",
+  "source": "reference/credential.md",
+  "text": "`credential not found`: Trigger: A lookup by cloud, owner and name that matches no credential. Remediation: Check the credential's cloud, owner and name.",
+  "id": 138
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/storage-get.md",
+  "text": "`storage-get` obtains information about storage being attached to, or detaching from, the unit.",
+  "id": 139
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/help-action-commands.md",
+  "text": "These action commands are available when an action is running, and are used to log progress and report the outcome of the action.",
+  "id": 140
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/remove-ssh-key.md",
+  "text": "Juju maintains a per-model cache of public SSH keys which it copies to each unit.",
+  "id": 141
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/import-ssh-key.md",
+  "text": "Once the keys are imported, they can be viewed with the `juju ssh-keys` command, where comments will indicate which ones were imported in this way.",
+  "id": 142
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/manage-subnets.md",
+  "text": "For all providers other than MAAS, all subnets are initially in a default `alpha` space.",
+  "id": 143
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-charm.md",
+  "text": "Application usage record: Keyed by the blob, so one stored blob serves at most one application; the blob may come from a different charm revision than the application runs.",
+  "id": 144
+ },
+ {
+  "corpus": "explanation",
+  "source": "explanation/juju-security.md",
+  "text": "For example, if an attacker captures SSH private keys or passwords in transit, they could use them to gain unauthorized access to the machines or containers managed by Juju agents.",
+  "id": 145
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/cloud/list-of-supported-clouds/maas.md",
+  "text": "The machine is tagged with `juju-is-controller: true`, `juju-controller-uuid`, and `juju-model-uuid`.",
+  "id": 146
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/configuration/controller-config-audit-log-exclude-methods.md",
+  "text": "The recommended approach for configuring the filter is to view the log and make a list of those calls deemed undesirable.",
+  "id": 147
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/set-model-constraints.md",
+  "text": "Sets constraints on the model that can be viewed with `juju model-constraints`.",
+  "id": 148
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/credentials.md",
+  "text": "Remotely stored credentials or controller stored credentials are stored on the controller.",
+  "id": 149
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/remove-application.md",
+  "text": "In these rare cases, use the `--force` option but note that `--force` will also remove all units of the application, its subordinates and, potentially, machines without given them the opportunity to shutdown cleanly.",
+  "id": 150
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/documentation.md",
+  "text": "Then, the urls will be populated using the ids indicated in the file above.",
+  "id": 151
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/add-space.md",
+  "text": "Adds a new space with the given name and associates the given (optional) list of existing subnet CIDRs with it.",
+  "id": 152
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/cloud/list-of-supported-clouds/reuse/k8s/bootstrap-resources.md",
+  "text": "`ServiceAccount`: A service account for the controller with cluster-admin privileges.",
+  "id": 153
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/remove-application.md",
+  "text": "Under normal circumstances, Juju will not proceed to the next step until the current step has finished.",
+  "id": 154
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/cloud/list-of-supported-clouds/vmware-vsphere.md",
+  "text": "Provisioning type: `thin`, `thick`, or `thick-lazy-zero` via `disk-provisioning-type` config.",
+  "id": 155
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/configuration/controller-config-juju-mgmt-space.md",
+  "text": "Using this option with the `bootstrap` or `enable-ha` commands effectively adds constraints to machine provisioning.",
+  "id": 156
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/network-get.md",
+  "text": "See https://discourse.charmhub.io/t/charm-network-primitives/1126 for more in depth examples and explanation of usage.",
+  "id": 157
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/revoke-cloud.md",
+  "text": "Revoking `add-model`access, however, also revokes admin access.",
+  "id": 158
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/high-availability.md",
+  "text": "Addresses used by clients are not influenced by the `juju-mgmt-space` configuration.",
+  "id": 159
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/remove-credential.md",
+  "text": "Use the `--controller` option to remove credentials from a controller.",
+  "id": 160
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/show-secret.md",
+  "text": "Use `--revision` to inspect a particular revision, else latest is used.",
+  "id": 161
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/constraint.md",
+  "text": "Name of the storage pool or location the root disk is from. <p> Note: `root-disk-source` has different behaviour with each provider.",
+  "id": 162
+ },
+ {
+  "corpus": "err",
+  "source": "reference/space.md",
+  "text": "`space not found`: Trigger: A lookup by UUID or name that matches no space. Remediation: Verify the space exists in the model.",
+  "id": 163
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli.md",
+  "text": "You can also configure the Juju client using various environment variables.",
+  "id": 164
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/secret-revoke.md",
+  "text": "Access may be revoked from an application (all units of that application lose access), or from a specified unit.",
+  "id": 165
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/spaces.md",
+  "text": "The `--output` argument allows the command's output to be redirected to a file.",
+  "id": 166
+ },
+ {
+  "corpus": "explanation",
+  "source": "explanation/juju-ssh.md",
+  "text": "Upload your public key to Juju, specifically to the model where you want SSH to work.",
+  "id": 167
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/manage-charms.md",
+  "text": "Run `refresh` followed by the charm name and the desired new `channel`.",
+  "id": 168
+ },
+ {
+  "corpus": "err",
+  "source": "reference/machine.md",
+  "text": "`machine cloud instance changed`: Trigger: The machine's instance differs from the one checked, because a replacement appeared in between. Remediation: Retry the command.",
+  "id": 169
+ },
+ {
+  "corpus": "explanation",
+  "source": "explanation/juju-performance.md",
+  "text": "With Juju supporting a long list of clouds -- public or private, machine or Kubernetes, branded or entirely ad hoc -- the possibilities are endless.",
+  "id": 170
+ },
+ {
+  "corpus": "err",
+  "source": "reference/application.md",
+  "text": "`scaling state is inconsistent`: Trigger: A scale starts toward a different target while a scale is already in flight. Remediation: Let the running scale finish, then scale again.",
+  "id": 171
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-charm.md",
+  "text": "Rule: An OCI image resource can be given as a repository revision, as a local file, or as a reference to a public OCI image; the local form is a JSON or YAML document carrying the image reference and, optionally, a username and a password.",
+  "id": 172
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/storage-list.md",
+  "text": "`storage-list` will list the names of all storage instances attached to the unit.",
+  "id": 173
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/user.md",
+  "text": "The access reference describes the grant record and its errors.",
+  "id": 174
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_agent_name.md",
+  "text": "Returns a string containing the agent (unit / application) name.",
+  "id": 175
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/secret-set.md",
+  "text": "Update a secret with a list of key values, or set new metadata.",
+  "id": 176
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-introspect.md",
+  "text": "Otherwise, a single positional argument is required, which is the path to query.",
+  "id": 177
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/cloud/list-of-supported-clouds/reuse/k8s/bootstrap-resources.md",
+  "text": "`PersistentVolume` and `PersistentVolumeClaim`: Storage for the controller's operator-storage (API server state).",
+  "id": 178
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/update-k8s.md",
+  "text": "A Kubernetes cloud on the controller can also be updated just by using a name of a Kubernetes cloud from this client.",
+  "id": 179
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/offer.md",
+  "text": "Deployed application endpoints are offered for use by consumers.",
+  "id": 180
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/update-k8s.md",
+  "text": "The Kubernetes cloud can be a built-in cloud such as MicroK8s.",
+  "id": 181
+ },
+ {
+  "corpus": "explanation",
+  "source": "explanation/architecture.md",
+  "text": "Because charms connect to one another, a deployment can grow into a full stack of charms, from private cloud infrastructure (charmed OpenStack or charmed Kubernetes) to databases and observability tools.",
+  "id": 182
+ },
+ {
+  "corpus": "err",
+  "source": "reference/user.md",
+  "text": "`user is the last model admin for 1 or more models`: Trigger: Disabling or removing a user who is the last admin on one or more models. Remediation: Grant another user admin on those models first.",
+  "id": 183
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/machine.md",
+  "text": "Machine life and dependants: Drives the local shutdown watcher.",
+  "id": 184
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/remove-credential.md",
+  "text": "If force remove was performed and some models were still using the credential, these models will be left with unreachable machines.",
+  "id": 185
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/help-action-commands.md",
+  "text": "In addition to hook commands, Juju charms also have access to a set of action-specific commands.",
+  "id": 186
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/cloud/list-of-supported-clouds/maas.md",
+  "text": "IP addressing: MAAS allocates IPs from configured subnet pools (static, DHCP, or auto).",
+  "id": 187
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/space.md",
+  "text": "The API address setter watches it to recompute the controller's API addresses, which it selects separately for clients and for agents.",
+  "id": 188
+ },
+ {
+  "corpus": "err",
+  "source": "reference/user.md",
+  "text": "`user already exists`: Trigger: Creating a user whose name is already taken by an active user. Remediation: Choose an unused name.",
+  "id": 189
+ },
+ {
+  "corpus": "explanation",
+  "source": "explanation/architecture.md",
+  "text": "Juju stores the declaration as a goal state (the stored description of what you want) and works continuously to make reality match it.",
+  "id": 190
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/update-public-clouds.md",
+  "text": "Use `--controller` to update public cloud(s) on a controller.",
+  "id": 191
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/cloud/list-of-supported-clouds/reuse/k8s/cloud-definition.md",
+  "text": "As for all Kubernetes clouds, the cloud is registered in Juju via a cloud definition, stored in `clouds.yaml` on the client and following this schema.",
+  "id": 192
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/sync-agent-binary.md",
+  "text": "Copy agent binaries from the official agent store into a local controller.",
+  "id": 193
+ },
+ {
+  "corpus": "howto",
+  "source": "howto/manage-applications.md",
+  "text": "You can again choose to unexpose just certain endpoints of the application.",
+  "id": 194
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/application.md",
+  "text": "Charm reference: An application references the charm it deploys (stored as a pointer to the charm's record; the URL is reconstructed from the charm's own fields).",
+  "id": 195
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/action-set.md",
+  "text": "`action-set` adds the given values to the results map of the action.",
+  "id": 196
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/offers.md",
+  "text": "List information about applications' endpoints that have been shared and who is connected.",
+  "id": 197
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/juju-cli/list-of-juju-cli-commands/find-offers.md",
+  "text": "This command is aimed for a user who wants to discover what endpoints are available to them.",
+  "id": 198
+ },
+ {
+  "corpus": "err",
+  "source": "reference/machine.md",
+  "text": "`machine agent is still present`: Trigger: The machine agent still reports presence. Remediation: Stop the agent or confirm the machine is lost.",
+  "id": 199
+ },
+ {
+  "corpus": "err",
+  "source": "reference/application.md",
+  "text": "`application has units`: Trigger: The dead gate finds units still referencing the application. Remediation: Remove the units first, or let the cascade finish.",
+  "id": 200
+ },
+ {
+  "corpus": "ref",
+  "source": "reference/hook-command/list-of-hook-commands/opened-ports.md",
+  "text": "`opened-ports` lists all ports or port ranges opened by a unit.",
+  "id": 201
+ },
+ {
+  "corpus": "err",
+  "source": "reference/machine.md",
+  "text": "`grandparent machine are not supported currently`: Trigger: The lookup finds a machine whose parent itself has a parent. Remediation: None; name validation refuses containers nested deeper than one level, so the check guards a layout that Juju does not support.",
+  "id": 202
+ }
+]

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="773.2" height="616.0" viewBox="0 0 773.2 616.0">
+<defs>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-open" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-open-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-hollow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-hollow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+</defs>
+<g id="ggarch-nodes">
+<rect x="20.0" y="212.0" width="183.20000000000002" height="192.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<rect x="20.0" y="212.0" width="183.20000000000002" height="28" fill="#E95420" stroke="none" rx="2" ry="2" />
+<rect x="20.0" y="226.0" width="183.20000000000002" height="14.0" fill="#E95420" stroke="none" />
+<text x="111.60000000000001" y="226.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" font-weight="bold">operation</text>
+<path d="M20.0,240.0 L203.20000000000002,240.0" stroke="#E95420" stroke-width="1" />
+<text x="28.0" y="250.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">PK</text>
+<text x="52.0" y="250.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">uuid</text>
+<text x="197.20000000000002" y="250.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="21.0" y="260.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M20.0,260.0 L203.20000000000002,260.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="28.0" y="270.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">operation_id</text>
+<text x="197.20000000000002" y="270.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">int</text>
+<path d="M20.0,280.0 L203.20000000000002,280.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="28.0" y="290.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">summary?</text>
+<text x="197.20000000000002" y="290.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="21.0" y="300.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M20.0,300.0 L203.20000000000002,300.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="28.0" y="310.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">enqueued_at</text>
+<text x="197.20000000000002" y="310.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">timestamp</text>
+<path d="M20.0,320.0 L203.20000000000002,320.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="28.0" y="330.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">started_at?</text>
+<text x="197.20000000000002" y="330.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">timestamp</text>
+<rect x="21.0" y="340.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M20.0,340.0 L203.20000000000002,340.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="28.0" y="350.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">completed_at?</text>
+<text x="197.20000000000002" y="350.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">timestamp</text>
+<path d="M20.0,360.0 L203.20000000000002,360.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="28.0" y="370.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">parallel?</text>
+<text x="197.20000000000002" y="370.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">bool</text>
+<rect x="21.0" y="380.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M20.0,380.0 L203.20000000000002,380.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="28.0" y="390.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">execution_group?</text>
+<text x="197.20000000000002" y="390.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="20.0" y="20.0" width="183.20000000000002" height="152.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<rect x="20.0" y="20.0" width="183.20000000000002" height="28" fill="#E95420" stroke="none" rx="2" ry="2" />
+<rect x="20.0" y="34.0" width="183.20000000000002" height="14.0" fill="#E95420" stroke="none" />
+<text x="111.60000000000001" y="34.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" font-weight="bold">operation_action</text>
+<path d="M20.0,48.0 L203.20000000000002,48.0" stroke="#E95420" stroke-width="1" />
+<text x="28.0" y="58.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">PK</text>
+<text x="52.0" y="58.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">operation_uuid</text>
+<text x="197.20000000000002" y="58.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="21.0" y="68.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M20.0,68.0 L203.20000000000002,68.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="28.0" y="78.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">charm_uuid</text>
+<text x="197.20000000000002" y="78.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<path d="M20.0,88.0 L203.20000000000002,88.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="28.0" y="98.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">charm_action_key</text>
+<text x="197.20000000000002" y="98.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="20.0" y="444.0" width="183.20000000000002" height="152.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<rect x="20.0" y="444.0" width="183.20000000000002" height="28" fill="#E95420" stroke="none" rx="2" ry="2" />
+<rect x="20.0" y="458.0" width="183.20000000000002" height="14.0" fill="#E95420" stroke="none" />
+<text x="111.60000000000001" y="458.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" font-weight="bold">operation_parameter</text>
+<path d="M20.0,472.0 L203.20000000000002,472.0" stroke="#E95420" stroke-width="1" />
+<text x="28.0" y="482.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">PK</text>
+<text x="52.0" y="482.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">key</text>
+<text x="197.20000000000002" y="482.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="21.0" y="492.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M20.0,492.0 L203.20000000000002,492.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="28.0" y="502.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">FK</text>
+<text x="52.0" y="502.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">operation_uuid</text>
+<text x="197.20000000000002" y="502.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<path d="M20.0,512.0 L203.20000000000002,512.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="28.0" y="522.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">value</text>
+<text x="197.20000000000002" y="522.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="293.20000000000005" y="232.0" width="183.20000000000002" height="152.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<rect x="293.20000000000005" y="232.0" width="183.20000000000002" height="28" fill="#E95420" stroke="none" rx="2" ry="2" />
+<rect x="293.20000000000005" y="246.0" width="183.20000000000002" height="14.0" fill="#E95420" stroke="none" />
+<text x="384.80000000000007" y="246.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" font-weight="bold">operation_task</text>
+<path d="M293.20000000000005,260.0 L476.4000000000001,260.0" stroke="#E95420" stroke-width="1" />
+<text x="301.20000000000005" y="270.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">PK</text>
+<text x="325.20000000000005" y="270.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">uuid</text>
+<text x="470.4000000000001" y="270.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="294.20000000000005" y="280.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M293.20000000000005,280.0 L476.4000000000001,280.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="301.20000000000005" y="290.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">FK</text>
+<text x="325.20000000000005" y="290.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">operation_uuid</text>
+<text x="470.4000000000001" y="290.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<path d="M293.20000000000005,300.0 L476.4000000000001,300.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="301.20000000000005" y="310.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">task_id</text>
+<text x="470.4000000000001" y="310.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="294.20000000000005" y="320.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M293.20000000000005,320.0 L476.4000000000001,320.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="301.20000000000005" y="330.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">enqueued_at</text>
+<text x="470.4000000000001" y="330.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">datetime</text>
+<path d="M293.20000000000005,340.0 L476.4000000000001,340.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="301.20000000000005" y="350.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">started_at?</text>
+<text x="470.4000000000001" y="350.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">datetime</text>
+<rect x="294.20000000000005" y="360.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M293.20000000000005,360.0 L476.4000000000001,360.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="301.20000000000005" y="370.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">completed_at?</text>
+<text x="470.4000000000001" y="370.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">datetime</text>
+<rect x="566.4" y="40.0" width="183.20000000000002" height="152.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<rect x="566.4" y="40.0" width="183.20000000000002" height="28" fill="#E95420" stroke="none" rx="2" ry="2" />
+<rect x="566.4" y="54.0" width="183.20000000000002" height="14.0" fill="#E95420" stroke="none" />
+<text x="658.0" y="54.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" font-weight="bold">operation_task_status</text>
+<path d="M566.4,68.0 L749.6,68.0" stroke="#E95420" stroke-width="1" />
+<text x="574.4" y="78.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">PK</text>
+<text x="598.4" y="78.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">task_uuid</text>
+<text x="743.6" y="78.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="567.4" y="88.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M566.4,88.0 L749.6,88.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="574.4" y="98.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">FK</text>
+<text x="598.4" y="98.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">status_id</text>
+<text x="743.6" y="98.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">int</text>
+<path d="M566.4,108.0 L749.6,108.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="574.4" y="118.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">message?</text>
+<text x="743.6" y="118.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="567.4" y="128.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M566.4,128.0 L749.6,128.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="574.4" y="138.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">updated_at?</text>
+<text x="743.6" y="138.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">datetime</text>
+<rect x="293.2" y="40.0" width="183.20000000000002" height="152.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<rect x="293.2" y="40.0" width="183.20000000000002" height="28" fill="#E95420" stroke="none" rx="2" ry="2" />
+<rect x="293.2" y="54.0" width="183.20000000000002" height="14.0" fill="#E95420" stroke="none" />
+<text x="384.8" y="54.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" font-weight="bold">operation_task_log</text>
+<path d="M293.2,68.0 L476.4,68.0" stroke="#E95420" stroke-width="1" />
+<text x="301.2" y="78.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">FK</text>
+<text x="325.2" y="78.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">task_uuid</text>
+<text x="470.4" y="78.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="294.2" y="88.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M293.2,88.0 L476.4,88.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="301.2" y="98.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">content</text>
+<text x="470.4" y="98.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<path d="M293.2,108.0 L476.4,108.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="301.2" y="118.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">created_at</text>
+<text x="470.4" y="118.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">timestamp</text>
+<rect x="293.20000000000005" y="424.0" width="183.20000000000002" height="152.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<rect x="293.20000000000005" y="424.0" width="183.20000000000002" height="28" fill="#E95420" stroke="none" rx="2" ry="2" />
+<rect x="293.20000000000005" y="438.0" width="183.20000000000002" height="14.0" fill="#E95420" stroke="none" />
+<text x="384.80000000000007" y="438.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" font-weight="bold">operation_task_output</text>
+<path d="M293.20000000000005,452.0 L476.4000000000001,452.0" stroke="#E95420" stroke-width="1" />
+<text x="301.20000000000005" y="462.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">PK</text>
+<text x="325.20000000000005" y="462.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">task_uuid</text>
+<text x="470.4000000000001" y="462.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="294.20000000000005" y="472.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M293.20000000000005,472.0 L476.4000000000001,472.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="301.20000000000005" y="482.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">FK</text>
+<text x="325.20000000000005" y="482.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">store_path</text>
+<text x="470.4000000000001" y="482.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="566.4" y="232.0" width="183.20000000000002" height="152.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<rect x="566.4" y="232.0" width="183.20000000000002" height="28" fill="#E95420" stroke="none" rx="2" ry="2" />
+<rect x="566.4" y="246.0" width="183.20000000000002" height="14.0" fill="#E95420" stroke="none" />
+<text x="658.0" y="246.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" font-weight="bold">operation_unit_task</text>
+<path d="M566.4,260.0 L749.6,260.0" stroke="#E95420" stroke-width="1" />
+<text x="574.4" y="270.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">FK</text>
+<text x="598.4" y="270.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">task_uuid</text>
+<text x="743.6" y="270.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="567.4" y="280.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M566.4,280.0 L749.6,280.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="574.4" y="290.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">FK</text>
+<text x="598.4" y="290.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">unit_uuid</text>
+<text x="743.6" y="290.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="562.8000000000001" y="424.0" width="190.4" height="152.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<rect x="562.8000000000001" y="424.0" width="190.4" height="28" fill="#E95420" stroke="none" rx="2" ry="2" />
+<rect x="562.8000000000001" y="438.0" width="190.4" height="14.0" fill="#E95420" stroke="none" />
+<text x="658.0000000000001" y="438.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" font-weight="bold">operation_machine_task</text>
+<path d="M562.8000000000001,452.0 L753.2,452.0" stroke="#E95420" stroke-width="1" />
+<text x="570.8000000000001" y="462.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">FK</text>
+<text x="594.8000000000001" y="462.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">task_uuid</text>
+<text x="747.2" y="462.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="563.8000000000001" y="472.0" width="188.4" height="20" fill="#00000010" stroke="none" />
+<path d="M562.8000000000001,472.0 L753.2,472.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="570.8000000000001" y="482.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">FK</text>
+<text x="594.8000000000001" y="482.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">machine_uuid</text>
+<text x="747.2" y="482.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+</g>
+<g id="ggarch-edges">
+<path d="M 65.8 172.0 L 65.8 192.0 L 40.4 192.0 L 40.4 212.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="65.8" y="183.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<text x="40.355556" y="201.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<path d="M 562.8 462.0 L 519.6 462.0 L 519.6 270.0 L 476.4 270.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="551.8" y="462.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">m</text>
+<text x="487.4" y="270.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<path d="M 111.6 444.0 L 111.6 424.0 L 40.4 424.0 L 40.4 404.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="111.6" y="433.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">m</text>
+<text x="40.355556" y="415.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<path d="M 293.2 290.0 L 248.2 290.0 L 248.2 250.0 L 203.2 250.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="282.2" y="290.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">m</text>
+<text x="214.2" y="250.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<path d="M 339.0 192.0 L 339.0 212.0 L 319.4 212.0 L 319.4 232.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="339.0" y="203.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">m</text>
+<text x="319.371429" y="221.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<path d="M 354.3 424.0 L 354.3 404.0 L 319.4 404.0 L 319.4 384.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="354.266667" y="413.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<text x="319.371429" y="395.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<path d="M 566.4 78.0 L 521.4 78.0 L 521.4 270.0 L 476.4 270.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="555.4" y="78.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<path d="M 566.4 270.0 L 476.4 270.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="555.4" y="270.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">m</text>
+</g>
+<g id="ggarch-annotations"></g>
+</svg>

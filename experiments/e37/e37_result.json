@@ -1,0 +1,1185 @@
+{
+ "groups": {
+  "application": {
+   "lead": "application",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 52,
+   "R": true,
+   "R_roots": 22,
+   "jobs": [
+    "application",
+    "remote application offerer"
+   ],
+   "W": true,
+   "W_n": 45,
+   "prim": true,
+   "C_ex": [
+    "Deploy",
+    "Consume",
+    "EnterScope"
+   ],
+   "D_ex": [
+    "DestroyOffers",
+    "Expose",
+    "SetCharm"
+   ]
+  },
+  "unit": {
+   "lead": "unit",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "application"
+   ],
+   "C": true,
+   "C_n": 46,
+   "R": true,
+   "R_roots": 41,
+   "jobs": [
+    "unit"
+   ],
+   "W": true,
+   "W_n": 27,
+   "prim": true,
+   "C_ex": [
+    "PublishRelationChanges",
+    "EnterScope",
+    "AddUnits"
+   ],
+   "D_ex": [
+    "Deploy",
+    "PublishRelationChanges",
+    "EnterScope"
+   ]
+  },
+  "machine": {
+   "lead": "machine",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 41,
+   "R": true,
+   "R_roots": 7,
+   "jobs": [
+    "machine"
+   ],
+   "W": true,
+   "W_n": 13,
+   "prim": true,
+   "C_ex": [
+    "Deploy",
+    "EnterScope",
+    "SetStatus"
+   ],
+   "D_ex": [
+    "SetMachineBlockDevices",
+    "SetInstanceInfo",
+    "ReprovisionMachine"
+   ]
+  },
+  "relation": {
+   "lead": "relation",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "application",
+    "unit"
+   ],
+   "C": true,
+   "C_n": 39,
+   "R": true,
+   "R_roots": 12,
+   "jobs": [
+    "relation",
+    "relation with remote consumer",
+    "relation with remote offerer"
+   ],
+   "W": true,
+   "W_n": 29,
+   "prim": true,
+   "C_ex": [
+    "ModifyOfferAccess",
+    "UpdateNetworkInfo",
+    "AddRelation"
+   ],
+   "D_ex": [
+    "EnterScope",
+    "UpdateNetworkInfo",
+    "CommitHookChanges"
+   ]
+  },
+  "storage": {
+   "lead": "storage_pool",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "application",
+    "machine",
+    "unit"
+   ],
+   "C": true,
+   "C_n": 37,
+   "R": true,
+   "R_roots": 13,
+   "jobs": [
+    "storage volume attachment",
+    "storage instance",
+    "storage volume attachment plan",
+    "storage filesystem",
+    "storage filesystem attachment",
+    "storage volume",
+    "storage attachment"
+   ],
+   "W": true,
+   "W_n": 24,
+   "prim": true,
+   "C_ex": [
+    "SetStatus",
+    "SetCharm",
+    "Import"
+   ],
+   "D_ex": [
+    "CreateModel",
+    "SetCharmURL",
+    "ReprovisionMachine"
+   ]
+  },
+  "model": {
+   "lead": "model",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 8,
+   "R": true,
+   "R_roots": 8,
+   "jobs": [
+    "controller-model",
+    "model"
+   ],
+   "W": true,
+   "W_n": 8,
+   "prim": true,
+   "C_ex": [
+    "CreateModel",
+    "ModelUnset",
+    "ModelSet"
+   ],
+   "D_ex": [
+    "CreateModel",
+    "ModelUnset",
+    "ModelSet"
+   ]
+  },
+  "model-migration": {
+   "lead": "model_migration_export",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "model"
+   ],
+   "C": true,
+   "C_n": 9,
+   "R": false,
+   "R_roots": 0,
+   "jobs": [],
+   "W": true,
+   "W_n": 4,
+   "prim": false,
+   "C_ex": [
+    "SetPhase",
+    "Report",
+    "SetStatusMessage"
+   ],
+   "D_ex": []
+  },
+  "secret": {
+   "lead": "secret",
+   "pk": [
+    "id"
+   ],
+   "I": true,
+   "anc": [
+    "application",
+    "unit"
+   ],
+   "C": true,
+   "C_n": 12,
+   "R": true,
+   "R_roots": 9,
+   "jobs": [
+    "user secret",
+    "obsolete user secret revisions",
+    "charm secret"
+   ],
+   "W": true,
+   "W_n": 5,
+   "prim": true,
+   "C_ex": [
+    "SecretsRotated",
+    "GetSecretContentInfo",
+    "CreateSecretURIs"
+   ],
+   "D_ex": [
+    "CreateSecrets",
+    "GetSecretContentInfo",
+    "CommitHookChanges"
+   ]
+  },
+  "secret-backend": {
+   "lead": "secret_backend",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "model"
+   ],
+   "C": true,
+   "C_n": 9,
+   "R": true,
+   "R_roots": 10,
+   "jobs": [],
+   "W": true,
+   "W_n": 7,
+   "prim": true,
+   "C_ex": [
+    "AddSecretBackends",
+    "CreateSecrets",
+    "CommitHookChanges"
+   ],
+   "D_ex": [
+    "AddSecretBackends",
+    "CreateSecrets",
+    "RemoveSecretBackends"
+   ]
+  },
+  "charm": {
+   "lead": "charm",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 12,
+   "R": true,
+   "R_roots": 2,
+   "jobs": [
+    "charm secret"
+   ],
+   "W": true,
+   "W_n": 12,
+   "prim": true,
+   "C_ex": [
+    "Deploy",
+    "Consume",
+    "ServeHTTP"
+   ],
+   "D_ex": [
+    "DestroyOffers",
+    "DestroyOffers"
+   ]
+  },
+  "resource": {
+   "lead": "resource",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "application",
+    "unit"
+   ],
+   "C": true,
+   "C_n": 8,
+   "R": true,
+   "R_roots": 21,
+   "jobs": [
+    "resource"
+   ],
+   "W": true,
+   "W_n": 14,
+   "prim": true,
+   "C_ex": [
+    "SetCharm",
+    "ServeHTTP",
+    "SetCharm"
+   ],
+   "D_ex": [
+    "Deploy",
+    "SetCharm",
+    "Deploy"
+   ]
+  },
+  "action": {
+   "lead": "operation_task",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "application",
+    "machine",
+    "unit"
+   ],
+   "C": true,
+   "C_n": 15,
+   "R": true,
+   "R_roots": 1,
+   "jobs": [],
+   "W": true,
+   "W_n": 7,
+   "prim": true,
+   "C_ex": [
+    "Run",
+    "RunOnAllMachines",
+    "LogActionsMessages"
+   ],
+   "D_ex": [
+    "ReprovisionMachine"
+   ]
+  },
+  "offer": {
+   "lead": "offer",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "application",
+    "relation"
+   ],
+   "C": true,
+   "C_n": 2,
+   "R": true,
+   "R_roots": 2,
+   "jobs": [
+    "relation with remote consumer",
+    "relation with remote offerer",
+    "remote application offerer"
+   ],
+   "W": true,
+   "W_n": 9,
+   "prim": true,
+   "C_ex": [
+    "Offer",
+    "Offer"
+   ],
+   "D_ex": [
+    "Offer",
+    "Offer"
+   ]
+  },
+  "cloud": {
+   "lead": "cloud",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 4,
+   "R": true,
+   "R_roots": 6,
+   "jobs": [],
+   "W": true,
+   "W_n": 6,
+   "prim": true,
+   "C_ex": [
+    "AddCloud",
+    "UpdateCloud",
+    "AddCloud"
+   ],
+   "D_ex": [
+    "AddCloud",
+    "RemoveClouds",
+    "UpdateCloud"
+   ]
+  },
+  "credential": {
+   "lead": "cloud_credential",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 4,
+   "R": true,
+   "R_roots": 8,
+   "jobs": [],
+   "W": true,
+   "W_n": 8,
+   "prim": true,
+   "C_ex": [
+    "UpdateCredentialsCheckModels",
+    "AddCredentials",
+    "AddCredentials"
+   ],
+   "D_ex": [
+    "RevokeCredentialsCheckModels",
+    "RemoveClouds",
+    "UpdateCredentialsCheckModels"
+   ]
+  },
+  "model-defaults": {
+   "lead": "cloud_defaults",
+   "pk": [
+    "cloud_uuid",
+    "key"
+   ],
+   "I": false,
+   "anc": [],
+   "C": true,
+   "C_n": 2,
+   "R": true,
+   "R_roots": 2,
+   "jobs": [],
+   "W": true,
+   "W_n": 4,
+   "prim": false,
+   "C_ex": [
+    "SetModelDefaults",
+    "SetModelDefaults"
+   ],
+   "D_ex": [
+    "UnsetModelDefaults",
+    "UnsetModelDefaults"
+   ]
+  },
+  "image-metadata": {
+   "lead": "cloud_image_metadata",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 3,
+   "R": true,
+   "R_roots": 4,
+   "jobs": [],
+   "W": true,
+   "W_n": 2,
+   "prim": true,
+   "C_ex": [
+    "Save",
+    "ProvisioningInfo",
+    "ProvisioningInfo"
+   ],
+   "D_ex": [
+    "Save",
+    "ProvisioningInfo",
+    "Delete"
+   ]
+  },
+  "controller": {
+   "lead": "controller",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 10,
+   "R": true,
+   "R_roots": 4,
+   "jobs": [
+    "controller-model"
+   ],
+   "W": true,
+   "W_n": 4,
+   "prim": true,
+   "C_ex": [
+    "UnitIntroduction",
+    "SetTools",
+    "ConfigSet"
+   ],
+   "D_ex": [
+    "ConfigSet",
+    "ConfigSet",
+    "ConfigSet"
+   ]
+  },
+  "upgrade": {
+   "lead": "upgrade_info",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "controller_node"
+   ],
+   "C": false,
+   "C_n": 0,
+   "R": false,
+   "R_roots": 0,
+   "jobs": [],
+   "W": false,
+   "W_n": 0,
+   "prim": false,
+   "C_ex": [],
+   "D_ex": []
+  },
+  "user": {
+   "lead": "user",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "model"
+   ],
+   "C": true,
+   "C_n": 14,
+   "R": true,
+   "R_roots": 4,
+   "jobs": [
+    "user secret",
+    "obsolete user secret revisions"
+   ],
+   "W": true,
+   "W_n": 16,
+   "prim": true,
+   "C_ex": [
+    "AddUser",
+    "ModifyCloudAccess",
+    "EnableUser"
+   ],
+   "D_ex": [
+    "ServeHTTP",
+    "RemoveUser",
+    "SetPassword"
+   ]
+  },
+  "permission": {
+   "lead": "permission",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 17,
+   "R": true,
+   "R_roots": 15,
+   "jobs": [],
+   "W": true,
+   "W_n": 22,
+   "prim": true,
+   "C_ex": [
+    "ModifyOfferAccess",
+    "AddUser",
+    "ModifyCloudAccess"
+   ],
+   "D_ex": [
+    "DestroyOffers",
+    "ModifyOfferAccess",
+    "ModifyCloudAccess"
+   ]
+  },
+  "ssh-key": {
+   "lead": "user_public_ssh_key",
+   "pk": [
+    "id"
+   ],
+   "I": true,
+   "anc": [
+    "model"
+   ],
+   "C": true,
+   "C_n": 2,
+   "R": true,
+   "R_roots": 2,
+   "jobs": [],
+   "W": true,
+   "W_n": 4,
+   "prim": true,
+   "C_ex": [
+    "ImportKeys",
+    "AddKeys"
+   ],
+   "D_ex": [
+    "DeleteKeys",
+    "RemoveUser"
+   ]
+  },
+  "ssh": {
+   "lead": "machine_ssh_host_key",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "application",
+    "machine",
+    "unit"
+   ],
+   "C": true,
+   "C_n": 4,
+   "R": true,
+   "R_roots": 3,
+   "jobs": [],
+   "W": true,
+   "W_n": 3,
+   "prim": true,
+   "C_ex": [
+    "PublicHostKeyForTarget",
+    "ReportKeys",
+    "PublicHostKeyForTarget"
+   ],
+   "D_ex": [
+    "GetSSHConnRequest",
+    "ReportKeys",
+    "WatchSSHConnRequest"
+   ]
+  },
+  "object-store": {
+   "lead": "object_store_metadata",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": false,
+   "C_n": 0,
+   "R": true,
+   "R_roots": 2,
+   "jobs": [],
+   "W": true,
+   "W_n": 2,
+   "prim": false,
+   "C_ex": [],
+   "D_ex": [
+    "DestroyOffers",
+    "DestroyOffers"
+   ]
+  },
+  "agent-version": {
+   "lead": "agent_version",
+   "pk": [],
+   "I": false,
+   "anc": [],
+   "C": true,
+   "C_n": 2,
+   "R": false,
+   "R_roots": 0,
+   "jobs": [],
+   "W": true,
+   "W_n": 2,
+   "prim": false,
+   "C_ex": [
+    "CreateModel",
+    "CreateModel"
+   ],
+   "D_ex": []
+  },
+  "space": {
+   "lead": "space",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 4,
+   "R": true,
+   "R_roots": 4,
+   "jobs": [],
+   "W": true,
+   "W_n": 5,
+   "prim": true,
+   "C_ex": [
+    "ReloadSpaces",
+    "CreateModel",
+    "CreateSpaces"
+   ],
+   "D_ex": [
+    "ReloadSpaces",
+    "CreateModel",
+    "RemoveSpace"
+   ]
+  },
+  "subnet": {
+   "lead": "subnet",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 7,
+   "R": false,
+   "R_roots": 0,
+   "jobs": [],
+   "W": true,
+   "W_n": 3,
+   "prim": false,
+   "C_ex": [
+    "ReloadSpaces",
+    "CreateModel",
+    "SetObservedNetworkConfig"
+   ],
+   "D_ex": []
+  },
+  "zone": {
+   "lead": "availability_zone",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 3,
+   "R": false,
+   "R_roots": 0,
+   "jobs": [],
+   "W": true,
+   "W_n": 3,
+   "prim": false,
+   "C_ex": [
+    "ReloadSpaces",
+    "CreateModel",
+    "CreateModel"
+   ],
+   "D_ex": []
+  },
+  "link-layer-device": {
+   "lead": "link_layer_device",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 19,
+   "R": true,
+   "R_roots": 23,
+   "jobs": [],
+   "W": true,
+   "W_n": 24,
+   "prim": true,
+   "C_ex": [
+    "Deploy",
+    "PublishRelationChanges",
+    "EnterScope"
+   ],
+   "D_ex": [
+    "DestroyOffers",
+    "PublishRelationChanges",
+    "SetObservedNetworkConfig"
+   ]
+  },
+  "external-controller": {
+   "lead": "external_controller",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 19,
+   "R": true,
+   "R_roots": 19,
+   "jobs": [],
+   "W": true,
+   "W_n": 13,
+   "prim": true,
+   "C_ex": [
+    "Consume",
+    "InitiateMigration",
+    "ControllerAPIInfoForModels"
+   ],
+   "D_ex": [
+    "Consume",
+    "InitiateMigration",
+    "ControllerAPIInfoForModels"
+   ]
+  },
+  "constraint": {
+   "lead": "constraint",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 10,
+   "R": true,
+   "R_roots": 14,
+   "jobs": [],
+   "W": true,
+   "W_n": 14,
+   "prim": true,
+   "C_ex": [
+    "Deploy",
+    "SetConstraints",
+    "DeployFromRepository"
+   ],
+   "D_ex": [
+    "Deploy",
+    "ReloadSpaces",
+    "CreateModel"
+   ]
+  },
+  "annotation": {
+   "lead": "annotation_unit",
+   "pk": [
+    "uuid",
+    "key"
+   ],
+   "I": false,
+   "anc": [
+    "application",
+    "unit"
+   ],
+   "C": true,
+   "C_n": 1,
+   "R": true,
+   "R_roots": 1,
+   "jobs": [],
+   "W": true,
+   "W_n": 1,
+   "prim": false,
+   "C_ex": [
+    "Set"
+   ],
+   "D_ex": [
+    "Set"
+   ]
+  },
+  "block-command": {
+   "lead": "block_command",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 1,
+   "R": true,
+   "R_roots": 5,
+   "jobs": [],
+   "W": true,
+   "W_n": 6,
+   "prim": true,
+   "C_ex": [
+    "SwitchBlockOn"
+   ],
+   "D_ex": [
+    "SwitchBlockOff",
+    "RemoveBlocks",
+    "RemoveBlocks"
+   ]
+  },
+  "removal": {
+   "lead": "removal",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 24,
+   "R": false,
+   "R_roots": 0,
+   "jobs": [],
+   "W": true,
+   "W_n": 13,
+   "prim": false,
+   "C_ex": [
+    "SetCharm",
+    "ServeHTTP",
+    "DeleteObsoleteUserSecretRevisions"
+   ],
+   "D_ex": []
+  },
+  "lease": {
+   "lead": "lease",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": false,
+   "C_n": 0,
+   "R": false,
+   "R_roots": 0,
+   "jobs": [],
+   "W": false,
+   "W_n": 0,
+   "prim": false,
+   "C_ex": [],
+   "D_ex": []
+  },
+  "port": {
+   "lead": "port_range",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "application",
+    "unit"
+   ],
+   "C": true,
+   "C_n": 4,
+   "R": true,
+   "R_roots": 4,
+   "jobs": [],
+   "W": false,
+   "W_n": 0,
+   "prim": true,
+   "C_ex": [
+    "CommitHookChanges",
+    "CommitHookChanges",
+    "CommitHookChanges"
+   ],
+   "D_ex": [
+    "CommitHookChanges",
+    "CommitHookChanges",
+    "CommitHookChanges"
+   ]
+  },
+  "telemetry": {
+   "lead": "logging_loki_config",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": false,
+   "C_n": 0,
+   "R": false,
+   "R_roots": 0,
+   "jobs": [],
+   "W": false,
+   "W_n": 0,
+   "prim": false,
+   "C_ex": [],
+   "D_ex": []
+  },
+  "database": {
+   "lead": "sequence",
+   "pk": [
+    "namespace"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 53,
+   "R": true,
+   "R_roots": 3,
+   "jobs": [],
+   "W": true,
+   "W_n": 35,
+   "prim": true,
+   "C_ex": [
+    "Deploy",
+    "Run",
+    "EnterScope"
+   ],
+   "D_ex": [
+    "Deploy",
+    "DeployFromRepository",
+    "Deploy"
+   ]
+  },
+  "storage-pool": {
+   "lead": "storage_pool",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [],
+   "C": true,
+   "C_n": 4,
+   "R": false,
+   "R_roots": 0,
+   "jobs": [],
+   "W": true,
+   "W_n": 4,
+   "prim": false,
+   "C_ex": [
+    "CreateModel",
+    "CreatePool",
+    "CreateModel"
+   ],
+   "D_ex": []
+  }
+ },
+ "controls": {
+  "cloud-instance": {
+   "lead": "machine_cloud_instance",
+   "pk": [
+    "machine_uuid"
+   ],
+   "I": false,
+   "anc": [
+    "machine"
+   ],
+   "C": true,
+   "C_n": 6,
+   "R": true,
+   "R_roots": 1,
+   "jobs": [],
+   "W": true,
+   "W_n": 13,
+   "prim": false,
+   "C_ex": [
+    "SetInstanceStatus",
+    "SetInstanceInfo",
+    "RetryProvisioning"
+   ],
+   "D_ex": [
+    "ReprovisionMachine"
+   ]
+  },
+  "unit-state": {
+   "lead": "unit_state",
+   "pk": [
+    "unit_uuid"
+   ],
+   "I": false,
+   "anc": [
+    "application",
+    "unit"
+   ],
+   "C": true,
+   "C_n": 8,
+   "R": true,
+   "R_roots": 9,
+   "jobs": [],
+   "W": true,
+   "W_n": 3,
+   "prim": false,
+   "C_ex": [
+    "CommitHookChanges",
+    "SetState",
+    "CommitHookChanges"
+   ],
+   "D_ex": [
+    "CommitHookChanges",
+    "ReprovisionMachine",
+    "SetState"
+   ]
+  },
+  "relation-unit": {
+   "lead": "relation_unit",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "application",
+    "relation",
+    "unit"
+   ],
+   "C": true,
+   "C_n": 22,
+   "R": true,
+   "R_roots": 12,
+   "jobs": [],
+   "W": true,
+   "W_n": 14,
+   "prim": true,
+   "C_ex": [
+    "UpdateNetworkInfo",
+    "CommitHookChanges",
+    "DestroyModels"
+   ],
+   "D_ex": [
+    "EnterScope",
+    "UpdateNetworkInfo",
+    "CommitHookChanges"
+   ]
+  },
+  "application-endpoint": {
+   "lead": "application_endpoint",
+   "pk": [
+    "uuid"
+   ],
+   "I": true,
+   "anc": [
+    "application"
+   ],
+   "C": true,
+   "C_n": 5,
+   "R": true,
+   "R_roots": 5,
+   "jobs": [],
+   "W": true,
+   "W_n": 15,
+   "prim": true,
+   "C_ex": [
+    "SetCharm",
+    "SetCharm",
+    "SetCharm"
+   ],
+   "D_ex": [
+    "SetCharm",
+    "SetCharm",
+    "SetCharm"
+   ]
+  },
+  "application-scale": {
+   "lead": "application_scale",
+   "pk": [
+    "application_uuid"
+   ],
+   "I": false,
+   "anc": [
+    "application"
+   ],
+   "C": false,
+   "C_n": 0,
+   "R": false,
+   "R_roots": 0,
+   "jobs": [],
+   "W": true,
+   "W_n": 3,
+   "prim": false,
+   "C_ex": [],
+   "D_ex": []
+  },
+  "machine-placement": {
+   "lead": "machine_placement",
+   "pk": [
+    "machine_uuid"
+   ],
+   "I": false,
+   "anc": [
+    "machine"
+   ],
+   "C": false,
+   "C_n": 0,
+   "R": false,
+   "R_roots": 0,
+   "jobs": [],
+   "W": true,
+   "W_n": 10,
+   "prim": false,
+   "C_ex": [],
+   "D_ex": []
+  }
+ }
+}

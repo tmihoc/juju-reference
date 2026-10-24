@@ -1,0 +1,6 @@
+non-lookup tables 264 assigned 264 missing [] bad page []
+pages 39 empty pages ['status']
+shared vocabulary ['architecture', 'auth_type', 'charm_config_type', 'charm_relation_scope', 'container_type', 'life', 'os', 'password_hash_algorithm']
+cohesion (intra-page FK share among non-lookup tables): 195 / 276 = 70.7%
+[('application', 21), ('storage', 20), ('machine', 18), ('charm', 18), ('secret', 17), ('unit', 14), ('controller', 14), ('model-migration', 13), ('link-layer-device', 13), ('relation', 12), ('action', 9), ('resource', 8), ('annotation', 8), ('offer', 7), ('model', 6), ('ssh', 6), ('object-store', 6), ('secret-backend', 5), ('user', 5), ('database', 5), ('cloud', 4), ('subnet', 4), ('constraint', 4), ('external-controller', 3), ('telemetry', 3), ('credential', 2), ('model-defaults', 2), ('upgrade', 2), ('ssh-key', 2), ('agent-version', 2), ('space', 2), ('zone', 2), ('lease', 2), ('image-metadata', 1), ('permission', 1), ('block-command', 1), ('removal', 1), ('port', 1)]
+small pages (<3): [('credential', 2, 'noun'), ('model-defaults', 2, 'noun'), ('upgrade', 2, 'mechanism'), ('ssh-key', 2, 'noun'), ('agent-version', 2, 'noun'), ('space', 2, 'noun'), ('zone', 2, 'noun'), ('lease', 2, 'mechanism'), ('image-metadata', 1, 'noun'), ('permission', 1, 'noun'), ('block-command', 1, 'mechanism'), ('removal', 1, 'mechanism'), ('port', 1, 'noun')]

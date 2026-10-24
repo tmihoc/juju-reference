@@ -1,0 +1,117 @@
+{
+ "model": [
+  "life-column"
+ ],
+ "machine": [
+  "life-column"
+ ],
+ "application": [
+  "life-column",
+  "pruned"
+ ],
+ "network": [
+  "deletable"
+ ],
+ "storage": [
+  "life-column"
+ ],
+ "blockdevice": [
+  "deletable"
+ ],
+ "secret": [
+  "deletable",
+  "pruned"
+ ],
+ "annotation": [
+  "deletable"
+ ],
+ "constraints": [
+  "append-only"
+ ],
+ "resource": [
+  "deletable"
+ ],
+ "relation": [
+  "life-column"
+ ],
+ "blockcommand": [
+  "deletable"
+ ],
+ "sequence": [
+  "append-only"
+ ],
+ "agentbinary": [
+  "append-only",
+  "pruned"
+ ],
+ "modelagent": [
+  "append-only"
+ ],
+ "crossmodelrelation": [
+  "life-column"
+ ],
+ "operation": [
+  "append-only",
+  "pruned"
+ ],
+ "ssh": [
+  "deletable",
+  "pruned"
+ ],
+ "port": [
+  "append-only"
+ ],
+ "objectstore": [
+  "life-column"
+ ],
+ "removal": [
+  "deletable",
+  "pruned"
+ ],
+ "lease": [
+  "deletable"
+ ],
+ "cloud": [
+  "deletable"
+ ],
+ "externalcontroller": [
+  "deletable"
+ ],
+ "controllerconfig": [
+  "deletable"
+ ],
+ "controllernode": [
+  "life-column"
+ ],
+ "upgrade": [
+  "append-only"
+ ],
+ "autocert": [
+  "deletable"
+ ],
+ "access": [
+  "deletable"
+ ],
+ "flag": [
+  "append-only"
+ ],
+ "secretbackend": [
+  "deletable"
+ ],
+ "keymanager": [
+  "deletable"
+ ],
+ "cloudimagemetadata": [
+  "deletable",
+  "pruned"
+ ],
+ "tracing": [
+  "deletable"
+ ],
+ "logging": [
+  "deletable"
+ ],
+ "controller": [
+  "append-only"
+ ]
+}

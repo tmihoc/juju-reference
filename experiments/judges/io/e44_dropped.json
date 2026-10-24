@@ -1,0 +1,17 @@
+[
+ {
+  "page": "machine",
+  "id": "A-Q07",
+  "reason": "ground truth states the wrong order (machiner EnsureDead precedes the provisioner step); verifier: partly"
+ },
+ {
+  "page": "machine",
+  "id": "A-Q16",
+  "reason": "answerable via the generic start-instance retry (10 retries, 10 s), verifier: exists"
+ },
+ {
+  "page": "ssh-key",
+  "id": "A-Q08",
+  "reason": "ground truth overstates: in 4.1 the keys reach only the bootstrap machine and the provisioning script; verifier: partly"
+ }
+]

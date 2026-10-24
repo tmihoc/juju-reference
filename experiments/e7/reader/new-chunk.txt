@@ -1,0 +1,440 @@
+You are a documentation assistant. Answer each question using ONLY the documentation provided. If the documentation does not contain the answer, say exactly "The documentation does not say." and do not guess. Be concise (1-3 sentences). Read only this one file; open no other file and use no other tool. Reply with ONLY a JSON object mapping each question id to your answer string.
+
+For each question below you are given excerpts retrieved from the documentation (they may be incomplete). Answer from the excerpts only.
+
+### Q1. I get the error `access or greater` when granting. What does it mean and what should I do?
+Retrieved excerpts for this question:
+bject the grants hang off, and the
+controller database the permission records live in.
+
+## Access data model
+
+Access is stored in the controller database as the **permission** record. A permission has no states: the record exists, or it does not.
+
+- **Permission record:** One record per grant, carrying its UUID, the access level and the object kind (stored as records of their own vocabularies), the object's name or UUID, and the granted user's UUID. The natural key is the pair of object and user
+---
+ offer.
+- *Rule:* A grant must raise the level: a user already holding the level, or a greater one, cannot be granted it again.
+- *Rule:* A user cannot change their own cloud access.
+- *Related errors:*
+  - **`You have specified a controller access permission "<level>"...`**: *Trigger:* A controller level named together with a model or an offer. *Remediation:* Name a model or offer level, or drop the model or offer.
+  - **`access or greater`**: *Trigger:* Granting a level that the user already h
+---
+  - **`access or greater`**: *Trigger:* Granting a level that the user already holds, or a greater one. *Remediation:* None; the user already has that access.
+  - **`cannot change your own cloud access`**: *Trigger:* Granting or revoking cloud access for yourself. *Remediation:* Ask another cloud admin or a controller superuser.
+- *Effect:* The grant creates the permission record, or updates it to a higher level. Granting to an external user that Juju has not seen yet creates that user as a side
+
+### Q2. What access do I need to change another user's access on a model?
+Retrieved excerpts for this question:
+# Access
+
+In Juju, **access** is the authority a user holds to act on
+an object: one grant, naming who is given what
+access level on what kind of object: a
+cloud, the controller, a
+model, or an application offer. The
+levels and the abilities they confer are defined in the user
+reference (see the access levels); this
+page is the grant itself.
+
+Its neighbours: the users whose names the grants carry,
+the four kinds of object the grants hang off, and the
+controller database the permission records li
+---
+s the user's *reach* (see the user's persistence layer).
+
+## Access change streams
+
+The access domain exposes no change streams: user and permission changes are read on demand (the same statement the user reference makes; see user watchers).
+
+## Access operations
+
+Access has no software of its own: a grant is a pure write to the permission record set, and nothing runs because a level was conferred. A client asks the controller to change access, and the controller's permission service performs th
+---
+ or more models`**: *Trigger:* A revoke (or a user removal) that would leave a model without an admin. *Remediation:* Grant admin on the model to another user first.
+- *Effect:* The revoke updates the permission record down or deletes it. Revoking the `read` level deletes the record outright, so a revoke that takes the level back to `read` is the same write as the one that removes the grant.
+
+### Access reads
+
+A client reads access where it reads users: `juju show-user` reports a user's access l
+
+### Q3. Who may change access to an application offer?
+Retrieved excerpts for this question:
+# Access
+
+In Juju, **access** is the authority a user holds to act on
+an object: one grant, naming who is given what
+access level on what kind of object: a
+cloud, the controller, a
+model, or an application offer. The
+levels and the abilities they confer are defined in the user
+reference (see the access levels); this
+page is the grant itself.
+
+Its neighbours: the users whose names the grants carry,
+the four kinds of object the grants hang off, and the
+controller database the permission records li
+---
+controller to change access, and the controller's permission service performs the write.
+
+
+
+### Access grant
+
+A grant names a user, a level and an object. The `juju grant` command grants model, offer and controller levels (controller levels with no model or offer named), and `juju grant-cloud` grants cloud levels. The Terraform Provider for Juju can manage access in place of the commands: the `juju_access_model` and `juju_access_offer` resources cover model and offer access; cloud and controller
+---
+ offer.
+- *Rule:* A grant must raise the level: a user already holding the level, or a greater one, cannot be granted it again.
+- *Rule:* A user cannot change their own cloud access.
+- *Related errors:*
+  - **`You have specified a controller access permission "<level>"...`**: *Trigger:* A controller level named together with a model or an offer. *Remediation:* Name a model or offer level, or drop the model or offer.
+  - **`access or greater`**: *Trigger:* Granting a level that the user already h
+
+### Q4. What happens in the database when I revoke the `read` level from a user on a model?
+Retrieved excerpts for this question:
+# Access
+
+In Juju, **access** is the authority a user holds to act on
+an object: one grant, naming who is given what
+access level on what kind of object: a
+cloud, the controller, a
+model, or an application offer. The
+levels and the abilities they confer are defined in the user
+reference (see the access levels); this
+page is the grant itself.
+
+Its neighbours: the users whose names the grants carry,
+the four kinds of object the grants hang off, and the
+controller database the permission records li
+---
+nting to an external user that Juju has not seen yet creates that user as a side effect, so the record has someone to name.
+
+### Access revocation
+
+A revoke names a user, a level and an object, with the same authority requirements as a grant. The `juju revoke` and `juju revoke-cloud` commands revoke access.
+
+- *Rule:* The last model admin cannot be removed.
+- *Related error:*
+  - **`user is the last model admin for 1 or more models`**: *Trigger:* A revoke (or a user removal) that would leave a m
+---
+ or more models`**: *Trigger:* A revoke (or a user removal) that would leave a model without an admin. *Remediation:* Grant admin on the model to another user first.
+- *Effect:* The revoke updates the permission record down or deletes it. Revoking the `read` level deletes the record outright, so a revoke that takes the level back to `read` is the same write as the one that removes the grant.
+
+### Access reads
+
+A client reads access where it reads users: `juju show-user` reports a user's access l
+
+### Q5. Can I revoke the last admin of a model? What error appears and what should I do first?
+Retrieved excerpts for this question:
+# Access
+
+In Juju, **access** is the authority a user holds to act on
+an object: one grant, naming who is given what
+access level on what kind of object: a
+cloud, the controller, a
+model, or an application offer. The
+levels and the abilities they confer are defined in the user
+reference (see the access levels); this
+page is the grant itself.
+
+Its neighbours: the users whose names the grants carry,
+the four kinds of object the grants hang off, and the
+controller database the permission records li
+---
+nting to an external user that Juju has not seen yet creates that user as a side effect, so the record has someone to name.
+
+### Access revocation
+
+A revoke names a user, a level and an object, with the same authority requirements as a grant. The `juju revoke` and `juju revoke-cloud` commands revoke access.
+
+- *Rule:* The last model admin cannot be removed.
+- *Related error:*
+  - **`user is the last model admin for 1 or more models`**: *Trigger:* A revoke (or a user removal) that would leave a m
+---
+ or more models`**: *Trigger:* A revoke (or a user removal) that would leave a model without an admin. *Remediation:* Grant admin on the model to another user first.
+- *Effect:* The revoke updates the permission record down or deletes it. Revoking the `read` level deletes the record outright, so a revoke that takes the level back to `read` is the same write as the one that removes the grant.
+
+### Access reads
+
+A client reads access where it reads users: `juju show-user` reports a user's access l
+
+### Q6. How many level-object combinations are valid, and which levels are valid for an offer?
+Retrieved excerpts for this question:
+n lookup holds the valid pairs, ten of them: `admin` and `add-model` for clouds, `login` and `superuser` for controllers, `read`, `write` and `admin` for models, `read`, `consume` and `admin` for offers. The levels and the abilities each confers are defined in the user reference (see the access levels).
+  - *Related error:*
+    - **`permission not valid`**: *Trigger:* A grant whose level-object pair is not in the combination lookup. *Remediation:* Use one of the ten valid pairs.
+- **Views:** Dat
+---
+controller to change access, and the controller's permission service performs the write.
+
+
+
+### Access grant
+
+A grant names a user, a level and an object. The `juju grant` command grants model, offer and controller levels (controller levels with no model or offer named), and `juju grant-cloud` grants cloud levels. The Terraform Provider for Juju can manage access in place of the commands: the `juju_access_model` and `juju_access_offer` resources cover model and offer access; cloud and controller
+---
+`juju_access_offer` resources cover model and offer access; cloud and controller access are covered by the provider's `jaas_access_cloud` and `jaas_access_controller` resources, which apply when using JAAS.
+
+- *Rule:* Which grants are open to a caller depends on the object. Changing controller access requires controller superuser access; changing model access requires model admin access on that model or controller superuser access; changing offer access requires model admin access on the model t
+
+### Q7. How is an external user's effective access level determined?
+Retrieved excerpts for this question:
+bination lookup. *Remediation:* Use one of the ten valid pairs.
+- **Views:** Database views resolve each record's identifiers into their type names, one view per object kind and one more for the special `everyone@external` user, whose grants act like a group: any external user inherits a level from `everyone@external` whenever the external user's own is lower.
+- **Reach:** From the user's side, this same record set is the user's *reach* (see the user's persistence layer).
+
+## Access change strea
+---
+nt reads access where it reads users: `juju show-user` reports a user's access levels, and `juju users` lists the users of a model with theirs. Both are plain reads of the permission records through the user manager facade: nothing is enqueued and nothing waits.
+
+### Access checks
+
+Every gated API call a client makes carries a permission check against the permission records. Nothing else enforces access, and the checks run on demand.
+
+- *Rule:* An external user's effective level is the greater o
+---
+ks run on demand.
+
+- *Rule:* An external user's effective level is the greater of their own grants and `everyone@external`'s. The checks resolve this each time they read an external user's access: nothing is stored, and there is no cached copy to invalidate.
+
+
+### Q8. Can I change my own cloud access? What if I try?
+Retrieved excerpts for this question:
+# Access
+
+In Juju, **access** is the authority a user holds to act on
+an object: one grant, naming who is given what
+access level on what kind of object: a
+cloud, the controller, a
+model, or an application offer. The
+levels and the abilities they confer are defined in the user
+reference (see the access levels); this
+page is the grant itself.
+
+Its neighbours: the users whose names the grants carry,
+the four kinds of object the grants hang off, and the
+controller database the permission records li
+---
+controller to change access, and the controller's permission service performs the write.
+
+
+
+### Access grant
+
+A grant names a user, a level and an object. The `juju grant` command grants model, offer and controller levels (controller levels with no model or offer named), and `juju grant-cloud` grants cloud levels. The Terraform Provider for Juju can manage access in place of the commands: the `juju_access_model` and `juju_access_offer` resources cover model and offer access; cloud and controller
+---
+  - **`access or greater`**: *Trigger:* Granting a level that the user already holds, or a greater one. *Remediation:* None; the user already has that access.
+  - **`cannot change your own cloud access`**: *Trigger:* Granting or revoking cloud access for yourself. *Remediation:* Ask another cloud admin or a controller superuser.
+- *Effect:* The grant creates the permission record, or updates it to a higher level. Granting to an external user that Juju has not seen yet creates that user as a side
+
+### Q9. What makes a permission unique in the controller database?
+Retrieved excerpts for this question:
+# Access
+
+In Juju, **access** is the authority a user holds to act on
+an object: one grant, naming who is given what
+access level on what kind of object: a
+cloud, the controller, a
+model, or an application offer. The
+levels and the abilities they confer are defined in the user
+reference (see the access levels); this
+page is the grant itself.
+
+Its neighbours: the users whose names the grants carry,
+the four kinds of object the grants hang off, and the
+controller database the permission records li
+---
+bject the grants hang off, and the
+controller database the permission records live in.
+
+## Access data model
+
+Access is stored in the controller database as the **permission** record. A permission has no states: the record exists, or it does not.
+
+- **Permission record:** One record per grant, carrying its UUID, the access level and the object kind (stored as records of their own vocabularies), the object's name or UUID, and the granted user's UUID. The natural key is the pair of object and user
+---
+s the user's *reach* (see the user's persistence layer).
+
+## Access change streams
+
+The access domain exposes no change streams: user and permission changes are read on demand (the same statement the user reference makes; see user watchers).
+
+## Access operations
+
+Access has no software of its own: a grant is a pure write to the permission record set, and nothing runs because a level was conferred. A client asks the controller to change access, and the controller's permission service performs th
+
+### Q10. What side effect can a grant to an external user have?
+Retrieved excerpts for this question:
+# Access
+
+In Juju, **access** is the authority a user holds to act on
+an object: one grant, naming who is given what
+access level on what kind of object: a
+cloud, the controller, a
+model, or an application offer. The
+levels and the abilities they confer are defined in the user
+reference (see the access levels); this
+page is the grant itself.
+
+Its neighbours: the users whose names the grants carry,
+the four kinds of object the grants hang off, and the
+controller database the permission records li
+---
+  - **`access or greater`**: *Trigger:* Granting a level that the user already holds, or a greater one. *Remediation:* None; the user already has that access.
+  - **`cannot change your own cloud access`**: *Trigger:* Granting or revoking cloud access for yourself. *Remediation:* Ask another cloud admin or a controller superuser.
+- *Effect:* The grant creates the permission record, or updates it to a higher level. Granting to an external user that Juju has not seen yet creates that user as a side
+---
+nting to an external user that Juju has not seen yet creates that user as a side effect, so the record has someone to name.
+
+### Access revocation
+
+A revoke names a user, a level and an object, with the same authority requirements as a grant. The `juju revoke` and `juju revoke-cloud` commands revoke access.
+
+- *Rule:* The last model admin cannot be removed.
+- *Related error:*
+  - **`user is the last model admin for 1 or more models`**: *Trigger:* A revoke (or a user removal) that would leave a m
+
+### Q11. Can I subscribe to be notified when someone's access changes?
+Retrieved excerpts for this question:
+s the user's *reach* (see the user's persistence layer).
+
+## Access change streams
+
+The access domain exposes no change streams: user and permission changes are read on demand (the same statement the user reference makes; see user watchers).
+
+## Access operations
+
+Access has no software of its own: a grant is a pure write to the permission record set, and nothing runs because a level was conferred. A client asks the controller to change access, and the controller's permission service performs th
+---
+`juju_access_offer` resources cover model and offer access; cloud and controller access are covered by the provider's `jaas_access_cloud` and `jaas_access_controller` resources, which apply when using JAAS.
+
+- *Rule:* Which grants are open to a caller depends on the object. Changing controller access requires controller superuser access; changing model access requires model admin access on that model or controller superuser access; changing offer access requires model admin access on the model t
+---
+nting to an external user that Juju has not seen yet creates that user as a side effect, so the record has someone to name.
+
+### Access revocation
+
+A revoke names a user, a level and an object, with the same authority requirements as a grant. The `juju revoke` and `juju revoke-cloud` commands revoke access.
+
+- *Rule:* The last model admin cannot be removed.
+- *Related error:*
+  - **`user is the last model admin for 1 or more models`**: *Trigger:* A revoke (or a user removal) that would leave a m
+
+### Q12. Which Terraform resources manage controller access, and when do they apply?
+Retrieved excerpts for this question:
+# Access
+
+In Juju, **access** is the authority a user holds to act on
+an object: one grant, naming who is given what
+access level on what kind of object: a
+cloud, the controller, a
+model, or an application offer. The
+levels and the abilities they confer are defined in the user
+reference (see the access levels); this
+page is the grant itself.
+
+Its neighbours: the users whose names the grants carry,
+the four kinds of object the grants hang off, and the
+controller database the permission records li
+---
+controller to change access, and the controller's permission service performs the write.
+
+
+
+### Access grant
+
+A grant names a user, a level and an object. The `juju grant` command grants model, offer and controller levels (controller levels with no model or offer named), and `juju grant-cloud` grants cloud levels. The Terraform Provider for Juju can manage access in place of the commands: the `juju_access_model` and `juju_access_offer` resources cover model and offer access; cloud and controller
+---
+`juju_access_offer` resources cover model and offer access; cloud and controller access are covered by the provider's `jaas_access_cloud` and `jaas_access_controller` resources, which apply when using JAAS.
+
+- *Rule:* Which grants are open to a caller depends on the object. Changing controller access requires controller superuser access; changing model access requires model admin access on that model or controller superuser access; changing offer access requires model admin access on the model t
+
+### Q13. What happens if I grant a controller level together with a model name?
+Retrieved excerpts for this question:
+# Access
+
+In Juju, **access** is the authority a user holds to act on
+an object: one grant, naming who is given what
+access level on what kind of object: a
+cloud, the controller, a
+model, or an application offer. The
+levels and the abilities they confer are defined in the user
+reference (see the access levels); this
+page is the grant itself.
+
+Its neighbours: the users whose names the grants carry,
+the four kinds of object the grants hang off, and the
+controller database the permission records li
+---
+peruser access; changing offer access requires model admin access on the model the offer belongs to (or controller superuser access); changing cloud access requires cloud admin access on that cloud or controller superuser access.
+- *Rule:* A grant must name one of the valid level-per-object combinations (the combination lookup). The client validates before sending and refuses a controller level paired with a model or offer.
+- *Rule:* A grant must raise the level: a user already holding the level
+---
+ offer.
+- *Rule:* A grant must raise the level: a user already holding the level, or a greater one, cannot be granted it again.
+- *Rule:* A user cannot change their own cloud access.
+- *Related errors:*
+  - **`You have specified a controller access permission "<level>"...`**: *Trigger:* A controller level named together with a model or an offer. *Remediation:* Name a model or offer level, or drop the model or offer.
+  - **`access or greater`**: *Trigger:* Granting a level that the user already h
+
+### P1. What is the maximum number of grants one user can hold?
+Retrieved excerpts for this question:
+# Access
+
+In Juju, **access** is the authority a user holds to act on
+an object: one grant, naming who is given what
+access level on what kind of object: a
+cloud, the controller, a
+model, or an application offer. The
+levels and the abilities they confer are defined in the user
+reference (see the access levels); this
+page is the grant itself.
+
+Its neighbours: the users whose names the grants carry,
+the four kinds of object the grants hang off, and the
+controller database the permission records li
+---
+bject the grants hang off, and the
+controller database the permission records live in.
+
+## Access data model
+
+Access is stored in the controller database as the **permission** record. A permission has no states: the record exists, or it does not.
+
+- **Permission record:** One record per grant, carrying its UUID, the access level and the object kind (stored as records of their own vocabularies), the object's name or UUID, and the granted user's UUID. The natural key is the pair of object and user
+---
+bination lookup. *Remediation:* Use one of the ten valid pairs.
+- **Views:** Database views resolve each record's identifiers into their type names, one view per object kind and one more for the special `everyone@external` user, whose grants act like a group: any external user inherits a level from `everyone@external` whenever the external user's own is lower.
+- **Reach:** From the user's side, this same record set is the user's *reach* (see the user's persistence layer).
+
+## Access change strea
+
+### P2. Is there an audit log of access changes, and where is it?
+Retrieved excerpts for this question:
+# Access
+
+In Juju, **access** is the authority a user holds to act on
+an object: one grant, naming who is given what
+access level on what kind of object: a
+cloud, the controller, a
+model, or an application offer. The
+levels and the abilities they confer are defined in the user
+reference (see the access levels); this
+page is the grant itself.
+
+Its neighbours: the users whose names the grants carry,
+the four kinds of object the grants hang off, and the
+controller database the permission records li
+---
+nt reads access where it reads users: `juju show-user` reports a user's access levels, and `juju users` lists the users of a model with theirs. Both are plain reads of the permission records through the user manager facade: nothing is enqueued and nothing waits.
+
+### Access checks
+
+Every gated API call a client makes carries a permission check against the permission records. Nothing else enforces access, and the checks run on demand.
+
+- *Rule:* An external user's effective level is the greater o
+---
+ks run on demand.
+
+- *Rule:* An external user's effective level is the greater of their own grants and `everyone@external`'s. The checks resolve this each time they read an external user's access: nothing is stored, and there is no cached copy to invalidate.
+

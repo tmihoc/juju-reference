@@ -1,0 +1,888 @@
+[
+ {
+  "id": "A-Q01",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "WaitForModels|deadline|lastChange in cmd/juju/controller",
+   "newDurationValue in cmd/juju/controller"
+  ],
+  "evidence_checked": [
+   {
+    "file": "cmd/juju/controller/kill.go",
+    "line": 73,
+    "ok": true,
+    "note": "-t and --timeout (line 74) both bound to c.timeout, default 5m"
+   },
+   {
+    "file": "cmd/juju/controller/kill.go",
+    "line": 335,
+    "ok": true,
+    "note": "deadline reset when envStatus.Controller != lastStatus; loop in WaitForModels; on timeout DirectDestroyRemaining runs (line 167-168)"
+   }
+  ],
+  "note": "Verified in WaitForModels. Single-file fact (kill.go); the killDoc also states the five minute default."
+ },
+ {
+  "id": "A-Q02",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "APIPort|DefaultAPIPort in bootstrap.go and controllerconfig/service",
+   "ControllerOnlyAttribute"
+  ],
+  "evidence_checked": [
+   {
+    "file": "cmd/juju/commands/bootstrap.go",
+    "line": 1524,
+    "ok": true,
+    "note": "APIPort is in controller.ControllerOnlyConfigAttributes (config.go:426) so lands in controllerConfigAttrs and is rejected at 1523-1525"
+   },
+   {
+    "file": "controller/config.go",
+    "line": 316,
+    "ok": true,
+    "note": "DefaultAPIPort int = 17070"
+   },
+   {
+    "file": "cmd/juju/commands/bootstrap.go",
+    "line": 1548,
+    "ok": true,
+    "note": "if controllerConfig.AutocertDNSName() != \"\" then api-port=443"
+   }
+  ],
+  "note": "Error message is '\"api-port\" is not a user configurable item. The API port is 17070, or 443 with \"autocert-dns-name\".' Needs bootstrap.go plus controller/config.go."
+ },
+ {
+  "id": "A-Q03",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "AtomicWriteFile in api/jujuclient",
+   "lockTimeout|acquireLock"
+  ],
+  "evidence_checked": [
+   {
+    "file": "api/jujuclient/controllers.go",
+    "line": 55,
+    "ok": true,
+    "note": "utils.AtomicWriteFile(JujuControllersPath(), data, os.FileMode(0600)) in WriteControllersFile"
+   },
+   {
+    "file": "api/jujuclient/file.go",
+    "line": 35,
+    "ok": true,
+    "note": "lockTimeout = 5 * time.Second, used in acquireLock mutex.Spec Timeout"
+   }
+  ],
+  "note": "Third fact is about the store lock (every store method takes acquireLock) rather than the file itself, but is correct. Easy single fact; other store files (accounts, models, credentials) use the same 0600."
+ },
+ {
+  "id": "A-Q04",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "HasPermission in highavailability facade",
+   "ControllerDetails"
+  ],
+  "evidence_checked": [
+   {
+    "file": "apiserver/facades/client/highavailability/highavailability.go",
+    "line": 59,
+    "ok": true,
+    "note": "HasPermission(ctx, permission.LoginAccess, api.controllerTag); error mapped to ServerError(ErrPerm) on line 60"
+   },
+   {
+    "file": "apiserver/facades/client/highavailability/highavailability.go",
+    "line": 81,
+    "ok": true,
+    "note": "sort.Slice by ControllerId (string comparison)"
+   }
+  ],
+  "note": "Only login access is checked; no superuser check in ControllerDetails. Sort is lexicographic on string IDs. Single file."
+ },
+ {
+  "id": "A-Q05",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "SSHServerPort|ssh-server-port across repo",
+   "AllowedUpdateConfigAttributes users",
+   "validateConfigField"
+  ],
+  "evidence_checked": [
+   {
+    "file": "controller/config.go",
+    "line": 274,
+    "ok": true,
+    "note": "DefaultSSHServerPort = 17022"
+   },
+   {
+    "file": "domain/controllerconfig/service/service.go",
+    "line": 239,
+    "ok": true,
+    "note": "validateConfigField: ssh-server-port is ControllerOnlyAttribute (config.go:471) but not in AllowedUpdateConfigAttributes (config.go:487-523, only SSHMaxConcurrentConnections present) so 'can not change \"ssh-server-port\" after bootstrap'"
+   },
+   {
+    "file": "controller/config.go",
+    "line": 1231,
+    "ok": true,
+    "note": "NotValidf(\"ssh-server-port matching api-port\") at 1231 inside if v == c.APIPort(); also checked in service.go ~line 150 for bootstrap-time port computation"
+   }
+  ],
+  "note": "All verified. Needs config.go (default, allowed list, validate) and the controllerconfig service; mild multi-spot lookup."
+ },
+ {
+  "id": "A-Q06",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "RemoveController in api/jujuclient",
+   "JujuCookiePath",
+   "unregisterCommand.Run"
+  ],
+  "evidence_checked": [
+   {
+    "file": "api/jujuclient/file.go",
+    "line": 315,
+    "ok": true,
+    "note": "RemoveController collects all names with same ControllerUUID; deletes them from in-memory map and clears CurrentController if it matched"
+   },
+   {
+    "file": "api/jujuclient/file.go",
+    "line": 373,
+    "ok": true,
+    "note": "cookie jars removed via os.Remove(JujuCookiePath(name)), IsNotExist tolerated; before that models, accounts, bootstrap config are removed in that order"
+   },
+   {
+    "file": "api/jujuclient/file.go",
+    "line": 381,
+    "ok": true,
+    "note": "WriteControllersFile last"
+   },
+   {
+    "file": "cmd/juju/controller/unregister.go",
+    "line": 39,
+    "ok": true,
+    "note": "doc says it does not destroy the controller; Run only calls store.RemoveController"
+   }
+  ],
+  "note": "Order: models, accounts, bootstrap config, cookie jars, then controllers.yaml. Current-controller clearing is in memory and persisted by the final write. Credentials and previous-controller are not touched. Unregister first requires ControllerByName to succeed."
+ },
+ {
+  "id": "A-Q07",
+  "ground_truth_verdict": "partly",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 3,
+    "verdict": "partly",
+    "corrected": "A hosted model with persistent storage yields CodeHasPersistentStorage only when args.DestroyStorage is nil (neither --destroy-storage nor --release-storage); the removal state returns PersistentStorage only if destroyStorage == nil. Models are removed in order and earlier ones stay scheduled."
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "EnsureModelNotAliveUnlessMigrating",
+   "cannot create new model when controller model is dying",
+   "removalerrors.PersistentStorage"
+  ],
+  "evidence_checked": [
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 31,
+    "ok": true,
+    "note": "SuperuserAccess on controller tag; also IsControllerModel check returns BadRequest if not the controller model"
+   },
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 98,
+    "ok": true,
+    "note": "RemoveController returns hosted UUIDs; service.removeControllerModel sets controller model life to dying via EnsureModelNotAliveUnlessMigrating; creation blocked in domain/model/state/controller/state.go:229 'cannot create new model when controller model is dying'"
+   },
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 115,
+    "ok": true,
+    "note": "CodeHasPersistentStorage when errors.Is(err, removalerrors.PersistentStorage); that error requires destroyStorage==nil (domain/removal/state/model/model.go:262-269)"
+   }
+  ],
+  "note": "Ground truth correct but omits the DestroyStorage==nil condition for the persistent-storage code. Also checks force/credential and block commands before removal; needs several files (facade, removal service, model state)."
+ },
+ {
+  "id": "A-Q08",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "processControllerModelJob",
+   "RemovalJobIncomplete handling in service.go",
+   "destroyStorage in removal/service"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/removal/service/controller.go",
+    "line": 197,
+    "ok": true,
+    "note": "returns error with RemovalJobIncomplete when other models remain (remnants from GetModelUUIDs of all models)"
+   },
+   {
+    "file": "domain/removal/service/controller.go",
+    "line": 213,
+    "ok": true,
+    "note": "destroyStorage := true passed to s.removeModel"
+   },
+   {
+    "file": "domain/removal/service/controller.go",
+    "line": 212,
+    "ok": true,
+    "note": "comment: controller model not exposed to user's --destroy-storage/--release-storage"
+   }
+  ],
+  "note": "RemovalJobIncomplete is treated as non-error in service.go:223 (job kept and retried). Controller model removal job also re-checks (model.go:397) that no other model is alive/dying. Answer is in one function but needs service.go for the retry semantic."
+ },
+ {
+  "id": "A-Q09",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "DeleteDqliteNode",
+   "deleteControllerNodeForUnit",
+   "dqlite_bind_address NULL"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/removal/service/unit.go",
+    "line": 292,
+    "ok": true,
+    "note": "deleteControllerNodeForUnit called at line 295 after leaveAllRelationScopes (265) and RevokeLeadership; function at 338 checks ControllerApplicationName and IsControllerModel; ID = unit number"
+   },
+   {
+    "file": "domain/removal/state/controller/controller_node.go",
+    "line": 16,
+    "ok": true,
+    "note": "tombstone comment (lines 15-16)"
+   },
+   {
+    "file": "domain/removal/state/controller/controller_node.go",
+    "line": 92,
+    "ok": true,
+    "note": "SET life_id = 2, dqlite_node_id = NULL, dqlite_bind_address = NULL; dying set first with life_id=1; deleted: api/client/agent/peer addresses, agent version, password, nonce, upgrade_info_controller_node"
+   }
+  ],
+  "note": "All verified. Spans removal service unit.go and controller state controller_node.go. Single DB transaction."
+ },
+ {
+  "id": "A-Q10",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "ErrRestartAgent across repo",
+   "WatchControllerConfig in agentconfigupdater",
+   "SetQueryTracingEnabled"
+  ],
+  "evidence_checked": [
+   {
+    "file": "internal/worker/agentconfigupdater/worker.go",
+    "line": 138,
+    "ok": true,
+    "note": "changeDetected from the three comparisons only"
+   },
+   {
+    "file": "internal/worker/agentconfigupdater/worker.go",
+    "line": 179,
+    "ok": true,
+    "note": "errors.Errorf(\"%w: controller config changed: ...\", jworker.ErrRestartAgent, reasons) after Agent.ChangeConfig writes setters"
+   },
+   {
+    "file": "controller/config.go",
+    "line": 464,
+    "ok": true,
+    "note": "QueryTracingEnabled in ControllerOnlyConfigAttributes (also in AllowedUpdateConfigAttributes, so changeable at runtime)"
+   }
+  ],
+  "note": "Watcher is WatchControllerConfig (fires on any key; handleConfigChange filters to the 3). Manifold.go does the same compare at startup. Util logs 'agent restarting' for ErrRestartAgent."
+ },
+ {
+  "id": "A-Q11",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "SetAPIAddresses",
+   "WatchControllerNetwork",
+   "hasClientAddresses"
+  ],
+  "evidence_checked": [
+   {
+    "file": "internal/worker/apiaddresssetter/worker.go",
+    "line": 315,
+    "ok": true,
+    "note": "Warningf when len(controllerIDs)>0 && (!hasClientAddresses || !hasAgentAddresses), then return nil without SetAPIAddresses"
+   },
+   {
+    "file": "internal/worker/apiaddresssetter/worker.go",
+    "line": 312,
+    "ok": true,
+    "note": "comment about bootstrap publishing provider addresses before machine network facts"
+   },
+   {
+    "file": "internal/worker/apiaddresssetter/worker.go",
+    "line": 151,
+    "ok": true,
+    "note": "third watcher; loop reconciles on node/config/network changes plus once at startup"
+   }
+  ],
+  "note": "Ground truth 'client or agent addresses cannot both be discovered' means either missing. Shared (k8s) addresses count as discovered. With no controller nodes it does publish (clears). Single file."
+ },
+ {
+  "id": "A-Q12",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "checkNoAliveHostedModels",
+   "destroy-all-models",
+   "hasAliveModels"
+  ],
+  "evidence_checked": [
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 437,
+    "ok": true,
+    "note": "text is split across lines with newlines ('If you want\\nto destroy all models in the controller,\\nrun this command again with the --destroy-all-models\\noption.'); preceded by 'cannot destroy controller %q'; followed by Models list"
+   },
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 439,
+    "ok": true,
+    "note": "same message; raised by checkNoAliveHostedModels when hasAliveModels and !c.destroyModels (lines 283, 356)"
+   }
+  ],
+  "note": "Wording matches modulo line breaks. Single file; flag defined at destroy.go:197."
+ },
+ {
+  "id": "A-Q13",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "partly",
+    "corrected": "Raised when force is not set and the controller model's cloud credential is marked invalid (cloud_credential.invalid true via v_model_state); not literally 'no credential'."
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "HasValidCredential",
+   "v_model_state cloud_credential_invalid",
+   "checkForceForControllerModel"
+  ],
+  "evidence_checked": [
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 171,
+    "ok": true,
+    "note": "internalerrors.Errorf(\"invalid cloud credential, use --force\")"
+   },
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 163,
+    "ok": true,
+    "note": "notForcing := force == nil || !*force; HasValidCredential returns !CredentialInvalid (domain/model/state/controller/state.go:2366-2398)"
+   }
+  ],
+  "note": "Check runs after hosted-model block checks. 'no valid credential' in fact 2 is loose: the state test is the credential's invalid flag. Client --force maps to args.Force (cmd destroy.go:201)."
+ },
+ {
+  "id": "A-Q14",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "filterOutReadOnly",
+   "AllowedUpdateConfigAttributes",
+   "ignoreReadOnlyFields"
+  ],
+  "evidence_checked": [
+   {
+    "file": "cmd/juju/controller/config.go",
+    "line": 246,
+    "ok": true,
+    "note": "filterOutReadOnly: keys not in controller.AllowedUpdateConfigAttributes; error with extraValues.SortedValues()"
+   },
+   {
+    "file": "cmd/juju/controller/config.go",
+    "line": 135,
+    "ok": true,
+    "note": "BoolVar ignore-read-only-fields default false"
+   },
+   {
+    "file": "cmd/juju/controller/config.go",
+    "line": 249,
+    "ok": true,
+    "note": "logger.Warningf; keys were already deleted from attrs so the rest is passed to setConfig/ConfigSet"
+   }
+  ],
+  "note": "filterOutReadOnly is called in setConfig, so it applies to key=value args as well as --file. Needs config.go and controller/config.go for the allowed set."
+ },
+ {
+  "id": "A-Q15",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "modelsperuser|models-per|maximum.{0,20}models|ModelCapacity|limit.{0,30}(create|add).{0,10}model",
+   "quota|maxmodel|model-limit|exceed.*model in apiserver/facades/client/modelmanager domain/model controller",
+   "CREATE TRIGGER ... model with limit/max/count in domain/schema/controller/sql"
+  ],
+  "evidence_checked": [],
+  "note": "Confirmed no per-controller model limit anywhere in non-test Go/SQL/YAML; the only quota hits are mongo-era txn-log comments in controller/config.go:185-191. Model creation guard only checks controller model life (state.go:223-229)."
+ },
+ {
+  "id": "A-Q16",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "rename.?controller|controller.?rename|ChangeControllerName|UpdateControllerName|SetControllerAlias|mv-controller",
+   "\"rename|mv|alias\" command names in cmd/juju/commands/main.go and cmd/juju/controller",
+   "alias in cmd/juju/controller cmd/modelcmd api/jujuclient"
+  ],
+  "evidence_checked": [],
+  "note": "Confirmed no controller rename command, API or ClientStore operation. ControllerUpdater has only AddController/UpdateController/SetCurrentController; UpdateController is by name, register --replace overwrites details (register.go:139,455). ControllerAlias hits are in rpc/params redirect/migration types only."
+ },
+ {
+  "id": "B-e44_q2_controller_1",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "SSHServerPort validation in controller/config.go",
+   "non-positive SSH server port in controllerconfig/service",
+   "AllowedUpdateConfigAttributes"
+  ],
+  "evidence_checked": [
+   {
+    "file": "controller/config.go",
+    "line": 274,
+    "ok": true,
+    "note": "DefaultSSHServerPort = 17022"
+   },
+   {
+    "file": "controller/config.go",
+    "line": 1228,
+    "ok": true,
+    "note": "NotValidf(\"non-positive integer for ssh-server-port\") when int <= 0"
+   },
+   {
+    "file": "controller/config.go",
+    "line": 1230,
+    "ok": true,
+    "note": "quote 'ssh-server-port matching api-port' is on line 1231; line 1230 is the 'if v == c.APIPort()' condition (off by one)"
+   }
+  ],
+  "note": "Validation only runs when the stored value is an int. Ground truth omits that ssh-server-port is also not changeable after bootstrap (not in AllowedUpdateConfigAttributes), an additional restriction but not contradicted."
+ },
+ {
+  "id": "B-e44_q2_controller_2",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "DeleteDqliteNode",
+   "controller_node life_id",
+   "ControllerApplicationName in removal/service"
+  ],
+  "evidence_checked": [
+   {
+    "file": "domain/removal/service/unit.go",
+    "line": 341,
+    "ok": true,
+    "note": "applicationName != ControllerApplicationName returns nil; IsControllerModel check; DeleteDqliteNode(strconv.Itoa(unitName.Number()))"
+   },
+   {
+    "file": "domain/removal/state/controller/controller_node.go",
+    "line": 15,
+    "ok": true,
+    "note": "'The controller node is retained as a tombstone' (lines 15-16)"
+   },
+   {
+    "file": "domain/removal/state/controller/controller_node.go",
+    "line": 91,
+    "ok": true,
+    "note": "UPDATE ... SET life_id = 2, dqlite_node_id = NULL, dqlite_bind_address = NULL WHERE life_id < 2; dying step uses life_id=1 where life_id=0; no-op if node row missing"
+   }
+  ],
+  "note": "All verified; same code as A-Q09. Life ids from domain/schema/controller/sql/0001-life.sql: 0 alive, 1 dying, 2 dead."
+ },
+ {
+  "id": "B-e44_q2_controller_3",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [
+   "checkNoAliveHostedModels",
+   "destroyModels",
+   "hasAliveModels"
+  ],
+  "evidence_checked": [
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 283,
+    "ok": true,
+    "note": "if !c.destroyModels { checkNoAliveHostedModels }"
+   },
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 437,
+    "ok": true,
+    "note": "error text across lines with newlines"
+   },
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 439,
+    "ok": true,
+    "note": "mentions --destroy-all-models"
+   }
+  ],
+  "note": "Same as A-Q12; message also lists alive models via fmtModelStatus. Single file."
+ },
+ {
+  "id": "B-e44_q2_controller_4",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "config.?(history|revision|snapshot|audit|backup) in domain controller apiserver/facades/client/controller cmd/juju/controller",
+   "previous.?(config|value)|config.?(version|generation|revision) in domain/controllerconfig apiserver controller",
+   "controller_config tables in domain/schema sql",
+   "rollback|revert near controller config"
+  ],
+  "evidence_checked": [],
+  "note": "Confirmed: controller_config is a plain key/value table (0008-controller-config.sql); the state update does DELETE ... WHERE key IN and INSERT ... ON CONFLICT(key) DO UPDATE (domain/controllerconfig/state/state.go ~123-131). No history/revision/rollback anywhere."
+ }
+]

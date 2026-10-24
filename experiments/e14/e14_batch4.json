@@ -1,0 +1,100 @@
+[
+ {
+  "key": "secret:81",
+  "page": "secret",
+  "claim": "The only hook a user-secret observer receives is `secret-changed`.",
+  "prior_kind": "other",
+  "prior_note": "not stated in code"
+ },
+ {
+  "key": "secret:49",
+  "page": "secret",
+  "claim": "In most cases, `token` would also be specified for authentication.",
+  "prior_kind": "guidance",
+  "prior_note": "advice"
+ },
+ {
+  "key": "secret:39",
+  "page": "secret",
+  "claim": "The `vault` backend refers to the Hashicorp Vault.",
+  "prior_kind": "external",
+  "prior_note": "fact about Vault"
+ },
+ {
+  "key": "relation:3",
+  "page": "relation",
+  "claim": "Because every relation results in the creation of unit and application databags in Juju's database, peer relations are sometimes used by charm authors as a way to persist charm data.",
+  "prior_kind": "rationale",
+  "prior_note": "charm author motivation"
+ },
+ {
+  "key": "relation:40",
+  "page": "relation",
+  "claim": "all units of an application can read all of the remote application's databags.",
+  "prior_kind": "other",
+  "prior_note": "read access not verified"
+ },
+ {
+  "key": "secret:23",
+  "page": "secret",
+  "claim": "Secret names must start with a lowercase letter, followed by a sequence of letters, numbers, and dashes, and must not end with a dash; in short, they must comply with the following regex: `^(a-z{2,})$`.",
+  "prior_kind": "other",
+  "prior_note": "regex applies to content keys not names; no name check found"
+ },
+ {
+  "key": "secret:55",
+  "page": "secret",
+  "claim": "Charms can use relations to share secrets, such as API keys, a database's address, credentials and so on.",
+  "prior_kind": "guidance",
+  "prior_note": "usage statement"
+ },
+ {
+  "key": "secret:45",
+  "page": "secret",
+  "claim": "However, just that would not be insecure, as it wouldn't establish an encrypted TLS connection to Vault.",
+  "prior_kind": "guidance",
+  "prior_note": "security advice"
+ },
+ {
+  "key": "relation:33",
+  "page": "relation",
+  "claim": "For the consumer, the remote app names is the saas name, e.g.",
+  "prior_kind": "example",
+  "prior_note": "saas name"
+ },
+ {
+  "key": "secret:82",
+  "page": "secret",
+  "claim": "There is no `secret-rotate`, `secret-expired`, or `secret-remove` lifecycle for user secrets.",
+  "prior_kind": "other",
+  "prior_note": "absence not stated"
+ },
+ {
+  "key": "machine:6",
+  "page": "machine",
+  "claim": "$ juju machines Machine  State    Address         Inst id        Base          AZ  Message 0        started  10.154.118.110  juju-dadfb7-0  ubuntu@22.04      Running 1        pending                  pending        ubuntu@22.04      Creating container 1/lxd/0  pending                  pending        ubuntu@22.04 text $ juju deploy postgresql --to lxd Located charm \"postgresql\" in charm-hub, revision 288 Deploying \"postgresql\" from charm-hub charm \"postgresql\", revision 288 in channel 14/stable on ubuntu@22.04/stable ubuntu@charm-dev:~/.local/share/juju$ juju machines Machine  State    Address         Inst id              Base          AZ  Message 0        started  10.154.118.110  juju-dadfb7-0        ubuntu@22.04      Running 1        started  10.154.118.72   juju-dadfb7-1        ubuntu@22.04      Running 1/lxd/0  pending                  juju-dadfb7-1-lxd-0  ubuntu@22.04      Container started 2        started  10.154.118.209  juju-dadfb7-2        ubuntu@22.04      Running 2/lxd/0  pending                  pending              ubuntu@22.04      acquiring LXD image `",
+  "prior_kind": "example",
+  "prior_note": "sample CLI output"
+ },
+ {
+  "key": "secret:2",
+  "page": "secret",
+  "claim": "A charm secret is a secret created by a charm.",
+  "prior_kind": "definition",
+  "prior_note": "definition"
+ },
+ {
+  "key": "relation:24",
+  "page": "relation",
+  "claim": "Cross-model relations enable, for example, scenarios where  your databases are hosted on bare metal, to take advantage of I/O performance, and your applications live within Kubernetes, to take advantage of scalability and application density.",
+  "prior_kind": "rationale",
+  "prior_note": "scenario motivation"
+ },
+ {
+  "key": "relation:4",
+  "page": "relation",
+  "claim": "When the application has multiple units, peer relations are also the mechanism behind high availability.",
+  "prior_kind": "rationale",
+  "prior_note": "HA motivation"
+ }
+]

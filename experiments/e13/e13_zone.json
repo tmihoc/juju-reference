@@ -1,0 +1,18 @@
+[
+ {
+  "id": 1,
+  "claim": "A(n availability) `zone` is a  constraint or a placement directive that can be used to customise where the hardware spawned by Juju is provisioned in order to prevent better redundancy in case of an outage."
+ },
+ {
+  "id": 2,
+  "claim": "The value of the key consists of the zone(s) available for a given cloud."
+ },
+ {
+  "id": 3,
+  "claim": "When passed as a constraint you may specify a range of zones (via the constraint-zones key) whereas when passed as a placement directive you may only specify one zone (via the placement-directive-zone key)."
+ },
+ {
+  "id": 4,
+  "claim": "If you do both -- that is, there is overlap -- the placement directive takes precedence."
+ }
+]

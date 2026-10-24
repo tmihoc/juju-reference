@@ -1,0 +1,282 @@
+[
+ {
+  "page": "machine",
+  "filed": "D",
+  "msg": "machine constraint violation",
+  "trigger": "The constraints are set on a machine whose recorded cloud instance has a different architecture from the one required; architecture is the only characteristic compared.",
+  "id": 1
+ },
+ {
+  "page": "relation",
+  "filed": "P",
+  "msg": "relation not found",
+  "trigger": "The named relation does not exist.",
+  "id": 2
+ },
+ {
+  "page": "charm",
+  "filed": "E",
+  "msg": "charm hash mismatch",
+  "trigger": "The archive fails its reservation: an uploaded archive's hash does not match the prefix the client sent, a downloaded archive's sha256 does not match the reservation's hash.",
+  "id": 3
+ },
+ {
+  "page": "offer",
+  "filed": "P",
+  "msg": "offer not found",
+  "trigger": "A lookup by offer URL or UUID that matches no offer.",
+  "id": 4
+ },
+ {
+  "page": "resource-charm",
+  "filed": "E",
+  "msg": "resource revision not valid",
+  "trigger": "The import's records carry a negative upload revision.",
+  "id": 5
+ },
+ {
+  "page": "user",
+  "filed": "D",
+  "msg": "user already exists",
+  "trigger": "Creating a user whose name is already taken by an active user.",
+  "id": 6
+ },
+ {
+  "page": "unit",
+  "filed": "E",
+  "msg": "unit is not in error state",
+  "trigger": "Resolving a unit whose agent status is not `error`.",
+  "id": 7
+ },
+ {
+  "page": "relation",
+  "filed": "E",
+  "msg": "entering scope for peer relation",
+  "trigger": "A remote unit enters a local peer relation.",
+  "id": 8
+ },
+ {
+  "page": "credential",
+  "filed": "D",
+  "msg": "unknown cloud",
+  "trigger": "Naming a cloud the controller does not know.",
+  "id": 9
+ },
+ {
+  "page": "storage",
+  "filed": "D",
+  "msg": "storage pool already exists",
+  "trigger": "Creating a pool whose name is taken.",
+  "id": 10
+ },
+ {
+  "page": "offer",
+  "filed": "D",
+  "msg": "offer already consumed",
+  "trigger": "A model consumes an offer it already consumes, the proxy application for that offer being registered already.",
+  "id": 11
+ },
+ {
+  "page": "application",
+  "filed": "E",
+  "msg": "scale change invalid",
+  "trigger": "A scale operation sets a negative scale or removes more units than exist.",
+  "id": 12
+ },
+ {
+  "page": "unit",
+  "filed": "E",
+  "msg": "unit not assigned",
+  "trigger": "A Kubernetes pod the infrastructure announced is not one the model asked for (its ordinal is beyond the scale target, or no scale is in progress).",
+  "id": 13
+ },
+ {
+  "page": "model",
+  "filed": "D",
+  "msg": "model already exists",
+  "trigger": "Creating a model with the same name and owner as an existing one.",
+  "id": 14
+ },
+ {
+  "page": "charm",
+  "filed": "P",
+  "msg": "charm base name not valid",
+  "trigger": "A manifest base has no name, or is not Ubuntu.",
+  "id": 15
+ },
+ {
+  "page": "application",
+  "filed": "P",
+  "msg": "application is not alive",
+  "trigger": "An operation that requires an alive application targets a dying one (adding units, model migration).",
+  "id": 16
+ },
+ {
+  "page": "machine",
+  "filed": "P",
+  "msg": "machine already exists",
+  "trigger": "A model migration imports a machine whose name the target model already holds.",
+  "id": 17
+ },
+ {
+  "page": "secret",
+  "filed": "E",
+  "msg": "cannot change a secret permission scope or subject type",
+  "trigger": "A grant is updated with a different scope or subject type.",
+  "id": 18
+ },
+ {
+  "page": "ssh-key",
+  "filed": "D",
+  "msg": "key contains a reserved comment",
+  "trigger": "A key's comment is the reserved controller key comment.",
+  "id": 19
+ },
+ {
+  "page": "charm",
+  "filed": "E",
+  "msg": "charm already exists with different size",
+  "trigger": "The object store already holds a blob under the charm's hash, at a different size.",
+  "id": 20
+ },
+ {
+  "page": "machine",
+  "filed": "P",
+  "msg": "machine not found",
+  "trigger": "A lookup by machine UUID or name that matches no machine.",
+  "id": 21
+ },
+ {
+  "page": "charm",
+  "filed": "P",
+  "msg": "charm revision not valid",
+  "trigger": "A sequenced charm is given an explicit revision.",
+  "id": 22
+ },
+ {
+  "page": "placement-directive",
+  "filed": "D",
+  "msg": "invalid --to parameter \"<directive>\"",
+  "trigger": "The client cannot parse the directive.",
+  "id": 23
+ },
+ {
+  "page": "relation",
+  "filed": "D",
+  "msg": "ambiguous relation",
+  "trigger": "Several endpoint pairs match.",
+  "id": 24
+ },
+ {
+  "page": "machine",
+  "filed": "P",
+  "msg": "machine has no parent",
+  "trigger": "Asking for the parent of a machine that is not a container.",
+  "id": 25
+ },
+ {
+  "page": "access",
+  "filed": "D",
+  "msg": "You have specified a controller access permission \"<level>\"...",
+  "trigger": "A controller level named together with a model or an offer.",
+  "id": 26
+ },
+ {
+  "page": "offer",
+  "filed": "D",
+  "msg": "missing endpoints",
+  "trigger": "The endpoints named for the offer do not all exist on the application.",
+  "id": 27
+ },
+ {
+  "page": "application",
+  "filed": "E",
+  "msg": "invalid application constraints",
+  "trigger": "A constraints write names an invalid container type or a space the model does not have.",
+  "id": 28
+ },
+ {
+  "page": "zone",
+  "filed": "P",
+  "msg": "availability zone not found",
+  "trigger": "Reading the zone of a machine whose cloud instance has no zone set.",
+  "id": 29
+ },
+ {
+  "page": "credential",
+  "filed": "P",
+  "msg": "model credential not set",
+  "trigger": "A model operation needs the model's credential and none is set.",
+  "id": 30
+ },
+ {
+  "page": "unit",
+  "filed": "P",
+  "msg": "unit is dead",
+  "trigger": "A status or relation operation targets a unit whose life is dead.",
+  "id": 31
+ },
+ {
+  "page": "secret",
+  "filed": "P",
+  "msg": "missing secret backend id",
+  "trigger": "Importing a secret whose backend cannot be identified.",
+  "id": 32
+ },
+ {
+  "page": "resource-charm",
+  "filed": "E",
+  "msg": "origin not valid",
+  "trigger": "An import's resource origin is neither `store` nor `upload`.",
+  "id": 33
+ },
+ {
+  "page": "relation",
+  "filed": "E",
+  "msg": "cannot enter scope, unit or relation not alive",
+  "trigger": "Entering scope with a dead or dying unit or relation.",
+  "id": 34
+ },
+ {
+  "page": "machine",
+  "filed": "E",
+  "msg": "entity still alive",
+  "trigger": "Marking a machine `dead` while its life is still `alive`.",
+  "id": 35
+ },
+ {
+  "page": "unit",
+  "filed": "E",
+  "msg": "unit life predicate failed",
+  "trigger": "A hook-state commit expects a life the unit no longer has.",
+  "id": 36
+ },
+ {
+  "page": "charm",
+  "filed": "D",
+  "msg": "charm origin not valid",
+  "trigger": "A Charmhub origin carries no architecture.",
+  "id": 37
+ },
+ {
+  "page": "application",
+  "filed": "P",
+  "msg": "application has units",
+  "trigger": "The dead gate finds units still referencing the application.",
+  "id": 38
+ },
+ {
+  "page": "access",
+  "filed": "D",
+  "msg": "user is the last model admin for 1 or more models",
+  "trigger": "A revoke (or a user removal) that would leave a model without an admin.",
+  "id": 39
+ },
+ {
+  "page": "placement-directive",
+  "filed": "D",
+  "msg": "unsupported bootstrap placement directive \"<directive>\"",
+  "trigger": "A scoped directive on the bootstrap path.",
+  "id": 40
+ }
+]

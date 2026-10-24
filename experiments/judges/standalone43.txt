@@ -1,0 +1,21 @@
+You are an independent reviewer of how a software system is exposed to its users. This is read-only research. Be rigorous and take your time: the number of tool calls is not limited.
+
+Source: Juju 4.1 at /home/dora/git/misc/juju-v2-preview. Search cmd/, apiserver/, api/, domain/, internal/worker/uniter/runner/jujuc, core/. Do NOT open anything under docs/ and do NOT read any .md file. Do not open any file under /home/dora/git/misc/juju-reference.
+
+You are given a JSON file with a list of "items". Each item is a name and the database tables that store it. You are NOT told what the item is for.
+
+For every item decide, from the code, how a user meets it. Use exactly these four labels:
+- "own": a user addresses it by itself: it has its own command, API facade or method set, or hook tool, AND a name or id that users type, AND a way to create it and a way to remove or end it that does not just happen as a side effect of operating on something else.
+- "of": a user meets it only as a part of, a setting of, or a record about one other thing; it is created, changed and removed by operating on that one thing. Name the thing in "parent".
+- "across": it attaches to several different things (a family of per-thing tables or one shared vocabulary) and users meet it through each of them.
+- "process": it is an activity or machinery (migration, removal, upgrade, a worker) and not a thing users look up.
+
+How to decide, for each item:
+1. Find the commands (cmd/juju, cmd/plugins), client facade methods (apiserver/facades/client) and hook tools (internal/worker/uniter/runner/jujuc) that mention the item's tables or its nouns. Name the ones you found.
+2. Find what creates it and what removes it (grep INSERT INTO and DELETE FROM for its tables in domain/*/state, and the services that call them). Say whether its own operation does this or another thing's operation does it as a side effect.
+3. Say whether users type a name or id for it.
+4. Rate your confidence (high, medium, low).
+
+Do not decide from the item's name alone. If you did, say "name only" in the note.
+
+Output: a JSON list to the output path given in your task, one object per item: {"name", "label" ("own"|"of"|"across"|"process"), "parent" (the thing it is part of, for "of", else null), "addressed_by" (commands, methods or tools with file paths, or "none found"), "creates_removes" (one sentence, with file:line), "typed_name_or_id" (yes or no, with what), "confidence", "note"}. Every item must appear once. Reply with only the word done.

@@ -1,0 +1,1 @@
+See ../scrutiny27.txt (adversarial fact-checker: split each claim into testable propositions, test against the 4.1 code only, verdict holds/overstated/wrong/outdated/unverifiable/not_testable, evidence file:line, correction, JSON list to a named output path).

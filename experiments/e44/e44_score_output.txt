@@ -1,0 +1,117 @@
+##### set A: parse/shape failures 1 ['A|machine|A-Q08|base|W|2']
+--- set A all: 863 graded answers (719 answerable, 144 unanswerable)
+cond ver        score%  contra%  abstain% notstrict%
+W    base         28.0      5.0     100.0        4.2
+W    pattern      33.5      5.0     100.0        8.3
+H    base         25.1      5.0     100.0        0.0
+H    pattern      30.0      5.8     100.0        8.3
+F    base         13.8      2.5     100.0        0.0
+F    pattern      21.9      3.3     100.0        0.0
+=== criteria on set A all
+  c1_H_score_diff 4.9
+  c2_W_score_diff 5.5
+  c3_contra_diff_W/H/F [-0.042016806722688926, 0.8333333333333331, 0.8333333333333331]
+  c4_abstain_diff_W/H/F [0.0, 0.0, 0.0]
+  c4_strict_diff_W/H/F (post hoc) [-4.166666666666674, -8.333333333333337, 0.0]
+  c3_contra_answers_W/H/F_pattern_vs_base {"W": [6, 6], "H": [7, 6], "F": [4, 3]}
+  c5_H_by_page {"machine": 0.0, "controller": 0.0, "access": 1.1111111111111072, "ssh-key": 18.611111111111118}
+  c5_H_by_run {"1": 5.41666666666667, "2": 4.791666666666666, "3": 4.583333333333334}
+  c5_pages_ge5 1
+  c5_pages_positive 2
+  c5_runs_ge5 1
+  c6_F_score_diff 8.1
+  W_by_page {"machine": 5.689655172413794, "controller": 0.0, "access": -1.1111111111111183, "ssh-key": 17.222222222222218}
+  F_by_page {"machine": 12.22222222222222, "controller": 0.0, "access": -5.555555555555555, "ssh-key": 25.83333333333333}
+--- set A exposed: 791 graded answers (647 answerable, 144 unanswerable)
+cond ver        score%  contra%  abstain% notstrict%
+W    base         31.2      5.6     100.0        4.2
+W    pattern      37.2      5.6     100.0        8.3
+H    base         27.9      5.6     100.0        0.0
+H    pattern      33.3      6.5     100.0        8.3
+F    base         15.3      2.8     100.0        0.0
+F    pattern      24.0      3.7     100.0        0.0
+=== criteria on set A exposed
+  c1_H_score_diff 5.5
+  c2_W_score_diff 6.0
+  c3_contra_diff_W/H/F [-0.05192107995846337, 0.9259259259259258, 0.9259259259259258]
+  c4_abstain_diff_W/H/F [0.0, 0.0, 0.0]
+  c4_strict_diff_W/H/F (post hoc) [-4.166666666666674, -8.333333333333337, 0.0]
+  c3_contra_answers_W/H/F_pattern_vs_base {"W": [6, 6], "H": [7, 6], "F": [4, 3]}
+  c5_H_by_page {"machine": 0.0, "controller": 0.0, "access": 1.2345679012345678, "ssh-key": 18.611111111111118}
+  c5_H_by_run {"1": 6.018518518518517, "2": 5.324074074074075, "3": 5.092592592592587}
+  c5_pages_ge5 1
+  c5_pages_positive 2
+  c5_runs_ge5 3
+  c6_F_score_diff 8.7
+  W_by_page {"machine": 6.793478260869568, "controller": 0.0, "access": -1.2345679012345678, "ssh-key": 17.222222222222218}
+  F_by_page {"machine": 13.888888888888888, "controller": 0.0, "access": -6.172839506172839, "ssh-key": 25.83333333333333}
+--- set A internal: 72 graded answers (72 answerable, 0 unanswerable)
+cond ver        score%  contra%  abstain% notstrict%
+W    base          0.0      0.0       nan        nan
+W    pattern       0.0      0.0       nan        nan
+H    base          0.0      0.0       nan        nan
+H    pattern       0.0      0.0       nan        nan
+F    base          0.0      0.0       nan        nan
+F    pattern       2.8      0.0       nan        nan
+=== criteria on set A internal
+  c1_H_score_diff 0.0
+  c2_W_score_diff 0.0
+  c3_contra_diff_W/H/F [0.0, 0.0, 0.0]
+  c4_abstain_diff_W/H/F [NaN, NaN, NaN]
+  c4_strict_diff_W/H/F (post hoc) [NaN, NaN, NaN]
+  c3_contra_answers_W/H/F_pattern_vs_base {"W": [0, 0], "H": [0, 0], "F": [0, 0]}
+  c5_H_by_page {"machine": 0.0, "controller": 0.0, "access": 0.0, "ssh-key": NaN}
+  c5_H_by_run {"1": 0.0, "2": 0.0, "3": 0.0}
+  c5_pages_ge5 0
+  c5_pages_positive 0
+  c5_runs_ge5 0
+  c6_F_score_diff 2.8
+  W_by_page {"machine": 0.0, "controller": 0.0, "access": 0.0, "ssh-key": NaN}
+  F_by_page {"machine": 5.555555555555555, "controller": 0.0, "access": 0.0, "ssh-key": NaN}
+--- set A cross_area: 431 graded answers (431 answerable, 0 unanswerable)
+cond ver        score%  contra%  abstain% notstrict%
+W    base         28.1      0.0       nan        nan
+W    pattern      32.8      0.0       nan        nan
+H    base         24.1      0.0       nan        nan
+H    pattern      27.7      1.4       nan        nan
+F    base         16.1      0.0       nan        nan
+F    pattern      25.2      1.4       nan        nan
+=== criteria on set A cross_area
+  c1_H_score_diff 3.6
+  c2_W_score_diff 4.7
+  c3_contra_diff_W/H/F [0.0, 1.3888888888888888, 1.3888888888888888]
+  c4_abstain_diff_W/H/F [NaN, NaN, NaN]
+  c4_strict_diff_W/H/F (post hoc) [NaN, NaN, NaN]
+  c3_contra_answers_W/H/F_pattern_vs_base {"W": [0, 0], "H": [1, 0], "F": [1, 0]}
+  c5_H_by_page {"machine": 0.0, "controller": 0.0, "access": 0.0, "ssh-key": 14.35185185185185}
+  c5_H_by_run {"1": 4.861111111111113, "2": 5.208333333333334, "3": 0.6944444444444475}
+  c5_pages_ge5 1
+  c5_pages_positive 1
+  c5_runs_ge5 1
+  c6_F_score_diff 9.1
+  W_by_page {"machine": 3.26797385620915, "controller": 0.0, "access": 0.0, "ssh-key": 14.814814814814813}
+  F_by_page {"machine": 20.370370370370367, "controller": 0.0, "access": -1.8518518518518532, "ssh-key": 18.055555555555557}
+##### set B: parse/shape failures 0 []
+--- set B all: 288 graded answers (216 answerable, 72 unanswerable)
+cond ver        score%  contra%  abstain% notstrict%
+W    base         36.1      0.0     100.0        0.0
+W    pattern      39.4      0.0     100.0        0.0
+H    base         35.4      0.0     100.0        0.0
+H    pattern      28.5      0.0     100.0        0.0
+F    base         19.7      2.8     100.0        0.0
+F    pattern      16.9      2.8     100.0        0.0
+=== criteria on set B all
+  c1_H_score_diff -6.9
+  c2_W_score_diff 3.2
+  c3_contra_diff_W/H/F [0.0, 0.0, 0.0]
+  c4_abstain_diff_W/H/F [0.0, 0.0, 0.0]
+  c4_strict_diff_W/H/F (post hoc) [0.0, 0.0, 0.0]
+  c3_contra_answers_W/H/F_pattern_vs_base {"W": [0, 0], "H": [0, 0], "F": [1, 1]}
+  c5_H_by_page {"machine": 19.444444444444446, "controller": 0.0, "access": 0.0, "ssh-key": -47.22222222222222}
+  c5_H_by_run {"1": -9.722222222222221, "2": -5.555555555555553, "3": -5.555555555555553}
+  c5_pages_ge5 1
+  c5_pages_positive 1
+  c5_runs_ge5 0
+  c6_F_score_diff -2.8
+  W_by_page {"machine": 16.666666666666668, "controller": 0.0, "access": 3.703703703703698, "ssh-key": -7.4074074074074066}
+  F_by_page {"machine": -11.11111111111111, "controller": 0.0, "access": -3.7037037037037033, "ssh-key": 3.703703703703698}

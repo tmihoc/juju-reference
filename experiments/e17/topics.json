@@ -1,0 +1,27 @@
+{
+ "model": {
+  "model": ["model", "read-only-model"], "machine": ["machine", "machine-cloud-instance"], "application": ["application", "unit", "charm"],
+  "network": ["space", "subnet", "network"], "storage": ["storage"], "blockdevice": ["blockdevice"], "secret": ["secret"],
+  "annotation": ["annotations"], "constraints": ["constraint"], "status": ["status"], "resource": ["resource"],
+  "relation": ["relation"], "blockcommand": ["command-block"], "sequence": ["sequence"], "agentbinary": ["agent-binary-store"],
+  "modelagent": ["model-agent", "agent-version"], "crossmodelrelation": ["offer", "cross-model-relation"], "operation": ["operation"],
+  "ssh": ["ssh", "ssh-connection-request"], "port": ["port-ranges"], "objectstore": ["objectstore-metadata"], "removal": ["cleanup"],
+  "agentpassword": ["password"], "modelmigration": [], "unitstate": [], "lease": []
+ },
+ "controller": {
+  "cloud": ["cloud"], "externalcontroller": ["external-controller"], "model": ["model", "model-last-login", "model-database-deletion"],
+  "controllerconfig": ["controller-config"], "agentpassword": ["password"], "controllernode": ["controller-node"], "upgrade": ["upgrade-info"],
+  "autocert": ["autocert-cache"], "objectstore": ["objectstore-metadata"], "access": ["user", "user-permission", "macaroon"],
+  "flag": ["flag"], "secretbackend": ["secret-backend"], "keymanager": ["user-ssh-keys", "model-authorized-keys"],
+  "cloudimagemetadata": ["cloudimagemetadata"], "agentbinary": ["agent-binary-store"], "tracing": ["tracing", "workload-tracing"],
+  "logging": ["logging"], "ssh": ["ssh"], "lease": ["lease"], "controller": ["controller"]
+ },
+ "removal_types": {
+  "relation": "relation", "unit": "application", "application": "application", "machine": "machine", "model": "model",
+  "storage instance": "storage", "storage attachment": "storage", "storage volume": "storage", "storage filesystem": "storage",
+  "storage volume attachment": "storage", "storage volume attachment plan": "storage", "storage filesystem attachment": "storage",
+  "remote application offerer": "crossmodelrelation", "relation with remote offerer": "crossmodelrelation",
+  "relation with remote consumer": "crossmodelrelation", "controller-model": "model", "user secret": "secret",
+  "obsolete user secret revisions": "secret", "charm secret": "secret", "resource": "resource"
+ }
+}

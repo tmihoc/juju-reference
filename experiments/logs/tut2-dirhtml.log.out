@@ -1,0 +1,704 @@
+Running Sphinx v7.4.7
+loading translations [en]... done
+sphinx_design found.
+sphinx_design is now configured.
+sphinx_tabs.tabs found.
+sphinx_tabs.tabs is now configured.
+sphinx_reredirects found.
+sphinx_reredirects is now configured.
+canonical.youtube-links not found.
+canonical.youtube-links will not be configured.
+canonical.related-links not found.
+canonical.related-links will not be configured.
+canonical.custom-rst-roles not found.
+canonical.custom-rst-roles will not be configured.
+canonical.terminal-output not found.
+canonical.terminal-output will not be configured.
+canonical.contributor-listing not found.
+canonical.contributor-listing will not be configured.
+sphinx_copybutton found.
+sphinx_copybutton is now configured.
+sphinxext.opengraph found.
+sphinxext.opengraph is now configured.
+sphinxcontrib.jquery found.
+sphinxcontrib.jquery is now configured.
+notfound.extension found.
+notfound.extension is now configured.
+sphinxcontrib.cairosvgconverter found.
+sphinxcontrib.cairosvgconverter is now configured.
+sphinx_last_updated_by_git found.
+sphinx_last_updated_by_git is now configured.
+matplotlib is not installed, social cards will not be generated
+making output directory... done
+canonical-sphinx is deprecated and will be removed from the Sphinx Stack in a future release. Please switch to the Ulwazi theme. Guidance is available in the Sphinx Stack documentation: https://documentation.ubuntu.com/sphinx-stack/latest/how-to/switch-to-ulwazi/
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions={'colon_fence', 'substitution', 'deflist', 'linkify'}, disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=0, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+llms_txt_suffix_mode='url-suffix' is deprecated; use 'append' instead
+Spawning additional sphinx subprocess to build markdown files for llms.txt: /home/dora/git/misc/docs-venv/bin/python3 -m sphinx -b llms-markdown -t sphinx_llm_markdown -c /home/dora/git/misc/juju-tutorial-diagrams/docs /home/dora/git/misc/juju-tutorial-diagrams/docs /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_markdown_build -t format_html -t builder_dirhtml -t html -t dirhtml
+Subprocess output available at: /tmp/sphinx_llm_output_rd9p00ey.log
+loading intersphinx inventory 'tfjuju' from https://documentation.ubuntu.com/terraform-provider-juju/latest/objects.inv...
+loading intersphinx inventory 'pyjuju' from https://pythonlibjuju.readthedocs.io/en/latest/objects.inv...
+loading intersphinx inventory 'jaas' from https://documentation.ubuntu.com/jaas/latest/objects.inv...
+loading intersphinx inventory 'charmcraft' from https://documentation.ubuntu.com/charmcraft/stable/objects.inv...
+loading intersphinx inventory 'ops' from https://documentation.ubuntu.com/ops/latest/objects.inv...
+intersphinx inventory has moved: https://documentation.ubuntu.com/jaas/latest/objects.inv -> https://canonical.com/juju/docs/jaas/v3/objects.inv
+intersphinx inventory has moved: https://documentation.ubuntu.com/ops/latest/objects.inv -> https://canonical.com/juju/docs/ops/latest/objects.inv
+intersphinx inventory has moved: https://documentation.ubuntu.com/terraform-provider-juju/latest/objects.inv -> https://canonical.com/juju/docs/terraform-provider-juju/latest/objects.inv
+intersphinx inventory has moved: https://documentation.ubuntu.com/charmcraft/stable/objects.inv -> https://canonical.com/juju/docs/charmcraft/4/objects.inv
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [dirhtml]: targets for 342 source files that are out of date
+updating environment: [new config] 342 added, 0 changed, 0 removed
+reading sources... [  4%] explanation/architecture .. howto/manage-clouds
+reading sources... [  8%] howto/manage-controllers .. howto/manage-storage
+reading sources... [ 12%] howto/manage-storage-pools .. howto/manage-your-juju-deployment/upgrade-your-juju-deployment
+reading sources... [ 16%] howto/upgrade-your-juju-deployment-from-36-to-41 .. reference/cloud/list-of-supported-clouds/google-gce
+reading sources... [ 20%] reference/cloud/list-of-supported-clouds/google-gke .. reference/configuration/controller-config-juju-mgmt-space
+reading sources... [ 24%] reference/configuration/list-of-controller-configuration-keys .. reference/hook-command/list-of-hook-commands/action-set
+reading sources... [ 28%] reference/hook-command/list-of-hook-commands/application-version-set .. reference/hook-command/list-of-hook-commands/relation-ids
+reading sources... [ 32%] reference/hook-command/list-of-hook-commands/relation-list .. reference/hook-command/list-of-hook-commands/state-get
+reading sources... [ 36%] reference/hook-command/list-of-hook-commands/state-set .. reference/juju-cli/list-of-juju-cli-commands/add-credential
+reading sources... [ 40%] reference/juju-cli/list-of-juju-cli-commands/add-k8s .. reference/juju-cli/list-of-juju-cli-commands/bind
+reading sources... [ 44%] reference/juju-cli/list-of-juju-cli-commands/bootstrap .. reference/juju-cli/list-of-juju-cli-commands/dashboard
+reading sources... [ 48%] reference/juju-cli/list-of-juju-cli-commands/debug-code .. reference/juju-cli/list-of-juju-cli-commands/documentation
+reading sources... [ 52%] reference/juju-cli/list-of-juju-cli-commands/download .. reference/juju-cli/list-of-juju-cli-commands/help
+reading sources... [ 56%] reference/juju-cli/list-of-juju-cli-commands/help-action-commands .. reference/juju-cli/list-of-juju-cli-commands/model-constraints
+reading sources... [ 60%] reference/juju-cli/list-of-juju-cli-commands/model-defaults .. reference/juju-cli/list-of-juju-cli-commands/remove-credential
+reading sources... [ 64%] reference/juju-cli/list-of-juju-cli-commands/remove-k8s .. reference/juju-cli/list-of-juju-cli-commands/rename-space
+reading sources... [ 68%] reference/juju-cli/list-of-juju-cli-commands/reprovision-machine .. reference/juju-cli/list-of-juju-cli-commands/set-constraints
+reading sources... [ 72%] reference/juju-cli/list-of-juju-cli-commands/set-credential .. reference/juju-cli/list-of-juju-cli-commands/show-secret-backend
+reading sources... [ 76%] reference/juju-cli/list-of-juju-cli-commands/show-space .. reference/juju-cli/list-of-juju-cli-commands/suspend-relation
+reading sources... [ 80%] reference/juju-cli/list-of-juju-cli-commands/switch .. reference/juju-cli/list-of-juju-cli-commands/upgrade-model
+reading sources... [ 84%] reference/juju-cli/list-of-juju-cli-commands/users .. reference/model
+reading sources... [ 88%] reference/offer .. reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_cpu_profile
+reading sources... [ 92%] reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_engine_report .. reference/status
+reading sources... [ 96%] reference/storage .. releasenotes/juju_4.0.x/juju_4.0.15
+reading sources... [100%] releasenotes/juju_4.0.x/juju_4.0.3 .. tutorial/index
+
+getting Git timestamps for source files... [  6%] reference/hook-command/list-of-hook-commands
+getting Git timestamps for source files... [ 12%] reference/juju-cli/list-of-juju-cli-commands
+getting Git timestamps for source files... [ 18%] reference
+getting Git timestamps for source files... [ 24%] reference/juju-cli
+getting Git timestamps for source files... [ 29%] howto
+getting Git timestamps for source files... [ 35%] howto/manage-your-juju-deployment
+getting Git timestamps for source files... [ 41%] reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju
+getting Git timestamps for source files... [ 47%] reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros
+getting Git timestamps for source files... [ 53%] releasenotes/juju_4.0.x
+getting Git timestamps for source files... [ 59%] releasenotes/unsupported
+getting Git timestamps for source files... [ 65%] tutorial
+getting Git timestamps for source files... [ 71%] reference/configuration
+getting Git timestamps for source files... [ 76%] reference/juju
+getting Git timestamps for source files... [ 82%] releasenotes
+getting Git timestamps for source files... [ 88%] reference/cloud/list-of-supported-clouds
+getting Git timestamps for source files... [ 94%] explanation
+getting Git timestamps for source files... [100%] .
+
+getting Git timestamps for dependencies... [ 25%] howto
+getting Git timestamps for dependencies... [ 50%] reference
+getting Git timestamps for dependencies... [ 75%] .
+getting Git timestamps for dependencies... [100%] reference/cloud/list-of-supported-clouds/reuse/k8s
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... Copying the source path /home/dora/git/misc/juju-tutorial-diagrams/docs/.sphinx/_static/tag.png to /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_static/tag.png will overwrite data, as a file already exists at the destination path and the content does not match.
+Copying the source path /home/dora/git/misc/docs-venv/lib/python3.14/site-packages/canonical_sphinx/theme/static/tag.png to /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_static/tag.png will overwrite data, as a file already exists at the destination path and the content does not match.
+done
+copying extra files... done
+copying assets: done
+writing output... [  4%] explanation/index .. howto/manage-credentials
+writing output... [  9%] howto/manage-juju .. howto/manage-the-databases
+writing output... [ 13%] howto/manage-the-juju-dashboard .. reference/action
+writing output... [ 17%] reference/agent .. reference/cloud/list-of-supported-clouds/microk8s
+writing output... [ 22%] reference/cloud/list-of-supported-clouds/microsoft-aks .. reference/credential
+writing output... [ 26%] reference/database .. reference/hook-command/list-of-hook-commands/is-leader
+writing output... [ 30%] reference/hook-command/list-of-hook-commands/juju-log .. reference/hook-command/list-of-hook-commands/secret-ids
+writing output... [ 35%] reference/hook-command/list-of-hook-commands/secret-info-get .. reference/juju
+writing output... [ 39%] reference/juju-cli .. reference/juju-cli/list-of-juju-cli-commands/add-user
+writing output... [ 43%] reference/juju-cli/list-of-juju-cli-commands/attach-resource .. reference/juju-cli/list-of-juju-cli-commands/create-backup
+writing output... [ 48%] reference/juju-cli/list-of-juju-cli-commands/create-storage-pool .. reference/juju-cli/list-of-juju-cli-commands/disable-user
+writing output... [ 52%] reference/juju-cli/list-of-juju-cli-commands/disabled-commands .. reference/juju-cli/list-of-juju-cli-commands/grant-secret
+writing output... [ 57%] reference/juju-cli/list-of-juju-cli-commands/help .. reference/juju-cli/list-of-juju-cli-commands/model-constraints
+writing output... [ 61%] reference/juju-cli/list-of-juju-cli-commands/model-defaults .. reference/juju-cli/list-of-juju-cli-commands/remove-k8s
+writing output... [ 65%] reference/juju-cli/list-of-juju-cli-commands/remove-machine .. reference/juju-cli/list-of-juju-cli-commands/resolved
+writing output... [ 70%] reference/juju-cli/list-of-juju-cli-commands/resources .. reference/juju-cli/list-of-juju-cli-commands/set-model-constraints
+writing output... [ 74%] reference/juju-cli/list-of-juju-cli-commands/show-action .. reference/juju-cli/list-of-juju-cli-commands/show-task
+writing output... [ 78%] reference/juju-cli/list-of-juju-cli-commands/show-unit .. reference/juju-cli/list-of-juju-cli-commands/unregister
+writing output... [ 83%] reference/juju-cli/list-of-juju-cli-commands/update-cloud .. reference/juju-db-repl
+writing output... [ 87%] reference/juju-web-cli .. reference/resource-compute
+writing output... [ 91%] reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/index .. reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_status
+writing output... [ 96%] reference/scaling .. releasenotes/juju_4.0.x/juju_4.0.0
+writing output... [100%] releasenotes/juju_4.0.x/juju_4.0.1 .. tutorial/index
+
+generating indices... genindex done
+Overwriting 'user/reference/charm/charm-naming-guidelines/index.html' with redirect to 'https://canonical-charmcraft.readthedocs-hosted.com/en/stable/'.
+Overwriting 'reference/charm/charm-naming-guidelines/index.html' with redirect to 'https://canonical-charmcraft.readthedocs-hosted.com/en/stable/'.
+Overwriting 'user/reference/charm/charm-maturity/index.html' with redirect to 'https://canonical.com/juju/docs/ops/latest/explanation/charm-maturity/'.
+Overwriting 'reference/charm/charm-maturity/index.html' with redirect to 'https://canonical.com/juju/docs/ops/latest/explanation/charm-maturity/'.
+Overwriting 'contributor/reference/agent/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/cmd/jujuagentd/agent'.
+Overwriting 'contributor/reference/dependency-package/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5/dependency'.
+Overwriting 'contributor/reference/catacomb-package/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5/catacomb'.
+Overwriting 'contributor/reference/worker/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Overwriting 'contributor/reference/worker-interface/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Overwriting 'contributor/reference/worker-package/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/worker/v5'.
+Overwriting 'contributor/reference/tomb-package/index.html' with redirect to 'https://pkg.go.dev/gopkg.in/tomb.v2'.
+Overwriting 'contributor/reference/entity-lifecycle/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Overwriting 'contributor/unsorted/death-and-destruction/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Overwriting 'contributor/unsorted/lifecycles/index.html' with redirect to 'https://pkg.go.dev/github.com/juju/juju/core/life'.
+Overwriting 'contributor/reference/cve/index.html' with redirect to 'https://github.com/juju/juju/security'.
+Overwriting 'contributor/reference/conventional-commits/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/.github/instructions/agent-commit.instructions.md'.
+Overwriting 'contributor/howto/merge-forward/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/CONTRIBUTING.md'.
+Overwriting 'contributor/howto/write-tests/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/write-a-unit-test/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/create-a-unit-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/create-unit-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/unsorted/debugging-races/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/util-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/checker/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/reference/testing/unit-testing/unit-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/AGENTS.md'.
+Overwriting 'contributor/howto/write-an-integration-test/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/integration-test-suite/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/test-include/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+Overwriting 'contributor/reference/testing/integration-testing/test-includes/index.html' with redirect to 'https://github.com/juju/juju/blob/HEAD/tests/README.md'.
+writing additional pages... search done
+copying images... [  2%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-4b8177558c45fe03c8f5298bec7ebf6ef1cf221c.svg
+copying images... [  4%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-cef2e018aa437329eb0bb2c8e6485b85318732c4.svg
+copying images... [  6%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-b62d135d597d60688672900e19b680ab73d0686d.svg
+copying images... [  7%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-0ba1c09b8c471d1f3e30703bacbdc47b869d2594.svg
+copying images... [  9%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-428535463d48e30001d69b11fced3bff49e1cb19.svg
+copying images... [ 11%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-14cca53d80b33054071533fdebaa7454977c48cf.svg
+copying images... [ 13%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-9bac957227e5d53452d7bff05d982912bf0907e8.svg
+copying images... [ 15%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-7296cb6f0d2d64c78483594a935a18aa542376b8.svg
+copying images... [ 17%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-9ea54544ca082b9b93fb8e34147542f07b938ad4.svg
+copying images... [ 19%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-f7131f94099f773447c1503e37e16c91817080a0.svg
+copying images... [ 20%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-c2318e3327e48413aad6402ea3c8d89a06fa41ef.svg
+copying images... [ 22%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-e2c05f91465aff87547022926c3fa6ada833c14a.svg
+copying images... [ 24%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-b171f807173eb58af3bfb6862cda6269c05acb3d.svg
+copying images... [ 26%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-e70296b6675bf5efa612ebbd8a2d3cce07b682b5.svg
+copying images... [ 28%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-d2af21198f74481a4074c31c234162077ceab9e0.svg
+copying images... [ 30%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-79d24830394e5d6e8d721869d3a50a4adf264caa.svg
+copying images... [ 31%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-a8023d47a81f488bca4a0ea83b1aaa7b6a69f534.svg
+copying images... [ 33%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-2b5d8fb38edb483fe247c6fc6b2d353ce8a323fb.svg
+copying images... [ 35%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-ca3a02ede2bfadad523e7f12bea11377dd79ff82.svg
+copying images... [ 37%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-5e100c7bf1a0bd1ca620cc851256ff4d81c74058.svg
+copying images... [ 39%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-ae4a037992a8aed2a068f8c05c3145828ca91542.svg
+copying images... [ 41%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-03f3145313c7eb88a56f990072632a5b365f324b.svg
+copying images... [ 43%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-88f322baad3c6dbe8a20753bc355f052dfa1485d.svg
+copying images... [ 44%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-c289b1f11ccaf506f16cdd3c6572099828c5874c.svg
+copying images... [ 46%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-a06db3d1679ae8900397f21860c9060f4d35f182.svg
+copying images... [ 48%] /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/_images/ggarch-91b7a372d471f90d70a5ce5a5bfbc920c0d3d7f3.svg
+copying images... [ 50%] howto/manage-the-juju-dashboard-upgrade.png
+copying images... [ 52%] reference/high-availability.png
+copying images... [ 54%] reference/juju-dashboard.png
+copying images... [ 56%] reference/juju-dashboard-group-by.png
+copying images... [ 57%] reference/juju-dashboard-search-and-filtering.png
+copying images... [ 59%] reference/juju-dashboard-model-details-view.png
+copying images... [ 61%] reference/juju-dashboard-unit-view.png
+copying images... [ 63%] reference/juju-dashboard-machine-view-1.png
+copying images... [ 65%] reference/juju-dashboard-machine-view-2.png
+copying images... [ 67%] reference/juju-dashboard-relations-view.png
+copying images... [ 69%] reference/juju-dashboard-configuring-applications.png
+copying images... [ 70%] reference/juju-dashboard-controllers-view.png
+copying images... [ 72%] reference/juju-dashboard-model-access-management-1.png
+copying images... [ 74%] reference/juju-dashboard-model-access-management-2.png
+copying images... [ 76%] reference/juju-dashboard-running-actions-1.png
+copying images... [ 78%] reference/juju-dashboard-running-actions-2.png
+copying images... [ 80%] reference/juju-dashboard-running-actions-on-multiple-applications-1.png
+copying images... [ 81%] reference/juju-dashboard-running-actions-on-multiple-applications-2.png
+copying images... [ 83%] reference/juju-dashboard-viewing-action-logs.png
+copying images... [ 85%] reference/juju-web-cli-1.png
+copying images... [ 87%] reference/juju-web-cli-2.png
+copying images... [ 89%] reference/juju-web-cli-3.png
+copying images... [ 91%] reference/juju-web-cli-4.png
+copying images... [ 93%] reference/relation-taxonomy.svg
+copying images... [ 94%] reference/relation-taxonomy.dark.svg
+copying images... [ 96%] reference/relation-databags.svg
+copying images... [ 98%] reference/relation-databags.dark.svg
+copying images... [100%] reference/status.png
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+/home/dora/git/misc/juju-tutorial-diagrams/docs/explanation/architecture.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/explanation/index.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/explanation/juju-performance.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/explanation/juju-security.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/explanation/juju-ssh.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/compile-and-run-juju-agents-on-different-architectures.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/debug-a-dqlite-core-dump-issue.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/define-resource-tags-in-a-cloud.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/index.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-actions.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-applications.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-charm-resources.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-charms.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-charms.md:466: WARNING: unknown node type: <manpage: <#text: 'rsync(1)'>>
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-clouds.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-controllers.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-credentials.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-juju.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-logs.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-machines.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-metadata.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-models.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-offers.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-relations.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-secret-backends.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-secrets.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-spaces.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-ssh-keys.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-storage.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-storage-pools.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-subnets.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-the-databases.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-the-juju-dashboard.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-units.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-users.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-your-deployment.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-your-juju-deployment/harden-your-juju-deployment.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-your-juju-deployment/set-up-your-juju-deployment.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-your-juju-deployment/set-up-your-juju-deployment-local-testing-and-development.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-your-juju-deployment/set-up-your-juju-deployment-offline.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-your-juju-deployment/tear-down-your-juju-deployment-local-testing-and-development.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-your-juju-deployment/troubleshoot-your-juju-deployment.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-your-juju-deployment/upgrade-your-juju-deployment.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/upgrade-your-juju-deployment-from-36-to-41.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/writing-workers.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/index.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/index.md:11: WARNING: unknown node type: <Domain: <Slice...><Slice...><Slice...><Slice...><Slice...><Slice...>>
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/action.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/agent.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/application.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/bundle.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/charm.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/client.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/amazon-ec2.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/amazon-eks.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/canonical-kubernetes.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/google-gce.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/google-gke.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/index.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/lxd.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/maas.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/microk8s.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/microsoft-aks.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/microsoft-azure.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/openstack.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/oracle-oci.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/unmanaged.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/cloud/list-of-supported-clouds/vmware-vsphere.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/constraint.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/containeragent.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/controller.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/credential.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/database.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/high-availability.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/hook.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/index.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/juju.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/juju-dashboard.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/juju-db-repl.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/juju-web-cli.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/juju/juju-cross-version-compatibility.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/jujuagentd.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/jujuc.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/log.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/machine.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/metadata.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/model.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/offer.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/pebble.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/placement-directive.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/relation.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/relation.md:22: WARNING: unknown node type: <caption: <emphasis...>>
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/removing-things.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-charm.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/index.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-introspect.md:10: WARNING: unknown node type: <toctree: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-dumplogs.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-exec.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-introspect.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/index.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_controller_agent_name.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_cpu_profile.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_engine_report.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_goroutines.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_heap_profile.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_machine_agent_name.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_machine_lock.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_metrics.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_agent_name.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_status.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/scaling.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/script.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/secret.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/space.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/ssh-key.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/status.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/storage.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/subnet.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/telemetry.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/unit.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/user.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/reference/zone.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/releasenotes/index.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/releasenotes/unsupported/index.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/releasenotes/unsupported/juju_2.x.x.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/releasenotes/unsupported/juju_3.x.x.md:: WARNING: unknown node type: <meta: >
+/home/dora/git/misc/juju-tutorial-diagrams/docs/tutorial/index.md:: WARNING: unknown node type: <meta: >
+Generated 342 context files
+Concatenated full context into: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/llms-full.txt
+Created llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/explanation/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/explanation/architecture/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/explanation/juju-performance/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/explanation/juju-security/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/explanation/juju-ssh/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/compile-and-run-juju-agents-on-different-architectures/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/debug-a-dqlite-core-dump-issue/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/define-resource-tags-in-a-cloud/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-actions/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-applications/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-charm-resources/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-charms/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-clouds/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-controllers/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-credentials/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-juju/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-logs/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-machines/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-metadata/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-models/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-offers/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-relations/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-secret-backends/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-secrets/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-spaces/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-ssh-keys/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-storage/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-storage-pools/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-subnets/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-the-databases/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-the-juju-dashboard/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-units/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-users/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-your-deployment/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-your-juju-deployment/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-your-juju-deployment/harden-your-juju-deployment/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-your-juju-deployment/set-up-your-juju-deployment/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-your-juju-deployment/set-up-your-juju-deployment-local-testing-and-development/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-your-juju-deployment/set-up-your-juju-deployment-offline/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-your-juju-deployment/tear-down-your-juju-deployment-local-testing-and-development/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-your-juju-deployment/troubleshoot-your-juju-deployment/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/manage-your-juju-deployment/upgrade-your-juju-deployment/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/upgrade-your-juju-deployment-from-36-to-41/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/howto/writing-workers/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/action/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/agent/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/application/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/bundle/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/charm/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/client/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/amazon-ec2/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/amazon-eks/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/canonical-kubernetes/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/google-gce/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/google-gke/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/lxd/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/maas/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/microk8s/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/microsoft-aks/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/microsoft-azure/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/openstack/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/oracle-oci/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/unmanaged/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/cloud/list-of-supported-clouds/vmware-vsphere/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/configuration/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/configuration/controller-config-audit-log-exclude-methods/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/configuration/controller-config-juju-mgmt-space/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/configuration/list-of-controller-configuration-keys/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/configuration/list-of-model-configuration-keys/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/constraint/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/containeragent/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/controller/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/credential/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/database/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/high-availability/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/action-fail/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/action-get/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/action-log/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/action-set/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/application-version-set/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/close-port/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/config-get/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/credential-get/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/goal-state/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/is-leader/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/juju-log/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/juju-reboot/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/network-get/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/open-port/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/opened-ports/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/relation-get/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/relation-ids/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/relation-list/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/relation-model-get/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/relation-set/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/resource-get/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/secret-add/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/secret-get/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/secret-grant/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/secret-ids/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/secret-info-get/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/secret-remove/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/secret-revoke/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/secret-set/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/state-delete/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/state-get/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/state-set/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/status-get/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/status-set/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/storage-add/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/storage-get/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/storage-list/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/hook-command/list-of-hook-commands/unit-get/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju/juju-cross-version-compatibility/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/juju-environment-variables/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/actions/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/add-cloud/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/add-credential/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/add-k8s/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/add-machine/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/add-model/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/add-secret/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/add-secret-backend/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/add-space/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/add-ssh-key/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/add-storage/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/add-unit/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/add-user/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/attach-resource/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/attach-storage/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/autoload-credentials/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/bind/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/bootstrap/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/cancel-task/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/change-user-password/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/charm-resources/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/clouds/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/config/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/constraints/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/consume/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/controller-config/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/controllers/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/create-backup/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/create-storage-pool/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/credentials/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/dashboard/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/debug-code/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/debug-hooks/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/debug-log/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/default-credential/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/default-region/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/deploy/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/destroy-controller/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/destroy-model/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/detach-storage/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/diff-bundle/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/disable-command/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/disable-user/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/disabled-commands/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/documentation/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/download/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/enable-command/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/enable-destroy-controller/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/enable-user/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/exec/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/export-bundle/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/expose/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/find/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/find-offers/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/firewall-rules/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/grant/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/grant-cloud/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/grant-secret/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/help/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/help-action-commands/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/help-hook-commands/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/import-filesystem/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/import-ssh-key/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/info/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/integrate/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/kill-controller/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/login/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/logout/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/machines/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/migrate/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/model-config/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/model-constraints/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/model-defaults/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/model-secret-backend/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/models/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/move-to-space/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/offer/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/offers/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/operations/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/refresh/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/regions/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/register/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/reload-spaces/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-application/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-cloud/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-credential/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-k8s/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-machine/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-offer/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-relation/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-saas/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-secret/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-secret-backend/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-space/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-ssh-key/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-storage/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-storage-pool/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-unit/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/remove-user/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/rename-space/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/reprovision-machine/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/resolved/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/resources/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/resume-relation/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/retry-provisioning/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/revoke/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/revoke-cloud/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/revoke-secret/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/run/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/scale-application/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/scp/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/secret-backends/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/secrets/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/set-constraints/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/set-credential/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/set-firewall-rule/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/set-model-constraints/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-action/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-application/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-cloud/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-controller/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-credential/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-machine/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-model/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-offer/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-operation/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-secret/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-secret-backend/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-space/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-status-log/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-storage/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-task/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-unit/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/show-user/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/spaces/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/ssh/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/ssh-keys/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/status/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/storage/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/storage-pools/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/subnets/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/suspend-relation/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/switch/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/sync-agent-binary/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/trust/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/unexpose/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/unregister/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/update-cloud/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/update-credential/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/update-k8s/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/update-public-clouds/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/update-secret/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/update-secret-backend/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/update-storage-pool/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/upgrade-controller/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/upgrade-model/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/users/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/version/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/list-of-juju-cli-commands/whoami/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-cli/plugin-juju-metadata/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-dashboard/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-db-repl/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/juju-web-cli/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/jujuagentd/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/jujuc/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/log/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/machine/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/metadata/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/model/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/offer/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/pebble/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/placement-directive/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/relation/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/removing-things/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-charm/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-dumplogs/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-exec/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-introspect/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_controller_agent_name/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_cpu_profile/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_engine_report/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_goroutines/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_heap_profile/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_machine_agent_name/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_machine_lock/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_metrics/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_agent_name/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_status/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/scaling/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/script/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/secret/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/space/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/ssh-key/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/status/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/storage/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/subnet/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/telemetry/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/unit/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/user/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/reference/zone/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/releasenotes/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/releasenotes/juju_4.0.x/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/releasenotes/juju_4.0.x/juju_4.0.0/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/releasenotes/juju_4.0.x/juju_4.0.1/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/releasenotes/juju_4.0.x/juju_4.0.11/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/releasenotes/juju_4.0.x/juju_4.0.12/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/releasenotes/juju_4.0.x/juju_4.0.14/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/releasenotes/juju_4.0.x/juju_4.0.15/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/releasenotes/juju_4.0.x/juju_4.0.3/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/releasenotes/juju_4.0.x/juju_4.0.5/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/releasenotes/unsupported/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/releasenotes/unsupported/juju_2.x.x/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/releasenotes/unsupported/juju_3.x.x/llms.txt
+Created nested llms.txt sitemap: /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/tutorial/llms.txt
+sphinx-sitemap: doc-sitemap.xml was generated for URL https://canonical.com/juju/docs/juju-cli/local/ in /home/dora/git/misc/juju-tutorial-diagrams/docs/_build/doc-sitemap.xml
+Writing redirects...
+build succeeded, 129 warnings.
+
+The HTML pages are in _build.
+done /home/dora/git/misc/juju-tutorial-diagrams dirhtml

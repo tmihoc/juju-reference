@@ -1,0 +1,926 @@
+[
+ {
+  "table": "machine_manual",
+  "page": "machine",
+  "alt": "unit",
+  "evidence": "domain/machine/state/placement.go:394",
+  "note": "One row per manually provisioned machine; inserted in machine placement/cloud-instance flow."
+ },
+ {
+  "table": "operation_task_log",
+  "page": "action",
+  "alt": "machine",
+  "evidence": "domain/operation/state/task.go:759",
+  "note": "Log messages of an operation task (action/exec run on a unit or machine); FK operation_task."
+ },
+ {
+  "table": "device_constraint",
+  "page": "application",
+  "alt": "constraint",
+  "evidence": "domain/application/state/application.go:3055",
+  "note": "Per-application device requests (name,type,count), FK application_uuid, written with application creation; not linked to the \"constraint\" table."
+ },
+ {
+  "table": "cloud_region_defaults",
+  "page": "model-defaults",
+  "alt": "cloud",
+  "evidence": "domain/modeldefaults/state/state.go:595",
+  "note": "Per-region default model config key/values, set via modeldefaults state."
+ },
+ {
+  "table": "permission",
+  "page": "permission",
+  "alt": "user",
+  "evidence": "domain/schema/controller/sql/0017-user-permission.sql:64",
+  "note": "Grant of an access type on cloud/controller/model/offer to a user (grant_on, grant_to)."
+ },
+ {
+  "table": "workload_tracing_config",
+  "page": "telemetry",
+  "alt": "controller",
+  "evidence": "domain/tracing/state/state.go:133",
+  "note": "Key/value workload tracing (OTEL) config in tracing domain."
+ },
+ {
+  "table": "user_public_ssh_key",
+  "page": "ssh-key",
+  "alt": "user",
+  "evidence": "domain/keymanager/state/state.go:121",
+  "note": "User public SSH keys with fingerprint, written by keymanager."
+ },
+ {
+  "table": "controller_agent_address",
+  "page": "controller",
+  "alt": "agent-version",
+  "evidence": "domain/controllernode/state/state.go:447",
+  "note": "Published controller API endpoints for agents, FK controller_node."
+ },
+ {
+  "table": "application_exposed_endpoint_cidr",
+  "page": "application",
+  "alt": "port",
+  "evidence": "domain/application/state/exposed.go:438",
+  "note": "CIDRs an application endpoint is exposed to (juju expose); FK application and application_endpoint."
+ },
+ {
+  "table": "provider_network_subnet",
+  "page": "subnet",
+  "alt": "space",
+  "evidence": "domain/schema/model/sql/0009-subnet.sql:31",
+  "note": "Maps a subnet to its provider network id; PK subnet_uuid."
+ },
+ {
+  "table": "subnet",
+  "page": "subnet",
+  "alt": "space",
+  "evidence": "domain/network/state/space.go:97",
+  "note": "Subnet CIDR/vlan with optional space; written by network state."
+ },
+ {
+  "table": "relation_application_settings_hash",
+  "page": "relation",
+  "alt": "application",
+  "evidence": "domain/unitstate/state/unitrelations.go:504",
+  "note": "Hash of application-level relation settings for a relation endpoint, used by watchers."
+ },
+ {
+  "table": "port_range",
+  "page": "port",
+  "alt": "unit",
+  "evidence": "domain/unitstate/state/updateunitports.go:393",
+  "note": "Opened port ranges per unit and optional endpoint (protocol, from/to)."
+ },
+ {
+  "table": "annotation_storage_instance",
+  "page": "annotation",
+  "alt": "storage",
+  "evidence": "domain/schema/model/sql/0013-annotations.sql:50",
+  "note": "Key/value annotations on a storage instance; name-pattern table annotation_*."
+ },
+ {
+  "table": "offer_connection",
+  "page": "offer",
+  "alt": "relation",
+  "evidence": "domain/crossmodelrelation/state/model/remoteapplication.go:674",
+  "note": "Connection linking a consumer remote relation to an offer, with username."
+ },
+ {
+  "table": "user_authentication",
+  "page": "user",
+  "alt": "permission",
+  "evidence": "domain/access/state/user.go:724",
+  "note": "Per-user disabled flag; parent of user_password; written by access state."
+ },
+ {
+  "table": "block_command",
+  "page": "block-command",
+  "alt": "model",
+  "evidence": "domain/schema/model/sql/0025-command-block.sql:14",
+  "note": "Model-level blocks (destroy/remove/change) with message."
+ },
+ {
+  "table": "application_endpoint",
+  "page": "application",
+  "alt": "relation",
+  "evidence": "domain/application/state/application_endpoint.go:399",
+  "note": "Ties application charm relation to optional space (endpoint binding); parent of relation_endpoint and offer_endpoint."
+ },
+ {
+  "table": "agent_version",
+  "page": "agent-version",
+  "alt": "upgrade",
+  "evidence": "domain/schema/model/sql/0027-agent-version.sql:17",
+  "note": "Singleton model target and latest agent version plus stream."
+ },
+ {
+  "table": "application_remote_offerer_status",
+  "page": "status",
+  "alt": "offer",
+  "evidence": "domain/status/state/model/crossmodelrelation.go:282",
+  "note": "Status/message/data of a remote offerer application in the consumer model."
+ },
+ {
+  "table": "application_channel",
+  "page": "application",
+  "alt": "charm",
+  "evidence": "domain/application/state/migration.go:86",
+  "note": "Charm channel (track/risk/branch) an application tracks; PK application_uuid."
+ },
+ {
+  "table": "model_last_login",
+  "page": "user",
+  "alt": "model",
+  "evidence": "domain/schema/controller/sql/0019-model-last-login.sql:1",
+  "note": "Last login time per (model,user); feeds v_user_last_login."
+ },
+ {
+  "table": "operation_parameter",
+  "page": "action",
+  "alt": "machine",
+  "evidence": "domain/schema/model/sql/0033-operation.sql:160",
+  "note": "Parameters passed to an operation (action params or exec command/timeout)."
+ },
+ {
+  "table": "secret_unit_owner",
+  "page": "secret",
+  "alt": "unit",
+  "evidence": "domain/schema/model/sql/0012-secret.sql:185",
+  "note": "Secret owned by a unit with label."
+ },
+ {
+  "table": "constraint_space",
+  "page": "constraint",
+  "alt": "space",
+  "evidence": "domain/schema/model/sql/0014-constraint.sql:57",
+  "note": "Space include/exclude entries of a constraint row."
+ },
+ {
+  "table": "charm_config",
+  "page": "charm",
+  "alt": "application",
+  "evidence": "domain/application/state/state.go:566",
+  "note": "Config option definitions of a charm (key,type,default)."
+ },
+ {
+  "table": "ip_address",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "domain/schema/model/sql/0021-network.sql:193",
+  "note": "IP address of a link layer device on a net node, with subnet, scope, origin."
+ },
+ {
+  "table": "cloud_ca_cert",
+  "page": "cloud",
+  "alt": "credential",
+  "evidence": "domain/cloud/state/state.go:514",
+  "note": "CA certificates of a cloud."
+ },
+ {
+  "table": "model_migration_export_minion_sync",
+  "page": "model-migration",
+  "alt": "unit",
+  "evidence": "domain/modelmigration/state/controller/state.go:786",
+  "note": "Minion agent reports confirming phase work for an export migration."
+ },
+ {
+  "table": "annotation_application",
+  "page": "annotation",
+  "alt": "application",
+  "evidence": "domain/schema/model/sql/0013-annotations.sql:6",
+  "note": "Key/value annotations on an application."
+ },
+ {
+  "table": "charm_action",
+  "page": "charm",
+  "alt": "action",
+  "evidence": "domain/application/state/state.go:542",
+  "note": "Action definitions in charm (key, params, parallel); FK charm. operation_action refs it."
+ },
+ {
+  "table": "secret_revision_obsolete",
+  "page": "secret",
+  "alt": "secret-backend",
+  "evidence": "domain/secret/state/state.go:997",
+  "note": "Obsolete/pending-delete flag per secret revision."
+ },
+ {
+  "table": "storage_volume_status",
+  "page": "status",
+  "alt": "storage",
+  "evidence": "domain/status/state/model/storage.go:350",
+  "note": "Status of a storage volume (pending/attached/..); status-value table pattern."
+ },
+ {
+  "table": "link_layer_device",
+  "page": "link-layer-device",
+  "alt": "machine",
+  "evidence": "domain/schema/model/sql/0021-network.sql:36",
+  "note": "Network device (NIC) on a net node; direct match."
+ },
+ {
+  "table": "link_layer_device_parent",
+  "page": "link-layer-device",
+  "alt": "machine",
+  "evidence": "domain/schema/model/sql/0021-network.sql:69",
+  "note": "Parent/child relationship between devices."
+ },
+ {
+  "table": "machine_virtual_ssh_host_key",
+  "page": "ssh",
+  "alt": "machine",
+  "evidence": "domain/ssh/state/model/state.go:283",
+  "note": "Virtual host key for SSH proxy to a machine."
+ },
+ {
+  "table": "application_extra_endpoint",
+  "page": "application",
+  "alt": "space",
+  "evidence": "domain/application/state/application_endpoint.go:451",
+  "note": "Extra-binding to space overrides for an application."
+ },
+ {
+  "table": "operation_machine_task",
+  "page": "action",
+  "alt": "machine",
+  "evidence": "domain/operation/state/start.go:684",
+  "note": "Join of operation task to machine receiver."
+ },
+ {
+  "table": "unit_state_charm",
+  "page": "unit",
+  "alt": "charm",
+  "evidence": "domain/unitstate/state/state.go:252",
+  "note": "Charm local state persisted at hook commit per unit."
+ },
+ {
+  "table": "machine_filesystem",
+  "page": "storage",
+  "alt": "machine",
+  "evidence": "domain/unitstate/state/addstorage.go:427",
+  "note": "Filesystem owned by machine (machine-scoped storage); inserted when adding storage."
+ },
+ {
+  "table": "unit_resource",
+  "page": "resource",
+  "alt": "unit",
+  "evidence": "domain/schema/model/sql/0023-resource.sql:120",
+  "note": "Resource revision used by a unit; FK resource and unit."
+ },
+ {
+  "table": "model_agent",
+  "page": "model",
+  "alt": "agent-version",
+  "evidence": "domain/model/state/model/state.go:1324",
+  "note": "Model agent password hash; row created with model (model_agent insert), only password columns."
+ },
+ {
+  "table": "ssh_connection_request",
+  "page": "ssh",
+  "alt": "machine",
+  "evidence": "domain/ssh/state/model/state.go:525",
+  "note": "Ephemeral tunnel request for SSH to machine (tunnel_id, expiry, ephemeral key)."
+ },
+ {
+  "table": "controller_node_password",
+  "page": "controller",
+  "alt": "user",
+  "evidence": "domain/agentpassword/state/controllerstate.go:56",
+  "note": "Password hash of a controller node agent."
+ },
+ {
+  "table": "change_log",
+  "page": "database",
+  "alt": "model",
+  "evidence": "domain/changestream/state/state.go:131",
+  "note": "Change stream log of table edits with namespace; witness-based pruning; exists in both schemas."
+ },
+ {
+  "table": "object_store_placement",
+  "page": "object-store",
+  "alt": "controller",
+  "evidence": "domain/objectstore/state/state.go:269",
+  "note": "Which node holds an object store blob; both schemas."
+ },
+ {
+  "table": "application_remote_consumer",
+  "page": "offer",
+  "alt": "relation",
+  "evidence": "domain/crossmodelrelation/state/model/remoteapplication.go:497",
+  "note": "Remote consumer application inside offering model, keyed by offer_connection."
+ },
+ {
+  "table": "machine_agent_version",
+  "page": "agent-version",
+  "alt": "machine",
+  "evidence": "domain/machine/state/state.go:200",
+  "note": "Reported running agent version per machine."
+ },
+ {
+  "table": "unit_workload_status",
+  "page": "status",
+  "alt": "unit",
+  "evidence": "domain/status/state/model/modelstate.go:1514",
+  "note": "Workload status of a unit; status_value table pattern."
+ },
+ {
+  "table": "sequence",
+  "page": "database",
+  "alt": "machine",
+  "evidence": "domain/sequence/state/sequence.go:29",
+  "note": "Namespaced counters (machine, application, operation, storage ...) via NextValue; name-and-code generic."
+ },
+ {
+  "table": "availability_zone_subnet",
+  "page": "zone",
+  "alt": "subnet",
+  "evidence": "domain/schema/model/sql/0009-subnet.sql:53",
+  "note": "Links availability zones to subnets."
+ },
+ {
+  "table": "charm_manifest_base",
+  "page": "charm",
+  "alt": "application",
+  "evidence": "domain/application/state/state.go:589",
+  "note": "Bases from charm manifest."
+ },
+ {
+  "table": "logging_loki_config",
+  "page": "telemetry",
+  "alt": "controller",
+  "evidence": "domain/logging/state/state.go:44",
+  "note": "Singleton Loki push endpoint config for agent log forwarding (logging domain doc)."
+ },
+ {
+  "table": "model_storage_pool",
+  "page": "storage",
+  "alt": "model",
+  "evidence": "domain/model/state/model/state.go:672",
+  "note": "Default storage pool per storage kind for model."
+ },
+ {
+  "table": "machine_ssh_host_key",
+  "page": "ssh",
+  "alt": "machine",
+  "evidence": "domain/machine/state/state.go:1439",
+  "note": "Machine SSH host keys reported by machine agent, read by GetSSHHostKeys."
+ },
+ {
+  "table": "unit",
+  "page": "unit",
+  "alt": "application",
+  "evidence": "domain/application/state/unit.go:1003",
+  "note": "Unit entity row."
+ },
+ {
+  "table": "cloud_image_metadata",
+  "page": "image-metadata",
+  "alt": "cloud",
+  "evidence": "domain/cloudimagemetadata/state/state.go:167",
+  "note": "Cloud image metadata (stream, region, version, arch, image id)."
+ },
+ {
+  "table": "model_migration_export_offer",
+  "page": "model-migration",
+  "alt": "offer",
+  "evidence": "domain/modelmigration/state/controller/state.go:1884",
+  "note": "Hosted offer UUIDs captured at export for REAP cleanup."
+ },
+ {
+  "table": "object_store_metadata_path",
+  "page": "object-store",
+  "alt": "resource",
+  "evidence": "domain/objectstore/state/state.go:317",
+  "note": "Path to metadata mapping for object store; both schemas."
+ },
+ {
+  "table": "fqdn_address",
+  "page": "unit",
+  "alt": "link-layer-device",
+  "evidence": "domain/application/state/unitstate.go:584",
+  "note": "FQDN address of a net node, written for k8s pod/controller units and services; scope local-cloud/public."
+ },
+ {
+  "table": "object_store_drain_info",
+  "page": "object-store",
+  "alt": "controller",
+  "evidence": "domain/objectstore/state/state.go:580",
+  "note": "Drain phase between object store backends."
+ },
+ {
+  "table": "model_migration_export_phase",
+  "page": "model-migration",
+  "alt": "model",
+  "evidence": "domain/modelmigration/state/controller/state.go:271",
+  "note": "Export migration phase history."
+ },
+ {
+  "table": "machine_platform",
+  "page": "machine",
+  "alt": "constraint",
+  "evidence": "domain/machine/state/placement.go:277",
+  "note": "OS/channel/architecture of machine."
+ },
+ {
+  "table": "application_scale",
+  "page": "application",
+  "alt": "unit",
+  "evidence": "domain/application/state/migration.go:51",
+  "note": "Scale/scaling state for k8s application."
+ },
+ {
+  "table": "operation_task_output",
+  "page": "action",
+  "alt": "resource",
+  "evidence": "domain/operation/state/task.go:316",
+  "note": "Object store path of task output."
+ },
+ {
+  "table": "machine_volume",
+  "page": "storage",
+  "alt": "machine",
+  "evidence": "domain/unitstate/state/addstorage.go:405",
+  "note": "Volume owned by machine (machine-scoped)."
+ },
+ {
+  "table": "machine_status",
+  "page": "status",
+  "alt": "machine",
+  "evidence": "domain/machine/state/placement.go:417",
+  "note": "Machine status with status value table (error/started/pending/stopped/down)."
+ },
+ {
+  "table": "model_migration_import",
+  "page": "model-migration",
+  "alt": "model",
+  "evidence": "domain/model/state/controller/state.go:302",
+  "note": "Import claim on target controller."
+ },
+ {
+  "table": "machine_requires_reboot",
+  "page": "machine",
+  "alt": "status",
+  "evidence": "domain/machine/state/reboot.go:29",
+  "note": "Reboot flag set/unset on machine."
+ },
+ {
+  "table": "operation",
+  "page": "action",
+  "alt": "machine",
+  "evidence": "domain/operation/state/task.go:365",
+  "note": "Operation (action or exec) overview linked to tasks."
+ },
+ {
+  "table": "secret_reference",
+  "page": "secret",
+  "alt": "offer",
+  "evidence": "domain/crossmodelrelation/state/model/secrets.go:359",
+  "note": "Cross-model secret reference on consumer side."
+ },
+ {
+  "table": "annotation_model",
+  "page": "annotation",
+  "alt": "model",
+  "evidence": "domain/annotation/state/state.go:293",
+  "note": "Model-level annotations."
+ },
+ {
+  "table": "namespace_list",
+  "page": "database",
+  "alt": "model",
+  "evidence": "domain/model/state/controller/state.go:1741",
+  "note": "Tracked dqlite namespaces; model namespace inserted at model creation."
+ },
+ {
+  "table": "application_platform",
+  "page": "application",
+  "alt": "charm",
+  "evidence": "domain/application/state/migration.go:63",
+  "note": "OS/channel/arch of application."
+ },
+ {
+  "table": "block_device",
+  "page": "storage",
+  "alt": "machine",
+  "evidence": "domain/blockdevice/state/state.go:548",
+  "note": "Block devices on machine used for volume attachments; FK machine, referenced by storage_volume_attachment."
+ },
+ {
+  "table": "link_layer_device_dns_domain",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "domain/network/state/netconfig.go:257",
+  "note": "DNS search domains per device."
+ },
+ {
+  "table": "charm_tracing_config",
+  "page": "telemetry",
+  "alt": "controller",
+  "evidence": "domain/tracing/state/state.go:75",
+  "note": "Key/value charm tracing config."
+ },
+ {
+  "table": "unit_agent_status",
+  "page": "status",
+  "alt": "unit",
+  "evidence": "domain/status/state/model/modelstate.go:1473",
+  "note": "Unit agent status (allocating/executing/idle...)."
+ },
+ {
+  "table": "machine_placement",
+  "page": "machine",
+  "alt": "constraint",
+  "evidence": "domain/machine/state/placement.go:535",
+  "note": "Placement directive for machine."
+ },
+ {
+  "table": "charm_metadata",
+  "page": "charm",
+  "alt": "application",
+  "evidence": "domain/application/state/state.go:291",
+  "note": "Charm metadata (name, summary, subordinate, assumes)."
+ },
+ {
+  "table": "controller_node",
+  "page": "controller",
+  "alt": "database",
+  "evidence": "domain/controllernode/state/state.go:52",
+  "note": "Controller node row with dqlite node id."
+ },
+ {
+  "table": "model_secret_backend",
+  "page": "secret-backend",
+  "alt": "model",
+  "evidence": "domain/secretbackend/state/state.go:313",
+  "note": "Model to secret backend selection."
+ },
+ {
+  "table": "controller_node_agent_version",
+  "page": "agent-version",
+  "alt": "controller",
+  "evidence": "domain/controllernode/state/state.go:220",
+  "note": "Reported agent version per controller node."
+ },
+ {
+  "table": "storage_volume",
+  "page": "storage",
+  "alt": "machine",
+  "evidence": "domain/unitstate/state/addstorage.go:298",
+  "note": "Volume held by storage instance."
+ },
+ {
+  "table": "model_migration_import_offer",
+  "page": "model-migration",
+  "alt": "offer",
+  "evidence": "domain/modelmigration/state/controller/import.go:154",
+  "note": "Handoff of offers from Import to Activate."
+ },
+ {
+  "table": "application_controller",
+  "page": "controller",
+  "alt": "application",
+  "evidence": "domain/application/state/application.go:442",
+  "note": "Singleton marking the controller application."
+ },
+ {
+  "table": "resource_container_image_metadata_store",
+  "page": "resource",
+  "alt": "storage",
+  "evidence": "domain/containerimageresourcestore/state/state.go:109",
+  "note": "Container image resource registry metadata store."
+ },
+ {
+  "table": "storage_filesystem",
+  "page": "storage",
+  "alt": "machine",
+  "evidence": "domain/unitstate/state/addstorage.go:277",
+  "note": "Filesystem held by storage instance."
+ },
+ {
+  "table": "constraint_tag",
+  "page": "constraint",
+  "alt": "machine",
+  "evidence": "domain/machine/state/placement.go:552",
+  "note": "Tags of a constraint row."
+ },
+ {
+  "table": "cloud_defaults",
+  "page": "model-defaults",
+  "alt": "cloud",
+  "evidence": "domain/modeldefaults/state/state.go:477",
+  "note": "Cloud-wide default model config."
+ },
+ {
+  "table": "application_workload_version",
+  "page": "application",
+  "alt": "status",
+  "evidence": "domain/application/state/unitstate.go:790",
+  "note": "Workload version reported for application."
+ },
+ {
+  "table": "machine_cloud_instance",
+  "page": "machine",
+  "alt": "zone",
+  "evidence": "domain/machine/state/machine_cloud_instance.go:177",
+  "note": "Cloud instance info of machine (instance id, hardware, AZ)."
+ },
+ {
+  "table": "relation_network_egress",
+  "page": "relation",
+  "alt": "offer",
+  "evidence": "domain/crossmodelrelation/state/model/relation_network.go:77",
+  "note": "Egress CIDRs for a relation (cross-model)."
+ },
+ {
+  "table": "model_constraint",
+  "page": "constraint",
+  "alt": "model",
+  "evidence": "domain/model/state/model/state.go:493",
+  "note": "Link from model to its constraint row."
+ },
+ {
+  "table": "controller_peer_address",
+  "page": "controller",
+  "alt": "agent-version",
+  "evidence": "domain/controllernode/state/state.go:481",
+  "note": "Peer API endpoints between controllers."
+ },
+ {
+  "table": "offer",
+  "page": "offer",
+  "alt": "application",
+  "evidence": "domain/crossmodelrelation/state/model/import.go:38",
+  "note": "Offer entity."
+ },
+ {
+  "table": "resource_image_store",
+  "page": "resource",
+  "alt": "storage",
+  "evidence": "domain/application/state/resource.go:434",
+  "note": "Link container image resource to store."
+ },
+ {
+  "table": "charm_resource",
+  "page": "charm",
+  "alt": "resource",
+  "evidence": "domain/application/state/state.go:486",
+  "note": "Resource definitions declared by charm."
+ },
+ {
+  "table": "application_agent",
+  "page": "application",
+  "alt": "unit",
+  "evidence": "domain/agentpassword/state/modelstate.go:510",
+  "note": "Application agent password hash."
+ },
+ {
+  "table": "model_life",
+  "page": "model",
+  "alt": "removal",
+  "evidence": "domain/removal/state/model/model.go:97",
+  "note": "Facsimile of model life in model DB."
+ },
+ {
+  "table": "unit_storage_directive",
+  "page": "storage",
+  "alt": "unit",
+  "evidence": "domain/application/state/storage.go:1196",
+  "note": "Storage directives per unit."
+ },
+ {
+  "table": "link_layer_device_route",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "domain/schema/model/sql/0021-network.sql:114",
+  "note": "Routes per device (defined for completeness, no writer other than delete in reprovision)."
+ },
+ {
+  "table": "charm_download_info",
+  "page": "charm",
+  "alt": "application",
+  "evidence": "domain/application/state/state.go:265",
+  "note": "Charmhub download info per charm."
+ },
+ {
+  "table": "relation_unit_setting",
+  "page": "relation",
+  "alt": "unit",
+  "evidence": "domain/unitstate/state/unitrelations.go:292",
+  "note": "Unit-level relation settings."
+ },
+ {
+  "table": "application_config",
+  "page": "application",
+  "alt": "charm",
+  "evidence": "domain/application/state/application.go:2287",
+  "note": "Application config values."
+ },
+ {
+  "table": "storage_pool",
+  "page": "storage",
+  "alt": "model",
+  "evidence": "domain/model/state/model/state.go:159",
+  "note": "Storage pools."
+ },
+ {
+  "table": "k8s_pod",
+  "page": "unit",
+  "alt": "link-layer-device",
+  "evidence": "domain/application/state/unitstate.go:377",
+  "note": "k8s pod provider id per unit."
+ },
+ {
+  "table": "provider_link_layer_device",
+  "page": "link-layer-device",
+  "alt": "machine",
+  "evidence": "domain/network/state/linklayer_import.go:86",
+  "note": "Provider id of link layer device."
+ },
+ {
+  "table": "machine_reprovision",
+  "page": "machine",
+  "alt": "removal",
+  "evidence": "domain/machine/state/reprovision.go:123",
+  "note": "Machine reprovision request rows."
+ },
+ {
+  "table": "object_store_backend_s3_config",
+  "page": "object-store",
+  "alt": "secret-backend",
+  "evidence": "domain/objectstore/state/state.go:1039",
+  "note": "S3 config for object store backend."
+ },
+ {
+  "table": "machine_agent_presence",
+  "page": "status",
+  "alt": "machine",
+  "evidence": "domain/status/state/model/modelstate.go:1202",
+  "note": "Machine agent last seen; feeds machine status presence."
+ },
+ {
+  "table": "secret_content",
+  "page": "secret",
+  "alt": "secret-backend",
+  "evidence": "domain/secret/state/state.go:1284",
+  "note": "Secret revision content."
+ },
+ {
+  "table": "machine_constraint",
+  "page": "constraint",
+  "alt": "machine",
+  "evidence": "domain/machine/state/placement.go:556",
+  "note": "Link from machine to constraint."
+ },
+ {
+  "table": "application_resource",
+  "page": "resource",
+  "alt": "application",
+  "evidence": "domain/application/state/resource.go:161",
+  "note": "Resources used by application."
+ },
+ {
+  "table": "secret_revision_expire",
+  "page": "secret",
+  "alt": null,
+  "evidence": "domain/secret/state/state.go:1222",
+  "note": "Expiry time of secret revision."
+ },
+ {
+  "table": "lease_pin",
+  "page": "lease",
+  "alt": "unit",
+  "evidence": "domain/lease/state/state.go:315",
+  "note": "Pins of leases."
+ },
+ {
+  "table": "external_controller",
+  "page": "external-controller",
+  "alt": "offer",
+  "evidence": "domain/externalcontroller/state/state.go:180",
+  "note": "External controller records."
+ },
+ {
+  "table": "unit_virtual_ssh_host_key",
+  "page": "ssh",
+  "alt": "unit",
+  "evidence": "domain/ssh/state/model/state.go:411",
+  "note": "Virtual host key for unit SSH proxy."
+ },
+ {
+  "table": "block_device_link_device",
+  "page": "storage",
+  "alt": "machine",
+  "evidence": "domain/blockdevice/state/state.go:431",
+  "note": "Device links for block devices."
+ },
+ {
+  "table": "charm_hash",
+  "page": "charm",
+  "alt": null,
+  "evidence": "domain/application/state/state.go:609",
+  "note": "Charm hash."
+ },
+ {
+  "table": "net_node",
+  "page": "link-layer-device",
+  "alt": "machine",
+  "evidence": "domain/machine/state/placement.go:255",
+  "note": "Net node shared by machine/unit/k8s service; name+code, no own columns."
+ },
+ {
+  "table": "application_status",
+  "page": "status",
+  "alt": "application",
+  "evidence": "domain/status/state/model/modelstate.go:311",
+  "note": "Application status."
+ },
+ {
+  "table": "user_password",
+  "page": "user",
+  "alt": null,
+  "evidence": "domain/access/state/user.go:1099",
+  "note": "User password hash and salt."
+ },
+ {
+  "table": "hostname_address",
+  "page": "link-layer-device",
+  "alt": "machine",
+  "evidence": "domain/removal/state/model/machine.go:918",
+  "note": "Hostname address of a net node (hostname, scope); linked via net_node_hostname_address; only inserted by model import, deleted with machine/remote offerer removal. Net node is a machine/unit network identity; placed with network device page. Weak: little code beyond import/removal."
+ },
+ {
+  "table": "application_k8s_resources_managed",
+  "page": "application",
+  "alt": null,
+  "evidence": "domain/application/state/application.go:1062",
+  "note": "K8s resources managed flag."
+ },
+ {
+  "table": "relation_unit",
+  "page": "relation",
+  "alt": "unit",
+  "evidence": "domain/relation/state/relation.go:2213",
+  "note": "Relation unit membership."
+ },
+ {
+  "table": "device_constraint_attribute",
+  "page": "application",
+  "alt": "constraint",
+  "evidence": "domain/application/state/application.go:3068",
+  "note": "Attributes of device constraints."
+ },
+ {
+  "table": "resource_retrieved_by",
+  "page": "resource",
+  "alt": "user",
+  "evidence": "domain/application/state/resource.go:449",
+  "note": "Who retrieved resource blob."
+ },
+ {
+  "table": "storage_volume_attachment_plan",
+  "page": "storage",
+  "alt": "machine",
+  "evidence": "domain/storageprovisioning/state/volume.go:1700",
+  "note": "Volume attachment plan."
+ },
+ {
+  "table": "controller_client_address",
+  "page": "controller",
+  "alt": null,
+  "evidence": "domain/controllernode/state/state.go:413",
+  "note": "Client API endpoints."
+ },
+ {
+  "table": "application_config_hash",
+  "page": "application",
+  "alt": null,
+  "evidence": "domain/application/state/application.go:3456",
+  "note": "Application config hash."
+ },
+ {
+  "table": "cloud_credential_attribute",
+  "page": "credential",
+  "alt": "cloud",
+  "evidence": "domain/credential/state/state.go:295",
+  "note": "Credential attributes."
+ }
+]

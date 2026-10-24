@@ -1,0 +1,362 @@
+[
+ {
+  "id": 1,
+  "text": "In Juju, status can describe the status of an application or a unit, where the former can be inferred from the latter and the latter consists of the workload and the Juju agent status. This document gives more information about all of these different kinds of status -- their values and their meanings."
+ },
+ {
+  "id": 2,
+  "text": "The behaviour when in this phase can be explained by understanding the events which trigger the execution of the different hook kinds, and the context in which the hooks execute."
+ },
+ {
+  "id": 3,
+  "text": "A charm resource is persisted in the model database as follows: the charm's definition (the"
+ },
+ {
+  "id": 4,
+  "text": "The unit status is given by the status of its workload/charm and the status of its Juju agent."
+ },
+ {
+  "id": 5,
+  "text": "Task records: One task per target, the same records an action run creates (see the action in the data model), each linked through a unit-task or machine-task record to the unit or machine it runs on."
+ },
+ {
+  "id": 6,
+  "text": "Invocations of associated handlers should be idempotent and should not make changes to the environment, or restart services, unless there is a material change to the charm's configuration, such as a change in the port exposed by the charm, addition or removal of a relation which may require a database migration or a \"scale out\" event for high availability, or similar."
+ },
+ {
+  "id": 7,
+  "text": "Operation record: A script run creates an operation whose parameters carry the command and its timeout, as key/value records."
+ },
+ {
+  "id": 8,
+  "text": "Indicates that the specified role/profile for the given cloud should be used.  <p> Note: Only valid for clouds which support instance roles. Currently only for AWS with instance profiles and (starting with Juju 3.6) for Azure with managed identities."
+ },
+ {
+  "id": 9,
+  "text": "This event is guaranteed to follow immediately after each hook-relation-joined hook. So all `juju` commands that trigger `relation-joined` will also cause `relation-changed` to be fired. So typical scenarios include:"
+ },
+ {
+  "id": 10,
+  "text": "Deploy: Deploying is the bundle's one operation, and it runs on the client (see the execution layer)."
+ },
+ {
+  "id": 11,
+  "text": "The following figure provides an illustration of the status an application may be in at a given time, and lists the reasons for the transitions between different statuses:"
+ },
+ {
+  "id": 12,
+  "text": "In Juju, an operation is the group of tasks queued by running a script across one or more units or machines."
+ },
+ {
+  "id": 13,
+  "text": "want more than one actor attempting to start a cloud instance for a new"
+ },
+ {
+  "id": 14,
+  "text": "Juju object removal commands do not succeed when there are errors in the multiple steps that are required to remove the underlying object. For instance, a unit will not remove properly if it has a hook error, or a model cannot be removed if application units are in an error state. This is an intentionally conservative approach to the deletion of things."
+ },
+ {
+  "id": 15,
+  "text": "As its name indicates, the application status reports on the status of each deployed application."
+ },
+ {
+  "id": 16,
+  "text": "As it is triggered periodically, the `update-status`  can happen in-between any other charm events."
+ },
+ {
+  "id": 17,
+  "text": "The `singular` worker only sets the flag if it is the current lease holder for"
+ },
+ {
+  "id": 18,
+  "text": "`relation-created` is a \"setup\" event and, emitted when an application is related to another. Its purpose is to inform the newly related charms that they are entering the relation."
+ },
+ {
+  "id": 19,
+  "text": "In the context of a cloud deployment in general, high availability (HA) is the concept of making software resilient to failures by means of running multiple replicas with shared and synchronised software context -- something usually achieved through coordinated scaling (out and up). In Juju, it is supported for controllers on machine clouds and for regular applications on both machine and Kubernetes clouds"
+ },
+ {
+  "id": 20,
+  "text": "Rule: The controller has no life and no status vocabulary: the controller is up, and its nodes' liveness is the Dqlite cluster's business."
+ },
+ {
+  "id": 21,
+  "text": "As of `v.2.6.1`, this is the state of affairs for those commands that support at least the `--force` option:"
+ },
+ {
+  "id": 22,
+  "text": "Where it travels: The directive is passed wherever compute is requested: deploy, add-unit, add-machine, and bootstrap requests; the deploy, add-unit, and add-machine paths are gated on model write access."
+ },
+ {
+  "id": 23,
+  "text": "Writers: The record is written at machine-creation time, by the machine state's placement resolver, called from the machine service's machine-creation path."
+ },
+ {
+  "id": 24,
+  "text": "Horizontal scaling up can be used to achieve high availability (HA) -- though, depending on whether the charm delivering the application supports HA natively or not, you may also have to perform additional steps."
+ },
+ {
+  "id": 25,
+  "text": "The operations are transparent to Juju and so the deployment can continue to be managed by Juju as if everything was performed manually (what you see in `juju status` is applications, relations, etc., not the bundle entity, but its contents; those records, in the model, are what persists)."
+ },
+ {
+  "id": 26,
+  "text": "The list of addresses supplied to agent configuration can be influenced by the"
+ },
+ {
+  "id": 27,
+  "text": "A script has no record of its own in the model database: what Juju persists is the execution. An exec run is modelled as the predefined `juju-exec` action; there is no separate script record."
+ },
+ {
+  "id": 28,
+  "text": "In Juju, a compute resource refers to any machine or Kubernetes container provisioned by Juju."
+ },
+ {
+  "id": 29,
+  "text": "Controller configuration: The controller config record and the controller record; the controller's own workers reconcile on it."
+ },
+ {
+  "id": 30,
+  "text": "During a `relation-departed` hook, relation settings can still be read (with relation-get) and a relation can even still be set (with relation-set), by  explicitly providing the relation ID. All units will still be able to see all other units, and any unit can call the `relation-set` hook command to update their own published set of data on the relation. However, data updated by the departing unit will not be published to the remaining units. This is true even if there are no units on the other side of the relation to be notified of the change."
+ },
+ {
+  "id": 31,
+  "text": "When machines in the control plane change,  the `api-address-updater` worker"
+ },
+ {
+  "id": 32,
+  "text": "A placement directive has no machinery of its own: it is request input, resolved when the machine record is written. Whether the cloud can honour a key-value directive is discovered later, at provisioning time, when the machine provisioner reads the stored directive back and asks the cloud for a machine in that location (see machine provisioning). Nothing watches a directive; the machines it resolves into have their own watchers."
+ },
+ {
+  "id": 33,
+  "text": "Configuration: The controller configuration is the controller's key/value record, read and written through the controller config service and watched for changes. See the list of controller configuration keys."
+ },
+ {
+  "id": 34,
+  "text": "Name of the storage pool or location the root disk is from. <p> Note: `root-disk-source` has different behaviour with each provider."
+ },
+ {
+  "id": 35,
+  "text": "In the output of `juju status`, application status is given under `Application > Status` and unit status -- consisting, as we said, of the workload / charm status and of the Juju agent status -- is given under `Unit > Workload, Agent`."
+ },
+ {
+  "id": 36,
+  "text": "Each controller is a [Dqlite] node. The `dbaccessor` worker on each controller is"
+ },
+ {
+  "id": 37,
+  "text": "from the charm's. Keeping them separate lets each side move on its own"
+ },
+ {
+  "id": 38,
+  "text": "Number of effective CPU cores. <br> <br> Type: integer. <br> <br> Alias: `cpu-cores`."
+ },
+ {
+  "id": 39,
+  "text": "repository's revision is recorded. The client's acts on resources are:"
+ },
+ {
+  "id": 40,
+  "text": "The workload / charm status reports the status of the charm(ed service):"
+ },
+ {
+  "id": 41,
+  "text": "its resolved bind address with the other units via the `db-cluster` peer"
+ },
+ {
+  "id": 42,
+  "text": "Model configuration affects behavior of a model, including the `controller` model."
+ },
+ {
+  "id": 43,
+  "text": "This document clarifies the various Juju commands that can be used to remove things, as well as a couple of options that can be used to force a removal."
+ },
+ {
+  "id": 44,
+  "text": "Controller configuration affects the operation of the controller as a whole."
+ },
+ {
+  "id": 45,
+  "text": "The application's constraints: The application's constraints record, nullable: an application may inherit the model's."
+ },
+ {
+  "id": 46,
+  "text": "that use the `isResponsible` decorator. This in turn is based on a flag set by the"
+ },
+ {
+  "id": 47,
+  "text": "Task execution: Each target's agent picks its task up from its watcher, runs it, and reports the status and results; the user cancels with `juju cancel-task` (see the action's operations and cancelling an action). The same watch surfaces serve script runs; the machine task notifications are the machine agent's queue (see the action watchers)."
+ },
+ {
+  "id": 48,
+  "text": "HA nodes: One record per Dqlite node in the high-availability cluster: the node's Dqlite identity and bind address, each uniquely indexed. Each node's satellites record the agent version it reports, the API addresses it serves on for agents to re-orient as the cluster changes, and the node password. High availability does not make a second controller; it makes more controller nodes running the same controller's database and API."
+ },
+ {
+  "id": 49,
+  "text": "A bundle is nothing but declaration material: you write one as a YAML file that states the applications, their configuration, their relations and their machines, and you deploy it with one of Juju's clients: deploying requires model write access; an overlay customises it at deploy time, applied the same way."
+ },
+ {
+  "id": 50,
+  "text": "HA expansion: The nodes are the HA cluster's membership; adding a node brings another controller agent into the controller's Dqlite cluster. Juju 4.1 has no `juju enable-ha` command; the `EnableHA` call on the controller API adds and removes the nodes."
+ },
+ {
+  "id": 51,
+  "text": "The distinction below is not a stored type: a bundle has no record (see the persistence layer); it is about how the file is used at deploy time."
+ },
+ {
+  "id": 52,
+  "text": "In Juju, a configuration is a rule or a set of rules that define the behavior of your controller, model, or application."
+ },
+ {
+  "id": 53,
+  "text": "A placement directive is a value, not an entity: the directive itself is not stored; what persists is its resolution."
+ },
+ {
+  "id": 54,
+  "text": "However, this policy can also be a source of frustration for users in certain situations (i.e. \"I don't care, I just want my model gone!\"). Because of this, several commands have a `--force` option."
+ },
+ {
+  "id": 55,
+  "text": "What is not stored: Only the key-value forms are recorded. A machine designation resolves into the machine records themselves: an existing machine is reused, a container designation creates the parent and child machine records."
+ },
+ {
+  "id": 56,
+  "text": "Running an arbitrary command: `juju exec` runs an arbitrary command against units, applications, or machines; it requires model admin access."
+ },
+ {
+  "id": 57,
+  "text": "`Destroy` means to cleanly tear down a logical entity, along with everything within these entities. This is a very destructive process."
+ },
+ {
+  "id": 58,
+  "text": "When a command has `--force` but not `--no-wait`, this means that the combination of those options simply does not apply."
+ },
+ {
+  "id": 59,
+  "text": "However, there is also a generic key, `trust`, that can be changed via `juju trust`."
+ },
+ {
+  "id": 60,
+  "text": "Staged resource records: Resources staged before the application exists, keyed by the resource's UUID and the application's name, with no foreign key, because the application does not exist yet."
+ },
+ {
+  "id": 61,
+  "text": "Rule: A constraint key must be one of the known keys, and its value must parse for that key (integers with M/G/T/P suffixes, name lists, booleans)."
+ },
+ {
+  "id": 62,
+  "text": "Cloud-specific instance-type name. Values vary by provider, and individual deployment in some cases. <p> Note: When compatibility between clouds is desired, use corresponding values for `cores`, `mem`, and `root-disk` instead."
+ },
+ {
+  "id": 63,
+  "text": "As an entity: Through its bootstrap lifecycle, that software materializes its state as records in the controller database: the singleton controller record, which carries its identity, its configuration, and the records of its high-availability nodes, and the application, named `controller`, which it declares in the controller model it creates."
+ },
+ {
+  "id": 64,
+  "text": "Hooks should ideally be idempotent, so that they can fail and be re-executed"
+ },
+ {
+  "id": 65,
+  "text": "Furthermore, even when utilising the `--force` option, the process may take more time than an administrator is willing to accept (i.e. \"Just go away as quickly as possible!\").  Because of this, several commands that support the `--force` option have, in addition, support for a `--no-wait` option."
+ },
+ {
+  "id": 66,
+  "text": "Overlap with constraints: A `zone=` directive overrides the `zones` constraint."
+ },
+ {
+  "id": 67,
+  "text": "travel with the charm itself: large blobs whose update cadence differs"
+ },
+ {
+  "id": 68,
+  "text": "Rule: The `type` field, when present, must be `kubernetes`; a Kubernetes bundle declares no machines; the default base, when present, must parse as a valid base."
+ },
+ {
+  "id": 69,
+  "text": "Task satellites: The per-task status record, the log records, and the output record pointing at the results blob in the object store."
+ },
+ {
+  "id": 70,
+  "text": "In Juju, a script refers to any script you execute on a compute resource provisioned by Juju: a charm action or an arbitrary command. The two halves share the same records and machinery: the targets are units and machines, and what Juju persists is the execution, an operation with one task per target (see the action in the data model)."
+ },
+ {
+  "id": 71,
+  "text": "Deploy: `juju deploy <bundle> --overlay` reads the bundle as a YAML multidoc, snapshots the model status, builds the change graph and sorts it topologically. The client then applies each change in order through the ordinary operations: charms to add, applications to deploy, machines to request, relations to join, units to add, endpoints to expose, options to set, offers to create or consume. Any error aborts the whole apply."
+ },
+ {
+  "id": 72,
+  "text": "Rule: A stored resource is immutable. An upload or a revision update writes a new record, repoints the application's usage at it, and schedules a removal job for the displaced record (see the resource removal below); the prior record and its content stay until nothing references them. A failed store removes the blob it just wrote."
+ },
+ {
+  "id": 73,
+  "text": "Application configuration keys are generally application-specific. Depending on what the charm author has decided, they can be used to allow the charm user to make certain decisions about the application, for example, the server port on which the  application should be available, the resource profile, the DNS name, etc."
+ },
+ {
+  "id": 74,
+  "text": "In the context of a cloud deployment in general, scaling  means modifying the amount of resources allocated to an application, which can be done *vertically* (modifying the memory, CPU, or disk for a cloud resource) or *horizontally* (modifying the number of resource instances), where each can be *more* (up or out) or less (*down or in*). In the context of Juju, scaling means exactly the same, with the mention that"
+ },
+ {
+  "id": 75,
+  "text": "If not nil, indicates that a machine must be the specified container type. <br> <br> Valid values: `lxd`."
+ },
+ {
+  "id": 76,
+  "text": "Vertical scaling is handled through constraints and horizontal scaling through units."
+ },
+ {
+  "id": 77,
+  "text": "App             Version  Status  Scale  Charm           Channel    Rev  Address         Exposed  Message"
+ },
+ {
+  "id": 78,
+  "text": "Key-value forms: A directive naming a location is a key-value pair: `subnet=`, `system-id=`, or `zone=`, handed to the provider."
+ },
+ {
+  "id": 79,
+  "text": "If Juju is aware of the existence of the relation \"early enough\", before the application has started (i.e., before the start hook has run), this event will be fired as part of the setup phase. An important consequence of this fact is, that for all peer-type relations, since Juju is aware of their existence from the start, those `relation-created`  events will always fire before `start`."
+ },
+ {
+  "id": 80,
+  "text": "In the controller database, the controller is a singleton record: the schema enforces that exactly one exists. The record set:"
+ },
+ {
+  "id": 81,
+  "text": "charm-model  tutorial-controller  microk8s/localhost  4.0.15   unsupported  14:23:55+02:00"
+ },
+ {
+  "id": 82,
+  "text": "The revision update: A client-facing update repoints the application: a store resource's revision update and an upload's update each write a new resource record and set it on the application, in one transaction with the removal job for the displaced record. A charm refresh does the same for the resources the new charm replaces."
+ },
+ {
+  "id": 83,
+  "text": "`Detach` means to decouple a resource from a logical entity (such as an application). The resource will remain available and the underlying cloud resources used by it also remain in place."
+ },
+ {
+  "id": 84,
+  "text": "In Juju, a placement directive names the location a compute request targets: an existing machine, a container designation, or a key-value pair naming a subnet, a system ID, or an availability zone."
+ },
+ {
+  "id": 85,
+  "text": "The declaration layer defines how a controller comes into being and how clients authenticate against it."
+ },
+ {
+  "id": 86,
+  "text": "per-entity pages list the surfaces -- what a watcher fires on, not who"
+ },
+ {
+  "id": 87,
+  "text": "By the time the command returns, the bundle itself has vanished: what exists is the applications, machines and relations it expanded into. A bundle has no machinery of its own; the one execution it has is the deploy, and even that is a client-side expansion:"
+ },
+ {
+  "id": 88,
+  "text": "Not applicable: with no bundle record there is nothing to watch; the entities a bundle created have their own watchers."
+ },
+ {
+  "id": 89,
+  "text": "Precedence: When constraints are set at several levels at once, the more specific level wins: an application's over the model's, a machine's over the application's."
+ },
+ {
+  "id": 90,
+  "text": "The repository poll: The charm revision updater, the worker that reserves the charm's newer revision, records the revision's resources per application: records land as `potential`, stamped with the poll time."
+ }
+]

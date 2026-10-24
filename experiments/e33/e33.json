@@ -1,0 +1,1216 @@
+{
+ "groups": {
+  "change": {
+   "tables": [
+    "change_log",
+    "change_log_edit_type",
+    "change_log_namespace",
+    "change_log_witness"
+   ],
+   "n": 2,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "none",
+   "exposure": {},
+   "pages": [],
+   "addressed": false
+  },
+  "model": {
+   "tables": [
+    "log_transfer_progress",
+    "model",
+    "model_agent",
+    "model_authorized_keys",
+    "model_config",
+    "model_constraint",
+    "model_database_deletion",
+    "model_last_login",
+    "model_life",
+    "model_migrating",
+    "model_migration_export",
+    "model_migration_export_minion_sync",
+    "model_migration_export_offer",
+    "model_migration_export_phase",
+    "model_migration_export_status",
+    "model_migration_export_target_auth",
+    "model_migration_import",
+    "model_migration_import_external_controller_model",
+    "model_migration_import_offer",
+    "model_migration_import_phase_type",
+    "model_migration_phase",
+    "model_migration_redirect",
+    "model_migration_redirect_user",
+    "model_namespace",
+    "model_secret_backend",
+    "model_storage_pool",
+    "model_type",
+    "storage_kind"
+   ],
+   "n": 24,
+   "life": [
+    "model",
+    "model_life"
+   ],
+   "merged_from": [
+    "log"
+   ],
+   "facet": null,
+   "attachments": [
+    "secret_backend_reference"
+   ],
+   "tier": "client",
+   "exposure": {
+    "controller": 62,
+    "client": 407,
+    "agent": 607,
+    "http": 7
+   },
+   "pages": [
+    "model"
+   ],
+   "addressed": true
+  },
+  "object": {
+   "tables": [
+    "agent_binary_store",
+    "agent_stream",
+    "agent_version",
+    "object_store_backend",
+    "object_store_backend_s3_config",
+    "object_store_backend_type",
+    "object_store_drain_info",
+    "object_store_drain_phase_type",
+    "object_store_metadata",
+    "object_store_metadata_path",
+    "object_store_placement"
+   ],
+   "n": 8,
+   "life": [
+    "object_store_backend"
+   ],
+   "merged_from": [
+    "agent"
+   ],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 50,
+    "controller": 17,
+    "agent": 43,
+    "http": 6
+   },
+   "pages": [],
+   "addressed": false
+  },
+  "provider": {
+   "tables": [
+    "provider_ip_address",
+    "provider_link_layer_device",
+    "provider_network",
+    "provider_network_subnet",
+    "provider_space",
+    "provider_subnet"
+   ],
+   "n": 6,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 28,
+    "agent": 6
+   },
+   "pages": [],
+   "addressed": false
+  },
+  "subnet": {
+   "tables": [
+    "availability_zone",
+    "availability_zone_subnet",
+    "subnet"
+   ],
+   "n": 3,
+   "life": [],
+   "merged_from": [
+    "availability"
+   ],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 76,
+    "agent": 41,
+    "controller": 1
+   },
+   "pages": [
+    "subnet"
+   ],
+   "addressed": true
+  },
+  "block": {
+   "tables": [
+    "block_command",
+    "block_command_type",
+    "block_device",
+    "block_device_link_device",
+    "block_device_provenance"
+   ],
+   "n": 3,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 43,
+    "agent": 27
+   },
+   "pages": [],
+   "addressed": true
+  },
+  "storage": {
+   "tables": [
+    "life",
+    "storage_attachment",
+    "storage_filesystem",
+    "storage_filesystem_attachment",
+    "storage_filesystem_status",
+    "storage_filesystem_status_value",
+    "storage_instance",
+    "storage_instance_filesystem",
+    "storage_instance_volume",
+    "storage_pool",
+    "storage_pool_attribute",
+    "storage_pool_origin",
+    "storage_provision_scope",
+    "storage_unit_owner",
+    "storage_volume",
+    "storage_volume_attachment",
+    "storage_volume_attachment_plan",
+    "storage_volume_attachment_plan_attr",
+    "storage_volume_device_type",
+    "storage_volume_status",
+    "storage_volume_status_value"
+   ],
+   "n": 15,
+   "life": [
+    "storage_attachment",
+    "storage_filesystem",
+    "storage_filesystem_attachment",
+    "storage_instance",
+    "storage_volume",
+    "storage_volume_attachment",
+    "storage_volume_attachment_plan"
+   ],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 212,
+    "agent": 263,
+    "controller": 26,
+    "http": 2
+   },
+   "pages": [
+    "storage"
+   ],
+   "addressed": true
+  },
+  "application": {
+   "tables": [
+    "application",
+    "application_agent",
+    "application_channel",
+    "application_config",
+    "application_config_hash",
+    "application_constraint",
+    "application_controller",
+    "application_endpoint",
+    "application_exposed_endpoint_cidr",
+    "application_exposed_endpoint_space",
+    "application_extra_endpoint",
+    "application_k8s_resources_managed",
+    "application_platform",
+    "application_remote_consumer",
+    "application_remote_offerer",
+    "application_remote_offerer_relation_macaroon",
+    "application_remote_offerer_status",
+    "application_resource",
+    "application_scale",
+    "application_setting",
+    "application_status",
+    "application_storage_directive",
+    "application_workload_version",
+    "charm_config_type",
+    "device_constraint",
+    "device_constraint_attribute",
+    "operator_status",
+    "os",
+    "password_hash_algorithm",
+    "space",
+    "workload_status_value"
+   ],
+   "n": 26,
+   "life": [
+    "application",
+    "application_remote_consumer",
+    "application_remote_offerer"
+   ],
+   "merged_from": [
+    "device",
+    "operator"
+   ],
+   "facet": null,
+   "attachments": [
+    "k8s_service",
+    "offer_endpoint",
+    "secret_application_owner",
+    "secret_reference"
+   ],
+   "tier": "client",
+   "exposure": {
+    "client": 208,
+    "agent": 151,
+    "controller": 18,
+    "http": 2
+   },
+   "pages": [
+    "application"
+   ],
+   "addressed": true
+  },
+  "unit": {
+   "tables": [
+    "resolve_mode",
+    "unit",
+    "unit_agent_presence",
+    "unit_agent_status",
+    "unit_agent_status_value",
+    "unit_agent_version",
+    "unit_principal",
+    "unit_resolved",
+    "unit_resource",
+    "unit_state",
+    "unit_state_charm",
+    "unit_state_relation",
+    "unit_storage_directive",
+    "unit_virtual_ssh_host_key",
+    "unit_workload_status",
+    "unit_workload_version"
+   ],
+   "n": 14,
+   "life": [
+    "unit"
+   ],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [
+    "annotation_unit",
+    "k8s_pod",
+    "k8s_pod_port",
+    "k8s_pod_status",
+    "operation_unit_task",
+    "port_range",
+    "secret_reservation",
+    "secret_unit_consumer",
+    "secret_unit_owner"
+   ],
+   "tier": "client",
+   "exposure": {
+    "client": 123,
+    "agent": 332,
+    "controller": 14,
+    "http": 2
+   },
+   "pages": [
+    "unit"
+   ],
+   "addressed": true
+  },
+  "secret": {
+   "tables": [
+    "secret",
+    "secret_application_owner",
+    "secret_backend",
+    "secret_backend_config",
+    "secret_backend_reference",
+    "secret_backend_rotation",
+    "secret_backend_type",
+    "secret_content",
+    "secret_deleted_value_ref",
+    "secret_grant_scope_type",
+    "secret_grant_subject_type",
+    "secret_metadata",
+    "secret_model_owner",
+    "secret_permission",
+    "secret_reference",
+    "secret_remote_unit_consumer",
+    "secret_reservation",
+    "secret_revision",
+    "secret_revision_expire",
+    "secret_revision_obsolete",
+    "secret_role",
+    "secret_rotate_policy",
+    "secret_rotation",
+    "secret_unit_consumer",
+    "secret_unit_owner",
+    "secret_value_ref"
+   ],
+   "n": 21,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 61,
+    "agent": 24,
+    "controller": 13,
+    "http": 1
+   },
+   "pages": [
+    "secret"
+   ],
+   "addressed": true
+  },
+  "annotation": {
+   "tables": [
+    "annotation_application",
+    "annotation_charm",
+    "annotation_machine",
+    "annotation_model",
+    "annotation_storage_filesystem",
+    "annotation_storage_instance",
+    "annotation_storage_volume",
+    "annotation_unit"
+   ],
+   "n": 8,
+   "life": [],
+   "merged_from": [],
+   "facet": [
+    "application",
+    "charm",
+    "machine",
+    "model",
+    "unit"
+   ],
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 3
+   },
+   "pages": [],
+   "addressed": true
+  },
+  "constraint": {
+   "tables": [
+    "constraint",
+    "constraint_space",
+    "constraint_tag",
+    "constraint_zone",
+    "container_type"
+   ],
+   "n": 4,
+   "life": [],
+   "merged_from": [],
+   "facet": [
+    "application",
+    "machine",
+    "model"
+   ],
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 50,
+    "agent": 18
+   },
+   "pages": [
+    "constraint"
+   ],
+   "addressed": true
+  },
+  "charm": {
+   "tables": [
+    "architecture",
+    "charm",
+    "charm_action",
+    "charm_category",
+    "charm_config",
+    "charm_container",
+    "charm_container_mount",
+    "charm_device",
+    "charm_download_info",
+    "charm_extra_binding",
+    "charm_hash",
+    "charm_manifest_base",
+    "charm_metadata",
+    "charm_relation",
+    "charm_relation_role",
+    "charm_relation_scope",
+    "charm_resource",
+    "charm_resource_kind",
+    "charm_run_as_kind",
+    "charm_source",
+    "charm_storage",
+    "charm_storage_kind",
+    "charm_storage_property",
+    "charm_tag",
+    "charm_term",
+    "charm_tracing_config",
+    "hash_kind"
+   ],
+   "n": 19,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "cli": 26,
+    "http": 13,
+    "client": 397,
+    "agent": 566,
+    "controller": 37
+   },
+   "pages": [
+    "charm"
+   ],
+   "addressed": true
+  },
+  "machine": {
+   "tables": [
+    "instance_tag",
+    "machine",
+    "machine_agent_presence",
+    "machine_agent_version",
+    "machine_cloud_instance",
+    "machine_cloud_instance_status",
+    "machine_cloud_instance_status_value",
+    "machine_constraint",
+    "machine_container_type",
+    "machine_filesystem",
+    "machine_lxd_profile",
+    "machine_manual",
+    "machine_parent",
+    "machine_placement",
+    "machine_placement_scope",
+    "machine_platform",
+    "machine_reprovision",
+    "machine_requires_reboot",
+    "machine_ssh_host_key",
+    "machine_status",
+    "machine_status_value",
+    "machine_virtual_ssh_host_key",
+    "machine_volume",
+    "ssh_connection_request"
+   ],
+   "n": 21,
+   "life": [
+    "machine",
+    "machine_cloud_instance"
+   ],
+   "merged_from": [
+    "instance",
+    "ssh"
+   ],
+   "facet": null,
+   "attachments": [
+    "block_device",
+    "block_device_link_device",
+    "operation_machine_task"
+   ],
+   "tier": "client",
+   "exposure": {
+    "client": 102,
+    "agent": 258,
+    "controller": 15
+   },
+   "pages": [
+    "machine"
+   ],
+   "addressed": true
+  },
+  "k8s": {
+   "tables": [
+    "k8s_pod",
+    "k8s_pod_port",
+    "k8s_pod_status",
+    "k8s_pod_status_value",
+    "k8s_service"
+   ],
+   "n": 4,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 14,
+    "agent": 33,
+    "controller": 2
+   },
+   "pages": [],
+   "addressed": true
+  },
+  "net": {
+   "tables": [
+    "net_node",
+    "net_node_fqdn_address",
+    "net_node_hostname_address"
+   ],
+   "n": 3,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "agent": 96,
+    "client": 37,
+    "controller": 1
+   },
+   "pages": [],
+   "addressed": false
+  },
+  "link": {
+   "tables": [
+    "link_layer_device",
+    "link_layer_device_dns_address",
+    "link_layer_device_dns_domain",
+    "link_layer_device_parent",
+    "link_layer_device_route",
+    "link_layer_device_type",
+    "virtual_port_type"
+   ],
+   "n": 5,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 25,
+    "agent": 31
+   },
+   "pages": [],
+   "addressed": false
+  },
+  "ip": {
+   "tables": [
+    "ip_address",
+    "ip_address_config_type",
+    "ip_address_origin",
+    "ip_address_scope",
+    "ip_address_type"
+   ],
+   "n": 1,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 39,
+    "agent": 31,
+    "controller": 1
+   },
+   "pages": [],
+   "addressed": false
+  },
+  "fqdn": {
+   "tables": [
+    "fqdn_address",
+    "network_address_scope"
+   ],
+   "n": 1,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "agent": 19,
+    "client": 21,
+    "controller": 1
+   },
+   "pages": [],
+   "addressed": false
+  },
+  "hostname": {
+   "tables": [
+    "hostname_address"
+   ],
+   "n": 1,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "none",
+   "exposure": {},
+   "pages": [],
+   "addressed": false
+  },
+  "port": {
+   "tables": [
+    "port_range",
+    "protocol"
+   ],
+   "n": 1,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "agent": 16,
+    "client": 7
+   },
+   "pages": [],
+   "addressed": false
+  },
+  "resource": {
+   "tables": [
+    "pending_application_resource",
+    "resource",
+    "resource_container_image_metadata_store",
+    "resource_file_store",
+    "resource_image_store",
+    "resource_origin_type",
+    "resource_retrieved_by",
+    "resource_retrieved_by_type",
+    "resource_state"
+   ],
+   "n": 6,
+   "life": [],
+   "merged_from": [
+    "pending"
+   ],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 25,
+    "agent": 9,
+    "http": 3
+   },
+   "pages": [
+    "resource-charm"
+   ],
+   "addressed": true
+  },
+  "relation": {
+   "tables": [
+    "relation",
+    "relation_application_setting",
+    "relation_application_settings_hash",
+    "relation_endpoint",
+    "relation_network_egress",
+    "relation_network_ingress",
+    "relation_status",
+    "relation_status_type",
+    "relation_unit",
+    "relation_unit_departure",
+    "relation_unit_setting",
+    "relation_unit_setting_archive",
+    "relation_unit_settings_hash"
+   ],
+   "n": 12,
+   "life": [
+    "relation"
+   ],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [
+    "application_remote_offerer_relation_macaroon",
+    "offer_connection"
+   ],
+   "tier": "client",
+   "exposure": {
+    "client": 100,
+    "agent": 69,
+    "controller": 13,
+    "http": 1
+   },
+   "pages": [
+    "relation"
+   ],
+   "addressed": true
+  },
+  "removal": {
+   "tables": [
+    "removal",
+    "removal_type"
+   ],
+   "n": 1,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 29,
+    "controller": 1,
+    "http": 1,
+    "agent": 9
+   },
+   "pages": [],
+   "addressed": false
+  },
+  "sequence": {
+   "tables": [
+    "sequence"
+   ],
+   "n": 1,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 33,
+    "controller": 1,
+    "agent": 14,
+    "http": 3
+   },
+   "pages": [],
+   "addressed": false
+  },
+  "offer": {
+   "tables": [
+    "offer",
+    "offer_connection",
+    "offer_endpoint"
+   ],
+   "n": 3,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "controller": 14,
+    "client": 27
+   },
+   "pages": [
+    "offer"
+   ],
+   "addressed": true
+  },
+  "operation": {
+   "tables": [
+    "operation",
+    "operation_action",
+    "operation_machine_task",
+    "operation_parameter",
+    "operation_task",
+    "operation_task_log",
+    "operation_task_output",
+    "operation_task_status",
+    "operation_task_status_value",
+    "operation_unit_task"
+   ],
+   "n": 9,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 20,
+    "agent": 29
+   },
+   "pages": [
+    "action"
+   ],
+   "addressed": true
+  },
+  "namespace": {
+   "tables": [
+    "namespace_list"
+   ],
+   "n": 1,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 2
+   },
+   "pages": [],
+   "addressed": false
+  },
+  "lease": {
+   "tables": [
+    "lease",
+    "lease_pin",
+    "lease_type"
+   ],
+   "n": 2,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "none",
+   "exposure": {},
+   "pages": [],
+   "addressed": false
+  },
+  "controller": {
+   "tables": [
+    "controller",
+    "controller_agent_address",
+    "controller_api_address",
+    "controller_client_address",
+    "controller_config",
+    "controller_node",
+    "controller_node_agent_version",
+    "controller_node_nonce",
+    "controller_node_password",
+    "controller_peer_address",
+    "controller_ssh_host_key",
+    "controller_ssh_server_port",
+    "ssh_key_algorithm_type",
+    "upgrade_info",
+    "upgrade_info_controller_node",
+    "upgrade_state_type"
+   ],
+   "n": 14,
+   "life": [
+    "controller_node"
+   ],
+   "merged_from": [
+    "upgrade"
+   ],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "controller": 30,
+    "client": 61,
+    "agent": 81,
+    "http": 2
+   },
+   "pages": [
+    "controller"
+   ],
+   "addressed": true
+  },
+  "cloud": {
+   "tables": [
+    "auth_type",
+    "cloud",
+    "cloud_auth_type",
+    "cloud_ca_cert",
+    "cloud_credential",
+    "cloud_credential_attribute",
+    "cloud_defaults",
+    "cloud_image_metadata",
+    "cloud_region",
+    "cloud_region_defaults",
+    "cloud_type"
+   ],
+   "n": 9,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 135,
+    "controller": 21,
+    "agent": 66,
+    "http": 2
+   },
+   "pages": [
+    "cloud",
+    "credential"
+   ],
+   "addressed": true
+  },
+  "external": {
+   "tables": [
+    "external_controller",
+    "external_controller_address",
+    "external_model"
+   ],
+   "n": 3,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "controller": 8,
+    "client": 13,
+    "agent": 8
+   },
+   "pages": [],
+   "addressed": false
+  },
+  "autocert": {
+   "tables": [
+    "autocert_cache",
+    "autocert_cache_encoding"
+   ],
+   "n": 1,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "none",
+   "exposure": {},
+   "pages": [],
+   "addressed": false
+  },
+  "user": {
+   "tables": [
+    "permission",
+    "permission_object_access",
+    "ssh_fingerprint_hash_algorithm",
+    "user",
+    "user_activation_key",
+    "user_authentication",
+    "user_password",
+    "user_public_ssh_key"
+   ],
+   "n": 6,
+   "life": [],
+   "merged_from": [
+    "permission"
+   ],
+   "facet": null,
+   "attachments": [],
+   "tier": "client",
+   "exposure": {
+    "client": 85,
+    "agent": 9,
+    "controller": 9,
+    "http": 2
+   },
+   "pages": [
+    "user",
+    "ssh-key"
+   ],
+   "addressed": true
+  },
+  "flag": {
+   "tables": [
+    "flag"
+   ],
+   "n": 1,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "none",
+   "exposure": {},
+   "pages": [],
+   "addressed": false
+  },
+  "bakery": {
+   "tables": [
+    "bakery_config"
+   ],
+   "n": 1,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "none",
+   "exposure": {},
+   "pages": [],
+   "addressed": false
+  },
+  "macaroon": {
+   "tables": [
+    "macaroon_root_key"
+   ],
+   "n": 1,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "none",
+   "exposure": {},
+   "pages": [],
+   "addressed": false
+  },
+  "logging": {
+   "tables": [
+    "logging_loki_config"
+   ],
+   "n": 1,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "agent/controller",
+   "exposure": {
+    "agent": 5
+   },
+   "pages": [],
+   "addressed": false
+  },
+  "workload": {
+   "tables": [
+    "workload_tracing_config"
+   ],
+   "n": 1,
+   "life": [],
+   "merged_from": [],
+   "facet": null,
+   "attachments": [],
+   "tier": "agent/controller",
+   "exposure": {
+    "agent": 5
+   },
+   "pages": [],
+   "addressed": false
+  }
+ },
+ "merged": {
+  "instance": "machine",
+  "operator": "application",
+  "pending": "resource",
+  "ssh": "machine",
+  "log": "model",
+  "permission": "user",
+  "availability": "subnet",
+  "device": "application",
+  "agent": "object",
+  "upgrade": "controller"
+ },
+ "facets": {
+  "config": [
+   "application",
+   "bakery",
+   "charm",
+   "controller",
+   "logging",
+   "model",
+   "object",
+   "secret",
+   "workload"
+  ],
+  "constraint": [
+   "application",
+   "machine",
+   "model"
+  ],
+  "status": [
+   "application",
+   "k8s",
+   "machine",
+   "model",
+   "operation",
+   "relation",
+   "storage",
+   "unit"
+  ],
+  "annotation": [
+   "application",
+   "charm",
+   "machine",
+   "model",
+   "unit"
+  ],
+  "version": [
+   "application",
+   "controller",
+   "machine",
+   "unit"
+  ],
+  "key": [
+   "controller",
+   "macaroon",
+   "machine",
+   "unit",
+   "user"
+  ]
+ },
+ "views": {
+  "v_model_metrics": "application",
+  "v_model_constraint": "model",
+  "v_model_constraint_tag": "model",
+  "v_model_constraint_space": "model",
+  "v_model_constraint_zone": "model",
+  "v_object_store_metadata": "object",
+  "v_space_subnet": "application",
+  "v_secret_permission": "secret",
+  "v_secret_owner": "model",
+  "v_secret_metadata": "secret",
+  "v_constraint": "constraint",
+  "v_application_charm_download_info": "application",
+  "v_charm_metadata": "charm",
+  "v_charm_annotation_index": "charm",
+  "v_charm_relation": "charm",
+  "v_charm_storage": "charm",
+  "v_charm_resource": "charm",
+  "v_charm_container": "charm",
+  "v_charm_manifest": "application",
+  "v_charm_config": "charm",
+  "v_hardware_characteristics": "subnet",
+  "v_machine_cloud_instance_status": "machine",
+  "v_machine_agent_version": "machine",
+  "v_machine_target_agent_version": "machine",
+  "v_machine_status": "machine",
+  "v_machine_is_controller": "machine",
+  "v_machine_constraint": "machine",
+  "v_machine_platform": "machine",
+  "v_application_exposed_endpoint": "application",
+  "v_application_config": "application",
+  "v_application_constraint": "application",
+  "v_application_platform_channel": "application",
+  "v_application_origin": "application",
+  "v_application_endpoint_uuid": "application",
+  "v_application_subordinate": "application",
+  "v_unit_target_agent_version": "unit",
+  "v_unit_agent_status": "unit",
+  "v_unit_workload_status": "unit",
+  "v_unit_workload_agent_status": "unit",
+  "v_full_unit_status": "unit",
+  "v_unit_password_hash": "unit",
+  "v_unit_attribute": "unit",
+  "v_ip_address_with_names": "ip",
+  "v_all_unit_address": "unit",
+  "v_unit_relation_network": "unit",
+  "v_port_range": "port",
+  "v_endpoint": "unit",
+  "v_resource": "resource",
+  "v_application_resource": "application",
+  "v_unit_resource": "unit",
+  "v_application_endpoint": "application",
+  "v_relation_endpoint": "relation",
+  "v_relation_endpoint_identifier": "relation",
+  "v_relation_status": "relation",
+  "v_revision_updater_application": "application",
+  "v_revision_updater_application_unit": "application",
+  "v_model_config": "model",
+  "v_agent_binary_store": "object",
+  "v_offer_detail": "offer",
+  "v_cloud_credential": "cloud",
+  "v_cloud_credential_attribute": "cloud",
+  "v_model_all": "model",
+  "v_model": "cloud",
+  "v_model_state": "model",
+  "v_cloud": "cloud",
+  "v_cloud_auth": "cloud",
+  "v_controller_config": "controller",
+  "v_user_auth": "user",
+  "v_permission": "user",
+  "v_permission_model": "model",
+  "v_permission_cloud": "cloud",
+  "v_permission_controller": "controller",
+  "v_permission_offer": "offer",
+  "v_everyone_external": "user",
+  "v_model_secret_backend": "model",
+  "v_user_last_login": "model",
+  "v_model_authorized_keys": "model"
+ }
+}

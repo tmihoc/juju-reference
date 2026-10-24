@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1020" height="568" viewBox="0 0 1020 568">
+<defs>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="seq-arrow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="seq-arrow-open" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<mask maskUnits="userSpaceOnUse" x="0" y="0" width="1020" height="568" id="d0">
+<rect x="0" y="0" width="1020" height="568" fill="white" />
+<rect x="265.0" y="114" width="10" height="36" fill="black" />
+<rect x="474.0" y="250" width="222" height="16" fill="black" />
+<rect x="474.0" y="286" width="558" height="16" fill="black" />
+<rect x="805.0" y="330" width="10" height="36" fill="black" />
+</mask>
+</defs>
+<g>
+<rect x="30.0" y="20" width="120" height="40" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="90.0" y="40.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Client</text>
+<path d="m148.45,180.19c-16.07,0-29.15,13.02-29.15,29.02v53.29c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-53.29c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(32.86 11.50) scale(0.07143)" />
+<path d="m141.13,283.22c0,7.44-6.06,13.47-13.53,13.47s-13.53-6.03-13.53-13.47,6.06-13.47,13.53-13.47,13.53,6.03,13.53,13.47Z" fill="#E95420" stroke="none" transform="translate(32.86 11.50) scale(0.07143)" />
+<path d="m65.05,250.68c-16.07,0-29.15,13.02-29.15,29.02v51.54c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-51.54c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(32.86 11.50) scale(0.07143)" />
+<path d="m57.65,351.96c0,7.39-6.02,13.39-13.45,13.39s-13.45-5.99-13.45-13.39,6.02-13.39,13.45-13.39,13.45,5.99,13.45,13.39Z" fill="#E95420" stroke="none" transform="translate(32.86 11.50) scale(0.07143)" />
+<path d="m211.01,236.86c-1.15,0-2.32-.09-3.46-.26-1.68-.26-3.3-.71-4.84-1.33v30.43c0,6.82-5.63,12.36-12.55,12.36s-12.55-5.55-12.55-12.36v-34.41h-16.6v34.41c0,15.83,13.08,28.72,29.15,28.72s29.15-12.88,29.15-28.72v-30.43c-2.61,1.04-5.42,1.59-8.3,1.59Z" fill="#E95420" stroke="none" transform="translate(32.86 11.50) scale(0.07143)" />
+<path d="m224.48,212.4c1.41,9.18-6.41,16.96-15.63,15.56-5.74-.87-10.44-5.55-11.32-11.26-1.42-9.18,6.41-16.97,15.63-15.56,5.74.88,10.44,5.55,11.32,11.27Z" fill="#E95420" stroke="none" transform="translate(32.86 11.50) scale(0.07143)" />
+<path d="m127.6,305.54c-2.93,0-5.73-.58-8.3-1.6v31.89c0,6.89-5.63,12.49-12.55,12.49s-12.55-5.6-12.55-12.49v-34.78h-16.6v34.78c0,16,13.08,29.02,29.15,29.02s29.15-13.02,29.15-29.02v-31.89c-2.57,1.02-5.37,1.6-8.3,1.6Z" fill="#E95420" stroke="none" transform="translate(32.86 11.50) scale(0.07143)" />
+<rect x="210.0" y="20" width="120" height="40" fill="none" stroke="#8A8A8A" stroke-width="1" rx="4" ry="4" />
+<text x="270.0" y="40.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Cloud</text>
+<rect x="390.0" y="20" width="120" height="40" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="450.0" y="40.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Controller machine</text>
+<path d="m148.45,180.19c-16.07,0-29.15,13.02-29.15,29.02v53.29c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-53.29c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(392.86 11.50) scale(0.07143)" />
+<path d="m141.13,283.22c0,7.44-6.06,13.47-13.53,13.47s-13.53-6.03-13.53-13.47,6.06-13.47,13.53-13.47,13.53,6.03,13.53,13.47Z" fill="#E95420" stroke="none" transform="translate(392.86 11.50) scale(0.07143)" />
+<path d="m65.05,250.68c-16.07,0-29.15,13.02-29.15,29.02v51.54c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-51.54c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(392.86 11.50) scale(0.07143)" />
+<path d="m57.65,351.96c0,7.39-6.02,13.39-13.45,13.39s-13.45-5.99-13.45-13.39,6.02-13.39,13.45-13.39,13.45,5.99,13.45,13.39Z" fill="#E95420" stroke="none" transform="translate(392.86 11.50) scale(0.07143)" />
+<path d="m211.01,236.86c-1.15,0-2.32-.09-3.46-.26-1.68-.26-3.3-.71-4.84-1.33v30.43c0,6.82-5.63,12.36-12.55,12.36s-12.55-5.55-12.55-12.36v-34.41h-16.6v34.41c0,15.83,13.08,28.72,29.15,28.72s29.15-12.88,29.15-28.72v-30.43c-2.61,1.04-5.42,1.59-8.3,1.59Z" fill="#E95420" stroke="none" transform="translate(392.86 11.50) scale(0.07143)" />
+<path d="m224.48,212.4c1.41,9.18-6.41,16.96-15.63,15.56-5.74-.87-10.44-5.55-11.32-11.26-1.42-9.18,6.41-16.97,15.63-15.56,5.74.88,10.44,5.55,11.32,11.27Z" fill="#E95420" stroke="none" transform="translate(392.86 11.50) scale(0.07143)" />
+<path d="m127.6,305.54c-2.93,0-5.73-.58-8.3-1.6v31.89c0,6.89-5.63,12.49-12.55,12.49s-12.55-5.6-12.55-12.49v-34.78h-16.6v34.78c0,16,13.08,29.02,29.15,29.02s29.15-13.02,29.15-29.02v-31.89c-2.57,1.02-5.37,1.6-8.3,1.6Z" fill="#E95420" stroke="none" transform="translate(392.86 11.50) scale(0.07143)" />
+<rect x="570.0" y="20" width="120" height="40" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="630.0" y="40.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Controller database</text>
+<path d="M 576.12 26.74 A 5.88 2.24 0 0 1 587.88 26.74 A 5.88 2.24 0 0 1 576.12 26.74 L 576.12 35.26 A 5.88 2.24 0 0 0 587.88 35.26 L 587.88 26.74" fill="none" stroke="#E95420" stroke-width="1.2" stroke-linejoin="round" />
+<rect x="750.0" y="20" width="120" height="40" fill="none" stroke="#8A8A8A" stroke-width="1" rx="4" ry="4" />
+<text x="810.0" y="40.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Charmhub</text>
+<path d="M90.0,60 L90.0,498" stroke="#CCCCCC" stroke-width="1" stroke-dasharray="6,4" mask="url(#d0)" />
+<path d="M270.0,60 L270.0,498" stroke="#CCCCCC" stroke-width="1" stroke-dasharray="6,4" mask="url(#d0)" />
+<path d="M450.0,60 L450.0,498" stroke="#CCCCCC" stroke-width="1" stroke-dasharray="6,4" mask="url(#d0)" />
+<path d="M630.0,60 L630.0,498" stroke="#CCCCCC" stroke-width="1" stroke-dasharray="6,4" mask="url(#d0)" />
+<path d="M810.0,60 L810.0,498" stroke="#CCCCCC" stroke-width="1" stroke-dasharray="6,4" mask="url(#d0)" />
+<g>
+<rect x="265.0" y="114" width="10" height="36" fill="none" stroke="#888888" stroke-width="1" />
+<rect x="805.0" y="330" width="10" height="36" fill="none" stroke="#888888" stroke-width="1" />
+</g>
+<g>
+<path d="M90.0,114 L270.0,114" stroke="#555555" stroke-width="1" marker-end="url(#seq-arrow)" />
+<text x="180.0" y="107" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">start an instance</text>
+<path d="M270.0,150 L90.0,150" stroke="#555555" stroke-width="1" marker-end="url(#seq-arrow)" stroke-dasharray="5,3" />
+<text x="180.0" y="143" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">instance</text>
+<path d="M90.0,186 L450.0,186" stroke="#555555" stroke-width="1" marker-end="url(#seq-arrow)" />
+<text x="270.0" y="166" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">wait for SSH, then run the configure script: download the</text>
+<text x="270.0" y="179" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">agent, write its configuration</text>
+<path d="M450.0,222 L630.0,222" stroke="#555555" stroke-width="1" marker-end="url(#seq-arrow)" />
+<text x="540.0" y="163" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">start the first database</text>
+<text x="540.0" y="176" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">node and write the</text>
+<text x="540.0" y="189" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">controller, admin user,</text>
+<text x="540.0" y="202" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">cloud, credential, and</text>
+<text x="540.0" y="215" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">controller model records</text>
+<path d="M 450.0,251.0 L 465.0,251.0 Q 470.0,251.0 470.0,256.0 L 470.0,260.0 Q 470.0,265.0 465.0,265.0 L 450.0,265.0" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#seq-arrow)" />
+<text x="477.0" y="258" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">start the machine agent as a service</text>
+<path d="M 450.0,287.0 L 465.0,287.0 Q 470.0,287.0 470.0,292.0 L 470.0,296.0 Q 470.0,301.0 465.0,301.0 L 450.0,301.0" fill="none" stroke="#555555" stroke-width="1" marker-end="url(#seq-arrow)" />
+<text x="477.0" y="294" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">bootstrap worker: seed users and storage pools, discover spaces, deploy the controller charm</text>
+<path d="M450.0,330 L810.0,330" stroke="#555555" stroke-width="1" marker-end="url(#seq-arrow)" />
+<text x="630.0" y="323" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">fetch the controller charm, unless the client supplied one</text>
+<path d="M810.0,366 L450.0,366" stroke="#555555" stroke-width="1" marker-end="url(#seq-arrow)" stroke-dasharray="5,3" />
+<text x="630.0" y="359" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">charm</text>
+<path d="M450.0,402 L630.0,402" stroke="#555555" stroke-width="1" marker-end="url(#seq-arrow)" />
+<text x="540.0" y="369" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">record the controller</text>
+<text x="540.0" y="382" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">application and that</text>
+<text x="540.0" y="395" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">bootstrap is complete</text>
+<path d="M90.0,438 L450.0,438" stroke="#555555" stroke-width="1" marker-end="url(#seq-arrow)" />
+<text x="270.0" y="431" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">poll the API address that the cloud reported until it answers</text>
+</g>
+<rect x="30.0" y="498" width="120" height="40" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="90.0" y="518.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Client</text>
+<path d="m148.45,180.19c-16.07,0-29.15,13.02-29.15,29.02v53.29c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-53.29c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(32.86 489.50) scale(0.07143)" />
+<path d="m141.13,283.22c0,7.44-6.06,13.47-13.53,13.47s-13.53-6.03-13.53-13.47,6.06-13.47,13.53-13.47,13.53,6.03,13.53,13.47Z" fill="#E95420" stroke="none" transform="translate(32.86 489.50) scale(0.07143)" />
+<path d="m65.05,250.68c-16.07,0-29.15,13.02-29.15,29.02v51.54c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-51.54c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(32.86 489.50) scale(0.07143)" />
+<path d="m57.65,351.96c0,7.39-6.02,13.39-13.45,13.39s-13.45-5.99-13.45-13.39,6.02-13.39,13.45-13.39,13.45,5.99,13.45,13.39Z" fill="#E95420" stroke="none" transform="translate(32.86 489.50) scale(0.07143)" />
+<path d="m211.01,236.86c-1.15,0-2.32-.09-3.46-.26-1.68-.26-3.3-.71-4.84-1.33v30.43c0,6.82-5.63,12.36-12.55,12.36s-12.55-5.55-12.55-12.36v-34.41h-16.6v34.41c0,15.83,13.08,28.72,29.15,28.72s29.15-12.88,29.15-28.72v-30.43c-2.61,1.04-5.42,1.59-8.3,1.59Z" fill="#E95420" stroke="none" transform="translate(32.86 489.50) scale(0.07143)" />
+<path d="m224.48,212.4c1.41,9.18-6.41,16.96-15.63,15.56-5.74-.87-10.44-5.55-11.32-11.26-1.42-9.18,6.41-16.97,15.63-15.56,5.74.88,10.44,5.55,11.32,11.27Z" fill="#E95420" stroke="none" transform="translate(32.86 489.50) scale(0.07143)" />
+<path d="m127.6,305.54c-2.93,0-5.73-.58-8.3-1.6v31.89c0,6.89-5.63,12.49-12.55,12.49s-12.55-5.6-12.55-12.49v-34.78h-16.6v34.78c0,16,13.08,29.02,29.15,29.02s29.15-13.02,29.15-29.02v-31.89c-2.57,1.02-5.37,1.6-8.3,1.6Z" fill="#E95420" stroke="none" transform="translate(32.86 489.50) scale(0.07143)" />
+<rect x="210.0" y="498" width="120" height="40" fill="none" stroke="#8A8A8A" stroke-width="1" rx="4" ry="4" />
+<text x="270.0" y="518.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Cloud</text>
+<rect x="390.0" y="498" width="120" height="40" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="450.0" y="518.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Controller machine</text>
+<path d="m148.45,180.19c-16.07,0-29.15,13.02-29.15,29.02v53.29c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-53.29c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(392.86 489.50) scale(0.07143)" />
+<path d="m141.13,283.22c0,7.44-6.06,13.47-13.53,13.47s-13.53-6.03-13.53-13.47,6.06-13.47,13.53-13.47,13.53,6.03,13.53,13.47Z" fill="#E95420" stroke="none" transform="translate(392.86 489.50) scale(0.07143)" />
+<path d="m65.05,250.68c-16.07,0-29.15,13.02-29.15,29.02v51.54c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-51.54c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(392.86 489.50) scale(0.07143)" />
+<path d="m57.65,351.96c0,7.39-6.02,13.39-13.45,13.39s-13.45-5.99-13.45-13.39,6.02-13.39,13.45-13.39,13.45,5.99,13.45,13.39Z" fill="#E95420" stroke="none" transform="translate(392.86 489.50) scale(0.07143)" />
+<path d="m211.01,236.86c-1.15,0-2.32-.09-3.46-.26-1.68-.26-3.3-.71-4.84-1.33v30.43c0,6.82-5.63,12.36-12.55,12.36s-12.55-5.55-12.55-12.36v-34.41h-16.6v34.41c0,15.83,13.08,28.72,29.15,28.72s29.15-12.88,29.15-28.72v-30.43c-2.61,1.04-5.42,1.59-8.3,1.59Z" fill="#E95420" stroke="none" transform="translate(392.86 489.50) scale(0.07143)" />
+<path d="m224.48,212.4c1.41,9.18-6.41,16.96-15.63,15.56-5.74-.87-10.44-5.55-11.32-11.26-1.42-9.18,6.41-16.97,15.63-15.56,5.74.88,10.44,5.55,11.32,11.27Z" fill="#E95420" stroke="none" transform="translate(392.86 489.50) scale(0.07143)" />
+<path d="m127.6,305.54c-2.93,0-5.73-.58-8.3-1.6v31.89c0,6.89-5.63,12.49-12.55,12.49s-12.55-5.6-12.55-12.49v-34.78h-16.6v34.78c0,16,13.08,29.02,29.15,29.02s29.15-13.02,29.15-29.02v-31.89c-2.57,1.02-5.37,1.6-8.3,1.6Z" fill="#E95420" stroke="none" transform="translate(392.86 489.50) scale(0.07143)" />
+<rect x="570.0" y="498" width="120" height="40" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="630.0" y="518.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Controller database</text>
+<path d="M 576.12 504.74 A 5.88 2.24 0 0 1 587.88 504.74 A 5.88 2.24 0 0 1 576.12 504.74 L 576.12 513.26 A 5.88 2.24 0 0 0 587.88 513.26 L 587.88 504.74" fill="none" stroke="#E95420" stroke-width="1.2" stroke-linejoin="round" />
+<rect x="750.0" y="498" width="120" height="40" fill="none" stroke="#8A8A8A" stroke-width="1" rx="4" ry="4" />
+<text x="810.0" y="518.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Charmhub</text>
+</g>
+</svg>

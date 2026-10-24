@@ -1,0 +1,12 @@
+{"job": "A|machine|A-Q01|base|W|1", "text": "The documentation does not say."}
+{"job": "A|machine|A-Q01|base|H|1", "text": "The documentation does not say."}
+{"job": "A|machine|A-Q01|base|F|1", "text": "The documentation does not say. The excerpts only state that a forced removal deletes the records from dying without waiting. They don't mention a wait duration for `--force` without `--no-wait`."}
+{"job": "A|machine|A-Q01|pattern|W|1", "text": "The documentation does not say. It describes a **wait** parameter, the time a forced removal gives the normal removal to complete before the forced removal job runs, but it gives no default value. It also never mentions the `juju remove-machine` command or a `--no-wait` flag."}
+{"job": "A|machine|A-Q01|pattern|H|1", "text": "The documentation does not say. It explains that a forced removal takes a **wait** parameter, which sets how long the normal removal has to complete before the forced removal job runs. It does not give a default value for that wait, and it does not mention `juju remove-machine` or `--no-wait`."}
+{"job": "A|machine|A-Q01|pattern|F|1", "text": "The documentation does not say. It explains that the request takes a **wait** parameter, which sets how long a forced removal gives the normal removal to complete before the forced removal job runs. It does not state the default wait value or mention `--no-wait`."}
+{"job": "A|machine|A-Q14|base|W|1", "text": "The documentation does not say."}
+{"job": "A|machine|A-Q14|base|H|1", "text": "The documentation does not say."}
+{"job": "A|machine|A-Q14|base|F|1", "text": "The documentation does not say."}
+{"job": "A|machine|A-Q14|pattern|W|1", "text": "The documentation does not say."}
+{"job": "A|machine|A-Q14|pattern|H|1", "text": "The documentation does not say."}
+{"job": "A|machine|A-Q14|pattern|F|1", "text": "The documentation does not say."}

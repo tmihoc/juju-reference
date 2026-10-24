@@ -1,0 +1,17 @@
+{
+"Q1": "It means you tried to grant a level the user already holds, or a greater one; grants must raise the level. No remediation is needed because the user already has that access.",
+"Q2": "You need model admin access on that model, or controller superuser access.",
+"Q3": "Someone with model admin access on the model the offer belongs to, or a controller superuser.",
+"Q4": "Revoking the `read` level deletes the permission record outright, since a revoke that takes the level back to `read` is the same write as removing the grant.",
+"Q5": "No. Revoking would fail with `user is the last model admin for 1 or more models`; first grant admin on the model to another user.",
+"Q6": "Ten level-object combinations are valid. For an offer the valid levels are `read`, `consume` and `admin`.",
+"Q7": "It is the greater of the user's own grants and the grants of `everyone@external`, resolved at each access check with nothing stored or cached.",
+"Q8": "No. Trying to grant or revoke your own cloud access gives `cannot change your own cloud access`; ask another cloud admin or a controller superuser.",
+"Q9": "The pair of object and user: a unique index allows exactly one permission per user per object.",
+"Q10": "If the external user is one Juju has not seen yet, the grant creates that user as a side effect, so the record has someone to name.",
+"Q11": "No. The access domain exposes no watch surfaces; changes are read on demand, not watched.",
+"Q12": "`jaas_access_controller` manages controller access, and it applies when using JAAS.",
+"Q13": "The client refuses it with the error `You have specified a controller access permission \"<level>\"...`; name a model or offer level, or drop the model or offer.",
+"P1": "The documentation does not say.",
+"P2": "The documentation does not say."
+}

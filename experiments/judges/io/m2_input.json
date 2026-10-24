@@ -1,0 +1,633 @@
+{
+ "application": {
+  "kind": "noun",
+  "about": "A deployed application: its configuration, endpoints, scale, status and platform.",
+  "tables": [
+   "application",
+   "application_agent",
+   "application_channel",
+   "application_config",
+   "application_config_hash",
+   "application_constraint",
+   "application_controller",
+   "application_endpoint",
+   "application_exposed_endpoint_cidr",
+   "application_exposed_endpoint_space",
+   "application_extra_endpoint",
+   "application_k8s_resources_managed",
+   "application_platform",
+   "application_scale",
+   "application_setting",
+   "application_status",
+   "application_storage_directive",
+   "application_workload_version",
+   "device_constraint",
+   "device_constraint_attribute",
+   "k8s_service",
+   "operator_status"
+  ],
+  "lookups": []
+ },
+ "unit": {
+  "kind": "noun",
+  "about": "A unit of an application: its agent, status, state and resolution.",
+  "tables": [
+   "k8s_pod",
+   "k8s_pod_port",
+   "k8s_pod_status",
+   "unit",
+   "unit_agent_presence",
+   "unit_agent_status",
+   "unit_agent_version",
+   "unit_principal",
+   "unit_resolved",
+   "unit_state",
+   "unit_state_charm",
+   "unit_state_relation",
+   "unit_storage_directive",
+   "unit_workload_status",
+   "unit_workload_version"
+  ],
+  "lookups": [
+   "k8s_pod_status_value",
+   "resolve_mode",
+   "unit_agent_status_value"
+  ]
+ },
+ "machine": {
+  "kind": "noun",
+  "about": "A machine or container that hosts units: its cloud instance, placement, status and agent.",
+  "tables": [
+   "instance_tag",
+   "machine",
+   "machine_agent_presence",
+   "machine_agent_version",
+   "machine_cloud_instance",
+   "machine_cloud_instance_status",
+   "machine_constraint",
+   "machine_container_type",
+   "machine_lxd_profile",
+   "machine_manual",
+   "machine_parent",
+   "machine_placement",
+   "machine_platform",
+   "machine_reprovision",
+   "machine_requires_reboot",
+   "machine_status"
+  ],
+  "lookups": [
+   "machine_cloud_instance_status_value",
+   "machine_placement_scope",
+   "machine_status_value"
+  ]
+ },
+ "relation": {
+  "kind": "noun",
+  "about": "A relation between application endpoints: its units, settings data bags and status.",
+  "tables": [
+   "relation",
+   "relation_application_setting",
+   "relation_application_settings_hash",
+   "relation_endpoint",
+   "relation_network_egress",
+   "relation_network_ingress",
+   "relation_status",
+   "relation_unit",
+   "relation_unit_departure",
+   "relation_unit_setting",
+   "relation_unit_setting_archive",
+   "relation_unit_settings_hash"
+  ],
+  "lookups": [
+   "relation_status_type"
+  ]
+ },
+ "storage": {
+  "kind": "noun",
+  "about": "Charm storage: storage instances, volumes, filesystems, pools, attachments, and block devices.",
+  "tables": [
+   "block_device",
+   "block_device_link_device",
+   "machine_filesystem",
+   "machine_volume",
+   "model_storage_pool",
+   "storage_attachment",
+   "storage_filesystem",
+   "storage_filesystem_attachment",
+   "storage_filesystem_status",
+   "storage_instance",
+   "storage_instance_filesystem",
+   "storage_instance_volume",
+   "storage_pool",
+   "storage_pool_attribute",
+   "storage_unit_owner",
+   "storage_volume",
+   "storage_volume_attachment",
+   "storage_volume_attachment_plan",
+   "storage_volume_attachment_plan_attr",
+   "storage_volume_status"
+  ],
+  "lookups": [
+   "block_device_provenance",
+   "storage_filesystem_status_value",
+   "storage_kind",
+   "storage_pool_origin",
+   "storage_provision_scope",
+   "storage_volume_device_type",
+   "storage_volume_status_value"
+  ]
+ },
+ "model": {
+  "kind": "noun",
+  "about": "A model: its identity, type, configuration, life and agent.",
+  "tables": [
+   "model",
+   "model_agent",
+   "model_config",
+   "model_constraint",
+   "model_database_deletion",
+   "model_life",
+   "model_namespace"
+  ],
+  "lookups": [
+   "model_type"
+  ]
+ },
+ "model-migration": {
+  "kind": "mechanism",
+  "about": "Moving a model to another controller: phases, targets, progress.",
+  "tables": [
+   "log_transfer_progress",
+   "model_migrating",
+   "model_migration_export",
+   "model_migration_export_minion_sync",
+   "model_migration_export_offer",
+   "model_migration_export_phase",
+   "model_migration_export_status",
+   "model_migration_export_target_auth",
+   "model_migration_import",
+   "model_migration_import_external_controller_model",
+   "model_migration_import_offer",
+   "model_migration_redirect",
+   "model_migration_redirect_user"
+  ],
+  "lookups": [
+   "model_migration_import_phase_type",
+   "model_migration_phase"
+  ]
+ },
+ "secret": {
+  "kind": "noun",
+  "about": "Secrets and their revisions, owners, consumers, permissions and rotation.",
+  "tables": [
+   "secret",
+   "secret_application_owner",
+   "secret_content",
+   "secret_deleted_value_ref",
+   "secret_metadata",
+   "secret_model_owner",
+   "secret_permission",
+   "secret_reference",
+   "secret_remote_unit_consumer",
+   "secret_reservation",
+   "secret_revision",
+   "secret_revision_expire",
+   "secret_revision_obsolete",
+   "secret_rotation",
+   "secret_unit_consumer",
+   "secret_unit_owner",
+   "secret_value_ref"
+  ],
+  "lookups": [
+   "secret_backend_origin",
+   "secret_grant_scope_type",
+   "secret_grant_subject_type",
+   "secret_role",
+   "secret_rotate_policy"
+  ]
+ },
+ "secret-backend": {
+  "kind": "noun",
+  "about": "Where secret content is stored: backend registration, configuration, rotation.",
+  "tables": [
+   "model_secret_backend",
+   "secret_backend",
+   "secret_backend_config",
+   "secret_backend_reference",
+   "secret_backend_rotation"
+  ],
+  "lookups": [
+   "secret_backend_type"
+  ]
+ },
+ "charm": {
+  "kind": "noun",
+  "about": "A charm as stored by Juju: metadata, actions, config, resources, storage declarations.",
+  "tables": [
+   "charm",
+   "charm_action",
+   "charm_category",
+   "charm_config",
+   "charm_container",
+   "charm_container_mount",
+   "charm_device",
+   "charm_download_info",
+   "charm_extra_binding",
+   "charm_hash",
+   "charm_manifest_base",
+   "charm_metadata",
+   "charm_relation",
+   "charm_resource",
+   "charm_storage",
+   "charm_storage_property",
+   "charm_tag",
+   "charm_term"
+  ],
+  "lookups": [
+   "charm_provenance",
+   "charm_relation_role",
+   "charm_resource_kind",
+   "charm_run_as_kind",
+   "charm_source",
+   "charm_storage_kind",
+   "hash_kind"
+  ]
+ },
+ "resource": {
+  "kind": "noun",
+  "about": "Charm resources as attached to applications and units, with their file and image stores.",
+  "tables": [
+   "application_resource",
+   "pending_application_resource",
+   "resource",
+   "resource_container_image_metadata_store",
+   "resource_file_store",
+   "resource_image_store",
+   "resource_retrieved_by",
+   "unit_resource"
+  ],
+  "lookups": [
+   "resource_origin_type",
+   "resource_retrieved_by_type",
+   "resource_state"
+  ]
+ },
+ "action": {
+  "kind": "noun",
+  "about": "Running actions and execs: operations, tasks, their parameters, output and status.",
+  "tables": [
+   "operation",
+   "operation_action",
+   "operation_machine_task",
+   "operation_parameter",
+   "operation_task",
+   "operation_task_log",
+   "operation_task_output",
+   "operation_task_status",
+   "operation_unit_task"
+  ],
+  "lookups": [
+   "operation_task_status_value"
+  ]
+ },
+ "offer": {
+  "kind": "noun",
+  "about": "Cross-model offers and the remote application proxies that consume them.",
+  "tables": [
+   "application_remote_consumer",
+   "application_remote_offerer",
+   "application_remote_offerer_relation_macaroon",
+   "application_remote_offerer_status",
+   "offer",
+   "offer_connection",
+   "offer_endpoint"
+  ],
+  "lookups": []
+ },
+ "cloud": {
+  "kind": "noun",
+  "about": "Clouds and their regions, types and certificates.",
+  "tables": [
+   "cloud",
+   "cloud_auth_type",
+   "cloud_ca_cert",
+   "cloud_region"
+  ],
+  "lookups": [
+   "cloud_type"
+  ]
+ },
+ "credential": {
+  "kind": "noun",
+  "about": "Cloud credentials and their attributes.",
+  "tables": [
+   "cloud_credential",
+   "cloud_credential_attribute"
+  ],
+  "lookups": []
+ },
+ "model-defaults": {
+  "kind": "noun",
+  "about": "Default model configuration per cloud and region.",
+  "tables": [
+   "cloud_defaults",
+   "cloud_region_defaults"
+  ],
+  "lookups": []
+ },
+ "image-metadata": {
+  "kind": "noun",
+  "about": "Cached cloud image metadata.",
+  "tables": [
+   "cloud_image_metadata"
+  ],
+  "lookups": []
+ },
+ "controller": {
+  "kind": "noun",
+  "about": "The controller and its nodes: addresses, passwords, configuration, certificates cache.",
+  "tables": [
+   "autocert_cache",
+   "controller",
+   "controller_agent_address",
+   "controller_api_address",
+   "controller_client_address",
+   "controller_config",
+   "controller_node",
+   "controller_node_agent_version",
+   "controller_node_nonce",
+   "controller_node_password",
+   "controller_peer_address"
+  ],
+  "lookups": [
+   "autocert_cache_encoding"
+  ]
+ },
+ "upgrade": {
+  "kind": "mechanism",
+  "about": "Controller upgrade state across controller nodes.",
+  "tables": [
+   "upgrade_info",
+   "upgrade_info_controller_node"
+  ],
+  "lookups": [
+   "upgrade_state_type"
+  ]
+ },
+ "user": {
+  "kind": "noun",
+  "about": "Users, their authentication and last login.",
+  "tables": [
+   "bakery_config",
+   "macaroon_root_key",
+   "model_last_login",
+   "user",
+   "user_activation_key",
+   "user_authentication",
+   "user_password"
+  ],
+  "lookups": []
+ },
+ "permission": {
+  "kind": "noun",
+  "about": "Access levels granted to users on clouds, controllers, models and offers.",
+  "tables": [
+   "permission"
+  ],
+  "lookups": [
+   "permission_access_type",
+   "permission_object_access",
+   "permission_object_type"
+  ]
+ },
+ "ssh-key": {
+  "kind": "noun",
+  "about": "Public SSH keys users store and the models that authorise them.",
+  "tables": [
+   "model_authorized_keys",
+   "user_public_ssh_key"
+  ],
+  "lookups": [
+   "ssh_fingerprint_hash_algorithm"
+  ]
+ },
+ "ssh": {
+  "kind": "noun",
+  "about": "SSH access to machines and units: host keys, connection requests, the SSH server port.",
+  "tables": [
+   "controller_ssh_host_key",
+   "controller_ssh_server_port",
+   "machine_ssh_host_key",
+   "machine_virtual_ssh_host_key",
+   "ssh_connection_request",
+   "unit_virtual_ssh_host_key"
+  ],
+  "lookups": [
+   "ssh_key_algorithm_type"
+  ]
+ },
+ "object-store": {
+  "kind": "noun",
+  "about": "The object store backend, metadata, placement and drain.",
+  "tables": [
+   "object_store_backend",
+   "object_store_backend_s3_config",
+   "object_store_drain_info",
+   "object_store_metadata",
+   "object_store_metadata_path",
+   "object_store_placement"
+  ],
+  "lookups": [
+   "object_store_backend_type",
+   "object_store_drain_phase_type"
+  ]
+ },
+ "agent-version": {
+  "kind": "noun",
+  "about": "The model target agent version, stream and the agent binary catalogue.",
+  "tables": [
+   "agent_binary_store",
+   "agent_version"
+  ],
+  "lookups": [
+   "agent_stream"
+  ]
+ },
+ "space": {
+  "kind": "noun",
+  "about": "Network spaces.",
+  "tables": [
+   "provider_space",
+   "space"
+  ],
+  "lookups": []
+ },
+ "subnet": {
+  "kind": "noun",
+  "about": "Subnets and their provider network ids.",
+  "tables": [
+   "provider_network",
+   "provider_network_subnet",
+   "provider_subnet",
+   "subnet"
+  ],
+  "lookups": []
+ },
+ "zone": {
+  "kind": "noun",
+  "about": "Availability zones and their subnets.",
+  "tables": [
+   "availability_zone",
+   "availability_zone_subnet"
+  ],
+  "lookups": []
+ },
+ "link-layer-device": {
+  "kind": "noun",
+  "about": "Network devices, addresses and the network node of a machine or unit.",
+  "tables": [
+   "fqdn_address",
+   "hostname_address",
+   "ip_address",
+   "link_layer_device",
+   "link_layer_device_dns_address",
+   "link_layer_device_dns_domain",
+   "link_layer_device_parent",
+   "link_layer_device_route",
+   "net_node",
+   "net_node_fqdn_address",
+   "net_node_hostname_address",
+   "provider_ip_address",
+   "provider_link_layer_device"
+  ],
+  "lookups": [
+   "ip_address_config_type",
+   "ip_address_origin",
+   "ip_address_scope",
+   "ip_address_type",
+   "link_layer_device_type",
+   "network_address_scope",
+   "virtual_port_type"
+  ]
+ },
+ "external-controller": {
+  "kind": "noun",
+  "about": "Other controllers known for cross-controller relations and migration.",
+  "tables": [
+   "external_controller",
+   "external_controller_address",
+   "external_model"
+  ],
+  "lookups": []
+ },
+ "constraint": {
+  "kind": "facet",
+  "about": "Machine and application constraints: the stored constraint, spaces, tags, zones.",
+  "tables": [
+   "constraint",
+   "constraint_space",
+   "constraint_tag",
+   "constraint_zone"
+  ],
+  "lookups": []
+ },
+ "annotation": {
+  "kind": "facet",
+  "about": "Key-value annotations attached to entities.",
+  "tables": [
+   "annotation_application",
+   "annotation_charm",
+   "annotation_machine",
+   "annotation_model",
+   "annotation_storage_filesystem",
+   "annotation_storage_instance",
+   "annotation_storage_volume",
+   "annotation_unit"
+  ],
+  "lookups": []
+ },
+ "status": {
+  "kind": "facet",
+  "about": "The shared vocabulary of statuses across entities.",
+  "tables": [],
+  "lookups": [
+   "workload_status_value"
+  ]
+ },
+ "block-command": {
+  "kind": "mechanism",
+  "about": "Operation blocks that guard the model.",
+  "tables": [
+   "block_command"
+  ],
+  "lookups": [
+   "block_command_type"
+  ]
+ },
+ "removal": {
+  "kind": "mechanism",
+  "about": "Scheduled removal jobs.",
+  "tables": [
+   "removal"
+  ],
+  "lookups": [
+   "removal_type"
+  ]
+ },
+ "lease": {
+  "kind": "mechanism",
+  "about": "Leases and leadership claims.",
+  "tables": [
+   "lease",
+   "lease_pin"
+  ],
+  "lookups": [
+   "lease_type"
+  ]
+ },
+ "port": {
+  "kind": "noun",
+  "about": "Opened port ranges of units.",
+  "tables": [
+   "port_range"
+  ],
+  "lookups": [
+   "protocol"
+  ]
+ },
+ "telemetry": {
+  "kind": "noun",
+  "about": "Tracing and logging configuration sent to external systems.",
+  "tables": [
+   "charm_tracing_config",
+   "logging_loki_config",
+   "workload_tracing_config"
+  ],
+  "lookups": []
+ },
+ "database": {
+  "kind": "substrate",
+  "about": "Database bookkeeping: change log, namespaces, sequences, feature flags.",
+  "tables": [
+   "change_log",
+   "change_log_witness",
+   "flag",
+   "namespace_list",
+   "sequence"
+  ],
+  "lookups": [
+   "change_log_edit_type",
+   "change_log_namespace"
+  ]
+ },
+ "_shared_vocabulary": [
+  "architecture",
+  "auth_type",
+  "charm_config_type",
+  "charm_relation_scope",
+  "container_type",
+  "life",
+  "os",
+  "password_hash_algorithm"
+ ]
+}

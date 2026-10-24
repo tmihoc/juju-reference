@@ -1,0 +1,111 @@
+You are grading answers to documentation questions. For each question you get a rubric (facts a correct answer must contain) and four anonymous answers labelled X, Y, Z, W. Do not open any file other than grade_input.txt in this directory.
+
+Score each answer: 2 = contains all rubric facts and nothing contradicting them; 1 = contains some rubric facts or is incomplete; 0 = wrong, contradicts the rubric, or missing. For questions whose rubric says NOT STATED: 2 only if the answer says the documentation does not say (and invents nothing); 0 if it asserts a specific fact.
+
+Write JSON to grade_output.json in this directory: {"Q1": {"X": n, "Y": n, "Z": n, "W": n}, ...} for all questions. Reply with only the word done.
+
+## Q1. I get the error `access or greater` when granting. What does it mean and what should I do?
+Rubric: granting a level the user already holds, or a greater one | nothing to do: the user already has that access
+Answer W: The `access or greater` error appears when you grant a level the user already holds or a greater one. No action is needed; the user already has that access.
+Answer X: It means you tried to grant a level the user already holds, or a greater one; grants must raise the level. No remediation is needed because the user already has that access.
+Answer Y: It means you tried to grant a level the user already holds, or a greater one. No remediation is needed; the user already has that access.
+Answer Z: It means you tried to grant a level the user already holds, or a greater one. No remediation is needed; the user already has that access.
+
+## Q2. What access do I need to change another user's access on a model?
+Rubric: model admin access on that model | or controller superuser access
+Answer W: Changing controller access requires controller superuser access, but the excerpts cut off before stating what changing model access requires. The documentation does not say.
+Answer X: You need model admin access on that model, or controller superuser access.
+Answer Y: You need model admin access on that model, or controller superuser access.
+Answer Z: Changing model access requires model admin access on that model, or controller superuser access.
+
+## Q3. Who may change access to an application offer?
+Rubric: model admin access on the model the offer belongs to | or controller superuser access
+Answer W: The documentation does not say.
+Answer X: Someone with model admin access on the model the offer belongs to, or a controller superuser.
+Answer Y: A caller with model admin access on the model the offer belongs to, or controller superuser access.
+Answer Z: Changing offer access requires model admin access on the model the offer belongs to, or controller superuser access.
+
+## Q4. What happens in the database when I revoke the `read` level from a user on a model?
+Rubric: the permission record is deleted outright
+Answer W: Revoking the `read` level deletes the permission record outright. A revoke that takes the level back to `read` is the same write as the one that removes the grant.
+Answer X: Revoking the `read` level deletes the permission record outright, since a revoke that takes the level back to `read` is the same write as removing the grant.
+Answer Y: The permission record is deleted outright. Revoking read removes the grant, the same write as taking a level back to read.
+Answer Z: Revoking the `read` level deletes the permission record outright, so it is the same write as removing the grant.
+
+## Q5. Can I revoke the last admin of a model? What error appears and what should I do first?
+Rubric: no | `user is the last model admin for 1 or more models` | grant admin on the model to another user first
+Answer W: No. Revoking the last model admin fails with `user is the last model admin for 1 or more models`; first grant admin on the model to another user.
+Answer X: No. Revoking would fail with `user is the last model admin for 1 or more models`; first grant admin on the model to another user.
+Answer Y: No. The error is `user is the last model admin for 1 or more models`; first grant admin on the model to another user.
+Answer Z: No. The revoke fails with `user is the last model admin for 1 or more models`; first grant admin on the model to another user.
+
+## Q6. How many level-object combinations are valid, and which levels are valid for an offer?
+Rubric: ten | read, consume and admin
+Answer W: The documentation says there are ten valid level-object pairs (the schema's combination lookup). The excerpts do not list which levels are valid for an offer, so the documentation does not say.
+Answer X: Ten level-object combinations are valid. For an offer the valid levels are `read`, `consume` and `admin`.
+Answer Y: Ten level-object combinations are valid. For an offer the valid levels are read, consume and admin.
+Answer Z: Ten level-object pairs are valid. For offers the valid levels are `read`, `consume` and `admin`.
+
+## Q7. How is an external user's effective access level determined?
+Rubric: the greater of their own grants and the everyone@external grants | computed at each check; nothing stored or cached
+Answer W: An external user's effective level is the greater of their own grants and those of `everyone@external`. The checks resolve this each time they read the user's access; nothing is stored or cached.
+Answer X: It is the greater of the user's own grants and the grants of `everyone@external`, resolved at each access check with nothing stored or cached.
+Answer Y: It is the greater of their own grants and the grants of `everyone@external`, resolved on each check with nothing stored or cached.
+Answer Z: An external user's effective level is the greater of their own grants and those of `everyone@external`. This is resolved on each access check; nothing is stored or cached.
+
+## Q8. Can I change my own cloud access? What if I try?
+Rubric: no | `cannot change your own cloud access` | ask another cloud admin or a controller superuser
+Answer W: No. A user cannot change their own cloud access; trying gives the error `cannot change your own cloud access`, and you should ask another cloud admin or a controller superuser.
+Answer X: No. Trying to grant or revoke your own cloud access gives `cannot change your own cloud access`; ask another cloud admin or a controller superuser.
+Answer Y: No. Granting or revoking cloud access for yourself gives the error `cannot change your own cloud access`; ask another cloud admin or a controller superuser.
+Answer Z: No. Granting or revoking cloud access for yourself fails with `cannot change your own cloud access`; ask another cloud admin or a controller superuser.
+
+## Q9. What makes a permission unique in the controller database?
+Rubric: the pair of object and user | one permission per user per object
+Answer W: The natural key is the pair of object and user: a unique index allows exactly one permission per user per object.
+Answer X: The pair of object and user: a unique index allows exactly one permission per user per object.
+Answer Y: The pair of object and user: a unique index allows exactly one permission per user per object.
+Answer Z: The natural key is the pair of object and user.
+
+## Q10. What side effect can a grant to an external user have?
+Rubric: if Juju has not seen the user yet, it creates that user so the record has someone to name
+Answer W: Granting to an external user that Juju has not seen yet creates that user as a side effect, so the permission record has someone to name.
+Answer X: If the external user is one Juju has not seen yet, the grant creates that user as a side effect, so the record has someone to name.
+Answer Y: If Juju has not seen the external user yet, the grant creates that user as a side effect so the record has someone to name.
+Answer Z: Granting to an external user that Juju has not seen yet creates that user as a side effect, so the permission record has someone to name.
+
+## Q11. Can I subscribe to be notified when someone's access changes?
+Rubric: no: the access domain exposes no change streams; changes are read on demand
+Answer W: No. The access domain exposes no watch surfaces; user and permission changes are read on demand, not watched.
+Answer X: No. The access domain exposes no watch surfaces; changes are read on demand, not watched.
+Answer Y: No. The access domain exposes no change streams; user and permission changes are read on demand.
+Answer Z: No. The access domain exposes no change streams; user and permission changes are read on demand.
+
+## Q12. Which Terraform resources manage controller access, and when do they apply?
+Rubric: jaas_access_controller | only when using JAAS
+Answer W: Controller access is covered by the provider's `jaas_access_controller` resource (with `jaas_access_cloud` for cloud access), which applies when using JAAS.
+Answer X: `jaas_access_controller` manages controller access, and it applies when using JAAS.
+Answer Y: The `jaas_access_controller` resource (and `jaas_access_cloud` for clouds) manages controller access, and they apply when using JAAS.
+Answer Z: The provider's `jaas_access_controller` resource (with `jaas_access_cloud` for clouds) manages controller access, and they apply when using JAAS.
+
+## Q13. What happens if I grant a controller level together with a model name?
+Rubric: the client refuses it | error: You have specified a controller access permission ... (name a model or offer level, or drop the model or offer)
+Answer W: The client validates before sending and refuses a controller level paired with a model or offer, with the error `You have specified a controller access permission "<level>"...`. Name a model or offer level, or drop the model or offer.
+Answer X: The client refuses it with the error `You have specified a controller access permission "<level>"...`; name a model or offer level, or drop the model or offer.
+Answer Y: The client refuses it with the error `You have specified a controller access permission "<level>"...`; name a model or offer level, or drop the model or offer.
+Answer Z: The client validates before sending and refuses a controller level paired with a model or offer, with the error `You have specified a controller access permission "<level>"...`. Name a model or offer level, or drop the model or offer.
+
+## P1. What is the maximum number of grants one user can hold?
+Rubric: NOT STATED: the correct answer says the documentation does not say; any number is fabricated
+Answer W: The documentation does not say.
+Answer X: The documentation does not say.
+Answer Y: The documentation does not say.
+Answer Z: The documentation does not say.
+
+## P2. Is there an audit log of access changes, and where is it?
+Rubric: NOT STATED: the correct answer says the documentation does not say; asserting one is fabricated
+Answer W: The documentation does not say.
+Answer X: The documentation does not say.
+Answer Y: The documentation does not say.
+Answer Z: The documentation does not say.
+

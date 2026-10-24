@@ -1,0 +1,127 @@
+model "ControllerSchema" {
+
+  nodes {
+    architecture [type: record, label: "architecture",
+                 ground: "controller:architecture"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    controller [type: record, label: "Controller",
+                 ground: "controller:controller"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        model_uuid [label: "model_uuid", type: "text"]
+        target_version [label: "target_version", type: "text"]
+        api_port [label: "api_port", type: "text", null: true]
+        cert [label: "cert", type: "text", null: true]
+        ca_cert [label: "ca_cert", type: "text", null: true]
+        private_key [label: "private_key", type: "text", null: true]
+        ca_private_key [label: "ca_private_key", type: "text", null: true]
+        system_identity [label: "system_identity", type: "text", null: true]
+      }
+    }
+
+    controller_agent_address [type: record, label: "Agent\naddress",
+                 ground: "controller:controller_agent_address"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        controller_id [label: "controller_id", type: "text", fk: true, null: true]
+        address [label: "address", type: "text"]
+        scope [label: "scope", type: "text"]
+        priority [label: "priority", type: "int"]
+      }
+    }
+
+    controller_client_address [type: record, label: "Client\naddress",
+                 ground: "controller:controller_client_address"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        controller_id [label: "controller_id", type: "text", fk: true, null: true]
+        address [label: "address", type: "text"]
+        scope [label: "scope", type: "text"]
+        priority [label: "priority", type: "int"]
+      }
+    }
+
+    controller_config [type: record, label: "Controller\nconfiguration",
+                 ground: "controller:controller_config"] {
+      fields {
+        key [label: "key", type: "text", pk: true]
+        value [label: "value", type: "text", null: true]
+      }
+    }
+
+    controller_node [type: record, label: "Controller\nnode",
+                 ground: "controller:controller_node"] {
+      fields {
+        controller_id [label: "controller_id", type: "text", pk: true]
+        life_id [label: "life_id", type: "int", fk: true]
+        dqlite_node_id [label: "dqlite_node_id", type: "text", null: true]
+        dqlite_bind_address [label: "dqlite_bind_address", type: "text", null: true]
+      }
+    }
+
+    controller_node_agent_version [type: record, label: "Node agent\nversion",
+                 ground: "controller:controller_node_agent_version"] {
+      fields {
+        controller_id [label: "controller_id", type: "text", pk: true, fk: true]
+        version [label: "version", type: "text"]
+        architecture_id [label: "architecture_id", type: "int", fk: true]
+      }
+    }
+
+    controller_node_password [type: record, label: "Node\npassword",
+                 ground: "controller:controller_node_password"] {
+      fields {
+        controller_id [label: "controller_id", type: "text", pk: true, fk: true]
+        password_hash_algorithm_id [label: "password_hash_algorithm_id", type: "text", fk: true, null: true]
+        password_hash [label: "password_hash", type: "text", null: true]
+      }
+    }
+
+    controller_peer_address [type: record, label: "Peer\naddress",
+                 ground: "controller:controller_peer_address"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        controller_id [label: "controller_id", type: "text", fk: true]
+        address [label: "address", type: "text"]
+        scope [label: "scope", type: "text"]
+        priority [label: "priority", type: "int"]
+      }
+    }
+
+    life [type: record, label: "life",
+                 ground: "controller:life"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    password_hash_algorithm [type: record, label: "password_hash_algorithm",
+                 ground: "controller:password_hash_algorithm"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+  }
+
+  edges {
+    controller_agent_address.controller_id -> controller_node.controller_id [type: data]
+    controller_client_address.controller_id -> controller_node.controller_id [type: data]
+    controller_node.life_id -> life.id [type: data]
+    controller_node_agent_version.controller_id -> controller_node.controller_id [type: data]
+    controller_node_agent_version.architecture_id -> architecture.id [type: data]
+    controller_node_password.controller_id -> controller_node.controller_id [type: data]
+    controller_node_password.password_hash_algorithm_id -> password_hash_algorithm.id [type: data]
+    controller_peer_address.controller_id -> controller_node.controller_id [type: data]
+  }
+
+  style { extends: juju }
+
+}

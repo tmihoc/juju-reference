@@ -1,0 +1,46 @@
+[
+ {
+  "id": 1,
+  "claim": "A Juju (network) space is a logical grouping of subnets that can communicate with one another."
+ },
+ {
+  "id": 2,
+  "claim": "A space is used to help segment network traffic for the purpose of:"
+ },
+ {
+  "id": 3,
+  "claim": "Spaces can be specified as constraints -- to determine what subnets a machine is connected to -- or as application endpoint bindings -- to determine the subnets used by application relations."
+ },
+ {
+  "id": 4,
+  "claim": "A binding associates an application endpoint with a space."
+ },
+ {
+  "id": 5,
+  "claim": "This restricts traffic for the endpoint to the subnets in the space."
+ },
+ {
+  "id": 6,
+  "claim": "By default, endpoints are bound to the space specified in the `default-space` model configuration value."
+ },
+ {
+  "id": 7,
+  "claim": "The name of the default space is \"alpha\"."
+ },
+ {
+  "id": 8,
+  "claim": "Constraints and bindings affect application deployment and machine provisioning as well as the subnets a machine can talk to."
+ },
+ {
+  "id": 9,
+  "claim": "Endpoint bindings can be specified during deployment with `juju deploy --bind` or changed after deployment using the `juju bind` command."
+ },
+ {
+  "id": 10,
+  "claim": "Support for spaces may vary from one cloud to another."
+ },
+ {
+  "id": 11,
+  "claim": "For cloud-specific details, see the networking behavior section in each cloud's reference doc: Amazon EC2, Microsoft Azure, OpenStack, LXD, MAAS, Unmanaged."
+ }
+]

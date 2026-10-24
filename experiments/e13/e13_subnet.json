@@ -1,0 +1,10 @@
+[
+ {
+  "id": 1,
+  "claim": "A subnet is a range of IP addresses in CIDR notation."
+ },
+ {
+  "id": 2,
+  "claim": "Subnets can be grouped to form a space."
+ }
+]

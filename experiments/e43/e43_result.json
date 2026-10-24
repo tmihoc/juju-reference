@@ -1,0 +1,14 @@
+{
+ "agree": 38,
+ "n": 45,
+ "controls": 6,
+ "differ": [
+  "charm",
+  "object-store",
+  "permission",
+  "resource",
+  "ssh",
+  "subnet",
+  "zone"
+ ]
+}

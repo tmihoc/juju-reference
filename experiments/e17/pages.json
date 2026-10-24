@@ -1,0 +1,3 @@
+{"machine":"machine","cloud":"cloud","controller":"controllernode","model":"model","relation":"relation","secret":"secret","unit":"application","application":"application",
+ "user":"access","space":"network","subnet":"network","zone":"network","ssh-key":"keymanager","storage":"storage","offer":"crossmodelrelation","action":"operation",
+ "constraint":"constraints","resource-charm":"resource","status":"status","credential":"cloud","charm":"application"}

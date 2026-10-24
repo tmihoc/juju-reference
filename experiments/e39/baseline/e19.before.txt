@@ -1,0 +1,18 @@
+state          36/36 = 100% predicted spine       actual spine       
+dynamics       32/36 =  89% predicted spine       actual conditional MISS
+failure        31/36 =  86% predicted conditional actual conditional 
+interface      24/36 =  67% predicted conditional actual conditional 
+cross-process  19/36 =  53% predicted conditional actual conditional 
+observation    21/36 =  58% predicted conditional actual conditional 
+lifecycle       8/36 =  22% predicted rare        actual rare        
+removal         8/36 =  22% predicted rare        actual rare        
+migration      22/36 =  61% predicted conditional actual conditional 
+worker         24/36 =  67% predicted conditional actual conditional 
+status          6/36 =  17% predicted conditional actual rare        MISS
+bands matched: 9 of 11
+absent state? ['constraints', 'sequence', 'agentbinary', 'controller']
+no dynamics: ['constraints', 'sequence', 'agentbinary', 'controller']
+no failure: ['constraints', 'lease', 'controllerconfig', 'flag', 'tracing']
+no interface: ['blockdevice', 'sequence', 'ssh', 'objectstore', 'lease', 'externalcontroller', 'controllerconfig', 'upgrade', 'autocert', 'flag', 'tracing', 'logging']
+no interface and no cross-process: ['sequence', 'objectstore', 'lease', 'externalcontroller', 'controllerconfig', 'upgrade', 'autocert', 'flag']
+distinct part sets: 28 largest: [(11, 4), (5, 4), (6, 2), (7, 2), (10, 1)]

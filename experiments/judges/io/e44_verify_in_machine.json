@@ -1,0 +1,602 @@
+[
+ {
+  "id": "A-Q01",
+  "type": "lookup",
+  "question": "When I run `juju remove-machine 5 --force` without `--no-wait`, how long does Juju give the normal removal steps to finish before it forces the removal?",
+  "ground_truth": "One minute by default. With `--no-wait` the client sends a wait of zero seconds.",
+  "key_facts": [
+   "The default maximum wait for a forced machine removal is 1 minute when no value is supplied.",
+   "`--no-wait` makes the client send a zero-second wait, so the forced cleanup is not delayed."
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/common/destroy.go",
+    "line": 14,
+    "quote": "return 1 * time.Minute"
+   },
+   {
+    "file": "cmd/juju/machine/remove.go",
+    "line": 155,
+    "quote": "zeroSec := 0 * time.Second"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 447,
+    "quote": "common.MaxWait(args.MaxWait)"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q01"
+ },
+ {
+  "id": "A-Q02",
+  "type": "lookup",
+  "question": "What are the possible values of a machine's own status (as opposed to the status of its cloud instance)?",
+  "ground_truth": "The machine status values are error, started, pending, stopped and down.",
+  "key_facts": [
+   "Machine status values: error (0), started (1), pending (2), stopped (3), down (4).",
+   "The status of the cloud instance is a separate set of values (unknown, pending, allocating, running, provisioning error)."
+  ],
+  "evidence": [
+   {
+    "file": "domain/schema/model/sql/0018-machine.sql",
+    "line": 209,
+    "quote": "(0, 'error'),"
+   },
+   {
+    "file": "domain/schema/model/sql/0018-machine.sql",
+    "line": 213,
+    "quote": "(4, 'down');"
+   },
+   {
+    "file": "domain/schema/model/sql/0017-machine-cloud-instance.sql",
+    "line": 73,
+    "quote": "(4, 'provisioning error');"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q02"
+ },
+ {
+  "id": "A-Q03",
+  "type": "lookup",
+  "question": "When a machine is told to reboot, how long does the machine agent wait for the containers on it to stop, and how long after that does the actual shutdown command run?",
+  "ground_truth": "The agent waits up to 10 minutes for running containers to stop (after that it returns the error 'Timeout reached waiting for containers to shutdown' and does not go on). Once containers are gone and unit agents stopped, it schedules `shutdown -r now` (or `-h now` for a shutdown action) to run after a 15 second sleep.",
+  "key_facts": [
+   "Container wait timeout is 10 minutes.",
+   "The reboot/shutdown is scheduled with a 15 second delay (script `sleep 15`).",
+   "Reboot uses `shutdown -r now`; shutdown action uses `shutdown -h now`."
+  ],
+  "evidence": [
+   {
+    "file": "cmd/jujuagentd/reboot/reboot.go",
+    "line": 28,
+    "quote": "var timeout = 10 * time.Minute"
+   },
+   {
+    "file": "cmd/jujuagentd/reboot/reboot.go",
+    "line": 29,
+    "quote": "var rebootAfter = 15"
+   },
+   {
+    "file": "cmd/jujuagentd/reboot/rebootshim.go",
+    "line": 82,
+    "quote": "args = append(args, \"-r\")"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q03"
+ },
+ {
+  "id": "A-Q04",
+  "type": "lookup",
+  "question": "Does Juju support containers nested inside containers, i.e. a machine called 0/lxd/0/lxd/1?",
+  "ground_truth": "No. A machine name is only valid with at most two '/' separators (e.g. 0/lxd/0); a name with more fails validation with 'machine name ... has too many containers' (NotValid). The reboot logic likewise treats a grandparent machine as unsupported ('grandparent machine are not supported currently').",
+  "key_facts": [
+   "Machine name validation rejects names with more than two '/' characters.",
+   "The error text is 'machine name %q has too many containers'.",
+   "A machine with a grandparent is reported as GrandParentNotSupported when working out reboot actions."
+  ],
+  "evidence": [
+   {
+    "file": "core/machine/machine.go",
+    "line": 49,
+    "quote": "strings.Count(n.String(), \"/\") > 2"
+   },
+   {
+    "file": "core/machine/machine.go",
+    "line": 50,
+    "quote": "has too many containers"
+   },
+   {
+    "file": "domain/machine/errors/errors.go",
+    "line": 37,
+    "quote": "ConstError(\"grandparent machine are not supported currently\")"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q04"
+ },
+ {
+  "id": "A-Q05",
+  "type": "lookup",
+  "question": "How often, at most, does Juju look for machine removal jobs that have come due, and are jobs scheduled for later picked up before their time?",
+  "ground_truth": "The removal worker re-checks the removal table at least every 10 seconds (and also whenever the removal table changes). A job whose scheduled time is in the future is skipped ('not due until ...') until a check happens after that time.",
+  "key_facts": [
+   "Maximum interval between checks of the removal table is 10 seconds.",
+   "The check timer is reset after each check and after each watcher notification.",
+   "Jobs whose ScheduledFor time is still in the future are not started."
+  ],
+  "evidence": [
+   {
+    "file": "internal/worker/removal/worker.go",
+    "line": 24,
+    "quote": "const jobCheckMaxInterval = 10 * time.Second"
+   },
+   {
+    "file": "internal/worker/removal/worker.go",
+    "line": 159,
+    "quote": "not due until %s"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q05"
+ },
+ {
+  "id": "A-Q06",
+  "type": "mechanism",
+  "question": "I run `juju reprovision-machine 3` on a machine that hosts units of an application. What happens to those units - do they keep their names and agents?",
+  "ground_truth": "No. Each unit on the machine is retired (life set to dead, its password hash cleared) with a non-forced removal job scheduled for it, and a replacement unit is created on the same machine with a new ordinal taken from the application's unit sequence. The replacement starts with agent status allocating and workload status waiting with message 'waiting for machine'; some records (annotations, port ranges, resources, storage directives, etc.) are moved to the new unit.",
+  "key_facts": [
+   "Replacement units get new ordinals from the application's unit sequence, so names change.",
+   "Old units are set dead with password hash cleared and a non-forced removal job is inserted for them.",
+   "Replacement units start with agent status allocating and workload status waiting, message 'waiting for machine'."
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 419,
+    "quote": "domainapplication.ApplicationSequenceNamespace, unit.ApplicationName,"
+   },
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 295,
+    "quote": "SET    life_id = $reprovisionUnitReplacement.dead_life_id,"
+   },
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 345,
+    "quote": "INSERT INTO removal (uuid, removal_type_id, entity_uuid, force, scheduled_for)"
+   },
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 453,
+    "quote": "corestatus.MessageWaitForMachine"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q06"
+ },
+ {
+  "id": "A-Q07",
+  "type": "mechanism",
+  "question": "I ran `juju remove-machine 4` (no --force) on a machine with no units. The machine goes to dying but its record stays for a while. What is Juju waiting for, and which parts do each step?",
+  "ground_truth": "Removal moves the machine and its cloud instance to dying and schedules a machine removal job. Without force the job will not delete the machine until the instance is dead: it returns 'machine instance ... is not dead' flagged as job-incomplete and is retried quietly. The provisioner stops the cloud instance and then marks the instance dead (MarkMachinesForRemoval), and the machine agent's machiner marks the machine itself dead (EnsureDead) once no units, containers or storage remain; only then is the machine deleted.",
+  "key_facts": [
+   "RemoveMachine sets machine and machine_cloud_instance life to dying (1) and schedules a removal job.",
+   "A non-forced removal job waits (retries quietly as incomplete) until the instance life is dead.",
+   "The provisioner task stops the instance and calls MarkForRemoval, which marks the instance dead.",
+   "The machiner worker on the machine calls EnsureDead to mark the machine dead."
+  ],
+  "evidence": [
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 80,
+    "quote": "UPDATE machine_cloud_instance"
+   },
+   {
+    "file": "domain/removal/service/machine.go",
+    "line": 253,
+    "quote": "if !job.Force && l != life.Dead {"
+   },
+   {
+    "file": "internal/provisionertask/provisioner_task.go",
+    "line": 647,
+    "quote": "machine.MarkForRemoval(ctx)"
+   },
+   {
+    "file": "internal/worker/machiner/machiner.go",
+    "line": 171,
+    "quote": "mr.machine.EnsureDead(ctx)"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q07"
+ },
+ {
+  "id": "A-Q08",
+  "type": "mechanism",
+  "question": "A hook on host machine 0 calls `juju-reboot`. What do the LXD containers on that host (e.g. 0/lxd/0) do, and when is the reboot flag cleared?",
+  "ground_truth": "A machine whose parent has the reboot flag set is told to shut down (not reboot): the parent flag is checked first, and if set the answer is shutdown even if the container itself is also flagged. A machine flagged on its own (no flagged parent) is told to reboot; otherwise nothing. The reboot worker takes the machine lock and clears the flag itself right before returning the reboot/shutdown error, rather than leaving it to the agent restart code.",
+  "key_facts": [
+   "Parent machine flagged -> child gets action 'shutdown' (checked first, early exit).",
+   "Only the machine itself flagged -> 'reboot'; neither -> 'noop'.",
+   "The reboot worker clears the reboot flag before the agent reboots, to avoid a reboot loop."
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 180,
+    "quote": "early exit, no need to check current machine reboot"
+   },
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 198,
+    "quote": "return machine.ShouldShutdown, nil"
+   },
+   {
+    "file": "internal/worker/reboot/reboot.go",
+    "line": 93,
+    "quote": "r.client.ClearReboot(ctx)"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q08"
+ },
+ {
+  "id": "A-Q09",
+  "type": "mechanism",
+  "question": "After `juju reprovision-machine` succeeds, how does the provisioning side find out about the machine, and when is the 'reprovision requested' marker removed again?",
+  "ground_truth": "The reprovision transaction inserts a row in the machine_reprovision table (keyed by machine name). Changes to that table (create or update) are part of the model-machines watchers, for non-container machines, so the provisioner/instance poller wake up. The marker is deleted when a new instance ID is recorded for the machine (SetInstanceInfo / SetMachineCloudInstance with a valid instance id), and also when the machine is finally removed.",
+  "key_facts": [
+   "A row is inserted into machine_reprovision as the 'wake-up' record in the same transaction.",
+   "WatchModelMachines also filters the machine_reprovision namespace for Changed events on non-container machines.",
+   "The marker is cleared when the machine gets a new instance ID, and on machine deletion."
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 257,
+    "quote": "recording reprovision wake-up"
+   },
+   {
+    "file": "domain/machine/service/watcher.go",
+    "line": 251,
+    "quote": "s.st.NamespaceForWatchMachineReprovision(),"
+   },
+   {
+    "file": "domain/machine/state/machine_cloud_instance.go",
+    "line": 316,
+    "quote": "clearReprovisionStmt"
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 742,
+    "quote": "DELETE FROM machine_reprovision"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q09"
+ },
+ {
+  "id": "A-Q10",
+  "type": "mechanism",
+  "question": "Who is allowed to run `juju reprovision-machine`, and which model conditions make the controller refuse it before touching the machine?",
+  "ground_truth": "The caller needs write access on the model, and the model must not have the 'change' operation block enabled (disable-command). It is also refused with an error while a model migration is in progress ('model migration is in progress; cannot reprovision machine ...') or while a controller upgrade is in progress ('controller upgrade is in progress; cannot reprovision machine ...').",
+  "key_facts": [
+   "Write permission on the model is required (CanWrite checks WriteAccess).",
+   "A 'change' block (ChangeAllowed) prevents the operation.",
+   "Refused if the model is migrating or the controller is upgrading, with those messages."
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 395,
+    "quote": "mm.authorizer.CanWrite(ctx)"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 584,
+    "quote": "permission.WriteAccess"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 399,
+    "quote": "mm.check.ChangeAllowed(ctx)"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 416,
+    "quote": "model migration is in progress; cannot reprovision machine"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 428,
+    "quote": "controller upgrade is in progress; cannot reprovision machine"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q10"
+ },
+ {
+  "id": "A-Q11",
+  "type": "failure",
+  "question": "`juju reprovision-machine 3` fails with `machine \"3\" instance \"i-0abc\": machine provider instance is running`. What does it mean and what should I do?",
+  "ground_truth": "The cloud provider still reports the machine's instance as running, so Juju refuses to detach it and reprovision (reprovisioning is only for an instance that the provider says is missing or not running). Check/stop the instance or confirm it is really lost, then retry. (Before this check, the request is also refused with 'machine agent is still present' if the machine agent is connected.)",
+  "key_facts": [
+   "Error is machine provider instance is running.",
+   "Cause: provider Instances() status for the instance is Running.",
+   "Reprovisioning proceeds only if the provider reports the instance missing or not running, and the agent is not present."
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 106,
+    "quote": "providerStatus.Status == corestatus.Running"
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 107,
+    "quote": "machineerrors.MachineProviderInstanceRunning"
+   },
+   {
+    "file": "domain/machine/errors/errors.go",
+    "line": 85,
+    "quote": "ConstError(\"machine provider instance is running\")"
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 85,
+    "quote": "machineerrors.MachineAgentPresent"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q11"
+ },
+ {
+  "id": "A-Q12",
+  "type": "failure",
+  "question": "I ran `juju remove-machine 7 --no-wait` and got `--no-wait without --force not valid`. Why, and how do I fix it?",
+  "ground_truth": "`--no-wait` only makes sense together with `--force` (it skips the waiting between forced removal steps). Either add `--force` or drop `--no-wait`.",
+  "key_facts": [
+   "The command rejects --no-wait unless --force is also given.",
+   "Error text: '--no-wait without --force not valid'.",
+   "Fix: add --force or remove --no-wait."
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/machine/remove.go",
+    "line": 109,
+    "quote": "if !c.Force && c.NoWait {"
+   },
+   {
+    "file": "cmd/juju/machine/remove.go",
+    "line": 110,
+    "quote": "errors.NotValidf(\"--no-wait without --force\")"
+   },
+   {
+    "file": "cmd/juju/machine/remove_test.go",
+    "line": 158,
+    "quote": "`--no-wait without --force not valid`"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q12"
+ },
+ {
+  "id": "A-Q13",
+  "type": "failure",
+  "question": "`juju remove-machine 2` reports `removing machine failed: ... cannot set machine \"<uuid>\" to dying without force: machine has units`. Why does this happen and what are my options?",
+  "ground_truth": "Without `--force`, a machine that still hosts units (or containers - the error then ends 'machine has containers') cannot be moved to dying. Use `--force` to remove it anyway: the units and containers are then also set to dying (cascaded) and removed without a clean shutdown; `juju remove-machine --dry-run` shows what would be removed.",
+  "key_facts": [
+   "Non-forced removal fails if any alive unit is on the machine ('machine has units') or any child container ('machine has containers').",
+   "With --force the units and containers on the machine are cascaded to dying.",
+   "The CLI doc says machines running units or containers can be removed with --force, without a clean shutdown."
+  ],
+  "evidence": [
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 155,
+    "quote": "cannot set machine %q to dying without force: %w\", mUUID, removalerrors.MachineHasUnits"
+   },
+   {
+    "file": "domain/removal/errors/errors.go",
+    "line": 53,
+    "quote": "ConstError(\"machine has units\")"
+   },
+   {
+    "file": "cmd/juju/machine/remove.go",
+    "line": 56,
+    "quote": "Machines running units or containers can be removed using the"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q13"
+ },
+ {
+  "id": "A-Q14",
+  "type": "unanswerable",
+  "question": "What is the maximum number of machines a single model can hold before add-machine is refused?",
+  "ground_truth": "The documentation does not say; the code defines no limit on the number of machines in a model.",
+  "key_facts": [
+   "No machine-count limit setting or check exists."
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE 'max-machines|MaxMachines|max_machines|maxMachines' (no hits)",
+   "grep -rniE 'machine quota|MachineQuota|machines?.?(limit|quota|cap)' (no hits)",
+   "grep -rniE 'TooManyMachines|machine limit reached' (no hits)",
+   "grep -rniE 'model.?(machine|instance).?(limit|cap|quota)' (no hits)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q14"
+ },
+ {
+  "id": "A-Q15",
+  "type": "unanswerable",
+  "question": "Can I record a reason or comment with a machine reboot request, and how long is that reboot history kept?",
+  "ground_truth": "The documentation does not say; a reboot request is only a flag row (machine_requires_reboot) with a created_at time. There is no reason/comment field or reboot history in the code.",
+  "key_facts": [
+   "The reboot flag table stores only machine uuid and created_at.",
+   "No reboot reason, comment or history concept exists."
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE 'reboot_reason|RebootReason|reboot-reason' (no hits)",
+   "grep -rniE 'RebootHistory|reboot_history|reboot.?(log|history)' (no hits besides unrelated uniter TODO)",
+   "grep -rniE 'reboot.?(comment|note|message|cause|why|annotation)' (no hits)",
+   "grep -rniE 'reboot_?(note|detail|info|context)|requires_reboot.*(reason|text)' (no hits)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q15"
+ },
+ {
+  "id": "A-Q16",
+  "type": "unanswerable",
+  "question": "How many times will Juju automatically retry reprovisioning a lost machine before giving up, and what is the back-off between attempts?",
+  "ground_truth": "The documentation does not say; reprovisioning is a one-off operator-requested action with no retry count or back-off defined.",
+  "key_facts": [
+   "No reprovision attempt counter, retry limit or cooldown exists."
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE 'maxReprovision|reprovisionAttempts|reprovision_attempt|reprovisionRetries' (no hits)",
+   "grep -rniE 'reprovision.?(attempt|retry|retries|limit|max|cooldown|backoff)' (no hits)",
+   "grep -rniE 'auto-reprovision|autoReprovision|AutoReprovision|automatic.*reprovision' (no hits)",
+   "grep -rniE 'reprovision.?(count|counter|total|history|generation)' (no hits)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q16"
+ },
+ {
+  "id": "B-e44_m_lookup",
+  "type": "lookup",
+  "question": "After Juju accepts a reprovision request for a lost machine and moves it back to pending, what message does the machine's status carry, and what extra data does that status record about the old cloud instance?",
+  "ground_truth": "The machine (and its cloud instance) status is set to pending with the message \"reprovisioning requested\"; the status data holds one key, \"old-instance-id\", containing the ID of the instance that was detached.",
+  "key_facts": [
+   "status message is \"reprovisioning requested\"",
+   "machine status and instance status are both set to pending",
+   "status data contains the key \"old-instance-id\" with the detached instance ID"
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 32,
+    "quote": "const reprovisioningStatusMessage = \"reprovisioning requested\""
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 125,
+    "quote": "\"old-instance-id\": expectedInstanceID.String(),"
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 137,
+    "quote": "instanceStatusID, err := domainstatus.EncodeCloudInstanceStatus(domainstatus.InstanceStatusPending)"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_m_lookup"
+ },
+ {
+  "id": "B-e44_m_mechanism",
+  "type": "mechanism",
+  "question": "A container machine is hosted on a parent machine, and both have been flagged as needing a reboot. What action is the container told to take, and what happens if only the parent is flagged versus only the container?",
+  "ground_truth": "The container is told to shut down (not reboot) whenever its parent is flagged for reboot, regardless of its own flag, since the parent's reboot takes the container down anyway. If only the container is flagged it reboots; if neither is flagged it does nothing.",
+  "key_facts": [
+   "parent flagged -> container action is shutdown, even if the container is also flagged",
+   "only the container flagged (parent not flagged or no parent) -> reboot",
+   "neither flagged -> do nothing",
+   "the parent's flag is checked first; only a parent and no grandparent is supported"
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 180,
+    "quote": "return nil // early exit, no need to check current machine reboot, it will shutdown anyway"
+   },
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 198,
+    "quote": "return machine.ShouldShutdown, nil"
+   },
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 202,
+    "quote": "return machine.ShouldReboot, nil"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_m_mechanism"
+ },
+ {
+  "id": "B-e44_m_failure",
+  "type": "failure",
+  "question": "I removed a machine from the model and the removal keeps being retried with the error \"cannot delete machine ..., it hosts has 1 unit(s)\". What causes this, and what makes the machine deletion go through?",
+  "ground_truth": "A non-forced machine deletion counts the units on the machine's network node whose life is not dead; if any remain, it fails with this error (marked as machine-has-units and as an incomplete removal job, so it is retried). It succeeds once all units on the machine are dead/removed, or if the removal is forced, which skips the dependents check.",
+  "key_facts": [
+   "the error is raised when units hosted on the machine are not yet dead (unit life != dead)",
+   "the job is flagged as incomplete so it is retried later",
+   "forcing the removal skips the dependents check",
+   "dependents also include child containers and storage (filesystems/volumes)"
+  ],
+  "evidence": [
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 680,
+    "quote": "cannot delete machine %q, it hosts has %d unit(s)"
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 633,
+    "quote": "AND unit.life_id != 2"
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 587,
+    "quote": "return errors.Errorf(\"checking for dependents: %w\", err).Add(removalerrors.RemovalJobIncomplete)"
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 566,
+    "quote": "if !force {"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_m_failure"
+ },
+ {
+  "id": "B-e44_m_unanswerable",
+  "type": "unanswerable",
+  "question": "How many times can a single machine be reprovisioned before Juju stops trying and marks it as permanently failed?",
+  "ground_truth": "The documentation does not say: no maximum number of reprovisions, retry counter or permanent-failure state is defined; the only guard is that a reprovision request cannot be made while one already exists for the machine.",
+  "key_facts": [
+   "no reprovision count or limit is defined"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE 'maxReprovision|MaxReprovision|reprovisionAttempts|reprovision.*(limit|max)' -> no results",
+   "grep -rniE 'reprovision.*(cooldown|backoff|rate.?limit)' -> no results",
+   "grep -rniE 'reprovision.*(retries|attempt)|reprovision.*count|reprovision.*(cap|threshold|quota)' -> no results (only unrelated Capture matches)",
+   "grep -rniE 'times.*reprovision|reprovision.*times|maxMachine|max-machines|max_machines' -> no results"
+  ],
+  "cross_area": false,
+  "orig_id": "e44_m_unanswerable"
+ }
+]

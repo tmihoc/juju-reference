@@ -1,0 +1,476 @@
+[
+ {
+  "key": "storage:1",
+  "propositions": [
+   "Juju storage is a data volume",
+   "it is provided by a cloud"
+  ],
+  "verdict": "overstated",
+  "evidence": "internal/provider/common/storage.go:15",
+  "correction": "Juju storage is a block device or filesystem made available to a charm by a storage provider, which can be a cloud service (ebs) or the machine itself (loop, rootfs, tmpfs).",
+  "reference_worthy": "yes",
+  "note": "Generic providers are not cloud-provided."
+ },
+ {
+  "key": "storage:10",
+  "propositions": [
+   "<size> is the size of each volume"
+  ],
+  "verdict": "overstated",
+  "evidence": "core/storage/directive.go:20",
+  "correction": "<size> is the minimum size of each storage instance (in MiB internally; accepts M,G,T,P,E,Z,Y with optional iB/B suffix).",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "storage:13",
+  "propositions": [
+   "Default pool when none is given is the default storage pool"
+  ],
+  "verdict": "overstated",
+  "evidence": "domain/application/service/storage/directive.go:190",
+  "correction": "The default pool is the model's default for the charm's storage kind (the storage-default-block-source / storage-default-filesystem-source setting, else the provider's recommended pool such as ebs on EC2, rootfs for generic filesystem, loop for generic block).",
+  "reference_worthy": "yes",
+  "note": "Depends on kind and provider."
+ },
+ {
+  "key": "storage:14",
+  "propositions": [
+   "Default count is the charm minimum, or 1 if optional"
+  ],
+  "verdict": "wrong",
+  "evidence": "domain/application/service/storage/directive.go:158",
+  "correction": "With no directive the count defaults to the charm's count-min (0 when optional); when a directive is given without a count, the CLI parser sets 1.",
+  "reference_worthy": "yes",
+  "note": "ParseDirective sets Count=1 (directive.go:95) and it is sent as an override, replacing count-min."
+ },
+ {
+  "key": "storage:16",
+  "propositions": [
+   "With no directive, storage goes on rootfs"
+  ],
+  "verdict": "overstated",
+  "evidence": "internal/provider/common/storage.go:26",
+  "correction": "With no directive the model's default pool for the storage kind is used: rootfs for filesystem and loop for block on generic IaaS, ebs on EC2, and so on.",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "storage:24",
+  "propositions": [
+   "Pool creation requires name, provider type, attributes as key=value pairs",
+   "Example attributes are tags, size, path"
+  ],
+  "verdict": "overstated",
+  "evidence": "cmd/juju/storage/poolcreate.go:121",
+  "correction": "Pool creation takes <name> <provider> [<key>=<value> ...]; valid attributes are provider-specific (for example volume-type, iops, encrypted for ebs) and 'name' and 'type' are reserved.",
+  "reference_worthy": "yes",
+  "note": "tags, size, path are not attributes of the common providers."
+ },
+ {
+  "key": "storage:26",
+  "propositions": [
+   "loop, rootfs and tmpfs are available on all clouds"
+  ],
+  "verdict": "overstated",
+  "evidence": "internal/provider/kubernetes/storage.go:110",
+  "correction": "loop, rootfs and tmpfs are available on all machine (IaaS) clouds; Kubernetes models offer kubernetes, rootfs and tmpfs, and reject loop.",
+  "reference_worthy": "yes",
+  "note": "loop ValidateForK8s returns NotValid (loop.go:~45)."
+ },
+ {
+  "key": "ssh-key:8",
+  "propositions": [
+   "The user's key must be in the model",
+   "The user needs admin on the model"
+  ],
+  "verdict": "overstated",
+  "evidence": "domain/access/service/permission.go:158",
+  "correction": "The key must be in the model and the user needs model admin access or controller superuser access.",
+  "reference_worthy": "yes",
+  "note": "Superuser also qualifies (permission.go:175; sshclient/facade.go:93)."
+ },
+ {
+  "key": "constraint:2",
+  "propositions": [
+   "For bare metal/VM, a constraint is a minimum",
+   "For system containers/k8s containers it is a maximum"
+  ],
+  "verdict": "overstated",
+  "evidence": "internal/container/lxd/container.go:59",
+  "correction": "Constraints are minimums when selecting machines or instance types (cores, mem, root-disk), and become limits for LXD containers (limits.cpu, limits.memory) and for Kubernetes pods, where Juju sets both requests and limits.",
+  "reference_worthy": "yes",
+  "note": "core/constraints/constraints.go:61-72 says 'at least'. internal/provider/kubernetes/application/constraints.go:335-340 sets both Requests and Limits, so k8s is not only a maximum. LXD VMs also get limits."
+ },
+ {
+  "key": "constraint:7",
+  "propositions": [
+   "allocate-public-ip takes true/false",
+   "It decides whether machines get an IP reachable outside the cloud network",
+   "It applies to GCE, EC2, Azure and OpenStack"
+  ],
+  "verdict": "overstated",
+  "evidence": "internal/provider/oci/environ.go:570",
+  "correction": "It is honoured by GCE, Azure, OCI, OpenStack and EC2 (EC2 only acts on false, and its validator lists the constraint as unsupported so a warning is issued); it is unsupported on MAAS, LXD, vSphere, Kubernetes and unmanaged.",
+  "reference_worthy": "yes",
+  "note": "ec2/environ.go:270 lists AllocatePublicIP in unsupportedConstraints yet ec2/environ.go:752-756 uses it. OCI also supports it, so the provider list omits OCI."
+ },
+ {
+  "key": "constraint:8",
+  "propositions": [
+   "Public cloud instances get a public IP by default"
+  ],
+  "verdict": "overstated",
+  "evidence": "internal/provider/azure/environ.go:763",
+  "correction": "GCE, Azure and OCI default to allocating a public IP; OpenStack allocates a floating IP only when the constraint is true; EC2 follows the subnet's setting.",
+  "reference_worthy": "maybe",
+  "note": "core/constraints/constraints.go:115-118: nil or true means allocate. openstack/provider.go:1383-1386 withPublicIP defaults to false."
+ },
+ {
+  "key": "constraint:9",
+  "propositions": [
+   "arch valid values are amd64, arm64, ppc64el, s390x, riscv64"
+  ],
+  "verdict": "overstated",
+  "evidence": "core/arch/arches.go:62",
+  "correction": "Juju recognises those five architectures, but each provider restricts the vocabulary (EC2, Azure, OCI: amd64 and arm64; vSphere: amd64; LXD and MAAS: whatever the server reports).",
+  "reference_worthy": "yes",
+  "note": "Provider vocabularies in ec2/environ.go:277, azure/environ.go:471, vsphere/environ_policy.go:96, oci/environ.go:331."
+ },
+ {
+  "key": "constraint:12",
+  "propositions": [
+   "cpu-power is an integer",
+   "100 units equals roughly a 2007-era Xeon, as reflected by 1 Amazon vCPU"
+  ],
+  "verdict": "overstated",
+  "evidence": "core/constraints/constraints.go:65-67",
+  "correction": "cpu-power is an integer where 100 is equivalent to 1 Amazon ECU, roughly a single 2007-era Xeon.",
+  "reference_worthy": "yes",
+  "note": "Code comment says ECU, not vCPU. EC2 defaults cpu-power to 100 (ec2/image.go:78)."
+ },
+ {
+  "key": "constraint:16",
+  "propositions": [
+   "With juju deploy, image-id must be used with --base",
+   "--base specifies the OS of the image"
+  ],
+  "verdict": "overstated",
+  "evidence": "core/charm/baseselector.go:100",
+  "correction": "When image-id is used, a base must be given explicitly, either with --base or as an explicitly configured default-base; for bundles an explicit base or default base is required.",
+  "reference_worthy": "yes",
+  "note": "Error: 'base must be explicitly provided when image-id constraint is used'. Check applies to model constraints too (deployer.go:315, bundle.go:160-168)."
+ },
+ {
+  "key": "constraint:18",
+  "propositions": [
+   "Currently only AWS (instance profiles) and Azure (managed identities, from 3.6) support it"
+  ],
+  "verdict": "wrong",
+  "evidence": "internal/provider/gce/identity.go:17",
+  "correction": "AWS (instance profiles), Azure (managed identities) and GCE (service accounts) support instance-role.",
+  "reference_worthy": "yes",
+  "note": "gce/environ_broker.go:188-189 uses the constraint as the service account. The 3.6 start date is unverifiable here."
+ },
+ {
+  "key": "constraint:20",
+  "propositions": [
+   "ip-family values: ipv4, ipv6, dual",
+   "ipv6-only is not supported by any provider",
+   "Details per cloud"
+  ],
+  "verdict": "overstated",
+  "evidence": "internal/provider/azure/environ.go:512",
+  "correction": "The parser accepts ipv4, ipv6 and dual, but only Azure honours the constraint (ipv4 and dual); every other provider lists it as unsupported and ignores it with a warning.",
+  "reference_worthy": "yes",
+  "note": "Azure vocabulary excludes ipv6 so the ipv6-only statement holds. core/network/ipfamily/ipfamily.go."
+ },
+ {
+  "key": "constraint:21",
+  "propositions": [
+   "Optional M/G/T/P suffix means mega/giga/tera/peta bytes"
+  ],
+  "verdict": "overstated",
+  "evidence": "core/constraints/constraints.go:914",
+  "correction": "Suffixes M, G, T, P multiply by powers of 1024 (G = 1024 M), so they denote binary units (MiB, GiB, TiB, PiB); no suffix means MiB.",
+  "reference_worthy": "yes",
+  "note": "mbSuffixes map. Float values are accepted and rounded up (parseSize:868)."
+ },
+ {
+  "key": "constraint:27",
+  "propositions": [
+   "Spaces can be positive or negative with ^ prefix",
+   "The example is valid and means in storage and db but not logging/public",
+   "Only EC2 and MAAS support spaces"
+  ],
+  "verdict": "wrong",
+  "evidence": "internal/provider/azure/environ_network.go:24",
+  "correction": "Space constraints are resolved for any provider whose SupportsSpaces is true (EC2, MAAS, Azure, GCE, OpenStack, LXD, unmanaged); Kubernetes and OCI do not support spaces.",
+  "reference_worthy": "yes",
+  "note": "Syntax and ^ prefix hold (constraints.go:207-250). Azure, OpenStack and LXD consume SubnetsToZones/SpaceSubnets (azure/environ_network.go:429, openstack/provider.go:1485, lxd/environ_broker.go)."
+ },
+ {
+  "key": "constraint:28",
+  "propositions": [
+   "tags is a comma-delimited list of tags on the machine"
+  ],
+  "verdict": "overstated",
+  "evidence": "internal/provider/maas/constraints.go:60",
+  "correction": "tags are comma-delimited labels honoured by MAAS (machine tags) and Kubernetes (affinity labels, key=value form); other providers do not support them.",
+  "reference_worthy": "yes",
+  "note": "core/constraints/constraints.go:764."
+ },
+ {
+  "key": "constraint:29",
+  "propositions": [
+   "Tags can be negative with ^",
+   "Example tags=virtual,^dualnic is valid",
+   "Supported by MAAS and Kubernetes for pod affinity"
+  ],
+  "verdict": "overstated",
+  "evidence": "internal/provider/kubernetes/application/constraints.go:72",
+  "correction": "MAAS honours ^ negation; on Kubernetes tags must be key=value pairs (optionally prefixed pod., anti-pod. or node.) and become node, pod affinity or anti-affinity, so the example tags=virtual,^dualnic is a MAAS form only.",
+  "reference_worthy": "yes",
+  "note": "kubernetes/application/constraints.go:75-84 rejects entries without exactly one '='."
+ },
+ {
+  "key": "constraint:30",
+  "propositions": [
+   "virt-type is the virtualisation type",
+   "Only LXD and OpenStack support it"
+  ],
+  "verdict": "wrong",
+  "evidence": "internal/provider/maas/constraints.go:36",
+  "correction": "virt-type is accepted by LXD (container, virtual-machine), OpenStack (kvm, lxd) and MAAS (virtual-machine); EC2, GCE, Azure, vSphere, OCI and Kubernetes list it as unsupported.",
+  "reference_worthy": "yes",
+  "note": "MAAS registers a VirtType vocabulary and does not list it unsupported."
+ },
+ {
+  "key": "space:5",
+  "propositions": [
+   "A binding restricts the endpoint's traffic to the space's subnets"
+  ],
+  "verdict": "overstated",
+  "evidence": "domain/network/state/unitinfo.go:77",
+  "correction": "A binding selects which space's addresses an endpoint uses (network-get / relation data) and which subnets a machine is placed in; Juju does not enforce traffic restrictions.",
+  "reference_worthy": "yes",
+  "note": "GetUnitEndpointNetworkInfo returns endpoint addresses by bound space."
+ },
+ {
+  "key": "user:1",
+  "propositions": [
+   "A user is a person who can log in to a controller"
+  ],
+  "verdict": "overstated",
+  "evidence": "domain/access/service/permission.go:175",
+  "correction": "A Juju user is an identity (local, or external such as everyone@external) that can authenticate to a controller; it need not be a person.",
+  "reference_worthy": "yes",
+  "note": "Users table also holds external users and service-style users like juju-metrics."
+ },
+ {
+  "key": "user:3",
+  "propositions": [
+   "Login uses username and password"
+  ],
+  "verdict": "overstated",
+  "evidence": "cmd/juju/user/login.go:427",
+  "correction": "Users log in with a username and password, or with macaroon/external identity or JWT-based credentials.",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "user:4",
+  "propositions": [
+   "Bootstrap creates user named admin",
+   "Admin is prompted to create a password when first attempting to log out"
+  ],
+  "verdict": "wrong",
+  "evidence": "cmd/juju/user/logout.go:122",
+  "correction": "The bootstrap user is named admin and gets a random password stored in the client; logout fails with a 'preventing account loss' error until the password is changed with juju change-user-password (or --force is used), without any prompt.",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "user:6",
+  "propositions": [
+   "Every user has an access level"
+  ],
+  "verdict": "overstated",
+  "evidence": "core/permission/access.go:35",
+  "correction": "Every user normally holds a controller access level (login or superuser) but access can be NoAccess after revoke.",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "user:8",
+  "propositions": [
+   "add-user default is controller login",
+   "Login level allows only register and login"
+  ],
+  "verdict": "overstated",
+  "evidence": "apiserver/facades/client/usermanager/usermanager.go:166",
+  "correction": "A user added with add-user has controller login access; this lets them log in and do things permitted without extra grants (e.g. change own password, see models/offers they are granted), but nothing on models until granted.",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "user:12",
+  "propositions": [
+   "Superuser is granted automatically at bootstrap",
+   "Username admin confers it"
+  ],
+  "verdict": "overstated",
+  "evidence": "agent/agentbootstrap/bootstrap.go:206",
+  "correction": "Bootstrap grants superuser to the bootstrap user (named admin); the username admin itself has no special effect, and other users get superuser via juju grant.",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "user:17",
+  "propositions": [
+   "Cloud add-model access lets a user grant model-level permissions"
+  ],
+  "verdict": "wrong",
+  "evidence": "cmd/juju/model/grantrevokecloud.go:33",
+  "correction": "Cloud add-model access lets a user add models on that cloud; model permissions are granted with juju grant by a model admin or superuser.",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "action:5",
+  "propositions": [
+   "CLI blocks and waits by default"
+  ],
+  "verdict": "overstated",
+  "evidence": "cmd/juju/action/common.go:105",
+  "correction": "juju run blocks by default for up to 60 seconds (juju exec 5 minutes), unless --background or --wait is given.",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "action:6",
+  "propositions": [
+   "Synchronous behaviour suits pipelines"
+  ],
+  "verdict": "overstated",
+  "evidence": "cmd/juju/action/common.go:105",
+  "correction": "Waiting is bounded by the default timeout, so long actions return before completion in pipelines unless --wait is set.",
+  "reference_worthy": "maybe",
+  "note": ""
+ },
+ {
+  "key": "action:7",
+  "propositions": [
+   "Progress messages are shown on the terminal"
+  ],
+  "verdict": "overstated",
+  "evidence": "cmd/juju/action/common.go:271",
+  "correction": "Progress messages are streamed only when a single task is running.",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "action:17",
+  "propositions": [
+   "Generic env vars plus action-specific ones",
+   "Two action-specific variables listed"
+  ],
+  "verdict": "overstated",
+  "evidence": "internal/worker/uniter/runner/context/context.go:1461",
+  "correction": "Action-specific variables are JUJU_ACTION_NAME, JUJU_ACTION_UUID and JUJU_ACTION_TAG.",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "application:4",
+  "propositions": [
+   "Application lives in one model",
+   "Application consists of one or more units"
+  ],
+  "verdict": "overstated",
+  "evidence": null,
+  "correction": "An application lives in one model and may have zero or more units (scale can be 0).",
+  "reference_worthy": "yes",
+  "note": "Applications can be scaled to zero units; not exhaustively confirmed in code."
+ },
+ {
+  "key": "unit:1",
+  "propositions": [
+   "A unit is a deployed charm"
+  ],
+  "verdict": "overstated",
+  "evidence": null,
+  "correction": "A unit is one instance of an application's charm, running on a machine or in a pod.",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "unit:2",
+  "propositions": [
+   "Units occupy machines"
+  ],
+  "verdict": "overstated",
+  "evidence": "domain/deployment/charm/meta.go:307",
+  "correction": "Units run on machines on machine clouds and in pods on Kubernetes.",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "unit:5",
+  "propositions": [
+   "Unit name is <application>/<number>",
+   "The leader keyword is a unit ID in the name"
+  ],
+  "verdict": "wrong",
+  "evidence": "core/unit/name.go:33",
+  "correction": "A unit name is <application>/<number>; the <application>/leader form is accepted only as a command-line target, not as the unit's name.",
+  "reference_worthy": "yes",
+  "note": "Name regexp allows only numbers; leader appears in ssh/run help (cmd/juju/ssh/ssh.go:40, cmd/juju/action/run.go:69)."
+ },
+ {
+  "key": "unit:6",
+  "propositions": [
+   "mysql/0 is valid",
+   "mysql/leader is a unit name"
+  ],
+  "verdict": "overstated",
+  "evidence": "core/unit/name.go:38",
+  "correction": "mysql/0 is a unit name; mysql/leader is a command-line target alias.",
+  "reference_worthy": "yes",
+  "note": ""
+ },
+ {
+  "key": "unit:8",
+  "propositions": [
+   "Leader is authoritative source for application status and configuration"
+  ],
+  "verdict": "overstated",
+  "evidence": null,
+  "correction": "The leader holds the application-level lease and may set application status and application relation data; user config is shared by all units.",
+  "reference_worthy": "yes",
+  "note": "Not directly confirmed in what was searched; contradicts unit:9 claim that config is shared."
+ },
+ {
+  "key": "unit:9",
+  "propositions": [
+   "Units share charm, relations, config",
+   "Leader manages the application lifecycle"
+  ],
+  "verdict": "overstated",
+  "evidence": null,
+  "correction": "All units share charm, relations and config; the leader may write application-level data and charms typically use it for coordination, but Juju does not give it lifecycle management.",
+  "reference_worthy": "maybe",
+  "note": ""
+ },
+ {
+  "key": "offer:2",
+  "propositions": [
+   "Consume validates permission and creates a local proxy application, then integrates"
+  ],
+  "verdict": "overstated",
+  "evidence": "domain/crossmodelrelation/state/model/remoteapplication.go:1373",
+  "correction": "Consuming creates a local remote-application proxy after a permission check, and integrate is a separate relation step.",
+  "reference_worthy": "yes",
+  "note": "Proxy creation confirmed; the permission check wasn't traced fully."
+ }
+]

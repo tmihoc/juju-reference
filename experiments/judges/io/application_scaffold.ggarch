@@ -1,0 +1,532 @@
+model "Schema" {
+
+  nodes {
+    application [type: record, label: "application",
+                 ground: "model:application"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        life_id [label: "life_id", type: "int", fk: true]
+        charm_uuid [label: "charm_uuid", type: "text", fk: true]
+        charm_modified_version [label: "charm_modified_version", type: "int"]
+        charm_upgrade_on_error [label: "charm_upgrade_on_error", type: "bool", null: true]
+        space_uuid [label: "space_uuid", type: "text", fk: true]
+      }
+    }
+
+    application_agent [type: record, label: "application_agent",
+                 ground: "model:application_agent"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", pk: true, fk: true]
+        password_hash_algorithm_id [label: "password_hash_algorithm_id", type: "text", fk: true, null: true]
+        password_hash [label: "password_hash", type: "text", null: true]
+      }
+    }
+
+    application_channel [type: record, label: "application_channel",
+                 ground: "model:application_channel"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", fk: true]
+        track [label: "track", type: "text", null: true]
+        risk [label: "risk", type: "text"]
+        branch [label: "branch", type: "text", null: true]
+      }
+    }
+
+    application_config [type: record, label: "application_config",
+                 ground: "model:application_config"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", fk: true]
+        type_id [label: "type_id", type: "int", fk: true]
+        value [label: "value", type: "text", null: true]
+      }
+    }
+
+    application_config_hash [type: record, label: "application_config_hash",
+                 ground: "model:application_config_hash"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", pk: true, fk: true]
+        sha256 [label: "sha256", type: "text"]
+      }
+    }
+
+    application_constraint [type: record, label: "application_constraint",
+                 ground: "model:application_constraint"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", pk: true, fk: true]
+        constraint_uuid [label: "constraint_uuid", type: "text", null: true]
+      }
+    }
+
+    application_controller [type: record, label: "application_controller",
+                 ground: "model:application_controller"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", pk: true, fk: true]
+      }
+    }
+
+    application_endpoint [type: record, label: "application_endpoint",
+                 ground: "model:application_endpoint"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        application_uuid [label: "application_uuid", type: "text", fk: true]
+        space_uuid [label: "space_uuid", type: "text", fk: true, null: true]
+        charm_relation_uuid [label: "charm_relation_uuid", type: "text", fk: true]
+      }
+    }
+
+    application_exposed_endpoint_cidr [type: record, label: "application_exposed_endpoint_cidr",
+                 ground: "model:application_exposed_endpoint_cidr"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", fk: true]
+        application_endpoint_uuid [label: "application_endpoint_uuid", type: "text", fk: true, null: true]
+        cidr [label: "cidr", type: "text"]
+      }
+    }
+
+    application_exposed_endpoint_space [type: record, label: "application_exposed_endpoint_space",
+                 ground: "model:application_exposed_endpoint_space"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", fk: true]
+        application_endpoint_uuid [label: "application_endpoint_uuid", type: "text", fk: true, null: true]
+        space_uuid [label: "space_uuid", type: "text", fk: true]
+      }
+    }
+
+    application_extra_endpoint [type: record, label: "application_extra_endpoint",
+                 ground: "model:application_extra_endpoint"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", fk: true]
+        space_uuid [label: "space_uuid", type: "text", fk: true, null: true]
+        charm_extra_binding_uuid [label: "charm_extra_binding_uuid", type: "text", fk: true]
+      }
+    }
+
+    application_k8s_resources_managed [type: record, label: "application_k8s_resources_managed",
+                 ground: "model:application_k8s_resources_managed"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", pk: true, fk: true]
+      }
+    }
+
+    application_platform [type: record, label: "application_platform",
+                 ground: "model:application_platform"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", pk: true, fk: true]
+        os_id [label: "os_id", type: "text", fk: true]
+        channel [label: "channel", type: "text", null: true]
+        architecture_id [label: "architecture_id", type: "int", fk: true]
+      }
+    }
+
+    application_remote_consumer [type: record, label: "application_remote_consumer",
+                 ground: "model:application_remote_consumer"] {
+      fields {
+        offer_connection_uuid [label: "offer_connection_uuid", type: "text", pk: true, fk: true]
+        offerer_application_uuid [label: "offerer_application_uuid", type: "text", fk: true]
+        consumer_application_uuid [label: "consumer_application_uuid", type: "text"]
+        consumer_model_uuid [label: "consumer_model_uuid", type: "text"]
+        life_id [label: "life_id", type: "int", fk: true]
+      }
+    }
+
+    application_remote_offerer [type: record, label: "application_remote_offerer",
+                 ground: "model:application_remote_offerer"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        life_id [label: "life_id", type: "int", fk: true]
+        application_uuid [label: "application_uuid", type: "text", fk: true]
+        offer_uuid [label: "offer_uuid", type: "text"]
+        offer_url [label: "offer_url", type: "text"]
+        offerer_controller_uuid [label: "offerer_controller_uuid", type: "text", null: true]
+        offerer_model_uuid [label: "offerer_model_uuid", type: "text"]
+        macaroon [label: "macaroon", type: "text"]
+      }
+    }
+
+    application_remote_offerer_relation_macaroon [type: record, label: "application_remote_offerer_relation_macaroon",
+                 ground: "model:application_remote_offerer_relation_macaroon"] {
+      fields {
+        relation_uuid [label: "relation_uuid", type: "text", pk: true, fk: true]
+        macaroon [label: "macaroon", type: "text"]
+      }
+    }
+
+    application_remote_offerer_status [type: record, label: "application_remote_offerer_status",
+                 ground: "model:application_remote_offerer_status"] {
+      fields {
+        application_remote_offerer_uuid [label: "application_remote_offerer_uuid", type: "text", pk: true, fk: true]
+        status_id [label: "status_id", type: "int", fk: true]
+        message [label: "message", type: "text", null: true]
+        data [label: "data", type: "text", null: true]
+        updated_at [label: "updated_at", type: "datetime", null: true]
+      }
+    }
+
+    application_resource [type: record, label: "application_resource",
+                 ground: "model:application_resource"] {
+      fields {
+        resource_uuid [label: "resource_uuid", type: "text", pk: true, fk: true]
+        application_uuid [label: "application_uuid", type: "text", fk: true]
+      }
+    }
+
+    application_scale [type: record, label: "application_scale",
+                 ground: "model:application_scale"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", pk: true, fk: true]
+        scale [label: "scale", type: "int", null: true]
+        scale_target [label: "scale_target", type: "int", null: true]
+        scaling [label: "scaling", type: "bool", null: true]
+        start_ordinal [label: "start_ordinal", type: "int"]
+      }
+    }
+
+    application_setting [type: record, label: "application_setting",
+                 ground: "model:application_setting"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", pk: true, fk: true]
+        trust [label: "trust", type: "bool", null: true]
+      }
+    }
+
+    application_status [type: record, label: "application_status",
+                 ground: "model:application_status"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", pk: true, fk: true]
+        status_id [label: "status_id", type: "int", fk: true]
+        message [label: "message", type: "text", null: true]
+        data [label: "data", type: "text", null: true]
+        updated_at [label: "updated_at", type: "datetime", null: true]
+      }
+    }
+
+    application_storage_directive [type: record, label: "application_storage_directive",
+                 ground: "model:application_storage_directive"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", fk: true]
+        charm_uuid [label: "charm_uuid", type: "text"]
+        storage_name [label: "storage_name", type: "text"]
+        storage_pool_uuid [label: "storage_pool_uuid", type: "text", fk: true]
+        size_mib [label: "size_mib", type: "int"]
+        count [label: "count", type: "int"]
+      }
+    }
+
+    application_workload_version [type: record, label: "application_workload_version",
+                 ground: "model:application_workload_version"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", pk: true, fk: true]
+        version [label: "version", type: "text"]
+      }
+    }
+
+    architecture [type: record, label: "architecture",
+                 ground: "model:architecture"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    charm [type: record, label: "charm",
+                 ground: "model:charm"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        archive_path [label: "archive_path", type: "text", null: true]
+        object_store_uuid [label: "object_store_uuid", type: "text", fk: true, null: true]
+        available [label: "available", type: "bool", null: true]
+        version [label: "version", type: "text", null: true]
+        lxd_profile [label: "lxd_profile", type: "text", null: true]
+        source_id [label: "source_id", type: "int", fk: true]
+        revision [label: "revision", type: "int"]
+        architecture_id [label: "architecture_id", type: "int", fk: true, null: true]
+        reference_name [label: "reference_name", type: "text"]
+        create_time [label: "create_time", type: "datetime"]
+      }
+    }
+
+    charm_config_type [type: record, label: "charm_config_type",
+                 ground: "model:charm_config_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    charm_extra_binding [type: record, label: "charm_extra_binding",
+                 ground: "model:charm_extra_binding"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        charm_uuid [label: "charm_uuid", type: "text", fk: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    charm_relation [type: record, label: "charm_relation",
+                 ground: "model:charm_relation"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        charm_uuid [label: "charm_uuid", type: "text", fk: true]
+        name [label: "name", type: "text"]
+        role_id [label: "role_id", type: "int", fk: true]
+        scope_id [label: "scope_id", type: "int", fk: true]
+        interface [label: "interface", type: "text", null: true]
+        optional [label: "optional", type: "bool", null: true]
+        capacity [label: "capacity", type: "int", null: true]
+      }
+    }
+
+    charm_relation_role [type: record, label: "charm_relation_role",
+                 ground: "model:charm_relation_role"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    charm_relation_scope [type: record, label: "charm_relation_scope",
+                 ground: "model:charm_relation_scope"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    charm_source [type: record, label: "charm_source",
+                 ground: "model:charm_source"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    device_constraint [type: record, label: "device_constraint",
+                 ground: "model:device_constraint"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        application_uuid [label: "application_uuid", type: "text", fk: true]
+        name [label: "name", type: "text"]
+        type [label: "type", type: "text"]
+        count [label: "count", type: "int", null: true]
+      }
+    }
+
+    device_constraint_attribute [type: record, label: "device_constraint_attribute",
+                 ground: "model:device_constraint_attribute"] {
+      fields {
+        device_constraint_uuid [label: "device_constraint_uuid", type: "text", fk: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    life [type: record, label: "life",
+                 ground: "model:life"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    object_store_metadata [type: record, label: "object_store_metadata",
+                 ground: "model:object_store_metadata"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        sha_256 [label: "sha_256", type: "text"]
+        sha_384 [label: "sha_384", type: "text"]
+        size [label: "size", type: "int"]
+      }
+    }
+
+    offer [type: record, label: "offer",
+                 ground: "model:offer"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        description [label: "description", type: "text", null: true]
+      }
+    }
+
+    offer_connection [type: record, label: "offer_connection",
+                 ground: "model:offer_connection"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        offer_uuid [label: "offer_uuid", type: "text", fk: true]
+        remote_relation_uuid [label: "remote_relation_uuid", type: "text", fk: true]
+        username [label: "username", type: "text"]
+      }
+    }
+
+    operator_status [type: record, label: "operator_status",
+                 ground: "model:operator_status"] {
+      fields {
+        application_uuid [label: "application_uuid", type: "text", pk: true, fk: true]
+        status_id [label: "status_id", type: "int", fk: true]
+        message [label: "message", type: "text", null: true]
+        data [label: "data", type: "text", null: true]
+        updated_at [label: "updated_at", type: "datetime", null: true]
+      }
+    }
+
+    os [type: record, label: "os",
+                 ground: "model:os"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    password_hash_algorithm [type: record, label: "password_hash_algorithm",
+                 ground: "model:password_hash_algorithm"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    relation [type: record, label: "relation",
+                 ground: "model:relation"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        life_id [label: "life_id", type: "int", fk: true]
+        relation_id [label: "relation_id", type: "int"]
+        suspended [label: "suspended", type: "bool", null: true]
+        suspended_reason [label: "suspended_reason", type: "text", null: true]
+        scope_id [label: "scope_id", type: "int", fk: true]
+      }
+    }
+
+    resource [type: record, label: "resource",
+                 ground: "model:resource"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        charm_uuid [label: "charm_uuid", type: "text"]
+        charm_resource_name [label: "charm_resource_name", type: "text"]
+        revision [label: "revision", type: "int", null: true]
+        origin_type_id [label: "origin_type_id", type: "int", fk: true]
+        state_id [label: "state_id", type: "int", fk: true]
+        created_at [label: "created_at", type: "timestamp"]
+        last_polled [label: "last_polled", type: "timestamp", null: true]
+      }
+    }
+
+    resource_origin_type [type: record, label: "resource_origin_type",
+                 ground: "model:resource_origin_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    resource_state [type: record, label: "resource_state",
+                 ground: "model:resource_state"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    space [type: record, label: "space",
+                 ground: "model:space"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    storage_pool [type: record, label: "storage_pool",
+                 ground: "model:storage_pool"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        type [label: "type", type: "text"]
+        origin_id [label: "origin_id", type: "int", fk: true]
+      }
+    }
+
+    storage_pool_origin [type: record, label: "storage_pool_origin",
+                 ground: "model:storage_pool_origin"] {
+      fields {
+        id [label: "id", type: "int", pk: true]
+        origin [label: "origin", type: "text"]
+      }
+    }
+
+    workload_status_value [type: record, label: "workload_status_value",
+                 ground: "model:workload_status_value"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        status [label: "status", type: "text"]
+      }
+    }
+
+  }
+
+  edges {
+    application.life_id -> life.id [type: data]
+    application.charm_uuid -> charm.uuid [type: data]
+    application.space_uuid -> space.uuid [type: data]
+    application_agent.application_uuid -> application.uuid [type: data]
+    application_agent.password_hash_algorithm_id -> password_hash_algorithm.id [type: data]
+    application_channel.application_uuid -> application.uuid [type: data]
+    application_config.application_uuid -> application.uuid [type: data]
+    application_config.type_id -> charm_config_type.id [type: data]
+    application_config_hash.application_uuid -> application.uuid [type: data]
+    application_constraint.application_uuid -> application.uuid [type: data]
+    application_controller.application_uuid -> application.uuid [type: data]
+    application_endpoint.application_uuid -> application.uuid [type: data]
+    application_endpoint.space_uuid -> space.uuid [type: data]
+    application_endpoint.charm_relation_uuid -> charm_relation.uuid [type: data]
+    application_exposed_endpoint_cidr.application_uuid -> application.uuid [type: data]
+    application_exposed_endpoint_cidr.application_endpoint_uuid -> application_endpoint.uuid [type: data]
+    application_exposed_endpoint_space.application_uuid -> application.uuid [type: data]
+    application_exposed_endpoint_space.application_endpoint_uuid -> application_endpoint.uuid [type: data]
+    application_exposed_endpoint_space.space_uuid -> space.uuid [type: data]
+    application_extra_endpoint.application_uuid -> application.uuid [type: data]
+    application_extra_endpoint.space_uuid -> space.uuid [type: data]
+    application_extra_endpoint.charm_extra_binding_uuid -> charm_extra_binding.uuid [type: data]
+    application_k8s_resources_managed.application_uuid -> application.uuid [type: data]
+    application_platform.application_uuid -> application.uuid [type: data]
+    application_platform.os_id -> os.id [type: data]
+    application_platform.architecture_id -> architecture.id [type: data]
+    application_remote_consumer.life_id -> life.id [type: data]
+    application_remote_consumer.offerer_application_uuid -> application.uuid [type: data]
+    application_remote_consumer.offer_connection_uuid -> application.uuid [type: data]
+    application_remote_consumer.offer_connection_uuid -> offer_connection.uuid [type: data]
+    application_remote_offerer.application_uuid -> application.uuid [type: data]
+    application_remote_offerer.life_id -> life.id [type: data]
+    application_remote_offerer_relation_macaroon.relation_uuid -> relation.uuid [type: data]
+    application_remote_offerer_status.application_remote_offerer_uuid -> application_remote_offerer.uuid [type: data]
+    application_remote_offerer_status.status_id -> workload_status_value.id [type: data]
+    application_resource.application_uuid -> application.uuid [type: data]
+    application_resource.resource_uuid -> resource.uuid [type: data]
+    application_scale.application_uuid -> application.uuid [type: data]
+    application_setting.application_uuid -> application.uuid [type: data]
+    application_status.application_uuid -> application.uuid [type: data]
+    application_status.status_id -> workload_status_value.id [type: data]
+    application_storage_directive.application_uuid -> application.uuid [type: data]
+    application_storage_directive.storage_pool_uuid -> storage_pool.uuid [type: data]
+    application_workload_version.application_uuid -> application.uuid [type: data]
+    charm.source_id -> charm_source.id [type: data]
+    charm.architecture_id -> architecture.id [type: data]
+    charm.object_store_uuid -> object_store_metadata.uuid [type: data]
+    charm_extra_binding.charm_uuid -> charm.uuid [type: data]
+    charm_relation.charm_uuid -> charm.uuid [type: data]
+    charm_relation.role_id -> charm_relation_role.id [type: data]
+    charm_relation.scope_id -> charm_relation_scope.id [type: data]
+    device_constraint.application_uuid -> application.uuid [type: data]
+    device_constraint_attribute.device_constraint_uuid -> device_constraint.uuid [type: data]
+    offer_connection.offer_uuid -> offer.uuid [type: data]
+    offer_connection.remote_relation_uuid -> relation.uuid [type: data]
+    operator_status.application_uuid -> application.uuid [type: data]
+    operator_status.status_id -> workload_status_value.id [type: data]
+    relation.life_id -> life.id [type: data]
+    relation.scope_id -> charm_relation_scope.id [type: data]
+    resource.origin_type_id -> resource_origin_type.id [type: data]
+    resource.state_id -> resource_state.id [type: data]
+    storage_pool.origin_id -> storage_pool_origin.id [type: data]
+  }
+
+  style { extends: juju }
+
+}

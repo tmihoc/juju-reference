@@ -1,0 +1,17 @@
+[
+{"id":1,"verdict":"partly","artifact":"cli","evidence":"cmd/juju/machine/add.go:179","residue_kind":null,"note":"add-machine provisions explicitly; implicit via deploy/add-unit placement"},
+{"id":2,"verdict":"not_derivable","artifact":null,"evidence":null,"residue_kind":"guidance","note":"usual deployment pattern"},
+{"id":3,"verdict":"partly","artifact":"cli","evidence":"cmd/juju/application/addunit.go:111","residue_kind":null,"note":"placement of units on existing machines allowed; optimisation is rationale"},
+{"id":4,"verdict":"partly","artifact":"validator","evidence":"core/instance/placement.go:56","residue_kind":null,"note":"container ids validated as machine ids; same placement path"},
+{"id":5,"verdict":"partly","artifact":"validator","evidence":"core/instance/placement.go:56","residue_kind":null,"note":"container scope takes machine-id like machine scope"},
+{"id":6,"verdict":"not_derivable","artifact":null,"evidence":null,"residue_kind":"example","note":"sample CLI output"},
+{"id":7,"verdict":"not_derivable","artifact":null,"evidence":null,"residue_kind":"guidance","note":"general observation"},
+{"id":8,"verdict":"derivable","artifact":"validator","evidence":"core/instance/placement.go:49","residue_kind":null,"note":"ParsePlacement: machine id vs container scope vs new"},
+{"id":9,"verdict":"derivable","artifact":"cli","evidence":"cmd/juju/application/addunit.go:111","residue_kind":null,"note":"placement split on comma"},
+{"id":10,"verdict":"not_derivable","artifact":null,"evidence":null,"residue_kind":"example","note":"introduces examples"},
+{"id":11,"verdict":"derivable","artifact":"service-operation","evidence":"domain/application/service/application.go:82","residue_kind":null,"note":"constraints passed at machine creation"},
+{"id":12,"verdict":"partly","artifact":"other","evidence":"core/base/base.go:23","residue_kind":null,"note":"Base is OS/Channel; definition wording is prose"},
+{"id":13,"verdict":"derivable","artifact":"validator","evidence":"core/base/base.go:53","residue_kind":null,"note":"os@channel parse; channel track/risk"},
+{"id":14,"verdict":"not_derivable","artifact":null,"evidence":null,"residue_kind":"example","note":"example strings"},
+{"id":15,"verdict":"partly","artifact":"other","evidence":"core/base/base.go:19","residue_kind":null,"note":"base convertible to/from series; series still present"}
+]

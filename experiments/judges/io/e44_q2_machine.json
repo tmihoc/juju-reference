@@ -1,0 +1,116 @@
+[
+ {
+  "id": "e44_m_lookup",
+  "type": "lookup",
+  "question": "After Juju accepts a reprovision request for a lost machine and moves it back to pending, what message does the machine's status carry, and what extra data does that status record about the old cloud instance?",
+  "ground_truth": "The machine (and its cloud instance) status is set to pending with the message \"reprovisioning requested\"; the status data holds one key, \"old-instance-id\", containing the ID of the instance that was detached.",
+  "key_facts": [
+   "status message is \"reprovisioning requested\"",
+   "machine status and instance status are both set to pending",
+   "status data contains the key \"old-instance-id\" with the detached instance ID"
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 32,
+    "quote": "const reprovisioningStatusMessage = \"reprovisioning requested\""
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 125,
+    "quote": "\"old-instance-id\": expectedInstanceID.String(),"
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 137,
+    "quote": "instanceStatusID, err := domainstatus.EncodeCloudInstanceStatus(domainstatus.InstanceStatusPending)"
+   }
+  ],
+  "greps": [],
+  "cross_area": false
+ },
+ {
+  "id": "e44_m_mechanism",
+  "type": "mechanism",
+  "question": "A container machine is hosted on a parent machine, and both have been flagged as needing a reboot. What action is the container told to take, and what happens if only the parent is flagged versus only the container?",
+  "ground_truth": "The container is told to shut down (not reboot) whenever its parent is flagged for reboot, regardless of its own flag, since the parent's reboot takes the container down anyway. If only the container is flagged it reboots; if neither is flagged it does nothing.",
+  "key_facts": [
+   "parent flagged -> container action is shutdown, even if the container is also flagged",
+   "only the container flagged (parent not flagged or no parent) -> reboot",
+   "neither flagged -> do nothing",
+   "the parent's flag is checked first; only a parent and no grandparent is supported"
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 180,
+    "quote": "return nil // early exit, no need to check current machine reboot, it will shutdown anyway"
+   },
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 198,
+    "quote": "return machine.ShouldShutdown, nil"
+   },
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 202,
+    "quote": "return machine.ShouldReboot, nil"
+   }
+  ],
+  "greps": [],
+  "cross_area": false
+ },
+ {
+  "id": "e44_m_failure",
+  "type": "failure",
+  "question": "I removed a machine from the model and the removal keeps being retried with the error \"cannot delete machine ..., it hosts has 1 unit(s)\". What causes this, and what makes the machine deletion go through?",
+  "ground_truth": "A non-forced machine deletion counts the units on the machine's network node whose life is not dead; if any remain, it fails with this error (marked as machine-has-units and as an incomplete removal job, so it is retried). It succeeds once all units on the machine are dead/removed, or if the removal is forced, which skips the dependents check.",
+  "key_facts": [
+   "the error is raised when units hosted on the machine are not yet dead (unit life != dead)",
+   "the job is flagged as incomplete so it is retried later",
+   "forcing the removal skips the dependents check",
+   "dependents also include child containers and storage (filesystems/volumes)"
+  ],
+  "evidence": [
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 680,
+    "quote": "cannot delete machine %q, it hosts has %d unit(s)"
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 633,
+    "quote": "AND unit.life_id != 2"
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 587,
+    "quote": "return errors.Errorf(\"checking for dependents: %w\", err).Add(removalerrors.RemovalJobIncomplete)"
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 566,
+    "quote": "if !force {"
+   }
+  ],
+  "greps": [],
+  "cross_area": false
+ },
+ {
+  "id": "e44_m_unanswerable",
+  "type": "unanswerable",
+  "question": "How many times can a single machine be reprovisioned before Juju stops trying and marks it as permanently failed?",
+  "ground_truth": "The documentation does not say: no maximum number of reprovisions, retry counter or permanent-failure state is defined; the only guard is that a reprovision request cannot be made while one already exists for the machine.",
+  "key_facts": [
+   "no reprovision count or limit is defined"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE 'maxReprovision|MaxReprovision|reprovisionAttempts|reprovision.*(limit|max)' -> no results",
+   "grep -rniE 'reprovision.*(cooldown|backoff|rate.?limit)' -> no results",
+   "grep -rniE 'reprovision.*(retries|attempt)|reprovision.*count|reprovision.*(cap|threshold|quota)' -> no results (only unrelated Capture matches)",
+   "grep -rniE 'times.*reprovision|reprovision.*times|maxMachine|max-machines|max_machines' -> no results"
+  ],
+  "cross_area": false
+ }
+]

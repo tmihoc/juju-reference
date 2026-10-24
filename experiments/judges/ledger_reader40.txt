@@ -1,0 +1,24 @@
+You are an independent second reader of a claims ledger. This is read-only research. Be rigorous.
+
+Files (read them in full):
+- /home/dora/git/misc/juju-reference/structure-discovery-plan.md   the experiment record (the evidence)
+- /home/dora/git/misc/juju-reference/claims-ledger.md              the ledger (the thing you check)
+- /home/dora/git/misc/juju-reference/experiments/judges/io/e40_sample.json   the rows you must check (a random fifth of the ledger)
+
+For each sampled row, the ledger gives: status (supported, partial, falsified, open, convention, user), basis (code, judge, precedent, user, convention), the claim, the plan line ranges that carry its evidence, and the registered criterion with its outcome.
+
+Rules the ledger claims to follow:
+1. Status is read from the plan entry, never re-derived. A criterion that was registered and missed is partial or falsified, never supported, even where a post hoc reading rescues the claim.
+2. A claim whose basis is only a judge or precedent is at most partial.
+3. Every number in a row occurs in the cited plan lines.
+4. Post hoc readings must be labelled as such in the row.
+
+For each sampled row, open the cited plan lines (the plan is a markdown file; use the line ranges) and answer:
+a. status_ok: does the cited entry support the status? If not, what status does the entry support?
+b. basis_ok: is the basis as stated (code, judge, precedent, user, convention) what the entry actually rests on? In particular, is a judge or precedent basis hidden behind "code"?
+c. crit_ok: does the row state the registered criterion's outcome correctly, and is every post hoc reading labelled?
+d. claim_ok: does the claim sentence say more than the entry shows (overreach), or less in a way that misleads?
+e. numbers_ok: spot-check two numbers against the plan text.
+Do not open docs/ or any file under the Juju source tree for this task except where the plan cites a file and line you want to confirm; the aim is to check the ledger against the plan.
+
+Write a JSON list to the output path given in your task: one object per row with keys id, status_ok (true/false), suggested_status (null or a status), basis_ok, crit_ok, claim_ok, numbers_ok, problem (one sentence or null), evidence (plan line number or null). Reply with only the word done.

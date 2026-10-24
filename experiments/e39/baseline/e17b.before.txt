@@ -1,0 +1,17 @@
+A types 2 {'watch': '19%', 'removal': '89%', 'migration': '61%'} mean 56%
+B types 7 {'watch': '61%', 'removal': '92%', 'migration': '78%'} mean 77%
+C types 10 {'watch': '86%', 'removal': '92%', 'migration': '64%'} mean 81%
+baseline majority: {'watch': '58%', 'removal': '78%', 'migration': '61%'}
+ C misses for watch ['storage', 'agentbinary', 'externalcontroller', 'access', 'keymanager']
+ C misses for removal ['model', 'secret', 'resource']
+ C misses for migration ['agentbinary', 'ssh', 'objectstore', 'removal', 'lease', 'externalcontroller', 'controllernode', 'autocert', 'access', 'flag', 'keymanager', 'cloudimagemetadata', 'controller']
+(('controller',), (), True) ['cloud', 'externalcontroller', 'controllerconfig', 'upgrade', 'access', 'secretbackend', 'keymanager', 'tracing', 'logging']
+(('model',), (), True) ['network', 'blockdevice', 'secret', 'modelagent', 'operation', 'port', 'removal']
+(('model',), ('model',), True) ['machine', 'application', 'storage', 'relation', 'crossmodelrelation']
+(('model',), (), False) ['annotation', 'constraints', 'resource', 'blockcommand', 'sequence']
+(('controller',), (), False) ['lease', 'autocert', 'flag', 'cloudimagemetadata', 'controller']
+(('controller', 'model'), ('controller', 'model'), True) ['model']
+(('controller', 'model'), (), False) ['agentbinary']
+(('controller', 'model'), (), True) ['ssh']
+(('controller', 'model'), ('controller',), True) ['objectstore']
+(('controller',), ('controller',), True) ['controllernode']

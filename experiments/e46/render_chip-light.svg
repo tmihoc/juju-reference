@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1012.8" height="112.0" viewBox="0 0 1012.8 112.0">
+<defs>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-open" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-open-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-hollow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-hollow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+</defs>
+<g id="ggarch-nodes">
+<rect x="20.0" y="20.0" width="183.20000000000002" height="72.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<rect x="20.0" y="20.0" width="183.20000000000002" height="28" fill="#E95420" stroke="none" rx="2" ry="2" />
+<rect x="20.0" y="34.0" width="183.20000000000002" height="14.0" fill="#E95420" stroke="none" />
+<text x="111.60000000000001" y="34.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" font-weight="bold">user</text>
+<path d="M20.0,48.0 L203.20000000000002,48.0" stroke="#E95420" stroke-width="1" />
+<text x="28.0" y="58.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">PK</text>
+<text x="52.0" y="58.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">uuid</text>
+<text x="197.20000000000002" y="58.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="283.20000000000005" y="20.0" width="183.20000000000002" height="72.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<rect x="283.20000000000005" y="20.0" width="183.20000000000002" height="28" fill="#E95420" stroke="none" rx="2" ry="2" />
+<rect x="283.20000000000005" y="34.0" width="183.20000000000002" height="14.0" fill="#E95420" stroke="none" />
+<text x="374.80000000000007" y="34.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" font-weight="bold">user_public_ssh_key</text>
+<path d="M283.20000000000005,48.0 L466.4000000000001,48.0" stroke="#E95420" stroke-width="1" />
+<text x="291.20000000000005" y="58.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">PK</text>
+<text x="315.20000000000005" y="58.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">id</text>
+<text x="460.4000000000001" y="58.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">int</text>
+<rect x="284.20000000000005" y="68.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M283.20000000000005,68.0 L466.4000000000001,68.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="291.20000000000005" y="78.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">FK</text>
+<text x="315.20000000000005" y="78.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">user_uuid</text>
+<text x="460.4000000000001" y="78.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="546.4000000000001" y="20.0" width="183.20000000000002" height="72.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<rect x="546.4000000000001" y="20.0" width="183.20000000000002" height="28" fill="#E95420" stroke="none" rx="2" ry="2" />
+<rect x="546.4000000000001" y="34.0" width="183.20000000000002" height="14.0" fill="#E95420" stroke="none" />
+<text x="638.0000000000001" y="34.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" font-weight="bold">model_authorized_keys</text>
+<path d="M546.4000000000001,48.0 L729.6000000000001,48.0" stroke="#E95420" stroke-width="1" />
+<text x="554.4000000000001" y="58.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">FK</text>
+<text x="578.4000000000001" y="58.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">user_public_ssh_key_id</text>
+<text x="723.6000000000001" y="58.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">int</text>
+<rect x="547.4000000000001" y="68.0" width="181.20000000000002" height="20" fill="#00000010" stroke="none" />
+<path d="M546.4000000000001,68.0 L729.6000000000001,68.0" stroke="#E95420" stroke-width="0.5" stroke-dasharray="2,2" />
+<text x="554.4000000000001" y="78.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">FK</text>
+<text x="578.4000000000001" y="78.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">model_uuid</text>
+<text x="723.6000000000001" y="78.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+<rect x="809.5999999999999" y="20.0" width="183.20000000000002" height="72.0" fill="none" stroke="#E95420" stroke-width="1" rx="2" ry="2" />
+<rect x="809.5999999999999" y="20.0" width="183.20000000000002" height="28" fill="#E95420" stroke="none" rx="2" ry="2" />
+<rect x="809.5999999999999" y="34.0" width="183.20000000000002" height="14.0" fill="#E95420" stroke="none" />
+<text x="901.1999999999999" y="34.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" font-weight="bold">model</text>
+<path d="M809.5999999999999,48.0 L992.8,48.0" stroke="#E95420" stroke-width="1" />
+<text x="817.5999999999999" y="58.0" font-size="9" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#E95420" text-anchor="start" dominant-baseline="central" font-weight="bold">PK</text>
+<text x="841.5999999999999" y="58.0" font-size="11" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="start" dominant-baseline="central">uuid</text>
+<text x="986.8" y="58.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#888888" text-anchor="end" dominant-baseline="central" font-style="italic">text</text>
+</g>
+<g id="ggarch-edges">
+<path d="M 283.2 78.0 L 243.2 78.0 L 243.2 58.0 L 203.2 58.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="272.2" y="78.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">m</text>
+<text x="214.2" y="58.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<path d="M 546.4 58.0 L 466.4 58.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="535.4" y="58.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">m</text>
+<text x="477.4" y="58.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+<path d="M 729.6 78.0 L 769.6 78.0 L 769.6 58.0 L 809.6 58.0" fill="none" stroke="#E95420" stroke-width="1" stroke-linejoin="round" />
+<text x="740.6" y="78.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">m</text>
+<text x="798.6" y="58.0" font-size="10" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" font-style="italic" fill="#E95420" text-anchor="middle" dominant-baseline="central" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1</text>
+</g>
+<g id="ggarch-annotations"></g>
+</svg>

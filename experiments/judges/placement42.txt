@@ -1,0 +1,15 @@
+You are an independent reviewer who places database tables on documentation pages. This is read-only research. Be rigorous and take your time: this is a deep pass, and the number of tool calls is not limited.
+
+Source: Juju 4.1 at /home/dora/git/misc/juju-v2-preview. Search domain/, apiserver/, internal/, core/, cmd/, api/, rpc/, controller/, environs/, caas/. Do NOT open anything under docs/ and do NOT read any .md file. Do not open any file under /home/dora/git/misc/juju-reference.
+
+You are given a JSON file with:
+- "pages": the names of the reference pages of a Juju entity reference (names only; you are given no description). A page documents one thing that users look up: an entity, a concept that attaches to other entities, a mechanism, or a substrate.
+- "tables": database tables of the Juju 4.1 schemas (schema = model, controller or model+controller).
+
+Task: for each table, decide which ONE page it belongs on (the page where its facts would be stated and its rows explained), or "none fits" if no page is right. Decide from the code, not from the table name alone:
+1. Find the SQL that creates the table (domain/schema/model/sql or domain/schema/controller/sql) and read its columns, keys and foreign keys.
+2. Find the Go domain package that writes it (grep for INSERT INTO <table> in domain/*/state) and what the service does with it.
+3. Place it on the page of the thing the rows are about.
+Work table by table, but read each schema file and each state package once and reuse what you learn for the tables that share it. If you place a table from its name alone because the code gave no further information, say so in the note ("name only").
+
+Output: a JSON list, one object per table in the input, to the output path given in your task: {"table", "page", "alt" (second-best page or null), "evidence" ("relative/path:LINE" of the line you opened that decided it, or null), "note"}. Every table must appear once. Reply with only the word done.

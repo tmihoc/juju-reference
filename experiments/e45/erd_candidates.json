@@ -1,0 +1,833 @@
+{
+ "application": {
+  "kind": "noun",
+  "tables": 21,
+  "fk_edges_inside": 22,
+  "largest": 21,
+  "largest_tables": [
+   "application",
+   "application_agent",
+   "application_channel",
+   "application_config",
+   "application_config_hash",
+   "application_constraint",
+   "application_controller",
+   "application_endpoint",
+   "application_exposed_endpoint_cidr",
+   "application_exposed_endpoint_space",
+   "application_extra_endpoint",
+   "application_k8s_resources_managed",
+   "application_platform",
+   "application_scale",
+   "application_setting",
+   "application_status",
+   "application_workload_version",
+   "device_constraint",
+   "device_constraint_attribute",
+   "k8s_service",
+   "operator_status"
+  ],
+  "components": [
+   21
+  ],
+  "points_to": [
+   "application -> charm (charm)",
+   "application -> space (space)",
+   "application_constraint -> constraint (constraint)",
+   "application_endpoint -> charm_relation (charm)",
+   "application_endpoint -> space (space)",
+   "application_exposed_endpoint_space -> space (space)",
+   "application_extra_endpoint -> charm_extra_binding (charm)",
+   "application_extra_endpoint -> space (space)",
+   "k8s_service -> net_node (link-layer-device)"
+  ]
+ },
+ "unit": {
+  "kind": "noun",
+  "tables": 14,
+  "fk_edges_inside": 13,
+  "largest": 14,
+  "largest_tables": [
+   "k8s_pod",
+   "k8s_pod_port",
+   "k8s_pod_status",
+   "unit",
+   "unit_agent_presence",
+   "unit_agent_status",
+   "unit_agent_version",
+   "unit_principal",
+   "unit_resolved",
+   "unit_state",
+   "unit_state_charm",
+   "unit_state_relation",
+   "unit_workload_status",
+   "unit_workload_version"
+  ],
+  "components": [
+   14
+  ],
+  "points_to": [
+   "unit -> application (application)",
+   "unit -> charm (charm)",
+   "unit -> net_node (link-layer-device)"
+  ]
+ },
+ "machine": {
+  "kind": "noun",
+  "tables": 18,
+  "fk_edges_inside": 18,
+  "largest": 18,
+  "largest_tables": [
+   "block_device",
+   "block_device_link_device",
+   "instance_tag",
+   "machine",
+   "machine_agent_presence",
+   "machine_agent_version",
+   "machine_cloud_instance",
+   "machine_cloud_instance_status",
+   "machine_constraint",
+   "machine_container_type",
+   "machine_lxd_profile",
+   "machine_manual",
+   "machine_parent",
+   "machine_placement",
+   "machine_platform",
+   "machine_reprovision",
+   "machine_requires_reboot",
+   "machine_status"
+  ],
+  "components": [
+   18
+  ],
+  "points_to": [
+   "machine -> net_node (link-layer-device)",
+   "machine_cloud_instance -> availability_zone (zone)",
+   "machine_constraint -> constraint (constraint)"
+  ]
+ },
+ "relation": {
+  "kind": "noun",
+  "tables": 12,
+  "fk_edges_inside": 11,
+  "largest": 12,
+  "largest_tables": [
+   "relation",
+   "relation_application_setting",
+   "relation_application_settings_hash",
+   "relation_endpoint",
+   "relation_network_egress",
+   "relation_network_ingress",
+   "relation_status",
+   "relation_unit",
+   "relation_unit_departure",
+   "relation_unit_setting",
+   "relation_unit_setting_archive",
+   "relation_unit_settings_hash"
+  ],
+  "components": [
+   12
+  ],
+  "points_to": [
+   "relation_endpoint -> application_endpoint (application)",
+   "relation_unit -> unit (unit)"
+  ]
+ },
+ "storage": {
+  "kind": "noun",
+  "tables": 20,
+  "fk_edges_inside": 19,
+  "largest": 20,
+  "largest_tables": [
+   "application_storage_directive",
+   "machine_filesystem",
+   "machine_volume",
+   "model_storage_pool",
+   "storage_attachment",
+   "storage_filesystem",
+   "storage_filesystem_attachment",
+   "storage_filesystem_status",
+   "storage_instance",
+   "storage_instance_filesystem",
+   "storage_instance_volume",
+   "storage_pool",
+   "storage_pool_attribute",
+   "storage_unit_owner",
+   "storage_volume",
+   "storage_volume_attachment",
+   "storage_volume_attachment_plan",
+   "storage_volume_attachment_plan_attr",
+   "storage_volume_status",
+   "unit_storage_directive"
+  ],
+  "components": [
+   20
+  ],
+  "points_to": [
+   "application_storage_directive -> application (application)",
+   "application_storage_directive -> charm_storage (charm)",
+   "machine_filesystem -> machine (machine)",
+   "machine_volume -> machine (machine)",
+   "storage_attachment -> unit (unit)",
+   "storage_filesystem_attachment -> net_node (link-layer-device)",
+   "storage_unit_owner -> unit (unit)",
+   "storage_volume_attachment -> block_device (machine)",
+   "storage_volume_attachment -> net_node (link-layer-device)",
+   "storage_volume_attachment_plan -> net_node (link-layer-device)",
+   "unit_storage_directive -> charm_storage (charm)",
+   "unit_storage_directive -> unit (unit)"
+  ]
+ },
+ "model": {
+  "kind": "noun",
+  "tables": 6,
+  "fk_edges_inside": 4,
+  "largest": 5,
+  "largest_tables": [
+   "model",
+   "model_agent",
+   "model_constraint",
+   "model_life",
+   "model_namespace"
+  ],
+  "components": [
+   5,
+   1
+  ],
+  "points_to": [
+   "model -> cloud (cloud)",
+   "model -> cloud_credential (credential)",
+   "model -> cloud_region (cloud)",
+   "model_constraint -> constraint (constraint)"
+  ]
+ },
+ "model-migration": {
+  "kind": "mechanism",
+  "tables": 13,
+  "fk_edges_inside": 8,
+  "largest": 6,
+  "largest_tables": [
+   "model_migration_export",
+   "model_migration_export_minion_sync",
+   "model_migration_export_offer",
+   "model_migration_export_phase",
+   "model_migration_export_status",
+   "model_migration_export_target_auth"
+  ],
+  "components": [
+   6,
+   3,
+   2,
+   1,
+   1
+  ],
+  "points_to": [
+   "log_transfer_progress -> model (model)",
+   "model_migrating -> model (model)",
+   "model_migration_export -> external_controller (external-controller)",
+   "model_migration_export_target_auth -> external_controller (external-controller)",
+   "model_migration_import_external_controller_model -> external_controller (external-controller)"
+  ]
+ },
+ "secret": {
+  "kind": "noun",
+  "tables": 17,
+  "fk_edges_inside": 14,
+  "largest": 15,
+  "largest_tables": [
+   "secret",
+   "secret_application_owner",
+   "secret_content",
+   "secret_metadata",
+   "secret_model_owner",
+   "secret_permission",
+   "secret_reference",
+   "secret_remote_unit_consumer",
+   "secret_revision",
+   "secret_revision_expire",
+   "secret_revision_obsolete",
+   "secret_rotation",
+   "secret_unit_consumer",
+   "secret_unit_owner",
+   "secret_value_ref"
+  ],
+  "components": [
+   15,
+   1,
+   1
+  ],
+  "points_to": [
+   "secret_application_owner -> application (application)",
+   "secret_reference -> application (application)",
+   "secret_reservation -> unit (unit)",
+   "secret_unit_consumer -> unit (unit)",
+   "secret_unit_owner -> unit (unit)"
+  ]
+ },
+ "secret-backend": {
+  "kind": "noun",
+  "tables": 5,
+  "fk_edges_inside": 4,
+  "largest": 5,
+  "largest_tables": [
+   "model_secret_backend",
+   "secret_backend",
+   "secret_backend_config",
+   "secret_backend_reference",
+   "secret_backend_rotation"
+  ],
+  "components": [
+   5
+  ],
+  "points_to": [
+   "model_secret_backend -> model (model)",
+   "secret_backend_reference -> model (model)"
+  ]
+ },
+ "charm": {
+  "kind": "noun",
+  "tables": 18,
+  "fk_edges_inside": 19,
+  "largest": 18,
+  "largest_tables": [
+   "charm",
+   "charm_action",
+   "charm_category",
+   "charm_config",
+   "charm_container",
+   "charm_container_mount",
+   "charm_device",
+   "charm_download_info",
+   "charm_extra_binding",
+   "charm_hash",
+   "charm_manifest_base",
+   "charm_metadata",
+   "charm_relation",
+   "charm_resource",
+   "charm_storage",
+   "charm_storage_property",
+   "charm_tag",
+   "charm_term"
+  ],
+  "components": [
+   18
+  ],
+  "points_to": [
+   "charm -> object_store_metadata (object-store)"
+  ]
+ },
+ "resource": {
+  "kind": "noun",
+  "tables": 8,
+  "fk_edges_inside": 7,
+  "largest": 8,
+  "largest_tables": [
+   "application_resource",
+   "pending_application_resource",
+   "resource",
+   "resource_container_image_metadata_store",
+   "resource_file_store",
+   "resource_image_store",
+   "resource_retrieved_by",
+   "unit_resource"
+  ],
+  "components": [
+   8
+  ],
+  "points_to": [
+   "application_resource -> application (application)",
+   "resource -> charm_resource (charm)",
+   "resource_file_store -> object_store_metadata (object-store)",
+   "unit_resource -> unit (unit)"
+  ]
+ },
+ "action": {
+  "kind": "noun",
+  "tables": 9,
+  "fk_edges_inside": 8,
+  "largest": 9,
+  "largest_tables": [
+   "operation",
+   "operation_action",
+   "operation_machine_task",
+   "operation_parameter",
+   "operation_task",
+   "operation_task_log",
+   "operation_task_output",
+   "operation_task_status",
+   "operation_unit_task"
+  ],
+  "components": [
+   9
+  ],
+  "points_to": [
+   "operation_action -> charm_action (charm)",
+   "operation_machine_task -> machine (machine)",
+   "operation_task_output -> object_store_metadata_path (object-store)",
+   "operation_unit_task -> unit (unit)"
+  ]
+ },
+ "offer": {
+  "kind": "noun",
+  "tables": 7,
+  "fk_edges_inside": 4,
+  "largest": 4,
+  "largest_tables": [
+   "application_remote_consumer",
+   "offer",
+   "offer_connection",
+   "offer_endpoint"
+  ],
+  "components": [
+   4,
+   2,
+   1
+  ],
+  "points_to": [
+   "application_remote_consumer -> application (application)",
+   "application_remote_offerer -> application (application)",
+   "application_remote_offerer_relation_macaroon -> relation (relation)",
+   "offer_connection -> relation (relation)",
+   "offer_endpoint -> application_endpoint (application)"
+  ]
+ },
+ "cloud": {
+  "kind": "noun",
+  "tables": 4,
+  "fk_edges_inside": 3,
+  "largest": 4,
+  "largest_tables": [
+   "cloud",
+   "cloud_auth_type",
+   "cloud_ca_cert",
+   "cloud_region"
+  ],
+  "components": [
+   4
+  ],
+  "points_to": []
+ },
+ "credential": {
+  "kind": "noun",
+  "tables": 2,
+  "fk_edges_inside": 1,
+  "largest": 2,
+  "largest_tables": [
+   "cloud_credential",
+   "cloud_credential_attribute"
+  ],
+  "components": [
+   2
+  ],
+  "points_to": [
+   "cloud_credential -> cloud (cloud)",
+   "cloud_credential -> user (user)"
+  ]
+ },
+ "model-defaults": {
+  "kind": "noun",
+  "tables": 2,
+  "fk_edges_inside": 0,
+  "largest": 1,
+  "largest_tables": [
+   "cloud_defaults"
+  ],
+  "components": [
+   1,
+   1
+  ],
+  "points_to": [
+   "cloud_defaults -> cloud (cloud)",
+   "cloud_region_defaults -> cloud_region (cloud)"
+  ]
+ },
+ "image-metadata": {
+  "kind": "noun",
+  "tables": 1,
+  "fk_edges_inside": 0,
+  "largest": 1,
+  "largest_tables": [
+   "cloud_image_metadata"
+  ],
+  "components": [
+   1
+  ],
+  "points_to": []
+ },
+ "controller": {
+  "kind": "noun",
+  "tables": 14,
+  "fk_edges_inside": 6,
+  "largest": 7,
+  "largest_tables": [
+   "controller_agent_address",
+   "controller_api_address",
+   "controller_client_address",
+   "controller_node",
+   "controller_node_agent_version",
+   "controller_node_password",
+   "controller_peer_address"
+  ],
+  "components": [
+   7,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "points_to": []
+ },
+ "upgrade": {
+  "kind": "mechanism",
+  "tables": 2,
+  "fk_edges_inside": 1,
+  "largest": 2,
+  "largest_tables": [
+   "upgrade_info",
+   "upgrade_info_controller_node"
+  ],
+  "components": [
+   2
+  ],
+  "points_to": [
+   "upgrade_info_controller_node -> controller_node (controller)"
+  ]
+ },
+ "user": {
+  "kind": "noun",
+  "tables": 5,
+  "fk_edges_inside": 4,
+  "largest": 5,
+  "largest_tables": [
+   "model_last_login",
+   "user",
+   "user_activation_key",
+   "user_authentication",
+   "user_password"
+  ],
+  "components": [
+   5
+  ],
+  "points_to": [
+   "model_last_login -> model (model)"
+  ]
+ },
+ "permission": {
+  "kind": "noun",
+  "tables": 1,
+  "fk_edges_inside": 0,
+  "largest": 1,
+  "largest_tables": [
+   "permission"
+  ],
+  "components": [
+   1
+  ],
+  "points_to": [
+   "permission -> user (user)"
+  ]
+ },
+ "ssh-key": {
+  "kind": "noun",
+  "tables": 2,
+  "fk_edges_inside": 1,
+  "largest": 2,
+  "largest_tables": [
+   "model_authorized_keys",
+   "user_public_ssh_key"
+  ],
+  "components": [
+   2
+  ],
+  "points_to": [
+   "model_authorized_keys -> model (model)",
+   "user_public_ssh_key -> user (user)"
+  ]
+ },
+ "ssh": {
+  "kind": "noun",
+  "tables": 6,
+  "fk_edges_inside": 0,
+  "largest": 1,
+  "largest_tables": [
+   "controller_ssh_host_key"
+  ],
+  "components": [
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "points_to": [
+   "machine_ssh_host_key -> machine (machine)",
+   "machine_virtual_ssh_host_key -> machine (machine)",
+   "ssh_connection_request -> machine (machine)",
+   "unit_virtual_ssh_host_key -> unit (unit)"
+  ]
+ },
+ "object-store": {
+  "kind": "noun",
+  "tables": 6,
+  "fk_edges_inside": 4,
+  "largest": 3,
+  "largest_tables": [
+   "object_store_backend",
+   "object_store_backend_s3_config",
+   "object_store_drain_info"
+  ],
+  "components": [
+   3,
+   3
+  ],
+  "points_to": []
+ },
+ "agent-version": {
+  "kind": "noun",
+  "tables": 2,
+  "fk_edges_inside": 0,
+  "largest": 1,
+  "largest_tables": [
+   "agent_binary_store"
+  ],
+  "components": [
+   1,
+   1
+  ],
+  "points_to": [
+   "agent_binary_store -> object_store_metadata (object-store)"
+  ]
+ },
+ "space": {
+  "kind": "noun",
+  "tables": 2,
+  "fk_edges_inside": 1,
+  "largest": 2,
+  "largest_tables": [
+   "provider_space",
+   "space"
+  ],
+  "components": [
+   2
+  ],
+  "points_to": []
+ },
+ "subnet": {
+  "kind": "noun",
+  "tables": 4,
+  "fk_edges_inside": 3,
+  "largest": 4,
+  "largest_tables": [
+   "provider_network",
+   "provider_network_subnet",
+   "provider_subnet",
+   "subnet"
+  ],
+  "components": [
+   4
+  ],
+  "points_to": [
+   "subnet -> space (space)"
+  ]
+ },
+ "zone": {
+  "kind": "noun",
+  "tables": 2,
+  "fk_edges_inside": 1,
+  "largest": 2,
+  "largest_tables": [
+   "availability_zone",
+   "availability_zone_subnet"
+  ],
+  "components": [
+   2
+  ],
+  "points_to": [
+   "availability_zone_subnet -> subnet (subnet)"
+  ]
+ },
+ "link-layer-device": {
+  "kind": "noun",
+  "tables": 13,
+  "fk_edges_inside": 13,
+  "largest": 13,
+  "largest_tables": [
+   "fqdn_address",
+   "hostname_address",
+   "ip_address",
+   "link_layer_device",
+   "link_layer_device_dns_address",
+   "link_layer_device_dns_domain",
+   "link_layer_device_parent",
+   "link_layer_device_route",
+   "net_node",
+   "net_node_fqdn_address",
+   "net_node_hostname_address",
+   "provider_ip_address",
+   "provider_link_layer_device"
+  ],
+  "components": [
+   13
+  ],
+  "points_to": [
+   "ip_address -> subnet (subnet)"
+  ]
+ },
+ "external-controller": {
+  "kind": "noun",
+  "tables": 3,
+  "fk_edges_inside": 2,
+  "largest": 3,
+  "largest_tables": [
+   "external_controller",
+   "external_controller_address",
+   "external_model"
+  ],
+  "components": [
+   3
+  ],
+  "points_to": []
+ },
+ "constraint": {
+  "kind": "facet",
+  "tables": 4,
+  "fk_edges_inside": 2,
+  "largest": 3,
+  "largest_tables": [
+   "constraint",
+   "constraint_space",
+   "constraint_zone"
+  ],
+  "components": [
+   3,
+   1
+  ],
+  "points_to": [
+   "constraint_space -> space (space)"
+  ]
+ },
+ "annotation": {
+  "kind": "facet",
+  "tables": 8,
+  "fk_edges_inside": 0,
+  "largest": 1,
+  "largest_tables": [
+   "annotation_application"
+  ],
+  "components": [
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "points_to": [
+   "annotation_charm -> charm (charm)",
+   "annotation_unit -> unit (unit)"
+  ]
+ },
+ "status": {
+  "kind": "facet",
+  "tables": 0,
+  "fk_edges_inside": 0,
+  "largest": 0,
+  "largest_tables": [],
+  "components": [],
+  "points_to": []
+ },
+ "block-command": {
+  "kind": "mechanism",
+  "tables": 1,
+  "fk_edges_inside": 0,
+  "largest": 1,
+  "largest_tables": [
+   "block_command"
+  ],
+  "components": [
+   1
+  ],
+  "points_to": []
+ },
+ "removal": {
+  "kind": "mechanism",
+  "tables": 1,
+  "fk_edges_inside": 0,
+  "largest": 1,
+  "largest_tables": [
+   "removal"
+  ],
+  "components": [
+   1
+  ],
+  "points_to": []
+ },
+ "lease": {
+  "kind": "mechanism",
+  "tables": 2,
+  "fk_edges_inside": 1,
+  "largest": 2,
+  "largest_tables": [
+   "lease",
+   "lease_pin"
+  ],
+  "components": [
+   2
+  ],
+  "points_to": []
+ },
+ "port": {
+  "kind": "noun",
+  "tables": 1,
+  "fk_edges_inside": 0,
+  "largest": 1,
+  "largest_tables": [
+   "port_range"
+  ],
+  "components": [
+   1
+  ],
+  "points_to": [
+   "port_range -> charm_relation (charm)",
+   "port_range -> unit (unit)"
+  ]
+ },
+ "telemetry": {
+  "kind": "noun",
+  "tables": 3,
+  "fk_edges_inside": 0,
+  "largest": 1,
+  "largest_tables": [
+   "charm_tracing_config"
+  ],
+  "components": [
+   1,
+   1,
+   1
+  ],
+  "points_to": []
+ },
+ "database": {
+  "kind": "substrate",
+  "tables": 5,
+  "fk_edges_inside": 0,
+  "largest": 1,
+  "largest_tables": [
+   "change_log"
+  ],
+  "components": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "points_to": []
+ }
+}

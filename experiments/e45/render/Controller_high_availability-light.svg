@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="976.2" height="594.0" viewBox="0 0 976.2 594.0">
+<defs>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-open" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-open-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-hollow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-hollow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+<path d="M 177.3 279.0 L 310.3 84.0" id="d0" />
+<path d="M 181.6 291.8 L 300.1 291.8" id="d1" />
+<path d="M 185.8 308.8 L 318.8 485.8" id="d2" />
+<path d="M 418.6 60.8 L 490.1 60.8" id="d3" />
+<path d="M 418.6 74.2 L 490.1 74.2" id="d4" />
+<path d="M 418.6 87.8 L 490.1 87.8" id="d5" />
+<path d="M 404.1 258.8 L 475.6 258.8" id="d6" />
+<path d="M 404.1 272.2 L 475.6 272.2" id="d7" />
+<path d="M 404.1 285.8 L 475.6 285.8" id="d8" />
+<path d="M 418.6 456.8 L 490.1 456.8" id="d9" />
+<path d="M 418.6 470.2 L 490.1 470.2" id="d10" />
+<path d="M 418.6 483.8 L 490.1 483.8" id="d11" />
+<path d="M 644.5 59.2 L 710.5 59.2" id="d12" />
+<path d="M 644.5 72.8 L 710.5 72.8" id="d13" />
+<path d="M 630.0 257.2 L 696.0 257.2" id="d14" />
+<path d="M 630.0 270.8 L 696.0 270.8" id="d15" />
+<path d="M 644.5 455.2 L 710.5 455.2" id="d16" />
+<path d="M 644.5 468.8 L 710.5 468.8" id="d17" />
+<path d="M 795.3 149.8 Q 813.1 209.4 798.8 269.8" id="d18" />
+<path d="M 965.0 144.0 L 965.0 474.0" id="d19" />
+<path d="M 760.9 150.7 Q 752.8 212.7 776.4 270.7" id="d20" />
+<path d="M 795.3 468.2 Q 813.1 408.6 798.8 348.2" id="d21" />
+<path d="M 882.4 468.0 L 882.5 150.0" id="d22" />
+<path d="M 760.9 467.3 Q 752.8 405.3 776.4 347.3" id="d23" />
+</defs>
+<g id="ggarch-nodes">
+<rect x="298.6000000000001" y="20.0" width="611.0999999999998" height="158.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" />
+<text x="604.15" y="34.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Controller machine</text>
+<path d="M 891.7 36.0 a 3.4 3.4 0 0 1 -0.2 -6.8 a 4.6 4.6 0 0 1 8.6 -1.2 a 3.6 3.6 0 0 1 1.4 8 Z" fill="none" stroke="#E95420" stroke-width="1.2" stroke-linejoin="round" data-deployed="true" />
+<rect x="314.6" y="72.0" width="104.0" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="366.6" y="93.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">API server</text>
+<path d="m148.45,180.19c-16.07,0-29.15,13.02-29.15,29.02v53.29c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-53.29c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(317.46 63.50) scale(0.07143)" />
+<path d="m141.13,283.22c0,7.44-6.06,13.47-13.53,13.47s-13.53-6.03-13.53-13.47,6.06-13.47,13.53-13.47,13.53,6.03,13.53,13.47Z" fill="#E95420" stroke="none" transform="translate(317.46 63.50) scale(0.07143)" />
+<path d="m65.05,250.68c-16.07,0-29.15,13.02-29.15,29.02v51.54c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-51.54c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(317.46 63.50) scale(0.07143)" />
+<path d="m57.65,351.96c0,7.39-6.02,13.39-13.45,13.39s-13.45-5.99-13.45-13.39,6.02-13.39,13.45-13.39,13.45,5.99,13.45,13.39Z" fill="#E95420" stroke="none" transform="translate(317.46 63.50) scale(0.07143)" />
+<path d="m211.01,236.86c-1.15,0-2.32-.09-3.46-.26-1.68-.26-3.3-.71-4.84-1.33v30.43c0,6.82-5.63,12.36-12.55,12.36s-12.55-5.55-12.55-12.36v-34.41h-16.6v34.41c0,15.83,13.08,28.72,29.15,28.72s29.15-12.88,29.15-28.72v-30.43c-2.61,1.04-5.42,1.59-8.3,1.59Z" fill="#E95420" stroke="none" transform="translate(317.46 63.50) scale(0.07143)" />
+<path d="m224.48,212.4c1.41,9.18-6.41,16.96-15.63,15.56-5.74-.87-10.44-5.55-11.32-11.26-1.42-9.18,6.41-16.97,15.63-15.56,5.74.88,10.44,5.55,11.32,11.27Z" fill="#E95420" stroke="none" transform="translate(317.46 63.50) scale(0.07143)" />
+<path d="m127.6,305.54c-2.93,0-5.73-.58-8.3-1.6v31.89c0,6.89-5.63,12.49-12.55,12.49s-12.55-5.6-12.55-12.49v-34.78h-16.6v34.78c0,16,13.08,29.02,29.15,29.02s29.15-13.02,29.15-29.02v-31.89c-2.57,1.02-5.37,1.6-8.3,1.6Z" fill="#E95420" stroke="none" transform="translate(317.46 63.50) scale(0.07143)" />
+<rect x="490.1" y="72.0" width="154.4" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="567.3000000000001" y="93.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">dbaccessor worker</text>
+<path d="m148.45,180.19c-16.07,0-29.15,13.02-29.15,29.02v53.29c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-53.29c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(492.96 63.50) scale(0.07143)" />
+<path d="m141.13,283.22c0,7.44-6.06,13.47-13.53,13.47s-13.53-6.03-13.53-13.47,6.06-13.47,13.53-13.47,13.53,6.03,13.53,13.47Z" fill="#E95420" stroke="none" transform="translate(492.96 63.50) scale(0.07143)" />
+<path d="m65.05,250.68c-16.07,0-29.15,13.02-29.15,29.02v51.54c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-51.54c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(492.96 63.50) scale(0.07143)" />
+<path d="m57.65,351.96c0,7.39-6.02,13.39-13.45,13.39s-13.45-5.99-13.45-13.39,6.02-13.39,13.45-13.39,13.45,5.99,13.45,13.39Z" fill="#E95420" stroke="none" transform="translate(492.96 63.50) scale(0.07143)" />
+<path d="m211.01,236.86c-1.15,0-2.32-.09-3.46-.26-1.68-.26-3.3-.71-4.84-1.33v30.43c0,6.82-5.63,12.36-12.55,12.36s-12.55-5.55-12.55-12.36v-34.41h-16.6v34.41c0,15.83,13.08,28.72,29.15,28.72s29.15-12.88,29.15-28.72v-30.43c-2.61,1.04-5.42,1.59-8.3,1.59Z" fill="#E95420" stroke="none" transform="translate(492.96 63.50) scale(0.07143)" />
+<path d="m224.48,212.4c1.41,9.18-6.41,16.96-15.63,15.56-5.74-.87-10.44-5.55-11.32-11.26-1.42-9.18,6.41-16.97,15.63-15.56,5.74.88,10.44,5.55,11.32,11.27Z" fill="#E95420" stroke="none" transform="translate(492.96 63.50) scale(0.07143)" />
+<path d="m127.6,305.54c-2.93,0-5.73-.58-8.3-1.6v31.89c0,6.89-5.63,12.49-12.55,12.49s-12.55-5.6-12.55-12.49v-34.78h-16.6v34.78c0,16,13.08,29.02,29.15,29.02s29.15-13.02,29.15-29.02v-31.89c-2.57,1.02-5.37,1.6-8.3,1.6Z" fill="#E95420" stroke="none" transform="translate(492.96 63.50) scale(0.07143)" />
+<rect x="710.5" y="72.0" width="183.2" height="78.0" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="802.1" y="92.8" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Dqlite node</text>
+<text x="802.1" y="111.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">(controller and model</text>
+<text x="802.1" y="129.2" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">databases)</text>
+<path d="M 716.62 78.74 A 5.88 2.24 0 0 1 728.38 78.74 A 5.88 2.24 0 0 1 716.62 78.74 L 716.62 87.26 A 5.88 2.24 0 0 0 728.38 87.26 L 728.38 78.74" fill="none" stroke="#E95420" stroke-width="1.2" stroke-linejoin="round" />
+<rect x="261.6" y="218.0" width="685.0999999999998" height="158.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" />
+<text x="604.1499999999999" y="232.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Controller machine</text>
+<path d="M 928.7 234.0 a 3.4 3.4 0 0 1 -0.2 -6.8 a 4.6 4.6 0 0 1 8.6 -1.2 a 3.6 3.6 0 0 1 1.4 8 Z" fill="none" stroke="#E95420" stroke-width="1.2" stroke-linejoin="round" data-deployed="true" />
+<rect x="300.0999999999999" y="270.0" width="104.0" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="352.0999999999999" y="291.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">API server</text>
+<path d="m148.45,180.19c-16.07,0-29.15,13.02-29.15,29.02v53.29c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-53.29c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(302.96 261.50) scale(0.07143)" />
+<path d="m141.13,283.22c0,7.44-6.06,13.47-13.53,13.47s-13.53-6.03-13.53-13.47,6.06-13.47,13.53-13.47,13.53,6.03,13.53,13.47Z" fill="#E95420" stroke="none" transform="translate(302.96 261.50) scale(0.07143)" />
+<path d="m65.05,250.68c-16.07,0-29.15,13.02-29.15,29.02v51.54c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-51.54c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(302.96 261.50) scale(0.07143)" />
+<path d="m57.65,351.96c0,7.39-6.02,13.39-13.45,13.39s-13.45-5.99-13.45-13.39,6.02-13.39,13.45-13.39,13.45,5.99,13.45,13.39Z" fill="#E95420" stroke="none" transform="translate(302.96 261.50) scale(0.07143)" />
+<path d="m211.01,236.86c-1.15,0-2.32-.09-3.46-.26-1.68-.26-3.3-.71-4.84-1.33v30.43c0,6.82-5.63,12.36-12.55,12.36s-12.55-5.55-12.55-12.36v-34.41h-16.6v34.41c0,15.83,13.08,28.72,29.15,28.72s29.15-12.88,29.15-28.72v-30.43c-2.61,1.04-5.42,1.59-8.3,1.59Z" fill="#E95420" stroke="none" transform="translate(302.96 261.50) scale(0.07143)" />
+<path d="m224.48,212.4c1.41,9.18-6.41,16.96-15.63,15.56-5.74-.87-10.44-5.55-11.32-11.26-1.42-9.18,6.41-16.97,15.63-15.56,5.74.88,10.44,5.55,11.32,11.27Z" fill="#E95420" stroke="none" transform="translate(302.96 261.50) scale(0.07143)" />
+<path d="m127.6,305.54c-2.93,0-5.73-.58-8.3-1.6v31.89c0,6.89-5.63,12.49-12.55,12.49s-12.55-5.6-12.55-12.49v-34.78h-16.6v34.78c0,16,13.08,29.02,29.15,29.02s29.15-13.02,29.15-29.02v-31.89c-2.57,1.02-5.37,1.6-8.3,1.6Z" fill="#E95420" stroke="none" transform="translate(302.96 261.50) scale(0.07143)" />
+<rect x="475.5999999999999" y="270.0" width="154.4" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="552.8" y="291.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">dbaccessor worker</text>
+<path d="m148.45,180.19c-16.07,0-29.15,13.02-29.15,29.02v53.29c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-53.29c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(478.46 261.50) scale(0.07143)" />
+<path d="m141.13,283.22c0,7.44-6.06,13.47-13.53,13.47s-13.53-6.03-13.53-13.47,6.06-13.47,13.53-13.47,13.53,6.03,13.53,13.47Z" fill="#E95420" stroke="none" transform="translate(478.46 261.50) scale(0.07143)" />
+<path d="m65.05,250.68c-16.07,0-29.15,13.02-29.15,29.02v51.54c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-51.54c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(478.46 261.50) scale(0.07143)" />
+<path d="m57.65,351.96c0,7.39-6.02,13.39-13.45,13.39s-13.45-5.99-13.45-13.39,6.02-13.39,13.45-13.39,13.45,5.99,13.45,13.39Z" fill="#E95420" stroke="none" transform="translate(478.46 261.50) scale(0.07143)" />
+<path d="m211.01,236.86c-1.15,0-2.32-.09-3.46-.26-1.68-.26-3.3-.71-4.84-1.33v30.43c0,6.82-5.63,12.36-12.55,12.36s-12.55-5.55-12.55-12.36v-34.41h-16.6v34.41c0,15.83,13.08,28.72,29.15,28.72s29.15-12.88,29.15-28.72v-30.43c-2.61,1.04-5.42,1.59-8.3,1.59Z" fill="#E95420" stroke="none" transform="translate(478.46 261.50) scale(0.07143)" />
+<path d="m224.48,212.4c1.41,9.18-6.41,16.96-15.63,15.56-5.74-.87-10.44-5.55-11.32-11.26-1.42-9.18,6.41-16.97,15.63-15.56,5.74.88,10.44,5.55,11.32,11.27Z" fill="#E95420" stroke="none" transform="translate(478.46 261.50) scale(0.07143)" />
+<path d="m127.6,305.54c-2.93,0-5.73-.58-8.3-1.6v31.89c0,6.89-5.63,12.49-12.55,12.49s-12.55-5.6-12.55-12.49v-34.78h-16.6v34.78c0,16,13.08,29.02,29.15,29.02s29.15-13.02,29.15-29.02v-31.89c-2.57,1.02-5.37,1.6-8.3,1.6Z" fill="#E95420" stroke="none" transform="translate(478.46 261.50) scale(0.07143)" />
+<rect x="695.9999999999999" y="270.0" width="183.2" height="78.0" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="787.5999999999999" y="290.8" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Dqlite node</text>
+<text x="787.5999999999999" y="309.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">(controller and model</text>
+<text x="787.5999999999999" y="327.2" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">databases)</text>
+<path d="M 702.12 276.74 A 5.88 2.24 0 0 1 713.88 276.74 A 5.88 2.24 0 0 1 702.12 276.74 L 702.12 285.26 A 5.88 2.24 0 0 0 713.88 285.26 L 713.88 276.74" fill="none" stroke="#E95420" stroke-width="1.2" stroke-linejoin="round" />
+<rect x="298.59999999999997" y="416.0" width="611.0999999999999" height="158.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" />
+<text x="604.1499999999999" y="430.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Controller machine</text>
+<path d="M 891.7 432.0 a 3.4 3.4 0 0 1 -0.2 -6.8 a 4.6 4.6 0 0 1 8.6 -1.2 a 3.6 3.6 0 0 1 1.4 8 Z" fill="none" stroke="#E95420" stroke-width="1.2" stroke-linejoin="round" data-deployed="true" />
+<rect x="314.59999999999997" y="468.0" width="104.0" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="366.59999999999997" y="489.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">API server</text>
+<path d="m148.45,180.19c-16.07,0-29.15,13.02-29.15,29.02v53.29c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-53.29c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(317.46 459.50) scale(0.07143)" />
+<path d="m141.13,283.22c0,7.44-6.06,13.47-13.53,13.47s-13.53-6.03-13.53-13.47,6.06-13.47,13.53-13.47,13.53,6.03,13.53,13.47Z" fill="#E95420" stroke="none" transform="translate(317.46 459.50) scale(0.07143)" />
+<path d="m65.05,250.68c-16.07,0-29.15,13.02-29.15,29.02v51.54c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-51.54c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(317.46 459.50) scale(0.07143)" />
+<path d="m57.65,351.96c0,7.39-6.02,13.39-13.45,13.39s-13.45-5.99-13.45-13.39,6.02-13.39,13.45-13.39,13.45,5.99,13.45,13.39Z" fill="#E95420" stroke="none" transform="translate(317.46 459.50) scale(0.07143)" />
+<path d="m211.01,236.86c-1.15,0-2.32-.09-3.46-.26-1.68-.26-3.3-.71-4.84-1.33v30.43c0,6.82-5.63,12.36-12.55,12.36s-12.55-5.55-12.55-12.36v-34.41h-16.6v34.41c0,15.83,13.08,28.72,29.15,28.72s29.15-12.88,29.15-28.72v-30.43c-2.61,1.04-5.42,1.59-8.3,1.59Z" fill="#E95420" stroke="none" transform="translate(317.46 459.50) scale(0.07143)" />
+<path d="m224.48,212.4c1.41,9.18-6.41,16.96-15.63,15.56-5.74-.87-10.44-5.55-11.32-11.26-1.42-9.18,6.41-16.97,15.63-15.56,5.74.88,10.44,5.55,11.32,11.27Z" fill="#E95420" stroke="none" transform="translate(317.46 459.50) scale(0.07143)" />
+<path d="m127.6,305.54c-2.93,0-5.73-.58-8.3-1.6v31.89c0,6.89-5.63,12.49-12.55,12.49s-12.55-5.6-12.55-12.49v-34.78h-16.6v34.78c0,16,13.08,29.02,29.15,29.02s29.15-13.02,29.15-29.02v-31.89c-2.57,1.02-5.37,1.6-8.3,1.6Z" fill="#E95420" stroke="none" transform="translate(317.46 459.50) scale(0.07143)" />
+<rect x="490.09999999999997" y="468.0" width="154.4" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="567.3" y="489.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">dbaccessor worker</text>
+<path d="m148.45,180.19c-16.07,0-29.15,13.02-29.15,29.02v53.29c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-53.29c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(492.96 459.50) scale(0.07143)" />
+<path d="m141.13,283.22c0,7.44-6.06,13.47-13.53,13.47s-13.53-6.03-13.53-13.47,6.06-13.47,13.53-13.47,13.53,6.03,13.53,13.47Z" fill="#E95420" stroke="none" transform="translate(492.96 459.50) scale(0.07143)" />
+<path d="m65.05,250.68c-16.07,0-29.15,13.02-29.15,29.02v51.54c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-51.54c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(492.96 459.50) scale(0.07143)" />
+<path d="m57.65,351.96c0,7.39-6.02,13.39-13.45,13.39s-13.45-5.99-13.45-13.39,6.02-13.39,13.45-13.39,13.45,5.99,13.45,13.39Z" fill="#E95420" stroke="none" transform="translate(492.96 459.50) scale(0.07143)" />
+<path d="m211.01,236.86c-1.15,0-2.32-.09-3.46-.26-1.68-.26-3.3-.71-4.84-1.33v30.43c0,6.82-5.63,12.36-12.55,12.36s-12.55-5.55-12.55-12.36v-34.41h-16.6v34.41c0,15.83,13.08,28.72,29.15,28.72s29.15-12.88,29.15-28.72v-30.43c-2.61,1.04-5.42,1.59-8.3,1.59Z" fill="#E95420" stroke="none" transform="translate(492.96 459.50) scale(0.07143)" />
+<path d="m224.48,212.4c1.41,9.18-6.41,16.96-15.63,15.56-5.74-.87-10.44-5.55-11.32-11.26-1.42-9.18,6.41-16.97,15.63-15.56,5.74.88,10.44,5.55,11.32,11.27Z" fill="#E95420" stroke="none" transform="translate(492.96 459.50) scale(0.07143)" />
+<path d="m127.6,305.54c-2.93,0-5.73-.58-8.3-1.6v31.89c0,6.89-5.63,12.49-12.55,12.49s-12.55-5.6-12.55-12.49v-34.78h-16.6v34.78c0,16,13.08,29.02,29.15,29.02s29.15-13.02,29.15-29.02v-31.89c-2.57,1.02-5.37,1.6-8.3,1.6Z" fill="#E95420" stroke="none" transform="translate(492.96 459.50) scale(0.07143)" />
+<rect x="710.4999999999999" y="468.0" width="183.2" height="78.0" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="802.0999999999999" y="488.8" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Dqlite node</text>
+<text x="802.0999999999999" y="507.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">(controller and model</text>
+<text x="802.0999999999999" y="525.2" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">databases)</text>
+<path d="M 716.62 474.74 A 5.88 2.24 0 0 1 728.38 474.74 A 5.88 2.24 0 0 1 716.62 474.74 L 716.62 483.26 A 5.88 2.24 0 0 0 728.38 483.26 L 728.38 474.74" fill="none" stroke="#E95420" stroke-width="1.2" stroke-linejoin="round" />
+<rect x="20.0" y="276.0" width="161.6" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="4" ry="4" />
+<text x="100.8" y="297.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Clients and agents</text>
+<path d="m148.45,180.19c-16.07,0-29.15,13.02-29.15,29.02v53.29c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-53.29c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(22.86 267.50) scale(0.07143)" />
+<path d="m141.13,283.22c0,7.44-6.06,13.47-13.53,13.47s-13.53-6.03-13.53-13.47,6.06-13.47,13.53-13.47,13.53,6.03,13.53,13.47Z" fill="#E95420" stroke="none" transform="translate(22.86 267.50) scale(0.07143)" />
+<path d="m65.05,250.68c-16.07,0-29.15,13.02-29.15,29.02v51.54c2.57-1.02,5.37-1.6,8.3-1.6s5.73.58,8.3,1.6v-51.54c0-6.89,5.63-12.49,12.55-12.49s12.55,5.6,12.55,12.49v12.14h16.6v-12.14c0-16-13.08-29.02-29.15-29.02Z" fill="#E95420" stroke="none" transform="translate(22.86 267.50) scale(0.07143)" />
+<path d="m57.65,351.96c0,7.39-6.02,13.39-13.45,13.39s-13.45-5.99-13.45-13.39,6.02-13.39,13.45-13.39,13.45,5.99,13.45,13.39Z" fill="#E95420" stroke="none" transform="translate(22.86 267.50) scale(0.07143)" />
+<path d="m211.01,236.86c-1.15,0-2.32-.09-3.46-.26-1.68-.26-3.3-.71-4.84-1.33v30.43c0,6.82-5.63,12.36-12.55,12.36s-12.55-5.55-12.55-12.36v-34.41h-16.6v34.41c0,15.83,13.08,28.72,29.15,28.72s29.15-12.88,29.15-28.72v-30.43c-2.61,1.04-5.42,1.59-8.3,1.59Z" fill="#E95420" stroke="none" transform="translate(22.86 267.50) scale(0.07143)" />
+<path d="m224.48,212.4c1.41,9.18-6.41,16.96-15.63,15.56-5.74-.87-10.44-5.55-11.32-11.26-1.42-9.18,6.41-16.97,15.63-15.56,5.74.88,10.44,5.55,11.32,11.27Z" fill="#E95420" stroke="none" transform="translate(22.86 267.50) scale(0.07143)" />
+<path d="m127.6,305.54c-2.93,0-5.73-.58-8.3-1.6v31.89c0,6.89-5.63,12.49-12.55,12.49s-12.55-5.6-12.55-12.49v-34.78h-16.6v34.78c0,16,13.08,29.02,29.15,29.02s29.15-13.02,29.15-29.02v-31.89c-2.57,1.02-5.37,1.6-8.3,1.6Z" fill="#E95420" stroke="none" transform="translate(22.86 267.50) scale(0.07143)" />
+</g>
+<g id="ggarch-edges">
+<path d="M 181.6 282.0 L 314.6 87.0" fill="none" stroke="#555555" stroke-width="1" stroke-linejoin="round" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d0" startOffset="118.0">
+connect to any
+</textPath></text>
+<path d="M 181.6 297.0 L 300.1 297.0" fill="none" stroke="#555555" stroke-width="1" stroke-linejoin="round" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d1" startOffset="59.3">
+connect to any
+</textPath></text>
+<path d="M 181.6 312.0 L 314.6 489.0" fill="none" stroke="#555555" stroke-width="1" stroke-linejoin="round" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d2" startOffset="143.9">
+connect to any
+</textPath></text>
+<path d="M 418.6 93.0 L 490.1 93.0" fill="none" stroke="#888888" stroke-width="1" stroke-linejoin="round" stroke-dasharray="2,2" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d3" startOffset="35.8">
+gets
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d4" startOffset="35.8">
+databases
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d5" startOffset="35.8">
+from
+</textPath></text>
+<path d="M 404.1 291.0 L 475.6 291.0" fill="none" stroke="#888888" stroke-width="1" stroke-linejoin="round" stroke-dasharray="2,2" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d6" startOffset="35.8">
+gets
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d7" startOffset="35.8">
+databases
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d8" startOffset="35.8">
+from
+</textPath></text>
+<path d="M 418.6 489.0 L 490.1 489.0" fill="none" stroke="#888888" stroke-width="1" stroke-linejoin="round" stroke-dasharray="2,2" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d9" startOffset="35.8">
+gets
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d10" startOffset="35.8">
+databases
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d11" startOffset="35.8">
+from
+</textPath></text>
+<path d="M 644.5 78.0 L 710.5 78.0" fill="none" stroke="#555555" stroke-width="1" stroke-linejoin="round" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d12" startOffset="33.0">
+runs and
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d13" startOffset="33.0">
+clusters
+</textPath></text>
+<path d="M 630.0 276.0 L 696.0 276.0" fill="none" stroke="#555555" stroke-width="1" stroke-linejoin="round" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d14" startOffset="33.0">
+runs and
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d15" startOffset="33.0">
+clusters
+</textPath></text>
+<path d="M 644.5 474.0 L 710.5 474.0" fill="none" stroke="#555555" stroke-width="1" stroke-linejoin="round" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d16" startOffset="33.0">
+runs and
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d17" startOffset="33.0">
+clusters
+</textPath></text>
+<path d="M 790.1 150.0 Q 807.8 209.5 793.6 270.0" fill="none" stroke="#555555" stroke-width="1" stroke-linejoin="round" stroke-dasharray="6,3" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d18" startOffset="60.0">
+Raft
+</textPath></text>
+<path d="M 893.7 144.0 L 959.7 144.0 L 959.7 474.0 L 893.7 474.0" fill="none" stroke="#555555" stroke-width="1" stroke-linejoin="round" stroke-dasharray="6,3" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d19" startOffset="165.0">
+Raft
+</textPath></text>
+<path d="M 781.6 270.0 Q 758.0 212.0 766.1 150.0" fill="none" stroke="#555555" stroke-width="1" stroke-linejoin="round" stroke-dasharray="6,3" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d20" startOffset="60.5">
+Raft
+</textPath></text>
+<path d="M 793.6 348.0 Q 807.8 408.5 790.1 468.0" fill="none" stroke="#555555" stroke-width="1" stroke-linejoin="round" stroke-dasharray="6,3" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d21" startOffset="60.0">
+Raft
+</textPath></text>
+<path d="M 887.7 468.0 L 887.7 150.0" fill="none" stroke="#555555" stroke-width="1" stroke-linejoin="round" stroke-dasharray="6,3" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d22" startOffset="79.5">
+Raft
+</textPath></text>
+<path d="M 766.1 468.0 Q 758.0 406.0 781.6 348.0" fill="none" stroke="#555555" stroke-width="1" stroke-linejoin="round" stroke-dasharray="6,3" marker-end="url(#arrow)" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d23" startOffset="60.5">
+Raft
+</textPath></text>
+</g>
+<g id="ggarch-annotations"></g>
+</svg>

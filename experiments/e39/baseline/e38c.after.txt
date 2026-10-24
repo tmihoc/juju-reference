@@ -1,0 +1,17 @@
+tables 264 weak 153 strong 111
+(1) weak tables homed with their owner: 142 / 153 = 93%
+cross-page weak tables (candidate misplacements):
+   annotation_charm                             homed on annotation         owner page(s): ['charm']
+   annotation_unit                              homed on annotation         owner page(s): ['unit']
+   cloud_defaults                               homed on model-defaults     owner page(s): ['cloud']
+   cloud_region_defaults                        homed on model-defaults     owner page(s): ['cloud']
+   log_transfer_progress                        homed on model-migration    owner page(s): ['model']
+   application_remote_offerer_relation_macaroon homed on offer              owner page(s): ['relation']
+   model_secret_backend                         homed on secret-backend     owner page(s): ['model']
+   machine_virtual_ssh_host_key                 homed on ssh                owner page(s): ['machine']
+   unit_virtual_ssh_host_key                    homed on ssh                owner page(s): ['unit']
+   application_storage_directive                homed on storage            owner page(s): ['application', 'charm']
+   unit_storage_directive                       homed on storage            owner page(s): ['charm', 'unit']
+(2) annotation tables cross-page: 2 / 8 | cloud_defaults, cloud_region_defaults cross-page: [True, True]
+(3) tables the E34 audit moved that the principle flags: ['application_storage_directive', 'unit_storage_directive']
+(4) strong?: [('permission', True), ('resource', True), ('port_range', True), ('secret', True), ('user_public_ssh_key', True)]

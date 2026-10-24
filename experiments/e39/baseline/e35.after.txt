@@ -1,0 +1,47 @@
+pages with tables 38 characters 13 candidate legs 25
+CANDIDATE LEGS (fails a,b or c):
+  action               a=True  (hook True ) b=True  c=[] d=False
+  agent-version        a=False (hook False) b=True  c=[] d=False
+  annotation           a=True  (hook False) b=True  c=[] d=False
+  block-command        a=False (hook False) b=True  c=[] d=False
+  database             a=False (hook False) b=True  c=[] d=False
+  external-controller  a=False (hook False) b=True  c=['model-migration'] d=False
+  image-metadata       a=True  (hook False) b=True  c=[] d=False
+  lease                a=False (hook False) b=True  c=[] d=False
+  link-layer-device    a=False (hook False) b=True  c=['application', 'machine', 'storage', 'unit'] d=False
+  model-defaults       a=True  (hook False) b=True  c=[] d=True
+  model-migration      a=False (hook False) b=True  c=[] d=False
+  object-store         a=False (hook False) b=True  c=['action', 'agent-version', 'charm', 'resource'] d=True
+  offer                a=True  (hook False) b=True  c=[] d=True
+  permission           a=False (hook False) b=True  c=[] d=False
+  port                 a=False (hook True ) b=True  c=[] d=False
+  removal              a=False (hook False) b=True  c=[] d=False
+  resource             a=True  (hook True ) b=True  c=[] d=False
+  secret               a=True  (hook True ) b=True  c=[] d=True
+  secret-backend       a=True  (hook False) b=True  c=[] d=True
+  ssh                  a=True  (hook False) b=True  c=[] d=True
+  ssh-key              a=True  (hook False) b=True  c=[] d=True
+  storage              a=True  (hook True ) b=True  c=[] d=True
+  telemetry            a=False (hook False) b=True  c=[] d=False
+  upgrade              a=True  (hook False) b=True  c=[] d=False
+  zone                 a=False (hook False) b=True  c=['machine'] d=False
+
+prediction 2 (port, zone, agent-version, model-defaults, telemetry fail): [('port', True), ('zone', True), ('agent-version', True), ('model-defaults', True), ('telemetry', True)]
+prediction 3 (life pages pass): [('application', True), ('machine', True), ('unit', True), ('relation', True), ('storage', False), ('model', True), ('controller', True), ('object-store', False), ('offer', False)]
+
+NEGATIVE CONTROLS:
+  cloud-instance         a=False b=False c=[] d=True -> leg  lead=machine_cloud_instance
+  unit-state             a=False b=False c=[] d=False -> leg  lead=unit_state
+  relation-unit          a=False b=True  c=[] d=False -> leg  lead=relation_unit
+  application-endpoint   a=False b=True  c=['application', 'offer', 'relation'] d=False -> leg  lead=application_endpoint
+  application-scale      a=False b=False c=[] d=False -> leg  lead=application_scale
+  machine-placement      a=False b=False c=[] d=False -> leg  lead=machine_placement
+controls failing the definition: 6 / 6
+d reported: pages with d false: ['model-migration', 'charm', 'resource', 'action', 'image-metadata', 'upgrade', 'permission', 'agent-version', 'subnet', 'zone', 'link-layer-device', 'external-controller', 'constraint', 'annotation', 'block-command', 'removal', 'lease', 'port', 'telemetry', 'database']
+
+=== post hoc (c-prime): referenced by operations of another facade ===
+characters 25 of 38
+still legs: ['agent-version', 'block-command', 'database', 'external-controller', 'lease', 'link-layer-device', 'model-defaults', 'model-migration', 'object-store', 'permission', 'removal', 'telemetry', 'zone']
+prediction 2 under c-prime: [('port', False), ('zone', True), ('agent-version', True), ('model-defaults', True), ('telemetry', True)]
+prediction 3 under c-prime: [('application', True), ('machine', True), ('unit', True), ('relation', True), ('storage', True), ('model', True), ('controller', True), ('object-store', False), ('offer', True)]
+other facades reaching each page (count): {'action': 4, 'agent-version': 22, 'annotation': 1, 'application': 24, 'block-command': 5, 'charm': 57, 'cloud': 24, 'constraint': 8, 'controller': 33, 'credential': 16, 'database': 8, 'external-controller': 7, 'image-metadata': 2, 'lease': 0, 'link-layer-device': 16, 'machine': 26, 'model': 55, 'model-defaults': 0, 'model-migration': 11, 'object-store': 3, 'offer': 13, 'permission': 7, 'port': 4, 'relation': 13, 'removal': 9, 'resource': 7, 'secret': 13, 'secret-backend': 6, 'space': 9, 'ssh': 4, 'ssh-key': 4, 'storage': 11, 'subnet': 9, 'telemetry': 5, 'unit': 29, 'upgrade': 4, 'user': 14, 'zone': 9}

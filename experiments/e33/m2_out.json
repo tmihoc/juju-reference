@@ -1,0 +1,354 @@
+{
+ "misplaced": [
+  {
+   "table": "model_namespace",
+   "page": "model",
+   "reason": "Maps a model to its dqlite namespace database; a database-substrate fact, not a property of the model entity.",
+   "evidence": "controller/sql/0007-model.sql: columns namespace, model_uuid only; domain/model state uses it with namespace_list (controller/0000-namespace.sql, 'tracked dqlite namespaces') and domain/modelmigration/state deletes both together. Same namespace string keys model_database_deletion.",
+   "belongs_in": "database"
+  },
+  {
+   "table": "model_database_deletion",
+   "page": "model",
+   "reason": "Staging queue for the model-DB deleter worker; keyed by dqlite namespace, deliberately has no FK to model.",
+   "evidence": "controller/sql/0030-model-database-deletion.sql: PK namespace, created_at, no FK; own.txt grep: only domain/modelmigration/state (4 hits) and domain/model; consumed by a worker that drops a dqlite database.",
+   "belongs_in": "database (substrate), cross-linked from model-migration (REAP stage)"
+  },
+  {
+   "table": "flag",
+   "page": "database",
+   "reason": "Not generic DB bookkeeping: the only writer and reader in the code is the bootstrap worker with the single flag 'bootstrapped'. It is controller bootstrap state.",
+   "evidence": "core/flags/flags.go defines only BootstrapFlag='bootstrapped'; SetFlag callers: internal/worker/bootstrap/worker.go:120 only; GetFlag: internal/worker/bootstrap/manifold.go:308 only. Table exists only in controller schema (controller/sql/0016-flag.sql).",
+   "belongs_in": "controller (or a bootstrap mechanism)"
+  },
+  {
+   "table": "bakery_config",
+   "page": "user",
+   "reason": "Holds the controller's macaroon bakery key pairs for local users, external users AND offers; no FK to user; not a user attribute.",
+   "evidence": "controller/sql/0020-macaroon.sql: eight key columns (local_users_*, external_users_*, offers_third_party_*), singleton index, no FK; owned by domain/macaroon (own.txt: macaroon 5 hits), not domain/access.",
+   "belongs_in": "controller (authentication infrastructure) or a separate macaroon/bakery page"
+  },
+  {
+   "table": "macaroon_root_key",
+   "page": "user",
+   "reason": "Macaroon root-key store with expiry; no FK to user; used by the bakery storage for users, offers and migration.",
+   "evidence": "controller/sql/0020-macaroon.sql (id, created_at, expires_at, root_key; no FK); own.txt: only domain/macaroon uses it.",
+   "belongs_in": "same page as bakery_config (macaroon/bakery or controller)"
+  },
+  {
+   "table": "relation_network_ingress",
+   "page": "relation",
+   "reason": "Cross-model relation firewall CIDRs; written, read and watched only by the crossmodelrelation domain and read by offer queries.",
+   "evidence": "domain/crossmodelrelation/state/model/relation_network.go does all INSERT/SELECT/watch; offer.go:693 joins it to offer_connection; defined in 0034-cross-model-relation.sql beside offer_connection. domain/relation never touches ingress.",
+   "belongs_in": "offer (cross-model relation); see two_homes for egress"
+  },
+  {
+   "table": "application_remote_offerer_relation_macaroon",
+   "page": "offer",
+   "reason": "Page choice is right but the FK is to relation (not to application_remote_offerer); it is per-relation auth for a cross-model relation.",
+   "evidence": "0034-cross-model-relation.sql: PK relation_uuid FK relation; crossmodelrelation/state/model/macaroon.go reads and writes it. Keep on offer but record that it hangs on relation.",
+   "belongs_in": "stay on offer (cross-model), not misplaced; included as a caution"
+  },
+  {
+   "table": "block_device",
+   "page": "storage",
+   "reason": "A machine's disk inventory reported by the machine agent (provenance 'machine' or 'provider'), FK machine; storage only consumes it by reference.",
+   "evidence": "model/sql/0010-blockdevice.sql: machine_uuid NOT NULL FK machine, hardware_id, wwn, serial_id, bus_address; block_device_provenance values provider/machine; agent facade agent/diskmanager and domain/blockdevice write it; storage_volume_attachment.block_device_uuid FK is the only storage link (0011-storage.sql).",
+   "belongs_in": "machine (with storage referencing it); also listed in two_homes"
+  },
+  {
+   "table": "block_device_link_device",
+   "page": "storage",
+   "reason": "Device-link names of a machine's block device (by-id paths); FK machine and block_device.",
+   "evidence": "0010-blockdevice.sql: unique (name, machine_uuid), FK machine; same domain/blockdevice owner.",
+   "belongs_in": "machine with block_device"
+  },
+  {
+   "table": "model_constraint",
+   "page": "model",
+   "reason": "Not misplaced under the stated rule, but the constraint page 'about' sentence omits the model-level use; the constraint table is shared by model, machine and application.",
+   "evidence": "0005-model.sql model_constraint FK constraint; 0018 machine_constraint; 0019 application_constraint. v_model_constraint views join constraint_tag/space/zone directly.",
+   "belongs_in": "stay on model; fix constraint page sentence to say model, machine and application"
+  }
+ ],
+ "two_things": [
+  {
+   "page": "model-migration",
+   "split": "Split into migration-export (source side: model_migration_export, _phase, _status, _minion_sync, _offer, _target_auth, model_migration_redirect, model_migration_redirect_user, lookup model_migration_phase) and migration-import (target side: model_migration_import, _offer, _external_controller_model, model-DB model_migrating and log_transfer_progress, lookup model_migration_import_phase_type).",
+   "evidence": "controller/sql/0011-model-migration.sql: the two groups share no FKs and no lookups; phase lookup is 'export-side' with 10 phases vs import_phase_type with 3 values (importing/activating/aborting); import is gating on the target model DB (model_migrating, log_transfer_progress in model/sql 0005, 0037, used by domain/modelmigration/state/model/state.go:252 and application/state/charm.go:897); export keeps history after the model row is deleted (no FK to model) and redirect snapshots outlive even external_controller."
+  },
+  {
+   "page": "offer",
+   "split": "Split into offer (offering model: offer, offer_endpoint, offer_connection, application_remote_consumer) and remote-application / consumed offer (consuming model: application_remote_offerer, application_remote_offerer_status, application_remote_offerer_relation_macaroon).",
+   "evidence": "model/sql/0034-cross-model-relation.sql: remote_offerer lives 'inside of the consumer model' (FK application, synthetic app, stores offer_url and macaroon); remote_consumer lives 'inside of the offering model' (FK offer_connection, offer-side). v_offer_detail (0032-offer.sql) uses only offer, offer_endpoint, offer_connection. domain/removal has separate relationwithremoteofferer.go and relationwithremoteconsumer.go; facades split client/applicationoffers vs controller/crossmodelrelations."
+  },
+  {
+   "page": "storage",
+   "split": "Split into storage (user-visible: storage_pool, storage_pool_attribute, model_storage_pool, storage_instance, storage_attachment, storage_unit_owner, directives) and storage-provisioning (storage_volume, storage_filesystem, their attachments, attachment plans, statuses, instance links, block devices, machine_volume/filesystem).",
+   "evidence": "20 tables. domain/storage handles pools (own.txt: storage_pool storage 17) while domain/storageprovisioning owns volume/filesystem/attachment (storage_volume storageprovisioning 21 vs storage 5; storage_volume_attachment 20 vs 4); separate agent facade agent/storageprovisioner vs client/storage. storage_volume and storage_filesystem have their own life, provision scope, status and annotation tables and are tied to instances only through storage_instance_volume/_filesystem."
+  },
+  {
+   "page": "controller",
+   "split": "Split into controller (singleton controller row with certs/target_version, controller_config, autocert_cache) and controller-node (controller_node, controller_node_agent_version, controller_node_password, controller_node_nonce, the four *_address tables).",
+   "evidence": "controller/sql/0004-controller.sql has no FK relationship with controller_node (0010-controller-node.sql only FK life); separate domain packages controller/controllerconfig/autocert vs controllernode and agentpassword (controller_node_password, nonce); facade client/highavailability deals with nodes; controller_node is referenced by upgrade_info_controller_node and leases."
+  },
+  {
+   "page": "agent-version",
+   "split": "Split into model agent version (agent_version, agent_stream) and agent binary catalogue (agent_binary_store, which is an object-store index).",
+   "evidence": "agent_binary_store (model/0030, controller/0025) FKs only architecture and object_store_metadata, no FK to agent_version or agent_stream; agent_version is a singleton ((1) index) merged into v_model_config (model/0027) as 'agent-version'/'agent-stream'; domain/agentbinary owns binaries, domain/modelagent and controllerupgrader own agent_version. The table also exists twice (controller DB: whole-controller binaries; model DB: model object store)."
+  },
+  {
+   "page": "machine",
+   "split": "Split cloud-instance record (machine_cloud_instance, machine_cloud_instance_status, machine_cloud_instance_status_value, instance_tag) from the machine entity.",
+   "evidence": "model/sql/0017-machine-cloud-instance.sql: machine_cloud_instance has its own life_id, own status lookup and status table, availability_zone FK, hardware columns; 1:1 on machine_uuid but its lifecycle is the provider instance (removal domain has separate handling, machine_cloud_instance removal 7 hits; facades agent/provisioner, instancemutater). Lower confidence: it is 1:1 with machine."
+  },
+  {
+   "page": "application",
+   "split": "CAAS-only group (application_scale, k8s_service, operator_status, application_k8s_resources_managed, plus unit-side k8s_pod, k8s_pod_port, k8s_pod_status and lookup k8s_pod_status_value) versus the platform-neutral application.",
+   "evidence": "domain/application/state/application.go CreateCAASApplication vs IAAS path; k8s_service.go, unitstate.go upsertUnitK8sPod/upsertK8sPodPorts only run for CAAS units; k8s_service FKs net_node. Present proposal scatters this group across the application and unit pages."
+  },
+  {
+   "page": "object-store",
+   "split": "Blob index (object_store_metadata, _path, _placement, present in both controller and model DBs) versus backend selection and drain (object_store_backend, _s3_config, _drain_info and their lookups, controller DB only).",
+   "evidence": "controller/sql/0014-objectstore-metadata.sql: backend tables FK life/backend_type, drain_info FKs backend; metadata tables FK only each other; no FK between the two groups. Same domain/objectstore owns both, so lower confidence."
+  }
+ ],
+ "one_thing": [
+  {
+   "pages": [
+    "space",
+    "subnet",
+    "zone"
+   ],
+   "evidence": "One domain (domain/network/state/space.go, subnet.go, space_remove.go) and one core type: core/network SubnetInfo carries AvailabilityZones and SpaceID, SpaceInfo carries Subnets. subnet.space_uuid FK space; availability_zone_subnet joins zone to subnet and is rewritten by subnet.go:228-236; provider_space/provider_subnet/provider_network_subnet hang on them. availability_zone is only otherwise referenced by machine_cloud_instance. zone has two tables and no independent facade (client/spaces, client/subnets)."
+  },
+  {
+   "pages": [
+    "user",
+    "permission"
+   ],
+   "evidence": "Both live in domain/access (own.txt: user 20 hits, permission 9 hits, access also owns user_password/authentication/activation_key, model_last_login); permission.user_uuid FKs user; permission is the only table of its page and its three lookups exist solely for it. Facade client/usermanager and modelmanager grant both."
+  },
+  {
+   "pages": [
+    "port",
+    "unit"
+   ],
+   "evidence": "port page owns the single table port_range (0022-port-ranges.sql): unit_uuid NOT NULL FK unit plus protocol and charm_relation. By the proposal's own rule it is an entity-attaches-to-facet link that stays with the entity, like unit_resolved and unit_state on unit. Lookup protocol is used only by port_range."
+  },
+  {
+   "pages": [
+    "status",
+    "unit",
+    "application"
+   ],
+   "evidence": "status page owns no tables, only workload_status_value; every other status lookup (machine_status_value, unit_agent_status_value, relation_status_type, ...) sits on its entity page. workload_status_value is referenced by application_status, operator_status, unit_workload_status (0019, 0020) and application_remote_offerer_status (0034); recommend dropping the page and listing the lookup in _shared_vocabulary."
+  }
+ ],
+ "lookups": [
+  {
+   "lookup": "secret_backend_origin",
+   "issue": "Assigned to secret; belongs to secret-backend.",
+   "evidence": "Defined in controller/sql/0018-secret-backend.sql beside secret_backend, backing secret_backend.origin_id (no declared FK); read only in domain/secretbackend (state.go:393, upserts.go, bootstrap, internal/origin.go). No model-DB secret table references it."
+  },
+  {
+   "lookup": "workload_status_value",
+   "issue": "Owned by a page that owns no tables; used by 3 entity pages. Should be shared vocabulary.",
+   "evidence": "FK users: application_status, operator_status (application page), unit_workload_status (unit), application_remote_offerer_status (offer)."
+  },
+  {
+   "lookup": "storage_volume_status_value / storage_filesystem_status_value",
+   "issue": "Identical eight-value lists (pending..tombstone); duplicated lookups under storage; treat as one shared vocabulary note.",
+   "evidence": "model/sql/0011-storage.sql lines ~224 and ~352 insert the same ids and names."
+  },
+  {
+   "lookup": "block_device_provenance",
+   "issue": "Follows block_device; move to machine if block_device moves.",
+   "evidence": "0010-blockdevice.sql only referenced by block_device (values provider, machine)."
+  },
+  {
+   "lookup": "model_type",
+   "issue": "Correct page, but also used by secret-backend view.",
+   "evidence": "controller v_model_secret_backend joins model_type; harmless, note only."
+  },
+  {
+   "lookup": "container_type",
+   "issue": "Shared is right; users are constraint (constraint.container_type_id) and machine_container_type; keep shared, note both.",
+   "evidence": "0014-constraint.sql, 0018-machine.sql."
+  },
+  {
+   "lookup": "architecture, life, password_hash_algorithm, ssh_key_algorithm_type",
+   "issue": "Each exists in both controller and model schemas as separate tables with the same name; ssh_key_algorithm_type is not in the shared list although used by ssh pages in both DBs and is also owned by ssh page; make the DB explicit.",
+   "evidence": "fk.txt: architecture c/m, life c/m, password_hash_algorithm c/m, ssh_key_algorithm_type c/m (controller/0029, model/0035)."
+  },
+  {
+   "lookup": "charm_relation_scope",
+   "issue": "Shared is right: referenced by charm_relation and relation.scope_id (0024-relation.sql).",
+   "evidence": "model/sql/0015-charm.sql, 0024-relation.sql."
+  },
+  {
+   "lookup": "charm_config_type",
+   "issue": "Shared is right: charm_config.type_id and application_config.type_id; note a TODO in application_config to drop its copy.",
+   "evidence": "0015-charm.sql, 0019-application.sql."
+  },
+  {
+   "lookup": "relation_status_type",
+   "issue": "Fine on relation, but v_offer_detail hard-codes id 1 (joined); offer page depends on it.",
+   "evidence": "0032-offer.sql join relation_status rs ... relation_status_type_id = 1."
+  },
+  {
+   "lookup": "auth_type",
+   "issue": "Shared is right: cloud_auth_type (cloud) and cloud_credential (credential).",
+   "evidence": "controller/0005-cloud.sql."
+  }
+ ],
+ "two_homes": [
+  {
+   "table": "block_device",
+   "pages": [
+    "machine",
+    "storage"
+   ],
+   "evidence": "FK machine, written by machine disk reporting (agent/diskmanager, domain/blockdevice); FK target of storage_volume_attachment.block_device_uuid. Same for block_device_link_device."
+  },
+  {
+   "table": "machine_volume",
+   "pages": [
+    "machine",
+    "storage"
+   ],
+   "evidence": "0018-machine.sql: pure (machine_uuid, volume_uuid) link of two nouns; used by machine, application, removal, storageprovisioning domains. machine_filesystem identical."
+  },
+  {
+   "table": "storage_attachment",
+   "pages": [
+    "storage",
+    "unit"
+   ],
+   "evidence": "0011-storage.sql: FK storage_instance and unit; used by application (13 hits), machine (9), removal (30). storage_unit_owner likewise (FK storage_instance, unit)."
+  },
+  {
+   "table": "application_storage_directive",
+   "pages": [
+    "application",
+    "storage"
+   ],
+   "evidence": "FK application, charm_storage, storage_pool; defined in storage file 0011; domain/application plus storageprovisioning. unit_storage_directive likewise (unit)."
+  },
+  {
+   "table": "application_endpoint",
+   "pages": [
+    "application",
+    "relation"
+   ],
+   "evidence": "Defined in model/sql/0024-relation.sql; FKs application, charm_relation, space; relation_endpoint FKs it; own.txt: relation domain 23 hits vs application 15, crossmodelrelation 10 (offer_endpoint FKs it). application_extra_endpoint likewise (relation file)."
+  },
+  {
+   "table": "relation_network_egress",
+   "pages": [
+    "relation",
+    "offer"
+   ],
+   "evidence": "Written by domain/relation (state/relation.go:4053 insertRelationNetworkEgress) and by crossmodelrelation (relation_network.go:77); read by domain/network (unitinfo.go:475,510). Ingress is crossmodelrelation only."
+  },
+  {
+   "table": "application_resource",
+   "pages": [
+    "resource",
+    "application"
+   ],
+   "evidence": "0023-resource.sql: link FK application and resource; domain application 11 hits vs resource 13. unit_resource (FK unit) and pending_application_resource (application_name) same; the rule 'link to facet stays with entity' conflicts with resource being a noun."
+  },
+  {
+   "table": "annotation_application",
+   "pages": [
+    "annotation",
+    "application"
+   ],
+   "evidence": "All eight annotation_* tables are entity-keyed key/value rows (0013-annotations.sql) FK to application, charm, machine, unit, storage_instance, storage_volume, storage_filesystem; annotation_model has no FK. Under the rule used for status tables (stay with entity) they belong on their entity pages; as a facet page they are the exception."
+  },
+  {
+   "table": "model_secret_backend",
+   "pages": [
+    "model",
+    "secret-backend"
+   ],
+   "evidence": "controller/0018: PK model_uuid FK model and secret_backend; in domain/model (3 hits) and secretbackend (2). model_authorized_keys and model_last_login have the same shape (model-to-X link) and were placed on X; application_constraint was kept on the entity: rule applied inconsistently."
+  },
+  {
+   "table": "secret_backend_reference",
+   "pages": [
+    "secret",
+    "secret-backend"
+   ],
+   "evidence": "Controller-side mirror of model-DB secret_value_ref (backend_uuid, revision uuid); FK model and secret_backend; domain/secretbackend 10 hits. secret_value_ref and secret_deleted_value_ref (model DB, backend_uuid, revision_id) are the other half."
+  },
+  {
+   "table": "secret_reference",
+   "pages": [
+    "secret",
+    "offer"
+   ],
+   "evidence": "0012-secret.sql: consumer side of cross-model secrets, FK application owner (the remote synthetic app); domain/crossmodelrelation uses it (3 hits), secret_remote_unit_consumer (crossmodelrelation 5 vs secret 2)."
+  },
+  {
+   "table": "controller (target_version)",
+   "pages": [
+    "controller",
+    "agent-version"
+   ],
+   "evidence": "controller.target_version updated by domain/controllerupgrader/state/controller.go:212 alongside agent_version in controllerupgrader/state/model.go:138; also machine_agent_version, unit_agent_version, controller_node_agent_version sit on entity pages."
+  },
+  {
+   "table": "agent_version",
+   "pages": [
+    "agent-version",
+    "model"
+   ],
+   "evidence": "model/0027: v_model_config UNIONs agent_version into model config as 'agent-version' and 'agent-stream'; agent_stream used by modelconfig; model page already owns model_config and model_agent."
+  },
+  {
+   "table": "availability_zone_subnet",
+   "pages": [
+    "zone",
+    "subnet"
+   ],
+   "evidence": "join of two pages; rewritten in domain/network/state/subnet.go:228-236 and linklayer_merge.go:322."
+  },
+  {
+   "table": "cloud_defaults",
+   "pages": [
+    "cloud",
+    "model-defaults"
+   ],
+   "evidence": "controller/0005-cloud.sql: FK cloud only (cloud_region_defaults FK cloud_region); pure per-cloud/region attachment, same shape as application_constraint that the rule keeps with the entity. Owned by domain/modeldefaults."
+  },
+  {
+   "table": "model_last_login",
+   "pages": [
+    "user",
+    "model"
+   ],
+   "evidence": "FK model and user; written in domain/access/state/user.go:934, deleted in domain/model and removal when a model goes."
+  },
+  {
+   "table": "offer_connection",
+   "pages": [
+    "offer",
+    "relation"
+   ],
+   "evidence": "0034: FK offer and relation (remote_relation_uuid); domain/relation/state/relation.go reads it, crossmodelrelation writes it."
+  },
+  {
+   "table": "object_store_metadata (also _path, _placement, agent_binary_store, model, change_log, change_log_witness)",
+   "pages": [
+    "object-store",
+    "database",
+    "agent-version",
+    "model"
+   ],
+   "evidence": "Each of these tables is created in BOTH controller and model schemas (fk.txt: object_store_metadata/path/placement, agent_binary_store, model, change_log*, life, architecture, password_hash_algorithm, ssh_key_algorithm_type) with different content; one-home needs a 'which database' qualifier. object_store_metadata is also FK-referenced by charm, resource_file_store, agent_binary_store and operation_task_output (via path)."
+  }
+ ],
+ "summary": "Dominant defects: (1) the rule 'link to a facet stays with the entity' is applied unevenly (application_constraint stays, but model_secret_backend, model_authorized_keys, model_last_login, application_resource, annotation_* go the other way), so the one-home rule fails for every noun-noun link table (machine_volume, storage_attachment, application_endpoint, unit_resource, offer_connection, relation_network_egress). (2) Pages that are two things: model-migration (source export vs target import), offer (offering vs consuming side), storage (user-facing vs provisioning), controller (singleton vs HA nodes), agent-version (target version vs binary index), plus CAAS-only objects scattered over application and unit. (3) Misplaced: model_namespace, model_database_deletion (database); flag (controller bootstrap); bakery_config and macaroon_root_key (not user); block_device and block_device_link_device (machine). (4) One thing: space+subnet+zone (single domain/network and SubnetInfo carries zones), user+permission (domain/access), port into unit, status page empty. (5) Lookups: secret_backend_origin is secret-backend's; workload_status_value is shared; duplicated storage status lists. (6) Controller and model schemas both define object_store_metadata, agent_binary_store, model, change_log, life, architecture, password_hash_algorithm, ssh_key_algorithm_type; the proposal lacks a database qualifier. Caveat: ownership counts come from string matching of FROM/INTO/JOIN in non-test domain Go code; the model_constraint and application_remote_offerer_relation_macaroon entries in misplaced are cautions, not moves."
+}

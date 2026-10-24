@@ -1,0 +1,1689 @@
+// The Juju model for the documentation.
+//
+// One model serves every page: nodes and edges are declared once and the
+// views (diagrams and sequences) select what each page needs. Pages embed
+// a view with the {ggarch} directive:
+//
+//   ```{ggarch}
+//   :file: ../juju.ggarch
+//   :view: The insight
+//   ```
+//
+// Colour means ownership (orange = Juju, grey = outside Juju); a cloud
+// badge marks an entity as deployed on a node from a cloud. See the
+// ggarch SKILL.md "Visual grammar".
+
+model "Juju" {
+
+  nodes {
+    // Actors and systems around Juju.
+    // Before Juju enters the story the person is an SRE; from "The insight"
+    // on, the same person is a Juju user (the account the controller knows).
+    sre      [type: person,        label: "SRE"]
+    user     [type: person,        label: "User"]
+    client   [type: juju-software, label: "Client"]
+    charmhub [type: external,      label: "Charmhub"]
+    cloud    [type: external,      label: "Cloud"]
+    clouds   [type: external,      label: "Clouds\n(AWS, MAAS, OpenStack,\nKubernetes, …)",
+              collective: cloud]
+
+    controller [type: juju-software, label: "Controller"]
+
+    ssh_controller [type: juju-software, label: "Controller",
+                    abstracts: "controller"] {
+      ssh_gateway [type: juju-software,
+                   label: "SSH tunnel server\n(port 17022)"]
+      ssh_session [type: juju-software, label: "Target SSH server\n(virtual host key)"]
+      ssh_api     [type: juju-software, label: "API server\n(port 17070)"]
+      ssh_db      [type: database, label: "Model database\n(tunnel request)"]
+    }
+    ssh_target [type: external, label: "Machine or unit"]
+    ssh_machine [type: node, label: "Machine", deployed: true] {
+      ssh_machine_agent [type: juju-software, label: "Machine agent"]
+      ssh_machine_server [type: external, label: "Machine SSH server"]
+    }
+    ssh_k8s_api [type: external, label: "Kubernetes API server"]
+    ssh_pod     [type: node, label: "Unit pod", deployed: true] {
+      ssh_container [type: workload, label: "Target container"]
+    }
+
+    // "The insight" shows Juju as one piece between the user and the
+    // applications. "The topology" opens it into a client and a controller
+    // and brings in the clouds and Charmhub.
+    juju     [type: juju-software, label: "Juju"]
+
+    // The entity chain: a model holds applications and an application runs
+    // as units. Models and applications are logical entities (dotted). A
+    // model lives on a cloud (the cloud badge), because that is where its
+    // workers get nodes from. A unit is a node with the unit agent, the
+    // charm and the workload on it.
+    model [type: entity, label: "Model", deployed: true] {
+      application [type: entity, label: "Application"] {
+        unit_node [type: node, label: "Unit"] {
+          unit_agent [type: juju-software, label: "Unit agent"]
+          charm      [type: charm,         label: "Charm"]
+          workload   [type: workload,      label: "Workload"]
+        }
+      }
+    }
+
+    // The applications as the user sees them: on nodes from a cloud,
+    // outside Juju. "The problem" and "The insight" draw them.
+    bare_node [type: external, label: "Node"]
+    bare_applications [type: external, label: "Applications", deployed: true,
+                       collective: bare_node]
+
+    // Two unit agents, for integration.
+    agent_foo [type: juju-software, label: "Unit agent\n(foo/0)"]
+    agent_bar [type: juju-software, label: "Unit agent\n(bar/0)"]
+
+    // The tutorial's chat service: three applications that do not form a
+    // whole. Each is an abstraction with the Juju mark: a unit agent and a
+    // charm run behind it.
+    mattermost [type: charmed-entity, label: "Mattermost"]
+    postgresql [type: charmed-entity, label: "PostgreSQL"]
+    certs      [type: charmed-entity, label: "Certs"]
+
+    // High availability on machine clouds: every controller machine runs the
+    // API server, the dbaccessor worker and one Dqlite node. The view stamps
+    // the machine as many times as the controller has machines.
+    ha_machine [type: node, label: "Controller machine", deployed: true] {
+      ha_api      [type: juju-software, label: "API server"]
+      ha_dbworker [type: juju-software, label: "dbaccessor worker"]
+      ha_dqlite   [type: database, label: "Dqlite node\n(controller and model\ndatabases)"]
+    }
+    ha_callers [type: juju-software, label: "Clients and agents"]
+  }
+
+  edges {
+    // The problem
+    sre  -> bare_applications [type: control, label: "operates"]
+
+    // The insight
+    user         -> juju              [type: api,     label: "declares intent to"]
+    juju         -> bare_applications [type: control, label: "operates"]
+
+    // The topology: declare a goal state, persist it, reconcile with it
+    user         -> client       [type: api,    label: "declares goal state to"]
+    client       -> controller   [type: api,    label: "persists goal state in"]
+    controller   -> clouds       [type: api,    label: "gets nodes from"]
+    controller   -> charmhub     [type: api,    label: "gets charms from"]
+
+    // The topology
+    unit_agent -> controller [type: stream,  label: "reconciles state with"]
+    unit_agent -> charm      [type: control, label: "runs"]
+    charm      -> workload   [type: control, label: "operates"]
+
+    // The steps
+    client     -> client     [type: api,    label: "saves to"]
+    client     -> cloud      [type: api,    label: "gets a node from"]
+    controller -> cloud      [type: api,    label: "gets nodes from"]
+    agent_foo  -> controller [type: stream, label: "watches"]
+    agent_bar  -> controller [type: stream, label: "watches"]
+
+    // The tutorial: the unit agents of the chat applications watch the
+    // controller, as every unit agent does.
+    mattermost -> controller [type: stream, label: "unit agents watch"]
+    postgresql -> controller [type: stream, label: "unit agents watch"]
+    certs      -> controller [type: stream, label: "unit agents watch"]
+
+    client -> ssh_gateway [type: stream, label: "outer SSH tunnel"]
+    client -> ssh_session [type: stream, label: "inner SSH session"]
+    client -> ssh_api [type: api, label: "fetches expected host keys"]
+    ssh_gateway -> ssh_session [type: ipc, label: "forwards inner SSH"]
+    ssh_session -> ssh_target [type: stream, label: "proxies session"]
+    ssh_controller -> ssh_k8s_api [type: stream, label: "exec stream"]
+    ssh_k8s_api -> ssh_container [type: stream, label: "executes in"]
+    ssh_session -> ssh_db [type: api, label: "1. stores tunnel request"]
+    ssh_machine_agent -> ssh_db [type: stream, label: "2. observes request via API"]
+    ssh_machine_agent -> ssh_api [type: stream, label: "3. opens reverse tunnel"]
+    ssh_session -> ssh_machine_server [type: stream, label: "4. SSH over reverse tunnel"]
+
+    // High availability
+    ha_callers  -> ha_api      [type: api,     label: "connect to any"]
+    ha_api      -> ha_dbworker [type: ipc,     label: "gets databases from"]
+    ha_dbworker -> ha_dqlite   [type: control, label: "runs and clusters"]
+    ha_dqlite   -> ha_dqlite   [type: stream,  label: "Raft", pairing: mesh]
+  }
+
+  behaviours {
+    behaviour "add-cloud" {
+      user   -> client: call "juju add-cloud"
+      client -> client: self "save the cloud definition"
+      client -> user:   return "cloud added"
+    }
+    behaviour "add-credential" {
+      user   -> client: call "juju add-credential"
+      client -> client: self "save the credential"
+      client -> user:   return "credential added"
+    }
+    behaviour "bootstrap" {
+      user       -> client:     call "juju bootstrap"
+      client     -> cloud:      call "get a node"
+      cloud      -> client:     return "node ready"
+      client     -> controller: call "install and start the controller"
+      controller -> controller: self "initialize the database"
+      controller -> client:     return "API ready"
+    }
+    // Kubernetes clouds: one command adds the cluster and its credential from
+    // the kubeconfig, and the cluster runs the controller and the application
+    // pods, so there is no node to get and nothing to install by hand.
+    behaviour "add-k8s" {
+      user   -> client: call "juju add-k8s"
+      client -> client: self "save the cloud and its credential"
+      client -> user:   return "cloud added"
+    }
+    behaviour "bootstrap-k8s" {
+      user       -> client:     call "juju bootstrap"
+      client     -> cloud:      call "create the controller StatefulSet"
+      cloud      -> client:     return "created"
+      client     -> controller: call "wait for the API"
+      controller -> controller: self "initialize the database"
+      controller -> client:     return "API ready"
+    }
+    behaviour "add-model" {
+      user       -> client:     call "juju add-model"
+      client     -> controller: call "declare the model"
+      controller -> controller: self "persist it in the database"
+      controller -> client:     return "model ready"
+    }
+    behaviour "deploy" {
+      user       -> client:     call "juju deploy foo"
+      client     -> controller: call "declare the application"
+      controller -> controller: self "persist it in the database"
+      controller -> charmhub:   call "get the charm"
+      controller -> cloud:      call "get a node"
+      cloud      -> controller: return "node ready"
+      controller -> unit_agent: async "watcher fires"
+      unit_agent -> controller: call "fetch the current state"
+      unit_agent -> charm:      call "run the install hook"
+      unit_agent -> controller: call "report the result"
+    }
+    behaviour "deploy-k8s" {
+      user       -> client:     call "juju deploy foo"
+      client     -> controller: call "declare the application"
+      controller -> controller: self "persist it in the database"
+      controller -> charmhub:   call "get the charm"
+      controller -> cloud:      call "create the application's pods"
+      cloud      -> controller: return "pods created"
+      controller -> unit_agent: async "watcher fires"
+      unit_agent -> controller: call "fetch the current state"
+      unit_agent -> charm:      call "run the install hook"
+      unit_agent -> controller: call "report the result"
+    }
+    behaviour "config" {
+      user       -> client:     call "juju config foo key=value"
+      client     -> controller: call "declare the new value"
+      controller -> controller: self "persist it in the database"
+      controller -> unit_agent: async "watcher fires"
+      unit_agent -> controller: call "fetch the current state"
+      unit_agent -> charm:      call "run the config-changed hook"
+      unit_agent -> controller: call "report the result"
+    }
+    behaviour "integrate" {
+      user       -> client:     call "juju integrate foo bar"
+      client     -> controller: call "declare the integration"
+      controller -> controller: self "persist it in the database"
+      controller -> agent_foo:  async "watcher fires"
+      controller -> agent_bar:  async "watcher fires"
+      agent_foo  -> controller: call "fetch state, run relation hooks"
+      agent_bar  -> controller: call "fetch state, run relation hooks"
+    }
+  }
+
+  style { extends: juju }
+}
+
+diagram "The problem" from "Juju" {
+  // The user and the applications, which run on nodes from clouds (the
+  // cloud badge). The clouds themselves are a detail of "The topology".
+  select {
+    nodes: sre bare_applications
+    edges: type control
+    sizing: uniform
+  }
+  positions {
+    sre               left-of bare_applications gap: 120
+    sre               align-middle bare_applications
+  }
+}
+
+diagram "The insight" from "Juju" {
+  select {
+    nodes: user juju bare_applications
+    edges: type api type control
+    sizing: uniform
+  }
+  positions {
+    user              left-of juju gap: 100
+    user              align-middle juju
+    bare_applications right-of juju gap: 100
+    bare_applications align-middle juju
+  }
+}
+
+diagram "The topology" from "Juju" {
+  select {
+    nodes: user client controller clouds charmhub model
+    edges: type api type stream type control
+  }
+  positions {
+    user     left-of client gap: 90
+    user     align-middle client
+    client   left-of controller gap: 90
+    client   align-middle controller
+    clouds   above controller gap: 110
+    clouds   align-centre controller
+    charmhub below controller gap: 110
+    charmhub align-centre controller
+    model    right-of controller gap: 120
+    model    align-middle controller
+  }
+}
+
+// Scaffolded from the 4.1 controller DDL: ggarch scaffold controller.ddl --db controller --tables user_public_ssh_key,model_authorized_keys
+model "SSHKeySchema" {
+
+  nodes {
+    auth_type [type: record, label: "auth_type",
+                 ground: "controller:auth_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        type [label: "type", type: "text", null: true]
+      }
+    }
+
+    cloud [type: record, label: "cloud",
+                 ground: "controller:cloud"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        cloud_type_id [label: "cloud_type_id", type: "int", fk: true]
+        endpoint [label: "endpoint", type: "text"]
+        identity_endpoint [label: "identity_endpoint", type: "text", null: true]
+        storage_endpoint [label: "storage_endpoint", type: "text", null: true]
+        skip_tls_verify [label: "skip_tls_verify", type: "bool"]
+      }
+    }
+
+    cloud_credential [type: record, label: "cloud_credential",
+                 ground: "controller:cloud_credential"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        cloud_uuid [label: "cloud_uuid", type: "text", fk: true]
+        auth_type_id [label: "auth_type_id", type: "text", fk: true]
+        owner_uuid [label: "owner_uuid", type: "text", fk: true]
+        name [label: "name", type: "text"]
+        revoked [label: "revoked", type: "bool", null: true]
+        invalid [label: "invalid", type: "bool", null: true]
+        invalid_reason [label: "invalid_reason", type: "text", null: true]
+      }
+    }
+
+    cloud_region [type: record, label: "cloud_region",
+                 ground: "controller:cloud_region"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        cloud_uuid [label: "cloud_uuid", type: "text", fk: true]
+        name [label: "name", type: "text"]
+        endpoint [label: "endpoint", type: "text", null: true]
+        identity_endpoint [label: "identity_endpoint", type: "text", null: true]
+        storage_endpoint [label: "storage_endpoint", type: "text", null: true]
+      }
+    }
+
+    cloud_type [type: record, label: "cloud_type",
+                 ground: "controller:cloud_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        type [label: "type", type: "text"]
+      }
+    }
+
+    life [type: record, label: "life",
+                 ground: "controller:life"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    model [type: context-record, label: "Model",
+                 ground: "controller:model"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        activated [label: "activated", type: "bool"]
+        cloud_uuid [label: "cloud_uuid", type: "text", fk: true]
+        cloud_region_uuid [label: "cloud_region_uuid", type: "text", fk: true, null: true]
+        cloud_credential_uuid [label: "cloud_credential_uuid", type: "text", fk: true, null: true]
+        model_type_id [label: "model_type_id", type: "int", fk: true]
+        life_id [label: "life_id", type: "int", fk: true]
+        name [label: "name", type: "text"]
+        qualifier [label: "qualifier", type: "text"]
+      }
+    }
+
+    model_authorized_keys [type: record, label: "Model\nauthorization",
+                 ground: "controller:model_authorized_keys"] {
+      fields {
+        model_uuid [label: "model_uuid", type: "text", fk: true]
+        user_public_ssh_key_id [label: "user_public_ssh_key_id", type: "int", fk: true]
+      }
+    }
+
+    model_type [type: record, label: "model_type",
+                 ground: "controller:model_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        type [label: "type", type: "text"]
+      }
+    }
+
+    ssh_fingerprint_hash_algorithm [type: record, label: "Fingerprint hash\nalgorithm",
+                 ground: "controller:ssh_fingerprint_hash_algorithm"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        algorithm [label: "algorithm", type: "text"]
+      }
+    }
+
+    user [type: context-record, label: "User",
+                 ground: "controller:user"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        display_name [label: "display_name", type: "text", null: true]
+        external [label: "external", type: "bool"]
+        removed [label: "removed", type: "bool"]
+        created_by_uuid [label: "created_by_uuid", type: "text", fk: true]
+        created_at [label: "created_at", type: "timestamp"]
+      }
+    }
+
+    user_public_ssh_key [type: record, label: "SSH key",
+                 ground: "controller:user_public_ssh_key"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        comment [label: "comment", type: "text"]
+        fingerprint_hash_algorithm_id [label: "fingerprint_hash_algorithm_id", type: "int", fk: true]
+        fingerprint [label: "fingerprint", type: "text"]
+        public_key [label: "public_key", type: "text"]
+        user_uuid [label: "user_uuid", type: "text", fk: true]
+      }
+    }
+
+  }
+
+  edges {
+    cloud.cloud_type_id -> cloud_type.id [type: data]
+    cloud_credential.cloud_uuid -> cloud.uuid [type: data]
+    cloud_credential.auth_type_id -> auth_type.id [type: data]
+    cloud_credential.owner_uuid -> user.uuid [type: data]
+    cloud_region.cloud_uuid -> cloud.uuid [type: data]
+    model.cloud_uuid -> cloud.uuid [type: data]
+    model.cloud_region_uuid -> cloud_region.uuid [type: data]
+    model.cloud_credential_uuid -> cloud_credential.uuid [type: data]
+    model.model_type_id -> model_type.id [type: data]
+    model.life_id -> life.id [type: data]
+    model_authorized_keys.user_public_ssh_key_id -> user_public_ssh_key.id [type: data]
+    model_authorized_keys.model_uuid -> model.uuid [type: data]
+    user.created_by_uuid -> user.uuid [type: data]
+    user_public_ssh_key.fingerprint_hash_algorithm_id -> ssh_fingerprint_hash_algorithm.id [type: data]
+    user_public_ssh_key.user_uuid -> user.uuid [type: data]
+  }
+
+  style { extends: juju }
+
+}
+
+// Importing SSH keys: the chronology of one import, happy path. Each step
+// cites the 4.1 code that performs it:
+//   1 apiserver/facades/client/keymanager/keymanager.go:271 (ImportKeys)
+//   2 keymanager.go:272-277 (checkCanWrite, ChangeAllowed)
+//   3 keymanager.go:298 (GetUserByName)
+//   4 domain/keymanager/service/service.go:276 -> internal/ssh/importer/importer.go:35-62
+//     (resolver by scheme: "gh" and "lp", importer.go:61-65)
+//   5 service.go:298-312 (parse each key; reserved comment refused)
+//   6 service.go:324 -> domain/keymanager/state/state.go:309-313
+//     (INSERT ... ON CONFLICT DO NOTHING into model_authorized_keys)
+//   7 keymanager.go:321-380 (one ErrorResult per key source)
+model "SSHKeyImport" {
+
+  nodes {
+    ik_client     [type: juju-software, label: "Client"]
+    ik_controller [type: juju-software, label: "Controller"]
+    ik_source     [type: external, label: "Launchpad or GitHub"]
+    ik_database   [type: database, label: "Controller database"]
+  }
+
+  edges {
+    ik_client     -> ik_controller [type: api]
+    ik_controller -> ik_controller [type: api]
+    ik_controller -> ik_source     [type: api]
+    ik_controller -> ik_database   [type: api]
+  }
+
+  behaviours {
+    behaviour "import-ssh-keys" {
+      ik_client     -> ik_controller: call "import keys from a source (lp:<name> or gh:<name>)"
+      ik_controller -> ik_controller: self "check access and the change block, then find the user"
+      ik_controller -> ik_source:     call "fetch the account's public keys"
+      ik_source     -> ik_controller: return "public keys"
+      ik_controller -> ik_controller: self "parse each key and refuse a reserved comment"
+      ik_controller -> ik_database:   call "store the keys and authorize them on the model (keys already there are skipped)"
+      ik_database   -> ik_controller: return "done"
+      ik_controller -> ik_client:     return "one result per source"
+    }
+  }
+
+  style { extends: juju }
+}
+
+diagram "SSH key data model" from "SSHKeySchema" {
+  select {
+    nodes: user user_public_ssh_key ssh_fingerprint_hash_algorithm model_authorized_keys model
+    edges: type data
+    labels: hidden
+    fields: hidden
+    sizing: uniform
+    routing: orthogonal
+  }
+  positions {
+    user_public_ssh_key right-of user gap: 70
+    user_public_ssh_key align-middle user
+    ssh_fingerprint_hash_algorithm below user_public_ssh_key gap: 50
+    ssh_fingerprint_hash_algorithm align-centre user_public_ssh_key
+    model_authorized_keys right-of user_public_ssh_key gap: 70
+    model_authorized_keys align-middle user_public_ssh_key
+    model right-of model_authorized_keys gap: 70
+    model align-middle model_authorized_keys
+    ssh_fingerprint_hash_algorithm same-size user_public_ssh_key
+    user same-size user_public_ssh_key
+    model same-size user_public_ssh_key
+    model_authorized_keys same-size user_public_ssh_key
+  }
+}
+
+sequence "Importing SSH keys" from "SSHKeyImport" {
+  select { behaviour: "import-ssh-keys" }
+}
+
+// Scaffolded by tools/build_page_schema.py from the 4.1 controller DDL.
+model "CloudSchema" {
+
+  nodes {
+    auth_type [type: record, label: "Authentication\ntype",
+                 ground: "controller:auth_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        type [label: "type", type: "text", null: true]
+      }
+    }
+
+    cloud [type: record, label: "Cloud",
+                 ground: "controller:cloud"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        cloud_type_id [label: "cloud_type_id", type: "int", fk: true]
+        endpoint [label: "endpoint", type: "text"]
+        identity_endpoint [label: "identity_endpoint", type: "text", null: true]
+        storage_endpoint [label: "storage_endpoint", type: "text", null: true]
+        skip_tls_verify [label: "skip_tls_verify", type: "bool"]
+      }
+    }
+
+    cloud_auth_type [type: record, label: "Admitted\nauthentication type",
+                 ground: "controller:cloud_auth_type"] {
+      fields {
+        cloud_uuid [label: "cloud_uuid", type: "text", fk: true]
+        auth_type_id [label: "auth_type_id", type: "int", fk: true]
+      }
+    }
+
+    cloud_ca_cert [type: record, label: "CA certificate",
+                 ground: "controller:cloud_ca_cert"] {
+      fields {
+        cloud_uuid [label: "cloud_uuid", type: "text", fk: true]
+        ca_cert [label: "ca_cert", type: "text"]
+      }
+    }
+
+    cloud_credential [type: context-record, label: "Credential",
+                 ground: "controller:cloud_credential"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        cloud_uuid [label: "cloud_uuid", type: "text", fk: true]
+        auth_type_id [label: "auth_type_id", type: "text", fk: true]
+        owner_uuid [label: "owner_uuid", type: "text", fk: true]
+        name [label: "name", type: "text"]
+        revoked [label: "revoked", type: "bool", null: true]
+        invalid [label: "invalid", type: "bool", null: true]
+        invalid_reason [label: "invalid_reason", type: "text", null: true]
+      }
+    }
+
+    cloud_region [type: record, label: "Region",
+                 ground: "controller:cloud_region"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        cloud_uuid [label: "cloud_uuid", type: "text", fk: true]
+        name [label: "name", type: "text"]
+        endpoint [label: "endpoint", type: "text", null: true]
+        identity_endpoint [label: "identity_endpoint", type: "text", null: true]
+        storage_endpoint [label: "storage_endpoint", type: "text", null: true]
+      }
+    }
+
+    cloud_type [type: record, label: "Cloud type",
+                 ground: "controller:cloud_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        type [label: "type", type: "text"]
+      }
+    }
+
+    life [type: record, label: "life",
+                 ground: "controller:life"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    model [type: context-record, label: "Model",
+                 ground: "controller:model"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        activated [label: "activated", type: "bool"]
+        cloud_uuid [label: "cloud_uuid", type: "text", fk: true]
+        cloud_region_uuid [label: "cloud_region_uuid", type: "text", fk: true, null: true]
+        cloud_credential_uuid [label: "cloud_credential_uuid", type: "text", fk: true, null: true]
+        model_type_id [label: "model_type_id", type: "int", fk: true]
+        life_id [label: "life_id", type: "int", fk: true]
+        name [label: "name", type: "text"]
+        qualifier [label: "qualifier", type: "text"]
+      }
+    }
+
+    model_type [type: record, label: "model_type",
+                 ground: "controller:model_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        type [label: "type", type: "text"]
+      }
+    }
+
+    user [type: record, label: "user",
+                 ground: "controller:user"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        display_name [label: "display_name", type: "text", null: true]
+        external [label: "external", type: "bool"]
+        removed [label: "removed", type: "bool"]
+        created_by_uuid [label: "created_by_uuid", type: "text", fk: true]
+        created_at [label: "created_at", type: "timestamp"]
+      }
+    }
+
+  }
+
+  edges {
+    cloud.cloud_type_id -> cloud_type.id [type: data]
+    cloud_auth_type.cloud_uuid -> cloud.uuid [type: data]
+    cloud_auth_type.auth_type_id -> auth_type.id [type: data]
+    cloud_ca_cert.cloud_uuid -> cloud.uuid [type: data]
+    cloud_credential.cloud_uuid -> cloud.uuid [type: data]
+    cloud_credential.auth_type_id -> auth_type.id [type: data]
+    cloud_credential.owner_uuid -> user.uuid [type: data]
+    cloud_region.cloud_uuid -> cloud.uuid [type: data]
+    model.cloud_uuid -> cloud.uuid [type: data]
+    model.cloud_region_uuid -> cloud_region.uuid [type: data]
+    model.cloud_credential_uuid -> cloud_credential.uuid [type: data]
+    model.model_type_id -> model_type.id [type: data]
+    model.life_id -> life.id [type: data]
+    user.created_by_uuid -> user.uuid [type: data]
+  }
+
+  style { extends: juju }
+
+}
+
+
+diagram "Cloud data model" from "CloudSchema" {
+  select {
+    nodes: cloud cloud_type cloud_region cloud_ca_cert cloud_auth_type model cloud_credential
+    edges: type data
+    except: model -> cloud_region
+    except: model -> cloud_credential
+    labels: hidden
+    fields: hidden
+    sizing: uniform
+    routing: orthogonal
+  }
+  positions {
+    cloud_region left-of cloud gap: 70
+    cloud_region align-middle cloud
+    model right-of cloud gap: 70
+    model align-middle cloud
+    cloud_type above cloud gap: 60
+    cloud_type align-centre cloud
+    cloud_auth_type below cloud gap: 60
+    cloud_auth_type align-centre cloud
+    cloud_ca_cert below cloud_region gap: 60
+    cloud_ca_cert align-centre cloud_region
+    cloud_credential below model gap: 60
+    cloud_credential align-centre model
+    cloud_type same-size cloud
+    cloud_region same-size cloud
+    model same-size cloud
+    cloud_auth_type same-size cloud
+    cloud_ca_cert same-size cloud
+    cloud_credential same-size cloud
+  }
+}
+
+// The tutorial grows the same picture in three steps: the pieces Juju needs,
+// the user who logs in, and the applications the controller operates.
+diagram "Tutorial setup" from "Juju" {
+  select {
+    nodes: client controller cloud charmhub
+    edges: type api
+    except: client -> cloud
+    except: client -> client
+    labels: hidden
+    sizing: uniform
+  }
+  positions {
+    client   left-of controller gap: 100
+    client   align-middle controller
+    cloud    above controller gap: 80
+    cloud    align-centre controller
+    charmhub below controller gap: 80
+    charmhub align-centre controller
+  }
+}
+
+diagram "Tutorial user" from "Juju" {
+  select {
+    nodes: user client controller cloud charmhub
+    edges: type api
+    except: client -> cloud
+    except: client -> client
+    labels: hidden
+    sizing: uniform
+  }
+  positions {
+    user     left-of client gap: 100
+    user     align-middle client
+    client   left-of controller gap: 100
+    client   align-middle controller
+    cloud    above controller gap: 80
+    cloud    align-centre controller
+    charmhub below controller gap: 80
+    charmhub align-centre controller
+  }
+}
+
+diagram "Tutorial deployment" from "Juju" {
+  select {
+    nodes: user client controller cloud charmhub mattermost postgresql certs
+    edges: type api type stream
+    except: client -> cloud
+    except: client -> client
+    labels: hidden
+    sizing: uniform
+  }
+  positions {
+    user       left-of client gap: 80
+    user       align-middle client
+    client     left-of controller gap: 80
+    client     align-middle controller
+    cloud      above controller gap: 80
+    cloud      align-centre controller
+    charmhub   below controller gap: 80
+    charmhub   align-centre controller
+    postgresql right-of controller gap: 120
+    postgresql align-middle controller
+    mattermost above postgresql gap: 30
+    mattermost align-centre postgresql
+    certs      below postgresql gap: 30
+    certs      align-centre postgresql
+  }
+}
+
+sequence "juju add-cloud"      from "Juju" { select { behaviour: "add-cloud" } }
+sequence "juju add-credential" from "Juju" { select { behaviour: "add-credential" } }
+sequence "juju bootstrap"      from "Juju" { select { behaviour: "bootstrap" } }
+sequence "juju add-k8s"        from "Juju" { select { behaviour: "add-k8s" } }
+sequence "juju bootstrap (Kubernetes)" from "Juju" { select { behaviour: "bootstrap-k8s" } }
+sequence "juju add-model"      from "Juju" { select { behaviour: "add-model" } }
+sequence "juju deploy"         from "Juju" { select { behaviour: "deploy" } }
+sequence "juju deploy (Kubernetes)" from "Juju" { select { behaviour: "deploy-k8s" } }
+sequence "juju config"         from "Juju" { select { behaviour: "config" } }
+sequence "juju integrate"      from "Juju" { select { behaviour: "integrate" } }
+
+diagram "SSH proxy connections" from "Juju" {
+  select {
+    nodes: client ssh_gateway ssh_session ssh_target
+    edges: type stream type ipc
+    except: client -> ssh_session
+  }
+  positions {
+    client left-of ssh_gateway gap: 120
+    client align-middle ssh_gateway
+    ssh_session right-of ssh_gateway gap: 120
+    ssh_session align-middle ssh_gateway
+    ssh_target right-of ssh_session gap: 120
+    ssh_target align-middle ssh_session
+  }
+  annotations {
+    box [nodes: "ssh_gateway ssh_session", label: "Juju controller",
+         style: "solid", color: "#E95420", padding: 24]
+  }
+}
+
+diagram "SSH proxy Kubernetes" from "Juju" {
+  select {
+    nodes: ssh_controller ssh_k8s_api ssh_pod
+    collapse: ssh_controller
+    edges: type stream
+  }
+  positions {
+    ssh_controller left-of ssh_k8s_api gap: 100
+    ssh_controller align-middle ssh_k8s_api
+    ssh_pod right-of ssh_k8s_api gap: 100
+    ssh_pod align-middle ssh_k8s_api
+  }
+}
+
+// Scaffolded by tools/build_page_schema.py from the 4.1 controller and model DDL;
+// the key algorithm lookup tables (ssh_key_algorithm_type, in both databases) and
+// the neighbours of machine and unit are left out of the model, and their
+// foreign key columns with them.
+model "SSHServerSchema" {
+
+  nodes {
+    controller_ssh_host_key [type: record, label: "Controller\nhost key",
+                 ground: "controller:controller_ssh_host_key"] {
+      fields {
+        id [label: "id", type: "text", pk: true]
+        algorithm_type_id [label: "algorithm_type_id", type: "int"]
+        ssh_key [label: "ssh_key", type: "text"]
+        public_key [label: "public_key", type: "blob"]
+      }
+    }
+
+    controller_ssh_server_port [type: record, label: "Server\nport",
+                 ground: "controller:controller_ssh_server_port"] {
+      fields {
+        port [label: "port", type: "int"]
+      }
+    }
+
+    machine [type: context-record, label: "Machine",
+                 ground: "model:machine"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        nonce [label: "nonce", type: "text", null: true]
+        password_hash [label: "password_hash", type: "text", null: true]
+        force_destroyed [label: "force_destroyed", type: "bool", null: true]
+        agent_started_at [label: "agent_started_at", type: "datetime", null: true]
+        hostname [label: "hostname", type: "text", null: true]
+        keep_instance [label: "keep_instance", type: "bool", null: true]
+      }
+    }
+
+    unit [type: context-record, label: "Unit",
+                 ground: "model:unit"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        password_hash [label: "password_hash", type: "text", null: true]
+      }
+    }
+
+    machine_ssh_host_key [type: record, label: "Machine host\nkey",
+                 ground: "model:machine_ssh_host_key"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        machine_uuid [label: "machine_uuid", type: "text", fk: true]
+        ssh_key [label: "ssh_key", type: "text"]
+      }
+    }
+
+    machine_virtual_ssh_host_key [type: record, label: "Machine virtual\nhost key",
+                 ground: "model:machine_virtual_ssh_host_key"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        algorithm_type_id [label: "algorithm_type_id", type: "int"]
+        ssh_key [label: "ssh_key", type: "text"]
+      }
+    }
+
+    unit_virtual_ssh_host_key [type: record, label: "Unit virtual\nhost key",
+                 ground: "model:unit_virtual_ssh_host_key"] {
+      fields {
+        unit_uuid [label: "unit_uuid", type: "text", pk: true, fk: true]
+        algorithm_type_id [label: "algorithm_type_id", type: "int"]
+        ssh_key [label: "ssh_key", type: "text"]
+      }
+    }
+
+    ssh_connection_request [type: record, label: "Connection\nrequest",
+                 ground: "model:ssh_connection_request"] {
+      fields {
+        tunnel_id [label: "tunnel_id", type: "text", pk: true]
+        machine_uuid [label: "machine_uuid", type: "text", fk: true]
+        expires_at [label: "expires_at", type: "datetime"]
+        controller_addresses [label: "controller_addresses", type: "text"]
+        unit_port [label: "unit_port", type: "int"]
+        ephemeral_public_key [label: "ephemeral_public_key", type: "blob"]
+      }
+    }
+  }
+
+  edges {
+    machine_ssh_host_key.machine_uuid -> machine.uuid [type: data]
+    machine_virtual_ssh_host_key.machine_uuid -> machine.uuid [type: data]
+    ssh_connection_request.machine_uuid -> machine.uuid [type: data]
+    unit_virtual_ssh_host_key.unit_uuid -> unit.uuid [type: data]
+  }
+
+  style { extends: juju }
+}
+
+diagram "SSH server data model" from "SSHServerSchema" {
+  select {
+    nodes: machine unit machine_ssh_host_key machine_virtual_ssh_host_key unit_virtual_ssh_host_key ssh_connection_request
+    edges: type data
+    labels: hidden
+    fields: hidden
+    sizing: uniform
+    routing: orthogonal
+  }
+  positions {
+    machine right-of machine_ssh_host_key gap: 70
+    machine align-middle machine_ssh_host_key
+    machine_virtual_ssh_host_key above machine gap: 60
+    machine_virtual_ssh_host_key align-centre machine
+    ssh_connection_request below machine gap: 60
+    ssh_connection_request align-centre machine
+    unit right-of machine gap: 70
+    unit align-middle machine
+    unit_virtual_ssh_host_key above unit gap: 60
+    unit_virtual_ssh_host_key align-centre unit
+    machine same-size machine_ssh_host_key
+    unit same-size machine_ssh_host_key
+    machine_virtual_ssh_host_key same-size machine_ssh_host_key
+    unit_virtual_ssh_host_key same-size machine_ssh_host_key
+    ssh_connection_request same-size machine_ssh_host_key
+  }
+  annotations {
+    box [nodes: "machine_ssh_host_key machine machine_virtual_ssh_host_key ssh_connection_request unit unit_virtual_ssh_host_key", label: "Model database",
+         style: "solid", color: "#E95420", padding: 24]
+  }
+}
+
+// Connecting to a machine, narrated in two sequences. Steps 1 to 5 follow
+// the jump server and its authorization, steps 6 to 10 the reverse tunnel.
+//   internal/worker/sshserver/server.go:190-201 (PublicKeyHandler),
+//     authentication.go:35-49 (the user name of the connection is the Juju
+//     user; the presented key must be one of the user's stored keys)
+//   server.go:215-258 (direct-tcpip: parse the virtual hostname, authorize,
+//     build the terminating server, accept the channel)
+//   authorization.go:34-65 (admin on the model or superuser on the
+//     controller, then the key authorized on the model)
+//   terminatingserver.go:33-54 and domain/ssh/service/model/service.go:
+//     VirtualHostKey (the terminating server presents the target's virtual
+//     host key, generated and stored on first use)
+//   internal/sshtunneler/tunneler.go:RequestTunnel (ephemeral key, request
+//     stored, 60 second deadline), domain/ssh/state/model/state.go:
+//     InsertSSHConnRequest
+//   internal/worker/sshsession/worker.go:handleConnectionInternal (watch,
+//     ephemeral key into authorized_keys, dial /model/<uuid>/ssh-tunnel/<id>,
+//     pipe to the local sshd)
+//   apiserver/internal/handlers/sshproxy/tunnel.go (the tunnel is accepted
+//     only from the machine the request names)
+//   internal/sshtunneler/tunneler.go:wait (dial SSH over the tunnel as
+//     ubuntu with the ephemeral key, check the machine's reported host keys)
+//   internal/worker/sshserver/handlers/machine (session, port forwarding,
+//     and SFTP pass through)
+model "SSHConnect" {
+
+  nodes {
+    sc_client   [type: juju-software, label: "Client"]
+    sc_tunnel   [type: juju-software, label: "SSH tunnel server"]
+    sc_ctl_db   [type: database, label: "Controller database"]
+    sc_model_db [type: database, label: "Model database"]
+    sc_target   [type: juju-software, label: "Target SSH server"]
+    sc_api      [type: juju-software, label: "API server"]
+    sc_agent    [type: juju-software, label: "Machine agent"]
+    sc_sshd     [type: external, label: "Machine SSH server"]
+  }
+
+  edges {
+    sc_client -> sc_tunnel   [type: stream]
+    sc_tunnel -> sc_ctl_db   [type: api]
+    sc_tunnel -> sc_model_db [type: api]
+    sc_tunnel -> sc_client   [type: stream]
+    sc_target -> sc_model_db [type: api]
+    sc_agent  -> sc_model_db [type: api]
+    sc_agent  -> sc_agent    [type: api]
+    sc_agent  -> sc_api      [type: stream]
+    sc_api    -> sc_target   [type: ipc]
+    sc_agent  -> sc_sshd     [type: stream]
+    sc_target -> sc_sshd     [type: stream]
+    sc_target -> sc_target   [type: api]
+  }
+
+  behaviours {
+    behaviour "connect-authorize" {
+      sc_client -> sc_tunnel:   call "open an SSH connection as the Juju user, presenting a key"
+      sc_tunnel -> sc_ctl_db:   call "read the user's stored keys"
+      sc_ctl_db -> sc_tunnel:   return "keys"
+      sc_client -> sc_tunnel:   call "once the key is accepted, ask for a channel to the virtual hostname of the target"
+      sc_tunnel -> sc_ctl_db:   call "check the user's access to the model and that the key is authorized on it"
+      sc_ctl_db -> sc_tunnel:   return "allowed"
+      sc_tunnel -> sc_model_db: call "read the target's virtual host key, creating it on first use"
+      sc_model_db -> sc_tunnel: return "host key"
+      sc_tunnel -> sc_client:   return "channel open; the client runs the inner SSH handshake with the target SSH server over it"
+    }
+    behaviour "connect-tunnel" {
+      sc_target   -> sc_model_db: call "store a connection request with a one-time public key and a 60 second expiry"
+      sc_agent    -> sc_model_db: call "watch for requests, and read the one that names this machine"
+      sc_model_db -> sc_agent:    return "the request"
+      sc_agent    -> sc_agent:    self "authorize the one-time key"
+      sc_agent    -> sc_api:      call "open a tunnel, authenticated as the machine"
+      sc_api      -> sc_target:   call "hand the tunnel to the waiting target SSH server"
+      sc_agent    -> sc_sshd:     call "pipe the tunnel to the local SSH server"
+      sc_target   -> sc_sshd:     call "log in as ubuntu with the one-time key, checking the machine's host keys"
+      sc_sshd     -> sc_target:   return "session"
+      sc_target   -> sc_target:   self "pass the user's session, port forwards, and file transfers through"
+    }
+  }
+
+  style { extends: juju }
+}
+
+sequence "Connecting to a machine: authorization" from "SSHConnect" {
+  select { behaviour: "connect-authorize" }
+}
+
+sequence "Connecting to a machine: reverse tunnel" from "SSHConnect" {
+  select { behaviour: "connect-tunnel" }
+}
+
+// Scaffolded by tools/build_page_schema.py from the 4.1 controller and model DDL;
+// the model database nodes are renamed (model_copy, model_db_life) because
+// both databases have a table named model.
+model "ModelSchema" {
+
+  nodes {
+    auth_type [type: record, label: "auth_type",
+                 ground: "controller:auth_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        type [label: "type", type: "text", null: true]
+      }
+    }
+
+    cloud [type: context-record, label: "Cloud",
+                 ground: "controller:cloud"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        cloud_type_id [label: "cloud_type_id", type: "int", fk: true]
+        endpoint [label: "endpoint", type: "text"]
+        identity_endpoint [label: "identity_endpoint", type: "text", null: true]
+        storage_endpoint [label: "storage_endpoint", type: "text", null: true]
+        skip_tls_verify [label: "skip_tls_verify", type: "bool"]
+      }
+    }
+
+    cloud_credential [type: context-record, label: "Credential",
+                 ground: "controller:cloud_credential"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        cloud_uuid [label: "cloud_uuid", type: "text", fk: true]
+        auth_type_id [label: "auth_type_id", type: "text", fk: true]
+        owner_uuid [label: "owner_uuid", type: "text", fk: true]
+        name [label: "name", type: "text"]
+        revoked [label: "revoked", type: "bool", null: true]
+        invalid [label: "invalid", type: "bool", null: true]
+        invalid_reason [label: "invalid_reason", type: "text", null: true]
+      }
+    }
+
+    cloud_region [type: context-record, label: "Region",
+                 ground: "controller:cloud_region"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        cloud_uuid [label: "cloud_uuid", type: "text", fk: true]
+        name [label: "name", type: "text"]
+        endpoint [label: "endpoint", type: "text", null: true]
+        identity_endpoint [label: "identity_endpoint", type: "text", null: true]
+        storage_endpoint [label: "storage_endpoint", type: "text", null: true]
+      }
+    }
+
+    cloud_type [type: record, label: "cloud_type",
+                 ground: "controller:cloud_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        type [label: "type", type: "text"]
+      }
+    }
+
+    external_controller [type: record, label: "external_controller",
+                 ground: "controller:external_controller"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        alias [label: "alias", type: "text", null: true]
+        ca_cert [label: "ca_cert", type: "text"]
+      }
+    }
+
+    life [type: record, label: "life",
+                 ground: "controller:life"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    model [type: record, label: "Model",
+                 ground: "controller:model"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        activated [label: "activated", type: "bool"]
+        cloud_uuid [label: "cloud_uuid", type: "text", fk: true]
+        cloud_region_uuid [label: "cloud_region_uuid", type: "text", fk: true, null: true]
+        cloud_credential_uuid [label: "cloud_credential_uuid", type: "text", fk: true, null: true]
+        model_type_id [label: "model_type_id", type: "int", fk: true]
+        life_id [label: "life_id", type: "int", fk: true]
+        name [label: "name", type: "text"]
+        qualifier [label: "qualifier", type: "text"]
+      }
+    }
+
+    model_migration_export [type: record, label: "Migration",
+                 ground: "controller:model_migration_export"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        model_uuid [label: "model_uuid", type: "text", fk: true]
+        target_controller_uuid [label: "target_controller_uuid", type: "text", fk: true]
+        current_phase_id [label: "current_phase_id", type: "int", fk: true]
+        updated_at [label: "updated_at", type: "timestamp"]
+        start_time [label: "start_time", type: "timestamp"]
+      }
+    }
+
+    model_migration_import [type: record, label: "Import claim",
+                 ground: "controller:model_migration_import"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        model_uuid [label: "model_uuid", type: "text"]
+        source_migration_uuid [label: "source_migration_uuid", type: "text"]
+        phase_type_id [label: "phase_type_id", type: "int", fk: true]
+        updated_at [label: "updated_at", type: "datetime"]
+      }
+    }
+
+    model_migration_import_phase_type [type: record, label: "model_migration_import_phase_type",
+                 ground: "controller:model_migration_import_phase_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true]
+        type [label: "type", type: "text"]
+      }
+    }
+
+    model_migration_phase [type: record, label: "Migration phase",
+                 ground: "controller:model_migration_phase"] {
+      fields {
+        id [label: "id", type: "int", pk: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    model_namespace [type: record, label: "Namespace",
+                 ground: "controller:model_namespace"] {
+      fields {
+        namespace [label: "namespace", type: "text"]
+        model_uuid [label: "model_uuid", type: "text", fk: true, uk: true]
+      }
+    }
+
+    model_type [type: record, label: "Model type",
+                 ground: "controller:model_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        type [label: "type", type: "text"]
+      }
+    }
+
+    user [type: record, label: "user",
+                 ground: "controller:user"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        display_name [label: "display_name", type: "text", null: true]
+        external [label: "external", type: "bool"]
+        removed [label: "removed", type: "bool"]
+        created_by_uuid [label: "created_by_uuid", type: "text", fk: true]
+        created_at [label: "created_at", type: "timestamp"]
+      }
+    }
+
+    model_db_life [type: record, label: "life",
+                 ground: "model:life"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    model_copy [type: record, label: "Model identity copy",
+                 ground: "model:model"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        controller_uuid [label: "controller_uuid", type: "text"]
+        name [label: "name", type: "text"]
+        qualifier [label: "qualifier", type: "text"]
+        type [label: "type", type: "text"]
+        cloud [label: "cloud", type: "text"]
+        cloud_type [label: "cloud_type", type: "text"]
+        cloud_region [label: "cloud_region", type: "text", null: true]
+        credential_owner [label: "credential_owner", type: "text", null: true]
+        credential_name [label: "credential_name", type: "text", null: true]
+        is_controller_model [label: "is_controller_model", type: "bool", null: true]
+      }
+    }
+
+    model_config [type: record, label: "Model configuration",
+                 ground: "model:model_config"] {
+      fields {
+        value [label: "value", type: "text"]
+      }
+    }
+
+    model_constraint [type: record, label: "Model constraints",
+                 ground: "model:model_constraint"] {
+      fields {
+        model_uuid [label: "model_uuid", type: "text", pk: true, fk: true]
+        constraint_uuid [label: "constraint_uuid", type: "text"]
+      }
+    }
+
+    model_life [type: record, label: "Model life copy",
+                 ground: "model:model_life"] {
+      fields {
+        model_uuid [label: "model_uuid", type: "text", pk: true, fk: true]
+        life_id [label: "life_id", type: "text", fk: true]
+      }
+    }
+
+    model_migrating [type: record, label: "Migrating marker",
+                 ground: "model:model_migrating"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        model_uuid [label: "model_uuid", type: "text", fk: true, uk: true]
+      }
+    }
+
+  }
+
+  edges {
+    cloud.cloud_type_id -> cloud_type.id [type: data]
+    cloud_credential.cloud_uuid -> cloud.uuid [type: data]
+    cloud_credential.auth_type_id -> auth_type.id [type: data]
+    cloud_credential.owner_uuid -> user.uuid [type: data]
+    cloud_region.cloud_uuid -> cloud.uuid [type: data]
+    model.cloud_uuid -> cloud.uuid [type: data]
+    model.cloud_region_uuid -> cloud_region.uuid [type: data]
+    model.cloud_credential_uuid -> cloud_credential.uuid [type: data]
+    model.model_type_id -> model_type.id [type: data]
+    model.life_id -> life.id [type: data]
+    model_migration_export.target_controller_uuid -> external_controller.uuid [type: data]
+    model_migration_export.current_phase_id -> model_migration_phase.id [type: data]
+    model_migration_import.phase_type_id -> model_migration_import_phase_type.id [type: data]
+    model_namespace.model_uuid -> model.uuid [type: data]
+    user.created_by_uuid -> user.uuid [type: data]
+    model_constraint.model_uuid -> model_copy.uuid [type: data]
+    model_life.model_uuid -> model_copy.uuid [type: data]
+    model_life.life_id -> model_db_life.id [type: data]
+    model_migrating.model_uuid -> model_copy.uuid [type: data]
+    // No foreign key in the DDL: a migration outlives the model's row.
+    model_migration_export.model_uuid -> model.uuid [type: data]
+  }
+
+  style { extends: juju }
+
+}
+
+diagram "Model data model" from "ModelSchema" {
+  select {
+    nodes: model model_type model_namespace cloud cloud_region cloud_credential model_migration_export model_migration_phase model_copy model_constraint model_life model_migrating
+    edges: type data
+    except: model -> life
+    labels: hidden
+    fields: hidden
+    sizing: uniform
+    routing: orthogonal
+  }
+  positions {
+    cloud left-of model gap: 70
+    cloud align-middle model
+    cloud_region above cloud gap: 60
+    cloud_region align-centre cloud
+    cloud_credential below cloud gap: 60
+    cloud_credential align-centre cloud
+    model_type above model gap: 60
+    model_type align-centre model
+    model_namespace right-of model gap: 70
+    model_namespace align-middle model
+    model_migration_export below model gap: 60
+    model_migration_export align-centre model
+    model_migration_phase right-of model_migration_export gap: 70
+    model_migration_phase align-middle model_migration_export
+    model_copy right-of model_namespace gap: 120
+    model_copy align-middle model
+    model_constraint above model_copy gap: 60
+    model_constraint align-centre model_copy
+    model_life below model_copy gap: 60
+    model_life align-centre model_copy
+    model_migrating right-of model_copy gap: 70
+    model_migrating align-middle model_copy
+    model_type same-size model
+    model_namespace same-size model
+    cloud same-size model
+    cloud_region same-size model
+    cloud_credential same-size model
+    model_migration_export same-size model
+    model_migration_phase same-size model
+    model_copy same-size model
+    model_constraint same-size model
+    model_life same-size model
+    model_migrating same-size model
+  }
+  annotations {
+    box [nodes: "cloud cloud_region cloud_credential model model_type model_namespace model_migration_export model_migration_phase", label: "Controller database",
+         style: "solid", color: "#E95420", padding: 24]
+    box [nodes: "model_copy model_constraint model_life model_migrating", label: "Model database",
+         style: "solid", color: "#E95420", padding: 24]
+  }
+}
+
+// The phases of a model migration and the changes the code allows
+// (core/migration/phase.go, validTransitions). Labels are the names the
+// controller stores (model_migration_phase).
+model "MigrationPhases" {
+
+  nodes {
+    mg_quiesce [label: "quiesce"]
+    mg_import [label: "import"]
+    mg_validation [label: "validation"]
+    mg_success [label: "success"]
+    mg_logtransfer [label: "log-transfer"]
+    mg_reap [label: "reap"]
+    mg_reapfailed [label: "reap-failed"]
+    mg_done [label: "done"]
+    mg_abort [label: "abort"]
+    mg_abortdone [label: "abort-done"]
+  }
+
+  behaviours {
+    behaviour "migration-phase" {
+      mg_quiesce -> mg_import: call "next phase"
+      mg_import -> mg_validation: call "next phase"
+      mg_validation -> mg_success: call "next phase"
+      mg_success -> mg_logtransfer: call "next phase"
+      mg_logtransfer -> mg_reap: call "next phase"
+      mg_reap -> mg_done: call "next phase"
+      mg_reap -> mg_reapfailed: call "next phase"
+      mg_validation -> mg_abort: call "abort"
+      mg_import -> mg_abort: call "abort"
+      mg_quiesce -> mg_abort: call "abort"
+      mg_abort -> mg_abortdone: call "next phase"
+    }
+  }
+
+  edges {
+    mg_quiesce -> mg_import [type: control]
+    mg_quiesce -> mg_abort [type: control]
+    mg_import -> mg_validation [type: control]
+    mg_import -> mg_abort [type: control]
+    mg_validation -> mg_success [type: control]
+    mg_validation -> mg_abort [type: control]
+    mg_success -> mg_logtransfer [type: control]
+    mg_logtransfer -> mg_reap [type: control]
+    mg_reap -> mg_done [type: control]
+    mg_reap -> mg_reapfailed [type: control]
+    mg_abort -> mg_abortdone [type: control]
+  }
+
+  style { extends: juju }
+}
+
+state "Model migration phase" from "MigrationPhases" {
+  select { behaviour: "migration-phase" }
+}
+
+// Sources of the steps, in order (worker, facade or state code under
+// internal/worker/migrationmaster, internal/worker/migrationminion and
+// apiserver/facades/client/controller):
+//   request and prechecks: InitiateMigration, runMigrationPrechecks
+//   quiesce, validation, success: migrationmaster doQUIESCE, doVALIDATION,
+//     doSUCCESS; minion doQUIESCE, doVALIDATION, doSUCCESS
+//   import: transferModel (ImportV2, UploadBinaries)
+//   machines: checkTargetMachines (CheckMachines); activate: activateModel
+//   cloud resources: transferResources (AdoptResources)
+//   reap: doREAP (MarkModelAsGone)
+model "MigrationSequence" {
+
+  nodes {
+    ms_client     [type: juju-software, label: "Client"]
+    ms_source     [type: juju-software, label: "Source controller"]
+    ms_target     [type: juju-software, label: "Target controller"]
+    ms_agents     [type: juju-software, label: "Model agents"]
+    ms_cloud      [type: external, label: "Cloud"]
+  }
+
+  edges {
+    ms_client -> ms_source [type: api]
+    ms_source -> ms_target [type: api]
+    ms_source -> ms_agents [type: api]
+    ms_agents -> ms_source [type: api]
+    ms_agents -> ms_target [type: api]
+    ms_target -> ms_cloud  [type: api]
+    ms_source -> ms_source [type: api]
+  }
+
+  behaviours {
+    behaviour "migration-request" {
+      ms_client -> ms_source: call "request the migration"
+      ms_source -> ms_source: self "check access and run the source prechecks"
+      ms_source -> ms_target: call "connect, and run the target prechecks"
+      ms_target -> ms_source: return "ok"
+      ms_source -> ms_client: return "migration ID"
+    }
+    behaviour "migration-quiesce-import" {
+      ms_source -> ms_agents: call "quiesce: stop work and report"
+      ms_agents -> ms_source: return "ready"
+      ms_source -> ms_target: call "run the prechecks again"
+      ms_target -> ms_source: return "ok"
+      ms_source -> ms_target: call "import: send the model, charms, agent binaries, and resources"
+      ms_target -> ms_source: return "model imported, not active"
+    }
+    behaviour "migration-validation" {
+      ms_source -> ms_agents: call "validation: connect to the target and report"
+      ms_agents -> ms_target: call "log in and validate"
+      ms_agents -> ms_source: return "validated"
+      ms_source -> ms_target: call "check the machines, then activate the model"
+      ms_target -> ms_cloud: call "list the model's machines"
+      ms_cloud -> ms_target: return "instances"
+      ms_target -> ms_source: return "machines match, model prepared"
+    }
+    behaviour "migration-success-reap" {
+      ms_source -> ms_agents: call "success: report, then switch to the target"
+      ms_agents -> ms_source: return "reported"
+      ms_source -> ms_target: call "take over the cloud resources"
+      ms_source -> ms_target: call "log-transfer: copy the model's logs"
+      ms_source -> ms_source: self "reap: remove the model and keep a redirect record"
+    }
+  }
+
+  style { extends: juju }
+}
+
+sequence "Migration request" from "MigrationSequence" {
+  select { behaviour: "migration-request" }
+}
+
+sequence "Migration quiesce and import" from "MigrationSequence" {
+  select { behaviour: "migration-quiesce-import" }
+}
+
+sequence "Migration validation" from "MigrationSequence" {
+  select { behaviour: "migration-validation" }
+}
+
+sequence "Migration success and reap" from "MigrationSequence" {
+  select { behaviour: "migration-success-reap" }
+}
+
+// Scaffolded by tools/build_page_schema.py from the 4.1 controller DDL.
+model "ControllerSchema" {
+
+  nodes {
+    architecture [type: record, label: "architecture",
+                 ground: "controller:architecture"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    controller [type: record, label: "Controller",
+                 ground: "controller:controller"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        model_uuid [label: "model_uuid", type: "text"]
+        target_version [label: "target_version", type: "text"]
+        api_port [label: "api_port", type: "text", null: true]
+        cert [label: "cert", type: "text", null: true]
+        ca_cert [label: "ca_cert", type: "text", null: true]
+        private_key [label: "private_key", type: "text", null: true]
+        ca_private_key [label: "ca_private_key", type: "text", null: true]
+        system_identity [label: "system_identity", type: "text", null: true]
+      }
+    }
+
+    controller_agent_address [type: record, label: "Agent\naddress",
+                 ground: "controller:controller_agent_address"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        controller_id [label: "controller_id", type: "text", fk: true, null: true]
+        address [label: "address", type: "text"]
+        scope [label: "scope", type: "text"]
+        priority [label: "priority", type: "int"]
+      }
+    }
+
+    controller_client_address [type: record, label: "Client\naddress",
+                 ground: "controller:controller_client_address"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        controller_id [label: "controller_id", type: "text", fk: true, null: true]
+        address [label: "address", type: "text"]
+        scope [label: "scope", type: "text"]
+        priority [label: "priority", type: "int"]
+      }
+    }
+
+    controller_config [type: record, label: "Controller\nconfiguration",
+                 ground: "controller:controller_config"] {
+      fields {
+        key [label: "key", type: "text", pk: true]
+        value [label: "value", type: "text", null: true]
+      }
+    }
+
+    controller_node [type: record, label: "Controller\nnode",
+                 ground: "controller:controller_node"] {
+      fields {
+        controller_id [label: "controller_id", type: "text", pk: true]
+        life_id [label: "life_id", type: "int", fk: true]
+        dqlite_node_id [label: "dqlite_node_id", type: "text", null: true]
+        dqlite_bind_address [label: "dqlite_bind_address", type: "text", null: true]
+      }
+    }
+
+    controller_node_agent_version [type: record, label: "Node agent\nversion",
+                 ground: "controller:controller_node_agent_version"] {
+      fields {
+        controller_id [label: "controller_id", type: "text", pk: true, fk: true]
+        version [label: "version", type: "text"]
+        architecture_id [label: "architecture_id", type: "int", fk: true]
+      }
+    }
+
+    controller_node_password [type: record, label: "Node\npassword",
+                 ground: "controller:controller_node_password"] {
+      fields {
+        controller_id [label: "controller_id", type: "text", pk: true, fk: true]
+        password_hash_algorithm_id [label: "password_hash_algorithm_id", type: "text", fk: true, null: true]
+        password_hash [label: "password_hash", type: "text", null: true]
+      }
+    }
+
+    controller_peer_address [type: record, label: "Peer\naddress",
+                 ground: "controller:controller_peer_address"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        controller_id [label: "controller_id", type: "text", fk: true]
+        address [label: "address", type: "text"]
+        scope [label: "scope", type: "text"]
+        priority [label: "priority", type: "int"]
+      }
+    }
+
+    life [type: record, label: "life",
+                 ground: "controller:life"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    password_hash_algorithm [type: record, label: "password_hash_algorithm",
+                 ground: "controller:password_hash_algorithm"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+  }
+
+  edges {
+    controller_agent_address.controller_id -> controller_node.controller_id [type: data]
+    controller_client_address.controller_id -> controller_node.controller_id [type: data]
+    controller_node.life_id -> life.id [type: data]
+    controller_node_agent_version.controller_id -> controller_node.controller_id [type: data]
+    controller_node_agent_version.architecture_id -> architecture.id [type: data]
+    controller_node_password.controller_id -> controller_node.controller_id [type: data]
+    controller_node_password.password_hash_algorithm_id -> password_hash_algorithm.id [type: data]
+    controller_peer_address.controller_id -> controller_node.controller_id [type: data]
+  }
+
+  style { extends: juju }
+
+}
+
+
+diagram "Controller data model" from "ControllerSchema" {
+  select {
+    nodes: controller_node controller_node_agent_version controller_node_password controller_agent_address controller_client_address controller_peer_address
+    edges: type data
+    labels: hidden
+    fields: hidden
+    sizing: uniform
+    routing: orthogonal
+  }
+  positions {
+    controller_node_agent_version above controller_node gap: 60
+    controller_node_agent_version align-centre controller_node
+    controller_node_password below controller_node gap: 60
+    controller_node_password align-centre controller_node
+    controller_client_address left-of controller_node gap: 70
+    controller_client_address align-middle controller_node
+    controller_agent_address above controller_client_address gap: 60
+    controller_agent_address align-centre controller_client_address
+    controller_peer_address right-of controller_node gap: 70
+    controller_peer_address align-middle controller_node
+    controller_node_agent_version same-size controller_node
+    controller_node_password same-size controller_node
+    controller_agent_address same-size controller_node
+    controller_client_address same-size controller_node
+    controller_peer_address same-size controller_node
+  }
+  annotations {
+    box [nodes: "controller_node controller_node_agent_version controller_node_password controller_agent_address controller_client_address controller_peer_address", label: "Controller database",
+         style: "solid", color: "#E95420", padding: 24]
+  }
+}
+
+// Bootstrapping a controller on a machine cloud, from the 4.1 code:
+//   cmd/juju/commands/bootstrap.go:785-1091 (client prepares, runs
+//     environs/bootstrap, then reads the address from the provider and polls)
+//   internal/provider/common/bootstrap.go:80-302 (StartInstance), :421-574
+//     (FinishBootstrap: wait for SSH, push the configure script)
+//   internal/cloudconfig/userdatacfg.go:261-508 (download tools, write agent
+//     config, run bootstrap-state, start the machine agent service)
+//   cmd/jujuagentd/agent/bootstrap.go:156-339 and
+//     agent/agentbootstrap/bootstrap.go:142-284 (Dqlite, schema, seed records)
+//   internal/worker/bootstrap/fresh.go:219-302 (seed, ReloadSpaces, deploy the
+//     controller charm, set the flag); internal/bootstrap/deployer.go:224-298
+//     (local charm first, Charmhub fallback)
+model "ControllerBootstrap" {
+
+  nodes {
+    bs_client   [type: juju-software, label: "Client"]
+    bs_cloud    [type: external, label: "Cloud"]
+    bs_machine  [type: juju-software, label: "Controller machine"]
+    bs_db       [type: database, label: "Controller database"]
+    bs_charmhub [type: external, label: "Charmhub"]
+  }
+
+  edges {
+    bs_client  -> bs_cloud    [type: api]
+    bs_client  -> bs_machine  [type: stream]
+    bs_machine -> bs_db       [type: api]
+    bs_machine -> bs_charmhub [type: api]
+    bs_machine -> bs_machine  [type: api]
+  }
+
+  behaviours {
+    behaviour "bootstrap-machine" {
+      bs_client  -> bs_cloud:    call "start an instance"
+      bs_cloud   -> bs_client:   return "instance"
+      bs_client  -> bs_machine:  call "wait for SSH, then run the configure script: download the agent, write its configuration"
+      bs_machine -> bs_db:       call "start the first database node and write the controller, admin user, cloud, credential, and controller model records"
+      bs_machine -> bs_machine:  self "start the machine agent as a service"
+      bs_machine -> bs_machine:  self "bootstrap worker: seed users and storage pools, discover spaces, deploy the controller charm"
+      bs_machine -> bs_charmhub: call "fetch the controller charm, unless the client supplied one"
+      bs_charmhub -> bs_machine: return "charm"
+      bs_machine -> bs_db:       call "record the controller application and that bootstrap is complete"
+      bs_client  -> bs_machine:  call "poll the API address that the cloud reported until it answers"
+    }
+  }
+
+  style { extends: juju }
+}
+
+sequence "Bootstrapping a controller" from "ControllerBootstrap" {
+  select { behaviour: "bootstrap-machine" }
+}
+
+diagram "Controller high availability" from "Juju" {
+  select {
+    nodes: ha_callers ha_machine
+    instances: ha_machine [
+      { id: c0, label: "Controller machine" },
+      { id: c1, label: "Controller machine" },
+      { id: c2, label: "Controller machine" }
+    ]
+    edges: type api type ipc type control type stream
+  }
+  positions {
+    c1 below c0 gap: 40
+    c1 align-centre c0
+    c2 below c1 gap: 40
+    c2 align-centre c1
+    ha_callers left-of c1 gap: 80
+    ha_callers align-middle c1
+  }
+}

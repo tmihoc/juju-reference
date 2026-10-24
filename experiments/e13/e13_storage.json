@@ -1,0 +1,134 @@
+[
+ {
+  "id": 1,
+  "claim": "In Juju, storage refers to a data volume that is provided by a cloud."
+ },
+ {
+  "id": 2,
+  "claim": "Depending on how things are set up during deployment, the data volume can be machine-dependent (e.g., a directory on disk tied to the machine which goes away if the unit is destroyed) or machine-independent (i.e., it can outlive a machine and be reattached to another machine)."
+ },
+ {
+  "id": 3,
+  "claim": "Most storage can be dynamically added to, and removed from, a unit."
+ },
+ {
+  "id": 4,
+  "claim": "However, by their nature, some types of storage cannot be dynamically managed (see storage-provider-maas)."
+ },
+ {
+  "id": 5,
+  "claim": "Also, certain cloud providers may impose restrictions when attaching storage (see storage-provider-ebs)."
+ },
+ {
+  "id": 6,
+  "claim": "In Juju, a storage directive is a collection of storage specifications that can be used to dictate how storage is allocated when provisioning storage for an application."
+ },
+ {
+  "id": 7,
+  "claim": "`<name>` is the storage name as defined in the charm (see more: Charmcraft | `<storage name>`);"
+ },
+ {
+  "id": 8,
+  "claim": "`<pool>` is a pre-defined storage pool;"
+ },
+ {
+  "id": 9,
+  "claim": "`<count>` is the storage volume count;"
+ },
+ {
+  "id": 10,
+  "claim": "`<size>` is the size of each storage volume."
+ },
+ {
+  "id": 11,
+  "claim": "The order of the arguments does not actually matter -- they are identified based on a regex (pool names must start with a letter and sizes must end with a unit suffix)."
+ },
+ {
+  "id": 12,
+  "claim": "If at least one storage directive component is specified, the following default values come into effect:"
+ },
+ {
+  "id": 13,
+  "claim": "`<pool>`: the default storage pool."
+ },
+ {
+  "id": 14,
+  "claim": "`<count>`: the minimum number required by the charm, or '1' if the storage is optional"
+ },
+ {
+  "id": 15,
+  "claim": "`<size>`: determined from the charm's minimum storage size, or 1GiB if the charm does not specify a minimum"
+ },
+ {
+  "id": 16,
+  "claim": "In the absence of any explicit storage directive, the storage will be put on the root filesystem (`rootfs`)."
+ },
+ {
+  "id": 17,
+  "claim": "A storage pool is a mechanism for administrators to define sources of storage that they will use to satisfy application storage requirements."
+ },
+ {
+  "id": 18,
+  "claim": "A single pool might be used for storage from units of many different applications - it is a resource from which different stores may be drawn."
+ },
+ {
+  "id": 19,
+  "claim": "A pool describes storage provider-specific parameters for creating storage, such as performance (e.g."
+ },
+ {
+  "id": 20,
+  "claim": "IOPS), media type (e.g. magnetic vs."
+ },
+ {
+  "id": 21,
+  "claim": "For many providers, there will be a shared resource where storage can be requested (e.g. for Amazon EC2, `ebs`)."
+ },
+ {
+  "id": 22,
+  "claim": "Creating pools there maps provider specific settings into named resources that can be used during deployment."
+ },
+ {
+  "id": 23,
+  "claim": "Pools defined at the model level are easily reused across applications."
+ },
+ {
+  "id": 24,
+  "claim": "Pool creation requires a pool name, the provider type and attributes for configuration as space-separated pairs, e.g. tags, size, path, etc."
+ },
+ {
+  "id": 25,
+  "claim": "In Juju, a storage provider refers to the technology used to make storage available to a charm."
+ },
+ {
+  "id": 26,
+  "claim": "There are three storage providers you can use with all clouds: `loop`, `rootfs`, and `tmpfs`."
+ },
+ {
+  "id": 27,
+  "claim": "In addition, for some clouds there are also cloud-specific providers."
+ },
+ {
+  "id": 28,
+  "claim": "Many clouds provide additional storage providers beyond the generic ones."
+ },
+ {
+  "id": 29,
+  "claim": "For the cloud-specific storage providers available on your cloud, see list-of-supported-clouds > `<cloud name>` > Storage."
+ },
+ {
+  "id": 30,
+  "claim": "Creates a file on the unit's root filesystem, associates a loop device with it."
+ },
+ {
+  "id": 31,
+  "claim": "The loop device is provided to the charm."
+ },
+ {
+  "id": 32,
+  "claim": "Creates a sub-directory on the unit's root filesystem for the unit/charmed operator to use."
+ },
+ {
+  "id": 33,
+  "claim": "Creates a temporary file storage facility that appears as a mounted file system but is stored in volatile memory."
+ }
+]

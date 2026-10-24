@@ -1,0 +1,826 @@
+[
+ {
+  "id": 1,
+  "text": "For models deployed on Kubernetes (CAAS), a built-in secret backend is available. This backend is represented by a single entry in the `secret_backend` table named 'kubernetes'."
+ },
+ {
+  "id": 2,
+  "text": "Uploaded resources, will not have revision, and their potential updated revision will not be tracked (as it cannot be known)."
+ },
+ {
+  "id": 3,
+  "text": "The package provides a way to attach key-value pairs to object types."
+ },
+ {
+  "id": 4,
+  "text": "The package provides the autocert cache service. This cache can be used by the package golang.org/x/crypto/acme/autocert to cache TLS certificates."
+ },
+ {
+  "id": 5,
+  "text": "Created automatically at deployment time; never added by a client. The relation has one endpoint."
+ },
+ {
+  "id": 6,
+  "text": "Access to a secret is managed through grants, which define the role (view or manage) and the scope (unit, application, model, or relation) of the permissions. This allows for fine-grained control over which entities can read or update a secret's revisions."
+ },
+ {
+  "id": 7,
+  "text": "completed), and its completion time is stamped only when the last"
+ },
+ {
+  "id": 8,
+  "text": "levels and the abilities they confer are defined in the user"
+ },
+ {
+  "id": 9,
+  "text": "Rule: The name is not reserved: `juju` itself and the `juju-` prefix are reserved names."
+ },
+ {
+  "id": 10,
+  "text": "An operation is divided as several tasks, each of which is executed in a specific unit or machine."
+ },
+ {
+  "id": 11,
+  "text": "Volume attachment plans: The pre-attach plans some providers need (iSCSI-style initiator setup)."
+ },
+ {
+  "id": 12,
+  "text": "An offer has no machinery of its own: it is a static record the controller serves; creating, consuming, and removing it are record writes, and what moves across an offer runs in the cross-model relation machinery (see cross-model relation)."
+ },
+ {
+  "id": 13,
+  "text": "Rule: Model configuration keys must be known keys, and their values must pass the schema validation (a `validation error` naming the invalid attributes)."
+ },
+ {
+  "id": 14,
+  "text": "A space has no machinery of its own: it is a grouping the controller maintains; subnets are moved into it and reloaded from the provider, and the network's watch surface reports what changed."
+ },
+ {
+  "id": 15,
+  "text": "Resolving from Charmhub: A deploy and a refresh take a channel as input (see charm channels)."
+ },
+ {
+  "id": 16,
+  "text": "The model domain services (\"domain services\") wraps a model namespace database. The model namespace is specific to a particular model. The model domain services can be accessed by any the knowledge of the namespace."
+ },
+ {
+  "id": 17,
+  "text": "and arranges for it to run on infrastructure. The intent (the"
+ },
+ {
+  "id": 18,
+  "text": "The permissions for everyone@external act like a group for external users. When any external users permissions are read the users access level will be compared against the access level of everyone@external. If everyone@external user has a higher access level then the external user will inherit the higher level. This check is performed every time an external users permissions are read."
+ },
+ {
+  "id": 19,
+  "text": "Rule: The add and import acts fingerprint with SHA-256; the lookup's `md5` slot is unused by the current code paths."
+ },
+ {
+  "id": 20,
+  "text": "The transformer framework lives in the transformer subpackage; individual version-step transformations live under transformer/transforms/. This package owns the registered list, in the generated registered.go, and the NewTransformer entry point so that the framework itself does not need to depend on the transform packages."
+ },
+ {
+  "id": 21,
+  "text": "path treats it as terminal, but nothing produces it."
+ },
+ {
+  "id": 22,
+  "text": "task has no such poll: the machine's action runner has no abort"
+ },
+ {
+  "id": 23,
+  "text": "The user domain exposes no watch surfaces: user and permission changes are read on demand (the client lists access when it needs it), not watched."
+ },
+ {
+  "id": 24,
+  "text": "Public keys for a user are per model based and will not follow a user between models. Currently under the covers we do not model the public keys and their user (owner) as an old legacy implementation details of Juju 3.x."
+ },
+ {
+  "id": 25,
+  "text": "is Juju's own grouping; the zone membership is the cloud's placement"
+ },
+ {
+  "id": 26,
+  "text": "The package deals with the enumerated types used with ip addresses. It defines the type constants and has tests to ensure the values in the db lookup tables match the enum values. It also has functions to convert between db and domain values."
+ },
+ {
+  "id": 27,
+  "text": "The package provides the domain needed for configuring public keys on a model for a user."
+ },
+ {
+  "id": 28,
+  "text": "A cloud's neighbours: a credential authenticates against it, a model records which cloud it deploys into, and the machines and applications that run on it draw their resources from it; its regions are the sub-scopes a model lands in."
+ },
+ {
+  "id": 29,
+  "text": "Consumer outside the slice: The machine's address records carry the subnet pointer (nullable: the Kubernetes provider's pod IPs can lack a discovered subnet, the schema's own comment); the container lookups read through them."
+ },
+ {
+  "id": 30,
+  "text": "The offline archive handling \u2014 reading the tarball, verifying its checksum, and decoding the dumps into the summary \u2014 lives in internal/recovery, which composes this domain."
+ },
+ {
+  "id": 31,
+  "text": "The key updater service's per-machine watcher over the model's key associations"
+ },
+ {
+  "id": 32,
+  "text": "The package provides a service to store and retrieve cloud image metadata."
+ },
+ {
+  "id": 33,
+  "text": "A Juju controller currently only supports having its patch version upgraded. We don't support upgrades between major and minor versions instead encouraging users to migrate their workloads to a new controller running the new desired version."
+ },
+ {
+  "id": 34,
+  "text": "Setting configuration validates against the charm's schema: an unknown"
+ },
+ {
+  "id": 35,
+  "text": "How clients add a cloud and manage its definition."
+ },
+ {
+  "id": 36,
+  "text": "units' unit settings and the application settings included."
+ },
+ {
+  "id": 37,
+  "text": "A peer relation relates an application to itself: its units relate to"
+ },
+ {
+  "id": 38,
+  "text": "The original intended purpose of annotations was to provide a way to attach metadata to objects in Juju for the GUI dashboard."
+ },
+ {
+  "id": 39,
+  "text": "Creating a relation creates its settings: one unit settings record per"
+ },
+ {
+  "id": 40,
+  "text": "Another driving factor for a separate domain is that we know currently the operation of a controller upgrade requires modifying state across both the controller database and the model database. Because of this it is hard to expose this domain's service via a normal controller service factory."
+ },
+ {
+  "id": 41,
+  "text": "When a hook errors, the unit's agent status reads `error`; a client resolves it, requiring model write access, by recording a mode: `retry-hooks` re-runs the failed hook on the agent's next pass, `no-hooks` skips it. Only a unit in error can be resolved, and the marker is cleared once the agent has honoured it."
+ },
+ {
+  "id": 42,
+  "text": "write, the log lines, and the output record land in the record set,"
+ },
+ {
+  "id": 43,
+  "text": "Rule: The name matches the action-name grammar: lowercase letters and digits, hyphens allowed inside (`snapshot-db`, never `-snapshot` or `Snapshot`)."
+ },
+ {
+  "id": 44,
+  "text": "Resources can be refreshed independently of charm revisions, but must exist in the current charm metadata used by the application. Refresh from the charm repository happens if a new version is available when the `juju refresh` command is run or when juju attach-resource is run with a revision number or a file to upload."
+ },
+ {
+  "id": 45,
+  "text": "Rule: The model name is not empty, and the qualifier (its owner) must be a valid user name: `admin`, or `alice@external` for a user from an identity provider."
+ },
+ {
+  "id": 46,
+  "text": "and the firewaller worker reacts to the subnets' changes. The space"
+ },
+ {
+  "id": 47,
+  "text": "then the machines, and the model's Dqlite database last, as the final"
+ },
+ {
+  "id": 48,
+  "text": "The two status satellites are the pair the status display reads. The agent's status is written by the unit agent; the workload's by the workload, the charm through its hooks. Writer gates, not transitions, are what constrain them: the agent cannot write `lost` or `allocating`, and an `error` write must carry a message. At read time, an agent with no presence record displays as `lost`, and a lost agent's workload displays as `unknown` unless the workload itself is in `error` or `terminated` (the vocabularies: unit status; the who-writes story across all five status domains: the Status domains view)."
+ },
+ {
+  "id": 49,
+  "text": "and the user-authentication namespaces remains behind the compatibility"
+ },
+ {
+  "id": 50,
+  "text": "Rotation policy: A secret may carry a rotation policy and a next rotation time."
+ },
+ {
+  "id": 51,
+  "text": "This domain is intentionally read-only with respect to most tables it queries. The only write operation is caching image metadata fetched from external simplestreams sources. Other domains (machine, application, storage, network) remain the owners of mutations to their respective tables."
+ },
+ {
+  "id": 52,
+  "text": "The package contains the service for managing clouds known to Juju. Every model runs on a cloud."
+ },
+ {
+  "id": 53,
+  "text": "The package defines the agent provisioner service, which the provisioner uses to retrieve container configuration for provisioning."
+ },
+ {
+  "id": 54,
+  "text": "A model can be moved between controllers with the migrate operation"
+ },
+ {
+  "id": 55,
+  "text": "provisioned. The records come in two families: the user's"
+ },
+ {
+  "id": 56,
+  "text": "Secrets are sensitive data (like passwords, tokens, or certificates) that are stored in versioned revisions and managed through backends -- such as Vault, Kubernetes, or the built-in controller backend -- to ensure security and persistence. Each secret is addressed by a unique URI and can be owned by a model (user secrets), an application, or a unit (charm secrets)."
+ },
+ {
+  "id": 57,
+  "text": "Statuses: The machine agent reports its status (`pending`, `started`, `stopped`, `error`); the controller and the providers write the instance's provisioning status (`allocating`, `running`, `provisioning error`)."
+ },
+ {
+  "id": 58,
+  "text": "The bootstrap admin: The user bootstrap creates gets the username `admin` and is prompted to create a password on first login; a user added explicitly sets their login details when they register the controller with their client."
+ },
+ {
+  "id": 59,
+  "text": "- resources are instantiations of the resource definitions from the charm metadata. They hold the origin and revision and can be linked to a blob. They have the state \"available\"."
+ },
+ {
+  "id": 60,
+  "text": "Connection record: One record per consumer: the pointer to the consumer's remote relation and the consuming model's offer user."
+ },
+ {
+  "id": 61,
+  "text": "Removal is a cooperative shutdown. The controller only marks the unit dying; the agent that owns it runs its teardown work and only then reports itself dead. A hook error in that teardown is what the `--force` option overrides."
+ },
+ {
+  "id": 62,
+  "text": "keys and values plus the trust flag: the hash change is what fires the"
+ },
+ {
+  "id": 63,
+  "text": "Parent record (containers only): Holds two pointers, the child and its host."
+ },
+ {
+  "id": 64,
+  "text": "External users (i.e. users with an external domain in their user name e.g. someone@external) can inherit permissions from the everyone@external user."
+ },
+ {
+  "id": 65,
+  "text": "the `root` user (passwordless sudo privileges), grant SSH access with due"
+ },
+ {
+  "id": 66,
+  "text": "Rule: A backing's delete job requires it dead and tombstoned: the provisioner's release of the cloud resource is the gate."
+ },
+ {
+  "id": 67,
+  "text": "The package provides the domain for managing cross model relations, including offers and creating offer permissions."
+ },
+ {
+  "id": 68,
+  "text": "models, on different controllers or clouds. Each model holds its own"
+ },
+ {
+  "id": 69,
+  "text": "The package provides domain types and logic for managing charm resources, including resource definitions, application and unit bindings, and repository or uploaded resource state."
+ },
+ {
+  "id": 70,
+  "text": "Typical usage: - A client enables a block with an optional message to protect the model during maintenance windows. - System components and user commands check for active blocks before performing protected actions; when blocked, the optional message is surfaced to the caller."
+ },
+ {
+  "id": 71,
+  "text": "Obsolete secrets and obsolete user secrets to prune: the"
+ },
+ {
+  "id": 72,
+  "text": "No client creates or destroys a subnet: a subnet enters the model by"
+ },
+ {
+  "id": 73,
+  "text": "Container life: Drives host-side container provisioning loops."
+ },
+ {
+  "id": 74,
+  "text": "There are parts of the schema that should never be updated in a patch/build release. The provider tracker requires that the underlying schema is never changed. Changing the schema will lead to undefined behavior and data loss."
+ },
+ {
+  "id": 75,
+  "text": "Client and agent addresses may have no controller identity. Such addresses are shared endpoints, such as a load-balanced Kubernetes Service, which can reach the controller API but not a particular controller. Peer addresses always identify the controller they reach and are never shared."
+ },
+ {
+  "id": 76,
+  "text": "Space pointer: The subnet record holds the space pointer, an assertion that this subnet belongs to at most one space. It is nullable, an honest absence the schema states (a subnet need not be grouped yet); moving the subnet between spaces rewrites the single pointer (see space operations)."
+ },
+ {
+  "id": 77,
+  "text": "The package contains the controller model service. The controller stores information about all the models it manages. This service exposes methods to perform management operations such as creating, destroying and gathering information about models the controller manages."
+ },
+ {
+  "id": 78,
+  "text": "The user record carries one discriminator: the external flag."
+ },
+ {
+  "id": 79,
+  "text": "Rule: A machine becomes `dead` only when it is `dying` and hosts no containers, units or storage."
+ },
+ {
+  "id": 80,
+  "text": "A proxy charm is a configurator charm where the configuration is about how to interact with a non-charmed workload."
+ },
+ {
+  "id": 81,
+  "text": "Adding, updating, removing: You add, update, or remove a credential through a Juju client; adding your own credential requires nothing beyond controller login access."
+ },
+ {
+  "id": 82,
+  "text": "One watch surface: a single credential's changes. The provisioning machinery of a model that uses the credential watches it and reconciles when the credential is updated or invalidated."
+ },
+ {
+  "id": 83,
+  "text": "The package domain provides the interface required for managing the version of the controllers that from the current cluster."
+ },
+ {
+  "id": 84,
+  "text": "By the time the setting call returns, the cloud's record exists, and Juju has not yet spoken to the cloud itself. A cloud has no machinery of its own: the controller reads the definition whenever it talks to the provider on a model's behalf (provisioning machines, resolving details), and the models using the cloud discover its reachability per operation."
+ },
+ {
+  "id": 85,
+  "text": "Although multiple CAAS models might use this \"built-in\" backend, there is only one entry for it in the database. When retrieving the backend configuration for a specific CAAS model, Juju dynamically constructs the configuration using the model's cloud and credential specifications (for endpoint information) and the model's name (which maps to the Kubernetes namespace)."
+ },
+ {
+  "id": 86,
+  "text": "Role satellites: The controller marker (the single-record marker for the one controller application), the Kubernetes scale record (the current scale, the target, the scaling flag), the expose grants per endpoint (a NULL endpoint is the wildcard), the compute the units request (joined onto the constraint record), the workload version the application reports, the application agent's credentials, the Kubernetes service a CAAS deployment exposes (bound to the net node record), and the remote-offerer pair: an application record the consuming model synthesises to stand for an application it cannot see, paired with a remote-offerer record carrying the far model's identity and the offer URL; nothing is deployed behind it (see offer)."
+ },
+ {
+  "id": 87,
+  "text": "The package defines domain types for controller-side unitless charm execution."
+ },
+ {
+  "id": 88,
+  "text": "controller database the permission records live in."
+ },
+ {
+  "id": 89,
+  "text": "commands: the `juju_access_model` and `juju_access_offer` resources"
+ },
+ {
+  "id": 90,
+  "text": "[Data Integrator](https://charmhub.io/data-integrator)"
+ },
+ {
+  "id": 91,
+  "text": "Writers: The zone entries arrive with the subnets: the network state inserts a zone and its subnet membership when it adopts a subnet from the provider (domain/network/state/subnet.go)."
+ },
+ {
+  "id": 92,
+  "text": "Rule: A leader keeps its leadership until it has left every relation scope, so its departure hooks can still read and write the application settings; the job revokes the lease only after that."
+ },
+ {
+  "id": 93,
+  "text": "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u2502                \u2502 \u2502                \u2502 \u2502   DBACCESSOR   \u2502 \u2502                \u2502 \u2502                \u2502 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2502 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u2502                  \u2502                \u2502 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u25bc\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510          \u2502        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u25bc\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u2502               \u2502          \u2502        \u2502                \u2502 \u2502   PROVIDER    \u2502          \u2502        \u2502                \u2502 \u2502   SERVICES    \u2502          \u2502        \u2502   OBJECTSTORE  \u2502 \u2502               \u2502          \u2502        \u2502   SERVICES     \u2502 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518          \u2502        \u2502                \u2502 \u2502                  \u2502        \u2502                \u2502 \u2502                  \u2502        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2502                  \u2502                \u2502 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u25bc\u2500\u2500\u2500\u2500\u2500\u2510            \u2502                \u2502 \u2502               \u2502            \u2502                \u2502 \u2502 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510          \u2502                \u2502 \u2502 \u2502               \u2502          \u2502        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u25bc\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u2502 \u2502  \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u2502        \u2502                 \u2502 \u2502 \u2502  \u2502               \u2502       \u2502        \u2502                 \u2502 \u2502 \u2502  \u2502               \u2502       \u2502        \u2502                 \u2502 \u2514\u2500\u2502  \u2502   PROVIDER    \u2502       \u2502        \u2502   OBJECTSTORE   \u2502 \u2502  \u2502   TRACKER(S)  \u2502       \u2502        \u2502                 \u2502 \u2514\u2500\u2500\u2502               \u2502       \u2502        \u2502                 \u2502 \u2502               \u2502       \u2502        \u2502                 \u2502 \u2514\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2502        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2502                  \u2502                \u2502 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u2502 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2502 \u2502 \u2502 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u25bc\u2500\u25bc\u2500\u25bc\u2500\u2500\u2510 \u2502             \u2502 \u2502             \u2502 \u2502   DOMAIN    \u2502 \u2502   SERVICES  \u2502 \u2502             \u2502 \u2502             \u2502 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2502 \u2502 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u25bc\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u2502             \u2502 \u2502             \u2502 \u2502   OUTPUT    \u2502 \u2502             \u2502 \u2502             \u2502 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518"
+ },
+ {
+  "id": 94,
+  "text": "*relation databags*; Juju's code and hook commands all say"
+ },
+ {
+  "id": 95,
+  "text": "The package wires the model export-version transformer together."
+ },
+ {
+  "id": 96,
+  "text": "Constraints: Constraints can name the spaces a machine's subnets must come from."
+ },
+ {
+  "id": 97,
+  "text": "The secret backend domain: - defines and validates secret backend records (identity, type, config). - creates, updates, lists, and deletes backends, with safeguards for immutability and in-use protection in the state layer. - tracks rotation metadata (token rotate interval and next rotation time) and emitting changes consumable by watchers used by rotation workers. - manages per-model backend selection. The default model backend is automatically resolved to the most appropriate built-in backend based on model type (IAAS or CAAS). - restores the default backend selection when a user-defined backend is destroyed, respecting the model type."
+ },
+ {
+  "id": 98,
+  "text": "How clients add users and manage what they may do."
+ },
+ {
+  "id": 99,
+  "text": "One watch surface: a single cloud's changes. Whoever resolves cloud details on demand (the model creation machinery, the credential services) watches the cloud it cares about and re-fetches on change."
+ },
+ {
+  "id": 100,
+  "text": "Abilities: Deploy and manage applications on the model."
+ },
+ {
+  "id": 101,
+  "text": "<generic-environment-variables>` plus the action-specific ones:"
+ },
+ {
+  "id": 102,
+  "text": "A unit agent claims the application's leadership lease when it wants to lead, and renews it while it holds it; the lease expires when the unit stops renewing, and lapses when the unit is removed. The lease lives in the controller database, one per application. Holding it is what gates the leader's writes: the application status write, the peer relation settings read, and secret access all check leadership and refuse with `unit is not the leader` when the unit no longer holds it."
+ },
+ {
+  "id": 103,
+  "text": "Regions: A cloud is divided into regions, the sub-scopes a model lands in (see the list of supported clouds)."
+ },
+ {
+  "id": 104,
+  "text": "Writers: The permission service performs the writes. A grant creates the record (or updates it to a higher level); a revoke updates the record down or deletes it (revoking the `read` level deletes the record outright); and granting to an external user that Juju has not seen yet creates that user as a side effect, so the record has someone to name."
+ },
+ {
+  "id": 105,
+  "text": "Pointers that name the cloud: Models carry the denormalised copy of the cloud they deploy into (cloud name, type, and region on the model's record), and each model's credential names its cloud half of the pair. The cloud a controller was bootstrapped on is seeded as a record at bootstrap."
+ },
+ {
+  "id": 106,
+  "text": "Charm types are stored in the application/charm package, to ensure that the charm is handled correctly and that the charm is correctly represented in the domain."
+ },
+ {
+  "id": 107,
+  "text": "Subnets are always discovered from the underlaying network (as present in the provider), and inserted into the DB at bootstrap. Spaces are a domain concept, and they are a grouping of subnets which allows for easier network (and application/integrations) isolation. Spaces can also be discovered from the underlaying provider, only available on MAAS."
+ },
+ {
+  "id": 108,
+  "text": "The package holds charm and workload tracing configuration. This configuration is used to configure OTEL collectors for Juju's distributed tracing. Charms and workloads get OTEL collector endpoint and certificate information through their respective integration paths."
+ },
+ {
+  "id": 109,
+  "text": "In the model database an application is a native record, created"
+ },
+ {
+  "id": 110,
+  "text": "Offer record: The identity pair, a `uuid` primary key and the offer's `name`. The offer's URL identifies it across controllers; its name is unique among offers."
+ },
+ {
+  "id": 111,
+  "text": "Consumers include client facades and CLI commands that expose the functionality to users, such as - apiserver/facades/client/block for remote API access. - api/client/block for client helpers. - cmd/juju/block for CLI commands to enable, list, and remove blocks."
+ },
+ {
+  "id": 112,
+  "text": "Provider space record: The cloud's own identifier for the same grouping, where the cloud has one; at most one per space."
+ },
+ {
+  "id": 113,
+  "text": "The package provides the domain types for application relations. The relation domain is the primary domain for creation and handling of a relation."
+ },
+ {
+  "id": 114,
+  "text": "The package provides a service to keep track of metadata about objects (binary blobs) that are stored in juju's object store. These objects can be any large blob of data that juju needs to store, for example, a downloaded charm."
+ },
+ {
+  "id": 115,
+  "text": "The package provides a service that keeps track of global boolean operational flags. For example, whether juju has finished bootstrap."
+ },
+ {
+  "id": 116,
+  "text": "and values, the config hash (the compact change signal), and the"
+ },
+ {
+  "id": 117,
+  "text": "The package provides the service for managing juju's networking aspects, namely spaces and subnets."
+ },
+ {
+  "id": 118,
+  "text": "User record: The name (one active user per name), the display name, the external flag, the creator, and the removed flag. The `admin` user is seeded implicitly at bootstrap; every other user is added explicitly."
+ },
+ {
+  "id": 119,
+  "text": "the actions and the manifest, plus its download info) and starts"
+ },
+ {
+  "id": 120,
+  "text": "application, a unit, or the model, and that is the whole taxonomy. The"
+ },
+ {
+  "id": 121,
+  "text": "The model's copy: The model database keeps only a read-only, denormalised copy of the credential each model uses (owner and name as text); identity decisions stay with the controller record."
+ },
+ {
+  "id": 122,
+  "text": "The controller's SSH server: A user's key authenticates at the controller's SSH server. The server reads the keys registered for the connecting user and accepts the connection when the presented key matches one of them. It then authorises the destination in two steps: the user needs SSH access to the model, and the key used needs to be associated with that model (the check compares SHA-256 fingerprints). A user holding several keys who presents one the model does not carry is refused, with a message naming the key's comment."
+ },
+ {
+  "id": 123,
+  "text": "- repository resources represent the latest revision available in charm repository. These have the state \"potential\"."
+ },
+ {
+  "id": 124,
+  "text": "Credential record: One record, identified by its natural key: the cloud, the owning user and its name, unique by index. The record carries its authentication type. Re-adding a credential with the same key updates it and does not duplicate it."
+ },
+ {
+  "id": 125,
+  "text": "Derived read: A read joins the offer with its endpoints, the application, the charm, and the connection counts. Total and active connections are derived here, not stored: the read counts an offer's connections and its active connections from the connection records."
+ },
+ {
+  "id": 126,
+  "text": "The package provides a service to keep track of external controllers."
+ },
+ {
+  "id": 127,
+  "text": "A charm channel identifies a charm release stream, written"
+ },
+ {
+  "id": 128,
+  "text": "When you initialise a rock with a 12-Factor-app-charm-geared profile, the initialisation will generate all the basic structure and content you'll need for the rock, including a [`rockcraft.yaml`](https://canonical-rockcraft.readthedocs-hosted.com/en/latest/reference/rockcraft.yaml/#) file pre-populated with an extension matching the profile. Similarly, when you initialise a charm with a 12-Factor-app-charm-geared profile, that will generate all the basic structure content you'll need for the charm, including a `charmcraft.yaml` pre-populated with an extension matching the profile as well as a `src/charm.py` pre-loaded with a library (`paas_charm`) with constructs matching the profile and the extension."
+ },
+ {
+  "id": 129,
+  "text": "Reprovisioning: `juju reprovision-machine` declares a machine's cloud instance lost and asks for a replacement. The controller checks eligibility first, then the liveness gates: the machine agent must be absent and the provider must report the instance missing or not running. One transaction then detaches the lost instance, gives the machine's units new ordinals so the replacement unit agents start with fresh identities, departs the units from their relation scopes while archiving their settings (so the remaining units see a consistent departure), resets the machine-scoped storage state, and returns the machine and its instance to `pending`; the compute provisioner then provisions the replacement."
+ },
+ {
+  "id": 130,
+  "text": "The package provides functionality to manage services. Service types (controller, model, provider and object store) wrap database access. Services encapsulate domain verticals, which can be used to encapsulate business and persistence logic."
+ },
+ {
+  "id": 131,
+  "text": "The package holds the controller state and service. The controller domain contains methods to handle the core controller values that do not fall into the category of controller config."
+ },
+ {
+  "id": 132,
+  "text": "The domain services can therefore consume additional dependencies from other dependency engine outputs without the worry of circular dependencies."
+ },
+ {
+  "id": 133,
+  "text": "Revoking: You revoke access with `juju revoke` and `juju revoke-cloud`, the same way, with the same authority requirements as granting."
+ },
+ {
+  "id": 134,
+  "text": "A resource is a stored representation of a charm's resource. There are 3 types of resources after deploy: an application resource, a unit resource and a repository resource. Once deployed, resources can be refreshed independently from a charm. Thus they will have relations to applications but not a specific charm revision."
+ },
+ {
+  "id": 135,
+  "text": "The package provides the agent binary service. This service is used to manage the agent binaries used by the Juju agents. The state inside the package talks to the controller database to store and retrieve the agent binaries data."
+ },
+ {
+  "id": 136,
+  "text": "The storage instance's own record is created when the charm's storage is requested; the provisioned backing follows once the cloud delivers it. The instance has no state machine of its own: its life is the shared alive, dying, dead cycle, and the interesting state lives on the backing's status record, the one status vocabulary in the model that is transition-validated."
+ },
+ {
+  "id": 137,
+  "text": "Metadata record: One per secret, keyed by the secret's ID, and that ID is the whole identity pair: the owner records, the revisions, the consumers and the permission grants all point at it. It carries the latest revision pointer, the description, the rotation policy, and the auto-prune flag."
+ },
+ {
+  "id": 138,
+  "text": "The package contains the schema definitions for all the domains. The schema is broken down into a controller (global) namespace and a set of model namespaces. Each domain package wraps a set of workflows that can affect either the controller or model namespaces. It's generally a good idea not to mix the two, because of a lack atomicity across two different databases (even if attempting to use ATTACH DATABASE in SQLite) can cause inconsistencies or additional complexity."
+ },
+ {
+  "id": 139,
+  "text": "- application resources represent which resource revision or blob the application is currently using."
+ },
+ {
+  "id": 140,
+  "text": "Resources can be downloaded from the charm repository or uploaded by the juju client. When deploying repository charms, resources are created and linked to an application when the application is created, so the logic for resource creation belongs to application domain. A local resource is then uploaded to the controller. A repository resource is downloaded when the resource is first used by the application. When deploying local charms, resources are created and uploaded before the application is created. During the application creation, it is linked to the previously uploaded resource."
+ },
+ {
+  "id": 141,
+  "text": "Pointers that name the space: An application carries its default-binding space on its own record, each charm endpoint can carry a space binding of its own, and exposed endpoints grant spaces to the outside; constraints can name the spaces a machine's subnets must come from."
+ },
+ {
+  "id": 142,
+  "text": "A machine cloud is a cloud that provides machine-level infrastructure. Juju uses the cloud API to provision or allocate machines (bare metal, virtual machines, or system containers), plus the networking and storage resources those machines require."
+ },
+ {
+  "id": 143,
+  "text": "If an external user inherits its login permission from everyone@external then it should be created as a user in the database on login."
+ },
+ {
+  "id": 144,
+  "text": "Storage directives: A storage directive is a comma-separated sequence of pool, count, and size, set against a charm's storage name; the components are identified by form, not order."
+ },
+ {
+  "id": 145,
+  "text": "Deleting: A delete names targets: a fingerprint, a comment, or a full key value. Every match is removed; a target matching nothing is a no-op."
+ },
+ {
+  "id": 146,
+  "text": "Backing records: An instance has exactly one backing (a volume or a filesystem), bound to the machine's net node, the shared network identity the machine and its units anchor to; each carries its own status record."
+ },
+ {
+  "id": 147,
+  "text": "This domain uncouples the caller from having to understand all the different sources of authroised keys within Juju."
+ },
+ {
+  "id": 148,
+  "text": "The provider services is a special case, whereby it takes a very small subset of the controller and the model domain services and offers methods for the sole purpose of managing providers (environs and brokers). The provider services has very few dependencies and is only used by the provider tracker. The provider tracker caches providers for both IAAS and CAAS model types. Ensuring that any model configuration, cloud configuration or credential changes update the cached providers, without the need to restart the controller."
+ },
+ {
+  "id": 149,
+  "text": "Zone record: One entry per availability zone, with a model-unique name."
+ },
+ {
+  "id": 150,
+  "text": "Co-location record (subordinates): A subordinate unit has a co-location record. It holds the pair: the subordinate's pointer and its principal's, both into the unit's own records."
+ },
+ {
+  "id": 151,
+  "text": "The package provides the service that keeps track of controller nodes. This is needed when the controller is in high availability mode and has multiple communicating instances. It is primarily used to keep track of the DQLite nodes located in each controller."
+ },
+ {
+  "id": 152,
+  "text": "application. Most applications are regular applications: a"
+ },
+ {
+  "id": 153,
+  "text": "The package defines a domain to access information about the agents running in a model, such as the version."
+ },
+ {
+  "id": 154,
+  "text": "The package defines the domain model, contracts, and documentation for Juju operations."
+ },
+ {
+  "id": 155,
+  "text": "Resource are stored based on the type. Files are stored in the object store, OCI image resources are stored in the model database."
+ },
+ {
+  "id": 156,
+  "text": "controller drains the revisions from the old backend into the new one"
+ },
+ {
+  "id": 157,
+  "text": "States: A space has no state machine and no life column: it is a naming record, created, renamed, or removed; nothing transitions."
+ },
+ {
+  "id": 158,
+  "text": "Rule: The archive is checked against its reservation: the upload's sha256 prefix, the download's full sha256."
+ },
+ {
+  "id": 159,
+  "text": "Subnet pointer: The subnet carries the space pointer. The pointer is nullable, so a subnet belongs to at most one space or to none."
+ },
+ {
+  "id": 160,
+  "text": "The type of a secret backend can be `controller`, `kubernetes`, and"
+ },
+ {
+  "id": 161,
+  "text": "- Backend identity: A backend can be addressed by UUID or by human-readable name. Only one is required for lookups/updates. - Backend type: Backend types are either `controller` for the built-in backend into Juju controller, `kubernetes` for the Kubernetes provider, or `vault` for the Vault provider. Types are represented by string constants. - Backend origin: Backends created at bootstrap time are marked as origin 'built-in'. All other backends are marked as origin 'user'. 'built-in' backends are immutable and cannot be deleted. - Backend configuration: Each backend carries a Config `map[string]any`. Keys must be non-empty. Values must be non-nil and, when strings, non-empty. Values are stored as JSON. - Backend auth token rotation: Service interface allows specifying a rotation interval for backends. When set, the next rotation time is computed, then recorded and updated upon rotation events. Rotation events are emitted by the state layer through a watcher. - Default backend selection: For a given model, the effective backend name can be retrieved and set through the service layer. The special provider value \u201cauto\u201d resolves to the built-in `controller` backend for IAAS models and to the built-in `kubernetes` backend for CAAS models."
+ },
+ {
+  "id": 162,
+  "text": "The package holds logging configuration for the controller. This includes the Loki push API endpoint configuration that is provided by the controller charm via the loki_push_api integration. The endpoint is persisted in the controller database and distributed to agents so they can send logs directly to Loki rather than through jujuagentd."
+ },
+ {
+  "id": 163,
+  "text": "The package provides the domain types for an application. The application domain is the primary domain for creation and handling of an application."
+ },
+ {
+  "id": 164,
+  "text": "Pool operations: Pools are managed as their own records: create, update (a full replace), list (including the provider defaults), and delete."
+ },
+ {
+  "id": 165,
+  "text": "Every resource has a type of either a file resource or an OCI image resource. Resources are defined in the charm metadata. After deployment, the specific resource details are associated with the application deployed from the charm."
+ },
+ {
+  "id": 166,
+  "text": "The controller service wraps the global \"controller\" namespace database. Everything in the controller namespace is global and shared across all models. It can generally be accessed by any consumer of the model domain services (referred to as \"domain services\")."
+ },
+ {
+  "id": 167,
+  "text": "The package provides a read-side aggregation service for gathering all data required to provision a machine instance."
+ },
+ {
+  "id": 168,
+  "text": "Rule: With the `provider` method, host devices in the required spaces are bridged and the guest's devices are configured statically; only then does the provider allocate their addresses, and only when it supports it. A guest with no devices does not consult the provider."
+ },
+ {
+  "id": 169,
+  "text": "Users: The offer's users (who may consume it) live in the controller database as permission records, not in the model (see user)."
+ },
+ {
+  "id": 170,
+  "text": "settings, serving a departed unit's settings from the archive;"
+ },
+ {
+  "id": 171,
+  "text": "In order to avoid circular dependencies, the object store services is separated from the domain services. The object store services wraps the object store namespace database. The object store namespace is specific to a particular model. The domain services can consume the object store services without the worry of circular dependencies."
+ },
+ {
+  "id": 172,
+  "text": "A separate domain was created to handle controller upgrades to start separating some of the cross over that controller upgrades had with model upgrades. While fundamentally different concepts with the same end results, they have always been conflated."
+ },
+ {
+  "id": 173,
+  "text": "cloud's own identifier for the subnet, and the provider-network"
+ },
+ {
+  "id": 174,
+  "text": "Clouds decide which authentication schemes they accept; users own credentials; models use exactly one cloud/credential pair; and who may use a credential is decided by access grants, not by the credential itself."
+ },
+ {
+  "id": 175,
+  "text": "The operation domain is consumed by client facades and worker such as: - apiserver/facades/client/action to list, query, and manage operations. - internal/worker/uniter to execute tasks on units. - internal/worker/machineactions to execute tasks on machines."
+ },
+ {
+  "id": 176,
+  "text": "Rule: The statuses are upserts gated by writer, never transitions; the display overrides are computed from presence at read time."
+ },
+ {
+  "id": 177,
+  "text": "Resource types are stored in the application/resource package, to ensure that the resources is handled correctly and that the resource is correctly represented in the domain."
+ },
+ {
+  "id": 178,
+  "text": "Vocabularies: Three lookups bound the record. The access levels are seven (`read`, `write`, `consume`, `admin`, `login`, `add-model`, `superuser`); the object kinds are four (`cloud`, `controller`, `model`, `offer`); and a combination lookup holds the valid pairs, ten of them: `admin` and `add-model` for clouds, `login` and `superuser` for controllers, `read`, `write` and `admin` for models, `read`, `consume` and `admin` for offers (the same list the user reference describes as abilities)."
+ },
+ {
+  "id": 179,
+  "text": "The operation domain provides the types and services to: - execute operations on specific targets (applications, machines or units) - query the status of operations in batch or through filters - manage operations (cancel, prune)"
+ },
+ {
+  "id": 180,
+  "text": "The provisioning domain consolidates queries across machine, application, storage, network, model config, and cloud image metadata -- all within a single model-database transaction -- to produce a complete ProvisioningInfo for a given machine. Controller configuration is fetched separately from the controller database."
+ },
+ {
+  "id": 181,
+  "text": "Adding: Adding a model requires cloud add-model access."
+ },
+ {
+  "id": 182,
+  "text": "States: An offer has no life column, no state machine, and no subtypes. The record is static from creation until removal, and its only moving quantity, the number of active connections, is derived from the connections' relations."
+ },
+ {
+  "id": 183,
+  "text": "The blockcommand domain provides: - Types and validation for BlockType and Block. - A service (package blockcommand/service) offering business logic to switch blocks on and off and to query active blocks and their messages. - A persistence layer (package blockcommand/state) used by the service."
+ },
+ {
+  "id": 184,
+  "text": "Rule: A rotation policy and a next rotation time always come together; one without the other is invalid."
+ },
+ {
+  "id": 185,
+  "text": "Its neighbours: the users whose names the grants carry,"
+ },
+ {
+  "id": 186,
+  "text": "An operation represents a higher-level unit of work initiated by a user. There is two type of operations: - action operations are defined by the charm and implemented as scripts in the charm - exec operations are shell commands."
+ },
+ {
+  "id": 187,
+  "text": "Unlike the application or the unit, the model record does carry its"
+ },
+ {
+  "id": 188,
+  "text": "For more information about tracing in Juju see the following: - github.com/juju/juju/core/trace - github.com/juju/juju/internal/worker/trace"
+ },
+ {
+  "id": 189,
+  "text": "Leases are used in Juju to track responsibility for tasks that need a singular owner. This can be required in many places where there are multiple equivalent instances of a process. For example, when juju is running in high availability mode with multiple controllers, there should only be one machine provisioner per model. The leases can be used to ensure only one of the controller instances runs the provisioner for a given model."
+ },
+ {
+  "id": 190,
+  "text": "In the model database a subnet is a cached cloud fact: the"
+ },
+ {
+  "id": 191,
+  "text": "The schema is a set of DDL SQL statements for controller and models. They're independent from each other. Each set of schema is executed in a single transaction, and any error will cause the transaction to be rolled back."
+ },
+ {
+  "id": 192,
+  "text": "How clients request storage for applications and units, name the pools and providers that deliver it, and manage its life."
+ },
+ {
+  "id": 193,
+  "text": "The package provides the domain knowledge for retrieving the authorised keys for the different entities within Juju. Specifically machines can ask what authorised keys they should have on the system."
+ },
+ {
+  "id": 194,
+  "text": "By the time the setting call returns, the record exists, and nothing has yet proved that the credential works. That proof is all the execution a credential has, because a credential has no machinery of its own: opening a provider connection with the model's credential is what validates it, per model, at the model's next check."
+ },
+ {
+  "id": 195,
+  "text": "workers are already running: a model is one of the entities with"
+ },
+ {
+  "id": 196,
+  "text": "Every watcher fires once immediately when it is created, the initial query being the baseline snapshot, and again on each qualifying change. See the watcher pattern."
+ },
+ {
+  "id": 197,
+  "text": "Login details: Registering the controller sets a new user's first password; passwords are set or reset; authentication is disabled or re-enabled; access is granted or revoked."
+ },
+ {
+  "id": 198,
+  "text": "Overlap: If you do both (that is, there is overlap), the placement directive takes precedence."
+ },
+ {
+  "id": 199,
+  "text": "Not applicable: the zone list comes from the cloud provider; it is not model state with a change stream of its own."
+ },
+ {
+  "id": 200,
+  "text": "Placement directive: When passed as a placement directive you may only specify one zone (via the placement-directive-zone key)."
+ },
+ {
+  "id": 201,
+  "text": "Constraint: When passed as a constraint you may specify a range of zones (via the constraint-zones key)."
+ },
+ {
+  "id": 202,
+  "text": "Every watcher fires an initial baseline snapshot on creation, followed by notifications on qualifying changes. See the watcher pattern."
+ },
+ {
+  "id": 203,
+  "text": "Explicit creation: API requests for machines, gated on model write access."
+ },
+ {
+  "id": 204,
+  "text": "A(n availability) `zone` is a  constraint or a placement directive that can be used to customise where the hardware spawned by Juju is provisioned in order to achieve better redundancy in case of an outage."
+ },
+ {
+  "id": 205,
+  "text": "An offer is persisted in the offering model's model database as follows:"
+ },
+ {
+  "id": 206,
+  "text": "The package provides the services for managing users and permissions in Juju. The users side is mainly concerned with authentication and the permissions side with authorization."
+ }
+]

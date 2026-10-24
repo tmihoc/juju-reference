@@ -1,0 +1,747 @@
+[
+ {
+  "id": "A-Q01",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "cmd/juju/sshkeys/list_sshkeys.go",
+    "line": 73,
+    "ok": true,
+    "note": "BoolVar full default false; Run picks ssh.FullKeys when set, else ssh.Fingerprints"
+   },
+   {
+    "file": "cmd/juju/sshkeys/list_sshkeys.go",
+    "line": 61,
+    "ok": true,
+    "note": "Aliases list-ssh-keys"
+   }
+  ],
+  "note": "Flag --full, default false; Run maps it to FullKeys vs Fingerprints list mode. Reading: single fact in one file"
+ },
+ {
+  "id": "A-Q02",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "environs/bootstrap/config.go",
+    "line": 35,
+    "ok": true,
+    "note": "authorizedKeysDelimiter = ';' used in SplitAuthorizedKeysByDelimiter at line 351; schema description line 133 also says ';'"
+   },
+   {
+    "file": "environs/bootstrap/config.go",
+    "line": 374,
+    "ok": true,
+    "note": "keys from authorized-keys-path file appended to config.AuthorizedKeys"
+   }
+  ],
+  "note": "Delimiter is ';'; authorized-keys-path file keys are appended after the authorized-keys ones. Reading: single file, easy"
+ },
+ {
+  "id": "A-Q03",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "cmd/juju/sshkeys/import_sshkeys.go",
+    "line": 86,
+    "ok": true,
+    "note": "Init switch k[:3] accepts lp:/gh:; default returns NotSupported; len<3 gives NotValid"
+   },
+   {
+    "file": "internal/ssh/importer/importer.go",
+    "line": 68,
+    "ok": true,
+    "note": "gh resolver"
+   },
+   {
+    "file": "internal/ssh/importer/importer.go",
+    "line": 69,
+    "ok": true,
+    "note": "lp resolver"
+   }
+  ],
+  "note": "Only lp: (Launchpad) and gh: (GitHub); the CLI Init rejects other prefixes, and the server importer map only has gh and lp. Reading: two files, easy"
+ },
+ {
+  "id": "A-Q04",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/controller/types.go",
+    "line": 9,
+    "ok": true,
+    "note": "ControllerSSHKeyComment = juju-system-key"
+   },
+   {
+    "file": "domain/keymanager/service/service.go",
+    "line": 96,
+    "ok": true,
+    "note": "reservedPublicKeyComments set"
+   },
+   {
+    "file": "domain/keymanager/service/service.go",
+    "line": 163,
+    "ok": true,
+    "note": "Add checks exact comment equality; import check at line 306 also returns ReservedCommentViolation"
+   }
+  ],
+  "note": "Reserved comment is exactly 'juju-system-key' (exact match, not substring); enforced in AddPublicKeysForUser and ImportPublicKeysForUser. Reading: 2-3 files"
+ },
+ {
+  "id": "A-Q05",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": "True as written; note icfg.AuthorizedKeys is only populated on the bootstrap machine (provider/common/bootstrap.go:147) in 4.1, see A-Q08."
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "internal/cloudconfig/userdatacfg.go",
+    "line": 675,
+    "ok": true,
+    "note": "cloudinit user Name ubuntu with SSHAuthorizedKeys"
+   },
+   {
+    "file": "internal/cloudconfig/userdatacfg.go",
+    "line": 221,
+    "ok": true,
+    "note": "ConfigureBasic calls SetUbuntuUser(icfg.AuthorizedKeys)"
+   },
+   {
+    "file": "internal/worker/sshkeyupdater/worker.go",
+    "line": 18,
+    "ok": true,
+    "note": "SSHUser=ubuntu; handleEphemeralRequest calls ssh.AddKeys(SSHUser,...)"
+   }
+  ],
+  "note": "Answer 'ubuntu' is correct. Caveat: model user keys are not actually fed into icfg.AuthorizedKeys for ordinary provisioning (only bootstrap keys and the unused-by-script machinemanager path); the machine-side sshkeyupdater worker only handles ephemeral tunnel keys. Reading: two files; nuance requires tracing icfg.AuthorizedKeys producers"
+ },
+ {
+  "id": "A-Q06",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": "Matched by comment, fingerprint or public_key, restricted to the authenticated user's own keys."
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": "The cleanup deletes all of that user's keys that no model references (not only the ones just removed); skipped if the find step returns no rows."
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/keymanager/state/state.go",
+    "line": 645,
+    "ok": true,
+    "note": "deleteUnusedUserKeys"
+   },
+   {
+    "file": "domain/keymanager/state/state.go",
+    "line": 654,
+    "ok": true,
+    "note": "HAVING count(user_public_ssh_key_id) == 0"
+   },
+   {
+    "file": "domain/keymanager/state/state.go",
+    "line": 622,
+    "ok": true,
+    "note": "comment/fingerprint/public_key IN"
+   }
+  ],
+  "note": "DeletePublicKeysForUser deletes model_authorized_keys rows for this model only, then in the same Txn deletes the user's unreferenced user_public_ssh_key rows. Reading: single function in state.go"
+ },
+ {
+  "id": "A-Q07",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "partly",
+    "corrected": "checkCanRead first calls checkCanWrite, which is HasModelAdmin (model admin or controller superuser), then falls back to ReadAccess on the model; there is no separate 'write' permission."
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": "RemoveAllowed checks remove block then change block."
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "apiserver/facades/client/keymanager/keymanager.go",
+    "line": 46,
+    "ok": true,
+    "note": "ReadAccess fallback in checkCanRead"
+   },
+   {
+    "file": "apiserver/facades/client/keymanager/keymanager.go",
+    "line": 53,
+    "ok": true,
+    "note": "checkCanWrite -> model.HasModelAdmin"
+   },
+   {
+    "file": "apiserver/common/model/permissions.go",
+    "line": 26,
+    "ok": true,
+    "note": "superusers have admin for all models"
+   }
+  ],
+  "note": "List: admin/superuser or read on model; AddKeys/ImportKeys/DeleteKeys: model admin or superuser plus ChangeAllowed (Delete: RemoveAllowed incl. change block). Reading: two files plus block.go"
+ },
+ {
+  "id": "A-Q08",
+  "ground_truth_verdict": "partly",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": "True for domain/keyupdater Service.GetAuthorisedKeysForMachine (user keys then controller system keys)."
+   },
+   {
+    "fact_index": 1,
+    "verdict": "partly",
+    "corrected": "machinemanager.InstanceConfig joins with newline, but it is only called by MachineManagerAPI.ProvisioningScript (manual provisioning); the provisioner task's constructInstanceConfig never sets AuthorizedKeys, and ProvisioningScript runs only ConfigureJuju (not ConfigureBasic/SetUbuntuUser)."
+   },
+   {
+    "fact_index": 2,
+    "verdict": "partly",
+    "corrected": "annotateKeys prefixes Juju: to each key's comment (adds Juju:sshkey when comment empty), but only on keys that reach SetUbuntuUser/SetSSHAuthorizedKeys; in 4.1 that is effectively just the bootstrap machine."
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/keyupdater/service/service.go",
+    "line": 177,
+    "ok": true,
+    "note": "append(userKeys, controllerKeys...)"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/instanceconfig.go",
+    "line": 180,
+    "ok": true,
+    "note": "strings.Join(keys, newline); sole non-bootstrap writer of icfg.AuthorizedKeys"
+   },
+   {
+    "file": "internal/cloudconfig/cloudinit/cloudinit.go",
+    "line": 123,
+    "ok": true,
+    "note": "annotateKeys uses ssh.EnsureJujuComment (juju/utils v4.1.0: JujuCommentPrefix 'Juju:')"
+   }
+  ],
+  "note": "Components exist as stated, but ordinary machine provisioning does not wire them: grep shows icfg.AuthorizedKeys set only in provider/common/bootstrap.go:147 (bootstrap keys) and machinemanager/instanceconfig.go:180, and the latter feeds ProvisioningScript which calls only ConfigureJuju. Containers get ContainerConfig.AuthorizedKeys but the lxd broker never reads it. Upgrade step 4.1.0 removes legacy Juju keys. GT overstates end-to-end behavior. Reading: needs several files and tracing callers"
+ },
+ {
+  "id": "A-Q09",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": "Substring match on the full key text (strings.Contains), applied only to keys from model config 'authorized-keys'."
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/keymanager/modelmigration/import.go",
+    "line": 198,
+    "ok": true,
+    "note": "strings.Contains(pk, ControllerSSHKeyComment), Warningf then continue"
+   },
+   {
+    "file": "domain/keymanager/modelmigration/import.go",
+    "line": 212,
+    "ok": true,
+    "note": "GetUserByName(user.AdminUserName) then AddPublicKeysForUser"
+   }
+  ],
+  "note": "Matches code; keys from the model description's per-user AuthorizedKeys() are imported afterwards unfiltered under their own users. Reading: single function"
+ },
+ {
+  "id": "A-Q10",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/access/state/user.go",
+    "line": 517,
+    "ok": true,
+    "note": "delete model_authorized_keys for user's key ids"
+   },
+   {
+    "file": "domain/access/state/user.go",
+    "line": 527,
+    "ok": true,
+    "note": "delete user_public_ssh_key by user_uuid"
+   },
+   {
+    "file": "domain/access/state/user.go",
+    "line": 585,
+    "ok": true,
+    "note": "UPDATE user SET removed within same db.Txn"
+   }
+  ],
+  "note": "RemoveUser runs, in one Txn: orphan-model check, delete model_authorized_keys, delete user_public_ssh_key, delete password/activation key/permissions, set removed. Reading: single function"
+ },
+ {
+  "id": "A-Q11",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": "Produced via errors.NewNotSupported(nil,msg); message string is exactly that text (juju/errors v1.0.0 wrapErrorWithMsg with nil err -> errors.New(msg))."
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": "Done in importKeysCommand.Init, before any API call."
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "cmd/juju/sshkeys/import_sshkeys.go",
+    "line": 89,
+    "ok": true,
+    "note": "fmt.Sprintf prefix in Key ID %q not supported, only lp: and gh: are allowed"
+   }
+  ],
+  "note": "Message verified; fix is to use lp:/gh:. Reading: single fact"
+ },
+ {
+  "id": "A-Q12",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": "The first %q is the key's comment (userKey.Comment), the second the model UUID."
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "internal/worker/sshserver/authorization.go",
+    "line": 62,
+    "ok": true,
+    "note": "error text"
+   },
+   {
+    "file": "internal/worker/sshserver/authorization.go",
+    "line": 51,
+    "ok": true,
+    "note": "controller-scoped comment"
+   },
+   {
+    "file": "internal/worker/sshserver/authentication.go",
+    "line": 43,
+    "ok": true,
+    "note": "key matched against user's controller-wide keys (GetPublicKeysForUser has no model filter)"
+   }
+  ],
+  "note": "Authentication uses user_public_ssh_key by user; Authorize then calls PublicKeyInModel (MatchesPublicKeyInModelForUser via model_authorized_keys) after HasSSHAccessToModel. Reading: two files plus service/state"
+ },
+ {
+  "id": "A-Q13",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": "CLI prints 'cannot add key \"<key>\": one or more public keys to be added for user \"admin\" already exist'; params.Error.Error() returns only Message, so the code string is not shown."
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "apiserver/facades/client/keymanager/keymanager.go",
+    "line": 254,
+    "ok": true,
+    "note": "message; code CodeUserKeyAlreadyExists='public key already exists'"
+   },
+   {
+    "file": "domain/keymanager/state/state.go",
+    "line": 269,
+    "ok": true,
+    "note": "PK constraint on model_authorized_keys (model_uuid,user_public_ssh_key_id)"
+   },
+   {
+    "file": "domain/keymanager/service/service.go",
+    "line": 244,
+    "ok": true,
+    "note": "import skips existing via EnsurePublicKeysForUser ON CONFLICT DO NOTHING"
+   }
+  ],
+  "note": "Verified; user is 'admin' because add-ssh-key client always passes admin. Reading: several files"
+ },
+ {
+  "id": "A-Q14",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "(?i)max[-_ ]?(ssh[-_ ]?)?keys|max.*(ssh|public|authorized).*key|keys?.*quota|quota.*keys?|too many .*keys|len\\(keys\\)\\s*(>|>=)|limit.*public.?keys|max-keys over whole repo (only core/quota kv_test and a cloud-init ssh-keys-per-user TODO)",
+   "(?i)limit|maximum|\\bmax\\b|capacity|threshold in domain/keymanager, domain/keyupdater, apiserver/facades/client/keymanager, cmd/juju/sshkeys, internal/ssh/importer (only unrelated 'space delimited' hit)",
+   "(?i)quota|CHECK ?\\(|MaxItems|keylimit in 0021-user-ssh-keys.sql, 0022-model-authorized-keys.sql, keymanager dirs"
+  ],
+  "evidence_checked": [],
+  "note": "No limit on keys per model/user found: no constants, checks or SQL CHECK/triggers in keymanager, keyupdater, ssh, facade, schema 0021/0022. Reading: absence only"
+ },
+ {
+  "id": "A-Q15",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "(?i)(ssh|public).{0,12}key.{0,30}(expir|ttl|lifetime|valid[-_ ]?(until|for|to)|not[-_ ]?after) and reverse order, whole repo (no real hits)",
+   "(?i)ttl|expir|valid.?until|expires|not.?after in domain/keymanager, keyupdater, internal/ssh, facade, cmd/juju/sshkeys, sshkeyupdater, core/ssh, SQL 0021/0022 (none)",
+   "(?i)expir|ttl|lifetime in internal/worker/sshserver, domain/ssh, api/client/keymanager (only SSH connection request expiry)"
+  ],
+  "evidence_checked": [],
+  "note": "No expiry/TTL column or field on user_public_ssh_key/model_authorized_keys or keymanager types. Only expiry-like thing is SSHConnRequest.Expires for one-shot tunnel connection requests (domain/ssh), not user keys. Reading: absence only"
+ },
+ {
+  "id": "A-Q16",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": "Generated in cmd/jujuagentd/agent/bootstrap.go ensureKeys (non-k8s) and stored as controller config system-ssh-keys; not in AllowedUpdateConfigAttributes, bootstrap rejects user-set value; no rotate command/worker."
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "(?i)(rotat\\w*|regenerat\\w*).{0,40}(ssh|system.?key|authorized) and reverse, whole repo (only SSH host key regeneration in cloud-init and unrelated secret/backend rotation)",
+   "(?i)(reset|replace|update|refresh|new|change|renew|reissue)[-_ ]?(system|controller)[-_ ]?(ssh)?[-_ ]?key|system-ssh-keys|SystemIdentity in cmd, domain, internal/worker, apiserver, api",
+   "AllowedUpdateConfigAttributes in controller/config.go (excludes SystemSSHKeys)"
+  ],
+  "evidence_checked": [],
+  "note": "No rotate/regenerate path for the system key; identityfilewriter only writes the stored identity to disk. Reading: absence only"
+ },
+ {
+  "id": "B-ssh-key-lookup",
+  "ground_truth_verdict": "partly",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "partly",
+    "corrected": "At service/facade level an unknown scheme yields UnknownImportSource ('cannot import from key source %q for user %q, unknown source'); but the juju import-ssh-key CLI Init rejects other prefixes first with 'prefix in Key ID ... not supported, only lp: and gh: are allowed'."
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "internal/ssh/importer/importer.go",
+    "line": 68,
+    "ok": true,
+    "note": "gh"
+   },
+   {
+    "file": "internal/ssh/importer/importer.go",
+    "line": 69,
+    "ok": true,
+    "note": "lp"
+   },
+   {
+    "file": "domain/keymanager/service/service.go",
+    "line": 279,
+    "ok": true,
+    "note": "NoResolver -> keyerrors.UnknownImportSource"
+   }
+  ],
+  "note": "gh:=GitHub, lp:=Launchpad is correct. Example lp:~wallyworld comes from a doc comment, but LaunchpadResolver builds '~%s/+sshkeys' so a leading '~' in the subject would give '~~name' (tests use plain 'tlm'). Reading: few files"
+ },
+ {
+  "id": "B-ssh-key-mechanism",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": "Invalid keys among the remainder make AddPublicKeysForUser fail the whole import."
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/keymanager/modelmigration/import.go",
+    "line": 198,
+    "ok": true,
+    "note": "Contains check"
+   },
+   {
+    "file": "domain/keymanager/modelmigration/import.go",
+    "line": 212,
+    "ok": true,
+    "note": "admin user lookup"
+   },
+   {
+    "file": "domain/controller/types.go",
+    "line": 9,
+    "ok": true,
+    "note": "comment const"
+   },
+   {
+    "file": "domain/keymanager/modelmigration/import.go",
+    "line": 32,
+    "ok": true,
+    "note": "modelConfigKeyAuthorizeKeys = authorized-keys"
+   }
+  ],
+  "note": "Verified: split on newline, drop keys containing juju-system-key with Warningf, add rest for admin; not all kept. Reading: single function"
+ },
+ {
+  "id": "B-ssh-key-failure",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "internal/worker/sshserver/authorization.go",
+    "line": 61,
+    "ok": false,
+    "note": "quote is on line 62; line 61 is 'return false, errors.Errorf('"
+   },
+   {
+    "file": "internal/worker/sshserver/authorization.go",
+    "line": 51,
+    "ok": true,
+    "note": "comment"
+   },
+   {
+    "file": "internal/worker/sshserver/authorization.go",
+    "line": 56,
+    "ok": true,
+    "note": "HasPublicKeyInModel after HasSSHAccessToModel at 43"
+   }
+  ],
+  "note": "Matches code; evidence line 61 off by one (text at 62). Reading: single function"
+ },
+ {
+  "id": "B-ssh-key-unanswerable",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "(?i)max[-_ ]?keys|MaxKeyCount|numkeys|key[-_ ]?count|keys-per|per[-_ ]user[-_ ]keys whole repo (only a cloud-init TODO 'ssh-keys-per-user')",
+   "(?i)max.*(ssh|public|authorized).*key|too many .*keys|limit.*public.?keys in key dirs and SQL 0021/0022 (none)"
+  ],
+  "evidence_checked": [],
+  "note": "No key-count limit anywhere in keymanager/keyupdater/ssh/facade/schema. Reading: absence only"
+ }
+]

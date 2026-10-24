@@ -1,0 +1,174 @@
+[
+ {
+  "id": 1,
+  "claim": "In Juju, a relation is a connection an application supports by virtue of having a particular endpoint."
+ },
+ {
+  "id": 2,
+  "claim": "A peer relation is a relation that an application has to itself (i.e., its units respond to one another) automatically by virtue of having a `peers` endpoint."
+ },
+ {
+  "id": 3,
+  "claim": "Because every relation results in the creation of unit and application databags in Juju's database, peer relations are sometimes used by charm authors as a way to persist charm data."
+ },
+ {
+  "id": 4,
+  "claim": "When the application has multiple units, peer relations are also the mechanism behind high availability."
+ },
+ {
+  "id": 5,
+  "claim": "A non-peer relation is a relation from one application to another, where the applications support the same endpoint interface and have opposite `provides` / `requires` endpoint roles."
+ },
+ {
+  "id": 6,
+  "claim": "A subordinate relation is a non-peer relation where one application is principal and the other subordinate."
+ },
+ {
+  "id": 7,
+  "claim": "A subordinate charm is by definition a charm deployed on the same machine as the principal charm it is intended to accompany."
+ },
+ {
+  "id": 8,
+  "claim": "When you deploy a subordinate charm, it appears in your Juju model as an application with no unit."
+ },
+ {
+  "id": 9,
+  "claim": "The subordinate relation helps the subordinate application acquire a unit."
+ },
+ {
+  "id": 10,
+  "claim": "The subordinate application then scales automatically when the principal application does, by virtue of this relation."
+ },
+ {
+  "id": 11,
+  "claim": "Every application in a model implicitly provides an extra endpoint named `juju-info`, with role `provides`, interface `juju-info`, and global scope."
+ },
+ {
+  "id": 12,
+  "claim": "The endpoint is supplied by Juju itself: it does not need to be (and cannot be) declared in the charm's `metadata.yaml` / `charmcraft.yaml`, and it does not appear in `juju info <charm>` or on the charm's Charmhub page."
+ },
+ {
+  "id": 13,
+  "claim": "It is supported on every kind of charm, but is only useful for machine charms, since it exists to allow subordinate charms to attach to a principal that does not otherwise expose a suitable interface."
+ },
+ {
+  "id": 14,
+  "claim": "The `juju-info` endpoint is intended to be consumed by a subordinate charm whose `metadata.yaml` / `charmcraft.yaml` declares an explicit `requires` endpoint with interface `juju-info` (typically with name `juju-info` and `scope: container`)."
+ },
+ {
+  "id": 15,
+  "claim": "The container scope is what causes the subordinate's unit to be co-located on the same machine as the principal's unit."
+ },
+ {
+  "id": 16,
+  "claim": "The `juju-info` endpoint is the standard mechanism used by general-purpose machine subordinates that need to ride along on every machine of a principal but do not have any application-specific data to exchange."
+ },
+ {
+  "id": 17,
+  "claim": "For example, monitoring, logging, or system-administration agents such as `ntp`, `telegraf`, `nrpe`, and `canonical-livepatch`."
+ },
+ {
+  "id": 18,
+  "claim": "The convention is for a subordinate to name its own `requires` endpoint `juju-info`, but any name can be used (for example: `info`, `general-info`); it just needs to use interface `juju-info`."
+ },
+ {
+  "id": 19,
+  "claim": "You integrate against the implicit endpoint the same way as any other endpoint:"
+ },
+ {
+  "id": 20,
+  "claim": "If the subordinate also has explicit endpoints whose interfaces match endpoints on the principal, those explicit endpoints take precedence over the implicit `juju-info` one when Juju resolves the relation."
+ },
+ {
+  "id": 21,
+  "claim": "To force the implicit endpoint, name it explicitly on either side:"
+ },
+ {
+  "id": 22,
+  "claim": "A non-subordinate relation (aka 'regular') is a non-peer relation where the applications are both principal."
+ },
+ {
+  "id": 23,
+  "claim": "A cross-model relation (aka 'CMR') is a non-subordinate relation where the applications are on different models (+/- different controllers, +/- different clouds)."
+ },
+ {
+  "id": 24,
+  "claim": "Cross-model relations enable, for example, scenarios where  your databases are hosted on bare metal, to take advantage of I/O performance, and your applications live within Kubernetes, to take advantage of scalability and application density."
+ },
+ {
+  "id": 25,
+  "claim": "If the network topology is anything other than flat, the Juju controllers will need to be bootstrapped with `--controller-external-ips`, `--controller-external-name`, or both, so that the controllers are able to communicate."
+ },
+ {
+  "id": 26,
+  "claim": "Note that these config values can only be set at bootstrap time, and are read-only thereafter."
+ },
+ {
+  "id": 27,
+  "claim": "A cross-model relation has two sides: the offering side (aka \"offerer\") and the consume side (aka 'saas')."
+ },
+ {
+  "id": 28,
+  "claim": "It does not make a difference which side of the relation (provider or requirer) is the offerer and which is the saas - the two are interchangeable."
+ },
+ {
+  "id": 29,
+  "claim": "However, the endpoint type does influence on how juju sets up firewall rules: it is assumed that a requirer is the client and the provider is the server, so ports are opened on the provider side."
+ },
+ {
+  "id": 30,
+  "claim": "Note that application names are obfuscated (anonymised) to the offerer side:"
+ },
+ {
+  "id": 31,
+  "claim": "Applications that relate to the saas appear to the offerer as remote + token, e.g."
+ },
+ {
+  "id": 32,
+  "claim": "`remote-76cd96ab50f146b284912afd1cc13a0e`."
+ },
+ {
+  "id": 33,
+  "claim": "For the consumer, the remote app names is the saas name, e.g."
+ },
+ {
+  "id": 34,
+  "claim": "A non-cross-model relation is a non-subordinate relation where the applications are on  the same model."
+ },
+ {
+  "id": 35,
+  "claim": "A relation is identified by a relation ID (assigned automatically by Juju; expressed in monotonically increasing numbers) or a relation key (derived from the endpoints, format: `application1:[endpoint] application2:[endpoint]`)."
+ },
+ {
+  "id": 36,
+  "claim": "When you create a relation between two applications, this results in the creation of relation databags."
+ },
+ {
+  "id": 37,
+  "claim": "Databags are per relation and per application, and can be application-scoped or unit-scoped."
+ },
+ {
+  "id": 38,
+  "claim": "Each unit involved in a relation gets a local copy of all the databags for that relation."
+ },
+ {
+  "id": 39,
+  "claim": "in a non-peer relation, whether regular or subordinate:"
+ },
+ {
+  "id": 40,
+  "claim": "all units of an application can read all of the remote application's databags."
+ },
+ {
+  "id": 41,
+  "claim": "all units can read all of the application's databags."
+ },
+ {
+  "id": 42,
+  "claim": "That is, whether leader or not, every unit can read its own unit databag as well as every other unit's unit databag as well as the application databag."
+ },
+ {
+  "id": 43,
+  "claim": "Note that, in peer relations, all permissions related to the remote application are turned inwards and become permissions related to the local application."
+ }
+]

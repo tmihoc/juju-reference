@@ -1,0 +1,158 @@
+[
+ {
+  "key": "relation:21",
+  "propositions": [
+   "Naming the implicit juju-info endpoint on either side of an integrate selects it.",
+   "(Implied premise) Without naming it, Juju would otherwise avoid the implicit endpoint, so naming is needed to 'force' it."
+  ],
+  "verdict": "overstated",
+  "evidence": "domain/relation/state/relation.go:3673",
+  "correction": "Naming the implicit endpoint on either side (for example `app:juju-info`) restricts the candidates so the juju-info pair is chosen; in 4.1 `juju integrate` does not prefer non-implicit endpoints, so when juju-info and another endpoint both match, the command fails as ambiguous instead of silently picking the other endpoint (only bundle verification discards implicit candidates).",
+  "reference_worthy": "yes",
+  "note": "getCandidateEndpoints (relation.go:3441) filters by endpoint name on a side when given; inferEndpoints (3610-3686) returns AmbiguousRelation on >1 match with no implicit filtering. Implicit discarding exists only in domain/deployment/charm/bundledata.go:1233-1260 (bundle verification)."
+ },
+ {
+  "key": "relation:39",
+  "propositions": [],
+  "verdict": "not_testable",
+  "evidence": null,
+  "correction": null,
+  "reference_worthy": "no",
+  "note": "Heading/lead-in fragment; its content is tested in relation:42."
+ },
+ {
+  "key": "secret:15",
+  "propositions": [
+   "Juju (not the charm) assigns the secret its URI on creation.",
+   "`9m4e2mr0ui3e8a215n4g` is a valid example of that URI."
+  ],
+  "verdict": "overstated",
+  "evidence": "core/secrets/secret.go:53",
+  "correction": "Juju assigns the secret a URI whose ID is a 20-character XID such as `9m4e2mr0ui3e8a215n4g`; the URI itself is written `secret:9m4e2mr0ui3e8a215n4g` (or `secret://<model-uuid>/9m4e2mr0ui3e8a215n4g` with the source model).",
+  "reference_worthy": "yes",
+  "note": "The example matches idSnippet `[0-9a-v]{19}[0g]` and ParseURI accepts the bare ID (scheme defaulted, secret.go:83-84), but URI.String() always renders the `secret:` scheme (secret.go:169-188). The controller allocates URIs with NewURI().WithSource(modelUUID) (domain/secret/service/service.go:87); hook context calls CreateSecretURIs (internal/worker/uniter/runner/context/context.go:942). Code examples use `secret:9m4e2mr0ui3e8a215n4g` (jujuc/secret-get.go:52)."
+ },
+ {
+  "key": "secret:11",
+  "propositions": [
+   "Every secret operation that identifies a secret accepts its URI.",
+   "Labels are accepted only in some contexts, whereas the URI is universal."
+  ],
+  "verdict": "holds",
+  "evidence": "internal/worker/uniter/runner/jujuc/secret-set.go:71",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "secret-get and secret-info-get take a URI or --label (secret-get.go:79-87, secret-info-get.go:62-73); secret-set, secret-grant, secret-revoke and secret-remove require a URI parsed by secrets.ParseURI (secret-set.go:71, secret-grant.go:76, secret-revoke.go:79, secret-remove.go:56). 'content' in the claim is presumably a typo for 'context'. Access still depends on ownership/grants."
+ },
+ {
+  "key": "secret:44",
+  "propositions": [
+   "A vault secret backend configuration must include `endpoint`.",
+   "A vault secret backend configuration must include `token`."
+  ],
+  "verdict": "overstated",
+  "evidence": "internal/secrets/provider/vault/config.go:34",
+  "correction": "The only mandatory vault backend setting is `endpoint`; `token` is optional in the schema, though in practice you supply it for Juju to authenticate to Vault.",
+  "reference_worthy": "yes",
+  "note": "endpoint: Mandatory true, Immutable (config.go:30-35); token: Secret but not Mandatory (36-40). ValidateConfig only checks the endpoint parses and client cert/key come in pairs (126-143)."
+ },
+ {
+  "key": "relation:42",
+  "propositions": [
+   "Any unit (leader or not) can read its own unit databag.",
+   "Any unit can read other units' unit databags in the relation.",
+   "Any unit (leader or not) can read the application databag(s)."
+  ],
+  "verdict": "holds",
+  "evidence": "apiserver/facades/agent/uniter/uniter.go:2008",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "relation-get for a non-leader reading its own app (or any other unit) delegates to the controller (jujuc/relation-get.go:241-262), which calls ReadRemoteSettings (api/agent/uniter/relationunit.go:161); readOneRemoteSettings reads unit or application settings with no leader or remote-side check (uniter.go:1998-2016; GetRelationApplicationSettings has none, domain/relation/service/relation.go:1131-1153). Only the leader-local path (ReadLocalApplicationSettings) is leader-gated (uniter.go:1944-1946), and writing the app databag is leader-only. Note: the ops library additionally forbids non-leaders from reading their own app databag; that is a charm-library restriction, not Juju's."
+ },
+ {
+  "key": "secret:46",
+  "propositions": [
+   "Production Vault should be configured securely per upstream Vault docs."
+  ],
+  "verdict": "unverifiable",
+  "evidence": null,
+  "correction": "Advice about operating Vault itself; nothing in Juju's code confirms or refutes it.",
+  "reference_worthy": "no",
+  "note": "Guidance about an external system."
+ },
+ {
+  "key": "secret:51",
+  "propositions": [
+   "The kubernetes secret backend's configured token comes from a service account.",
+   "That service account needs cluster-scoped RBAC privileges for Juju to operate the backend."
+  ],
+  "verdict": "holds",
+  "evidence": "internal/secrets/provider/kubernetes/provider.go:113",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "Config has a `service-account` key (config.go:22) used by RefreshAuth to mint tokens via CreateToken (provider.go:1330-1349). Juju creates service accounts, roles and role bindings per consumer (provider.go:1109-1121), cluster roles/bindings for the controller model (1124-1136), and CleanupModel always deletes cluster role bindings and cluster roles (113-118), so the account needs cluster-level RBAC rights. Juju does not itself validate the binding up front; failures surface as PermissionDenied (1305-1306)."
+ },
+ {
+  "key": "relation:38",
+  "propositions": [
+   "Each unit in a relation gets a local copy of all the relation's databags."
+  ],
+  "verdict": "overstated",
+  "evidence": "internal/worker/uniter/runner/context/cache.go:71",
+  "correction": "During a hook, a unit's context keeps a cache of relation databags that it fills on demand from the controller (its own unit and, for the leader, its application databag are held locally for writing); it does not receive a full copy of every databag up front.",
+  "reference_worthy": "maybe",
+  "note": "NewRelationCache is built with member names only (contextfactory.go:353); Settings/ApplicationSettings read from the controller lazily via ReadRemoteSettings and then cache (cache.go:71-110)."
+ },
+ {
+  "key": "cloud:12",
+  "propositions": [],
+  "verdict": "not_testable",
+  "evidence": null,
+  "correction": null,
+  "reference_worthy": "no",
+  "note": "Cross-reference pointer."
+ },
+ {
+  "key": "secret:1",
+  "propositions": [
+   "A Juju secret holds sensitive data (credentials, keys, certificates, etc.) for use by charms."
+  ],
+  "verdict": "holds",
+  "evidence": "internal/worker/uniter/runner/jujuc/secret-add.go:50",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "Secrets are key/value content created by charms (secret-add) or users and consumed by charms (secret-get). The definition omits that content is a set of key/value pairs and that users can also create secrets for charms."
+ },
+ {
+  "key": "relation:19",
+  "propositions": [
+   "The implicit juju-info endpoint is integrated through the same mechanism as declared endpoints."
+  ],
+  "verdict": "holds",
+  "evidence": "domain/application/state/state.go:367",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "juju-info is stored as an ordinary charm relation for every charm (state.go:367-373, metadata.go:468-472), so it appears in v_application_endpoint and goes through the same AddRelation/inferEndpoints path (domain/relation/service/relation.go:419-445). See relation:21 for the ambiguity caveat when it is left unnamed."
+ },
+ {
+  "key": "machine:10",
+  "propositions": [],
+  "verdict": "not_testable",
+  "evidence": null,
+  "correction": null,
+  "reference_worthy": "no",
+  "note": "Lead-in to examples."
+ },
+ {
+  "key": "secret:17",
+  "propositions": [
+   "Only the leader unit can create an application-owned secret.",
+   "The owner can assign a label such as `db-password` when creating it."
+  ],
+  "verdict": "holds",
+  "evidence": "internal/worker/uniter/runner/context/context.go:926",
+  "correction": null,
+  "reference_worthy": "yes",
+  "note": "CreateSecret returns ErrIsNotLeader for application owner when not leader (context.go:926-933); --owner defaults to application (secret-add.go:93); --label sets the label (secret-add.go:91,155-156) and `--label db-password` is the code's own example (secret-add.go:70). Only an empty label is rejected (domain/secret/state/state.go:2109). The leading 'URI vs. label:)' is a heading fragment."
+ }
+]

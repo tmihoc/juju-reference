@@ -1,0 +1,1554 @@
+[
+ {
+  "facade": "bundle",
+  "type": "BundleAPI",
+  "method": "GetChangesMapArgs",
+  "ok": false,
+  "file": "apiserver/facades/client/bundle/bundle.go",
+  "line": 140
+ },
+ {
+  "facade": "resources",
+  "type": "localClient",
+  "method": "ResolveResources",
+  "ok": false,
+  "file": "apiserver/facades/client/resources/repository.go",
+  "line": 21
+ },
+ {
+  "facade": "resources",
+  "type": "API",
+  "method": "ListResources",
+  "ok": false,
+  "file": "apiserver/facades/client/resources/facade.go",
+  "line": 135
+ },
+ {
+  "facade": "annotations",
+  "type": "API",
+  "method": "Get",
+  "ok": true,
+  "file": "apiserver/facades/client/annotations/annotations.go",
+  "line": 57
+ },
+ {
+  "facade": "annotations",
+  "type": "API",
+  "method": "Set",
+  "ok": true,
+  "file": "apiserver/facades/client/annotations/annotations.go",
+  "line": 80
+ },
+ {
+  "facade": "modelconfig",
+  "type": "ModelConfigAPI",
+  "method": "ModelGet",
+  "ok": true,
+  "file": "apiserver/facades/client/modelconfig/modelconfig.go",
+  "line": 121
+ },
+ {
+  "facade": "modelconfig",
+  "type": "ModelConfigAPI",
+  "method": "ModelSet",
+  "ok": true,
+  "file": "apiserver/facades/client/modelconfig/modelconfig.go",
+  "line": 160
+ },
+ {
+  "facade": "modelconfig",
+  "type": "ModelConfigAPI",
+  "method": "ModelUnset",
+  "ok": true,
+  "file": "apiserver/facades/client/modelconfig/modelconfig.go",
+  "line": 299
+ },
+ {
+  "facade": "modelconfig",
+  "type": "ModelConfigAPI",
+  "method": "GetModelConstraints",
+  "ok": true,
+  "file": "apiserver/facades/client/modelconfig/modelconfig.go",
+  "line": 320
+ },
+ {
+  "facade": "modelconfig",
+  "type": "ModelConfigAPI",
+  "method": "SetModelConstraints",
+  "ok": true,
+  "file": "apiserver/facades/client/modelconfig/modelconfig.go",
+  "line": 339
+ },
+ {
+  "facade": "modelconfig",
+  "type": "ModelConfigAPI",
+  "method": "Sequences",
+  "ok": true,
+  "file": "apiserver/facades/client/modelconfig/modelconfig.go",
+  "line": 374
+ },
+ {
+  "facade": "modelconfig",
+  "type": "ModelConfigAPI",
+  "method": "GetModelSecretBackend",
+  "ok": true,
+  "file": "apiserver/facades/client/modelconfig/modelconfig.go",
+  "line": 394
+ },
+ {
+  "facade": "modelconfig",
+  "type": "ModelConfigAPI",
+  "method": "SetModelSecretBackend",
+  "ok": true,
+  "file": "apiserver/facades/client/modelconfig/modelconfig.go",
+  "line": 417
+ },
+ {
+  "facade": "subnets",
+  "type": "API",
+  "method": "AllZones",
+  "ok": true,
+  "file": "apiserver/facades/client/subnets/subnets.go",
+  "line": 90
+ },
+ {
+  "facade": "subnets",
+  "type": "API",
+  "method": "ListSubnets",
+  "ok": true,
+  "file": "apiserver/facades/client/subnets/subnets.go",
+  "line": 111
+ },
+ {
+  "facade": "subnets",
+  "type": "API",
+  "method": "SubnetsByCIDR",
+  "ok": true,
+  "file": "apiserver/facades/client/subnets/subnets.go",
+  "line": 154
+ },
+ {
+  "facade": "secrets",
+  "type": "SecretsAPI",
+  "method": "ListSecrets",
+  "ok": true,
+  "file": "apiserver/facades/client/secrets/secrets.go",
+  "line": 66
+ },
+ {
+  "facade": "secrets",
+  "type": "SecretsAPIV1",
+  "method": "CreateSecrets",
+  "ok": false,
+  "file": "apiserver/facades/client/secrets/secrets.go",
+  "line": 251
+ },
+ {
+  "facade": "secrets",
+  "type": "SecretsAPI",
+  "method": "CreateSecrets",
+  "ok": true,
+  "file": "apiserver/facades/client/secrets/secrets.go",
+  "line": 254
+ },
+ {
+  "facade": "secrets",
+  "type": "SecretsAPIV1",
+  "method": "UpdateSecrets",
+  "ok": false,
+  "file": "apiserver/facades/client/secrets/secrets.go",
+  "line": 312
+ },
+ {
+  "facade": "secrets",
+  "type": "SecretsAPI",
+  "method": "UpdateSecrets",
+  "ok": true,
+  "file": "apiserver/facades/client/secrets/secrets.go",
+  "line": 315
+ },
+ {
+  "facade": "secrets",
+  "type": "SecretsAPIV1",
+  "method": "RemoveSecrets",
+  "ok": false,
+  "file": "apiserver/facades/client/secrets/secrets.go",
+  "line": 385
+ },
+ {
+  "facade": "secrets",
+  "type": "SecretsAPI",
+  "method": "RemoveSecrets",
+  "ok": true,
+  "file": "apiserver/facades/client/secrets/secrets.go",
+  "line": 388
+ },
+ {
+  "facade": "secrets",
+  "type": "SecretsAPIV1",
+  "method": "GrantSecret",
+  "ok": false,
+  "file": "apiserver/facades/client/secrets/secrets.go",
+  "line": 430
+ },
+ {
+  "facade": "secrets",
+  "type": "SecretsAPI",
+  "method": "GrantSecret",
+  "ok": true,
+  "file": "apiserver/facades/client/secrets/secrets.go",
+  "line": 433
+ },
+ {
+  "facade": "secrets",
+  "type": "SecretsAPIV1",
+  "method": "RevokeSecret",
+  "ok": false,
+  "file": "apiserver/facades/client/secrets/secrets.go",
+  "line": 438
+ },
+ {
+  "facade": "secrets",
+  "type": "SecretsAPI",
+  "method": "RevokeSecret",
+  "ok": true,
+  "file": "apiserver/facades/client/secrets/secrets.go",
+  "line": 441
+ },
+ {
+  "facade": "block",
+  "type": "API",
+  "method": "List",
+  "ok": true,
+  "file": "apiserver/facades/client/block/client.go",
+  "line": 56
+ },
+ {
+  "facade": "block",
+  "type": "API",
+  "method": "SwitchBlockOn",
+  "ok": true,
+  "file": "apiserver/facades/client/block/client.go",
+  "line": 84
+ },
+ {
+  "facade": "block",
+  "type": "API",
+  "method": "SwitchBlockOff",
+  "ok": true,
+  "file": "apiserver/facades/client/block/client.go",
+  "line": 99
+ },
+ {
+  "facade": "modelmanager",
+  "type": "ModelManagerAPI",
+  "method": "CreateModel",
+  "ok": true,
+  "file": "apiserver/facades/client/modelmanager/modelmanager.go",
+  "line": 174
+ },
+ {
+  "facade": "modelmanager",
+  "type": "ModelManagerAPI",
+  "method": "DumpModels",
+  "ok": true,
+  "file": "apiserver/facades/client/modelmanager/modelmanager.go",
+  "line": 542
+ },
+ {
+  "facade": "modelmanager",
+  "type": "ModelManagerAPI",
+  "method": "DumpModelsDB",
+  "ok": false,
+  "file": "apiserver/facades/client/modelmanager/modelmanager.go",
+  "line": 566
+ },
+ {
+  "facade": "modelmanager",
+  "type": "ModelManagerAPI",
+  "method": "ListModels",
+  "ok": false,
+  "file": "apiserver/facades/client/modelmanager/modelmanager.go",
+  "line": 822
+ },
+ {
+  "facade": "modelmanager",
+  "type": "ModelManagerAPI",
+  "method": "ModelInfo",
+  "ok": true,
+  "file": "apiserver/facades/client/modelmanager/modelmanager.go",
+  "line": 954
+ },
+ {
+  "facade": "modelmanager",
+  "type": "ModelManagerAPI",
+  "method": "ModelDefaultsForClouds",
+  "ok": false,
+  "file": "apiserver/facades/client/modelmanager/modelmanager.go",
+  "line": 1217
+ },
+ {
+  "facade": "modelmanager",
+  "type": "ModelManagerAPI",
+  "method": "SetModelDefaults",
+  "ok": false,
+  "file": "apiserver/facades/client/modelmanager/modelmanager.go",
+  "line": 1262
+ },
+ {
+  "facade": "modelmanager",
+  "type": "ModelManagerAPIV10",
+  "method": "ModelStatus",
+  "ok": false,
+  "file": "apiserver/facades/client/modelmanager/legacy.go",
+  "line": 20
+ },
+ {
+  "facade": "modelmanager",
+  "type": "ModelManagerAPIV10",
+  "method": "CreateModel",
+  "ok": false,
+  "file": "apiserver/facades/client/modelmanager/legacy.go",
+  "line": 59
+ },
+ {
+  "facade": "modelmanager",
+  "type": "ModelManagerAPIV10",
+  "method": "ListModelSummaries",
+  "ok": false,
+  "file": "apiserver/facades/client/modelmanager/legacy.go",
+  "line": 107
+ },
+ {
+  "facade": "modelmanager",
+  "type": "ModelManagerAPIV10",
+  "method": "ModelInfo",
+  "ok": false,
+  "file": "apiserver/facades/client/modelmanager/legacy.go",
+  "line": 151
+ },
+ {
+  "facade": "modelmanager",
+  "type": "ModelManagerAPIV10",
+  "method": "ListModels",
+  "ok": false,
+  "file": "apiserver/facades/client/modelmanager/legacy.go",
+  "line": 201
+ },
+ {
+  "facade": "charms",
+  "type": "API",
+  "method": "CharmInfo",
+  "ok": false,
+  "file": "apiserver/facades/client/charms/client.go",
+  "line": 56
+ },
+ {
+  "facade": "charms",
+  "type": "API",
+  "method": "List",
+  "ok": true,
+  "file": "apiserver/facades/client/charms/client.go",
+  "line": 82
+ },
+ {
+  "facade": "charms",
+  "type": "API",
+  "method": "GetDownloadInfos",
+  "ok": true,
+  "file": "apiserver/facades/client/charms/client.go",
+  "line": 110
+ },
+ {
+  "facade": "charms",
+  "type": "API",
+  "method": "AddCharm",
+  "ok": true,
+  "file": "apiserver/facades/client/charms/client.go",
+  "line": 179
+ },
+ {
+  "facade": "charms",
+  "type": "API",
+  "method": "ResolveCharms",
+  "ok": true,
+  "file": "apiserver/facades/client/charms/client.go",
+  "line": 279
+ },
+ {
+  "facade": "charms",
+  "type": "API",
+  "method": "CheckCharmPlacement",
+  "ok": false,
+  "file": "apiserver/facades/client/charms/client.go",
+  "line": 377
+ },
+ {
+  "facade": "charms",
+  "type": "API",
+  "method": "ListCharmResources",
+  "ok": true,
+  "file": "apiserver/facades/client/charms/client.go",
+  "line": 385
+ },
+ {
+  "facade": "application",
+  "type": "deployApplicationLocalRepo",
+  "method": "Deploy",
+  "ok": false,
+  "file": "apiserver/facades/client/application/deploy.go",
+  "line": 90
+ },
+ {
+  "facade": "application",
+  "type": "caasDeployFromRepositoryValidator",
+  "method": "ValidateArg",
+  "ok": false,
+  "file": "apiserver/facades/client/application/deployrepository.go",
+  "line": 741
+ },
+ {
+  "facade": "application",
+  "type": "iaasDeployFromRepositoryValidator",
+  "method": "ValidateArg",
+  "ok": false,
+  "file": "apiserver/facades/client/application/deployrepository.go",
+  "line": 772
+ },
+ {
+  "facade": "application",
+  "type": "APIv20",
+  "method": "Deploy",
+  "ok": false,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 279
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "Deploy",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 293
+ },
+ {
+  "facade": "application",
+  "type": "APIv19",
+  "method": "SetCharm",
+  "ok": false,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 667
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "SetCharm",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 674
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "GetCharmURLOrigin",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 864
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "CharmRelations",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 934
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "Expose",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 960
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "Unexpose",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1019
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "DestroyUnit",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1034
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "DestroyApplication",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1114
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "DestroyConsumedApplications",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1224
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "ScaleApplications",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1268
+ },
+ {
+  "facade": "application",
+  "type": "APIv20",
+  "method": "ScaleApplications",
+  "ok": false,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1335
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "GetConstraints",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1353
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "SetConstraints",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1394
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "AddRelation",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1419
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "DestroyRelation",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1478
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "SetRelationsSuspended",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1534
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "Consume",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1596
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "Get",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1738
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "CharmConfig",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1747
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "GetConfig",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1763
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "SetConfigs",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1793
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "UnsetApplicationsConfig",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1839
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "ResolveUnitErrors",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1879
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "ApplicationsInfo",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 1935
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "MergeBindings",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 2128
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "UnitsInfo",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 2185
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "Leader",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 2374
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "DeployFromRepository",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 2401
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "GetApplicationStorage",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 2459
+ },
+ {
+  "facade": "application",
+  "type": "APIBase",
+  "method": "UpdateApplicationStorage",
+  "ok": true,
+  "file": "apiserver/facades/client/application/application.go",
+  "line": 2490
+ },
+ {
+  "facade": "secretbackends",
+  "type": "SecretBackendsAPI",
+  "method": "AddSecretBackends",
+  "ok": true,
+  "file": "apiserver/facades/client/secretbackends/secrets.go",
+  "line": 36
+ },
+ {
+  "facade": "secretbackends",
+  "type": "SecretBackendsAPI",
+  "method": "UpdateSecretBackends",
+  "ok": true,
+  "file": "apiserver/facades/client/secretbackends/secrets.go",
+  "line": 83
+ },
+ {
+  "facade": "secretbackends",
+  "type": "SecretBackendsAPI",
+  "method": "ListSecretBackends",
+  "ok": true,
+  "file": "apiserver/facades/client/secretbackends/secrets.go",
+  "line": 140
+ },
+ {
+  "facade": "secretbackends",
+  "type": "SecretBackendsAPI",
+  "method": "RemoveSecretBackends",
+  "ok": true,
+  "file": "apiserver/facades/client/secretbackends/secrets.go",
+  "line": 172
+ },
+ {
+  "facade": "action",
+  "type": "ActionAPI",
+  "method": "EnqueueOperation",
+  "ok": true,
+  "file": "apiserver/facades/client/action/operation.go",
+  "line": 32
+ },
+ {
+  "facade": "action",
+  "type": "ActionAPI",
+  "method": "ListOperations",
+  "ok": true,
+  "file": "apiserver/facades/client/action/operation.go",
+  "line": 181
+ },
+ {
+  "facade": "action",
+  "type": "ActionAPI",
+  "method": "Operations",
+  "ok": true,
+  "file": "apiserver/facades/client/action/operation.go",
+  "line": 216
+ },
+ {
+  "facade": "action",
+  "type": "ActionAPI",
+  "method": "Run",
+  "ok": true,
+  "file": "apiserver/facades/client/action/operation.go",
+  "line": 241
+ },
+ {
+  "facade": "action",
+  "type": "ActionAPI",
+  "method": "RunOnAllMachines",
+  "ok": true,
+  "file": "apiserver/facades/client/action/operation.go",
+  "line": 265
+ },
+ {
+  "facade": "action",
+  "type": "ActionAPI",
+  "method": "Actions",
+  "ok": true,
+  "file": "apiserver/facades/client/action/action.go",
+  "line": 155
+ },
+ {
+  "facade": "action",
+  "type": "ActionAPI",
+  "method": "Cancel",
+  "ok": true,
+  "file": "apiserver/facades/client/action/action.go",
+  "line": 191
+ },
+ {
+  "facade": "action",
+  "type": "ActionAPI",
+  "method": "ApplicationsCharmsActions",
+  "ok": true,
+  "file": "apiserver/facades/client/action/action.go",
+  "line": 228
+ },
+ {
+  "facade": "action",
+  "type": "ActionAPI",
+  "method": "WatchActionsProgress",
+  "ok": false,
+  "file": "apiserver/facades/client/action/action.go",
+  "line": 274
+ },
+ {
+  "facade": "applicationoffers",
+  "type": "OffersAPIv5",
+  "method": "ApplicationOffers",
+  "ok": false,
+  "file": "apiserver/facades/client/applicationoffers/legacy.go",
+  "line": 39
+ },
+ {
+  "facade": "applicationoffers",
+  "type": "OffersAPIv5",
+  "method": "ListApplicationOffers",
+  "ok": false,
+  "file": "apiserver/facades/client/applicationoffers/legacy.go",
+  "line": 73
+ },
+ {
+  "facade": "applicationoffers",
+  "type": "OffersAPIv5",
+  "method": "FindApplicationOffers",
+  "ok": false,
+  "file": "apiserver/facades/client/applicationoffers/legacy.go",
+  "line": 80
+ },
+ {
+  "facade": "applicationoffers",
+  "type": "OffersAPI",
+  "method": "Offer",
+  "ok": true,
+  "file": "apiserver/facades/client/applicationoffers/applicationoffers.go",
+  "line": 113
+ },
+ {
+  "facade": "applicationoffers",
+  "type": "OffersAPI",
+  "method": "ListApplicationOffers",
+  "ok": true,
+  "file": "apiserver/facades/client/applicationoffers/applicationoffers.go",
+  "line": 212
+ },
+ {
+  "facade": "applicationoffers",
+  "type": "OffersAPI",
+  "method": "ModifyOfferAccess",
+  "ok": true,
+  "file": "apiserver/facades/client/applicationoffers/applicationoffers.go",
+  "line": 648
+ },
+ {
+  "facade": "applicationoffers",
+  "type": "OffersAPI",
+  "method": "ApplicationOffers",
+  "ok": true,
+  "file": "apiserver/facades/client/applicationoffers/applicationoffers.go",
+  "line": 819
+ },
+ {
+  "facade": "applicationoffers",
+  "type": "OffersAPI",
+  "method": "FindApplicationOffers",
+  "ok": true,
+  "file": "apiserver/facades/client/applicationoffers/applicationoffers.go",
+  "line": 925
+ },
+ {
+  "facade": "applicationoffers",
+  "type": "OffersAPI",
+  "method": "GetConsumeDetails",
+  "ok": true,
+  "file": "apiserver/facades/client/applicationoffers/applicationoffers.go",
+  "line": 965
+ },
+ {
+  "facade": "applicationoffers",
+  "type": "OffersAPI",
+  "method": "RemoteApplicationInfo",
+  "ok": false,
+  "file": "apiserver/facades/client/applicationoffers/applicationoffers.go",
+  "line": 1155
+ },
+ {
+  "facade": "applicationoffers",
+  "type": "OffersAPI",
+  "method": "DestroyOffers",
+  "ok": true,
+  "file": "apiserver/facades/client/applicationoffers/applicationoffers.go",
+  "line": 1160
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "ControllerVersion",
+  "ok": false,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 207
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "SSHServerHostKey",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 218
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "SSHServerPort",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 241
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "IdentityProviderURL",
+  "ok": false,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 264
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "MongoVersion",
+  "ok": false,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 279
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "DashboardConnectionInfo",
+  "ok": false,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 285
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "AllModels",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 297
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPIV13",
+  "method": "CloudSpec",
+  "ok": false,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 339
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "CloudSpec",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 342
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "ListBlockedModels",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 412
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "HostedModelConfigs",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 453
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "RemoveBlocks",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 518
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "WatchAllModels",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 550
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "WatchAllModelSummaries",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 560
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "WatchModelSummaries",
+  "ok": false,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 574
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "GetControllerAccess",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 586
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "InitiateMigration",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 625
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "ModifyControllerAccess",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 714
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "ConfigSet",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/controller.go",
+  "line": 788
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPI",
+  "method": "DestroyController",
+  "ok": true,
+  "file": "apiserver/facades/client/controller/destroy.go",
+  "line": 30
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPIV12",
+  "method": "ModelStatus",
+  "ok": false,
+  "file": "apiserver/facades/client/controller/legacy.go",
+  "line": 19
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPIV12",
+  "method": "AllModels",
+  "ok": false,
+  "file": "apiserver/facades/client/controller/legacy.go",
+  "line": 58
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPIV12",
+  "method": "ListBlockedModels",
+  "ok": false,
+  "file": "apiserver/facades/client/controller/legacy.go",
+  "line": 90
+ },
+ {
+  "facade": "controller",
+  "type": "ControllerAPIV12",
+  "method": "HostedModelConfigs",
+  "ok": false,
+  "file": "apiserver/facades/client/controller/legacy.go",
+  "line": 118
+ },
+ {
+  "facade": "imagemetadatamanager",
+  "type": "API",
+  "method": "List",
+  "ok": false,
+  "file": "apiserver/facades/client/imagemetadatamanager/metadata.go",
+  "line": 41
+ },
+ {
+  "facade": "imagemetadatamanager",
+  "type": "API",
+  "method": "Save",
+  "ok": false,
+  "file": "apiserver/facades/client/imagemetadatamanager/metadata.go",
+  "line": 71
+ },
+ {
+  "facade": "imagemetadatamanager",
+  "type": "API",
+  "method": "Delete",
+  "ok": false,
+  "file": "apiserver/facades/client/imagemetadatamanager/metadata.go",
+  "line": 95
+ },
+ {
+  "facade": "pinger",
+  "type": "API",
+  "method": "Ping",
+  "ok": false,
+  "file": "apiserver/facades/client/pinger/facade.go",
+  "line": 31
+ },
+ {
+  "facade": "keymanager",
+  "type": "KeyManagerAPI",
+  "method": "ImportKeys",
+  "ok": true,
+  "file": "apiserver/facades/client/keymanager/keymanager.go",
+  "line": 271
+ },
+ {
+  "facade": "keymanager",
+  "type": "KeyManagerAPI",
+  "method": "DeleteKeys",
+  "ok": true,
+  "file": "apiserver/facades/client/keymanager/keymanager.go",
+  "line": 387
+ },
+ {
+  "facade": "sshclient",
+  "type": "Facade",
+  "method": "VirtualHostname",
+  "ok": true,
+  "file": "apiserver/facades/client/sshclient/facade.go",
+  "line": 112
+ },
+ {
+  "facade": "sshclient",
+  "type": "Facade",
+  "method": "PublicHostKeyForTarget",
+  "ok": true,
+  "file": "apiserver/facades/client/sshclient/facade.go",
+  "line": 130
+ },
+ {
+  "facade": "sshclient",
+  "type": "Facade",
+  "method": "PublicAddress",
+  "ok": true,
+  "file": "apiserver/facades/client/sshclient/facade.go",
+  "line": 163
+ },
+ {
+  "facade": "sshclient",
+  "type": "Facade",
+  "method": "PrivateAddress",
+  "ok": true,
+  "file": "apiserver/facades/client/sshclient/facade.go",
+  "line": 176
+ },
+ {
+  "facade": "sshclient",
+  "type": "Facade",
+  "method": "AllAddresses",
+  "ok": true,
+  "file": "apiserver/facades/client/sshclient/facade.go",
+  "line": 190
+ },
+ {
+  "facade": "sshclient",
+  "type": "Facade",
+  "method": "PublicKeys",
+  "ok": true,
+  "file": "apiserver/facades/client/sshclient/facade.go",
+  "line": 283
+ },
+ {
+  "facade": "sshclient",
+  "type": "Facade",
+  "method": "Proxy",
+  "ok": true,
+  "file": "apiserver/facades/client/sshclient/facade.go",
+  "line": 311
+ },
+ {
+  "facade": "sshclient",
+  "type": "Facade",
+  "method": "ModelCredentialForSSH",
+  "ok": true,
+  "file": "apiserver/facades/client/sshclient/facade.go",
+  "line": 324
+ },
+ {
+  "facade": "client",
+  "type": "Client",
+  "method": "WatchAll",
+  "ok": false,
+  "file": "apiserver/facades/client/client/client.go",
+  "line": 76
+ },
+ {
+  "facade": "client",
+  "type": "Client",
+  "method": "StatusHistory",
+  "ok": true,
+  "file": "apiserver/facades/client/client/status.go",
+  "line": 53
+ },
+ {
+  "facade": "client",
+  "type": "Client",
+  "method": "FullStatus",
+  "ok": true,
+  "file": "apiserver/facades/client/client/status.go",
+  "line": 127
+ },
+ {
+  "facade": "usermanager",
+  "type": "UserManagerAPI",
+  "method": "AddUser",
+  "ok": true,
+  "file": "apiserver/facades/client/usermanager/usermanager.go",
+  "line": 120
+ },
+ {
+  "facade": "usermanager",
+  "type": "UserManagerAPI",
+  "method": "RemoveUser",
+  "ok": true,
+  "file": "apiserver/facades/client/usermanager/usermanager.go",
+  "line": 194
+ },
+ {
+  "facade": "usermanager",
+  "type": "UserManagerAPI",
+  "method": "EnableUser",
+  "ok": true,
+  "file": "apiserver/facades/client/usermanager/usermanager.go",
+  "line": 253
+ },
+ {
+  "facade": "usermanager",
+  "type": "UserManagerAPI",
+  "method": "DisableUser",
+  "ok": true,
+  "file": "apiserver/facades/client/usermanager/usermanager.go",
+  "line": 266
+ },
+ {
+  "facade": "usermanager",
+  "type": "UserManagerAPI",
+  "method": "UserInfo",
+  "ok": true,
+  "file": "apiserver/facades/client/usermanager/usermanager.go",
+  "line": 312
+ },
+ {
+  "facade": "usermanager",
+  "type": "UserManagerAPI",
+  "method": "ModelUserInfo",
+  "ok": true,
+  "file": "apiserver/facades/client/usermanager/usermanager.go",
+  "line": 425
+ },
+ {
+  "facade": "usermanager",
+  "type": "UserManagerAPI",
+  "method": "SetPassword",
+  "ok": false,
+  "file": "apiserver/facades/client/usermanager/usermanager.go",
+  "line": 470
+ },
+ {
+  "facade": "usermanager",
+  "type": "UserManagerAPI",
+  "method": "ResetPassword",
+  "ok": true,
+  "file": "apiserver/facades/client/usermanager/usermanager.go",
+  "line": 532
+ },
+ {
+  "facade": "spaces",
+  "type": "API",
+  "method": "MoveSubnets",
+  "ok": false,
+  "file": "apiserver/facades/client/spaces/move.go",
+  "line": 20
+ },
+ {
+  "facade": "spaces",
+  "type": "API",
+  "method": "RemoveSpace",
+  "ok": true,
+  "file": "apiserver/facades/client/spaces/remove.go",
+  "line": 22
+ },
+ {
+  "facade": "spaces",
+  "type": "API",
+  "method": "RenameSpace",
+  "ok": false,
+  "file": "apiserver/facades/client/spaces/rename.go",
+  "line": 19
+ },
+ {
+  "facade": "spaces",
+  "type": "API",
+  "method": "CreateSpaces",
+  "ok": true,
+  "file": "apiserver/facades/client/spaces/spaces.go",
+  "line": 112
+ },
+ {
+  "facade": "spaces",
+  "type": "API",
+  "method": "ListSpaces",
+  "ok": true,
+  "file": "apiserver/facades/client/spaces/spaces.go",
+  "line": 159
+ },
+ {
+  "facade": "spaces",
+  "type": "API",
+  "method": "ShowSpace",
+  "ok": true,
+  "file": "apiserver/facades/client/spaces/spaces.go",
+  "line": 197
+ },
+ {
+  "facade": "spaces",
+  "type": "API",
+  "method": "ReloadSpaces",
+  "ok": true,
+  "file": "apiserver/facades/client/spaces/spaces.go",
+  "line": 254
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "Clouds",
+  "ok": true,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 147
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "Cloud",
+  "ok": true,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 179
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "CloudInfo",
+  "ok": true,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 226
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPIV8",
+  "method": "ModelConfigSchema",
+  "ok": false,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 305
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "ListCloudInfo",
+  "ok": false,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 339
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "UserCredentials",
+  "ok": true,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 387
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "AddCredentials",
+  "ok": true,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 432
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "CheckCredentialsModels",
+  "ok": true,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 471
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "UpdateCredentialsCheckModels",
+  "ok": true,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 531
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "RevokeCredentialsCheckModels",
+  "ok": true,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 597
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "Credential",
+  "ok": true,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 632
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "AddCloud",
+  "ok": true,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 712
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "UpdateCloud",
+  "ok": true,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 761
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "RemoveClouds",
+  "ok": true,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 844
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "CredentialContents",
+  "ok": false,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 886
+ },
+ {
+  "facade": "cloud",
+  "type": "CloudAPI",
+  "method": "ModifyCloudAccess",
+  "ok": true,
+  "file": "apiserver/facades/client/cloud/cloud.go",
+  "line": 1018
+ },
+ {
+  "facade": "machinemanager",
+  "type": "MachineManagerAPI",
+  "method": "InstanceTypes",
+  "ok": false,
+  "file": "apiserver/facades/client/machinemanager/instance_information.go",
+  "line": 19
+ },
+ {
+  "facade": "machinemanager",
+  "type": "MachineManagerAPI",
+  "method": "AddMachines",
+  "ok": true,
+  "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+  "line": 116
+ },
+ {
+  "facade": "machinemanager",
+  "type": "MachineManagerAPI",
+  "method": "ProvisioningScript",
+  "ok": true,
+  "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+  "line": 244
+ },
+ {
+  "facade": "machinemanager",
+  "type": "MachineManagerAPI",
+  "method": "RetryProvisioning",
+  "ok": true,
+  "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+  "line": 310
+ },
+ {
+  "facade": "machinemanager",
+  "type": "MachineManagerAPI",
+  "method": "ReprovisionMachine",
+  "ok": true,
+  "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+  "line": 394
+ },
+ {
+  "facade": "machinemanager",
+  "type": "MachineManagerAPI",
+  "method": "DestroyMachineWithParams",
+  "ok": true,
+  "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+  "line": 442
+ },
+ {
+  "facade": "machinemanager",
+  "type": "ModelAuthorizer",
+  "method": "CanRead",
+  "ok": true,
+  "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+  "line": 577
+ },
+ {
+  "facade": "machinemanager",
+  "type": "ModelAuthorizer",
+  "method": "CanWrite",
+  "ok": true,
+  "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+  "line": 583
+ },
+ {
+  "facade": "storage",
+  "type": "StorageAPI",
+  "method": "StorageDetails",
+  "ok": true,
+  "file": "apiserver/facades/client/storage/details.go",
+  "line": 167
+ },
+ {
+  "facade": "storage",
+  "type": "StorageAPI",
+  "method": "AddToUnit",
+  "ok": true,
+  "file": "apiserver/facades/client/storage/storage.go",
+  "line": 1109
+ },
+ {
+  "facade": "storage",
+  "type": "StorageAPI",
+  "method": "Remove",
+  "ok": true,
+  "file": "apiserver/facades/client/storage/storage.go",
+  "line": 1246
+ },
+ {
+  "facade": "storage",
+  "type": "StorageAPI",
+  "method": "RemovePool",
+  "ok": false,
+  "file": "apiserver/facades/client/storage/pool.go",
+  "line": 218
+ },
+ {
+  "facade": "storage",
+  "type": "StorageAPI",
+  "method": "UpdatePool",
+  "ok": false,
+  "file": "apiserver/facades/client/storage/pool.go",
+  "line": 225
+ },
+ {
+  "facade": "storage",
+  "type": "StorageAPI",
+  "method": "Attach",
+  "ok": true,
+  "file": "apiserver/facades/client/storage/attach.go",
+  "line": 20
+ }
+]

@@ -1,0 +1,212 @@
+[
+ {
+  "key": "constraint:1",
+  "page": "constraint",
+  "claim": "In Juju, a constraint is a key-value pair that represents a specification that can be passed to certain `juju` commands /command flags to customise the compute resources (bare metal machines, virtual machines, system containers, Kubernetes containers) spawned by Juju."
+ },
+ {
+  "key": "constraint:2",
+  "page": "constraint",
+  "claim": "If the resource is a bare metal machine or a virtual machine, a constraint represents a minimum, whereas if the resource is a system container or a Kubernetes container it represents a maximum."
+ },
+ {
+  "key": "constraint:3",
+  "page": "constraint",
+  "claim": "For machine (non-Kubernetes) clouds, constraints can be set directly on individual machines."
+ },
+ {
+  "key": "constraint:4",
+  "page": "constraint",
+  "claim": "However, more commonly they are set at the level of the controller, model, or application."
+ },
+ {
+  "key": "constraint:5",
+  "page": "constraint",
+  "claim": "If you set constraints at multiple levels at once -- that is, with overlap -- the constraint applied at the more specific level takes precedence."
+ },
+ {
+  "key": "constraint:6",
+  "page": "constraint",
+  "claim": "The rest of this document describes all the existing constraints."
+ },
+ {
+  "key": "constraint:7",
+  "page": "constraint",
+  "claim": "Supplying this constraint will determine whether machines are issued an IP address accessible outside of the cloud's virtual network.  <p> Valid values: `true`, `false`. <p> Note: Applies to public clouds (GCE, EC2, Azure) and OpenStack."
+ },
+ {
+  "key": "constraint:8",
+  "page": "constraint",
+  "claim": "Public cloud instances are assigned a public IP by default."
+ },
+ {
+  "key": "constraint:9",
+  "page": "constraint",
+  "claim": "The architecture. <br> <br>Valid values: `amd64`, `arm64`, `ppc64el`, `s390x`, `riscv64`."
+ },
+ {
+  "key": "constraint:10",
+  "page": "constraint",
+  "claim": "If not nil, indicates that a machine must be the specified container type. <br> <br> Valid values: `lxd`."
+ },
+ {
+  "key": "constraint:11",
+  "page": "constraint",
+  "claim": "Number of effective CPU cores. <br> <br> Type: integer. <br> <br> Alias: `cpu-cores`."
+ },
+ {
+  "key": "constraint:12",
+  "page": "constraint",
+  "claim": "Abstract CPU power. <br> <br> Type: integer, where 100 units is roughly equivalent to \"a single 2007-era Xeon\" as reflected by 1 Amazon vCPU."
+ },
+ {
+  "key": "constraint:13",
+  "page": "constraint",
+  "claim": "In a Kubernetes context a unit of \"milli\" is implied. <p> Note: Not supported by all providers."
+ },
+ {
+  "key": "constraint:14",
+  "page": "constraint",
+  "claim": "If not nil, indicates that a machine must use the specified image."
+ },
+ {
+  "key": "constraint:15",
+  "page": "constraint",
+  "claim": "Note: Not supported by all providers."
+ },
+ {
+  "key": "constraint:16",
+  "page": "constraint",
+  "claim": "Also, when applied during `juju deploy`, must be used in conjunction with the `--base` flag of the command -- the `image-id` will specify the image to be used for the provisioned machines and the `--base` will specify the operating system  used by the image to be deployed on those machines."
+ },
+ {
+  "key": "constraint:17",
+  "page": "constraint",
+  "claim": "Indicates that the specified role/profile for the given cloud should be used.  <p> Note: Only valid for clouds which support instance roles."
+ },
+ {
+  "key": "constraint:18",
+  "page": "constraint",
+  "claim": "Currently only for AWS with instance profiles and (starting with Juju 3.6) for Azure with managed identities."
+ },
+ {
+  "key": "constraint:19",
+  "page": "constraint",
+  "claim": "Values vary by provider, and individual deployment in some cases. <p> Note: When compatibility between clouds is desired, use corresponding values for `cores`, `mem`, and `root-disk` instead."
+ },
+ {
+  "key": "constraint:20",
+  "page": "constraint",
+  "claim": "The IP address family for the machine's network interfaces. <p> Valid values: `ipv4`, `ipv6`, `dual` (`ipv6`-only is not currently supported by any provider). <p> See the cloud-specific documentation for supported values and behavior."
+ },
+ {
+  "key": "constraint:21",
+  "page": "constraint",
+  "claim": "An optional suffix of M/G/T/P indicates the value is mega-/giga-/tera-/peta- bytes."
+ },
+ {
+  "key": "constraint:22",
+  "page": "constraint",
+  "claim": "Disk space on the root drive (MiB)."
+ },
+ {
+  "key": "constraint:23",
+  "page": "constraint",
+  "claim": "An optional suffix of M/G/T/P is used as per the `mem` constraint."
+ },
+ {
+  "key": "constraint:24",
+  "page": "constraint",
+  "claim": "Additional storage that may be attached separately does not count towards this value."
+ },
+ {
+  "key": "constraint:25",
+  "page": "constraint",
+  "claim": "Name of the storage pool or location the root disk is from. <p> Note: `root-disk-source` has different behaviour with each provider."
+ },
+ {
+  "key": "constraint:26",
+  "page": "constraint",
+  "claim": "A comma-delimited list of Juju network space names that a unit or machine needs access to."
+ },
+ {
+  "key": "constraint:27",
+  "page": "constraint",
+  "claim": "Space names can be positive, listing an attribute of the space, or negative (prefixed with \"^\"), listing something the space does not have. <p> Example: `spaces=storage,db,^logging,^public` (meaning, select machines connected to the storage and db spaces, but NOT to logging or public spaces). <p> Note: EC2 and MAAS are the only providers that currently support the spaces constraint."
+ },
+ {
+  "key": "constraint:28",
+  "page": "constraint",
+  "claim": "Comma-delimited tags assigned to the machine."
+ },
+ {
+  "key": "constraint:29",
+  "page": "constraint",
+  "claim": "Tags can be positive, denoting an attribute of the machine, or negative (prefixed with `^`), to denote something that the machine does not have. <p> Example: `tags=virtual,^dualnic` <p> Note: Supported by MAAS and by Kubernetes clouds (where it is used for pod affinity and anti-affinity)."
+ },
+ {
+  "key": "constraint:30",
+  "page": "constraint",
+  "claim": "Virtualisation type. <p> Only supported by LXD and OpenStack."
+ },
+ {
+  "key": "constraint:31",
+  "page": "constraint",
+  "claim": "Multiple values present a range of zones that a machine must be created within. <p> Valid values: Depending on the cloud provider. <p> Example for the `aws` cloud: `zones=us-east-1a,us-east-1c` <p> Note: A zone can also be used as a placement directive (`--to zone= <name of zone>`)."
+ },
+ {
+  "key": "space:1",
+  "page": "space",
+  "claim": "A Juju (network) space is a logical grouping of subnets that can communicate with one another."
+ },
+ {
+  "key": "space:2",
+  "page": "space",
+  "claim": "A space is used to help segment network traffic for the purpose of:"
+ },
+ {
+  "key": "space:3",
+  "page": "space",
+  "claim": "Spaces can be specified as constraints -- to determine what subnets a machine is connected to -- or as application endpoint bindings -- to determine the subnets used by application relations."
+ },
+ {
+  "key": "space:4",
+  "page": "space",
+  "claim": "A binding associates an application endpoint with a space."
+ },
+ {
+  "key": "space:5",
+  "page": "space",
+  "claim": "This restricts traffic for the endpoint to the subnets in the space."
+ },
+ {
+  "key": "space:6",
+  "page": "space",
+  "claim": "By default, endpoints are bound to the space specified in the `default-space` model configuration value."
+ },
+ {
+  "key": "space:7",
+  "page": "space",
+  "claim": "The name of the default space is \"alpha\"."
+ },
+ {
+  "key": "space:8",
+  "page": "space",
+  "claim": "Constraints and bindings affect application deployment and machine provisioning as well as the subnets a machine can talk to."
+ },
+ {
+  "key": "space:9",
+  "page": "space",
+  "claim": "Endpoint bindings can be specified during deployment with `juju deploy --bind` or changed after deployment using the `juju bind` command."
+ },
+ {
+  "key": "space:10",
+  "page": "space",
+  "claim": "Support for spaces may vary from one cloud to another."
+ },
+ {
+  "key": "space:11",
+  "page": "space",
+  "claim": "For cloud-specific details, see the networking behavior section in each cloud's reference doc: Amazon EC2, Microsoft Azure, OpenStack, LXD, MAAS, Unmanaged."
+ }
+]

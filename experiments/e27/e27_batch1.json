@@ -1,0 +1,212 @@
+[
+ {
+  "key": "storage:1",
+  "page": "storage",
+  "claim": "In Juju, storage refers to a data volume that is provided by a cloud."
+ },
+ {
+  "key": "storage:2",
+  "page": "storage",
+  "claim": "Depending on how things are set up during deployment, the data volume can be machine-dependent (e.g., a directory on disk tied to the machine which goes away if the unit is destroyed) or machine-independent (i.e., it can outlive a machine and be reattached to another machine)."
+ },
+ {
+  "key": "storage:3",
+  "page": "storage",
+  "claim": "Most storage can be dynamically added to, and removed from, a unit."
+ },
+ {
+  "key": "storage:4",
+  "page": "storage",
+  "claim": "However, by their nature, some types of storage cannot be dynamically managed (see storage-provider-maas)."
+ },
+ {
+  "key": "storage:5",
+  "page": "storage",
+  "claim": "Also, certain cloud providers may impose restrictions when attaching storage (see storage-provider-ebs)."
+ },
+ {
+  "key": "storage:6",
+  "page": "storage",
+  "claim": "In Juju, a storage directive is a collection of storage specifications that can be used to dictate how storage is allocated when provisioning storage for an application."
+ },
+ {
+  "key": "storage:7",
+  "page": "storage",
+  "claim": "`<name>` is the storage name as defined in the charm (see more: Charmcraft | `<storage name>`);"
+ },
+ {
+  "key": "storage:8",
+  "page": "storage",
+  "claim": "`<pool>` is a pre-defined storage pool;"
+ },
+ {
+  "key": "storage:9",
+  "page": "storage",
+  "claim": "`<count>` is the storage volume count;"
+ },
+ {
+  "key": "storage:10",
+  "page": "storage",
+  "claim": "`<size>` is the size of each storage volume."
+ },
+ {
+  "key": "storage:11",
+  "page": "storage",
+  "claim": "The order of the arguments does not actually matter -- they are identified based on a regex (pool names must start with a letter and sizes must end with a unit suffix)."
+ },
+ {
+  "key": "storage:12",
+  "page": "storage",
+  "claim": "If at least one storage directive component is specified, the following default values come into effect:"
+ },
+ {
+  "key": "storage:13",
+  "page": "storage",
+  "claim": "`<pool>`: the default storage pool."
+ },
+ {
+  "key": "storage:14",
+  "page": "storage",
+  "claim": "`<count>`: the minimum number required by the charm, or '1' if the storage is optional"
+ },
+ {
+  "key": "storage:15",
+  "page": "storage",
+  "claim": "`<size>`: determined from the charm's minimum storage size, or 1GiB if the charm does not specify a minimum"
+ },
+ {
+  "key": "storage:16",
+  "page": "storage",
+  "claim": "In the absence of any explicit storage directive, the storage will be put on the root filesystem (`rootfs`)."
+ },
+ {
+  "key": "storage:17",
+  "page": "storage",
+  "claim": "A storage pool is a mechanism for administrators to define sources of storage that they will use to satisfy application storage requirements."
+ },
+ {
+  "key": "storage:18",
+  "page": "storage",
+  "claim": "A single pool might be used for storage from units of many different applications - it is a resource from which different stores may be drawn."
+ },
+ {
+  "key": "storage:19",
+  "page": "storage",
+  "claim": "A pool describes storage provider-specific parameters for creating storage, such as performance (e.g."
+ },
+ {
+  "key": "storage:20",
+  "page": "storage",
+  "claim": "IOPS), media type (e.g. magnetic vs."
+ },
+ {
+  "key": "storage:21",
+  "page": "storage",
+  "claim": "For many providers, there will be a shared resource where storage can be requested (e.g. for Amazon EC2, `ebs`)."
+ },
+ {
+  "key": "storage:22",
+  "page": "storage",
+  "claim": "Creating pools there maps provider specific settings into named resources that can be used during deployment."
+ },
+ {
+  "key": "storage:23",
+  "page": "storage",
+  "claim": "Pools defined at the model level are easily reused across applications."
+ },
+ {
+  "key": "storage:24",
+  "page": "storage",
+  "claim": "Pool creation requires a pool name, the provider type and attributes for configuration as space-separated pairs, e.g. tags, size, path, etc."
+ },
+ {
+  "key": "storage:25",
+  "page": "storage",
+  "claim": "In Juju, a storage provider refers to the technology used to make storage available to a charm."
+ },
+ {
+  "key": "storage:26",
+  "page": "storage",
+  "claim": "There are three storage providers you can use with all clouds: `loop`, `rootfs`, and `tmpfs`."
+ },
+ {
+  "key": "storage:27",
+  "page": "storage",
+  "claim": "In addition, for some clouds there are also cloud-specific providers."
+ },
+ {
+  "key": "storage:28",
+  "page": "storage",
+  "claim": "Many clouds provide additional storage providers beyond the generic ones."
+ },
+ {
+  "key": "storage:29",
+  "page": "storage",
+  "claim": "For the cloud-specific storage providers available on your cloud, see list-of-supported-clouds > `<cloud name>` > Storage."
+ },
+ {
+  "key": "storage:30",
+  "page": "storage",
+  "claim": "Creates a file on the unit's root filesystem, associates a loop device with it."
+ },
+ {
+  "key": "storage:31",
+  "page": "storage",
+  "claim": "The loop device is provided to the charm."
+ },
+ {
+  "key": "storage:32",
+  "page": "storage",
+  "claim": "Creates a sub-directory on the unit's root filesystem for the unit/charmed operator to use."
+ },
+ {
+  "key": "storage:33",
+  "page": "storage",
+  "claim": "Creates a temporary file storage facility that appears as a mounted file system but is stored in volatile memory."
+ },
+ {
+  "key": "ssh-key:1",
+  "page": "ssh-key",
+  "claim": "An SSH key is an access  key in the SSH protocol."
+ },
+ {
+  "key": "ssh-key:2",
+  "page": "ssh-key",
+  "claim": "In Juju it refers to a way of accessing a machine provisioned by Juju individually."
+ },
+ {
+  "key": "ssh-key:3",
+  "page": "ssh-key",
+  "claim": "Juju maintains a per-model cache of public SSH keys."
+ },
+ {
+  "key": "ssh-key:4",
+  "page": "ssh-key",
+  "claim": "You can add keys via `juju add-ssh-key` or `juju import-ssh-key`."
+ },
+ {
+  "key": "ssh-key:5",
+  "page": "ssh-key",
+  "claim": "Keys are used to authenticate users when they connect to the controller's SSH server."
+ },
+ {
+  "key": "ssh-key:6",
+  "page": "ssh-key",
+  "claim": "Each Juju machine provides a user account named 'ubuntu' and this account is used when establishing SSH sessions."
+ },
+ {
+  "key": "ssh-key:7",
+  "page": "ssh-key",
+  "claim": "Because this user is effectively the 'root' user (passwordless sudo privileges), the granting of SSH access must be done with due consideration."
+ },
+ {
+  "key": "ssh-key:8",
+  "page": "ssh-key",
+  "claim": "To use an SSH key to run commands inside a machine using the `juju ssh` command, the user's public SSH key needs to be added to the containing model and the user needs to have `admin` access to the model."
+ },
+ {
+  "key": "ssh-key:9",
+  "page": "ssh-key",
+  "claim": "See juju-ssh for a deeper dive into how SSH connections are established through the Juju controller."
+ }
+]

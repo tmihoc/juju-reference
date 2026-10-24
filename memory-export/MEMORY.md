@@ -1,0 +1,28 @@
+- [juju PR workflow](feedback-juju-pr-workflow.md) — every PR targets 4.1, branch starts 4.1-, rules.md + CONTRIBUTING, fenced PR text, refetch reviews before status claims
+- [juju docs epics](project-juju-docs-epics.md) — JUJU-9632/9635, where notes live, ggarch distribution blocker
+- [Capital after colon](feedback-capital-after-colon.md) — capitalize propositional text after a colon in comments, commits, PR text
+- [No unearned negation](feedback-no-unearned-negation.md) — standing rule: say what to do; cut "not X" contrasts
+- [ggarch CI check TODO](project-ggarch-ci-check-todo.md) — skipped in PR 4; when/how to add; PR 4 ggarch decisions
+- [ggarch session notes](feedback-ggarch-notes.md) — update HANDOFF/SESSIONS/TODOS/ADRs in ~/git/ggarch as work lands
+- [No verdict-asking](feedback-no-verdict-asking.md) — untangle until the answer pops off the page; decide and edit, skip option menus
+- [PR 4 rewrite state](project-pr4-architecture-rewrite-state.md) — five 4.1 PRs after review round 1, all pushed (tips listed), open items, jujud.md merge hazard
+- [Caption style](feedback-caption-style.md) — technical detail in the caption, light main text, start with subject and point (never "The figure follows...")
+- [Check every docs builder](feedback-check-every-docs-builder.md) — run `-b latex` too: RTD builds a PDF and a missing ggarch visitor fails the whole build (ggarch pin now 85546a9)
+- [Separate review commits](feedback-separate-review-commits.md) — reviewer-driven fixes go in separate commits, not squashed fixups
+- [Tabs alphabetical](feedback-tabs-alphabetical.md) — sort tab labels alphabetically everywhere (Kubernetes before Machines)
+- [Entity reference form](project-entity-reference-form.md) — ADR-016 layer-anchored rules/errors, filed by Go raise site; page types + files in ~/git/misc/juju-reference/
+- [Client-agnostic sweep TODO](project-client-agnostic-sweep-todo.md) — make reference pages platform-first, CLI only as an example; known hits listed
+- [DPE generalization](project-dpe-generalization.md) — D/P/E as three relations to a goal-state record; errors by kind of rule; proposed, unratified
+- [Check prior decisions](feedback-check-prior-decisions.md) — think first, grep the decision record before rebuilding a settled design question (cardinality on chips)
+- [HANDOFF note](../../../../git/misc/juju-reference/HANDOFF.md) — read first in a new chat: router to discipline, state, branches; queue in TODOS.md, history in SESSIONS.md (2026-10-20)
+- [Actor part template](project-actor-part-template.md) — template v3: optional actor part first (agent/workers), only for own process or engine; pilots done, unit pending
+- [Skeleton research summary](project-skeleton-research.md) — software-first study of the reference skeleton; map file in ~/git/misc/juju-reference/skeleton-research-summary.md
+- [Skeleton v5 state](project-skeleton-v5-state.md) — session 79: v5.3 proposal, solid vs open, tests E15 to E27, pilots touched
+- [Epic 9635 state](project-epic-9635-state.md) — one PR, worktree juju-tutorial-diagrams, pages done, order, ggarch pin; resume from NEXT-PROMPT.md
+- [Page form rules](feedback-page-form-rules.md) — the user's wording and structure rules for entity reference pages; full list in page-recipe.md
+- [Related rules grouping](feedback-related-rules-grouping.md) — group 2+ rules under one 'Related rules:' bullet like errors; applied to model, cloud and SSH key pages; single rules too
+- [Oxford comma](feedback-oxford-comma.md) — always, in docs and everything written
+- [Lightning talk](project-lightning-talk.md) — "1-2-3": three ads in 5 min (data model, ggarch, leadership); notes in juju-reference/talk/NOTES.md
+- [Talk voice](feedback-talk-voice.md) — never write the user's spoken lines; describe slides, logic, props only
+- [No comma-and clauses](feedback-no-comma-and-clauses.md) — split two facts with different subjects; name the relation; "and" is fine for same-kind items
+- [Base case first, no databag](feedback-base-case-first-no-databag.md) — base case first; kinds in the data model; transitions in the operation; say settings, not databag; records and software in separate figures

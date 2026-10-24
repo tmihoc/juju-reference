@@ -1,0 +1,14 @@
+[
+{"id":1,"verdict":"not_derivable","artifact":null,"evidence":null,"residue_kind":"definition","note":"definition of cloud"},
+{"id":2,"verdict":"partly","artifact":"lookup-value","evidence":"domain/schema/controller/sql/0005-cloud.sql:16","residue_kind":null,"note":"ec2 gce azure kubernetes openstack types; public/private not stated"},
+{"id":3,"verdict":"not_derivable","artifact":null,"evidence":null,"residue_kind":"rationale","note":"framing"},
+{"id":4,"verdict":"partly","artifact":"lookup-value","evidence":"domain/schema/controller/sql/0005-cloud.sql:16","residue_kind":null,"note":"maas and lxd are cloud types; not-per-se framing absent"},
+{"id":5,"verdict":"not_derivable","artifact":null,"evidence":null,"residue_kind":"definition","note":"term synonym"},
+{"id":6,"verdict":"partly","artifact":"other","evidence":"cloud/clouds.go:309","residue_kind":null,"note":"CAAS vs non-CAAS split via CloudTypeIsCAAS"},
+{"id":7,"verdict":"not_derivable","artifact":null,"evidence":null,"residue_kind":"definition","note":"definition"},
+{"id":8,"verdict":"derivable","artifact":"other","evidence":"environs/broker.go:158","residue_kind":null,"note":"StartInstance provisions machines via provider"},
+{"id":9,"verdict":"not_derivable","artifact":null,"evidence":null,"residue_kind":"definition","note":"definition"},
+{"id":10,"verdict":"partly","artifact":"other","evidence":"caas/broker.go:133","residue_kind":null,"note":"caas broker deploys apps; contrast not stated"},
+{"id":11,"verdict":"derivable","artifact":"other","evidence":"environs/interface.go:49","residue_kind":null,"note":"per-provider CloudSchema, auth types per cloud table"},
+{"id":12,"verdict":"not_derivable","artifact":null,"evidence":null,"residue_kind":"cross-reference","note":"pointer"}
+]

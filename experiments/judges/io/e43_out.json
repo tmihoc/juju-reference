@@ -1,0 +1,452 @@
+[
+ {
+  "name": "lease",
+  "label": "process",
+  "parent": null,
+  "addressed_by": "none found (hook tool is-leader internal/worker/uniter/runner/jujuc/is-leader.go:40 only reads leadership; agent facade apiserver/facades/agent/leadership/leadership.go:52 ClaimLeadership is called by unit agents, not users)",
+  "creates_removes": "Claimed/expired by the lease manager worker: INSERT INTO lease domain/lease/state/state.go:126, DELETE FROM lease state.go:214; pins INSERT lease_pin state.go:315 via apiserver/leadership.go:92 PinLeadership (internal use, no command).",
+  "typed_name_or_id": "no (keys are application/model names but users never type a lease name)",
+  "confidence": "high",
+  "note": "Machinery behind leadership; users only see its effect through is-leader or status Leader."
+ },
+ {
+  "name": "agent-version",
+  "label": "of",
+  "parent": "model",
+  "addressed_by": "cmd/juju/commands/upgrademodel.go:92 upgrade-model; upgradecontroller.go:93 upgrade-controller; synctools.go:68 sync-agent-binary; facade apiserver/facades/client/modelupgrader/modelupgrader.go:152 UpgradeModel",
+  "creates_removes": "agent_version row INSERTed with the model (domain/model/state/model/state.go:1319) and UPDATEd by upgrade (domain/modelagent/state/model/state.go:1247); agent_binary_store INSERT domain/agentbinary/state/model/state.go:150 by sync/upload; no DELETE found.",
+  "typed_name_or_id": "yes, a version number (--agent-version) but not a named object",
+  "confidence": "medium",
+  "note": "The target version is a setting of the model; binaries are blobs stored for it. No user-facing create/remove of an 'agent version' object."
+ },
+ {
+  "name": "application-endpoint",
+  "label": "of",
+  "parent": "application",
+  "addressed_by": "none own; seen via cmd/juju/application/bind.go:83 bind and integrate.go:166 (endpoint names app:endpoint), status/show-application",
+  "creates_removes": "Created with the application: INSERT INTO application_endpoint domain/application/state/application_endpoint.go:399; deleted by application removal: domain/removal/state/model/application.go:540.",
+  "typed_name_or_id": "partly: endpoint names come from the charm, typed as app:endpoint in integrate",
+  "confidence": "high",
+  "note": "Charm-derived endpoint bindings of an application; changed only by bind on the application."
+ },
+ {
+  "name": "relation",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/application/integrate.go:166 integrate; removerelation.go:86 remove-relation <relation-id>; suspendrelation.go:58 suspend-relation; hook tools relation-ids.go:58, relation-list.go:51, relation-get.go:108, relation-set.go:93",
+  "creates_removes": "CREATE: INSERT INTO relation domain/relation/state/relation.go:3706 (AddRelation, service domain/relation/service/relation.go:419); REMOVE: DELETE FROM relation domain/removal/state/model/relation.go:330 scheduled by remove-relation (RelationScheduleRemoval relation.go:116-132).",
+  "typed_name_or_id": "yes: relation id or app1:ep app2:ep pair",
+  "confidence": "high",
+  "note": "Has its own add and remove commands and an id. Unit settings (relation_unit_*) are covered separately."
+ },
+ {
+  "name": "machine-placement",
+  "label": "of",
+  "parent": "machine",
+  "addressed_by": "none own; --to / placement directives on add-machine cmd/juju/machine/add.go:177 and deploy/add-unit",
+  "creates_removes": "INSERT INTO machine_placement domain/machine/state/placement.go:535 when machine is created; DELETE domain/removal/state/model/machine.go:763 on machine removal.",
+  "typed_name_or_id": "no (directive typed as an argument to add-machine, not a name)",
+  "confidence": "high",
+  "note": "Record of how a machine was placed."
+ },
+ {
+  "name": "removal",
+  "label": "process",
+  "parent": null,
+  "addressed_by": "none found as a command; scheduled by remove-application removeapplication.go:92, remove-unit removeunit.go:108, remove-relation, remove-machine machine/remove.go:78",
+  "creates_removes": "Job rows INSERTed when something is removed (domain/removal/state/model/relation.go:132 and sibling files); deleted when the executor finishes (domain/removal/service/service.go:150 ExecuteJob).",
+  "typed_name_or_id": "no",
+  "confidence": "high",
+  "note": "Internal job queue for the removal worker; users run remove-* commands and do not look up jobs."
+ },
+ {
+  "name": "unit",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/application/addunit.go:149 add-unit; removeunit.go:108 remove-unit; showunit.go:75 show-unit; resolved.go:45 resolved; ssh/ssh.go; hook tools status-set/get, state-*, open-port; facade apiserver/facades/client/application/application.go:1091 RemoveUnit",
+  "creates_removes": "INSERT INTO unit domain/application/state/unitstate.go:229 (add-unit or deploy); removal DELETE FROM unit domain/removal/state/model/unit.go:673 via removalService.RemoveUnit (application.go:1091).",
+  "typed_name_or_id": "yes: unit name app/N",
+  "confidence": "high",
+  "note": "Has add-unit/remove-unit; created also by deploy/scale as a side effect but add-unit is independent. Many tables (status, state, k8s_pod, resolved) are parts of it."
+ },
+ {
+  "name": "subnet",
+  "label": "of",
+  "parent": "space",
+  "addressed_by": "cmd/juju/subnet/list.go:67 subnets (read only); cmd/juju/space/move.go:58 move-to-space; space/reload.go:38 reload-spaces; space/add.go:48 add-space [CIDR..]; facade apiserver/facades/client/subnets/subnets.go:111 ListSubnets; spaces/move.go:20 MoveSubnets",
+  "creates_removes": "INSERT INTO subnet domain/network/state/subnet.go:103 via UpsertSubnets from ReloadSpaces (domain/network/service/space.go:208) or machiner AddSubnet; DELETE domain/network/state/subnet.go:509 (DeleteSubnet) - service RemoveSubnet (service/subnet.go:70) has no caller in apiserver/cmd.",
+  "typed_name_or_id": "CIDR typed to move-to-space/add-space; no subnet name",
+  "confidence": "medium",
+  "note": "No user create or remove command for subnets; discovery and space membership drive them. Judged as part of spaces (move-to-space/add-space), not an independent thing."
+ },
+ {
+  "name": "zone",
+  "label": "across",
+  "parent": null,
+  "addressed_by": "cmd/juju/subnet/list.go:82 subnets --zone; facade apiserver/facades/client/subnets/subnets.go:90 AllZones; zones in constraints (set-constraints cmd/juju/application/constraints.go:166) and add-machine zone placement",
+  "creates_removes": "availability_zone INSERTed only inside subnet upsert domain/network/state/subnet.go:242; availability_zone_subnet DELETE subnet.go:536; availability_zone rows are never deleted by any code found.",
+  "typed_name_or_id": "yes: zone name as filter/constraint value",
+  "confidence": "medium",
+  "note": "Shared vocabulary referenced by subnets (schema 0009-subnet.sql:59) and machine cloud instances (0017-machine-cloud-instance.sql:27) and constraint_zone. No own command."
+ },
+ {
+  "name": "link-layer-device",
+  "label": "of",
+  "parent": "machine",
+  "addressed_by": "none own; hook tool network-get internal/worker/uniter/runner/jujuc/network-get.go:72; juju status network-interfaces cmd/juju/status/formatter.go:160; set by agent facades apiserver/facades/agent/machine/machiner.go:281 SetMachineNetConfig",
+  "creates_removes": "INSERT INTO link_layer_device domain/network/state/linklayer.go:267 (machine NIC reports) ; DELETE domain/removal/state/model/machine.go:1012 when the machine is removed (net_node/units also via removal/state/model/unit.go:853).",
+  "typed_name_or_id": "no",
+  "confidence": "medium",
+  "note": "Detected network devices and addresses of a machine's net node (also of k8s services/units through net_node); never user-created."
+ },
+ {
+  "name": "relation-unit",
+  "label": "of",
+  "parent": "relation",
+  "addressed_by": "hook tools relation-get.go:108, relation-set.go:93, relation-list.go:51, relation-ids.go:58 (units in a relation); status",
+  "creates_removes": "INSERT INTO relation_unit domain/relation/state/relation.go:2213 (unit enters scope); settings INSERT relation.go:2598; DELETE domain/removal/state/model/relation.go:588 on departure/removal.",
+  "typed_name_or_id": "yes in hook tools (unit name, relation id) but only as keys within a relation",
+  "confidence": "high",
+  "note": "Unit membership and settings inside one relation, driven by the unit agent."
+ },
+ {
+  "name": "controller",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/commands/bootstrap.go:255 bootstrap; cmd/juju/controller/{listcontrollers.go:52 controllers, showcontroller.go:74, config.go:97 controller-config, destroy.go:167, kill.go:80, register.go:123, unregister.go:53}; facade apiserver/facades/client/highavailability/highavailability.go:44 EnableHA, controller/controller.go:788 ConfigSet",
+  "creates_removes": "CREATE: bootstrap writes controller/config rows (domain/controllerconfig/bootstrap/bootstrap.go:49,70); nodes INSERT domain/controllernode/state/state.go:52 (enable-ha); remove: destroy/kill controller, node UPDATE/DELETE domain/removal/state/controller/controller_node.go:33-84.",
+  "typed_name_or_id": "yes: controller name (client-side) / controller UUID",
+  "confidence": "medium",
+  "note": "Bundle also holds internals (macaroon_root_key, autocert_cache, flag, bakery_config) that are not user addressable. The controller itself is own."
+ },
+ {
+  "name": "telemetry",
+  "label": "of",
+  "parent": "controller",
+  "addressed_by": "no juju command or client facade; only the controller unix control socket internal/worker/controlsocket/worker.go:300 /charm-tracing-config, :320 /workload-tracing-config, :351-354 /loki-endpoint (POST/DELETE)",
+  "creates_removes": "INSERT INTO charm_tracing_config domain/tracing/state/state.go:75 (DELETE :67); workload_tracing_config tracing/state/state.go:133; logging_loki_config domain/logging/state/state.go:44, DELETE :38 and :121, all via the control socket handlers.",
+  "typed_name_or_id": "no",
+  "confidence": "medium",
+  "note": "Controller-wide observability settings pushed by charms/ops via the control socket; read by provisioner (domain/provisioner/service/service.go:128)."
+ },
+ {
+  "name": "space",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/space/add.go:48 add-space, remove.go:70 remove-space, rename.go:50 rename-space, show.go:55 show-space, move.go:58, reload.go:38, list; facade apiserver/facades/client/spaces/spaces.go:112 CreateSpaces, :159 ListSpaces, :197 ShowSpace",
+  "creates_removes": "INSERT INTO space domain/network/state/space.go:67; DELETE FROM space domain/network/state/space_remove.go:231 (remove-space).",
+  "typed_name_or_id": "yes: space name",
+  "confidence": "high",
+  "note": "Own create/remove commands and a typed name."
+ },
+ {
+  "name": "application-scale",
+  "label": "of",
+  "parent": "application",
+  "addressed_by": "cmd/juju/application/scaleapplication.go:57 scale-application; add-unit addunit.go:149",
+  "creates_removes": "INSERT INTO application_scale domain/application/state/application.go:183 with the application; UPDATE application.go:892/920/1000 on scale; DELETE domain/removal/state/model/application.go:532.",
+  "typed_name_or_id": "no (a number typed to scale-application of an application)",
+  "confidence": "high",
+  "note": "Desired scale setting for a k8s application."
+ },
+ {
+  "name": "port",
+  "label": "of",
+  "parent": "unit",
+  "addressed_by": "hook tools internal/worker/uniter/runner/jujuc/ports.go:64 open-port, :123 close-port, opened-ports.go:33 opened-ports; no client command (expose cmd/juju/application/expose.go:107 is separate: exposed endpoints of application)",
+  "creates_removes": "INSERT INTO port_range domain/unitstate/state/updateunitports.go:393, DELETE :476 (open/close-port at hook commit); DELETE domain/removal/state/model/unit.go:962 with the unit.",
+  "typed_name_or_id": "port ranges typed but not named/ids",
+  "confidence": "high",
+  "note": "Port ranges opened by a unit per endpoint."
+ },
+ {
+  "name": "constraint",
+  "label": "across",
+  "parent": null,
+  "addressed_by": "cmd/juju/application/constraints.go:101 constraints, :166 set-constraints; cmd/juju/model/constraints.go:79 model-constraints, :150 set-model-constraints; deploy/add-machine --constraints; facade modelconfig.go:320,339",
+  "creates_removes": "INSERT INTO \"constraint\" per owner: domain/application/state/application.go:2828, domain/model/state/model/state.go:501, domain/machine/state/placement.go:551; deleted when owner constraint replaced/removed (application.go:2805-2815, model/state/model/state.go:400-437).",
+  "typed_name_or_id": "no (key=value pairs on an owner)",
+  "confidence": "high",
+  "note": "Same vocabulary attached to application, model and machine (application_constraint, model_constraint, machine_constraint)."
+ },
+ {
+  "name": "action",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/action/run.go:112 run, exec.go:135 exec, cancel.go:54 cancel-task, showoperation.go:75 show-operation, showtask.go:85 show-task, listoperations.go:96 operations; facade apiserver/facades/client/action",
+  "creates_removes": "INSERT INTO operation domain/operation/state/start.go:351 and operation_task :622 (run/exec); ended by cancel-task (UPDATE domain/operation/state/task.go:473 status); rows DELETEd by pruner domain/operation/state/prune.go:27 / removal/state/model/operation.go:256.",
+  "typed_name_or_id": "yes: operation id and task id",
+  "confidence": "high",
+  "note": "Operation/task records; run to create, cancel-task to end, pruned automatically."
+ },
+ {
+  "name": "charm",
+  "label": "of",
+  "parent": "application",
+  "addressed_by": "cmd/juju/application/deploy.go:156, refresh.go:52 use charms client; facade apiserver/facades/client/charms/client.go:56 CharmInfo, :82 List, :179 AddCharm, :385 ListCharmResources; charmhub info/find/download",
+  "creates_removes": "INSERT INTO charm domain/application/state/state.go:231 on deploy/refresh; DELETE FROM charm domain/removal/state/model/application.go:920 only when no application or unit still uses it (application.go:855-870).",
+  "typed_name_or_id": "yes: charm name/URL, but not a stand-alone charm id",
+  "confidence": "low",
+  "note": "No remove-charm command; removal happens as a side effect of removing/refreshing applications. Could also be read as shared by many applications, but lifecycle is tied to application operations."
+ },
+ {
+  "name": "permission",
+  "label": "across",
+  "parent": null,
+  "addressed_by": "cmd/juju/model/grantrevoke.go:192 grant, :313 revoke; grantrevokecloud.go:110 grant-cloud, :165 revoke-cloud; facade modelmanager.go:1157 ModifyModelAccess, cloud/cloud.go:1018 ModifyCloudAccess, applicationoffers.go:648 ModifyOfferAccess, controller facade",
+  "creates_removes": "INSERT INTO permission domain/access/state/permission.go:1169 (grant), DELETE :981 (revoke); also with offers (crossmodelrelation/state/controller/offer.go:88), models (model/state/controller/state.go:2210), clouds (cloud/state/state.go:584).",
+  "typed_name_or_id": "no (user + target typed, no permission id)",
+  "confidence": "high",
+  "note": "One vocabulary (access level) attached to controller, model, cloud and offer; met through each."
+ },
+ {
+  "name": "resource",
+  "label": "of",
+  "parent": "application",
+  "addressed_by": "cmd/juju/resource/list.go:71 resources, upload.go:102 attach-resource, charmresources.go list; hook tool resource-get.go:34; facade apiserver/facades/client/resources/facade.go:135 ListResources, :179 AddPendingResources",
+  "creates_removes": "INSERT INTO resource domain/application/state/resource.go:404 (deploy), application_resource :170, uploads via attach-resource; DELETE domain/removal/state/model/application.go:1000 with the application.",
+  "typed_name_or_id": "yes: resource name (per application)",
+  "confidence": "high",
+  "note": "Named per application; no independent create/remove."
+ },
+ {
+  "name": "ssh",
+  "label": "across",
+  "parent": null,
+  "addressed_by": "cmd/juju/ssh/ssh.go (ssh), scp, debug-hooks, debug-code; facade apiserver/facades/client/sshclient/facade.go:112 VirtualHostname, :130 PublicHostKeyForTarget; agent facade apiserver/facades/agent/sshsession/facade.go:59,82; controlsocket /ssh-server-port worker.go:366",
+  "creates_removes": "Host keys: machine INSERT domain/machine/state/state.go:1439 (DELETE removal/state/model/machine.go:760), virtual keys domain/ssh/state/model/state.go:283,411, controller keys domain/ssh/bootstrap/bootstrap.go:47; ssh_connection_request INSERT ssh/state/model/state.go:525, DELETE :639.",
+  "typed_name_or_id": "no (target machine/unit given to juju ssh)",
+  "confidence": "medium",
+  "note": "Host keys per machine, unit, controller plus short-lived connection requests; users reach it through juju ssh on a machine/unit."
+ },
+ {
+  "name": "unit-state",
+  "label": "of",
+  "parent": "unit",
+  "addressed_by": "hook tools internal/worker/uniter/runner/jujuc/state-set.go:50, state-get.go:37, state-delete.go:30",
+  "creates_removes": "INSERT INTO unit_state domain/unitstate/state/state.go:175 (state-set / hook commit); DELETE domain/removal/state/model/unit.go:952 with the unit.",
+  "typed_name_or_id": "yes in hook (state key) but scoped to the unit",
+  "confidence": "high",
+  "note": "Charm key/value store, local/uniter/relation state of a unit."
+ },
+ {
+  "name": "user",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/user/add.go:63 add-user, remove.go:79 remove-user, list, show-user, enable/disable-user, change-user-password, login/logout/whoami; facade apiserver/facades/client/usermanager",
+  "creates_removes": "INSERT INTO user domain/access/state/user.go:843; removal sets removed flag (UPDATE user user.go:548) and deletes password/keys/permissions (user.go:517-543).",
+  "typed_name_or_id": "yes: user name",
+  "confidence": "high",
+  "note": "Own commands and name."
+ },
+ {
+  "name": "offer",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/crossmodel/offer.go:81 offer, remove.go:63 remove-offer, show.go:76 show-offer, list.go:108 offers, find.go:81 find-offers; facade apiserver/facades/client/applicationoffers/applicationoffers.go; consume cmd application/consume (SAAS side)",
+  "creates_removes": "INSERT INTO offer domain/crossmodelrelation/state/model/offer.go:46; DELETE FROM offer domain/removal/state/model/offer.go:90 (remove-offer).",
+  "typed_name_or_id": "yes: offer name / offer URL",
+  "confidence": "high",
+  "note": "The remote_offerer/consumer tables are the consuming side (saas application, remove-saas removeapplication path cmd/juju/application/removesaas) and are created by consume/integrate."
+ },
+ {
+  "name": "upgrade",
+  "label": "process",
+  "parent": null,
+  "addressed_by": "none found as a command; upgrade-controller/upgrade-model cmd (upgradecontroller.go:93) only set target version",
+  "creates_removes": "INSERT INTO upgrade_info domain/upgrade/state/state.go:56 by database upgrade worker (internal/worker/upgradedatabase/worker.go:242 CreateUpgrade); state UPDATE state.go:348,472.",
+  "typed_name_or_id": "no (upgrade uuid internal)",
+  "confidence": "high",
+  "note": "Machinery tracking the DB schema upgrade across controller nodes."
+ },
+ {
+  "name": "machine",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/machine/add.go:177 add-machine, remove.go:78 remove-machine, list, show-machine, reprovision; hook tool reboot.go; facade apiserver/facades/client/machinemanager",
+  "creates_removes": "INSERT INTO machine domain/machine/state/placement.go:177; DELETE FROM machine domain/removal/state/model/machine.go:526 (remove-machine).",
+  "typed_name_or_id": "yes: machine id",
+  "confidence": "high",
+  "note": "Many tables are parts of the machine (status, platform, cloud instance, parent, reboot, lxd profile)."
+ },
+ {
+  "name": "application",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/application/deploy.go (deploy), removeapplication.go:92 remove-application, config.go:162, expose.go:107, trust.go:56, scaleapplication.go:57, refresh, show-application; facade apiserver/facades/client/application/application.go",
+  "creates_removes": "INSERT INTO application domain/application/state/application.go:258 (deploy); DELETE FROM application domain/removal/state/model/application.go:416 via removalService.RemoveApplication (application.go:1178).",
+  "typed_name_or_id": "yes: application name",
+  "confidence": "high",
+  "note": "Large table family; config, status, exposed endpoints, platform, channel are parts of it."
+ },
+ {
+  "name": "block-command",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/block/disable.go:52 disable-command, enable.go:50 enable-command, list.go:60 disabled-commands; facade apiserver/facades/client/block",
+  "creates_removes": "INSERT INTO block_command domain/blockcommand/state/state.go:54 (disable-command); DELETE state.go:91,124 (enable-command).",
+  "typed_name_or_id": "yes: command set (destroy-model, remove-object, all)",
+  "confidence": "high",
+  "note": "Own create/remove commands; typed identifier is the command-set name, not an id."
+ },
+ {
+  "name": "secret",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/secrets/add.go:76 add-secret, remove.go:64, update.go:90, show.go:70, list.go:71, grantrevoke.go:64/154; hook tools secret-add.go:78, secret-get/set/remove/grant/revoke/ids/info-get; facade apiserver/facades/client/secrets",
+  "creates_removes": "INSERT INTO secret domain/secret/state/state.go:443 (also unitstate/state/commithook.go:173 via hook secret-add); DELETE domain/removal/state/model/secret.go:304-309,498-504 (remove-secret).",
+  "typed_name_or_id": "yes: secret URI (secret:xxx) and optional label",
+  "confidence": "high",
+  "note": "Owned by app/unit/model; has own commands and id."
+ },
+ {
+  "name": "model-defaults",
+  "label": "of",
+  "parent": "cloud",
+  "addressed_by": "cmd/juju/model/defaults.go:289 model-defaults [cloud/region] key=value; facade apiserver/facades/client/modelmanager/modelmanager.go:1217 ModelDefaultsForClouds, :1262 SetModelDefaults, :1309 UnsetModelDefaults",
+  "creates_removes": "INSERT INTO cloud_defaults domain/modeldefaults/state/state.go:477 (and region :595); DELETE :456/:668 on set/unset; keyed by cloud_uuid / region_uuid (schema 0005-cloud.sql:67,111).",
+  "typed_name_or_id": "no own name: cloud/region and config key typed",
+  "confidence": "medium",
+  "note": "Settings attached to a cloud or cloud region, set/unset via the single model-defaults command; no id. Could be argued as own (own command) but there is no named object."
+ },
+ {
+  "name": "object-store",
+  "label": "process",
+  "parent": null,
+  "addressed_by": "none found as juju command or client facade; control socket POST/DELETE /s3-config internal/worker/controlsocket/worker.go:337-340; metadata used internally (apiserver/facades/client/modelmanager/modelmanager.go, bundle.go)",
+  "creates_removes": "INSERT INTO object_store_metadata domain/objectstore/state/state.go:308 when blobs (charms, agent binaries) are stored; backend INSERT :1032 (set s3 config), DELETE :458-484; drain info INSERT :606.",
+  "typed_name_or_id": "no",
+  "confidence": "medium",
+  "note": "Storage backend machinery and blob bookkeeping; users only configure S3 via the control socket."
+ },
+ {
+  "name": "image-metadata",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/plugins/juju-metadata/addimage.go:69 add-image, deleteimage.go:53 delete-image, listimages.go:69 images; facade apiserver/facades/client/imagemetadatamanager/metadata.go:41 List, :71 Save, :95 Delete",
+  "creates_removes": "INSERT INTO cloud_image_metadata domain/cloudimagemetadata/state/state.go:177; DELETE state.go:338 (delete-image).",
+  "typed_name_or_id": "yes: image id",
+  "confidence": "high",
+  "note": "Own add/delete commands in the juju-metadata plugin."
+ },
+ {
+  "name": "cloud",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/cloud/add.go:193 add-cloud, remove.go:81 remove-cloud, updatecloud.go:113, show.go:111, list.go:106 clouds, regions.go:80, defaultregion.go:62; facade apiserver/facades/client/cloud/cloud.go:712 AddCloud, :844 RemoveClouds",
+  "creates_removes": "INSERT INTO cloud domain/cloud/state/state.go:417 (CreateCloud); DELETE domain/cloud/state/state.go:705 (DeleteCloud) with regions, CA certs, credentials.",
+  "typed_name_or_id": "yes: cloud name",
+  "confidence": "high",
+  "note": "Regions, auth types, CA certs are parts of it."
+ },
+ {
+  "name": "ssh-key",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/sshkeys/add_sshkeys.go:59 add-ssh-key, import_sshkeys.go:63 import-ssh-key, list_sshkeys.go:58 ssh-keys, remove_sshkeys.go:49 remove-ssh-key; facade apiserver/facades/client/keymanager/keymanager.go:69,163,271,387",
+  "creates_removes": "INSERT INTO model_authorized_keys domain/keymanager/state/state.go:214,310 and user_public_ssh_key :121; DELETE state.go:634,648 (remove-ssh-key).",
+  "typed_name_or_id": "yes: key fingerprint/comment (<ssh key id>)",
+  "confidence": "high",
+  "note": "Own add/remove commands and an identifier."
+ },
+ {
+  "name": "secret-backend",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/secretbackends/add.go:88 add-secret-backend, remove.go:66, update.go:87, show.go:63, list.go:70, modelsecretbackend.go:68; facade apiserver/facades/client/secretbackends",
+  "creates_removes": "INSERT INTO secret_backend domain/secretbackend/state/upserts.go:18; DELETE FROM secret_backend domain/secretbackend/state/state.go:329.",
+  "typed_name_or_id": "yes: backend name",
+  "confidence": "high",
+  "note": "model_secret_backend is the per-model selection (model-secret-backend)."
+ },
+ {
+  "name": "annotation",
+  "label": "across",
+  "parent": null,
+  "addressed_by": "facade apiserver/facades/client/annotations/annotations.go:57 Get, :80 Set (api/client/annotations/client.go); only used by cmd/juju/application/deploy.go:97-102 and deployer/bundlehandler.go:533 (bundle annotations); no standalone command",
+  "creates_removes": "Per-entity tables via SetAnnotations domain/annotation/state/state.go:191 (INSERT annotation_model :293, annotation_charm :369, DELETE :302/:360); removed with owner (domain/removal/state/model/unit.go:781, application.go:735).",
+  "typed_name_or_id": "no (entity tag)",
+  "confidence": "high",
+  "note": "One key/value vocabulary attached to application, charm, machine, model, unit, storage instance/volume/filesystem."
+ },
+ {
+  "name": "cloud-instance",
+  "label": "of",
+  "parent": "machine",
+  "addressed_by": "none own; machine status/show-machine show instance-id; set by provisioner facade (apiserver/facades/agent/provisioner); retry-provisioning cmd/juju/model/retryprovisioning.go",
+  "creates_removes": "INSERT INTO machine_cloud_instance domain/machine/state/placement.go:371 and status :461; instance_tag machine_cloud_instance.go:211; DELETE of tags/status in domain/removal/state/model/machine.go:748-750.",
+  "typed_name_or_id": "no (instance id shown, not typed)",
+  "confidence": "high",
+  "note": "Provider instance record of one machine."
+ },
+ {
+  "name": "model",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/controller/addmodel.go:113 add-model, cmd/juju/model/destroy.go destroy-model, show.go, config.go, grantrevoke.go, migrate cmd/juju/commands/migrate.go:93; facade apiserver/facades/client/modelmanager/modelmanager.go:174 CreateModel, :885 DestroyModels, :822 ListModels",
+  "creates_removes": "INSERT INTO model domain/model/state/controller/state.go:875 (and model DB row model/state/model/state.go:1309); removal UPDATE/DELETE domain/removal/state/controller/model.go:73-251.",
+  "typed_name_or_id": "yes: model name",
+  "confidence": "high",
+  "note": "model_config/model_constraint/model_agent/model_life/namespace are parts of it."
+ },
+ {
+  "name": "database",
+  "label": "process",
+  "parent": null,
+  "addressed_by": "none found; model dump-db cmd/juju/model/dumpdb.go and modelmanager.go:566 DumpModelsDB are debugging only",
+  "creates_removes": "change_log rows INSERTed by triggers (domain/schema/modeltriggers.go:175 etc.); sequence INSERT domain/sequence/state/sequence.go:29, DELETE domain/application/state/application.go:3765; namespace_list INSERT domain/model/state/controller/state.go:1741.",
+  "typed_name_or_id": "no",
+  "confidence": "high",
+  "note": "Dqlite bookkeeping (change streams, sequences, db namespaces); apiserver/facades/client/modelconfig/modelconfig.go:374 Sequences is a stub."
+ },
+ {
+  "name": "external-controller",
+  "label": "of",
+  "parent": "offer",
+  "addressed_by": "none own; only as side effect of cmd/juju/application/consume (apiserver/facades/client/application/application.go:1663 saveExternalController) and cross-model relation workers",
+  "creates_removes": "INSERT INTO external_controller domain/externalcontroller/state/state.go:180 via UpdateExternalController (callers application.go:1663, apiserver/common/controllerconfig.go:154, internal/worker/apiremoterelationcaller/manifold.go:379); no DELETE of controller row found (addresses only :196).",
+  "typed_name_or_id": "no (controller UUID/alias come from the consumed offer)",
+  "confidence": "medium",
+  "note": "Record about the remote controller hosting a consumed offer/SAAS application. Written by consume or migration redirect, never by a dedicated command."
+ },
+ {
+  "name": "model-migration",
+  "label": "process",
+  "parent": null,
+  "addressed_by": "cmd/juju/commands/migrate.go:93 migrate; facade apiserver/facades/client/controller/controller.go:625 InitiateMigration",
+  "creates_removes": "INSERT INTO model_migration_export domain/modelmigration/state/controller/state.go:259 (started by migrate), phase rows :271/:628; import rows INSERT domain/modelmigration/state/controller/import.go:60; cleaned by finish/abort (state.go:2095-2140, abort.go:268-375).",
+  "typed_name_or_id": "no id typed (model name and target controller are args)",
+  "confidence": "high",
+  "note": "Activity driven by migrate; users observe phase through status, not look up migration records."
+ },
+ {
+  "name": "storage",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/storage/add.go:136 add-storage, remove.go:74 remove-storage, attach.go:71, detach.go:92, list.go:60 storage, show.go:64 show-storage, import.go:149, poolcreate.go:120/pooldelete.go:61/poollist.go:92/poolupdate.go:86; hook tools storage-add.go:42, storage-get.go:62, storage-list.go:42; facade apiserver/facades/client/storage",
+  "creates_removes": "INSERT INTO storage_instance domain/storage/state/storage.go:162 / domain/application/state/unitstate.go:1071 (deploy, add-storage); DELETE domain/removal/state/model/storage.go:767 (remove-storage); pools INSERT domain/storage/state/storagepool.go:127, DELETE :301.",
+  "typed_name_or_id": "yes: storage id (data/0) and pool name",
+  "confidence": "high",
+  "note": "Volumes, filesystems, attachments and directives are parts of storage instances; pools are their own named things in the same bundle."
+ },
+ {
+  "name": "status",
+  "label": "across",
+  "parent": null,
+  "addressed_by": "cmd/juju/status/status.go:131 status; history.go:108 show-status-log; hook tools jujuc/status-set.go:122, status-get.go:50 (also application-version-set); no tables listed for this item",
+  "creates_removes": "No own tables; per-thing status tables written by domain/status/state/model/modelstate.go:311 (application_status), :1473 (unit_agent_status), :2402 (machine_status), removed with their owners (e.g. domain/removal/state/model/unit.go:955-956).",
+  "typed_name_or_id": "no",
+  "confidence": "medium",
+  "note": "Item has an empty table list, so classification partly rests on name plus the commands; they show status of applications, units, machines, storage, relations."
+ },
+ {
+  "name": "credential",
+  "label": "own",
+  "parent": null,
+  "addressed_by": "cmd/juju/cloud/addcredential.go:137 add-credential, removecredential.go:97 remove-credential, updatecredential.go:125, listcredentials.go:165 credentials, showcredential.go:82, detectcredentials.go:119 autoload-credentials, defaultcredential.go:62, model/setcredential.go (set model credential); facade apiserver/facades/client/cloud/cloud.go:432 AddCredentials, :597 RevokeCredentialsCheckModels",
+  "creates_removes": "INSERT INTO cloud_credential domain/credential/state/state.go:244 (UpsertCloudCredential :171); DELETE via RemoveCloudCredential domain/credential/state/state.go:814 (attributes DELETE :282); also removed with cloud (cloud/state/state.go:686-697).",
+  "typed_name_or_id": "yes: credential name per cloud",
+  "confidence": "high",
+  "note": "Own add/remove commands and a typed name."
+ }
+]

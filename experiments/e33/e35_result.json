@@ -1,0 +1,523 @@
+{
+ "pages": {
+  "application": {
+   "a": true,
+   "a_hook": true,
+   "b": true,
+   "c": [
+    "offer",
+    "relation",
+    "resource",
+    "secret",
+    "storage",
+    "unit"
+   ],
+   "d": true,
+   "d_life": true,
+   "lead": "application",
+   "character": true
+  },
+  "unit": {
+   "a": true,
+   "a_hook": true,
+   "b": true,
+   "c": [
+    "action",
+    "annotation",
+    "port",
+    "relation",
+    "resource",
+    "secret",
+    "ssh",
+    "storage"
+   ],
+   "d": true,
+   "d_life": true,
+   "lead": "unit",
+   "character": true
+  },
+  "machine": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [
+    "action",
+    "ssh",
+    "storage"
+   ],
+   "d": true,
+   "d_life": true,
+   "lead": "machine",
+   "character": true
+  },
+  "relation": {
+   "a": true,
+   "a_hook": true,
+   "b": true,
+   "c": [
+    "offer"
+   ],
+   "d": true,
+   "d_life": true,
+   "lead": "relation",
+   "character": true
+  },
+  "storage": {
+   "a": true,
+   "a_hook": true,
+   "b": true,
+   "c": [],
+   "d": true,
+   "d_life": true,
+   "lead": "storage_pool",
+   "character": false
+  },
+  "model": {
+   "a": true,
+   "a_hook": true,
+   "b": true,
+   "c": [
+    "model-migration",
+    "secret-backend",
+    "ssh-key",
+    "user"
+   ],
+   "d": true,
+   "d_life": true,
+   "lead": "model",
+   "character": true
+  },
+  "model-migration": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "model_migration_export",
+   "character": false
+  },
+  "secret": {
+   "a": true,
+   "a_hook": true,
+   "b": true,
+   "c": [],
+   "d": true,
+   "d_life": false,
+   "lead": "secret",
+   "character": false
+  },
+  "secret-backend": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": true,
+   "d_life": false,
+   "lead": "secret_backend",
+   "character": false
+  },
+  "charm": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [
+    "action",
+    "annotation",
+    "application",
+    "port",
+    "resource",
+    "storage",
+    "unit"
+   ],
+   "d": false,
+   "d_life": false,
+   "lead": "charm",
+   "character": true
+  },
+  "resource": {
+   "a": true,
+   "a_hook": true,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "resource",
+   "character": false
+  },
+  "action": {
+   "a": true,
+   "a_hook": true,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "operation_task",
+   "character": false
+  },
+  "offer": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": true,
+   "d_life": true,
+   "lead": "offer",
+   "character": false
+  },
+  "cloud": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [
+    "credential",
+    "model",
+    "model-defaults"
+   ],
+   "d": true,
+   "d_life": false,
+   "lead": "cloud",
+   "character": true
+  },
+  "credential": {
+   "a": true,
+   "a_hook": true,
+   "b": true,
+   "c": [
+    "model"
+   ],
+   "d": true,
+   "d_life": false,
+   "lead": "cloud_credential",
+   "character": true
+  },
+  "model-defaults": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": true,
+   "d_life": false,
+   "lead": "cloud_defaults",
+   "character": false
+  },
+  "image-metadata": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "cloud_image_metadata",
+   "character": false
+  },
+  "controller": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [
+    "upgrade"
+   ],
+   "d": true,
+   "d_life": true,
+   "lead": "controller",
+   "character": true
+  },
+  "upgrade": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "upgrade_info",
+   "character": false
+  },
+  "user": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [
+    "credential",
+    "permission",
+    "ssh-key"
+   ],
+   "d": true,
+   "d_life": false,
+   "lead": "user",
+   "character": true
+  },
+  "permission": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "permission",
+   "character": false
+  },
+  "ssh-key": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": true,
+   "d_life": false,
+   "lead": "user_public_ssh_key",
+   "character": false
+  },
+  "ssh": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": true,
+   "d_life": false,
+   "lead": "machine_ssh_host_key",
+   "character": false
+  },
+  "object-store": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [
+    "action",
+    "agent-version",
+    "charm",
+    "resource"
+   ],
+   "d": true,
+   "d_life": true,
+   "lead": "object_store_metadata",
+   "character": false
+  },
+  "agent-version": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "agent_version",
+   "character": false
+  },
+  "space": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [
+    "application",
+    "constraint",
+    "subnet"
+   ],
+   "d": true,
+   "d_life": false,
+   "lead": "space",
+   "character": true
+  },
+  "subnet": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [
+    "link-layer-device",
+    "zone"
+   ],
+   "d": false,
+   "d_life": false,
+   "lead": "subnet",
+   "character": true
+  },
+  "zone": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [
+    "machine"
+   ],
+   "d": false,
+   "d_life": false,
+   "lead": "availability_zone",
+   "character": false
+  },
+  "link-layer-device": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [
+    "application",
+    "machine",
+    "storage",
+    "unit"
+   ],
+   "d": false,
+   "d_life": false,
+   "lead": "link_layer_device",
+   "character": false
+  },
+  "external-controller": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [
+    "model-migration"
+   ],
+   "d": false,
+   "d_life": false,
+   "lead": "external_controller",
+   "character": false
+  },
+  "constraint": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [
+    "application",
+    "machine",
+    "model"
+   ],
+   "d": false,
+   "d_life": false,
+   "lead": "constraint",
+   "character": true
+  },
+  "annotation": {
+   "a": true,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "annotation_unit",
+   "character": false
+  },
+  "status": null,
+  "block-command": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "block_command",
+   "character": false
+  },
+  "removal": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "removal",
+   "character": false
+  },
+  "lease": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "lease",
+   "character": false
+  },
+  "port": {
+   "a": false,
+   "a_hook": true,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "port_range",
+   "character": false
+  },
+  "telemetry": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "logging_loki_config",
+   "character": false
+  },
+  "database": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "sequence",
+   "character": false
+  }
+ },
+ "controls": {
+  "cloud-instance": {
+   "a": false,
+   "a_hook": false,
+   "b": false,
+   "c": [],
+   "d": true,
+   "d_life": true,
+   "lead": "machine_cloud_instance",
+   "character": false
+  },
+  "unit-state": {
+   "a": false,
+   "a_hook": false,
+   "b": false,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "unit_state",
+   "character": false
+  },
+  "relation-unit": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "relation_unit",
+   "character": false
+  },
+  "application-endpoint": {
+   "a": false,
+   "a_hook": false,
+   "b": true,
+   "c": [
+    "application",
+    "offer",
+    "relation"
+   ],
+   "d": false,
+   "d_life": false,
+   "lead": "application_endpoint",
+   "character": false
+  },
+  "application-scale": {
+   "a": false,
+   "a_hook": false,
+   "b": false,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "application_scale",
+   "character": false
+  },
+  "machine-placement": {
+   "a": false,
+   "a_hook": false,
+   "b": false,
+   "c": [],
+   "d": false,
+   "d_life": false,
+   "lead": "machine_placement",
+   "character": false
+  }
+ }
+}

@@ -1,0 +1,1568 @@
+[
+ {
+  "id": "A-Q01",
+  "type": "lookup",
+  "question": "When I run `juju remove-machine 5 --force` without `--no-wait`, how long does Juju give the normal removal steps to finish before it forces the removal?",
+  "ground_truth": "One minute by default. With `--no-wait` the client sends a wait of zero seconds.",
+  "key_facts": [
+   "The default maximum wait for a forced machine removal is 1 minute when no value is supplied.",
+   "`--no-wait` makes the client send a zero-second wait, so the forced cleanup is not delayed."
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/common/destroy.go",
+    "line": 14,
+    "quote": "return 1 * time.Minute"
+   },
+   {
+    "file": "cmd/juju/machine/remove.go",
+    "line": 155,
+    "quote": "zeroSec := 0 * time.Second"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 447,
+    "quote": "common.MaxWait(args.MaxWait)"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q01",
+  "page": "machine",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI flags --force, --no-wait; API max-wait"
+ },
+ {
+  "id": "A-Q02",
+  "type": "lookup",
+  "question": "What are the possible values of a machine's own status (as opposed to the status of its cloud instance)?",
+  "ground_truth": "The machine status values are error, started, pending, stopped and down.",
+  "key_facts": [
+   "Machine status values: error (0), started (1), pending (2), stopped (3), down (4).",
+   "The status of the cloud instance is a separate set of values (unknown, pending, allocating, running, provisioning error)."
+  ],
+  "evidence": [
+   {
+    "file": "domain/schema/model/sql/0018-machine.sql",
+    "line": 209,
+    "quote": "(0, 'error'),"
+   },
+   {
+    "file": "domain/schema/model/sql/0018-machine.sql",
+    "line": 213,
+    "quote": "(4, 'down');"
+   },
+   {
+    "file": "domain/schema/model/sql/0017-machine-cloud-instance.sql",
+    "line": 73,
+    "quote": "(4, 'provisioning error');"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q02",
+  "page": "machine",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "juju status machine status values"
+ },
+ {
+  "id": "A-Q03",
+  "type": "lookup",
+  "question": "When a machine is told to reboot, how long does the machine agent wait for the containers on it to stop, and how long after that does the actual shutdown command run?",
+  "ground_truth": "The agent waits up to 10 minutes for running containers to stop (after that it returns the error 'Timeout reached waiting for containers to shutdown' and does not go on). Once containers are gone and unit agents stopped, it schedules `shutdown -r now` (or `-h now` for a shutdown action) to run after a 15 second sleep.",
+  "key_facts": [
+   "Container wait timeout is 10 minutes.",
+   "The reboot/shutdown is scheduled with a 15 second delay (script `sleep 15`).",
+   "Reboot uses `shutdown -r now`; shutdown action uses `shutdown -h now`."
+  ],
+  "evidence": [
+   {
+    "file": "cmd/jujuagentd/reboot/reboot.go",
+    "line": 28,
+    "quote": "var timeout = 10 * time.Minute"
+   },
+   {
+    "file": "cmd/jujuagentd/reboot/reboot.go",
+    "line": 29,
+    "quote": "var rebootAfter = 15"
+   },
+   {
+    "file": "cmd/jujuagentd/reboot/rebootshim.go",
+    "line": 82,
+    "quote": "args = append(args, \"-r\")"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q03",
+  "page": "machine",
+  "verifier": "true",
+  "exposure": "internal",
+  "exposure_reason": "agent-side timeout and sleep; only a log line shows it"
+ },
+ {
+  "id": "A-Q04",
+  "type": "lookup",
+  "question": "Does Juju support containers nested inside containers, i.e. a machine called 0/lxd/0/lxd/1?",
+  "ground_truth": "No. A machine name is only valid with at most two '/' separators (e.g. 0/lxd/0); a name with more fails validation with 'machine name ... has too many containers' (NotValid). The reboot logic likewise treats a grandparent machine as unsupported ('grandparent machine are not supported currently').",
+  "key_facts": [
+   "Machine name validation rejects names with more than two '/' characters.",
+   "The error text is 'machine name %q has too many containers'.",
+   "A machine with a grandparent is reported as GrandParentNotSupported when working out reboot actions."
+  ],
+  "evidence": [
+   {
+    "file": "core/machine/machine.go",
+    "line": 49,
+    "quote": "strings.Count(n.String(), \"/\") > 2"
+   },
+   {
+    "file": "core/machine/machine.go",
+    "line": 50,
+    "quote": "has too many containers"
+   },
+   {
+    "file": "domain/machine/errors/errors.go",
+    "line": 37,
+    "quote": "ConstError(\"grandparent machine are not supported currently\")"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q04",
+  "page": "machine",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "API error string for a machine name (add-machine placement)"
+ },
+ {
+  "id": "A-Q06",
+  "type": "mechanism",
+  "question": "I run `juju reprovision-machine 3` on a machine that hosts units of an application. What happens to those units - do they keep their names and agents?",
+  "ground_truth": "No. Each unit on the machine is retired (life set to dead, its password hash cleared) with a non-forced removal job scheduled for it, and a replacement unit is created on the same machine with a new ordinal taken from the application's unit sequence. The replacement starts with agent status allocating and workload status waiting with message 'waiting for machine'; some records (annotations, port ranges, resources, storage directives, etc.) are moved to the new unit.",
+  "key_facts": [
+   "Replacement units get new ordinals from the application's unit sequence, so names change.",
+   "Old units are set dead with password hash cleared and a non-forced removal job is inserted for them.",
+   "Replacement units start with agent status allocating and workload status waiting, message 'waiting for machine'."
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 419,
+    "quote": "domainapplication.ApplicationSequenceNamespace, unit.ApplicationName,"
+   },
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 295,
+    "quote": "SET    life_id = $reprovisionUnitReplacement.dead_life_id,"
+   },
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 345,
+    "quote": "INSERT INTO removal (uuid, removal_type_id, entity_uuid, force, scheduled_for)"
+   },
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 453,
+    "quote": "corestatus.MessageWaitForMachine"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q06",
+  "page": "machine",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI reprovision-machine; replaced units show in juju status"
+ },
+ {
+  "id": "A-Q08",
+  "type": "mechanism",
+  "question": "A hook on host machine 0 calls `juju-reboot`. What do the LXD containers on that host (e.g. 0/lxd/0) do, and when is the reboot flag cleared?",
+  "ground_truth": "A machine whose parent has the reboot flag set is told to shut down (not reboot): the parent flag is checked first, and if set the answer is shutdown even if the container itself is also flagged. A machine flagged on its own (no flagged parent) is told to reboot; otherwise nothing. The reboot worker takes the machine lock and clears the flag itself right before returning the reboot/shutdown error, rather than leaving it to the agent restart code.",
+  "key_facts": [
+   "Parent machine flagged -> child gets action 'shutdown' (checked first, early exit).",
+   "Only the machine itself flagged -> 'reboot'; neither -> 'noop'.",
+   "The reboot worker clears the reboot flag before the agent reboots, to avoid a reboot loop."
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 180,
+    "quote": "early exit, no need to check current machine reboot"
+   },
+   {
+    "file": "domain/machine/state/reboot.go",
+    "line": 198,
+    "quote": "return machine.ShouldShutdown, nil"
+   },
+   {
+    "file": "internal/worker/reboot/reboot.go",
+    "line": 93,
+    "quote": "r.client.ClearReboot(ctx)"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q08",
+  "page": "machine",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "hook tool juju-reboot; containers shut down"
+ },
+ {
+  "id": "A-Q09",
+  "type": "mechanism",
+  "question": "After `juju reprovision-machine` succeeds, how does the provisioning side find out about the machine, and when is the 'reprovision requested' marker removed again?",
+  "ground_truth": "The reprovision transaction inserts a row in the machine_reprovision table (keyed by machine name). Changes to that table (create or update) are part of the model-machines watchers, for non-container machines, so the provisioner/instance poller wake up. The marker is deleted when a new instance ID is recorded for the machine (SetInstanceInfo / SetMachineCloudInstance with a valid instance id), and also when the machine is finally removed.",
+  "key_facts": [
+   "A row is inserted into machine_reprovision as the 'wake-up' record in the same transaction.",
+   "WatchModelMachines (used by provisioner/firewaller) filters machine_reprovision for Changed (create|update) with a non-container predicate; WatchModelMachineLifeAndStartTimes (used by instancepoller) also includes machine_reprovision Changed but without the container filter.",
+   "The marker is cleared when the machine gets a new instance ID, and on machine deletion."
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/state/reprovision.go",
+    "line": 257,
+    "quote": "recording reprovision wake-up"
+   },
+   {
+    "file": "domain/machine/service/watcher.go",
+    "line": 251,
+    "quote": "s.st.NamespaceForWatchMachineReprovision(),"
+   },
+   {
+    "file": "domain/machine/state/machine_cloud_instance.go",
+    "line": 316,
+    "quote": "clearReprovisionStmt"
+   },
+   {
+    "file": "domain/removal/state/model/machine.go",
+    "line": 742,
+    "quote": "DELETE FROM machine_reprovision"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q09",
+  "page": "machine",
+  "verifier": "true",
+  "exposure": "internal",
+  "exposure_reason": "table and watcher namespace that wake the provisioner"
+ },
+ {
+  "id": "A-Q10",
+  "type": "mechanism",
+  "question": "Who is allowed to run `juju reprovision-machine`, and which model conditions make the controller refuse it before touching the machine?",
+  "ground_truth": "The caller needs write access on the model, and the model must not have the 'change' operation block enabled (disable-command). It is also refused with an error while a model migration is in progress ('model migration is in progress; cannot reprovision machine ...') or while a controller upgrade is in progress ('controller upgrade is in progress; cannot reprovision machine ...').",
+  "key_facts": [
+   "Write permission on the model is required (CanWrite checks WriteAccess).",
+   "A 'change' block (ChangeAllowed) prevents the operation.",
+   "Refused if the model is migrating or the controller is upgrading, with those messages."
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 395,
+    "quote": "mm.authorizer.CanWrite(ctx)"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 584,
+    "quote": "permission.WriteAccess"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 399,
+    "quote": "mm.check.ChangeAllowed(ctx)"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 416,
+    "quote": "model migration is in progress; cannot reprovision machine"
+   },
+   {
+    "file": "apiserver/facades/client/machinemanager/machinemanager.go",
+    "line": 428,
+    "quote": "controller upgrade is in progress; cannot reprovision machine"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q10",
+  "page": "machine",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "API permission and refusal messages of reprovision-machine"
+ },
+ {
+  "id": "A-Q11",
+  "type": "failure",
+  "question": "`juju reprovision-machine 3` fails with `machine \"3\" instance \"i-0abc\": machine provider instance is running`. What does it mean and what should I do?",
+  "ground_truth": "The cloud provider still reports the machine's instance as running, so Juju refuses to detach it and reprovision (reprovisioning is only for an instance that the provider says is missing or not running). Check/stop the instance or confirm it is really lost, then retry. (Before this check, the request is also refused with 'machine agent is still present' if the machine agent is connected.)",
+  "key_facts": [
+   "Error is machine provider instance is running.",
+   "Cause: provider Instances() status for the instance is Running.",
+   "Reprovisioning proceeds only if the provider reports the instance missing or not running, and the agent is not present."
+  ],
+  "evidence": [
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 106,
+    "quote": "providerStatus.Status == corestatus.Running"
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 107,
+    "quote": "machineerrors.MachineProviderInstanceRunning"
+   },
+   {
+    "file": "domain/machine/errors/errors.go",
+    "line": 85,
+    "quote": "ConstError(\"machine provider instance is running\")"
+   },
+   {
+    "file": "domain/machine/service/provider.go",
+    "line": 85,
+    "quote": "machineerrors.MachineAgentPresent"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q11",
+  "page": "machine",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "client-visible error string"
+ },
+ {
+  "id": "A-Q12",
+  "type": "failure",
+  "question": "I ran `juju remove-machine 7 --no-wait` and got `--no-wait without --force not valid`. Why, and how do I fix it?",
+  "ground_truth": "`--no-wait` only makes sense together with `--force` (it skips the waiting between forced removal steps). Either add `--force` or drop `--no-wait`.",
+  "key_facts": [
+   "The command rejects --no-wait unless --force is also given.",
+   "Error text: '--no-wait without --force not valid'.",
+   "Fix: add --force or remove --no-wait."
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/machine/remove.go",
+    "line": 109,
+    "quote": "if !c.Force && c.NoWait {"
+   },
+   {
+    "file": "cmd/juju/machine/remove.go",
+    "line": 110,
+    "quote": "errors.NotValidf(\"--no-wait without --force\")"
+   },
+   {
+    "file": "cmd/juju/machine/remove_test.go",
+    "line": 158,
+    "quote": "`--no-wait without --force not valid`"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q12",
+  "page": "machine",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI error string"
+ },
+ {
+  "id": "A-Q14",
+  "type": "unanswerable",
+  "question": "What is the maximum number of machines a single model can hold before add-machine is refused?",
+  "ground_truth": "The documentation does not say; the code defines no limit on the number of machines in a model.",
+  "key_facts": [
+   "No machine-count limit setting or check exists."
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE 'max-machines|MaxMachines|max_machines|maxMachines' (no hits)",
+   "grep -rniE 'machine quota|MachineQuota|machines?.?(limit|quota|cap)' (no hits)",
+   "grep -rniE 'TooManyMachines|machine limit reached' (no hits)",
+   "grep -rniE 'model.?(machine|instance).?(limit|cap|quota)' (no hits)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q14",
+  "page": "machine",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "subject: add-machine"
+ },
+ {
+  "id": "A-Q15",
+  "type": "unanswerable",
+  "question": "Can I record a reason or comment with a machine reboot request, and how long is that reboot history kept?",
+  "ground_truth": "The documentation does not say; a reboot request is only a flag row (machine_requires_reboot) with a created_at time. There is no reason/comment field or reboot history in the code.",
+  "key_facts": [
+   "The reboot flag table stores only machine uuid and created_at.",
+   "No reboot reason, comment or history concept exists."
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE 'reboot_reason|RebootReason|reboot-reason' (no hits)",
+   "grep -rniE 'RebootHistory|reboot_history|reboot.?(log|history)' (no hits besides unrelated uniter TODO)",
+   "grep -rniE 'reboot.?(comment|note|message|cause|why|annotation)' (no hits)",
+   "grep -rniE 'reboot_?(note|detail|info|context)|requires_reboot.*(reason|text)' (no hits)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q15",
+  "page": "machine",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "subject: hook tool juju-reboot"
+ },
+ {
+  "id": "A-Q01",
+  "type": "lookup",
+  "question": "How long does kill-controller wait with no change in the state of the models before it gives up on a clean shutdown and destroys them directly, and can I change that?",
+  "ground_truth": "Five minutes by default. The timer restarts whenever the controller status changes, and it can be changed with the -t/--timeout flag.",
+  "key_facts": [
+   "Default timeout is 5 minutes",
+   "The deadline is recomputed from the last status change, so it only fires after 5 minutes without change",
+   "The duration is set with -t or --timeout"
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/controller/kill.go",
+    "line": 73,
+    "quote": "f.Var(newDurationValue(time.Minute*5, &c.timeout), \"t\", \"Timeout before direct destruction\")"
+   },
+   {
+    "file": "cmd/juju/controller/kill.go",
+    "line": 335,
+    "quote": "deadline = lastChange.Add(c.timeout)"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q01",
+  "page": "controller",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI kill-controller timeout"
+ },
+ {
+  "id": "A-Q02",
+  "type": "lookup",
+  "question": "If I bootstrap a controller and put api-port in the --config options to move the API to another port, what happens, and which port does the API use by default (and when does it use a different one)?",
+  "ground_truth": "Bootstrap rejects api-port as not user configurable. The API port is 17070 by default, or 443 when autocert-dns-name is configured.",
+  "key_facts": [
+   "Setting api-port at bootstrap is rejected with an error saying it is not a user configurable item",
+   "Default API port is 17070",
+   "If autocert-dns-name is set the controller's api-port is set to 443"
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/commands/bootstrap.go",
+    "line": 1524,
+    "quote": "is not a user configurable item. The API port is %d, or 443 with %q."
+   },
+   {
+    "file": "controller/config.go",
+    "line": 316,
+    "quote": "DefaultAPIPort int = 17070"
+   },
+   {
+    "file": "cmd/juju/commands/bootstrap.go",
+    "line": 1548,
+    "quote": "controllerConfig[controller.APIPort] = 443"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q02",
+  "page": "controller",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI bootstrap --config api-port"
+ },
+ {
+  "id": "A-Q03",
+  "type": "lookup",
+  "question": "What file permissions does the Juju client use when it saves its list of known controllers on my machine?",
+  "ground_truth": "The controllers file is written atomically with mode 0600 (owner read/write only).",
+  "key_facts": [
+   "File mode is 0600",
+   "The write uses an atomic write-file helper",
+   "Access to the store is guarded by a lock acquired with a 5 second timeout"
+  ],
+  "evidence": [
+   {
+    "file": "api/jujuclient/controllers.go",
+    "line": 55,
+    "quote": "return utils.AtomicWriteFile(JujuControllersPath(), data, os.FileMode(0600))"
+   },
+   {
+    "file": "api/jujuclient/file.go",
+    "line": 35,
+    "quote": "lockTimeout = 5 * time.Second"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q03",
+  "page": "controller",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "client store file on the user's machine (borderline: file, not a command)"
+ },
+ {
+  "id": "A-Q04",
+  "type": "lookup",
+  "question": "Which access level on the controller is enough for a user to list the controller nodes and their API addresses in a high availability setup?",
+  "ground_truth": "Login access on the controller; superuser is not required. A user without it gets a permission error.",
+  "key_facts": [
+   "The check requires permission.LoginAccess on the controller tag",
+   "Failure returns ErrPerm (permission denied)",
+   "The results are sorted by controller ID"
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/facades/client/highavailability/highavailability.go",
+    "line": 59,
+    "quote": "err := api.authorizer.HasPermission(ctx, permission.LoginAccess, api.controllerTag)"
+   },
+   {
+    "file": "apiserver/facades/client/highavailability/highavailability.go",
+    "line": 81,
+    "quote": "return details[i].ControllerId < details[j].ControllerId"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q04",
+  "page": "controller",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "API controller-nodes listing access level"
+ },
+ {
+  "id": "A-Q06",
+  "type": "mechanism",
+  "question": "When I unregister a controller on my client, what exactly is removed from the local store, and in what order, and does it touch the controller itself?",
+  "ground_truth": "Unregister only removes local data: every controller entry sharing the named controller's UUID is removed (clearing the current-controller setting if it matched), together with their models, accounts, bootstrap configuration and cookie jars; the controllers file itself is rewritten last to avoid dangling entries. The controller is not destroyed.",
+  "key_facts": [
+   "All store entries with the same controller UUID are removed, not just the named one",
+   "Models, accounts, bootstrap config and cookie jars of those controllers are deleted",
+   "The controller list is written last so no dangling entries remain",
+   "The remote controller is not destroyed"
+  ],
+  "evidence": [
+   {
+    "file": "api/jujuclient/file.go",
+    "line": 315,
+    "quote": "// We remove all controllers with the same UUID as the named one."
+   },
+   {
+    "file": "api/jujuclient/file.go",
+    "line": 373,
+    "quote": "// Remove the controller cookie jars."
+   },
+   {
+    "file": "api/jujuclient/file.go",
+    "line": 381,
+    "quote": "// Finally, remove the controllers. This must be done last"
+   },
+   {
+    "file": "cmd/juju/controller/unregister.go",
+    "line": 39,
+    "quote": "This command does not destroy the controller."
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q06",
+  "page": "controller",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI unregister"
+ },
+ {
+  "id": "A-Q07",
+  "type": "mechanism",
+  "question": "Once the controller has accepted a destroy request that includes all its hosted models, what does it do with its own model and with the hosted models, and what stops new models appearing meanwhile?",
+  "ground_truth": "Only a controller superuser may call it, and it must be called against the controller model. The controller removal service first sets the controller model dying (so new models cannot sneak in) and returns the hosted model UUIDs; the facade then requests removal of each hosted model in turn, stopping with a persistent-storage error code if a hosted model holds persistent storage.",
+  "key_facts": [
+   "Requires superuser access on the controller",
+   "The controller model is set dying first and the hosted model UUIDs are returned",
+   "Each hosted model is then removed individually",
+   "A hosted model with persistent storage yields CodeHasPersistentStorage only when args.DestroyStorage is nil (neither --destroy-storage nor --release-storage); the removal state returns PersistentStorage only if destroyStorage == nil. Models are removed in order and earlier ones stay scheduled."
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 31,
+    "quote": "err := c.authorizer.HasPermission(ctx, permission.SuperuserAccess, names.NewControllerTag(c.controllerUUID))"
+   },
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 98,
+    "quote": "childModelUUIDs, err := removalService.RemoveController(ctx, force, maxWait)"
+   },
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 115,
+    "quote": "return apiservererrors.ParamsErrorf(params.CodeHasPersistentStorage,"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q07",
+  "page": "controller",
+  "verifier": "partly",
+  "exposure": "exposed",
+  "exposure_reason": "API DestroyController and CLI destroy-controller"
+ },
+ {
+  "id": "A-Q08",
+  "type": "mechanism",
+  "question": "When I destroy a controller with --release-storage, is the controller model's own storage released too, and at what point does the controller model itself get removed relative to the hosted models?",
+  "ground_truth": "The controller model removal job keeps failing as incomplete while any other model remains in the controller. Only when all hosted models are gone is the controller model removed, and at that point storage is always destroyed (never released) for the controller model, regardless of the user's --destroy-storage/--release-storage choice.",
+  "key_facts": [
+   "The controller model removal job waits until no other models remain",
+   "While waiting it returns RemovalJobIncomplete",
+   "Controller model removal always sets destroyStorage to true",
+   "The user's storage flag does not apply to the controller model"
+  ],
+  "evidence": [
+   {
+    "file": "domain/removal/service/controller.go",
+    "line": 197,
+    "quote": "waiting for hosted models to be removed"
+   },
+   {
+    "file": "domain/removal/service/controller.go",
+    "line": 213,
+    "quote": "destroyStorage := true"
+   },
+   {
+    "file": "domain/removal/service/controller.go",
+    "line": 212,
+    "quote": "so there is no user intent to override."
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q08",
+  "page": "controller",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI --release-storage"
+ },
+ {
+  "id": "A-Q09",
+  "type": "mechanism",
+  "question": "When a controller unit is removed from an HA controller application, what happens to that node's credentials, published addresses and database node record, and when in the unit removal does this happen?",
+  "ground_truth": "Only for the controller application in the controller model. After the unit has left its relation scopes and leadership is revoked, the controller node is marked dying, its API/client/agent/peer addresses, agent version, password, nonce and upgrade info are deleted, and the controller_node row is kept as a dead tombstone with its dqlite node id and bind address cleared, so late workers cannot recreate it.",
+  "key_facts": [
+   "Runs only for the 'controller' application in the controller model",
+   "Happens after the unit has departed its relation scopes so departure hooks can still authenticate",
+   "Address, agent-version, password, nonce and upgrade-info rows are deleted",
+   "The node row stays with life dead and dqlite_node_id/dqlite_bind_address set to NULL"
+  ],
+  "evidence": [
+   {
+    "file": "domain/removal/service/unit.go",
+    "line": 292,
+    "quote": "// A controller unit must remain authenticated until it has departed its"
+   },
+   {
+    "file": "domain/removal/state/controller/controller_node.go",
+    "line": 16,
+    "quote": "as a tombstone so delayed controller workers cannot recreate it."
+   },
+   {
+    "file": "domain/removal/state/controller/controller_node.go",
+    "line": 92,
+    "quote": "    dqlite_node_id = NULL,"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q09",
+  "page": "controller",
+  "verifier": "true",
+  "exposure": "internal",
+  "exposure_reason": "effect on the controller node's credentials and records; no interface returns them"
+ },
+ {
+  "id": "A-Q12",
+  "type": "failure",
+  "question": "juju destroy-controller fails with 'cannot destroy controller \"X\"' and 'The controller has live models'. Why, and what should I run?",
+  "ground_truth": "The controller still has hosted models in the Alive state and --destroy-all-models was not given. Re-run destroy-controller with --destroy-all-models (the message lists the live models).",
+  "key_facts": [
+   "Error text: 'The controller has live models. If you want to destroy all models in the controller, run this command again with the --destroy-all-models option.'",
+   "Cause: at least one hosted model is Alive and the flag was not passed",
+   "Fix: pass --destroy-all-models"
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 437,
+    "quote": "The controller has live models. If you want"
+   },
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 439,
+    "quote": "run this command again with the --destroy-all-models"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q12",
+  "page": "controller",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI error string"
+ },
+ {
+  "id": "A-Q13",
+  "type": "failure",
+  "question": "Destroying a controller fails with 'invalid cloud credential, use --force'. What causes this and how do I get past it?",
+  "ground_truth": "Unless forcing, the server checks that the controller model's cloud credential is valid; if it is not, destroy is refused with that message. Passing --force skips the credential check.",
+  "key_facts": [
+   "Error text: 'invalid cloud credential, use --force'",
+   "Raised when force is not set and the controller model's cloud credential is marked invalid (cloud_credential.invalid true via v_model_state); not literally 'no credential'.",
+   "--force bypasses the check"
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 171,
+    "quote": "return internalerrors.Errorf(\"invalid cloud credential, use --force\")"
+   },
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 163,
+    "quote": "notForcing := force == nil || !*force"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q13",
+  "page": "controller",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "API error string"
+ },
+ {
+  "id": "A-Q15",
+  "type": "unanswerable",
+  "question": "What is the maximum number of models a single Juju controller can host before further model creation is refused?",
+  "ground_truth": "The documentation does not say; the code defines no such per-controller model limit.",
+  "key_facts": [
+   "No model-count limit or quota exists for a controller"
+  ],
+  "evidence": [],
+  "greps": [
+   "max.?models|MaxModels|model.?limit|ModelLimit|model.?quota|models.?per.?controller (no matches in non-test Go code)",
+   "too many models|number of models|model count.*(exceed|limit) (only dqlite-bench and recovery archive comments)",
+   "limit.*number of models (no matches)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q15",
+  "page": "controller",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "subject: add-model"
+ },
+ {
+  "id": "A-Q16",
+  "type": "unanswerable",
+  "question": "Can I rename a controller that is already registered in my Juju client, and what command does that?",
+  "ground_truth": "The documentation does not say; no controller rename command, flag or store operation exists (only register --replace, which overwrites details, and unregister).",
+  "key_facts": [
+   "No rename operation exists for controllers in the client store"
+  ],
+  "evidence": [],
+  "greps": [
+   "RenameController|rename.?controller|controller.?rename|rename-controller (no matches)",
+   "rename in api/jujuclient, cmd/juju/controller, cmd/modelcmd (only filesystem Rename helper)",
+   "controller-alias|ControllerAlias in client store (only migration/crossmodel params)",
+   "SetControllerName (only sets which controller a command targets)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q16",
+  "page": "controller",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "subject: client CLI"
+ },
+ {
+  "id": "A-Q01",
+  "type": "lookup",
+  "question": "Which access levels can be given to a user on a cloud?",
+  "ground_truth": "Only add-model and admin are valid cloud access levels.",
+  "key_facts": [
+   "add-model is a valid cloud access level",
+   "admin is a valid cloud access level",
+   "read, write, consume, login and superuser are rejected for a cloud"
+  ],
+  "evidence": [
+   {
+    "file": "core/permission/access.go",
+    "line": 193,
+    "quote": "case AddModelAccess, AdminAccess:"
+   },
+   {
+    "file": "core/permission/access.go",
+    "line": 196,
+    "quote": "\"%q cloud access %w\""
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q01",
+  "page": "access",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI grant, API access levels"
+ },
+ {
+  "id": "A-Q02",
+  "type": "lookup",
+  "question": "What access level does a user need on the controller to grant or revoke another user's controller access, and what does a caller without it get back?",
+  "ground_truth": "Superuser on the controller. Without it, every change in the request fails with the 'permission denied' error.",
+  "key_facts": [
+   "Controller superuser access is required",
+   "Each requested change gets the permission denied error (ErrPerm) when the caller lacks superuser",
+   "Plain login access is not enough"
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/facades/client/controller/controller.go",
+    "line": 723,
+    "quote": "err := c.authorizer.HasPermission(ctx, permission.SuperuserAccess, controllerTag)"
+   },
+   {
+    "file": "apiserver/facades/client/controller/controller.go",
+    "line": 731,
+    "quote": "result.Results[i].Error = apiservererrors.ServerError(apiservererrors.ErrPerm)"
+   },
+   {
+    "file": "apiserver/errors/errors.go",
+    "line": 32,
+    "quote": "errors.ConstError(\"permission denied\")"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q02",
+  "page": "access",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "API grant, error string"
+ },
+ {
+  "id": "A-Q03",
+  "type": "lookup",
+  "question": "When an application offer is created, which access does the offer's owner get, and which access is given to the generic everyone@external user?",
+  "ground_truth": "The owner gets admin on the offer and everyone@external gets read on the offer.",
+  "key_facts": [
+   "Offer owner receives admin access on the offer",
+   "everyone@external receives read access on the offer",
+   "Both permissions are inserted in the same transaction"
+  ],
+  "evidence": [
+   {
+    "file": "domain/crossmodelrelation/state/controller/offer.go",
+    "line": 45,
+    "quote": "AccessType: corepermission.AdminAccess.String(),"
+   },
+   {
+    "file": "domain/crossmodelrelation/state/controller/offer.go",
+    "line": 67,
+    "quote": "AccessType: corepermission.ReadAccess.String(),"
+   },
+   {
+    "file": "domain/crossmodelrelation/state/controller/offer.go",
+    "line": 24,
+    "quote": "// CreateOfferAccess give the offer owner AdminAccess and EveryoneUserName"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q03",
+  "page": "access",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "juju show-offer, offer access"
+ },
+ {
+  "id": "A-Q04",
+  "type": "lookup",
+  "question": "Can the same user hold two separate permission entries on one model, for example one for read and one for write?",
+  "ground_truth": "No. Only one permission per target and user is allowed (unique on target + user); a second insert fails with 'permission already exists'. Changing a level updates the existing entry.",
+  "key_facts": [
+   "The permission table has a unique index on (grant_on, grant_to)",
+   "A duplicate create returns the 'permission already exists' error",
+   "Grant of a higher level updates the existing row rather than adding one"
+  ],
+  "evidence": [
+   {
+    "file": "domain/schema/controller/sql/0017-user-permission.sql",
+    "line": 78,
+    "quote": "-- Allow only 1 combination of grant_on and grant_to"
+   },
+   {
+    "file": "domain/schema/controller/sql/0017-user-permission.sql",
+    "line": 80,
+    "quote": "CREATE UNIQUE INDEX idx_permission_type_to"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 1194,
+    "quote": "accesserrors.PermissionAlreadyExists)"
+   },
+   {
+    "file": "domain/access/errors/errors.go",
+    "line": 48,
+    "quote": "ConstError(\"permission already exists\")"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q04",
+  "page": "access",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "grant API error behaviour (a schema constraint backs it)"
+ },
+ {
+  "id": "A-Q06",
+  "type": "mechanism",
+  "question": "If I grant model access to an external user such as alice@external who has never logged in, does the grant fail because the user does not exist?",
+  "ground_truth": "No. For an external (non-local) user who is not found, the user is created first (marked external, created by everyone@external) and then the permission is granted, in the same transaction. A local user that does not exist fails with user not found.",
+  "key_facts": [
+   "Missing external subject is created automatically during the grant/revoke update",
+   "The new user record is flagged external and its creator is everyone@external",
+   "A missing local user is not created; the update returns user not found",
+   "User creation and permission change happen in one transaction"
+  ],
+  "evidence": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 197,
+    "quote": "if errors.Is(err, accesserrors.UserNotFound) && !args.Subject.IsLocal() {"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 198,
+    "quote": "subjectUUID, err = st.addExternalUser(ctx, tx, args.Subject)"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 384,
+    "quote": "user.UUID(everyoneExternal.UUID)"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q06",
+  "page": "access",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI and API grant for an external user"
+ },
+ {
+  "id": "A-Q07",
+  "type": "mechanism",
+  "question": "I revoke consume access on an offer from a user who has cross-model relations to that offer. What happens to those relations, and in what order relative to the permission change? Is anyone exempt?",
+  "ground_truth": "Their relations on the offer are suspended first (reason 'offer access revoked'), and only then is the permission lowered to read. Controller superusers and model admins are exempt (no suspension) since they keep consume via admin rights. Suspension only happens when the resulting access is below consume (revoking admin leaves consume, so no suspension).",
+  "key_facts": [
+   "Suspension of the user's relations happens before the permission downgrade",
+   "Reason recorded is 'offer access revoked'",
+   "Controller superuser or model admin users are skipped",
+   "No suspension if the revoke leaves consume or above (e.g. revoking admin)"
+  ],
+  "evidence": [
+   {
+    "file": "domain/crossmodelrelation/service/offer.go",
+    "line": 485,
+    "quote": "if args.Change == permission.Revoke {"
+   },
+   {
+    "file": "domain/crossmodelrelation/service/offer.go",
+    "line": 517,
+    "quote": "if spec.RevokeAccess().EqualOrGreaterOfferAccessThan(permission.ConsumeAccess) {"
+   },
+   {
+    "file": "domain/crossmodelrelation/service/offer.go",
+    "line": 521,
+    "quote": "isAdmin, err := s.controllerState.IsUserControllerOrModelAdmin("
+   },
+   {
+    "file": "domain/crossmodelrelation/service/offer.go",
+    "line": 539,
+    "quote": "\"offer access revoked\","
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q07",
+  "page": "access",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI revoke on an offer; relations visible in juju status"
+ },
+ {
+  "id": "A-Q08",
+  "type": "mechanism",
+  "question": "What happens to a user's permissions when that user is removed, and what stops the removal?",
+  "ground_truth": "In the same transaction all of the user's permission rows are deleted and the user is marked removed (not physically deleted). Before that, removal is refused if any model would be left without an admin user, with an error like '<N> model(s) would be left without an admin user'.",
+  "key_facts": [
+   "All permission rows granted to the user are deleted",
+   "The user row is only marked removed=true, keeping provenance",
+   "The orphaned-model check runs first and blocks removal if a model would have no other active admin"
+  ],
+  "evidence": [
+   {
+    "file": "domain/access/state/user.go",
+    "line": 543,
+    "quote": "deletePermStmt, err := st.Prepare(\"DELETE FROM permission WHERE grant_to = $userUUID.uuid\""
+   },
+   {
+    "file": "domain/access/state/user.go",
+    "line": 559,
+    "quote": "if err := st.checkPotentiallyOrhpanedModels(ctx, tx, uuid.String()); err != nil {"
+   },
+   {
+    "file": "domain/access/state/user.go",
+    "line": 494,
+    "quote": "\"%d model(s) would be left without an admin user\""
+   },
+   {
+    "file": "domain/access/state/user.go",
+    "line": 548,
+    "quote": "setRemovedStmt, err := st.Prepare(\"UPDATE user SET removed = true"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q08",
+  "page": "access",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI remove-user; permissions visible via juju users"
+ },
+ {
+  "id": "A-Q09",
+  "type": "mechanism",
+  "question": "When a model is finally deleted from the controller, what happens to the users' access entries for that model, and can this happen while the model is still alive?",
+  "ground_truth": "The permissions with the model as target are deleted in the same transaction as the model row. Deletion is refused while the model is alive ('cannot delete model ..., model is still alive') and also while dying (must be dead).",
+  "key_facts": [
+   "Model permissions are deleted in the model deletion transaction before the model row",
+   "Deletion errors if the model life is alive",
+   "A dying model must wait to be dead"
+  ],
+  "evidence": [
+   {
+    "file": "domain/removal/state/controller/model.go",
+    "line": 298,
+    "quote": "// Delete the model permissions."
+   },
+   {
+    "file": "domain/removal/state/controller/model.go",
+    "line": 282,
+    "quote": "cannot delete model %q, model is still alive"
+   },
+   {
+    "file": "domain/removal/state/controller/model.go",
+    "line": 289,
+    "quote": "waiting for model to be dead before deletion"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q09",
+  "page": "access",
+  "verifier": "true",
+  "exposure": "internal",
+  "exposure_reason": "deletion of access rows when a model is removed; no interface returns them"
+ },
+ {
+  "id": "A-Q11",
+  "type": "failure",
+  "question": "I tried to revoke admin access on a model from a user and got an error saying the model would be left without an admin user. Why does that happen?",
+  "ground_truth": "The revoke on a model checks that some other active (not disabled, not removed) user holds admin on the model. If the revoked user is the only admin, the change is refused with 'model would be left without an admin user'. Fix: grant admin to another user first.",
+  "key_facts": [
+   "Error text: model would be left without an admin user",
+   "Cause: no other enabled, non-removed user has admin on that model",
+   "The check is applied to model targets on revoke",
+   "Grant admin to someone else first"
+  ],
+  "evidence": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 946,
+    "quote": "\"model would be left without an admin user\","
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 934,
+    "quote": "AND    p.access_type_id = 3"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 958,
+    "quote": "newAccess != corepermission.AdminAccess {"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q11",
+  "page": "access",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "API error string"
+ },
+ {
+  "id": "A-Q12",
+  "type": "failure",
+  "question": "Granting a user read on a model returned: user \"bob\" already has \"read\" access or greater. What does this mean and what do I do?",
+  "ground_truth": "The grant is refused because bob already holds the requested level or a higher one on that target (levels order read < write < admin on models). Nothing to do; to change access grant a strictly higher level or revoke first.",
+  "key_facts": [
+   "Error text ends with 'access or greater' (PermissionAccessGreater)",
+   "Raised when existing access is equal or greater than the requested grant",
+   "Grant a strictly higher level to change it"
+  ],
+  "evidence": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 917,
+    "quote": "return errors.Errorf(\"user %q already has %q %w\", args.Subject, grantAccess, accesserrors.PermissionAccessGreater)"
+   },
+   {
+    "file": "domain/access/errors/errors.go",
+    "line": 60,
+    "quote": "ConstError(\"access or greater\")"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 916,
+    "quote": "if aSpec.EqualOrGreaterThan(grantAccess) {"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q12",
+  "page": "access",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "API error string"
+ },
+ {
+  "id": "A-Q14",
+  "type": "unanswerable",
+  "question": "Can I give a user write access to a model for a limited time, for example 24 hours, so that it is revoked automatically?",
+  "ground_truth": "The documentation does not say; no expiry/time-limited grant exists for permissions (a grant stays until revoked).",
+  "key_facts": [
+   "No expiry or duration field exists on permissions"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE \"(grant|permission|access)[a-z_]*(expir|ttl|until)|(expir|ttl)[a-z_]*(grant|permission)\" --include=*.go --include=*.sql .  (only offer macaroon expiry hits)",
+   "grep -rniE \"temporary (access|permission|grant)|time-bound|timebound|grant.*duration|--duration\" cmd/juju/model cmd/juju/user apiserver/facades/client domain/access  (no hits)",
+   "grep -rniE \"valid.?until|lifetime|time.?limit\" domain/access core/permission  (no hits)",
+   "grep -n expir domain/schema/controller/sql/0017-user-permission.sql (no hits)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q14",
+  "page": "access",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "subject: CLI grant"
+ },
+ {
+  "id": "A-Q15",
+  "type": "unanswerable",
+  "question": "Can I add an explicit deny entry for a user on a model that overrides access they would otherwise inherit from everyone@external?",
+  "ground_truth": "The documentation does not say; there is no deny access level or deny permission.",
+  "key_facts": [
+   "Only positive levels exist (read, write, consume, admin, login, add-model, superuser)"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE \"denyAccess|DenyAccess|deny_access\" --include=*.go --include=*.sql .  (0)",
+   "grep -rniE \"denylist|blocklist|blacklist\" --include=*.go --include=*.sql .  (unrelated hits only)",
+   "grep -rniE \"explicit.?deny|permission_deny|negative permission\" --include=*.go --include=*.sql .  (0)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q15",
+  "page": "access",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "subject: CLI grant"
+ },
+ {
+  "id": "A-Q01",
+  "type": "lookup",
+  "question": "Which option makes `juju ssh-keys` print the whole public key instead of only the fingerprint?",
+  "ground_truth": "The `--full` flag; without it the command shows only fingerprints.",
+  "key_facts": [
+   "Flag name is --full",
+   "Default is false, so by default only the fingerprint is shown"
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/sshkeys/list_sshkeys.go",
+    "line": 73,
+    "quote": "f.BoolVar(&c.showFullKey, \"full\", false, \"Show full key instead of just the fingerprint\")"
+   },
+   {
+    "file": "cmd/juju/sshkeys/list_sshkeys.go",
+    "line": 61,
+    "quote": "Aliases:  []string{\"list-ssh-keys\"},"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q01",
+  "page": "ssh-key",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI ssh-keys flag"
+ },
+ {
+  "id": "A-Q02",
+  "type": "lookup",
+  "question": "When bootstrapping, I set the `authorized-keys` option to give the controller model several extra SSH public keys in one string. What character separates the keys?",
+  "ground_truth": "A semicolon (';').",
+  "key_facts": [
+   "Multiple keys in the authorized-keys bootstrap option are delimited by ';'",
+   "A separate authorized-keys-path option reads keys from a file and appends them to those from authorized-keys"
+  ],
+  "evidence": [
+   {
+    "file": "environs/bootstrap/config.go",
+    "line": 35,
+    "quote": "authorizedKeysDelimiter = ';'"
+   },
+   {
+    "file": "environs/bootstrap/config.go",
+    "line": 374,
+    "quote": "config.AuthorizedKeys = append(config.AuthorizedKeys, keys...)"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q02",
+  "page": "ssh-key",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI bootstrap config authorized-keys"
+ },
+ {
+  "id": "A-Q03",
+  "type": "lookup",
+  "question": "Which identity sources can `juju import-ssh-key` pull keys from, and what prefixes do I give?",
+  "ground_truth": "Launchpad and GitHub, with the prefixes `lp:` and `gh:` followed by the user name.",
+  "key_facts": [
+   "Prefix lp: selects Launchpad",
+   "Prefix gh: selects GitHub",
+   "Any other prefix is rejected by the command"
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/sshkeys/import_sshkeys.go",
+    "line": 86,
+    "quote": "case \"lp:\", \"gh:\":"
+   },
+   {
+    "file": "internal/ssh/importer/importer.go",
+    "line": 68,
+    "quote": "\"gh\": &GithubResolver{client},"
+   },
+   {
+    "file": "internal/ssh/importer/importer.go",
+    "line": 69,
+    "quote": "\"lp\": &LaunchpadResolver{client},"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q03",
+  "page": "ssh-key",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI import-ssh-key prefixes"
+ },
+ {
+  "id": "A-Q04",
+  "type": "lookup",
+  "question": "If I try to add an SSH key whose comment is a particular reserved string, Juju refuses it. What is that comment?",
+  "ground_truth": "`juju-system-key`, the comment used for the controller's own system key.",
+  "key_facts": [
+   "Reserved comment is juju-system-key",
+   "Keys carrying a reserved comment are rejected both when added and when imported (ReservedCommentViolation)"
+  ],
+  "evidence": [
+   {
+    "file": "domain/controller/types.go",
+    "line": 9,
+    "quote": "ControllerSSHKeyComment = \"juju-system-key\""
+   },
+   {
+    "file": "domain/keymanager/service/service.go",
+    "line": 96,
+    "quote": "controller.ControllerSSHKeyComment,"
+   },
+   {
+    "file": "domain/keymanager/service/service.go",
+    "line": 163,
+    "quote": "if reservedPublicKeyComments.Contains(parsedKey.Comment) {"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q04",
+  "page": "ssh-key",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "API add-keys error"
+ },
+ {
+  "id": "A-Q06",
+  "type": "mechanism",
+  "question": "I add the same SSH key to two models, then run `juju remove-ssh-key` on one of them. Is the key removed from the other model too, and when does Juju delete its stored copy of the key?",
+  "ground_truth": "No. Only the association with the model on which it was removed is deleted. Juju deletes the user's stored key record only when no model references it any more, doing that clean-up in the same transaction.",
+  "key_facts": [
+   "The model/key association row for the targeted model is deleted",
+   "Keys can be targeted by fingerprint, comment or full key value",
+   "Stored user keys that are no longer referenced by any model are deleted at the end of the same transaction",
+   "A key still associated with another model is kept"
+  ],
+  "evidence": [
+   {
+    "file": "domain/keymanager/state/state.go",
+    "line": 645,
+    "quote": "deleteUnusedUserKeys is here to clean up any public keys for a user that"
+   },
+   {
+    "file": "domain/keymanager/state/state.go",
+    "line": 654,
+    "quote": "HAVING count(user_public_ssh_key_id) == 0)"
+   },
+   {
+    "file": "domain/keymanager/state/state.go",
+    "line": 622,
+    "quote": "AND (comment IN ($S[:])"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q06",
+  "page": "ssh-key",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI remove-ssh-key; juju ssh-keys shows result"
+ },
+ {
+  "id": "A-Q07",
+  "type": "mechanism",
+  "question": "A user has only read access on a model. Can they list the model's SSH keys? Can they add or import keys? What level is required for each?",
+  "ground_truth": "They can list keys (read access suffices; admin also passes) but cannot add, import or remove keys: those require model admin, which a controller superuser also has.",
+  "key_facts": [
+   "checkCanRead first calls checkCanWrite, which is HasModelAdmin (model admin or controller superuser), then falls back to ReadAccess on the model; there is no separate 'write' permission.",
+   "Adding, importing and removing require model admin or controller superuser",
+   "Add/import also fail when a change block is on; remove fails with a remove or change block"
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/facades/client/keymanager/keymanager.go",
+    "line": 46,
+    "quote": "permission.ReadAccess,"
+   },
+   {
+    "file": "apiserver/facades/client/keymanager/keymanager.go",
+    "line": 53,
+    "quote": "ok, err := model.HasModelAdmin("
+   },
+   {
+    "file": "apiserver/common/model/permissions.go",
+    "line": 26,
+    "quote": "// superusers have admin for all models."
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q07",
+  "page": "ssh-key",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "API key manager permissions"
+ },
+ {
+  "id": "A-Q09",
+  "type": "mechanism",
+  "question": "I am migrating a model from a Juju 3.x controller whose model config still holds `authorized-keys`. Which of those keys are dropped, and which user owns the ones that are kept?",
+  "ground_truth": "Keys whose text contains the controller key comment `juju-system-key` are dropped (with a warning), to stop the source controller keeping access. The remaining keys are added to the `admin` user.",
+  "key_facts": [
+   "Keys containing the juju-system-key comment are discarded on import",
+   "The surviving keys are assigned to the admin user",
+   "A warning is logged for each discarded key"
+  ],
+  "evidence": [
+   {
+    "file": "domain/keymanager/modelmigration/import.go",
+    "line": 198,
+    "quote": "if strings.Contains(pk, controller.ControllerSSHKeyComment) {"
+   },
+   {
+    "file": "domain/keymanager/modelmigration/import.go",
+    "line": 212,
+    "quote": "adminUser, err := i.userService.GetUserByName(ctx, user.AdminUserName)"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q09",
+  "page": "ssh-key",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "juju migrate effect, visible through juju ssh-keys"
+ },
+ {
+  "id": "A-Q10",
+  "type": "mechanism",
+  "question": "What happens to a user's SSH keys when that user is removed from the controller?",
+  "ground_truth": "In the same transaction that marks the user removed, all of the user's model key associations are deleted, then all of the user's stored public keys are deleted.",
+  "key_facts": [
+   "model_authorized_keys rows for the user's keys are deleted",
+   "The user's stored public SSH keys are deleted",
+   "This happens in the same transaction as setting the user's removed flag"
+  ],
+  "evidence": [
+   {
+    "file": "domain/access/state/user.go",
+    "line": 517,
+    "quote": "DELETE FROM model_authorized_keys"
+   },
+   {
+    "file": "domain/access/state/user.go",
+    "line": 527,
+    "quote": "\"DELETE FROM user_public_ssh_key WHERE user_uuid = $userUUID.uuid\""
+   },
+   {
+    "file": "domain/access/state/user.go",
+    "line": 585,
+    "quote": "if err := tx.Query(ctx, setRemovedStmt, uuidArgs).Run(); err != nil {"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q10",
+  "page": "ssh-key",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI remove-user effect, visible through juju ssh-keys"
+ },
+ {
+  "id": "A-Q11",
+  "type": "failure",
+  "question": "I ran `juju import-ssh-key gl:alice` and it failed. What does the message say and what should I do?",
+  "ground_truth": "The command fails with: prefix in Key ID \"gl:alice\" not supported, only lp: and gh: are allowed. Use an lp: (Launchpad) or gh: (GitHub) identity instead.",
+  "key_facts": [
+   "Message is: prefix in Key ID %q not supported, only lp: and gh: are allowed",
+   "Cause is a key id prefix other than lp: or gh:",
+   "Validated in the command's argument check before contacting the controller"
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/sshkeys/import_sshkeys.go",
+    "line": 89,
+    "quote": "fmt.Sprintf(\"prefix in Key ID %q not supported, only lp: and gh: are allowed\", k))"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q11",
+  "page": "ssh-key",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "CLI error string"
+ },
+ {
+  "id": "A-Q12",
+  "type": "failure",
+  "question": "I connect to a machine through the controller's SSH server with a key that is registered for my user, but get the error 'is not associated with model ... add the key to the model or specify a different key'. Why, and how do I fix it?",
+  "ground_truth": "My key was accepted for authentication (user keys are controller-wide), but it is not among the keys added to the target model. Add it to that model (e.g. `juju add-ssh-key`) or connect with a key that is on the model.",
+  "key_facts": [
+   "Authentication checks the key against the user's keys across the controller",
+   "Authorisation then checks the key is associated with the destination model",
+   "Message is: public key %q used to authenticate is not associated with model %q, add the key to the model or specify a different key"
+  ],
+  "evidence": [
+   {
+    "file": "internal/worker/sshserver/authorization.go",
+    "line": 62,
+    "quote": "is not associated with model %q, add the key to the model or specify a different key"
+   },
+   {
+    "file": "internal/worker/sshserver/authorization.go",
+    "line": 51,
+    "quote": "// The key used during authentication is controller scoped, but keys are"
+   },
+   {
+    "file": "internal/worker/sshserver/authentication.go",
+    "line": 43,
+    "quote": "if bytes.Equal(key.Marshal(), authorizedKey.Marshal()) {"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q12",
+  "page": "ssh-key",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "SSH jump server error to the client"
+ },
+ {
+  "id": "A-Q14",
+  "type": "unanswerable",
+  "question": "What is the maximum number of SSH public keys that can be added to a single model or user?",
+  "ground_truth": "The documentation does not say; the code defines no limit on the number of keys.",
+  "key_facts": [
+   "No maximum number of keys per model or user is defined"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE 'max.*ssh.*key|MaxKeys|max-keys|maxPublicKeys|key.*quota|MaxPublicKeys' --include=*.go .",
+   "grep -rniE 'too many (ssh )?keys|keys.*exceed|limit.*public.?keys|public.?keys.*limit' in keymanager, keyupdater, ssh, sshserver, facade, cmd/juju/sshkeys",
+   "grep -rniE 'len\\(keys\\) *(>|>=) ' in the same SSH key directories"
+  ],
+  "cross_area": false,
+  "orig_id": "Q14",
+  "page": "ssh-key",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "subject: CLI add-ssh-key"
+ },
+ {
+  "id": "A-Q15",
+  "type": "unanswerable",
+  "question": "Can I give an SSH key an expiry time or lifetime so that it stops working automatically after a set period?",
+  "ground_truth": "The documentation does not say; user SSH keys have no expiry or TTL field.",
+  "key_facts": [
+   "No expiry, TTL or validity period exists for user public keys"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE 'key.*ttl|public.*key.*expir|KeyExpir|ExpiresAt.*[Kk]ey' --include=*.go .",
+   "grep -rniE 'valid-until|validUntil|expires-after|key.*expir|expir.*key' in keymanager, ssh, keyupdater, sshserver, cmd/juju/sshkeys, core/ssh",
+   "grep -rniE 'not.?after|valid.?to|validity' in the same SSH key directories"
+  ],
+  "cross_area": false,
+  "orig_id": "Q15",
+  "page": "ssh-key",
+  "verifier": "true",
+  "exposure": "exposed",
+  "exposure_reason": "subject: CLI add-ssh-key"
+ }
+]

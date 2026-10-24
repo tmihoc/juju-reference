@@ -1,0 +1,63 @@
+{
+ "objectstore": {
+  "Watch": {
+   "facades": [
+    "agent/agent",
+    "agent/lifeflag",
+    "agent/logger",
+    "agent/machine",
+    "agent/migrationflag",
+    "agent/migrationminion",
+    "agent/proxyupdater",
+    "agent/retrystrategy",
+    "agent/storageprovisioner",
+    "agent/uniter",
+    "controller/migrationmaster"
+   ],
+   "workers": [
+    "apiconfigwatcher",
+    "apiserver",
+    "caasapplicationprovisioner",
+    "caasmodeloperator",
+    "charmrevisioner",
+    "computeprovisioner",
+    "controllerlogger",
+    "deployer",
+    "externalcontrollerupdater",
+    "filenotifywatcher",
+    "firewaller",
+    "fortress",
+    "lifeflag",
+    "logrouter",
+    "machineconverter",
+    "machiner",
+    "migrationflag",
+    "migrationminion",
+    "modelworkermanager",
+    "operationpruner",
+    "providertracker",
+    "proxyupdater",
+    "remoterelationconsumer",
+    "sshserver",
+    "stateconfigwatcher",
+    "trace",
+    "uniter",
+    "upgradedatabase"
+   ]
+  },
+  "WatchDraining": {
+   "facades": [],
+   "workers": [
+    "objectstoredrainer",
+    "objectstoreguard"
+   ]
+  },
+  "WatchObjectStoreBackend": {
+   "facades": [],
+   "workers": [
+    "objectstoredrainer",
+    "objectstores3caller"
+   ]
+  }
+ }
+}

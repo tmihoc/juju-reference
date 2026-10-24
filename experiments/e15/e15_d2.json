@@ -1,0 +1,149 @@
+{
+ "model": {
+  "tables_named_outside_C": 65,
+  "all_lines_already_in_old_ddl": 59,
+  "others": 6,
+  "others_detail": [
+   [
+    "model",
+    [
+     [
+      "+",
+      "(15, 'controller-model'),"
+     ]
+    ]
+   ],
+   [
+    "unit",
+    [
+     [
+      "+",
+      "JOIN   unit AS u ON u.uuid = OLD.unit_uuid"
+     ]
+    ]
+   ],
+   [
+    "application_k8s_resources_managed",
+    [
+     [
+      "+",
+      "CREATE TABLE application_k8s_resources_managed ("
+     ]
+    ]
+   ],
+   [
+    "secret",
+    [
+     [
+      "+",
+      "(16, 'user secret'),"
+     ],
+     [
+      "+",
+      "(17, 'obsolete user secret revisions'),"
+     ],
+     [
+      "+",
+      "(18, 'charm secret'),"
+     ]
+    ]
+   ],
+   [
+    "machine_cloud_instance",
+    [
+     [
+      "-",
+      "INSERT INTO change_log_namespace VALUES (%[2]d, 'machine_cloud_instance', 'MachineCloudInstance changes based on %[1]s');"
+     ],
+     [
+      "+",
+      "INSERT INTO change_log_namespace VALUES (%[2]d, 'machine_cloud_instance', 'MachineCloudInstance changes based on %[1]s');"
+     ]
+    ]
+   ],
+   [
+    "machine_requires_reboot",
+    [
+     [
+      "-",
+      "INSERT INTO change_log_namespace VALUES (%[2]d, 'machine_requires_reboot', 'MachineRequiresReboot changes based on %[1]s');"
+     ],
+     [
+      "+",
+      "INSERT INTO change_log_namespace VALUES (%[2]d, 'machine_requires_reboot', 'MachineRequiresReboot changes based on %[1]s');"
+     ]
+    ]
+   ]
+  ]
+ },
+ "controller": {
+  "tables_named_outside_C": 23,
+  "all_lines_already_in_old_ddl": 16,
+  "others": 7,
+  "others_detail": [
+   [
+    "lease",
+    [
+     [
+      "+",
+      "(2, 'backup-creation');        -- The lease serialising backup archive creation."
+     ]
+    ]
+   ],
+   [
+    "life",
+    [
+     [
+      "+",
+      "REFERENCES life (id),"
+     ]
+    ]
+   ],
+   [
+    "model_migration_export",
+    [
+     [
+      "+",
+      "INSERT INTO change_log_namespace VALUES (%[2]d, 'model_migration_export', 'ModelMigrationExport changes based on %[1]s');"
+     ]
+    ]
+   ],
+   [
+    "model_migration_export_phase",
+    [
+     [
+      "+",
+      "INSERT INTO change_log_namespace VALUES (%[2]d, 'model_migration_export_phase', 'ModelMigrationExportPhase changes based on %[1]s');"
+     ]
+    ]
+   ],
+   [
+    "model_migration_export_minion_sync",
+    [
+     [
+      "+",
+      "INSERT INTO change_log_namespace VALUES (%[2]d, 'model_migration_export_minion_sync', 'ModelMigrationExportMinionSync changes based on %[1]s');"
+     ]
+    ]
+   ],
+   [
+    "object_store_drain_phase_type",
+    [
+     [
+      "+",
+      "REFERENCES object_store_drain_phase_type (id),"
+     ]
+    ]
+   ],
+   [
+    "model_database_deletion",
+    [
+     [
+      "+",
+      "INSERT INTO change_log_namespace VALUES (%[2]d, 'model_database_deletion', 'ModelDatabaseDeletion changes based on %[1]s');"
+     ]
+    ]
+   ]
+  ]
+ }
+}

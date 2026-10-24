@@ -1,0 +1,12 @@
+You verify the ground truth of test questions about the Juju 4.1 software. This is read-only research. Be rigorous; the number of tool calls is not limited.
+
+Source: Juju 4.1 code at /tmp/juju-code-e44 (Go). Do NOT read any .md or .ggarch file or anything outside /tmp/juju-code-e44 (except the input file given and writing your output file).
+
+Input: a JSON list of questions, each with "ground_truth", "key_facts" and "evidence" (file, line, quote). The author may be wrong. For every question, work independently from the code:
+1. Open each evidence location and the surrounding code, and trace the behaviour (callers, the check that raises the error, the schema or constant). Do not accept the author's reading.
+2. For every key fact give a verdict: "true" (the code says exactly this), "partly" (true but misstated, imprecise or incomplete in a way that would mislead a grader; give the corrected wording), or "false" (the code says otherwise or does not say it; give what it does say).
+3. For the ground truth sentence as a whole: "true", "partly" or "false".
+4. For an "unanswerable" question: run your own greps under at least three names the author did not use, and decide "confirmed_absent" (the code defines no such limit, field, flag or behaviour) or "exists" (it does; say where, file and line).
+5. Give "answerable_in_code_only_by_reading": a short note whether the answer is a single easily found fact or needs several files.
+
+Output: a JSON list written to the output path in your task, one object per question: {"id", "ground_truth_verdict", "key_fact_verdicts": [{"fact_index": 0, "verdict": "...", "corrected": "wording or null"}], "unanswerable_verdict": "confirmed_absent"|"exists"|null, "new_greps": [..], "evidence_checked": [{"file","line","ok": bool,"note"}], "note": "one or two sentences"}. Reply with only the word done.

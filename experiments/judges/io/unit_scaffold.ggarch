@@ -1,0 +1,314 @@
+model "Schema" {
+
+  nodes {
+    application [type: record, label: "application",
+                 ground: "model:application"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        life_id [label: "life_id", type: "int", fk: true]
+        charm_uuid [label: "charm_uuid", type: "text", fk: true]
+        charm_modified_version [label: "charm_modified_version", type: "int"]
+        charm_upgrade_on_error [label: "charm_upgrade_on_error", type: "bool", null: true]
+        space_uuid [label: "space_uuid", type: "text", fk: true]
+      }
+    }
+
+    architecture [type: record, label: "architecture",
+                 ground: "model:architecture"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    charm [type: record, label: "charm",
+                 ground: "model:charm"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        archive_path [label: "archive_path", type: "text", null: true]
+        object_store_uuid [label: "object_store_uuid", type: "text", fk: true, null: true]
+        available [label: "available", type: "bool", null: true]
+        version [label: "version", type: "text", null: true]
+        lxd_profile [label: "lxd_profile", type: "text", null: true]
+        source_id [label: "source_id", type: "int", fk: true]
+        revision [label: "revision", type: "int"]
+        architecture_id [label: "architecture_id", type: "int", fk: true, null: true]
+        reference_name [label: "reference_name", type: "text"]
+        create_time [label: "create_time", type: "datetime"]
+      }
+    }
+
+    charm_source [type: record, label: "charm_source",
+                 ground: "model:charm_source"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    life [type: record, label: "life",
+                 ground: "model:life"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    net_node [type: record, label: "net_node",
+                 ground: "model:net_node"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+      }
+    }
+
+    object_store_metadata [type: record, label: "object_store_metadata",
+                 ground: "model:object_store_metadata"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        sha_256 [label: "sha_256", type: "text"]
+        sha_384 [label: "sha_384", type: "text"]
+        size [label: "size", type: "int"]
+      }
+    }
+
+    password_hash_algorithm [type: record, label: "password_hash_algorithm",
+                 ground: "model:password_hash_algorithm"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    resolve_mode [type: record, label: "resolve_mode",
+                 ground: "model:resolve_mode"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    space [type: record, label: "space",
+                 ground: "model:space"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+      }
+    }
+
+    ssh_key_algorithm_type [type: record, label: "ssh_key_algorithm_type",
+                 ground: "model:ssh_key_algorithm_type"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        type [label: "type", type: "text"]
+      }
+    }
+
+    storage_pool [type: record, label: "storage_pool",
+                 ground: "model:storage_pool"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        type [label: "type", type: "text"]
+        origin_id [label: "origin_id", type: "int", fk: true]
+      }
+    }
+
+    storage_pool_origin [type: record, label: "storage_pool_origin",
+                 ground: "model:storage_pool_origin"] {
+      fields {
+        id [label: "id", type: "int", pk: true]
+        origin [label: "origin", type: "text"]
+      }
+    }
+
+    unit [type: record, label: "unit",
+                 ground: "model:unit"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        life_id [label: "life_id", type: "int", fk: true]
+        application_uuid [label: "application_uuid", type: "text", fk: true]
+        net_node_uuid [label: "net_node_uuid", type: "text", fk: true]
+        charm_uuid [label: "charm_uuid", type: "text", fk: true]
+        password_hash_algorithm_id [label: "password_hash_algorithm_id", type: "text", fk: true, null: true]
+        password_hash [label: "password_hash", type: "text", null: true]
+      }
+    }
+
+    unit_agent_presence [type: record, label: "unit_agent_presence",
+                 ground: "model:unit_agent_presence"] {
+      fields {
+        unit_uuid [label: "unit_uuid", type: "text", pk: true, fk: true]
+        last_seen [label: "last_seen", type: "datetime", null: true]
+      }
+    }
+
+    unit_agent_status [type: record, label: "unit_agent_status",
+                 ground: "model:unit_agent_status"] {
+      fields {
+        unit_uuid [label: "unit_uuid", type: "text", pk: true, fk: true]
+        status_id [label: "status_id", type: "int", fk: true]
+        message [label: "message", type: "text", null: true]
+        data [label: "data", type: "text", null: true]
+        updated_at [label: "updated_at", type: "datetime", null: true]
+      }
+    }
+
+    unit_agent_status_value [type: record, label: "unit_agent_status_value",
+                 ground: "model:unit_agent_status_value"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        status [label: "status", type: "text"]
+      }
+    }
+
+    unit_agent_version [type: record, label: "unit_agent_version",
+                 ground: "model:unit_agent_version"] {
+      fields {
+        unit_uuid [label: "unit_uuid", type: "text", pk: true, fk: true]
+        version [label: "version", type: "text"]
+        architecture_id [label: "architecture_id", type: "int", fk: true]
+      }
+    }
+
+    unit_principal [type: record, label: "unit_principal",
+                 ground: "model:unit_principal"] {
+      fields {
+        unit_uuid [label: "unit_uuid", type: "text", pk: true, fk: true]
+        principal_uuid [label: "principal_uuid", type: "text", fk: true]
+      }
+    }
+
+    unit_resolved [type: record, label: "unit_resolved",
+                 ground: "model:unit_resolved"] {
+      fields {
+        unit_uuid [label: "unit_uuid", type: "text", pk: true, fk: true]
+        mode_id [label: "mode_id", type: "int", fk: true]
+      }
+    }
+
+    unit_resource [type: record, label: "unit_resource",
+                 ground: "model:unit_resource"] {
+      fields {
+        resource_uuid [label: "resource_uuid", type: "text"]
+        unit_uuid [label: "unit_uuid", type: "text", fk: true]
+        charm_resource_name [label: "charm_resource_name", type: "text"]
+        added_at [label: "added_at", type: "timestamp"]
+      }
+    }
+
+    unit_state [type: record, label: "unit_state",
+                 ground: "model:unit_state"] {
+      fields {
+        unit_uuid [label: "unit_uuid", type: "text", pk: true, fk: true]
+        uniter_state [label: "uniter_state", type: "text", null: true]
+        storage_state [label: "storage_state", type: "text", null: true]
+        secret_state [label: "secret_state", type: "text", null: true]
+      }
+    }
+
+    unit_state_charm [type: record, label: "unit_state_charm",
+                 ground: "model:unit_state_charm"] {
+      fields {
+        unit_uuid [label: "unit_uuid", type: "text", fk: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    unit_state_relation [type: record, label: "unit_state_relation",
+                 ground: "model:unit_state_relation"] {
+      fields {
+        unit_uuid [label: "unit_uuid", type: "text", fk: true]
+        value [label: "value", type: "text"]
+      }
+    }
+
+    unit_storage_directive [type: record, label: "unit_storage_directive",
+                 ground: "model:unit_storage_directive"] {
+      fields {
+        unit_uuid [label: "unit_uuid", type: "text", fk: true]
+        charm_uuid [label: "charm_uuid", type: "text"]
+        storage_name [label: "storage_name", type: "text"]
+        storage_pool_uuid [label: "storage_pool_uuid", type: "text", fk: true]
+        size_mib [label: "size_mib", type: "int"]
+        count [label: "count", type: "int"]
+      }
+    }
+
+    unit_virtual_ssh_host_key [type: record, label: "unit_virtual_ssh_host_key",
+                 ground: "model:unit_virtual_ssh_host_key"] {
+      fields {
+        unit_uuid [label: "unit_uuid", type: "text", pk: true, fk: true]
+        algorithm_type_id [label: "algorithm_type_id", type: "int", fk: true]
+        ssh_key [label: "ssh_key", type: "text"]
+      }
+    }
+
+    unit_workload_status [type: record, label: "unit_workload_status",
+                 ground: "model:unit_workload_status"] {
+      fields {
+        unit_uuid [label: "unit_uuid", type: "text", pk: true, fk: true]
+        status_id [label: "status_id", type: "int", fk: true]
+        message [label: "message", type: "text", null: true]
+        data [label: "data", type: "text", null: true]
+        updated_at [label: "updated_at", type: "datetime", null: true]
+      }
+    }
+
+    unit_workload_version [type: record, label: "unit_workload_version",
+                 ground: "model:unit_workload_version"] {
+      fields {
+        unit_uuid [label: "unit_uuid", type: "text", pk: true, fk: true]
+        version [label: "version", type: "text"]
+      }
+    }
+
+    workload_status_value [type: record, label: "workload_status_value",
+                 ground: "model:workload_status_value"] {
+      fields {
+        id [label: "id", type: "int", pk: true, null: true]
+        status [label: "status", type: "text"]
+      }
+    }
+
+  }
+
+  edges {
+    application.life_id -> life.id [type: data]
+    application.charm_uuid -> charm.uuid [type: data]
+    application.space_uuid -> space.uuid [type: data]
+    charm.source_id -> charm_source.id [type: data]
+    charm.architecture_id -> architecture.id [type: data]
+    charm.object_store_uuid -> object_store_metadata.uuid [type: data]
+    storage_pool.origin_id -> storage_pool_origin.id [type: data]
+    unit.life_id -> life.id [type: data]
+    unit.application_uuid -> application.uuid [type: data]
+    unit.net_node_uuid -> net_node.uuid [type: data]
+    unit.charm_uuid -> charm.uuid [type: data]
+    unit.password_hash_algorithm_id -> password_hash_algorithm.id [type: data]
+    unit_agent_presence.unit_uuid -> unit.uuid [type: data]
+    unit_agent_status.unit_uuid -> unit.uuid [type: data]
+    unit_agent_status.status_id -> unit_agent_status_value.id [type: data]
+    unit_agent_version.unit_uuid -> unit.uuid [type: data]
+    unit_agent_version.architecture_id -> architecture.id [type: data]
+    unit_principal.unit_uuid -> unit.uuid [type: data]
+    unit_principal.principal_uuid -> unit.uuid [type: data]
+    unit_resolved.unit_uuid -> unit.uuid [type: data]
+    unit_resolved.mode_id -> resolve_mode.id [type: data]
+    unit_resource.unit_uuid -> unit.uuid [type: data]
+    unit_state.unit_uuid -> unit.uuid [type: data]
+    unit_state_charm.unit_uuid -> unit.uuid [type: data]
+    unit_state_relation.unit_uuid -> unit.uuid [type: data]
+    unit_storage_directive.unit_uuid -> unit.uuid [type: data]
+    unit_storage_directive.storage_pool_uuid -> storage_pool.uuid [type: data]
+    unit_virtual_ssh_host_key.unit_uuid -> unit.uuid [type: data]
+    unit_virtual_ssh_host_key.algorithm_type_id -> ssh_key_algorithm_type.id [type: data]
+    unit_workload_status.unit_uuid -> unit.uuid [type: data]
+    unit_workload_status.status_id -> workload_status_value.id [type: data]
+    unit_workload_version.unit_uuid -> unit.uuid [type: data]
+  }
+
+  style { extends: juju }
+
+}

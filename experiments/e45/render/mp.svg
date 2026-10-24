@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1458.0" height="200.0" viewBox="0 0 1458.0 200.0">
+<defs>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="st-arrow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<path d="M 250.0 41.2 L 330.0 41.2" id="d0" />
+<path d="M 250.0 54.8 L 330.0 54.8" id="d1" />
+<path d="M 450.0 41.2 L 530.0 41.2" id="d2" />
+<path d="M 450.0 54.8 L 530.0 54.8" id="d3" />
+<path d="M 650.0 41.2 L 730.0 41.2" id="d4" />
+<path d="M 650.0 54.8 L 730.0 54.8" id="d5" />
+<path d="M 850.0 41.2 L 930.0 41.2" id="d6" />
+<path d="M 850.0 54.8 L 930.0 54.8" id="d7" />
+<path d="M 1050.0 41.2 L 1130.0 41.2" id="d8" />
+<path d="M 1050.0 54.8 L 1130.0 54.8" id="d9" />
+<path d="M 1250.0 41.2 L 1330.0 41.2" id="d10" />
+<path d="M 1250.0 54.8 L 1330.0 54.8" id="d11" />
+<path d="M 1190.0 164.8 L 1330.0 164.8" id="d12" />
+<path d="M 590.0 154.8 L 730.0 154.8" id="d13" />
+<path d="M 390.0 164.8 L 730.0 164.8" id="d14" />
+<path d="M 190.0 174.8 L 730.0 174.8" id="d15" />
+<path d="M 850.0 151.2 L 930.0 151.2" id="d16" />
+<path d="M 850.0 164.8 L 930.0 164.8" id="d17" />
+</defs>
+<rect x="0" y="0" width="1458.0" height="200.0" fill="#FFFFFF" />
+<g>
+<circle cx="90.0" cy="60.0" r="10" fill="#555555" />
+<path d="M100.0,60.0 L130.0,60.0" stroke="#555555" stroke-width="1.5" marker-end="url(#st-arrow)" />
+<rect x="130.0" y="40.0" width="120" height="40" fill="#F5F5F5" stroke="#8A8A8A" stroke-width="1.5" rx="4" ry="4" />
+<text x="190.0" y="60.0" font-size="12" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">quiesce</text>
+<rect x="330.0" y="40.0" width="120" height="40" fill="#F5F5F5" stroke="#8A8A8A" stroke-width="1.5" rx="4" ry="4" />
+<text x="390.0" y="60.0" font-size="12" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">import</text>
+<rect x="530.0" y="40.0" width="120" height="40" fill="#F5F5F5" stroke="#8A8A8A" stroke-width="1.5" rx="4" ry="4" />
+<text x="590.0" y="60.0" font-size="12" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">validation</text>
+<rect x="730.0" y="40.0" width="120" height="40" fill="#F5F5F5" stroke="#8A8A8A" stroke-width="1.5" rx="4" ry="4" />
+<text x="790.0" y="60.0" font-size="12" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">success</text>
+<rect x="930.0" y="40.0" width="120" height="40" fill="#F5F5F5" stroke="#8A8A8A" stroke-width="1.5" rx="4" ry="4" />
+<text x="990.0" y="60.0" font-size="12" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">log-transfer</text>
+<rect x="1130.0" y="40.0" width="120" height="40" fill="#F5F5F5" stroke="#8A8A8A" stroke-width="1.5" rx="4" ry="4" />
+<text x="1190.0" y="60.0" font-size="12" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">reap</text>
+<rect x="1330.0" y="40.0" width="120" height="40" fill="#F5F5F5" stroke="#8A8A8A" stroke-width="1.5" rx="4" ry="4" />
+<text x="1390.0" y="60.0" font-size="12" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">done</text>
+<rect x="1330.0" y="150.0" width="120" height="40" fill="#F5F5F5" stroke="#8A8A8A" stroke-width="1.5" rx="4" ry="4" />
+<text x="1390.0" y="170.0" font-size="12" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">reap-failed</text>
+<rect x="730.0" y="150.0" width="120" height="40" fill="#F5F5F5" stroke="#8A8A8A" stroke-width="1.5" rx="4" ry="4" />
+<text x="790.0" y="170.0" font-size="12" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">abort</text>
+<rect x="930.0" y="150.0" width="120" height="40" fill="#F5F5F5" stroke="#8A8A8A" stroke-width="1.5" rx="4" ry="4" />
+<text x="990.0" y="170.0" font-size="12" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">abort-done</text>
+<path d="M 250.0 60.0 L 330.0 60.0" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#st-arrow)" stroke-linejoin="round" />
+<path d="M 450.0 60.0 L 530.0 60.0" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#st-arrow)" stroke-linejoin="round" />
+<path d="M 650.0 60.0 L 730.0 60.0" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#st-arrow)" stroke-linejoin="round" />
+<path d="M 850.0 60.0 L 930.0 60.0" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#st-arrow)" stroke-linejoin="round" />
+<path d="M 1050.0 60.0 L 1130.0 60.0" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#st-arrow)" stroke-linejoin="round" />
+<path d="M 1250.0 60.0 L 1330.0 60.0" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#st-arrow)" stroke-linejoin="round" />
+<path d="M 1190.0 80.0 L 1190.0 170.0 L 1330.0 170.0" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#st-arrow)" stroke-linejoin="round" />
+<path d="M 590.0 80.0 L 590.0 160.0 L 730.0 160.0" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#st-arrow)" stroke-linejoin="round" />
+<path d="M 390.0 80.0 L 390.0 170.0 L 730.0 170.0" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#st-arrow)" stroke-linejoin="round" />
+<path d="M 190.0 80.0 L 190.0 180.0 L 730.0 180.0" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#st-arrow)" stroke-linejoin="round" />
+<path d="M 850.0 170.0 L 930.0 170.0" fill="none" stroke="#555555" stroke-width="1.5" marker-end="url(#st-arrow)" stroke-linejoin="round" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d0" startOffset="40.0">
+<tspan dy="0em">/ next</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d1" startOffset="40.0">
+<tspan dy="0em">phase</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d2" startOffset="40.0">
+<tspan dy="0em">/ next</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d3" startOffset="40.0">
+<tspan dy="0em">phase</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d4" startOffset="40.0">
+<tspan dy="0em">/ next</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d5" startOffset="40.0">
+<tspan dy="0em">phase</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d6" startOffset="40.0">
+<tspan dy="0em">/ next</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d7" startOffset="40.0">
+<tspan dy="0em">phase</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d8" startOffset="40.0">
+<tspan dy="0em">/ next</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d9" startOffset="40.0">
+<tspan dy="0em">phase</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d10" startOffset="40.0">
+<tspan dy="0em">/ next</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d11" startOffset="40.0">
+<tspan dy="0em">phase</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d12" startOffset="70.0">
+<tspan dy="0em">/ next phase</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d13" startOffset="70.0">
+<tspan dy="0em">/ abort</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d14" startOffset="170.0">
+<tspan dy="0em">/ abort</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d15" startOffset="270.0">
+<tspan dy="0em">/ abort</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d16" startOffset="40.0">
+<tspan dy="0em">/ next</tspan>
+</textPath></text>
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333"><textPath xlink:href="#d17" startOffset="40.0">
+<tspan dy="0em">phase</tspan>
+</textPath></text>
+</g>
+</svg>

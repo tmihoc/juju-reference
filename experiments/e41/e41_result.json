@@ -1,0 +1,598 @@
+{
+ "application": {
+  "lead": "application",
+  "owners": [
+   "charm",
+   "space"
+  ],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "application-endpoint",
+   "application-scale",
+   "offer",
+   "resource",
+   "secret",
+   "storage",
+   "unit"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "application-endpoint": {
+  "lead": "application_endpoint",
+  "owners": [
+   "application",
+   "charm"
+  ],
+  "nullable": [
+   "space"
+  ],
+  "identifying": [],
+  "dependents": [
+   "application",
+   "offer",
+   "relation"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "application-scale": {
+  "lead": "application_scale",
+  "owners": [
+   "application"
+  ],
+  "nullable": [],
+  "identifying": [
+   "application"
+  ],
+  "dependents": [],
+  "a": true,
+  "b": true,
+  "level": "section of application"
+ },
+ "unit": {
+  "lead": "unit",
+  "owners": [
+   "application",
+   "charm",
+   "link-layer-device"
+  ],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "action",
+   "annotation",
+   "port",
+   "relation-unit",
+   "resource",
+   "secret",
+   "ssh",
+   "storage",
+   "unit-state"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "unit-state": {
+  "lead": "unit_state",
+  "owners": [
+   "unit"
+  ],
+  "nullable": [],
+  "identifying": [
+   "unit"
+  ],
+  "dependents": [],
+  "a": true,
+  "b": true,
+  "level": "section of unit"
+ },
+ "machine": {
+  "lead": "machine",
+  "owners": [
+   "link-layer-device"
+  ],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "action",
+   "cloud-instance",
+   "machine-placement",
+   "ssh",
+   "storage"
+  ],
+  "a": true,
+  "b": false,
+  "level": "page"
+ },
+ "cloud-instance": {
+  "lead": "machine_cloud_instance",
+  "owners": [
+   "machine"
+  ],
+  "nullable": [
+   "zone"
+  ],
+  "identifying": [
+   "machine"
+  ],
+  "dependents": [],
+  "a": true,
+  "b": true,
+  "level": "section of machine"
+ },
+ "machine-placement": {
+  "lead": "machine_placement",
+  "owners": [
+   "machine"
+  ],
+  "nullable": [],
+  "identifying": [
+   "machine"
+  ],
+  "dependents": [],
+  "a": true,
+  "b": true,
+  "level": "section of machine"
+ },
+ "relation": {
+  "lead": "relation",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "offer",
+   "relation-unit"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "relation-unit": {
+  "lead": "relation_unit",
+  "owners": [
+   "relation",
+   "unit"
+  ],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "storage": {
+  "lead": "storage_volume",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "storage-pool": {
+  "lead": "storage_pool",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "storage"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "model": {
+  "lead": "model",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "model-migration",
+   "secret-backend",
+   "ssh-key",
+   "user"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "model-migration": {
+  "lead": "model_migration_export",
+  "owners": [
+   "external-controller"
+  ],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": true,
+  "b": true,
+  "level": "section of external-controller"
+ },
+ "secret": {
+  "lead": "secret",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "secret-backend": {
+  "lead": "secret_backend",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "charm": {
+  "lead": "charm",
+  "owners": [],
+  "nullable": [
+   "object-store"
+  ],
+  "identifying": [],
+  "dependents": [
+   "action",
+   "annotation",
+   "application",
+   "application-endpoint",
+   "port",
+   "resource",
+   "storage",
+   "unit"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "resource": {
+  "lead": "resource",
+  "owners": [
+   "charm"
+  ],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": true,
+  "b": true,
+  "level": "section of charm"
+ },
+ "action": {
+  "lead": "operation_task",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "offer": {
+  "lead": "offer",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "cloud": {
+  "lead": "cloud",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "credential",
+   "model-defaults"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "credential": {
+  "lead": "cloud_credential",
+  "owners": [
+   "cloud",
+   "user"
+  ],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "model-defaults": {
+  "lead": "cloud_defaults",
+  "owners": [
+   "cloud"
+  ],
+  "nullable": [],
+  "identifying": [
+   "cloud"
+  ],
+  "dependents": [],
+  "a": true,
+  "b": true,
+  "level": "section of cloud"
+ },
+ "image-metadata": {
+  "lead": "cloud_image_metadata",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "controller": {
+  "lead": "controller",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "upgrade"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "upgrade": {
+  "lead": "upgrade_info",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "user": {
+  "lead": "user",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "credential",
+   "permission",
+   "ssh-key"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "permission": {
+  "lead": "permission",
+  "owners": [
+   "user"
+  ],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": true,
+  "b": true,
+  "level": "section of user"
+ },
+ "ssh-key": {
+  "lead": "user_public_ssh_key",
+  "owners": [
+   "user"
+  ],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": true,
+  "b": true,
+  "level": "section of user"
+ },
+ "ssh": {
+  "lead": "machine_ssh_host_key",
+  "owners": [
+   "machine"
+  ],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": true,
+  "b": true,
+  "level": "section of machine"
+ },
+ "object-store": {
+  "lead": "object_store_backend",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "action",
+   "agent-version",
+   "charm",
+   "resource"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "agent-version": {
+  "lead": "agent_version",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "space": {
+  "lead": "space",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "application",
+   "application-endpoint",
+   "constraint",
+   "subnet"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "subnet": {
+  "lead": "subnet",
+  "owners": [],
+  "nullable": [
+   "space"
+  ],
+  "identifying": [],
+  "dependents": [
+   "link-layer-device",
+   "zone"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "zone": {
+  "lead": "availability_zone",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "cloud-instance"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "link-layer-device": {
+  "lead": "link_layer_device",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "application",
+   "machine",
+   "storage",
+   "unit"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "external-controller": {
+  "lead": "external_controller",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "model-migration"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "constraint": {
+  "lead": "constraint",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [
+   "application",
+   "machine",
+   "model"
+  ],
+  "a": false,
+  "b": false,
+  "level": "page"
+ },
+ "annotation": {
+  "lead": "annotation_unit",
+  "owners": [
+   "unit"
+  ],
+  "nullable": [],
+  "identifying": [
+   "unit"
+  ],
+  "dependents": [],
+  "a": true,
+  "b": true,
+  "level": "section of unit"
+ },
+ "block-command": {
+  "lead": "block_command",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "removal": {
+  "lead": "removal",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "lease": {
+  "lead": "lease",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "port": {
+  "lead": "port_range",
+  "owners": [
+   "unit"
+  ],
+  "nullable": [
+   "charm"
+  ],
+  "identifying": [],
+  "dependents": [],
+  "a": true,
+  "b": true,
+  "level": "section of unit"
+ },
+ "telemetry": {
+  "lead": "logging_loki_config",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ },
+ "database": {
+  "lead": "sequence",
+  "owners": [],
+  "nullable": [],
+  "identifying": [],
+  "dependents": [],
+  "a": false,
+  "b": true,
+  "level": "page"
+ }
+}

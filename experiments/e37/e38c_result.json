@@ -1,0 +1,607 @@
+{
+ "weak": {
+  "application_agent": [
+   "application"
+  ],
+  "application_channel": [
+   "application"
+  ],
+  "application_config": [
+   "application"
+  ],
+  "application_config_hash": [
+   "application"
+  ],
+  "application_constraint": [
+   "application"
+  ],
+  "application_controller": [
+   "application"
+  ],
+  "application_exposed_endpoint_cidr": [
+   "application"
+  ],
+  "application_exposed_endpoint_space": [
+   "application",
+   "space"
+  ],
+  "application_extra_endpoint": [
+   "application",
+   "charm"
+  ],
+  "application_k8s_resources_managed": [
+   "application"
+  ],
+  "application_platform": [
+   "application"
+  ],
+  "application_scale": [
+   "application"
+  ],
+  "application_setting": [
+   "application"
+  ],
+  "application_status": [
+   "application"
+  ],
+  "application_workload_version": [
+   "application"
+  ],
+  "device_constraint_attribute": [
+   "application"
+  ],
+  "operator_status": [
+   "application"
+  ],
+  "k8s_pod": [
+   "unit"
+  ],
+  "k8s_pod_port": [
+   "unit"
+  ],
+  "k8s_pod_status": [
+   "unit"
+  ],
+  "unit_agent_presence": [
+   "unit"
+  ],
+  "unit_agent_status": [
+   "unit"
+  ],
+  "unit_agent_version": [
+   "unit"
+  ],
+  "unit_principal": [
+   "unit"
+  ],
+  "unit_resolved": [
+   "unit"
+  ],
+  "unit_state": [
+   "unit"
+  ],
+  "unit_state_charm": [
+   "unit"
+  ],
+  "unit_state_relation": [
+   "unit"
+  ],
+  "unit_workload_status": [
+   "unit"
+  ],
+  "unit_workload_version": [
+   "unit"
+  ],
+  "block_device_link_device": [
+   "machine"
+  ],
+  "instance_tag": [
+   "machine"
+  ],
+  "machine_agent_presence": [
+   "machine"
+  ],
+  "machine_agent_version": [
+   "machine"
+  ],
+  "machine_cloud_instance": [
+   "machine"
+  ],
+  "machine_cloud_instance_status": [
+   "machine"
+  ],
+  "machine_constraint": [
+   "machine"
+  ],
+  "machine_container_type": [
+   "machine"
+  ],
+  "machine_lxd_profile": [
+   "machine"
+  ],
+  "machine_manual": [
+   "machine"
+  ],
+  "machine_parent": [
+   "machine"
+  ],
+  "machine_placement": [
+   "machine"
+  ],
+  "machine_reprovision": [
+   "machine"
+  ],
+  "machine_requires_reboot": [
+   "machine"
+  ],
+  "machine_status": [
+   "machine"
+  ],
+  "relation_application_setting": [
+   "relation"
+  ],
+  "relation_application_settings_hash": [
+   "relation"
+  ],
+  "relation_network_egress": [
+   "relation"
+  ],
+  "relation_network_ingress": [
+   "relation"
+  ],
+  "relation_status": [
+   "relation"
+  ],
+  "relation_unit_departure": [
+   "relation"
+  ],
+  "relation_unit_setting": [
+   "relation"
+  ],
+  "relation_unit_setting_archive": [
+   "relation"
+  ],
+  "relation_unit_settings_hash": [
+   "relation"
+  ],
+  "application_storage_directive": [
+   "application",
+   "charm"
+  ],
+  "machine_filesystem": [
+   "machine",
+   "storage"
+  ],
+  "machine_volume": [
+   "machine",
+   "storage"
+  ],
+  "model_storage_pool": [
+   "storage"
+  ],
+  "storage_filesystem_status": [
+   "storage"
+  ],
+  "storage_instance_filesystem": [
+   "storage"
+  ],
+  "storage_instance_volume": [
+   "storage"
+  ],
+  "storage_pool_attribute": [
+   "storage"
+  ],
+  "storage_unit_owner": [
+   "storage"
+  ],
+  "storage_volume_attachment_plan_attr": [
+   "storage"
+  ],
+  "storage_volume_status": [
+   "storage"
+  ],
+  "unit_storage_directive": [
+   "charm",
+   "unit"
+  ],
+  "model_constraint": [
+   "model"
+  ],
+  "model_life": [
+   "model"
+  ],
+  "log_transfer_progress": [
+   "model"
+  ],
+  "model_migration_export_minion_sync": [
+   "model-migration"
+  ],
+  "model_migration_export_offer": [
+   "model-migration"
+  ],
+  "model_migration_export_phase": [
+   "model-migration"
+  ],
+  "model_migration_export_status": [
+   "model-migration"
+  ],
+  "model_migration_export_target_auth": [
+   "model-migration"
+  ],
+  "model_migration_import_external_controller_model": [
+   "model-migration"
+  ],
+  "model_migration_import_offer": [
+   "model-migration"
+  ],
+  "model_migration_redirect_user": [
+   "model-migration"
+  ],
+  "secret_application_owner": [
+   "application",
+   "secret"
+  ],
+  "secret_content": [
+   "secret"
+  ],
+  "secret_metadata": [
+   "secret"
+  ],
+  "secret_model_owner": [
+   "secret"
+  ],
+  "secret_permission": [
+   "secret"
+  ],
+  "secret_reference": [
+   "secret"
+  ],
+  "secret_revision_expire": [
+   "secret"
+  ],
+  "secret_revision_obsolete": [
+   "secret"
+  ],
+  "secret_rotation": [
+   "secret"
+  ],
+  "secret_unit_owner": [
+   "secret",
+   "unit"
+  ],
+  "secret_value_ref": [
+   "secret"
+  ],
+  "model_secret_backend": [
+   "model"
+  ],
+  "secret_backend_config": [
+   "secret-backend"
+  ],
+  "secret_backend_reference": [
+   "model",
+   "secret-backend"
+  ],
+  "secret_backend_rotation": [
+   "secret-backend"
+  ],
+  "charm_action": [
+   "charm"
+  ],
+  "charm_category": [
+   "charm"
+  ],
+  "charm_config": [
+   "charm"
+  ],
+  "charm_container": [
+   "charm"
+  ],
+  "charm_container_mount": [
+   "charm"
+  ],
+  "charm_device": [
+   "charm"
+  ],
+  "charm_download_info": [
+   "charm"
+  ],
+  "charm_hash": [
+   "charm"
+  ],
+  "charm_manifest_base": [
+   "charm"
+  ],
+  "charm_metadata": [
+   "charm"
+  ],
+  "charm_resource": [
+   "charm"
+  ],
+  "charm_storage": [
+   "charm"
+  ],
+  "charm_storage_property": [
+   "charm"
+  ],
+  "charm_tag": [
+   "charm"
+  ],
+  "charm_term": [
+   "charm"
+  ],
+  "application_resource": [
+   "resource"
+  ],
+  "pending_application_resource": [
+   "resource"
+  ],
+  "resource_file_store": [
+   "resource"
+  ],
+  "resource_image_store": [
+   "resource"
+  ],
+  "resource_retrieved_by": [
+   "resource"
+  ],
+  "unit_resource": [
+   "resource",
+   "unit"
+  ],
+  "operation_action": [
+   "action"
+  ],
+  "operation_machine_task": [
+   "action",
+   "machine"
+  ],
+  "operation_parameter": [
+   "action"
+  ],
+  "operation_task_output": [
+   "action"
+  ],
+  "operation_task_status": [
+   "action"
+  ],
+  "operation_unit_task": [
+   "action",
+   "unit"
+  ],
+  "application_remote_consumer": [
+   "application",
+   "offer"
+  ],
+  "application_remote_offerer_relation_macaroon": [
+   "relation"
+  ],
+  "application_remote_offerer_status": [
+   "offer"
+  ],
+  "offer_endpoint": [
+   "application",
+   "offer"
+  ],
+  "cloud_auth_type": [
+   "cloud"
+  ],
+  "cloud_ca_cert": [
+   "cloud"
+  ],
+  "cloud_credential_attribute": [
+   "credential"
+  ],
+  "cloud_defaults": [
+   "cloud"
+  ],
+  "cloud_region_defaults": [
+   "cloud"
+  ],
+  "controller_api_address": [
+   "controller"
+  ],
+  "controller_node_agent_version": [
+   "controller"
+  ],
+  "controller_node_password": [
+   "controller"
+  ],
+  "model_last_login": [
+   "model",
+   "user"
+  ],
+  "user_activation_key": [
+   "user"
+  ],
+  "user_authentication": [
+   "user"
+  ],
+  "user_password": [
+   "user"
+  ],
+  "model_authorized_keys": [
+   "model",
+   "ssh-key"
+  ],
+  "machine_virtual_ssh_host_key": [
+   "machine"
+  ],
+  "unit_virtual_ssh_host_key": [
+   "unit"
+  ],
+  "object_store_backend_s3_config": [
+   "object-store"
+  ],
+  "object_store_placement": [
+   "object-store"
+  ],
+  "provider_network_subnet": [
+   "subnet"
+  ],
+  "availability_zone_subnet": [
+   "subnet",
+   "zone"
+  ],
+  "link_layer_device_dns_address": [
+   "link-layer-device"
+  ],
+  "link_layer_device_dns_domain": [
+   "link-layer-device"
+  ],
+  "link_layer_device_parent": [
+   "link-layer-device"
+  ],
+  "link_layer_device_route": [
+   "link-layer-device"
+  ],
+  "net_node_fqdn_address": [
+   "link-layer-device"
+  ],
+  "net_node_hostname_address": [
+   "link-layer-device"
+  ],
+  "constraint_space": [
+   "constraint",
+   "space"
+  ],
+  "constraint_tag": [
+   "constraint"
+  ],
+  "constraint_zone": [
+   "constraint"
+  ],
+  "annotation_charm": [
+   "charm"
+  ],
+  "annotation_unit": [
+   "unit"
+  ]
+ },
+ "cross": [
+  "application_storage_directive",
+  "unit_storage_directive",
+  "log_transfer_progress",
+  "model_secret_backend",
+  "application_remote_offerer_relation_macaroon",
+  "cloud_defaults",
+  "cloud_region_defaults",
+  "machine_virtual_ssh_host_key",
+  "unit_virtual_ssh_host_key",
+  "annotation_charm",
+  "annotation_unit"
+ ],
+ "strong": [
+  "application",
+  "application_endpoint",
+  "device_constraint",
+  "k8s_service",
+  "unit",
+  "block_device",
+  "machine",
+  "machine_platform",
+  "relation",
+  "relation_endpoint",
+  "relation_unit",
+  "storage_attachment",
+  "storage_filesystem",
+  "storage_filesystem_attachment",
+  "storage_instance",
+  "storage_pool",
+  "storage_volume",
+  "storage_volume_attachment",
+  "storage_volume_attachment_plan",
+  "model",
+  "model_agent",
+  "model_config",
+  "model_namespace",
+  "model_migrating",
+  "model_migration_export",
+  "model_migration_import",
+  "model_migration_redirect",
+  "secret",
+  "secret_deleted_value_ref",
+  "secret_remote_unit_consumer",
+  "secret_reservation",
+  "secret_revision",
+  "secret_unit_consumer",
+  "secret_backend",
+  "charm",
+  "charm_extra_binding",
+  "charm_relation",
+  "resource",
+  "resource_container_image_metadata_store",
+  "operation",
+  "operation_task",
+  "operation_task_log",
+  "application_remote_offerer",
+  "offer",
+  "offer_connection",
+  "cloud",
+  "cloud_region",
+  "cloud_credential",
+  "cloud_image_metadata",
+  "autocert_cache",
+  "bakery_config",
+  "controller",
+  "controller_agent_address",
+  "controller_client_address",
+  "controller_config",
+  "controller_node",
+  "controller_node_nonce",
+  "controller_peer_address",
+  "flag",
+  "macaroon_root_key",
+  "upgrade_info",
+  "upgrade_info_controller_node",
+  "user",
+  "permission",
+  "user_public_ssh_key",
+  "controller_ssh_host_key",
+  "controller_ssh_server_port",
+  "machine_ssh_host_key",
+  "ssh_connection_request",
+  "object_store_backend",
+  "object_store_drain_info",
+  "object_store_metadata",
+  "object_store_metadata_path",
+  "agent_binary_store",
+  "agent_version",
+  "provider_space",
+  "space",
+  "provider_network",
+  "provider_subnet",
+  "subnet",
+  "availability_zone",
+  "fqdn_address",
+  "hostname_address",
+  "ip_address",
+  "link_layer_device",
+  "net_node",
+  "provider_ip_address",
+  "provider_link_layer_device",
+  "external_controller",
+  "external_controller_address",
+  "external_model",
+  "constraint",
+  "annotation_application",
+  "annotation_machine",
+  "annotation_model",
+  "annotation_storage_filesystem",
+  "annotation_storage_instance",
+  "annotation_storage_volume",
+  "block_command",
+  "removal",
+  "lease",
+  "lease_pin",
+  "port_range",
+  "charm_tracing_config",
+  "logging_loki_config",
+  "workload_tracing_config",
+  "change_log",
+  "change_log_witness",
+  "model_database_deletion",
+  "namespace_list",
+  "sequence"
+ ]
+}

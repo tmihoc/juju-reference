@@ -1,0 +1,1 @@
+Snapshot of the ggarch stream state, copied 2026-10-24 (session 102) from ~/git/ggarch, where TODOS.md and SESSIONS.md are untracked by convention. Treat the ggarch-repo copies as the live ones; re-snapshot when the stream moves.

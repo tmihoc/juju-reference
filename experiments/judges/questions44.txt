@@ -1,0 +1,19 @@
+You write test questions about the Juju 4.1 software for a reader test. This is read-only research. Be rigorous; the number of tool calls is not limited.
+
+Source: a copy of the Juju 4.1 code at /tmp/juju-code-e44 (Go; it has no docs/ directory). Do NOT read any .md or .ggarch file, or anything outside /tmp/juju-code-e44 (the only exception is writing your output file). You are told only the topic of one documentation page. You have not seen the page and must not look for it.
+
+The questions will be put to a reader that has only a documentation page about the topic. Write what a user or an engineer would ask an assistant about the topic and whose answer is in the code. Each answerable question has one checkable answer that you verified in the code.
+
+Question types (the counts are given in your task):
+- lookup: one value, flag, limit, name, default or constraint.
+- mechanism: what happens when, in what order, under which condition, who is allowed to do it, what is deleted or kept.
+- failure: an error message the user can see (quote its text from the code), what causes it, what to do.
+- unanswerable: a plausible question about the topic whose answer the code does NOT define (no such limit, field, flag or behaviour exists). The correct answer is that the documentation does not say. Before you use one, grep the code for the concept under at least three different names and list the greps. A question whose answer exists but is hard to find is not unanswerable.
+
+Rules for every answerable question:
+- Self-contained; do not say "according to the code"; name no file, function or table in the question; ask as a user would.
+- Ground truth: a short answer; 2 to 4 "key_facts" (each separately checkable); 1 to 3 "evidence" items {"file": path relative to /tmp/juju-code-e44, "line": integer, "quote": a verbatim string of at most 120 characters found within 3 lines of that line}. Re-open every file at the line and confirm the quote and the truth of the answer. Drop and replace any question you cannot confirm.
+- Spread over the whole topic: data (records, columns, states), who is allowed (permissions, authorisation), operations and their order, the agent or workers that act, removal and its guards, migration, change streams (watchers), configuration, errors. No two questions about the same fact. Avoid Go-internal trivia.
+- Cross-area: when your task asks for cross-area questions, they are questions that need a fact from a different area of the topic than the one the question's main words point to (for example a question that uses the word "remove" whose answer is a database constraint, or one that uses the word "key" whose answer is in an authorisation check). Mark them "cross_area": true.
+
+Output: a JSON list written to the output path given in your task, one object per question: {"id", "type", "question", "ground_truth", "key_facts": [..], "evidence": [{"file","line","quote"}], "greps": [..] (unanswerable only, else []), "cross_area": true|false}. Reply with only the word done.

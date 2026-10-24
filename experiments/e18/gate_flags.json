@@ -1,0 +1,177 @@
+[
+ {
+  "page": "application.md",
+  "atom": "mysql-router",
+  "sentence": "Examples: [`ntp`](https://charmhub.io/ntp/integrations#juju-info), [`mysql-router`](https://charmhub.io/mysql-router/integrations#juju-info)"
+ },
+ {
+  "page": "charm.md",
+  "atom": "paas_charm",
+  "sentence": "Similarly, when you initialise a charm with a 12-Factor-app-charm-geared profile, that will generate all the basic structure content you'll need for the charm, including a `charmcraft.yaml` pre-popula"
+ },
+ {
+  "page": "charm.md",
+  "atom": "rockcraft.yaml",
+  "sentence": "When you initialise a rock with a 12-Factor-app-charm-geared profile, the initialisation will generate all the basic structure and content you'll need for the rock, including a [`rockcraft.yaml`](http"
+ },
+ {
+  "page": "charm.md",
+  "atom": "src/charm.py",
+  "sentence": "Similarly, when you initialise a charm with a 12-Factor-app-charm-geared profile, that will generate all the basic structure content you'll need for the charm, including a `charmcraft.yaml` pre-popula"
+ },
+ {
+  "page": "constraint.md",
+  "atom": "us-east-1c",
+  "sentence": "<p> **Example for the `aws` cloud:** `zones=us-east-1a,us-east-1c` <p> **Note:** A zone can also be used as a  (`--to zone= <name of zone>`)."
+ },
+ {
+  "page": "high-availability.md",
+  "atom": "db-cluster",
+  "sentence": "its resolved bind address with the other units via the `db-cluster` peer"
+ },
+ {
+  "page": "high-availability.md",
+  "atom": "isResponsible",
+  "sentence": "that use the `isResponsible` decorator."
+ },
+ {
+  "page": "hook-command.md",
+  "atom": "ops.Unit.is_leader",
+  "sentence": "For example, when your charm calls `ops.Unit.is_leader`, in the background this calls `~/hooks/unit-name/leader-get`; its output is wrapped and returned as a Python `True/False` value."
+ },
+ {
+  "page": "hook.md",
+  "atom": "-n1",
+  "sentence": "|  Scale up an integrated app | `juju add-unit -n1 foo` | (new foo unit): `install -> *-relation-created -> config-changed -> start` |"
+ },
+ {
+  "page": "hook.md",
+  "atom": "ConnectionError",
+  "sentence": "For this reason it's essential, even in `pebble-ready` event handlers, to catch [`ConnectionError`](https://ops.readthedocs.io/en/latest/reference/pebble.html#ops.pebble.ConnectionError) when using Pe"
+ },
+ {
+  "page": "hook.md",
+  "atom": "Container.can_connect",
+  "sentence": "`StoredState` kept in the unit's local storage, and `Container.can_connect()` (a direct check of the Pebble server), never reach the controller."
+ },
+ {
+  "page": "hook.md",
+  "atom": "HookEvent",
+  "sentence": "For a charm written with [Ops](https://ops.readthedocs.io/en/latest/), Juju hooks are translated into Ops events, specifically, into classes that inherit from [`HookEvent`](https://ops.readthedocs.io/"
+ },
+ {
+  "page": "hook.md",
+  "atom": "StoredState",
+  "sentence": "With the Ops framework, `StoredState` backed by the controller (`use_controller_storage=True`) is charm state in this sense: Ops reads it on demand and the unit agent commits it only when the charm ex"
+ },
+ {
+  "page": "hook.md",
+  "atom": "can_connect",
+  "sentence": "`StoredState` kept in the unit's local storage, and `Container.can_connect()` (a direct check of the Pebble server), never reach the controller."
+ },
+ {
+  "page": "hook.md",
+  "atom": "database-storage-attached",
+  "sentence": "The hook names that these kinds represent will be prefixed by the storage name; for example, `database-storage-attached`."
+ },
+ {
+  "page": "hook.md",
+  "atom": "relation/storage",
+  "sentence": "|  Remove unit   | `juju remove-unit foo/0` (on machine) or <br> `juju remove-unit --num-units 1 foo` (on Kubernetes)  | `stop -> [relation/storage teardown] -> remove` |"
+ },
+ {
+  "page": "hook.md",
+  "atom": "use_controller_storage",
+  "sentence": "With the Ops framework, `StoredState` backed by the controller (`use_controller_storage=True`) is charm state in this sense: Ops reads it on demand and the unit agent commits it only when the charm ex"
+ },
+ {
+  "page": "juju-cli.md",
+  "atom": "v.2.5.0",
+  "sentence": "LXD itself can operate over the network and Juju does support this (`v.2.5.0`)."
+ },
+ {
+  "page": "juju-dashboard.md",
+  "atom": "juju-dashboard-k8s",
+  "sentence": "To use the Juju dashboard with a local controller, deploy the `juju-dashboard` or `juju-dashboard-k8s` charm in the controller model and integrate it with the `controller` application."
+ },
+ {
+  "page": "juju-dashboard.md",
+  "atom": "ubuntu-sso-username",
+  "sentence": "JAAS uses the Ubuntu SSO provider and to allow access to other users you can use the format `[ubuntu-sso-username]@external`."
+ },
+ {
+  "page": "juju-db-repl.md",
+  "atom": "juju-db-repl",
+  "sentence": "description: \"juju-db-repl reference: Dqlite REPL interactive SQL shell for querying Juju controller and model databases.\""
+ },
+ {
+  "page": "pebble.md",
+  "atom": "PebbleCustomNoticeEvent",
+  "sentence": "When a custom notice occurs, Juju fires a [`PebbleCustomNoticeEvent`](https://ops.readthedocs.io/en/latest/reference/ops.html#ops.PebbleCustomNoticeEvent) event whose [`workload`](https://ops.readthed"
+ },
+ {
+  "page": "relation.md",
+  "atom": "--controller-external-ips",
+  "sentence": "If the network topology is anything other than flat, the Juju controllers will need to be bootstrapped with `--controller-external-ips`, `--controller-external-name`, or both, so that the controllers "
+ },
+ {
+  "page": "relation.md",
+  "atom": "--controller-external-name",
+  "sentence": "If the network topology is anything other than flat, the Juju controllers will need to be bootstrapped with `--controller-external-ips`, `--controller-external-name`, or both, so that the controllers "
+ },
+ {
+  "page": "relation.md",
+  "atom": "canonical-livepatch",
+  "sentence": "For example, monitoring, logging, or system-administration agents such as [`ntp`](https://charmhub.io/ntp), [`telegraf`](https://charmhub.io/telegraf), [`nrpe`](https://charmhub.io/nrpe), and [`canoni"
+ },
+ {
+  "page": "relation.md",
+  "atom": "general-info",
+  "sentence": "The convention is for a subordinate to name its own `requires` endpoint `juju-info`, but any name can be used (for example: `info`, `general-info`); it just needs to use interface `juju-info`."
+ },
+ {
+  "page": "relation.md",
+  "atom": "remote-76cd96ab50f146b284912afd1cc13a0e",
+  "sentence": "`remote-76cd96ab50f146b284912afd1cc13a0e`."
+ },
+ {
+  "page": "removing-things.md",
+  "atom": "v.2.6.1",
+  "sentence": "As of `v.2.6.1`, this is the state of affairs for those commands that support at least the `--force` option:"
+ },
+ {
+  "page": "secret.md",
+  "atom": "--namespace",
+  "sentence": "| `token`| The Kuberneres authentication token (can be generated using `kubectl create token ${service-account} --namespace ${namespace}`.|"
+ },
+ {
+  "page": "secret.md",
+  "atom": "certificate-authority-data",
+  "sentence": "This comes from base64 decoding the `certificate-authority-data` value in the kubeconfig file.|"
+ },
+ {
+  "page": "secret.md",
+  "atom": "client-certificate-data",
+  "sentence": "This comes from base64 decoding the user's `client-certificate-data` value in the kubeconfig file.|"
+ },
+ {
+  "page": "secret.md",
+  "atom": "client-key-data",
+  "sentence": "This comes from base64 decoding the user's `client-key-data` value in the kubeconfig file.|"
+ },
+ {
+  "page": "secret.md",
+  "atom": "my-api-key",
+  "sentence": "label:) I as a user might create a secret with a name that makes sense to me, for example, `my-api-key`."
+ },
+ {
+  "page": "secret.md",
+  "atom": "shared-db-creds",
+  "sentence": "Any unit granted permission to the secret (peer units get implicit permission) might assign another label in their capacity as secret consumers, for example, `shared-db-creds`."
+ },
+ {
+  "page": "secret.md",
+  "atom": "vault-api-token",
+  "sentence": "When I then configure a charm to use it, the charm might give it a label, for example, `vault-api-token`."
+ }
+]

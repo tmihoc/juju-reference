@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1189.7" height="232.0" viewBox="0 0 1189.7 232.0">
+<defs>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#555555" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-open" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-open-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8" fill="none" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto" id="arrow-hollow" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+<marker markerWidth="8" markerHeight="8" viewBox="0 0 8 8" orient="auto-start-reverse" id="arrow-hollow-start" refX="8" refY="4.0">
+<path d="M0,0 L8,4.0 L0,8 Z" fill="#FFFFFF" stroke="#555555" stroke-width="1.5" />
+</marker>
+<path d="M 277.6 129.8 L 315.6 129.8" id="d0" />
+<path d="M 688.4 110.8 L 764.9 110.8" id="d1" />
+<path d="M 155.6 66.8 L 437.6 66.8" id="d2" />
+<path d="M 551.2 161.8 L 1034.1 161.8" id="d3" />
+</defs>
+<g id="ggarch-nodes">
+<rect x="20.0" y="20.0" width="872.1" height="192.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" stroke-dasharray="2,2" />
+<text x="456.05" y="34.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Model</text>
+<rect x="181.60000000000002" y="86.0" width="230.0" height="98.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" stroke-dasharray="2,2" />
+<text x="296.6" y="100.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Application D</text>
+<rect x="197.60000000000002" y="114.0" width="80.0" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" />
+<text x="237.60000000000002" y="135.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">D/0</text>
+<rect x="315.6" y="114.0" width="80.0" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" />
+<text x="355.6" y="135.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">D/1</text>
+<rect x="36.0" y="86.0" width="125.60000000000001" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" stroke-dasharray="2,2" />
+<text x="98.80000000000001" y="107.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Application A</text>
+<rect x="431.6" y="86.0" width="125.60000000000001" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" stroke-dasharray="2,2" />
+<text x="494.40000000000003" y="107.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Application B</text>
+<rect x="577.2" y="86.0" width="111.2" height="60.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" stroke-dasharray="2,2" />
+<text x="632.8000000000001" y="106.89999999999999" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Principal</text>
+<text x="632.8000000000001" y="125.1" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">application</text>
+<rect x="764.9000000000001" y="86.0" width="111.2" height="60.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" stroke-dasharray="2,2" />
+<text x="820.5000000000001" y="106.89999999999999" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Subordinate</text>
+<text x="820.5000000000001" y="125.1" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">application</text>
+<rect x="1012.1" y="20.0" width="157.60000000000002" height="192.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" stroke-dasharray="2,2" />
+<text x="1090.9" y="34.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Other model</text>
+<rect x="1028.1" y="95.0" width="125.60000000000001" height="42.0" fill="none" stroke="#E95420" stroke-width="1" rx="6" ry="6" stroke-dasharray="2,2" />
+<text x="1090.8999999999999" y="116.0" font-size="13" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#333333" text-anchor="middle" dominant-baseline="central">Application C</text>
+</g>
+<g id="ggarch-edges">
+<path d="M 277.6 135.0 L 315.6 135.0" fill="none" stroke="#666666" stroke-width="1" stroke-linejoin="round" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d0" startOffset="19.0">
+peer
+</textPath></text>
+<path d="M 764.9 116.0 L 688.4 116.0" fill="none" stroke="#666666" stroke-width="1" stroke-linejoin="round" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d1" startOffset="38.2">
+subordinate
+</textPath></text>
+<path d="M 155.6 86.0 L 155.6 72.0 L 437.6 72.0 L 437.6 86.0" fill="none" stroke="#666666" stroke-width="1" stroke-linejoin="round" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d2" startOffset="141.0">
+regular
+</textPath></text>
+<path d="M 1034.1 137.0 L 1034.1 167.0 L 551.2 167.0 L 551.2 128.0" fill="none" stroke="#666666" stroke-width="1" stroke-linejoin="round" />
+<text font-size="9" text-anchor="middle" font-family="'Ubuntu Sans', Ubuntu, system-ui, -apple-system, sans-serif" fill="#444444"><textPath xlink:href="#d3" startOffset="241.4">
+cross-model
+</textPath></text>
+</g>
+<g id="ggarch-annotations"></g>
+</svg>

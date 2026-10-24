@@ -1,0 +1,86 @@
+[
+ {
+  "key": "relation:34",
+  "page": "relation",
+  "claim": "A non-cross-model relation is a non-subordinate relation where the applications are on  the same model.",
+  "prior_kind": "definition",
+  "prior_note": "term definition"
+ },
+ {
+  "key": "secret:26",
+  "page": "secret",
+  "claim": "This flexibility allows charms to use their own naming conventions for internal reference.",
+  "prior_kind": "rationale",
+  "prior_note": "rationale"
+ },
+ {
+  "key": "relation:8",
+  "page": "relation",
+  "claim": "When you deploy a subordinate charm, it appears in your Juju model as an application with no unit.",
+  "prior_kind": "definition",
+  "prior_note": "no unit on deploy"
+ },
+ {
+  "key": "cloud:7",
+  "page": "cloud",
+  "claim": "A machine cloud is a cloud that provides machine-level infrastructure.",
+  "prior_kind": "definition",
+  "prior_note": "definition"
+ },
+ {
+  "key": "cloud:1",
+  "page": "cloud",
+  "claim": "To Juju, a cloud (or backing cloud) is any entity that has an API that can provide compute, networking, and optionally storage resources in order for application units to be deployed on them.",
+  "prior_kind": "definition",
+  "prior_note": "definition of cloud"
+ },
+ {
+  "key": "machine:7",
+  "page": "machine",
+  "claim": "In Juju, many different commands have a machine argument.",
+  "prior_kind": "guidance",
+  "prior_note": "general observation"
+ },
+ {
+  "key": "secret:16",
+  "page": "secret",
+  "claim": "When I then configure a charm to use it, the charm might give it a label, for example, `vault-api-token`.",
+  "prior_kind": "example",
+  "prior_note": "example"
+ },
+ {
+  "key": "relation:23",
+  "page": "relation",
+  "claim": "A cross-model relation (aka 'CMR') is a non-subordinate relation where the applications are on different models (+/- different controllers, +/- different clouds).",
+  "prior_kind": "definition",
+  "prior_note": "term definition"
+ },
+ {
+  "key": "relation:13",
+  "page": "relation",
+  "claim": "It is supported on every kind of charm, but is only useful for machine charms, since it exists to allow subordinate charms to attach to a principal that does not otherwise expose a suitable interface.",
+  "prior_kind": "guidance",
+  "prior_note": "usefulness advice"
+ },
+ {
+  "key": "secret:19",
+  "page": "secret",
+  "claim": "Any unit granted permission to the secret (peer units get implicit permission) might assign another label in their capacity as secret consumers, for example, `shared-db-creds`.",
+  "prior_kind": "example",
+  "prior_note": "example"
+ },
+ {
+  "key": "secret:18",
+  "page": "secret",
+  "claim": "Juju assigns it a URI, e.g., `6k7n4ps1vj2d9b318x5w`.",
+  "prior_kind": "example",
+  "prior_note": "example"
+ },
+ {
+  "key": "relation:29",
+  "page": "relation",
+  "claim": "However, the endpoint type does influence on how juju sets up firewall rules: it is assumed that a requirer is the client and the provider is the server, so ports are opened on the provider side.",
+  "prior_kind": "rationale",
+  "prior_note": "firewall assumption"
+ }
+]

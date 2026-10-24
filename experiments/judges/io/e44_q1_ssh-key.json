@@ -1,0 +1,412 @@
+[
+  {
+    "id": "Q01",
+    "type": "lookup",
+    "question": "Which option makes `juju ssh-keys` print the whole public key instead of only the fingerprint?",
+    "ground_truth": "The `--full` flag; without it the command shows only fingerprints.",
+    "key_facts": [
+      "Flag name is --full",
+      "Default is false, so by default only the fingerprint is shown"
+    ],
+    "evidence": [
+      {
+        "file": "cmd/juju/sshkeys/list_sshkeys.go",
+        "line": 73,
+        "quote": "f.BoolVar(&c.showFullKey, \"full\", false, \"Show full key instead of just the fingerprint\")"
+      },
+      {
+        "file": "cmd/juju/sshkeys/list_sshkeys.go",
+        "line": 61,
+        "quote": "Aliases:  []string{\"list-ssh-keys\"},"
+      }
+    ],
+    "greps": [],
+    "cross_area": false
+  },
+  {
+    "id": "Q02",
+    "type": "lookup",
+    "question": "When bootstrapping, I set the `authorized-keys` option to give the controller model several extra SSH public keys in one string. What character separates the keys?",
+    "ground_truth": "A semicolon (';').",
+    "key_facts": [
+      "Multiple keys in the authorized-keys bootstrap option are delimited by ';'",
+      "A separate authorized-keys-path option reads keys from a file and appends them to those from authorized-keys"
+    ],
+    "evidence": [
+      {
+        "file": "environs/bootstrap/config.go",
+        "line": 35,
+        "quote": "authorizedKeysDelimiter = ';'"
+      },
+      {
+        "file": "environs/bootstrap/config.go",
+        "line": 374,
+        "quote": "config.AuthorizedKeys = append(config.AuthorizedKeys, keys...)"
+      }
+    ],
+    "greps": [],
+    "cross_area": false
+  },
+  {
+    "id": "Q03",
+    "type": "lookup",
+    "question": "Which identity sources can `juju import-ssh-key` pull keys from, and what prefixes do I give?",
+    "ground_truth": "Launchpad and GitHub, with the prefixes `lp:` and `gh:` followed by the user name.",
+    "key_facts": [
+      "Prefix lp: selects Launchpad",
+      "Prefix gh: selects GitHub",
+      "Any other prefix is rejected by the command"
+    ],
+    "evidence": [
+      {
+        "file": "cmd/juju/sshkeys/import_sshkeys.go",
+        "line": 86,
+        "quote": "case \"lp:\", \"gh:\":"
+      },
+      {
+        "file": "internal/ssh/importer/importer.go",
+        "line": 68,
+        "quote": "\"gh\": &GithubResolver{client},"
+      },
+      {
+        "file": "internal/ssh/importer/importer.go",
+        "line": 69,
+        "quote": "\"lp\": &LaunchpadResolver{client},"
+      }
+    ],
+    "greps": [],
+    "cross_area": false
+  },
+  {
+    "id": "Q04",
+    "type": "lookup",
+    "question": "If I try to add an SSH key whose comment is a particular reserved string, Juju refuses it. What is that comment?",
+    "ground_truth": "`juju-system-key`, the comment used for the controller's own system key.",
+    "key_facts": [
+      "Reserved comment is juju-system-key",
+      "Keys carrying a reserved comment are rejected both when added and when imported (ReservedCommentViolation)"
+    ],
+    "evidence": [
+      {
+        "file": "domain/controller/types.go",
+        "line": 9,
+        "quote": "ControllerSSHKeyComment = \"juju-system-key\""
+      },
+      {
+        "file": "domain/keymanager/service/service.go",
+        "line": 96,
+        "quote": "controller.ControllerSSHKeyComment,"
+      },
+      {
+        "file": "domain/keymanager/service/service.go",
+        "line": 163,
+        "quote": "if reservedPublicKeyComments.Contains(parsedKey.Comment) {"
+      }
+    ],
+    "greps": [],
+    "cross_area": true
+  },
+  {
+    "id": "Q05",
+    "type": "lookup",
+    "question": "On a machine that Juju provisions, which operating-system account receives the model's SSH public keys in its authorized_keys?",
+    "ground_truth": "The `ubuntu` user.",
+    "key_facts": [
+      "Cloud-init user is named ubuntu and gets the authorized keys",
+      "The ephemeral-key worker on the machine also writes to the ubuntu user's authorized_keys"
+    ],
+    "evidence": [
+      {
+        "file": "internal/cloudconfig/userdatacfg.go",
+        "line": 675,
+        "quote": "Name:              \"ubuntu\","
+      },
+      {
+        "file": "internal/cloudconfig/userdatacfg.go",
+        "line": 221,
+        "quote": "SetUbuntuUser(w.conf, w.icfg.AuthorizedKeys)"
+      },
+      {
+        "file": "internal/worker/sshkeyupdater/worker.go",
+        "line": 18,
+        "quote": "var SSHUser = \"ubuntu\""
+      }
+    ],
+    "greps": [],
+    "cross_area": true
+  },
+  {
+    "id": "Q06",
+    "type": "mechanism",
+    "question": "I add the same SSH key to two models, then run `juju remove-ssh-key` on one of them. Is the key removed from the other model too, and when does Juju delete its stored copy of the key?",
+    "ground_truth": "No. Only the association with the model on which it was removed is deleted. Juju deletes the user's stored key record only when no model references it any more, doing that clean-up in the same transaction.",
+    "key_facts": [
+      "The model/key association row for the targeted model is deleted",
+      "Keys can be targeted by fingerprint, comment or full key value",
+      "Stored user keys that are no longer referenced by any model are deleted at the end of the same transaction",
+      "A key still associated with another model is kept"
+    ],
+    "evidence": [
+      {
+        "file": "domain/keymanager/state/state.go",
+        "line": 645,
+        "quote": "deleteUnusedUserKeys is here to clean up any public keys for a user that"
+      },
+      {
+        "file": "domain/keymanager/state/state.go",
+        "line": 654,
+        "quote": "HAVING count(user_public_ssh_key_id) == 0)"
+      },
+      {
+        "file": "domain/keymanager/state/state.go",
+        "line": 622,
+        "quote": "AND (comment IN ($S[:])"
+      }
+    ],
+    "greps": [],
+    "cross_area": true
+  },
+  {
+    "id": "Q07",
+    "type": "mechanism",
+    "question": "A user has only read access on a model. Can they list the model's SSH keys? Can they add or import keys? What level is required for each?",
+    "ground_truth": "They can list keys (read access suffices; admin also passes) but cannot add, import or remove keys: those require model admin, which a controller superuser also has.",
+    "key_facts": [
+      "Listing requires write permission or, failing that, read access on the model",
+      "Adding, importing and removing require model admin or controller superuser",
+      "Add/import also fail when a change block is on; remove fails with a remove or change block"
+    ],
+    "evidence": [
+      {
+        "file": "apiserver/facades/client/keymanager/keymanager.go",
+        "line": 46,
+        "quote": "permission.ReadAccess,"
+      },
+      {
+        "file": "apiserver/facades/client/keymanager/keymanager.go",
+        "line": 53,
+        "quote": "ok, err := model.HasModelAdmin("
+      },
+      {
+        "file": "apiserver/common/model/permissions.go",
+        "line": 26,
+        "quote": "// superusers have admin for all models."
+      }
+    ],
+    "greps": [],
+    "cross_area": true
+  },
+  {
+    "id": "Q08",
+    "type": "mechanism",
+    "question": "When Juju creates a new machine, which SSH keys are put in its authorized keys, and how are they marked?",
+    "ground_truth": "The SSH keys authorised on the model (all users' keys) plus the controller's system SSH keys, newline-joined into the instance config and written by cloud-init for the ubuntu user. Each key gets a `Juju:` comment prefix to distinguish it from manually added keys.",
+    "key_facts": [
+      "Keys are the model's user keys followed by the controller's system keys",
+      "They are joined with newline into the instance config AuthorizedKeys",
+      "cloud-init annotates every key with the Juju: prefix"
+    ],
+    "evidence": [
+      {
+        "file": "domain/keyupdater/service/service.go",
+        "line": 177,
+        "quote": "return append(userKeys, controllerKeys...), nil"
+      },
+      {
+        "file": "apiserver/facades/client/machinemanager/instanceconfig.go",
+        "line": 180,
+        "quote": "icfg.AuthorizedKeys = strings.Join(keys, \"\\n\")"
+      },
+      {
+        "file": "internal/cloudconfig/cloudinit/cloudinit.go",
+        "line": 123,
+        "quote": "// ensure our keys have \"Juju:\" prepended to differentiate"
+      }
+    ],
+    "greps": [],
+    "cross_area": true
+  },
+  {
+    "id": "Q09",
+    "type": "mechanism",
+    "question": "I am migrating a model from a Juju 3.x controller whose model config still holds `authorized-keys`. Which of those keys are dropped, and which user owns the ones that are kept?",
+    "ground_truth": "Keys whose text contains the controller key comment `juju-system-key` are dropped (with a warning), to stop the source controller keeping access. The remaining keys are added to the `admin` user.",
+    "key_facts": [
+      "Keys containing the juju-system-key comment are discarded on import",
+      "The surviving keys are assigned to the admin user",
+      "A warning is logged for each discarded key"
+    ],
+    "evidence": [
+      {
+        "file": "domain/keymanager/modelmigration/import.go",
+        "line": 198,
+        "quote": "if strings.Contains(pk, controller.ControllerSSHKeyComment) {"
+      },
+      {
+        "file": "domain/keymanager/modelmigration/import.go",
+        "line": 212,
+        "quote": "adminUser, err := i.userService.GetUserByName(ctx, user.AdminUserName)"
+      }
+    ],
+    "greps": [],
+    "cross_area": true
+  },
+  {
+    "id": "Q10",
+    "type": "mechanism",
+    "question": "What happens to a user's SSH keys when that user is removed from the controller?",
+    "ground_truth": "In the same transaction that marks the user removed, all of the user's model key associations are deleted, then all of the user's stored public keys are deleted.",
+    "key_facts": [
+      "model_authorized_keys rows for the user's keys are deleted",
+      "The user's stored public SSH keys are deleted",
+      "This happens in the same transaction as setting the user's removed flag"
+    ],
+    "evidence": [
+      {
+        "file": "domain/access/state/user.go",
+        "line": 517,
+        "quote": "DELETE FROM model_authorized_keys"
+      },
+      {
+        "file": "domain/access/state/user.go",
+        "line": 527,
+        "quote": "\"DELETE FROM user_public_ssh_key WHERE user_uuid = $userUUID.uuid\""
+      },
+      {
+        "file": "domain/access/state/user.go",
+        "line": 585,
+        "quote": "if err := tx.Query(ctx, setRemovedStmt, uuidArgs).Run(); err != nil {"
+      }
+    ],
+    "greps": [],
+    "cross_area": true
+  },
+  {
+    "id": "Q11",
+    "type": "failure",
+    "question": "I ran `juju import-ssh-key gl:alice` and it failed. What does the message say and what should I do?",
+    "ground_truth": "The command fails with: prefix in Key ID \"gl:alice\" not supported, only lp: and gh: are allowed. Use an lp: (Launchpad) or gh: (GitHub) identity instead.",
+    "key_facts": [
+      "Message is: prefix in Key ID %q not supported, only lp: and gh: are allowed",
+      "Cause is a key id prefix other than lp: or gh:",
+      "Validated in the command's argument check before contacting the controller"
+    ],
+    "evidence": [
+      {
+        "file": "cmd/juju/sshkeys/import_sshkeys.go",
+        "line": 89,
+        "quote": "fmt.Sprintf(\"prefix in Key ID %q not supported, only lp: and gh: are allowed\", k))"
+      }
+    ],
+    "greps": [],
+    "cross_area": false
+  },
+  {
+    "id": "Q12",
+    "type": "failure",
+    "question": "I connect to a machine through the controller's SSH server with a key that is registered for my user, but get the error 'is not associated with model ... add the key to the model or specify a different key'. Why, and how do I fix it?",
+    "ground_truth": "My key was accepted for authentication (user keys are controller-wide), but it is not among the keys added to the target model. Add it to that model (e.g. `juju add-ssh-key`) or connect with a key that is on the model.",
+    "key_facts": [
+      "Authentication checks the key against the user's keys across the controller",
+      "Authorisation then checks the key is associated with the destination model",
+      "Message is: public key %q used to authenticate is not associated with model %q, add the key to the model or specify a different key"
+    ],
+    "evidence": [
+      {
+        "file": "internal/worker/sshserver/authorization.go",
+        "line": 62,
+        "quote": "is not associated with model %q, add the key to the model or specify a different key"
+      },
+      {
+        "file": "internal/worker/sshserver/authorization.go",
+        "line": 51,
+        "quote": "// The key used during authentication is controller scoped, but keys are"
+      },
+      {
+        "file": "internal/worker/sshserver/authentication.go",
+        "line": 43,
+        "quote": "if bytes.Equal(key.Marshal(), authorizedKey.Marshal()) {"
+      }
+    ],
+    "greps": [],
+    "cross_area": true
+  },
+  {
+    "id": "Q13",
+    "type": "failure",
+    "question": "`juju add-ssh-key` printed `cannot add key ...` for a key I thought was new. What error text appears when the key is already on the model, and what does `import-ssh-key` do in that situation?",
+    "ground_truth": "The error is: one or more public keys to be added for user \"admin\" already exist (code \"public key already exists\"). The model already holds that key. `import-ssh-key` instead silently skips keys the user already has.",
+    "key_facts": [
+      "Add error text: one or more public keys to be added for user %q already exist",
+      "Cause: the (model, key) association already exists (primary key constraint)",
+      "Import safely skips keys already present and returns no error"
+    ],
+    "evidence": [
+      {
+        "file": "apiserver/facades/client/keymanager/keymanager.go",
+        "line": 254,
+        "quote": "\"one or more public keys to be added for user %q already exist\","
+      },
+      {
+        "file": "domain/keymanager/state/state.go",
+        "line": 269,
+        "quote": "\"adding key %d for user %q to model %q, key already exists\","
+      },
+      {
+        "file": "domain/keymanager/service/service.go",
+        "line": 244,
+        "quote": "// has one or more of the public keys being imported they will safely be skipped"
+      }
+    ],
+    "greps": [],
+    "cross_area": false
+  },
+  {
+    "id": "Q14",
+    "type": "unanswerable",
+    "question": "What is the maximum number of SSH public keys that can be added to a single model or user?",
+    "ground_truth": "The documentation does not say; the code defines no limit on the number of keys.",
+    "key_facts": [
+      "No maximum number of keys per model or user is defined"
+    ],
+    "evidence": [],
+    "greps": [
+      "grep -rniE 'max.*ssh.*key|MaxKeys|max-keys|maxPublicKeys|key.*quota|MaxPublicKeys' --include=*.go .",
+      "grep -rniE 'too many (ssh )?keys|keys.*exceed|limit.*public.?keys|public.?keys.*limit' in keymanager, keyupdater, ssh, sshserver, facade, cmd/juju/sshkeys",
+      "grep -rniE 'len\\(keys\\) *(>|>=) ' in the same SSH key directories"
+    ],
+    "cross_area": false
+  },
+  {
+    "id": "Q15",
+    "type": "unanswerable",
+    "question": "Can I give an SSH key an expiry time or lifetime so that it stops working automatically after a set period?",
+    "ground_truth": "The documentation does not say; user SSH keys have no expiry or TTL field.",
+    "key_facts": [
+      "No expiry, TTL or validity period exists for user public keys"
+    ],
+    "evidence": [],
+    "greps": [
+      "grep -rniE 'key.*ttl|public.*key.*expir|KeyExpir|ExpiresAt.*[Kk]ey' --include=*.go .",
+      "grep -rniE 'valid-until|validUntil|expires-after|key.*expir|expir.*key' in keymanager, ssh, keyupdater, sshserver, cmd/juju/sshkeys, core/ssh",
+      "grep -rniE 'not.?after|valid.?to|validity' in the same SSH key directories"
+    ],
+    "cross_area": false
+  },
+  {
+    "id": "Q16",
+    "type": "unanswerable",
+    "question": "Is there a Juju command to rotate the controller's system SSH key?",
+    "ground_truth": "The documentation does not say; no rotation or regeneration operation exists for the system SSH key.",
+    "key_facts": [
+      "The system key is generated at bootstrap and no command or worker rotates it"
+    ],
+    "evidence": [],
+    "greps": [
+      "grep -rniE 'rotate|rotation' in cmd/juju/sshkeys, domain/keymanager, domain/keyupdater, domain/ssh, internal/ssh, sshkeyupdater, sshserver, controller, agent bootstrap",
+      "grep -rniE 'rotate.*ssh|ssh.*rotat|key.*rotation' --include=*.go .",
+      "grep -rniE 'regenerat.*(ssh|key)|renew.*(ssh|key)|refresh.*system.*key' in the same directories"
+    ],
+    "cross_area": false
+  }
+]

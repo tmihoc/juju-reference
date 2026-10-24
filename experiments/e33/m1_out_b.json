@@ -1,0 +1,794 @@
+[
+ {
+  "table": "model_config",
+  "page": "model",
+  "alt": "",
+  "evidence": "model/sql/0005-model.sql"
+ },
+ {
+  "table": "model_constraint",
+  "page": "constraint",
+  "alt": "model",
+  "evidence": "model/sql/0005-model.sql:14 links model to constraint row"
+ },
+ {
+  "table": "model_database_deletion",
+  "page": "database",
+  "alt": "model",
+  "evidence": "controller/sql/0030:12 namespace + created_at, pending DB drop"
+ },
+ {
+  "table": "model_last_login",
+  "page": "user",
+  "alt": "model",
+  "evidence": "records last login of a user to a model"
+ },
+ {
+  "table": "model_life",
+  "page": "model",
+  "alt": "",
+  "evidence": "life of the model"
+ },
+ {
+  "table": "model_migrating",
+  "page": "model-migration",
+  "alt": "model",
+  "evidence": "model/sql/0005-model.sql:92 marks model as migrating"
+ },
+ {
+  "table": "model_migration_export",
+  "page": "model-migration",
+  "alt": "",
+  "evidence": "controller migration tables"
+ },
+ {
+  "table": "model_migration_export_minion_sync",
+  "page": "model-migration",
+  "alt": "",
+  "evidence": "controller migration tables"
+ },
+ {
+  "table": "model_migration_export_offer",
+  "page": "model-migration",
+  "alt": "",
+  "evidence": "controller migration tables"
+ },
+ {
+  "table": "model_migration_export_phase",
+  "page": "model-migration",
+  "alt": "",
+  "evidence": "controller migration tables"
+ },
+ {
+  "table": "model_migration_export_status",
+  "page": "model-migration",
+  "alt": "",
+  "evidence": "controller migration tables"
+ },
+ {
+  "table": "model_migration_export_target_auth",
+  "page": "model-migration",
+  "alt": "",
+  "evidence": "controller migration tables"
+ },
+ {
+  "table": "model_migration_import",
+  "page": "model-migration",
+  "alt": "",
+  "evidence": "controller migration tables"
+ },
+ {
+  "table": "model_migration_import_external_controller_model",
+  "page": "model-migration",
+  "alt": "",
+  "evidence": "controller migration tables"
+ },
+ {
+  "table": "model_migration_import_offer",
+  "page": "model-migration",
+  "alt": "",
+  "evidence": "controller migration tables"
+ },
+ {
+  "table": "model_migration_redirect",
+  "page": "model-migration",
+  "alt": "",
+  "evidence": "controller migration tables"
+ },
+ {
+  "table": "model_migration_redirect_user",
+  "page": "model-migration",
+  "alt": "",
+  "evidence": "controller migration tables"
+ },
+ {
+  "table": "model_namespace",
+  "page": "database",
+  "alt": "model",
+  "evidence": "controller/sql/0007-model.sql:3 maps model to db namespace"
+ },
+ {
+  "table": "model_secret_backend",
+  "page": "secret-backend",
+  "alt": "model",
+  "evidence": "selects secret backend for the model"
+ },
+ {
+  "table": "model_storage_pool",
+  "page": "storage",
+  "alt": "model",
+  "evidence": "model/sql/0011-storage.sql:73 default pool per storage kind"
+ },
+ {
+  "table": "namespace_list",
+  "page": "database",
+  "alt": "",
+  "evidence": "controller db namespaces"
+ },
+ {
+  "table": "net_node",
+  "page": "link-layer-device",
+  "alt": "machine",
+  "evidence": "model/sql/0021-network.sql:1 network node and its addresses"
+ },
+ {
+  "table": "net_node_fqdn_address",
+  "page": "link-layer-device",
+  "alt": "machine",
+  "evidence": "model/sql/0021-network.sql:1 network node and its addresses"
+ },
+ {
+  "table": "net_node_hostname_address",
+  "page": "link-layer-device",
+  "alt": "machine",
+  "evidence": "model/sql/0021-network.sql:1 network node and its addresses"
+ },
+ {
+  "table": "object_store_backend",
+  "page": "object-store",
+  "alt": "",
+  "evidence": "object store tables"
+ },
+ {
+  "table": "object_store_backend_s3_config",
+  "page": "object-store",
+  "alt": "",
+  "evidence": "object store tables"
+ },
+ {
+  "table": "object_store_drain_info",
+  "page": "object-store",
+  "alt": "",
+  "evidence": "object store tables"
+ },
+ {
+  "table": "object_store_metadata",
+  "page": "object-store",
+  "alt": "",
+  "evidence": "object store tables"
+ },
+ {
+  "table": "object_store_metadata_path",
+  "page": "object-store",
+  "alt": "",
+  "evidence": "object store tables"
+ },
+ {
+  "table": "object_store_placement",
+  "page": "object-store",
+  "alt": "",
+  "evidence": "object store tables"
+ },
+ {
+  "table": "offer",
+  "page": "offer",
+  "alt": "",
+  "evidence": "offer tables"
+ },
+ {
+  "table": "offer_connection",
+  "page": "offer",
+  "alt": "",
+  "evidence": "offer tables"
+ },
+ {
+  "table": "offer_endpoint",
+  "page": "offer",
+  "alt": "",
+  "evidence": "offer tables"
+ },
+ {
+  "table": "operation",
+  "page": "action",
+  "alt": "",
+  "evidence": "operations and tasks"
+ },
+ {
+  "table": "operation_action",
+  "page": "action",
+  "alt": "",
+  "evidence": "operations and tasks"
+ },
+ {
+  "table": "operation_machine_task",
+  "page": "action",
+  "alt": "",
+  "evidence": "operations and tasks"
+ },
+ {
+  "table": "operation_parameter",
+  "page": "action",
+  "alt": "",
+  "evidence": "operations and tasks"
+ },
+ {
+  "table": "operation_task",
+  "page": "action",
+  "alt": "",
+  "evidence": "operations and tasks"
+ },
+ {
+  "table": "operation_task_log",
+  "page": "action",
+  "alt": "",
+  "evidence": "operations and tasks"
+ },
+ {
+  "table": "operation_task_output",
+  "page": "action",
+  "alt": "",
+  "evidence": "operations and tasks"
+ },
+ {
+  "table": "operation_task_status",
+  "page": "action",
+  "alt": "",
+  "evidence": "operations and tasks"
+ },
+ {
+  "table": "operation_unit_task",
+  "page": "action",
+  "alt": "",
+  "evidence": "operations and tasks"
+ },
+ {
+  "table": "operator_status",
+  "page": "application",
+  "alt": "status",
+  "evidence": "model/sql/0019-application.sql:77 keyed by application_uuid"
+ },
+ {
+  "table": "pending_application_resource",
+  "page": "resource",
+  "alt": "application",
+  "evidence": "pending resource for application"
+ },
+ {
+  "table": "permission",
+  "page": "permission",
+  "alt": "",
+  "evidence": "controller permission table"
+ },
+ {
+  "table": "port_range",
+  "page": "port",
+  "alt": "unit",
+  "evidence": "opened ports"
+ },
+ {
+  "table": "provider_ip_address",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "model/sql/0021-network.sql provider id of device/address"
+ },
+ {
+  "table": "provider_link_layer_device",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "model/sql/0021-network.sql provider id of device/address"
+ },
+ {
+  "table": "provider_network",
+  "page": "subnet",
+  "alt": "",
+  "evidence": "model/sql/0009-subnet.sql provider network ids"
+ },
+ {
+  "table": "provider_network_subnet",
+  "page": "subnet",
+  "alt": "",
+  "evidence": "model/sql/0009-subnet.sql provider network ids"
+ },
+ {
+  "table": "provider_space",
+  "page": "space",
+  "alt": "",
+  "evidence": "model/sql/0008-space.sql:8"
+ },
+ {
+  "table": "provider_subnet",
+  "page": "subnet",
+  "alt": "",
+  "evidence": "model/sql/0009-subnet.sql provider network ids"
+ },
+ {
+  "table": "relation",
+  "page": "relation",
+  "alt": "",
+  "evidence": "relation tables"
+ },
+ {
+  "table": "relation_application_setting",
+  "page": "relation",
+  "alt": "",
+  "evidence": "relation tables"
+ },
+ {
+  "table": "relation_application_settings_hash",
+  "page": "relation",
+  "alt": "",
+  "evidence": "relation tables"
+ },
+ {
+  "table": "relation_endpoint",
+  "page": "relation",
+  "alt": "",
+  "evidence": "relation tables"
+ },
+ {
+  "table": "relation_network_egress",
+  "page": "relation",
+  "alt": "",
+  "evidence": "relation tables"
+ },
+ {
+  "table": "relation_network_ingress",
+  "page": "relation",
+  "alt": "",
+  "evidence": "relation tables"
+ },
+ {
+  "table": "relation_status",
+  "page": "relation",
+  "alt": "",
+  "evidence": "relation tables"
+ },
+ {
+  "table": "relation_unit",
+  "page": "relation",
+  "alt": "",
+  "evidence": "relation tables"
+ },
+ {
+  "table": "relation_unit_departure",
+  "page": "relation",
+  "alt": "",
+  "evidence": "relation tables"
+ },
+ {
+  "table": "relation_unit_setting",
+  "page": "relation",
+  "alt": "",
+  "evidence": "relation tables"
+ },
+ {
+  "table": "relation_unit_setting_archive",
+  "page": "relation",
+  "alt": "",
+  "evidence": "relation tables"
+ },
+ {
+  "table": "relation_unit_settings_hash",
+  "page": "relation",
+  "alt": "",
+  "evidence": "relation tables"
+ },
+ {
+  "table": "removal",
+  "page": "removal",
+  "alt": "",
+  "evidence": "scheduled removal jobs"
+ },
+ {
+  "table": "resource",
+  "page": "resource",
+  "alt": "",
+  "evidence": "resource tables"
+ },
+ {
+  "table": "resource_container_image_metadata_store",
+  "page": "resource",
+  "alt": "",
+  "evidence": "resource tables"
+ },
+ {
+  "table": "resource_file_store",
+  "page": "resource",
+  "alt": "",
+  "evidence": "resource tables"
+ },
+ {
+  "table": "resource_image_store",
+  "page": "resource",
+  "alt": "",
+  "evidence": "resource tables"
+ },
+ {
+  "table": "resource_retrieved_by",
+  "page": "resource",
+  "alt": "",
+  "evidence": "resource tables"
+ },
+ {
+  "table": "secret",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_application_owner",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_backend",
+  "page": "secret-backend",
+  "alt": "",
+  "evidence": "controller/sql/0018-secret-backend.sql"
+ },
+ {
+  "table": "secret_backend_config",
+  "page": "secret-backend",
+  "alt": "",
+  "evidence": "controller/sql/0018-secret-backend.sql"
+ },
+ {
+  "table": "secret_backend_reference",
+  "page": "secret-backend",
+  "alt": "secret",
+  "evidence": "controller/sql/0018-secret-backend.sql"
+ },
+ {
+  "table": "secret_backend_rotation",
+  "page": "secret-backend",
+  "alt": "",
+  "evidence": "controller/sql/0018-secret-backend.sql"
+ },
+ {
+  "table": "secret_content",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_deleted_value_ref",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_metadata",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_model_owner",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_permission",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_reference",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_remote_unit_consumer",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_reservation",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_revision",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_revision_expire",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_revision_obsolete",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_rotation",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_unit_consumer",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_unit_owner",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "secret_value_ref",
+  "page": "secret",
+  "alt": "",
+  "evidence": "secret tables"
+ },
+ {
+  "table": "sequence",
+  "page": "database",
+  "alt": "",
+  "evidence": "model/sql/0029-sequence.sql namespace counters"
+ },
+ {
+  "table": "space",
+  "page": "space",
+  "alt": "",
+  "evidence": "space table"
+ },
+ {
+  "table": "ssh_connection_request",
+  "page": "ssh",
+  "alt": "",
+  "evidence": "SSH connection requests"
+ },
+ {
+  "table": "storage_attachment",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_filesystem",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_filesystem_attachment",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_filesystem_status",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_instance",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_instance_filesystem",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_instance_volume",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_pool",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_pool_attribute",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_unit_owner",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_volume",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_volume_attachment",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_volume_attachment_plan",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_volume_attachment_plan_attr",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "storage_volume_status",
+  "page": "storage",
+  "alt": "",
+  "evidence": "storage tables"
+ },
+ {
+  "table": "subnet",
+  "page": "subnet",
+  "alt": "",
+  "evidence": "subnet table"
+ },
+ {
+  "table": "unit",
+  "page": "unit",
+  "alt": "",
+  "evidence": "unit tables"
+ },
+ {
+  "table": "unit_agent_presence",
+  "page": "unit",
+  "alt": "",
+  "evidence": "unit tables"
+ },
+ {
+  "table": "unit_agent_status",
+  "page": "unit",
+  "alt": "",
+  "evidence": "unit tables"
+ },
+ {
+  "table": "unit_agent_version",
+  "page": "unit",
+  "alt": "agent-version",
+  "evidence": "per-unit agent version"
+ },
+ {
+  "table": "unit_principal",
+  "page": "unit",
+  "alt": "",
+  "evidence": "unit tables"
+ },
+ {
+  "table": "unit_resolved",
+  "page": "unit",
+  "alt": "",
+  "evidence": "unit tables"
+ },
+ {
+  "table": "unit_resource",
+  "page": "resource",
+  "alt": "unit",
+  "evidence": "unit attached resource"
+ },
+ {
+  "table": "unit_state",
+  "page": "unit",
+  "alt": "",
+  "evidence": "unit tables"
+ },
+ {
+  "table": "unit_state_charm",
+  "page": "unit",
+  "alt": "",
+  "evidence": "unit tables"
+ },
+ {
+  "table": "unit_state_relation",
+  "page": "unit",
+  "alt": "",
+  "evidence": "unit tables"
+ },
+ {
+  "table": "unit_storage_directive",
+  "page": "storage",
+  "alt": "unit",
+  "evidence": "model/sql/0011-storage.sql:119 pool/size/count per unit storage"
+ },
+ {
+  "table": "unit_virtual_ssh_host_key",
+  "page": "ssh",
+  "alt": "unit",
+  "evidence": "virtual host key per unit"
+ },
+ {
+  "table": "unit_workload_status",
+  "page": "unit",
+  "alt": "",
+  "evidence": "unit tables"
+ },
+ {
+  "table": "unit_workload_version",
+  "page": "unit",
+  "alt": "",
+  "evidence": "unit tables"
+ },
+ {
+  "table": "upgrade_info",
+  "page": "upgrade",
+  "alt": "",
+  "evidence": "controller upgrade state"
+ },
+ {
+  "table": "upgrade_info_controller_node",
+  "page": "upgrade",
+  "alt": "",
+  "evidence": "controller upgrade state"
+ },
+ {
+  "table": "user",
+  "page": "user",
+  "alt": "",
+  "evidence": "user tables"
+ },
+ {
+  "table": "user_activation_key",
+  "page": "user",
+  "alt": "",
+  "evidence": "user tables"
+ },
+ {
+  "table": "user_authentication",
+  "page": "user",
+  "alt": "",
+  "evidence": "user tables"
+ },
+ {
+  "table": "user_password",
+  "page": "user",
+  "alt": "",
+  "evidence": "user tables"
+ },
+ {
+  "table": "user_public_ssh_key",
+  "page": "ssh-key",
+  "alt": "user",
+  "evidence": "controller/sql/0021-user-ssh-keys.sql:13"
+ },
+ {
+  "table": "workload_tracing_config",
+  "page": "telemetry",
+  "alt": "",
+  "evidence": "tracing config"
+ }
+]

@@ -1,0 +1,75 @@
+[
+ {
+  "page": "constraint.md",
+  "lookup": "model:architecture",
+  "hit": [
+   "amd64",
+   "arm64",
+   "ppc64el",
+   "riscv64",
+   "s390x"
+  ],
+  "missing": [],
+  "extra": [],
+  "sentence": "<br> <br>**Valid values:** `amd64`, `arm64`, `ppc64el`, `s390x`, `riscv64`."
+ },
+ {
+  "page": "constraint.md",
+  "lookup": "controller:architecture",
+  "hit": [
+   "amd64",
+   "arm64",
+   "ppc64el",
+   "riscv64",
+   "s390x"
+  ],
+  "missing": [],
+  "extra": [],
+  "sentence": "<br> <br>**Valid values:** `amd64`, `arm64`, `ppc64el`, `s390x`, `riscv64`."
+ },
+ {
+  "page": "hook.md",
+  "lookup": "model:secret_rotate_policy",
+  "hit": [
+   "daily",
+   "hourly",
+   "monthly",
+   "never",
+   "weekly"
+  ],
+  "missing": [
+   "quarterly",
+   "yearly"
+  ],
+  "extra": [],
+  "sentence": "The secret rotation interval is specified using a named rotation policy, one of: `never`, `hourly`, `daily`, `weekly`, `monthly`,"
+ },
+ {
+  "page": "placement-directive.md",
+  "lookup": "model:relation_status_type",
+  "hit": [
+   "0",
+   "1",
+   "5"
+  ],
+  "missing": [
+   "2",
+   "3",
+   "4"
+  ],
+  "extra": [],
+  "sentence": "**Examples:** `1` (existing machine `1`),  `5/lxd/0` (existing container `0` on machine `5`)"
+ },
+ {
+  "page": "secret.md",
+  "lookup": "controller:secret_backend_type",
+  "hit": [
+   "controller",
+   "kubernetes",
+   "vault"
+  ],
+  "missing": [],
+  "extra": [],
+  "sentence": "The type of a secret backend can be `controller`, `kubernetes`, and `vault`."
+ }
+]

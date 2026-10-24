@@ -1,0 +1,336 @@
+{
+ "action": {
+  "lead": "operation_task",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "agent-version": {
+  "lead": "agent_version",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "annotation": {
+  "lead": "annotation_unit",
+  "owners": [
+   "unit"
+  ],
+  "identifying": [
+   "unit"
+  ],
+  "attr": []
+ },
+ "application": {
+  "lead": "application",
+  "owners": [
+   "charm",
+   "space"
+  ],
+  "identifying": [],
+  "attr": []
+ },
+ "application-endpoint": {
+  "lead": "application_endpoint",
+  "owners": [
+   "application",
+   "charm"
+  ],
+  "identifying": [],
+  "attr": [
+   "space"
+  ]
+ },
+ "application-scale": {
+  "lead": "application_scale",
+  "owners": [
+   "application"
+  ],
+  "identifying": [
+   "application"
+  ],
+  "attr": []
+ },
+ "block-command": {
+  "lead": "block_command",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "charm": {
+  "lead": "charm",
+  "owners": [],
+  "identifying": [],
+  "attr": [
+   "object-store"
+  ]
+ },
+ "cloud": {
+  "lead": "cloud",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "cloud-instance": {
+  "lead": "machine_cloud_instance",
+  "owners": [
+   "machine"
+  ],
+  "identifying": [
+   "machine"
+  ],
+  "attr": [
+   "zone"
+  ]
+ },
+ "constraint": {
+  "lead": "constraint",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "controller": {
+  "lead": "controller",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "credential": {
+  "lead": "cloud_credential",
+  "owners": [
+   "cloud",
+   "user"
+  ],
+  "identifying": [],
+  "attr": []
+ },
+ "database": {
+  "lead": "sequence",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "external-controller": {
+  "lead": "external_controller",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "image-metadata": {
+  "lead": "cloud_image_metadata",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "lease": {
+  "lead": "lease",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "link-layer-device": {
+  "lead": "link_layer_device",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "machine": {
+  "lead": "machine",
+  "owners": [
+   "link-layer-device"
+  ],
+  "identifying": [],
+  "attr": []
+ },
+ "machine-placement": {
+  "lead": "machine_placement",
+  "owners": [
+   "machine"
+  ],
+  "identifying": [
+   "machine"
+  ],
+  "attr": []
+ },
+ "model": {
+  "lead": "model",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "model-defaults": {
+  "lead": "cloud_defaults",
+  "owners": [
+   "cloud"
+  ],
+  "identifying": [
+   "cloud"
+  ],
+  "attr": []
+ },
+ "model-migration": {
+  "lead": "model_migration_export",
+  "owners": [
+   "external-controller"
+  ],
+  "identifying": [],
+  "attr": []
+ },
+ "object-store": {
+  "lead": "object_store_backend",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "offer": {
+  "lead": "offer",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "permission": {
+  "lead": "permission",
+  "owners": [
+   "user"
+  ],
+  "identifying": [],
+  "attr": []
+ },
+ "port": {
+  "lead": "port_range",
+  "owners": [
+   "unit"
+  ],
+  "identifying": [],
+  "attr": [
+   "charm"
+  ]
+ },
+ "relation": {
+  "lead": "relation",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "relation-unit": {
+  "lead": "relation_unit",
+  "owners": [
+   "relation",
+   "unit"
+  ],
+  "identifying": [],
+  "attr": []
+ },
+ "removal": {
+  "lead": "removal",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "resource": {
+  "lead": "resource",
+  "owners": [
+   "charm"
+  ],
+  "identifying": [],
+  "attr": []
+ },
+ "secret": {
+  "lead": "secret",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "secret-backend": {
+  "lead": "secret_backend",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "space": {
+  "lead": "space",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "ssh": {
+  "lead": "machine_ssh_host_key",
+  "owners": [
+   "machine"
+  ],
+  "identifying": [],
+  "attr": []
+ },
+ "ssh-key": {
+  "lead": "user_public_ssh_key",
+  "owners": [
+   "user"
+  ],
+  "identifying": [],
+  "attr": []
+ },
+ "storage": {
+  "lead": "storage_volume",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "storage-pool": {
+  "lead": "storage_pool",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "subnet": {
+  "lead": "subnet",
+  "owners": [],
+  "identifying": [],
+  "attr": [
+   "space"
+  ]
+ },
+ "telemetry": {
+  "lead": "logging_loki_config",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "unit": {
+  "lead": "unit",
+  "owners": [
+   "application",
+   "charm",
+   "link-layer-device"
+  ],
+  "identifying": [],
+  "attr": []
+ },
+ "unit-state": {
+  "lead": "unit_state",
+  "owners": [
+   "unit"
+  ],
+  "identifying": [
+   "unit"
+  ],
+  "attr": []
+ },
+ "upgrade": {
+  "lead": "upgrade_info",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "user": {
+  "lead": "user",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ },
+ "zone": {
+  "lead": "availability_zone",
+  "owners": [],
+  "identifying": [],
+  "attr": []
+ }
+}

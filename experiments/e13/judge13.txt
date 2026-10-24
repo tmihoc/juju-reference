@@ -1,0 +1,16 @@
+You are checking documentation claims against source code. This is read-only research.
+
+The software is Juju 4.1, source at /home/dora/git/misc/juju-v2-preview. Search ONLY the code directories: domain/, apiserver/, internal/, core/, cmd/, api/, rpc/, controller/, environs/, caas/. Do NOT open anything under docs/ and do not read any .md file.
+
+You will be given a JSON file of claims (id, claim) taken from a reference documentation page about one entity. For every claim decide whether the code states or entails it.
+
+For each claim output:
+- verdict: "derivable" (the code states or directly entails it), "partly" (some of it is in the code), "contradicted" (the code says something different, for example a renamed term or a removed behaviour), or "not_derivable" (the code neither states nor entails it).
+- artifact: for derivable and partly, the class of code artifact that licenses it, one of: schema (table, column, key, unique, check), lookup-value (an allowed value in a lookup table or enum), trigger (SQL trigger invariant), view, service-operation, state-machine (explicit transition rule), watcher, error (an error constant or message), facade-api (an API method or parameter), worker, removal, migration, config-key, cli (command or flag), event (hook or notification), validator (name or format check), other. For not_derivable use null.
+- evidence: "relative/path.go:LINE" (or a .sql path) where you found it; null for not_derivable. Give a real line you opened.
+- residue_kind: only when verdict is not_derivable or contradicted: one of rationale, history, guidance, example, external (a fact about another system), definition (defines a term), cross-reference, user-procedure, other.
+- note: a few words.
+
+Work efficiently: grep for the key identifiers of each claim; spend at most a few searches on each claim. Be strict: a claim about what the system DOES is derivable only if you find the code that does it; a claim that is general advice, motivation or a definition of a term is not_derivable.
+
+Write the result as a JSON list of {"id","verdict","artifact","evidence","residue_kind","note"} covering all claims to the output path given in your task. Reply with only the word done.

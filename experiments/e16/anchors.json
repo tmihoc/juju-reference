@@ -1,0 +1,9 @@
+{
+ "ssh-key": {"schema": ["user-ssh-keys", "model-authorized-keys", "ssh"], "domain": ["keymanager"], "core": ["ssh"], "facade": ["keymanager", "sshclient"], "cmd": ["sshkeys", "ssh"]},
+ "space": {"schema": ["space"], "domain": ["network"], "core": ["network"], "facade": ["spaces"], "cmd": ["space"]},
+ "subnet": {"schema": ["subnet"], "domain": ["network"], "core": ["network"], "facade": ["subnets"], "cmd": ["subnet"]},
+ "zone": {"schema": ["subnet", "space"], "domain": ["network"], "core": ["network"], "facade": ["subnets"], "cmd": ["subnet"]},
+ "storage": {"schema": ["storage", "blockdevice"], "domain": ["storage", "storageprovisioning", "blockdevice"], "core": ["storage", "blockdevice"], "facade": ["storage"], "cmd": ["storage"]},
+ "offer": {"schema": ["offer", "cross-model-relation"], "domain": ["crossmodelrelation"], "core": ["crossmodel", "offer"], "facade": ["applicationoffers"], "cmd": ["crossmodel"]},
+ "action": {"schema": ["operation"], "domain": ["operation"], "core": ["operation"], "facade": ["action"], "cmd": ["action"]}
+}

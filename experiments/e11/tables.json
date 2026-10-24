@@ -1,0 +1,4731 @@
+{
+ "owner": {
+  "life": "application",
+  "change_log_edit_type": null,
+  "change_log_namespace": null,
+  "change_log": "changestream",
+  "change_log_witness": "changestream",
+  "password_hash_algorithm": null,
+  "model": "model",
+  "model_config": "modelconfig",
+  "model_constraint": "model",
+  "model_life": "model",
+  "model_migrating": "model",
+  "object_store_metadata": "objectstore",
+  "object_store_metadata_path": "objectstore",
+  "object_store_placement": "objectstore",
+  "os": "application",
+  "architecture": "application",
+  "space": "network",
+  "provider_space": "network",
+  "subnet": "network",
+  "provider_subnet": "network",
+  "provider_network": "network",
+  "provider_network_subnet": "network",
+  "availability_zone": "network",
+  "availability_zone_subnet": "network",
+  "block_device_provenance": null,
+  "block_device": "blockdevice",
+  "block_device_link_device": "blockdevice",
+  "storage_pool_origin": null,
+  "storage_pool": "storage",
+  "storage_pool_attribute": "storage",
+  "storage_kind": "storage",
+  "model_storage_pool": "model",
+  "application_storage_directive": "application",
+  "unit_storage_directive": "application",
+  "storage_instance": "storage",
+  "storage_unit_owner": "application",
+  "storage_attachment": "application",
+  "storage_volume_status_value": "status",
+  "storage_volume_status": "application",
+  "storage_provision_scope": null,
+  "storage_volume": "storage",
+  "storage_instance_volume": "storage",
+  "storage_volume_attachment": "application",
+  "storage_filesystem_status_value": "status",
+  "storage_filesystem_status": "storage",
+  "storage_filesystem": "storage",
+  "storage_instance_filesystem": "storage",
+  "storage_filesystem_attachment": "application",
+  "storage_volume_device_type": null,
+  "storage_volume_attachment_plan": "storage",
+  "storage_volume_attachment_plan_attr": "storageprovisioning",
+  "secret_rotate_policy": "secret",
+  "secret": "crossmodelrelation",
+  "secret_reference": "crossmodelrelation",
+  "secret_metadata": "unitstate",
+  "secret_rotation": "secret",
+  "secret_value_ref": "unitstate",
+  "secret_deleted_value_ref": null,
+  "secret_content": "unitstate",
+  "secret_revision": "unitstate",
+  "secret_revision_obsolete": "crossmodelrelation",
+  "secret_revision_expire": "unitstate",
+  "secret_application_owner": "unitstate",
+  "secret_unit_owner": "unitstate",
+  "secret_model_owner": "secret",
+  "secret_unit_consumer": "crossmodelrelation",
+  "secret_remote_unit_consumer": "crossmodelrelation",
+  "secret_role": "secret",
+  "secret_grant_subject_type": "secret",
+  "secret_grant_scope_type": "secret",
+  "secret_permission": "unitstate",
+  "secret_reservation": "secret",
+  "annotation_model": "annotation",
+  "annotation_application": "annotation",
+  "annotation_charm": "annotation",
+  "annotation_machine": "annotation",
+  "annotation_unit": "annotation",
+  "annotation_storage_instance": "annotation",
+  "annotation_storage_volume": null,
+  "annotation_storage_filesystem": null,
+  "constraint_tag": "application",
+  "constraint_space": "application",
+  "constraint_zone": "application",
+  "charm_run_as_kind": null,
+  "charm_source": "application",
+  "charm": "application",
+  "charm_provenance": "application",
+  "charm_download_info": "application",
+  "charm_metadata": "application",
+  "hash_kind": null,
+  "charm_hash": "application",
+  "charm_relation_role": "crossmodelrelation",
+  "charm_relation_scope": "crossmodelrelation",
+  "charm_relation": "application",
+  "charm_extra_binding": "application",
+  "charm_category": "application",
+  "charm_tag": "application",
+  "charm_storage_kind": "application",
+  "charm_storage": "application",
+  "charm_storage_property": "application",
+  "charm_device": "application",
+  "charm_resource_kind": "resource",
+  "charm_resource": "application",
+  "charm_term": "application",
+  "charm_container": "application",
+  "charm_container_mount": "application",
+  "charm_action": "application",
+  "charm_manifest_base": "application",
+  "charm_config_type": "application",
+  "charm_config": "application",
+  "workload_status_value": "status",
+  "machine_cloud_instance": "machine",
+  "instance_tag": "machine",
+  "machine_cloud_instance_status_value": "status",
+  "machine_cloud_instance_status": "machine",
+  "machine": "machine",
+  "machine_manual": "machine",
+  "machine_platform": "machine",
+  "machine_placement_scope": null,
+  "machine_placement": "machine",
+  "machine_parent": "machine",
+  "machine_agent_version": "machine",
+  "machine_constraint": "machine",
+  "machine_volume": "application",
+  "machine_filesystem": "application",
+  "machine_requires_reboot": "machine",
+  "machine_reprovision": "machine",
+  "machine_status_value": "status",
+  "machine_status": "machine",
+  "machine_lxd_profile": "machine",
+  "container_type": "machine",
+  "machine_container_type": "machine",
+  "machine_agent_presence": "status",
+  "machine_ssh_host_key": "machine",
+  "application": "application",
+  "application_controller": "application",
+  "application_workload_version": "application",
+  "k8s_service": "application",
+  "operator_status": "status",
+  "application_scale": "application",
+  "application_exposed_endpoint_space": "application",
+  "application_exposed_endpoint_cidr": "application",
+  "application_config_hash": "application",
+  "application_config": "application",
+  "application_constraint": "application",
+  "application_setting": "application",
+  "application_platform": "application",
+  "application_channel": "application",
+  "application_status": "application",
+  "application_agent": "agentpassword",
+  "device_constraint": "application",
+  "device_constraint_attribute": "application",
+  "application_k8s_resources_managed": "application",
+  "unit": "application",
+  "unit_principal": "application",
+  "unit_workload_version": "application",
+  "unit_agent_version": "modelagent",
+  "unit_state": "machine",
+  "unit_state_charm": "unitstate",
+  "unit_state_relation": "unitstate",
+  "k8s_pod": "application",
+  "k8s_pod_port": "application",
+  "unit_agent_status_value": "status",
+  "k8s_pod_status_value": "status",
+  "unit_agent_status": "application",
+  "unit_workload_status": "application",
+  "k8s_pod_status": "application",
+  "unit_agent_presence": "status",
+  "unit_resolved": "resolve",
+  "resolve_mode": "resolve",
+  "net_node": "application",
+  "link_layer_device_type": "network",
+  "virtual_port_type": "network",
+  "link_layer_device": "application",
+  "link_layer_device_parent": "network",
+  "provider_link_layer_device": "network",
+  "link_layer_device_dns_domain": "network",
+  "link_layer_device_dns_address": "network",
+  "link_layer_device_route": "machine",
+  "ip_address_type": "network",
+  "ip_address_origin": "network",
+  "ip_address_scope": "network",
+  "ip_address_config_type": "network",
+  "ip_address": "network",
+  "provider_ip_address": "network",
+  "network_address_scope": "application",
+  "fqdn_address": "application",
+  "net_node_fqdn_address": "application",
+  "hostname_address": "application",
+  "net_node_hostname_address": "machine",
+  "protocol": "port",
+  "port_range": "port",
+  "resource_origin_type": "resource",
+  "resource_state": "application",
+  "resource": "resource",
+  "application_resource": "application",
+  "pending_application_resource": "resource",
+  "resource_retrieved_by_type": "resource",
+  "resource_retrieved_by": "application",
+  "unit_resource": "resource",
+  "resource_container_image_metadata_store": "containerimageresourcestore",
+  "resource_file_store": "application",
+  "resource_image_store": "application",
+  "application_endpoint": "application",
+  "application_extra_endpoint": "application",
+  "relation_endpoint": "application",
+  "relation": "crossmodelrelation",
+  "relation_unit": "relation",
+  "relation_unit_departure": "relation",
+  "relation_unit_setting": "relation",
+  "relation_unit_settings_hash": "relation",
+  "relation_unit_setting_archive": "machine",
+  "relation_application_setting": "relation",
+  "relation_application_settings_hash": "relation",
+  "relation_status_type": "crossmodelrelation",
+  "relation_status": "relation",
+  "block_command_type": null,
+  "block_command": "blockcommand",
+  "agent_stream": "modelconfig",
+  "agent_version": "model",
+  "removal_type": null,
+  "removal": "secret",
+  "sequence": "sequence",
+  "agent_binary_store": "agentbinary",
+  "model_agent": "model",
+  "offer": "crossmodelrelation",
+  "offer_endpoint": "crossmodelrelation",
+  "operation": "operation",
+  "operation_action": "operation",
+  "operation_task": "operation",
+  "operation_unit_task": "machine",
+  "operation_machine_task": "operation",
+  "operation_task_output": "operation",
+  "operation_task_status": "operation",
+  "operation_task_status_value": "operation",
+  "operation_task_log": "operation",
+  "operation_parameter": "operation",
+  "application_remote_offerer": "crossmodelrelation",
+  "application_remote_offerer_status": "crossmodelrelation",
+  "application_remote_offerer_relation_macaroon": "crossmodelrelation",
+  "offer_connection": "crossmodelrelation",
+  "application_remote_consumer": "crossmodelrelation",
+  "relation_network_ingress": "crossmodelrelation",
+  "relation_network_egress": "crossmodelrelation",
+  "ssh_key_algorithm_type": null,
+  "machine_virtual_ssh_host_key": "ssh",
+  "unit_virtual_ssh_host_key": "ssh",
+  "ssh_connection_request": "ssh",
+  "log_transfer_progress": null,
+  "namespace_list": "model",
+  "lease_type": "lease",
+  "lease": "lease",
+  "lease_pin": "lease",
+  "controller": "controllernode",
+  "cloud_type": "cloud",
+  "auth_type": "credential",
+  "cloud": "cloud",
+  "cloud_defaults": "modeldefaults",
+  "cloud_auth_type": "cloud",
+  "cloud_region": "model",
+  "cloud_region_defaults": "modeldefaults",
+  "cloud_ca_cert": "cloud",
+  "cloud_credential": "model",
+  "cloud_credential_attribute": "credential",
+  "external_controller": "externalcontroller",
+  "external_controller_address": "externalcontroller",
+  "external_model": "externalcontroller",
+  "model_namespace": "model",
+  "model_type": "model",
+  "controller_config": "controllerconfig",
+  "controller_node": "controllernode",
+  "controller_node_agent_version": "controllernode",
+  "controller_api_address": null,
+  "controller_agent_address": "controllernode",
+  "controller_client_address": "controllernode",
+  "controller_peer_address": "controllernode",
+  "controller_node_password": "agentpassword",
+  "controller_node_nonce": "agentpassword",
+  "model_migration_phase": null,
+  "model_migration_import_phase_type": null,
+  "model_migration_import": "model",
+  "model_migration_import_offer": null,
+  "model_migration_import_external_controller_model": null,
+  "model_migration_export": null,
+  "model_migration_export_offer": null,
+  "model_migration_redirect": "model",
+  "model_migration_redirect_user": "model",
+  "model_migration_export_target_auth": null,
+  "model_migration_export_phase": null,
+  "model_migration_export_status": null,
+  "model_migration_export_minion_sync": null,
+  "upgrade_state_type": null,
+  "upgrade_info": "upgrade",
+  "upgrade_info_controller_node": "upgrade",
+  "autocert_cache": "autocert",
+  "autocert_cache_encoding": "autocert",
+  "object_store_backend_type": "objectstore",
+  "object_store_backend": "objectstore",
+  "object_store_backend_s3_config": "objectstore",
+  "object_store_drain_phase_type": "objectstore",
+  "object_store_drain_info": "objectstore",
+  "user": "model",
+  "user_authentication": "access",
+  "user_password": "access",
+  "user_activation_key": "access",
+  "flag": "flag",
+  "permission_access_type": "access",
+  "permission_object_type": "access",
+  "permission_object_access": null,
+  "permission": "access",
+  "secret_backend_type": "secretbackend",
+  "secret_backend_origin": null,
+  "secret_backend": "model",
+  "secret_backend_config": "secretbackend",
+  "secret_backend_rotation": "secretbackend",
+  "secret_backend_reference": "secretbackend",
+  "model_secret_backend": "model",
+  "model_last_login": "access",
+  "bakery_config": "macaroon",
+  "macaroon_root_key": "macaroon",
+  "ssh_fingerprint_hash_algorithm": "keymanager",
+  "user_public_ssh_key": "keymanager",
+  "model_authorized_keys": "keymanager",
+  "cloud_image_metadata": "cloudimagemetadata",
+  "charm_tracing_config": "tracing",
+  "logging_loki_config": "logging",
+  "workload_tracing_config": "tracing",
+  "controller_ssh_host_key": "ssh",
+  "controller_ssh_server_port": "ssh",
+  "model_database_deletion": "model"
+ },
+ "tables": {
+  "life": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "change_log_edit_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "change_log_namespace": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "change_log": {
+   "scope": "model",
+   "fks": [
+    "change_log_edit_type",
+    "change_log_namespace"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "change_log_witness": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "password_hash_algorithm": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "model_config": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "model_constraint": {
+   "scope": "model",
+   "fks": [
+    "model"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_life": {
+   "scope": "model",
+   "fks": [
+    "life",
+    "model"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_migrating": {
+   "scope": "model",
+   "fks": [
+    "model"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": true
+  },
+  "object_store_metadata": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 2,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "object_store_metadata_path": {
+   "scope": "model",
+   "fks": [
+    "object_store_metadata"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "object_store_placement": {
+   "scope": "model",
+   "fks": [
+    "object_store_metadata"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "os": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "architecture": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "space": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "provider_space": {
+   "scope": "model",
+   "fks": [
+    "space"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "subnet": {
+   "scope": "model",
+   "fks": [
+    "space"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "provider_subnet": {
+   "scope": "model",
+   "fks": [
+    "subnet"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 1,
+   "watched": false,
+   "immutable": false
+  },
+  "provider_network": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "provider_network_subnet": {
+   "scope": "model",
+   "fks": [
+    "provider_network",
+    "subnet"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "availability_zone": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "availability_zone_subnet": {
+   "scope": "model",
+   "fks": [
+    "availability_zone",
+    "subnet"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "block_device_provenance": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "block_device": {
+   "scope": "model",
+   "fks": [
+    "block_device_provenance",
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "block_device_link_device": {
+   "scope": "model",
+   "fks": [
+    "block_device",
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 2,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_pool_origin": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 1,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_pool": {
+   "scope": "model",
+   "fks": [
+    "storage_pool_origin"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 2,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_pool_attribute": {
+   "scope": "model",
+   "fks": [
+    "storage_pool"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_kind": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_storage_pool": {
+   "scope": "model",
+   "fks": [
+    "storage_kind",
+    "storage_pool"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "application_storage_directive": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "charm_storage",
+    "storage_pool"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "unit_storage_directive": {
+   "scope": "model",
+   "fks": [
+    "charm_storage",
+    "storage_pool",
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_instance": {
+   "scope": "model",
+   "fks": [
+    "life",
+    "storage_kind",
+    "storage_pool"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_unit_owner": {
+   "scope": "model",
+   "fks": [
+    "storage_instance",
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_attachment": {
+   "scope": "model",
+   "fks": [
+    "life",
+    "storage_instance",
+    "unit"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_volume_status_value": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_volume_status": {
+   "scope": "model",
+   "fks": [
+    "storage_volume",
+    "storage_volume_status_value"
+   ],
+   "life": false,
+   "status": true,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_provision_scope": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 1,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_volume": {
+   "scope": "model",
+   "fks": [
+    "life",
+    "storage_provision_scope"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 1,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_instance_volume": {
+   "scope": "model",
+   "fks": [
+    "storage_instance",
+    "storage_volume"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_volume_attachment": {
+   "scope": "model",
+   "fks": [
+    "block_device",
+    "life",
+    "net_node",
+    "storage_provision_scope",
+    "storage_volume"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_filesystem_status_value": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_filesystem_status": {
+   "scope": "model",
+   "fks": [
+    "storage_filesystem",
+    "storage_filesystem_status_value"
+   ],
+   "life": false,
+   "status": true,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_filesystem": {
+   "scope": "model",
+   "fks": [
+    "life",
+    "storage_provision_scope"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 2,
+   "check": 1,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_instance_filesystem": {
+   "scope": "model",
+   "fks": [
+    "storage_filesystem",
+    "storage_instance"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_filesystem_attachment": {
+   "scope": "model",
+   "fks": [
+    "life",
+    "net_node",
+    "storage_filesystem",
+    "storage_provision_scope"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_volume_device_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_volume_attachment_plan": {
+   "scope": "model",
+   "fks": [
+    "life",
+    "net_node",
+    "storage_provision_scope",
+    "storage_volume",
+    "storage_volume_device_type"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "storage_volume_attachment_plan_attr": {
+   "scope": "model",
+   "fks": [
+    "storage_volume_attachment_plan"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_rotate_policy": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 1,
+   "watched": false,
+   "immutable": false
+  },
+  "secret": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_reference": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "secret"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 1,
+   "watched": true,
+   "immutable": false
+  },
+  "secret_metadata": {
+   "scope": "model",
+   "fks": [
+    "secret",
+    "secret_rotate_policy"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "secret_rotation": {
+   "scope": "model",
+   "fks": [
+    "secret_metadata"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "secret_value_ref": {
+   "scope": "model",
+   "fks": [
+    "secret_revision"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_deleted_value_ref": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "secret_content": {
+   "scope": "model",
+   "fks": [
+    "secret_revision"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 1,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_revision": {
+   "scope": "model",
+   "fks": [
+    "secret_metadata"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "secret_revision_obsolete": {
+   "scope": "model",
+   "fks": [
+    "secret_revision"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "secret_revision_expire": {
+   "scope": "model",
+   "fks": [
+    "secret_revision"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "secret_application_owner": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "secret_metadata"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_unit_owner": {
+   "scope": "model",
+   "fks": [
+    "secret_metadata",
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_model_owner": {
+   "scope": "model",
+   "fks": [
+    "secret_metadata"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_unit_consumer": {
+   "scope": "model",
+   "fks": [
+    "secret",
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 2,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_remote_unit_consumer": {
+   "scope": "model",
+   "fks": [
+    "secret_metadata"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_role": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_grant_subject_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_grant_scope_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_permission": {
+   "scope": "model",
+   "fks": [
+    "secret_grant_scope_type",
+    "secret_grant_subject_type",
+    "secret_metadata",
+    "secret_role"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 2,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_reservation": {
+   "scope": "model",
+   "fks": [
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "annotation_model": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "annotation_application": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "annotation_charm": {
+   "scope": "model",
+   "fks": [
+    "charm"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "annotation_machine": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "annotation_unit": {
+   "scope": "model",
+   "fks": [
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "annotation_storage_instance": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "annotation_storage_volume": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "annotation_storage_filesystem": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "constraint_tag": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "constraint_space": {
+   "scope": "model",
+   "fks": [
+    "space"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "constraint_zone": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_run_as_kind": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_source": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm": {
+   "scope": "model",
+   "fks": [
+    "architecture",
+    "charm_source",
+    "object_store_metadata"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 2,
+   "watched": true,
+   "immutable": false
+  },
+  "charm_provenance": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_download_info": {
+   "scope": "model",
+   "fks": [
+    "charm"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_metadata": {
+   "scope": "model",
+   "fks": [
+    "charm",
+    "charm_run_as_kind"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "hash_kind": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_hash": {
+   "scope": "model",
+   "fks": [
+    "charm",
+    "hash_kind"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "charm_relation_role": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_relation_scope": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_relation": {
+   "scope": "model",
+   "fks": [
+    "charm",
+    "charm_relation_role",
+    "charm_relation_scope"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "charm_extra_binding": {
+   "scope": "model",
+   "fks": [
+    "charm"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "charm_category": {
+   "scope": "model",
+   "fks": [
+    "charm"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_tag": {
+   "scope": "model",
+   "fks": [
+    "charm"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_storage_kind": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_storage": {
+   "scope": "model",
+   "fks": [
+    "charm",
+    "charm_storage_kind"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "charm_storage_property": {
+   "scope": "model",
+   "fks": [
+    "charm",
+    "charm_storage"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_device": {
+   "scope": "model",
+   "fks": [
+    "charm"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "charm_resource_kind": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_resource": {
+   "scope": "model",
+   "fks": [
+    "charm",
+    "charm_resource_kind"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "charm_term": {
+   "scope": "model",
+   "fks": [
+    "charm"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "charm_container": {
+   "scope": "model",
+   "fks": [
+    "charm"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "charm_container_mount": {
+   "scope": "model",
+   "fks": [
+    "charm",
+    "charm_container"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "charm_action": {
+   "scope": "model",
+   "fks": [
+    "charm"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "charm_manifest_base": {
+   "scope": "model",
+   "fks": [
+    "architecture",
+    "charm",
+    "os"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "charm_config_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_config": {
+   "scope": "model",
+   "fks": [
+    "charm",
+    "charm_config_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "workload_status_value": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_cloud_instance": {
+   "scope": "model",
+   "fks": [
+    "availability_zone",
+    "life",
+    "machine"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 2,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "instance_tag": {
+   "scope": "model",
+   "fks": [
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_cloud_instance_status_value": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_cloud_instance_status": {
+   "scope": "model",
+   "fks": [
+    "machine_cloud_instance",
+    "machine_cloud_instance_status_value"
+   ],
+   "life": false,
+   "status": true,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine": {
+   "scope": "model",
+   "fks": [
+    "life",
+    "net_node",
+    "password_hash_algorithm"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 2,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "machine_manual": {
+   "scope": "model",
+   "fks": [
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_platform": {
+   "scope": "model",
+   "fks": [
+    "architecture",
+    "machine",
+    "os"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_placement_scope": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_placement": {
+   "scope": "model",
+   "fks": [
+    "machine",
+    "machine_placement_scope"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_parent": {
+   "scope": "model",
+   "fks": [
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_agent_version": {
+   "scope": "model",
+   "fks": [
+    "architecture",
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_constraint": {
+   "scope": "model",
+   "fks": [
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_volume": {
+   "scope": "model",
+   "fks": [
+    "machine",
+    "storage_volume"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_filesystem": {
+   "scope": "model",
+   "fks": [
+    "machine",
+    "storage_filesystem"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_requires_reboot": {
+   "scope": "model",
+   "fks": [
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "machine_reprovision": {
+   "scope": "model",
+   "fks": [
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "machine_status_value": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_status": {
+   "scope": "model",
+   "fks": [
+    "machine",
+    "machine_status_value"
+   ],
+   "life": false,
+   "status": true,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_lxd_profile": {
+   "scope": "model",
+   "fks": [
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "container_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_container_type": {
+   "scope": "model",
+   "fks": [
+    "container_type",
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_agent_presence": {
+   "scope": "model",
+   "fks": [
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_ssh_host_key": {
+   "scope": "model",
+   "fks": [
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "application": {
+   "scope": "model",
+   "fks": [
+    "charm",
+    "life",
+    "space"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "application_controller": {
+   "scope": "model",
+   "fks": [
+    "application"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "application_workload_version": {
+   "scope": "model",
+   "fks": [
+    "application"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "k8s_service": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "net_node"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 3,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "operator_status": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "workload_status_value"
+   ],
+   "life": false,
+   "status": true,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "application_scale": {
+   "scope": "model",
+   "fks": [
+    "application"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "application_exposed_endpoint_space": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "application_endpoint",
+    "space"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "application_exposed_endpoint_cidr": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "application_endpoint"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "application_config_hash": {
+   "scope": "model",
+   "fks": [
+    "application"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "application_config": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "charm_config_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "application_constraint": {
+   "scope": "model",
+   "fks": [
+    "application"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "application_setting": {
+   "scope": "model",
+   "fks": [
+    "application"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "application_platform": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "architecture",
+    "os"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "application_channel": {
+   "scope": "model",
+   "fks": [
+    "application"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "application_status": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "workload_status_value"
+   ],
+   "life": false,
+   "status": true,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "application_agent": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "password_hash_algorithm"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "device_constraint": {
+   "scope": "model",
+   "fks": [
+    "application"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "device_constraint_attribute": {
+   "scope": "model",
+   "fks": [
+    "device_constraint"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "application_k8s_resources_managed": {
+   "scope": "model",
+   "fks": [
+    "application"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "unit": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "charm",
+    "life",
+    "net_node",
+    "password_hash_algorithm"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 2,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "unit_principal": {
+   "scope": "model",
+   "fks": [
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "unit_workload_version": {
+   "scope": "model",
+   "fks": [
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "unit_agent_version": {
+   "scope": "model",
+   "fks": [
+    "architecture",
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "unit_state": {
+   "scope": "model",
+   "fks": [
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "unit_state_charm": {
+   "scope": "model",
+   "fks": [
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "unit_state_relation": {
+   "scope": "model",
+   "fks": [
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "k8s_pod": {
+   "scope": "model",
+   "fks": [
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "k8s_pod_port": {
+   "scope": "model",
+   "fks": [
+    "k8s_pod"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "unit_agent_status_value": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "k8s_pod_status_value": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "unit_agent_status": {
+   "scope": "model",
+   "fks": [
+    "unit",
+    "unit_agent_status_value"
+   ],
+   "life": false,
+   "status": true,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "unit_workload_status": {
+   "scope": "model",
+   "fks": [
+    "unit",
+    "workload_status_value"
+   ],
+   "life": false,
+   "status": true,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "k8s_pod_status": {
+   "scope": "model",
+   "fks": [
+    "k8s_pod_status_value",
+    "unit"
+   ],
+   "life": false,
+   "status": true,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "unit_agent_presence": {
+   "scope": "model",
+   "fks": [
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "unit_resolved": {
+   "scope": "model",
+   "fks": [
+    "resolve_mode",
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "resolve_mode": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "net_node": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "link_layer_device_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "virtual_port_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "link_layer_device": {
+   "scope": "model",
+   "fks": [
+    "link_layer_device_type",
+    "net_node",
+    "virtual_port_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "link_layer_device_parent": {
+   "scope": "model",
+   "fks": [
+    "link_layer_device"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "provider_link_layer_device": {
+   "scope": "model",
+   "fks": [
+    "link_layer_device"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 1,
+   "watched": false,
+   "immutable": false
+  },
+  "link_layer_device_dns_domain": {
+   "scope": "model",
+   "fks": [
+    "link_layer_device"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "link_layer_device_dns_address": {
+   "scope": "model",
+   "fks": [
+    "link_layer_device"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "link_layer_device_route": {
+   "scope": "model",
+   "fks": [
+    "link_layer_device"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "ip_address_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "ip_address_origin": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "ip_address_scope": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "ip_address_config_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "ip_address": {
+   "scope": "model",
+   "fks": [
+    "ip_address_config_type",
+    "ip_address_origin",
+    "ip_address_scope",
+    "ip_address_type",
+    "link_layer_device",
+    "net_node",
+    "subnet"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "provider_ip_address": {
+   "scope": "model",
+   "fks": [
+    "ip_address"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 1,
+   "watched": false,
+   "immutable": false
+  },
+  "network_address_scope": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "fqdn_address": {
+   "scope": "model",
+   "fks": [
+    "network_address_scope"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 1,
+   "watched": true,
+   "immutable": false
+  },
+  "net_node_fqdn_address": {
+   "scope": "model",
+   "fks": [
+    "fqdn_address",
+    "net_node"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "hostname_address": {
+   "scope": "model",
+   "fks": [
+    "network_address_scope"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "net_node_hostname_address": {
+   "scope": "model",
+   "fks": [
+    "hostname_address",
+    "net_node"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "protocol": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "port_range": {
+   "scope": "model",
+   "fks": [
+    "charm_relation",
+    "protocol",
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "resource_origin_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "resource_state": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "resource": {
+   "scope": "model",
+   "fks": [
+    "charm_resource",
+    "resource_origin_type",
+    "resource_state"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "application_resource": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "resource"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "pending_application_resource": {
+   "scope": "model",
+   "fks": [
+    "resource"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "resource_retrieved_by_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "resource_retrieved_by": {
+   "scope": "model",
+   "fks": [
+    "resource",
+    "resource_retrieved_by_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "unit_resource": {
+   "scope": "model",
+   "fks": [
+    "resource",
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "resource_container_image_metadata_store": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "resource_file_store": {
+   "scope": "model",
+   "fks": [
+    "object_store_metadata",
+    "resource"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "resource_image_store": {
+   "scope": "model",
+   "fks": [
+    "resource",
+    "resource_container_image_metadata_store"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "application_endpoint": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "charm_relation",
+    "space"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "application_extra_endpoint": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "charm_extra_binding",
+    "space"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "relation_endpoint": {
+   "scope": "model",
+   "fks": [
+    "application_endpoint",
+    "relation"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "relation": {
+   "scope": "model",
+   "fks": [
+    "charm_relation_scope",
+    "life"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 1,
+   "watched": true,
+   "immutable": false
+  },
+  "relation_unit": {
+   "scope": "model",
+   "fks": [
+    "relation_endpoint",
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "relation_unit_departure": {
+   "scope": "model",
+   "fks": [
+    "relation"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "relation_unit_setting": {
+   "scope": "model",
+   "fks": [
+    "relation_unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 2,
+   "watched": false,
+   "immutable": false
+  },
+  "relation_unit_settings_hash": {
+   "scope": "model",
+   "fks": [
+    "relation_unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "relation_unit_setting_archive": {
+   "scope": "model",
+   "fks": [
+    "relation"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "relation_application_setting": {
+   "scope": "model",
+   "fks": [
+    "relation_endpoint"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 2,
+   "watched": false,
+   "immutable": false
+  },
+  "relation_application_settings_hash": {
+   "scope": "model",
+   "fks": [
+    "relation_endpoint"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "relation_status_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "relation_status": {
+   "scope": "model",
+   "fks": [
+    "relation",
+    "relation_status_type"
+   ],
+   "life": false,
+   "status": true,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "block_command_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "block_command": {
+   "scope": "model",
+   "fks": [
+    "block_command_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "agent_stream": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "agent_version": {
+   "scope": "model",
+   "fks": [
+    "agent_stream"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "removal_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "removal": {
+   "scope": "model",
+   "fks": [
+    "removal_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "sequence": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "agent_binary_store": {
+   "scope": "model",
+   "fks": [
+    "architecture",
+    "object_store_metadata"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_agent": {
+   "scope": "model",
+   "fks": [
+    "model",
+    "password_hash_algorithm"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "offer": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "offer_endpoint": {
+   "scope": "model",
+   "fks": [
+    "application_endpoint",
+    "offer"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "operation": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "operation_action": {
+   "scope": "model",
+   "fks": [
+    "charm_action",
+    "operation"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "operation_task": {
+   "scope": "model",
+   "fks": [
+    "operation"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "operation_unit_task": {
+   "scope": "model",
+   "fks": [
+    "operation_task",
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "operation_machine_task": {
+   "scope": "model",
+   "fks": [
+    "machine",
+    "operation_task"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "operation_task_output": {
+   "scope": "model",
+   "fks": [
+    "object_store_metadata_path",
+    "operation_task"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "operation_task_status": {
+   "scope": "model",
+   "fks": [
+    "operation_task",
+    "operation_task_status_value"
+   ],
+   "life": false,
+   "status": true,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "operation_task_status_value": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "operation_task_log": {
+   "scope": "model",
+   "fks": [
+    "operation_task"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "operation_parameter": {
+   "scope": "model",
+   "fks": [
+    "operation"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": true
+  },
+  "application_remote_offerer": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "life"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 2,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "application_remote_offerer_status": {
+   "scope": "model",
+   "fks": [
+    "application_remote_offerer",
+    "workload_status_value"
+   ],
+   "life": false,
+   "status": true,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "application_remote_offerer_relation_macaroon": {
+   "scope": "model",
+   "fks": [
+    "relation"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "offer_connection": {
+   "scope": "model",
+   "fks": [
+    "offer",
+    "relation"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "application_remote_consumer": {
+   "scope": "model",
+   "fks": [
+    "application",
+    "life",
+    "offer_connection"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "relation_network_ingress": {
+   "scope": "model",
+   "fks": [
+    "relation"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": true
+  },
+  "relation_network_egress": {
+   "scope": "model",
+   "fks": [
+    "relation"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": true
+  },
+  "ssh_key_algorithm_type": {
+   "scope": "model",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "machine_virtual_ssh_host_key": {
+   "scope": "model",
+   "fks": [
+    "machine",
+    "ssh_key_algorithm_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "unit_virtual_ssh_host_key": {
+   "scope": "model",
+   "fks": [
+    "ssh_key_algorithm_type",
+    "unit"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "ssh_connection_request": {
+   "scope": "model",
+   "fks": [
+    "machine"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "log_transfer_progress": {
+   "scope": "model",
+   "fks": [
+    "model"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "namespace_list": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "life@c": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "lease_type": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "lease": {
+   "scope": "controller",
+   "fks": [
+    "lease_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "lease_pin": {
+   "scope": "controller",
+   "fks": [
+    "lease"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "change_log_edit_type@c": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "change_log_namespace@c": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "change_log@c": {
+   "scope": "controller",
+   "fks": [
+    "change_log_edit_type",
+    "change_log_namespace"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "change_log_witness@c": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "controller": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "cloud_type": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "auth_type": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "cloud": {
+   "scope": "controller",
+   "fks": [
+    "cloud_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 1,
+   "watched": true,
+   "immutable": false
+  },
+  "cloud_defaults": {
+   "scope": "controller",
+   "fks": [
+    "cloud"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 1,
+   "watched": false,
+   "immutable": false
+  },
+  "cloud_auth_type": {
+   "scope": "controller",
+   "fks": [
+    "auth_type",
+    "cloud"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "cloud_region": {
+   "scope": "controller",
+   "fks": [
+    "cloud"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "cloud_region_defaults": {
+   "scope": "controller",
+   "fks": [
+    "cloud_region"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 1,
+   "watched": false,
+   "immutable": false
+  },
+  "cloud_ca_cert": {
+   "scope": "controller",
+   "fks": [
+    "cloud"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "cloud_credential": {
+   "scope": "controller",
+   "fks": [
+    "auth_type",
+    "cloud",
+    "user"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 1,
+   "watched": true,
+   "immutable": false
+  },
+  "cloud_credential_attribute": {
+   "scope": "controller",
+   "fks": [
+    "cloud_credential"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 1,
+   "watched": true,
+   "immutable": false
+  },
+  "external_controller": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "external_controller_address": {
+   "scope": "controller",
+   "fks": [
+    "external_controller"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "external_model": {
+   "scope": "controller",
+   "fks": [
+    "external_controller"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_namespace": {
+   "scope": "controller",
+   "fks": [
+    "model"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 2,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_type": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model@c": {
+   "scope": "controller",
+   "fks": [
+    "cloud",
+    "cloud_credential",
+    "cloud_region",
+    "life",
+    "model_type"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "controller_config": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "password_hash_algorithm@c": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "controller_node": {
+   "scope": "controller",
+   "fks": [
+    "life"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 2,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "controller_node_agent_version": {
+   "scope": "controller",
+   "fks": [
+    "architecture",
+    "controller_node"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "controller_api_address": {
+   "scope": "controller",
+   "fks": [
+    "controller_node"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "controller_agent_address": {
+   "scope": "controller",
+   "fks": [
+    "controller_node"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 2,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "controller_client_address": {
+   "scope": "controller",
+   "fks": [
+    "controller_node"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 2,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "controller_peer_address": {
+   "scope": "controller",
+   "fks": [
+    "controller_node"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "controller_node_password": {
+   "scope": "controller",
+   "fks": [
+    "controller_node",
+    "password_hash_algorithm"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "controller_node_nonce": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_migration_phase": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_migration_import_phase_type": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_migration_import": {
+   "scope": "controller",
+   "fks": [
+    "model_migration_import_phase_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "model_migration_import_offer": {
+   "scope": "controller",
+   "fks": [
+    "model_migration_import"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_migration_import_external_controller_model": {
+   "scope": "controller",
+   "fks": [
+    "external_controller",
+    "model_migration_import"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_migration_export": {
+   "scope": "controller",
+   "fks": [
+    "external_controller",
+    "model_migration_phase"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "model_migration_export_offer": {
+   "scope": "controller",
+   "fks": [
+    "model_migration_export"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_migration_redirect": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_migration_redirect_user": {
+   "scope": "controller",
+   "fks": [
+    "model_migration_redirect"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_migration_export_target_auth": {
+   "scope": "controller",
+   "fks": [
+    "external_controller",
+    "model_migration_export"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_migration_export_phase": {
+   "scope": "controller",
+   "fks": [
+    "model_migration_export",
+    "model_migration_phase"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "model_migration_export_status": {
+   "scope": "controller",
+   "fks": [
+    "model_migration_export"
+   ],
+   "life": false,
+   "status": true,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_migration_export_minion_sync": {
+   "scope": "controller",
+   "fks": [
+    "model_migration_export",
+    "model_migration_phase"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "upgrade_state_type": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "upgrade_info": {
+   "scope": "controller",
+   "fks": [
+    "upgrade_state_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "upgrade_info_controller_node": {
+   "scope": "controller",
+   "fks": [
+    "controller_node",
+    "upgrade_info"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "autocert_cache": {
+   "scope": "controller",
+   "fks": [
+    "autocert_cache_encoding"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "autocert_cache_encoding": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "object_store_metadata@c": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 2,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "object_store_metadata_path@c": {
+   "scope": "controller",
+   "fks": [
+    "object_store_metadata"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "object_store_placement@c": {
+   "scope": "controller",
+   "fks": [
+    "object_store_metadata"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "object_store_backend_type": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "object_store_backend": {
+   "scope": "controller",
+   "fks": [
+    "life",
+    "object_store_backend_type"
+   ],
+   "life": true,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 3,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "object_store_backend_s3_config": {
+   "scope": "controller",
+   "fks": [
+    "object_store_backend"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "object_store_drain_phase_type": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "object_store_drain_info": {
+   "scope": "controller",
+   "fks": [
+    "object_store_backend",
+    "object_store_drain_phase_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "user": {
+   "scope": "controller",
+   "fks": [
+    "user"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "user_authentication": {
+   "scope": "controller",
+   "fks": [
+    "user"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "user_password": {
+   "scope": "controller",
+   "fks": [
+    "user_authentication"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "user_activation_key": {
+   "scope": "controller",
+   "fks": [
+    "user_authentication"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "flag": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "permission_access_type": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "permission_object_type": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "permission_object_access": {
+   "scope": "controller",
+   "fks": [
+    "permission_access_type",
+    "permission_object_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "permission": {
+   "scope": "controller",
+   "fks": [
+    "permission_object_access",
+    "user"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_backend_type": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 1,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_backend_origin": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 1,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_backend": {
+   "scope": "controller",
+   "fks": [
+    "secret_backend_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 1,
+   "watched": false,
+   "immutable": true
+  },
+  "secret_backend_config": {
+   "scope": "controller",
+   "fks": [
+    "secret_backend"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 2,
+   "watched": false,
+   "immutable": false
+  },
+  "secret_backend_rotation": {
+   "scope": "controller",
+   "fks": [
+    "secret_backend"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "secret_backend_reference": {
+   "scope": "controller",
+   "fks": [
+    "model",
+    "secret_backend"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_secret_backend": {
+   "scope": "controller",
+   "fks": [
+    "model",
+    "secret_backend"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "model_last_login": {
+   "scope": "controller",
+   "fks": [
+    "model",
+    "user"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "bakery_config": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "macaroon_root_key": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "ssh_fingerprint_hash_algorithm": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "user_public_ssh_key": {
+   "scope": "controller",
+   "fks": [
+    "ssh_fingerprint_hash_algorithm",
+    "user"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 2,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "model_authorized_keys": {
+   "scope": "controller",
+   "fks": [
+    "model",
+    "user_public_ssh_key"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "architecture@c": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "cloud_image_metadata": {
+   "scope": "controller",
+   "fks": [
+    "architecture"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "agent_binary_store@c": {
+   "scope": "controller",
+   "fks": [
+    "architecture",
+    "object_store_metadata"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "charm_tracing_config": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "logging_loki_config": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": true,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "workload_tracing_config": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "ssh_key_algorithm_type@c": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "controller_ssh_host_key": {
+   "scope": "controller",
+   "fks": [
+    "ssh_key_algorithm_type"
+   ],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": false,
+   "immutable": false
+  },
+  "controller_ssh_server_port": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 1,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  },
+  "model_database_deletion": {
+   "scope": "controller",
+   "fks": [],
+   "life": false,
+   "status": false,
+   "uuid_pk": false,
+   "unique": 0,
+   "check": 0,
+   "watched": true,
+   "immutable": false
+  }
+ }
+}

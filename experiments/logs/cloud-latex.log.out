@@ -1,0 +1,150 @@
+Running Sphinx v7.4.7
+loading translations [en]... done
+sphinx_design found.
+sphinx_design is now configured.
+sphinx_tabs.tabs found.
+sphinx_tabs.tabs is now configured.
+sphinx_reredirects found.
+sphinx_reredirects is now configured.
+canonical.youtube-links not found.
+canonical.youtube-links will not be configured.
+canonical.related-links not found.
+canonical.related-links will not be configured.
+canonical.custom-rst-roles not found.
+canonical.custom-rst-roles will not be configured.
+canonical.terminal-output not found.
+canonical.terminal-output will not be configured.
+canonical.contributor-listing not found.
+canonical.contributor-listing will not be configured.
+sphinx_copybutton found.
+sphinx_copybutton is now configured.
+sphinxext.opengraph found.
+sphinxext.opengraph is now configured.
+sphinxcontrib.jquery found.
+sphinxcontrib.jquery is now configured.
+notfound.extension found.
+notfound.extension is now configured.
+sphinxcontrib.cairosvgconverter found.
+sphinxcontrib.cairosvgconverter is now configured.
+sphinx_last_updated_by_git found.
+sphinx_last_updated_by_git is now configured.
+matplotlib is not installed, social cards will not be generated
+making output directory... done
+canonical-sphinx is deprecated and will be removed from the Sphinx Stack in a future release. Please switch to the Ulwazi theme. Guidance is available in the Sphinx Stack documentation: https://documentation.ubuntu.com/sphinx-stack/latest/how-to/switch-to-ulwazi/
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions={'deflist', 'colon_fence', 'linkify', 'substitution'}, disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=0, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+llms_txt_suffix_mode='url-suffix' is deprecated; use 'append' instead
+llms.txt generation only works with HTML builders (html or dirhtml), skipping...
+loading intersphinx inventory 'tfjuju' from https://documentation.ubuntu.com/terraform-provider-juju/latest/objects.inv...
+loading intersphinx inventory 'pyjuju' from https://pythonlibjuju.readthedocs.io/en/latest/objects.inv...
+loading intersphinx inventory 'jaas' from https://documentation.ubuntu.com/jaas/latest/objects.inv...
+loading intersphinx inventory 'charmcraft' from https://documentation.ubuntu.com/charmcraft/stable/objects.inv...
+loading intersphinx inventory 'ops' from https://documentation.ubuntu.com/ops/latest/objects.inv...
+intersphinx inventory has moved: https://documentation.ubuntu.com/terraform-provider-juju/latest/objects.inv -> https://canonical.com/juju/docs/terraform-provider-juju/latest/objects.inv
+intersphinx inventory has moved: https://documentation.ubuntu.com/ops/latest/objects.inv -> https://canonical.com/juju/docs/ops/latest/objects.inv
+intersphinx inventory has moved: https://documentation.ubuntu.com/jaas/latest/objects.inv -> https://canonical.com/juju/docs/jaas/v3/objects.inv
+intersphinx inventory has moved: https://documentation.ubuntu.com/charmcraft/stable/objects.inv -> https://canonical.com/juju/docs/charmcraft/4/objects.inv
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [latex]: all documents
+updating environment: [new config] 342 added, 0 changed, 0 removed
+reading sources... [  4%] explanation/architecture .. howto/manage-clouds
+reading sources... [  8%] howto/manage-controllers .. howto/manage-storage
+reading sources... [ 12%] howto/manage-storage-pools .. howto/manage-your-juju-deployment/upgrade-your-juju-deployment
+reading sources... [ 16%] howto/upgrade-your-juju-deployment-from-36-to-41 .. reference/cloud/list-of-supported-clouds/google-gce
+reading sources... [ 20%] reference/cloud/list-of-supported-clouds/google-gke .. reference/configuration/controller-config-juju-mgmt-space
+reading sources... [ 24%] reference/configuration/list-of-controller-configuration-keys .. reference/hook-command/list-of-hook-commands/action-set
+reading sources... [ 28%] reference/hook-command/list-of-hook-commands/application-version-set .. reference/hook-command/list-of-hook-commands/relation-ids
+reading sources... [ 32%] reference/hook-command/list-of-hook-commands/relation-list .. reference/hook-command/list-of-hook-commands/state-get
+reading sources... [ 36%] reference/hook-command/list-of-hook-commands/state-set .. reference/juju-cli/list-of-juju-cli-commands/add-credential
+reading sources... [ 40%] reference/juju-cli/list-of-juju-cli-commands/add-k8s .. reference/juju-cli/list-of-juju-cli-commands/bind
+reading sources... [ 44%] reference/juju-cli/list-of-juju-cli-commands/bootstrap .. reference/juju-cli/list-of-juju-cli-commands/dashboard
+reading sources... [ 48%] reference/juju-cli/list-of-juju-cli-commands/debug-code .. reference/juju-cli/list-of-juju-cli-commands/documentation
+reading sources... [ 52%] reference/juju-cli/list-of-juju-cli-commands/download .. reference/juju-cli/list-of-juju-cli-commands/help
+reading sources... [ 56%] reference/juju-cli/list-of-juju-cli-commands/help-action-commands .. reference/juju-cli/list-of-juju-cli-commands/model-constraints
+reading sources... [ 60%] reference/juju-cli/list-of-juju-cli-commands/model-defaults .. reference/juju-cli/list-of-juju-cli-commands/remove-credential
+reading sources... [ 64%] reference/juju-cli/list-of-juju-cli-commands/remove-k8s .. reference/juju-cli/list-of-juju-cli-commands/rename-space
+reading sources... [ 68%] reference/juju-cli/list-of-juju-cli-commands/reprovision-machine .. reference/juju-cli/list-of-juju-cli-commands/set-constraints
+reading sources... [ 72%] reference/juju-cli/list-of-juju-cli-commands/set-credential .. reference/juju-cli/list-of-juju-cli-commands/show-secret-backend
+reading sources... [ 76%] reference/juju-cli/list-of-juju-cli-commands/show-space .. reference/juju-cli/list-of-juju-cli-commands/suspend-relation
+reading sources... [ 80%] reference/juju-cli/list-of-juju-cli-commands/switch .. reference/juju-cli/list-of-juju-cli-commands/upgrade-model
+reading sources... [ 84%] reference/juju-cli/list-of-juju-cli-commands/users .. reference/model
+reading sources... [ 88%] reference/offer .. reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_cpu_profile
+reading sources... [ 92%] reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_engine_report .. reference/status
+reading sources... [ 96%] reference/storage .. releasenotes/juju_4.0.x/juju_4.0.15
+reading sources... [100%] releasenotes/juju_4.0.x/juju_4.0.3 .. tutorial/index
+
+getting Git timestamps for source files... [  6%] reference/hook-command/list-of-hook-commands
+getting Git timestamps for source files... [ 12%] reference
+getting Git timestamps for source files... [ 18%] reference/juju-cli
+getting Git timestamps for source files... [ 24%] reference/juju-cli/list-of-juju-cli-commands
+getting Git timestamps for source files... [ 29%] howto
+getting Git timestamps for source files... [ 35%] howto/manage-your-juju-deployment
+getting Git timestamps for source files... [ 41%] reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju
+getting Git timestamps for source files... [ 47%] reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros
+getting Git timestamps for source files... [ 53%] reference/juju
+getting Git timestamps for source files... [ 59%] releasenotes/juju_4.0.x
+getting Git timestamps for source files... [ 65%] releasenotes/unsupported
+getting Git timestamps for source files... [ 71%] tutorial
+getting Git timestamps for source files... [ 76%] explanation
+getting Git timestamps for source files... [ 82%] reference/cloud/list-of-supported-clouds
+getting Git timestamps for source files... [ 88%] reference/configuration
+getting Git timestamps for source files... [ 94%] .
+getting Git timestamps for source files... [100%] releasenotes
+
+getting Git timestamps for dependencies... [ 25%] howto
+getting Git timestamps for dependencies... [ 50%] reference
+getting Git timestamps for dependencies... [ 75%] .
+getting Git timestamps for dependencies... [100%] reference/cloud/list-of-supported-clouds/reuse/k8s
+
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-your-juju-deployment/tear-down-your-juju-deployment-local-testing-and-development.md:12: WARNING: Duplicate explicit target name: "tear-things-down-automatically".
+/home/dora/git/misc/juju-tutorial-diagrams/docs/howto/manage-your-juju-deployment/tear-down-your-juju-deployment-local-testing-and-development.md:29: WARNING: Duplicate explicit target name: "tear-things-down-manually".
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+copying TeX support files... copying TeX support files...
+done
+processing juju.tex... index tutorial/index howto/index howto/upgrade-your-juju-deployment-from-36-to-41 howto/manage-your-deployment howto/manage-your-juju-deployment/set-up-your-juju-deployment howto/manage-your-juju-deployment/set-up-your-juju-deployment-local-testing-and-development howto/manage-your-juju-deployment/set-up-your-juju-deployment-offline howto/manage-your-juju-deployment/harden-your-juju-deployment howto/manage-your-juju-deployment/troubleshoot-your-juju-deployment howto/manage-your-juju-deployment/upgrade-your-juju-deployment howto/manage-your-juju-deployment/tear-down-your-juju-deployment-local-testing-and-development howto/manage-juju howto/manage-clouds howto/manage-credentials howto/manage-metadata howto/manage-controllers howto/manage-the-databases howto/manage-the-juju-dashboard howto/manage-secret-backends howto/manage-logs howto/manage-ssh-keys howto/manage-users howto/manage-models howto/manage-charms howto/manage-applications howto/manage-charm-resources howto/manage-actions howto/manage-relations howto/manage-offers howto/manage-units howto/manage-secrets howto/manage-machines howto/manage-storage howto/manage-storage-pools howto/manage-spaces howto/manage-subnets howto/define-resource-tags-in-a-cloud howto/debug-a-dqlite-core-dump-issue howto/compile-and-run-juju-agents-on-different-architectures howto/writing-workers reference/index reference/action reference/agent reference/application reference/bundle reference/charm reference/client reference/cloud reference/cloud/list-of-supported-clouds/index reference/cloud/list-of-supported-clouds/amazon-ec2 reference/cloud/list-of-supported-clouds/amazon-eks reference/cloud/list-of-supported-clouds/canonical-kubernetes reference/cloud/list-of-supported-clouds/google-gce reference/cloud/list-of-supported-clouds/google-gke reference/cloud/list-of-supported-clouds/lxd reference/cloud/list-of-supported-clouds/maas reference/cloud/list-of-supported-clouds/unmanaged reference/cloud/list-of-supported-clouds/microk8s reference/cloud/list-of-supported-clouds/microsoft-aks reference/cloud/list-of-supported-clouds/microsoft-azure reference/cloud/list-of-supported-clouds/openstack reference/cloud/list-of-supported-clouds/oracle-oci reference/cloud/list-of-supported-clouds/vmware-vsphere reference/configuration reference/configuration/list-of-controller-configuration-keys reference/configuration/controller-config-audit-log-exclude-methods reference/configuration/controller-config-juju-mgmt-space reference/configuration/list-of-model-configuration-keys reference/constraint reference/containeragent reference/controller reference/credential reference/database reference/high-availability reference/hook reference/hook-command reference/hook-command/list-of-hook-commands/index reference/hook-command/list-of-hook-commands/action-fail reference/hook-command/list-of-hook-commands/action-get reference/hook-command/list-of-hook-commands/action-log reference/hook-command/list-of-hook-commands/action-set reference/hook-command/list-of-hook-commands/application-version-set reference/hook-command/list-of-hook-commands/close-port reference/hook-command/list-of-hook-commands/config-get reference/hook-command/list-of-hook-commands/credential-get reference/hook-command/list-of-hook-commands/goal-state reference/hook-command/list-of-hook-commands/is-leader reference/hook-command/list-of-hook-commands/juju-log reference/hook-command/list-of-hook-commands/juju-reboot reference/hook-command/list-of-hook-commands/network-get reference/hook-command/list-of-hook-commands/open-port reference/hook-command/list-of-hook-commands/opened-ports reference/hook-command/list-of-hook-commands/relation-get reference/hook-command/list-of-hook-commands/relation-ids reference/hook-command/list-of-hook-commands/relation-list reference/hook-command/list-of-hook-commands/relation-model-get reference/hook-command/list-of-hook-commands/relation-set reference/hook-command/list-of-hook-commands/resource-get reference/hook-command/list-of-hook-commands/secret-add reference/hook-command/list-of-hook-commands/secret-get reference/hook-command/list-of-hook-commands/secret-grant reference/hook-command/list-of-hook-commands/secret-ids reference/hook-command/list-of-hook-commands/secret-info-get reference/hook-command/list-of-hook-commands/secret-remove reference/hook-command/list-of-hook-commands/secret-revoke reference/hook-command/list-of-hook-commands/secret-set reference/hook-command/list-of-hook-commands/state-delete reference/hook-command/list-of-hook-commands/state-get reference/hook-command/list-of-hook-commands/state-set reference/hook-command/list-of-hook-commands/status-get reference/hook-command/list-of-hook-commands/status-set reference/hook-command/list-of-hook-commands/storage-add reference/hook-command/list-of-hook-commands/storage-get reference/hook-command/list-of-hook-commands/storage-list reference/hook-command/list-of-hook-commands/unit-get reference/juju reference/juju/juju-cross-version-compatibility reference/juju-cli reference/juju-cli/list-of-juju-cli-commands/index reference/juju-cli/list-of-juju-cli-commands/actions reference/juju-cli/list-of-juju-cli-commands/add-cloud reference/juju-cli/list-of-juju-cli-commands/add-credential reference/juju-cli/list-of-juju-cli-commands/add-k8s reference/juju-cli/list-of-juju-cli-commands/add-machine reference/juju-cli/list-of-juju-cli-commands/add-model reference/juju-cli/list-of-juju-cli-commands/add-secret reference/juju-cli/list-of-juju-cli-commands/add-secret-backend reference/juju-cli/list-of-juju-cli-commands/add-space reference/juju-cli/list-of-juju-cli-commands/add-ssh-key reference/juju-cli/list-of-juju-cli-commands/add-storage reference/juju-cli/list-of-juju-cli-commands/add-unit reference/juju-cli/list-of-juju-cli-commands/add-user reference/juju-cli/list-of-juju-cli-commands/attach-resource reference/juju-cli/list-of-juju-cli-commands/attach-storage reference/juju-cli/list-of-juju-cli-commands/autoload-credentials reference/juju-cli/list-of-juju-cli-commands/bind reference/juju-cli/list-of-juju-cli-commands/bootstrap reference/juju-cli/list-of-juju-cli-commands/cancel-task reference/juju-cli/list-of-juju-cli-commands/change-user-password reference/juju-cli/list-of-juju-cli-commands/charm-resources reference/juju-cli/list-of-juju-cli-commands/clouds reference/juju-cli/list-of-juju-cli-commands/config reference/juju-cli/list-of-juju-cli-commands/constraints reference/juju-cli/list-of-juju-cli-commands/consume reference/juju-cli/list-of-juju-cli-commands/controller-config reference/juju-cli/list-of-juju-cli-commands/controllers reference/juju-cli/list-of-juju-cli-commands/create-backup reference/juju-cli/list-of-juju-cli-commands/create-storage-pool reference/juju-cli/list-of-juju-cli-commands/credentials reference/juju-cli/list-of-juju-cli-commands/dashboard reference/juju-cli/list-of-juju-cli-commands/debug-code reference/juju-cli/list-of-juju-cli-commands/debug-hooks reference/juju-cli/list-of-juju-cli-commands/debug-log reference/juju-cli/list-of-juju-cli-commands/default-credential reference/juju-cli/list-of-juju-cli-commands/default-region reference/juju-cli/list-of-juju-cli-commands/deploy reference/juju-cli/list-of-juju-cli-commands/destroy-controller reference/juju-cli/list-of-juju-cli-commands/destroy-model reference/juju-cli/list-of-juju-cli-commands/detach-storage reference/juju-cli/list-of-juju-cli-commands/diff-bundle reference/juju-cli/list-of-juju-cli-commands/disable-command reference/juju-cli/list-of-juju-cli-commands/disable-user reference/juju-cli/list-of-juju-cli-commands/disabled-commands reference/juju-cli/list-of-juju-cli-commands/documentation reference/juju-cli/list-of-juju-cli-commands/download reference/juju-cli/list-of-juju-cli-commands/enable-command reference/juju-cli/list-of-juju-cli-commands/enable-destroy-controller reference/juju-cli/list-of-juju-cli-commands/enable-user reference/juju-cli/list-of-juju-cli-commands/exec reference/juju-cli/list-of-juju-cli-commands/export-bundle reference/juju-cli/list-of-juju-cli-commands/expose reference/juju-cli/list-of-juju-cli-commands/find reference/juju-cli/list-of-juju-cli-commands/find-offers reference/juju-cli/list-of-juju-cli-commands/firewall-rules reference/juju-cli/list-of-juju-cli-commands/grant reference/juju-cli/list-of-juju-cli-commands/grant-cloud reference/juju-cli/list-of-juju-cli-commands/grant-secret reference/juju-cli/list-of-juju-cli-commands/help reference/juju-cli/list-of-juju-cli-commands/help-action-commands reference/juju-cli/list-of-juju-cli-commands/help-hook-commands reference/juju-cli/list-of-juju-cli-commands/import-filesystem reference/juju-cli/list-of-juju-cli-commands/import-ssh-key reference/juju-cli/list-of-juju-cli-commands/info reference/juju-cli/list-of-juju-cli-commands/integrate reference/juju-cli/list-of-juju-cli-commands/kill-controller reference/juju-cli/list-of-juju-cli-commands/login reference/juju-cli/list-of-juju-cli-commands/logout reference/juju-cli/list-of-juju-cli-commands/machines reference/juju-cli/list-of-juju-cli-commands/migrate reference/juju-cli/list-of-juju-cli-commands/model-config reference/juju-cli/list-of-juju-cli-commands/model-constraints reference/juju-cli/list-of-juju-cli-commands/model-defaults reference/juju-cli/list-of-juju-cli-commands/model-secret-backend reference/juju-cli/list-of-juju-cli-commands/models reference/juju-cli/list-of-juju-cli-commands/move-to-space reference/juju-cli/list-of-juju-cli-commands/offer reference/juju-cli/list-of-juju-cli-commands/offers reference/juju-cli/list-of-juju-cli-commands/operations reference/juju-cli/list-of-juju-cli-commands/refresh reference/juju-cli/list-of-juju-cli-commands/regions reference/juju-cli/list-of-juju-cli-commands/register reference/juju-cli/list-of-juju-cli-commands/reload-spaces reference/juju-cli/list-of-juju-cli-commands/remove-application reference/juju-cli/list-of-juju-cli-commands/remove-cloud reference/juju-cli/list-of-juju-cli-commands/remove-credential reference/juju-cli/list-of-juju-cli-commands/remove-k8s reference/juju-cli/list-of-juju-cli-commands/remove-machine reference/juju-cli/list-of-juju-cli-commands/remove-offer reference/juju-cli/list-of-juju-cli-commands/remove-relation reference/juju-cli/list-of-juju-cli-commands/remove-saas reference/juju-cli/list-of-juju-cli-commands/remove-secret reference/juju-cli/list-of-juju-cli-commands/remove-secret-backend reference/juju-cli/list-of-juju-cli-commands/remove-space reference/juju-cli/list-of-juju-cli-commands/remove-ssh-key reference/juju-cli/list-of-juju-cli-commands/remove-storage reference/juju-cli/list-of-juju-cli-commands/remove-storage-pool reference/juju-cli/list-of-juju-cli-commands/remove-unit reference/juju-cli/list-of-juju-cli-commands/remove-user reference/juju-cli/list-of-juju-cli-commands/rename-space reference/juju-cli/list-of-juju-cli-commands/reprovision-machine reference/juju-cli/list-of-juju-cli-commands/resolved reference/juju-cli/list-of-juju-cli-commands/resources reference/juju-cli/list-of-juju-cli-commands/resume-relation reference/juju-cli/list-of-juju-cli-commands/retry-provisioning reference/juju-cli/list-of-juju-cli-commands/revoke reference/juju-cli/list-of-juju-cli-commands/revoke-cloud reference/juju-cli/list-of-juju-cli-commands/revoke-secret reference/juju-cli/list-of-juju-cli-commands/run reference/juju-cli/list-of-juju-cli-commands/scale-application reference/juju-cli/list-of-juju-cli-commands/scp reference/juju-cli/list-of-juju-cli-commands/secret-backends reference/juju-cli/list-of-juju-cli-commands/secrets reference/juju-cli/list-of-juju-cli-commands/set-constraints reference/juju-cli/list-of-juju-cli-commands/set-credential reference/juju-cli/list-of-juju-cli-commands/set-firewall-rule reference/juju-cli/list-of-juju-cli-commands/set-model-constraints reference/juju-cli/list-of-juju-cli-commands/show-action reference/juju-cli/list-of-juju-cli-commands/show-application reference/juju-cli/list-of-juju-cli-commands/show-cloud reference/juju-cli/list-of-juju-cli-commands/show-controller reference/juju-cli/list-of-juju-cli-commands/show-credential reference/juju-cli/list-of-juju-cli-commands/show-machine reference/juju-cli/list-of-juju-cli-commands/show-model reference/juju-cli/list-of-juju-cli-commands/show-offer reference/juju-cli/list-of-juju-cli-commands/show-operation reference/juju-cli/list-of-juju-cli-commands/show-secret reference/juju-cli/list-of-juju-cli-commands/show-secret-backend reference/juju-cli/list-of-juju-cli-commands/show-space reference/juju-cli/list-of-juju-cli-commands/show-status-log reference/juju-cli/list-of-juju-cli-commands/show-storage reference/juju-cli/list-of-juju-cli-commands/show-task reference/juju-cli/list-of-juju-cli-commands/show-unit reference/juju-cli/list-of-juju-cli-commands/show-user reference/juju-cli/list-of-juju-cli-commands/spaces reference/juju-cli/list-of-juju-cli-commands/ssh reference/juju-cli/list-of-juju-cli-commands/ssh-keys reference/juju-cli/list-of-juju-cli-commands/status reference/juju-cli/list-of-juju-cli-commands/storage reference/juju-cli/list-of-juju-cli-commands/storage-pools reference/juju-cli/list-of-juju-cli-commands/subnets reference/juju-cli/list-of-juju-cli-commands/suspend-relation reference/juju-cli/list-of-juju-cli-commands/switch reference/juju-cli/list-of-juju-cli-commands/sync-agent-binary reference/juju-cli/list-of-juju-cli-commands/trust reference/juju-cli/list-of-juju-cli-commands/unexpose reference/juju-cli/list-of-juju-cli-commands/unregister reference/juju-cli/list-of-juju-cli-commands/update-cloud reference/juju-cli/list-of-juju-cli-commands/update-credential reference/juju-cli/list-of-juju-cli-commands/update-k8s reference/juju-cli/list-of-juju-cli-commands/update-public-clouds reference/juju-cli/list-of-juju-cli-commands/update-secret reference/juju-cli/list-of-juju-cli-commands/update-secret-backend reference/juju-cli/list-of-juju-cli-commands/update-storage-pool reference/juju-cli/list-of-juju-cli-commands/upgrade-controller reference/juju-cli/list-of-juju-cli-commands/upgrade-model reference/juju-cli/list-of-juju-cli-commands/users reference/juju-cli/list-of-juju-cli-commands/version reference/juju-cli/list-of-juju-cli-commands/whoami reference/juju-cli/juju-environment-variables reference/juju-cli/plugin-juju-metadata reference/juju-dashboard reference/juju-db-repl reference/juju-web-cli reference/jujuagentd reference/jujuc reference/log reference/machine reference/metadata reference/model reference/offer reference/pebble reference/placement-directive reference/relation reference/removing-things reference/resource-charm reference/resource-compute reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/index reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-dumplogs reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-exec reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/juju-introspect reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/index reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_controller_agent_name reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_cpu_profile reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_engine_report reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_goroutines reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_heap_profile reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_machine_agent_name reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_machine_lock reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_metrics reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_agent_name reference/resource-compute/list-of-commands-available-on-a-compute-resource-provisioned-by-juju/list-of-juju-introspect-macros/juju_unit_status reference/scaling reference/script reference/secret reference/space reference/ssh-key reference/status reference/storage reference/subnet reference/telemetry reference/unit reference/user reference/zone explanation/index explanation/architecture explanation/juju-security explanation/juju-performance explanation/juju-ssh releasenotes/index releasenotes/juju_4.0.x/index releasenotes/juju_4.0.x/juju_4.0.15 releasenotes/juju_4.0.x/juju_4.0.14 releasenotes/juju_4.0.x/juju_4.0.12 releasenotes/juju_4.0.x/juju_4.0.11 releasenotes/juju_4.0.x/juju_4.0.5 releasenotes/juju_4.0.x/juju_4.0.3 releasenotes/juju_4.0.x/juju_4.0.1 releasenotes/juju_4.0.x/juju_4.0.0 releasenotes/unsupported/index releasenotes/unsupported/juju_2.x.x releasenotes/unsupported/juju_3.x.x 
+resolving references...
+done
+writing... done
+copying images... [  3%] howto/manage-the-juju-dashboard-upgrade.png
+copying images... [  6%] https://assets.ubuntu.com/v1/0261cc58-config-tagging-named.png
+copying images... [  9%] https://assets.ubuntu.com/v1/f480625d-config-tagging-tagged.png
+copying images... [ 12%] https://assets.ubuntu.com/v1/1fac4427-config-tagging-user.png
+copying images... [ 16%] reference/high-availability.png
+copying images... [ 19%] https://assets.ubuntu.com/v1/1f5ba83e-juju-client-3.png
+copying images... [ 22%] reference/juju-dashboard.png
+copying images... [ 25%] reference/juju-dashboard-group-by.png
+copying images... [ 28%] reference/juju-dashboard-search-and-filtering.png
+copying images... [ 31%] reference/juju-dashboard-model-details-view.png
+copying images... [ 34%] reference/juju-dashboard-unit-view.png
+copying images... [ 38%] reference/juju-dashboard-machine-view-1.png
+copying images... [ 41%] reference/juju-dashboard-machine-view-2.png
+copying images... [ 44%] reference/juju-dashboard-relations-view.png
+copying images... [ 47%] reference/juju-dashboard-configuring-applications.png
+copying images... [ 50%] reference/juju-dashboard-controllers-view.png
+copying images... [ 53%] reference/juju-dashboard-model-access-management-1.png
+copying images... [ 56%] reference/juju-dashboard-model-access-management-2.png
+copying images... [ 59%] reference/juju-dashboard-running-actions-1.png
+copying images... [ 62%] reference/juju-dashboard-running-actions-2.png
+copying images... [ 66%] reference/juju-dashboard-running-actions-on-multiple-applications-1.png
+copying images... [ 69%] reference/juju-dashboard-running-actions-on-multiple-applications-2.png
+copying images... [ 72%] reference/juju-dashboard-viewing-action-logs.png
+copying images... [ 75%] reference/juju-web-cli-1.png
+copying images... [ 78%] reference/juju-web-cli-2.png
+copying images... [ 81%] reference/juju-web-cli-3.png
+copying images... [ 84%] reference/juju-web-cli-4.png
+copying images... [ 88%] reference/relation-taxonomy.svg
+copying images... [ 91%] reference/relation-taxonomy.dark.svg
+copying images... [ 94%] reference/relation-databags.svg
+copying images... [ 97%] reference/relation-databags.dark.svg
+copying images... [100%] reference/status.png
+
+sphinx-sitemap: No pages generated for doc-sitemap.xml
+rediraffe: Redirect generation skipped for unsupported builders. Supported builders: html, dirhtml, readthedocs, readthedocsdirhtml.
+build succeeded, 2 warnings.
+
+The LaTeX files are in _build.
+Run 'make' in that directory to run these through (pdf)latex
+(use `make latexpdf' here to do that automatically).
+done /home/dora/git/misc/juju-tutorial-diagrams latex

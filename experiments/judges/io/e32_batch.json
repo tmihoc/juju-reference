@@ -1,0 +1,247 @@
+[
+ {
+  "key": "sshkey-new:1",
+  "page": "ssh-key-new",
+  "claim": "An SSH key is a public key in the SSH protocol that a user stores on a controller."
+ },
+ {
+  "key": "sshkey-new:2",
+  "page": "ssh-key-new",
+  "claim": "A model authorises a set of keys, and the people who hold the matching private keys can open SSH sessions to the model's machines through the controller (see juju-ssh)."
+ },
+ {
+  "key": "sshkey-new:3",
+  "page": "ssh-key-new",
+  "claim": "Every machine provides an account named `ubuntu` with passwordless sudo privileges, so authorising a key gives root access to the model's machines, and the decision deserves care."
+ },
+ {
+  "key": "sshkey-new:4",
+  "page": "ssh-key-new",
+  "claim": "The controller keeps keys in its own database, together with the users."
+ },
+ {
+  "key": "sshkey-new:5",
+  "page": "ssh-key-new",
+  "claim": "It comes into being when a user adds or imports it, and it goes away when the user deletes it from its last model, when the user is removed, or when the model is removed."
+ },
+ {
+  "key": "sshkey-new:6",
+  "page": "ssh-key-new",
+  "claim": "A user can have many keys, and a key can be authorised on many models."
+ },
+ {
+  "key": "sshkey-new:7",
+  "page": "ssh-key-new",
+  "claim": "User public key (`user_public_ssh_key`): The key's owner, its comment, its public key text, and its fingerprint with the algorithm that produced it."
+ },
+ {
+  "key": "sshkey-new:8",
+  "page": "ssh-key-new",
+  "claim": "*Rule:* A user stores the same key, or the same fingerprint, only once."
+ },
+ {
+  "key": "sshkey-new:9",
+  "page": "ssh-key-new",
+  "claim": "*Rule:* The comment of the controller's own key is reserved."
+ },
+ {
+  "key": "sshkey-new:10",
+  "page": "ssh-key-new",
+  "claim": "At bootstrap on a machine cloud the controller generates an SSH key pair, keeps the private half, and stores the public half in the controller configuration key `system-ssh-keys`, so that it can reach the machines it manages."
+ },
+ {
+  "key": "sshkey-new:11",
+  "page": "ssh-key-new",
+  "claim": "A user cannot add or import a key that carries the same comment."
+ },
+ {
+  "key": "sshkey-new:12",
+  "page": "ssh-key-new",
+  "claim": "`public key already exists`: *Trigger:* Adding a key that the user has already authorised on the model. *Remediation:* None needed; the key is in place."
+ },
+ {
+  "key": "sshkey-new:13",
+  "page": "ssh-key-new",
+  "claim": "An import skips such keys without an error."
+ },
+ {
+  "key": "sshkey-new:14",
+  "page": "ssh-key-new",
+  "claim": "`invalid public key`: *Trigger:* Adding or importing a key that is not a valid public key. *Remediation:* Provide the public half of the key, in the format of an `authorized_keys` line."
+ },
+ {
+  "key": "sshkey-new:15",
+  "page": "ssh-key-new",
+  "claim": "`key contains a reserved comment`: *Trigger:* Adding or importing a key whose comment is the comment of the controller's own key."
+ },
+ {
+  "key": "sshkey-new:16",
+  "page": "ssh-key-new",
+  "claim": "The client sees the message that the key contains a restricted comment. *Remediation:* Change the comment."
+ },
+ {
+  "key": "sshkey-new:17",
+  "page": "ssh-key-new",
+  "claim": "Fingerprint hash algorithm (`ssh_fingerprint_hash_algorithm`): The allowed values are `md5` and `sha256`."
+ },
+ {
+  "key": "sshkey-new:18",
+  "page": "ssh-key-new",
+  "claim": "Model authorisation (`model_authorized_keys`): Links one key to one model."
+ },
+ {
+  "key": "sshkey-new:19",
+  "page": "ssh-key-new",
+  "claim": "*Rule:* The set of keys that a model effectively authorises leaves out the keys of users who are removed or disabled."
+ },
+ {
+  "key": "sshkey-new:20",
+  "page": "ssh-key-new",
+  "claim": "The controller derives this set in the view `v_model_authorized_keys`, and the keys stay stored."
+ },
+ {
+  "key": "sshkey-new:21",
+  "page": "ssh-key-new",
+  "claim": "A client lists, adds, imports and deletes keys through the controller API, authorised for the model it addresses."
+ },
+ {
+  "key": "sshkey-new:22",
+  "page": "ssh-key-new",
+  "claim": "The keys belong to the authenticated user: the call accepts a user name, and the controller ignores it in favour of the identity that logged in."
+ },
+ {
+  "key": "sshkey-new:23",
+  "page": "ssh-key-new",
+  "claim": "List: Returns the authorised keys of the authenticated user on the model."
+ },
+ {
+  "key": "sshkey-new:24",
+  "page": "ssh-key-new",
+  "claim": "The caller needs read access to the model."
+ },
+ {
+  "key": "sshkey-new:25",
+  "page": "ssh-key-new",
+  "claim": "A caller with admin access also qualifies."
+ },
+ {
+  "key": "sshkey-new:26",
+  "page": "ssh-key-new",
+  "claim": "A client can ask for the full key text or only the fingerprint."
+ },
+ {
+  "key": "sshkey-new:27",
+  "page": "ssh-key-new",
+  "claim": "Add: Stores one or more keys for the authenticated user and authorises them on the model."
+ },
+ {
+  "key": "sshkey-new:28",
+  "page": "ssh-key-new",
+  "claim": "*Authority:* Admin access to the model, and the change block must not be on."
+ },
+ {
+  "key": "sshkey-new:29",
+  "page": "ssh-key-new",
+  "claim": "*Related errors:* `public key already exists`, `invalid public key` and `key contains a reserved comment`, each returned as its own error code (`public key already exists`, `invalid public key`, `invalid public key comment`)."
+ },
+ {
+  "key": "sshkey-new:30",
+  "page": "ssh-key-new",
+  "claim": "Import: Fetches the keys of an identity at an outside source and authorises them."
+ },
+ {
+  "key": "sshkey-new:31",
+  "page": "ssh-key-new",
+  "claim": "The sources are Launchpad (`lp:<name>`) and GitHub (`gh:<name>`)."
+ },
+ {
+  "key": "sshkey-new:32",
+  "page": "ssh-key-new",
+  "claim": "*Authority:* The same as add, and the change block must not be on."
+ },
+ {
+  "key": "sshkey-new:33",
+  "page": "ssh-key-new",
+  "claim": "*Rule:* An import skips keys that are already authorised on the model."
+ },
+ {
+  "key": "sshkey-new:34",
+  "page": "ssh-key-new",
+  "claim": "`unknown import source`: *Trigger:* A key id whose prefix is neither `lp:` nor `gh:`. *Remediation:* Use one of the two prefixes."
+ },
+ {
+  "key": "sshkey-new:35",
+  "page": "ssh-key-new",
+  "claim": "`import subject not found`: *Trigger:* The source has no such identity. *Remediation:* Check the spelling of the identity."
+ },
+ {
+  "key": "sshkey-new:36",
+  "page": "ssh-key-new",
+  "claim": "Delete: Removes keys from the model, matched by fingerprint, public key text or comment."
+ },
+ {
+  "key": "sshkey-new:37",
+  "page": "ssh-key-new",
+  "claim": "A user's key that no model authorises any more is deleted from the user's record too."
+ },
+ {
+  "key": "sshkey-new:38",
+  "page": "ssh-key-new",
+  "claim": "*Authority:* Admin access to the model, and neither the remove block nor the change block may be on."
+ },
+ {
+  "key": "sshkey-new:39",
+  "page": "ssh-key-new",
+  "claim": "Removal of a user or a model: Removing a user deletes the user's keys and their authorisations."
+ },
+ {
+  "key": "sshkey-new:40",
+  "page": "ssh-key-new",
+  "claim": "Removing a model deletes the model's authorisations."
+ },
+ {
+  "key": "sshkey-new:41",
+  "page": "ssh-key-new",
+  "claim": "The command-line client offers `juju add-ssh-key`, `juju import-ssh-key`, `juju ssh-keys` (with `--full` for the key text) and `juju remove-ssh-key`."
+ },
+ {
+  "key": "sshkey-new:42",
+  "page": "ssh-key-new",
+  "claim": "The controller's SSH server checks a connection in two steps."
+ },
+ {
+  "key": "sshkey-new:43",
+  "page": "ssh-key-new",
+  "claim": "It first authenticates the user: the key that the client presents must be one of the keys the controller stores for that user, whichever model it is authorised on."
+ },
+ {
+  "key": "sshkey-new:44",
+  "page": "ssh-key-new",
+  "claim": "It then authorises the connection to the model that the client asked for: the user needs admin access to that model or superuser access to the controller (see user access levels), and the key that authenticated the user must be authorised on that model."
+ },
+ {
+  "key": "sshkey-new:45",
+  "page": "ssh-key-new",
+  "claim": "`public key ... is not associated with model ...`: *Trigger:* The user authenticates with a key that is stored but not authorised on the target model. *Remediation:* Authorise that key on the model, or present a different key."
+ },
+ {
+  "key": "sshkey-new:46",
+  "page": "ssh-key-new",
+  "claim": "Machine agents have a facade that serves the keys a model authorises, together with a stream of changes to them."
+ },
+ {
+  "key": "sshkey-new:47",
+  "page": "ssh-key-new",
+  "claim": "The 4.1 code has no client of that facade."
+ },
+ {
+  "key": "sshkey-new:48",
+  "page": "ssh-key-new",
+  "claim": "A migration carries a model's authorised keys with the model."
+ },
+ {
+  "key": "sshkey-new:49",
+  "page": "ssh-key-new",
+  "claim": "When a model arrives from an older controller, whose authorised keys travel in the model configuration, the import drops every key whose comment contains the comment of the controller's own key, so that the source controller keeps no SSH access to the migrated model."
+ }
+]

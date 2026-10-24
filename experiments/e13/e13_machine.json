@@ -1,0 +1,62 @@
+[
+ {
+  "id": 1,
+  "claim": "In Juju, a machine is a compute resource requested implicitly (e.g., through command-juju-deploy, command-juju-add-unit, etc.) or explicitly (e.g., through command-juju-add-machine) from a machine cloud."
+ },
+ {
+  "id": 2,
+  "claim": "When you deploy an application on a machine, there is usually one unit per machine."
+ },
+ {
+  "id": 3,
+  "claim": "However, it is usually possible to optimise resources by deploying multiple units of the same or of different applications to the same machine."
+ },
+ {
+  "id": 4,
+  "claim": "In Juju, they are both essentially the same -- 'machines'."
+ },
+ {
+  "id": 5,
+  "claim": "For example, most `juju` CLI commands that target machines can actually target system containers in the exact same way."
+ },
+ {
+  "id": 6,
+  "claim": "$ juju machines Machine  State    Address         Inst id        Base          AZ  Message 0        started  10.154.118.110  juju-dadfb7-0  ubuntu@22.04      Running 1        pending                  pending        ubuntu@22.04      Creating container 1/lxd/0  pending                  pending        ubuntu@22.04 text $ juju deploy postgresql --to lxd Located charm \"postgresql\" in charm-hub, revision 288 Deploying \"postgresql\" from charm-hub charm \"postgresql\", revision 288 in channel 14/stable on ubuntu@22.04/stable ubuntu@charm-dev:~/.local/share/juju$ juju machines Machine  State    Address         Inst id              Base          AZ  Message 0        started  10.154.118.110  juju-dadfb7-0        ubuntu@22.04      Running 1        started  10.154.118.72   juju-dadfb7-1        ubuntu@22.04      Running 1/lxd/0  pending                  juju-dadfb7-1-lxd-0  ubuntu@22.04      Container started 2        started  10.154.118.209  juju-dadfb7-2        ubuntu@22.04      Running 2/lxd/0  pending                  pending              ubuntu@22.04      acquiring LXD image `"
+ },
+ {
+  "id": 7,
+  "claim": "In Juju, many different commands have a machine argument."
+ },
+ {
+  "id": 8,
+  "claim": "The shape of this argument depends on whether the machine is existing vs. new and a regular cloud instance vs. a LXD container on top of a regular cloud instance."
+ },
+ {
+  "id": 9,
+  "claim": "The argument can also contain combinations, in comma-separated format."
+ },
+ {
+  "id": 10,
+  "claim": "The examples below illustrate all the various cases:"
+ },
+ {
+  "id": 11,
+  "claim": "A machine's specific hardware can be customised via constraints."
+ },
+ {
+  "id": 12,
+  "claim": "In Juju, a base is  a way to identify a particular operating system (OS) image for a Juju machine."
+ },
+ {
+  "id": 13,
+  "claim": "This can be done via the name of the OS followed by the `@` symbol and the channel of the OS that you want to target, specified in terms of `<track>` or, optionally, `<track>/<risk>`."
+ },
+ {
+  "id": 14,
+  "claim": "For example, `ubuntu@22.04` or `ubuntu@22.04/stable`."
+ },
+ {
+  "id": 15,
+  "claim": "A 'base' replaces the older notion of 'series'."
+ }
+]

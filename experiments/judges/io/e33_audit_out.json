@@ -1,0 +1,120 @@
+[
+{"group":"application","tables_total":31,"flagged":[
+{"table":"space","reason":"Network space is a model-level network entity referenced by many tables (subnet, relation, endpoints, constraints), not part of an application.","evidence":"model/sql/0008-space.sql:1 (space has no application FK); REFERENCES space also in 0009-subnet.sql:8, 0024-relation.sql:16,43, 0014-constraint.sql:66","belongs_in":"subnet / network (space page)"},
+{"table":"os","reason":"Shared lookup table used by charm, machine, unit, application platform.","evidence":"model/sql/0007-platform.sql:1; REFERENCES os in 0018-machine.sql:50, 0015-charm.sql:561, 0019-application.sql:224","belongs_in":"shared platform lookup (charm/machine)"},
+{"table":"password_hash_algorithm","reason":"Shared lookup for agent passwords of application, unit, machine, model agent.","evidence":"model/sql/0003-password.sql:1; REFERENCES in 0018-machine.sql:21, 0020-unit.sql:24, 0031-model-agent.sql:12, 0019-application.sql:264","belongs_in":"agent password / shared lookup"},
+{"table":"workload_status_value","reason":"Shared status lookup used by unit, application, remote offerer, operator.","evidence":"model/sql/0016-status.sql:2; REFERENCES in 0020-unit.sql:206, 0034-cross-model-relation.sql:57, 0019-application.sql:88,252","belongs_in":"status (shared)"},
+{"table":"charm_config_type","reason":"Lookup owned by the charm config definition; application_config merely references it.","evidence":"model/sql/0015-charm.sql:582-606","belongs_in":"charm"},
+{"table":"application_remote_offerer","reason":"Synthetic application standing for a remote offer in the consumer model; cross-model relations concept.","evidence":"model/sql/0034-cross-model-relation.sql:1-30 (offer_url, offerer_model_uuid, macaroon); domain/crossmodelrelation","belongs_in":"cross-model relation / offer (own page)"},
+{"table":"application_remote_offerer_status","reason":"Status of remote offerer.","evidence":"0034-cross-model-relation.sql:46-57","belongs_in":"cross-model relation / offer"},
+{"table":"application_remote_offerer_relation_macaroon","reason":"Relation macaroon for cross-model.","evidence":"0034-cross-model-relation.sql:62","belongs_in":"cross-model relation / offer"},
+{"table":"application_remote_consumer","reason":"Consumer-side synthetic application for an offer.","evidence":"0034-cross-model-relation.sql:100","belongs_in":"cross-model relation / offer"},
+{"table":"application_resource","reason":"Link table between application and resource; the resource page describes it.","evidence":"model/sql/0023-resource.sql:62-77 (PK resource_uuid, FK resource)","belongs_in":"resource (or both)"},
+{"table":"operator_status","reason":"Merged from operator; it is the application status of the k8s operator, keyed by application_uuid, so arguably fits application, but alongside application_status duplicates; low confidence.","evidence":"model/sql/0019-application.sql:77-90","belongs_in":"application (acceptable) or status"},
+{"table":"application_controller","reason":"Singleton flag marking the controller application; fits better on controller page though keyed by application.","evidence":"0019-application.sql:33-46 (singleton index idx_singleton_application_controller)","belongs_in":"controller (optional)"}
+],
+"merge_verdict":"device: partly incorrect. device_constraint(+_attribute) are application device constraints keyed by application_uuid (0019-application.sql:267-290) so fit application, but charm_device (charm) is the device definition; a device page would hold both. operator: operator_status is application-keyed (0019:77), acceptable merge.",
+"one_thing_or_two":"Two: application (deployed application) plus the cross-model remote application proxies (offerer/consumer) sharing the word 'application'.","note":"Remaining tables (agent, channel, config, config_hash, constraint, endpoint, exposed_*, extra_endpoint, k8s_resources_managed, platform, scale, setting, status, storage_directive, workload_version) belong. Lookup tables space/os/password_hash_algorithm/workload_status_value/charm_config_type should not be assigned by prefix."},
+{"group":"model","tables_total":28,"flagged":[
+{"table":"model_migration_export","reason":"Migration is a separate process/concept with own phases, minion sync, targets; lives in controller DB.","evidence":"controller/sql/0011-model-migration.sql; domain/modelmigration","belongs_in":"model migration (own page)"},
+{"table":"model_migration_export_minion_sync","reason":"Migration subsystem","evidence":"controller/sql/0011-model-migration.sql","belongs_in":"model migration"},
+{"table":"model_migration_export_offer","reason":"Migration subsystem","evidence":"controller/sql/0011-model-migration.sql","belongs_in":"model migration"},
+{"table":"model_migration_export_phase","reason":"Migration subsystem","evidence":"controller/sql/0011-model-migration.sql","belongs_in":"model migration"},
+{"table":"model_migration_export_status","reason":"Migration subsystem","evidence":"controller/sql/0011-model-migration.sql","belongs_in":"model migration"},
+{"table":"model_migration_export_target_auth","reason":"Migration subsystem","evidence":"controller/sql/0011-model-migration.sql","belongs_in":"model migration"},
+{"table":"model_migration_import","reason":"Migration subsystem","evidence":"controller/sql/0011-model-migration.sql","belongs_in":"model migration"},
+{"table":"model_migration_import_external_controller_model","reason":"Migration subsystem","evidence":"controller/sql/0011-model-migration.sql","belongs_in":"model migration"},
+{"table":"model_migration_import_offer","reason":"Migration subsystem","evidence":"controller/sql/0011-model-migration.sql","belongs_in":"model migration"},
+{"table":"model_migration_import_phase_type","reason":"Migration subsystem","evidence":"controller/sql/0011-model-migration.sql","belongs_in":"model migration"},
+{"table":"model_migration_phase","reason":"Migration subsystem","evidence":"controller/sql/0011-model-migration.sql","belongs_in":"model migration"},
+{"table":"model_migration_redirect","reason":"Migration subsystem","evidence":"controller/sql/0011-model-migration.sql","belongs_in":"model migration"},
+{"table":"model_migration_redirect_user","reason":"Migration subsystem","evidence":"controller/sql/0011-model-migration.sql","belongs_in":"model migration"},
+{"table":"model_migrating","reason":"Model-DB marker of migration in progress.","evidence":"model/sql/0005-model.sql","belongs_in":"model migration"},
+{"table":"log_transfer_progress","reason":"Checkpoint for migration log transfer (merged from log), not model logging.","evidence":"model/sql/0037-log-transfer-progress.sql:1-12","belongs_in":"model migration"},
+{"table":"model_secret_backend","reason":"Maps model to its secret backend.","evidence":"controller/sql/0018-secret-backend.sql:87-93","belongs_in":"secret (secret backend)"},
+{"table":"model_storage_pool","reason":"Default storage pool per storage kind.","evidence":"model/sql/0011-storage.sql:73-83","belongs_in":"storage"},
+{"table":"storage_kind","reason":"Storage lookup.","evidence":"model/sql/0011-storage.sql:59","belongs_in":"storage"},
+{"table":"model_authorized_keys","reason":"SSH keys authorised for the model, key management.","evidence":"controller/sql/0022-model-authorized-keys.sql; domain/keymanager","belongs_in":"user / ssh keys"},
+{"table":"model_last_login","reason":"Per-user last login, user attribute.","evidence":"controller/sql/0019-model-last-login.sql","belongs_in":"user"}
+],
+"merge_verdict":"log merge incorrect: the only table, log_transfer_progress, is migration log-transfer state (0037-log-transfer-progress.sql:1-12), unrelated to a logging noun (controller 0027-logging.sql is a different concern).",
+"one_thing_or_two":"Two or three: the model (config, constraint, life, agent, type, namespace) and model migration (13 tables), plus model-keyed associations of other nouns.","note":"Model page proper: model, model_agent, model_config, model_constraint, model_database_deletion, model_life, model_namespace, model_type. Migration deserves its own page."},
+{"group":"secret","tables_total":26,"flagged":[
+{"table":"secret_backend","reason":"Controller-level backend registration (type, rotation, config) is a distinct noun from model secrets.","evidence":"controller/sql/0018-secret-backend.sql:30; domain/secretbackend","belongs_in":"secret backend (own page)"},
+{"table":"secret_backend_config","reason":"Backend config","evidence":"controller/sql/0018-secret-backend.sql:46","belongs_in":"secret backend"},
+{"table":"secret_backend_rotation","reason":"Backend token rotation","evidence":"controller/sql/0018-secret-backend.sql:61","belongs_in":"secret backend"},
+{"table":"secret_backend_type","reason":"Backend type lookup","evidence":"controller/sql/0018-secret-backend.sql:3","belongs_in":"secret backend"},
+{"table":"secret_backend_reference","reason":"Controller-side reference tracking of revisions per backend/model.","evidence":"controller/sql/0018-secret-backend.sql:69","belongs_in":"secret backend"}
+],
+"merge_verdict":null,
+"one_thing_or_two":"Two: user secrets/charm secrets in the model DB (model/sql/0012-secret.sql) and secret backends in the controller DB (controller/sql/0018) linked by backend_uuid with no FK (0012-secret.sql:87).","note":"Rest (content, revision, permission, owners, consumers, rotation, expiry, value_ref, deleted_value_ref, reservation) are secrets proper. secret_backend_origin exists in schema but is absent from the list."},
+{"group":"machine","tables_total":24,"flagged":[
+{"table":"machine_filesystem","reason":"Join between machine and storage filesystem; storage-owned attachment.","evidence":"model/sql/0018-machine.sql:172-184","belongs_in":"storage (shared with machine)"},
+{"table":"machine_volume","reason":"Join between machine and storage volume.","evidence":"model/sql/0018-machine.sql:157-170","belongs_in":"storage"},
+{"table":"machine_lxd_profile","reason":"Acceptable on machine; LXD profile is also a charm concept; low confidence.","evidence":"model/sql/0018-machine.sql (machine_lxd_profile)","belongs_in":"machine (keep)"},
+{"table":"instance_tag","reason":"Tags of a machine cloud instance; keyed by machine_uuid, belongs with machine cloud instance, fine.","evidence":"model/sql/0017-machine-cloud-instance.sql:54-60","belongs_in":"machine (keep)"},
+{"table":"ssh_connection_request","reason":"Ephemeral SSH tunnel request to a machine (tunnel_id, ephemeral key, expiry); belongs on an SSH access page.","evidence":"model/sql/0036-ssh-connection-request.sql:1-12; domain/ssh","belongs_in":"ssh (own page, also unit_virtual_ssh_host_key)"},
+{"table":"machine_virtual_ssh_host_key","reason":"Virtual host key for SSH proxying; paired with unit_virtual_ssh_host_key in same file.","evidence":"model/sql/0035-ssh.sql:14-24","belongs_in":"ssh"}
+],
+"merge_verdict":"instance: correct (instance_tag and machine_cloud_instance* keyed by machine_uuid). ssh: incorrect/partial, ssh_connection_request is a connection/tunnel request concept (also unit-targeted via unit_virtual_ssh_host_key, 0035-ssh.sql:26), so SSH access deserves its own page; machine_ssh_host_key (0018-machine.sql:337) is a machine host-key and may stay.","one_thing_or_two":"Mostly one; the SSH tables are a second concept (SSH access to machines and units).","note":"Machine page proper includes status, placement, parent, platform, reprovision, reboot, manual, agent presence/version."},
+{"group":"charm","tables_total":27,"flagged":[
+{"table":"architecture","reason":"Shared lookup used by machine, unit, application, agent binary, cloud image metadata, controller_node.","evidence":"model/sql/0007-platform.sql:12; REFERENCES architecture in 0018-machine.sql:53,111, 0020-unit.sql:77, 0030-agent-binary-store.sql:13, controller 0024-cloudimagemetadata.sql:16","belongs_in":"shared platform lookup"},
+{"table":"hash_kind","reason":"Lookup for charm_hash only, fine, but low importance.","evidence":"model/sql/0015-charm.sql:211, REFERENCES hash_kind only at 0015:232","belongs_in":"charm (keep)"},
+{"table":"charm_resource","reason":"Declaration of a resource by a charm; it does belong to charm but the resource page should cross-reference.","evidence":"model/sql/0015-charm.sql, resource table 0023-resource.sql references charm_resource_name","belongs_in":"charm (keep)"}
+],
+"merge_verdict":null,
+"one_thing_or_two":"One thing (charm metadata and download state). charm_download_info and charm_source are charm facts.","note":"Only architecture is wrongly assigned. charm_term/charm_tracing_config fine."},
+{"group":"cloud","tables_total":11,"flagged":[
+{"table":"cloud_credential","reason":"Credential is a distinct noun with own domain and facade, though keyed to a cloud.","evidence":"controller/sql/0005-cloud.sql; domain/credential","belongs_in":"credential (own page)"},
+{"table":"cloud_credential_attribute","reason":"Credential content.","evidence":"controller/sql/0005-cloud.sql","belongs_in":"credential"},
+{"table":"auth_type","reason":"Lookup shared by cloud_auth_type and credential.","evidence":"controller/sql/0005-cloud.sql","belongs_in":"shared (cloud and credential)"},
+{"table":"cloud_image_metadata","reason":"Image metadata cache for provisioning, keyed by stream/region, no FK to cloud.","evidence":"controller/sql/0024-cloudimagemetadata.sql:1-17; domain/cloudimagemetadata","belongs_in":"image metadata (own page)"},
+{"table":"cloud_defaults","reason":"Model-config defaults scoped to a cloud; model defaults noun.","evidence":"controller/sql/0005-cloud.sql; domain/modeldefaults","belongs_in":"model defaults (or keep)"},
+{"table":"cloud_region_defaults","reason":"Same as cloud_defaults.","evidence":"controller/sql/0005-cloud.sql; domain/modeldefaults","belongs_in":"model defaults (or keep)"}
+],
+"merge_verdict":null,
+"one_thing_or_two":"Two: cloud definition (cloud, region, type, ca_cert) and credentials; image metadata and defaults are third/fourth concepts.","note":"Core: cloud, cloud_region, cloud_type, cloud_auth_type, cloud_ca_cert."},
+{"group":"object","tables_total":11,"flagged":[
+{"table":"agent_binary_store","reason":"Agent binary index referencing object store metadata; agent binary is its own noun (domain/agentbinary).","evidence":"model/sql/0030-agent-binary-store.sql:1-13 and controller 0025-agent-binary-store.sql","belongs_in":"agent binary (own page)"},
+{"table":"agent_stream","reason":"Model agent stream lookup, part of model agent version.","evidence":"model/sql/0027-agent-version.sql:4","belongs_in":"agent version / model agent"},
+{"table":"agent_version","reason":"Singleton target/latest agent version of the model.","evidence":"model/sql/0027-agent-version.sql:18-28; feeds v_model_config","belongs_in":"model agent version"}
+],
+"merge_verdict":"agent->object: incorrect for agent_stream and agent_version (model target version, unrelated to object storage, 0027-agent-version.sql); agent_binary_store only consumer of the object store, partially related (FK to object_store_metadata) but is a different noun. Agent version and binaries deserve a separate page.","one_thing_or_two":"Object store is one thing in itself; the agent tables are a second.","note":"Object store core: backend, s3 config, backend type, drain info/phase, metadata, metadata_path, placement."},
+{"group":"annotation","tables_total":8,"flagged":[],"merge_verdict":null,"one_thing_or_two":"One thing (key/value labels), but each table is keyed to a different entity.","note":"model/sql/0013-annotations.sql: every table is (uuid,key,value) with FK to its entity. Reasonable as one page; could instead be a short section on each entity page."},
+{"group":"resource","tables_total":9,"flagged":[
+{"table":"pending_application_resource","reason":"Merged from pending; links a resource to a not-yet-existing application name, part of resource lifecycle.","evidence":"model/sql/0023-resource.sql:79-87","belongs_in":"resource (keep)"}
+],
+"merge_verdict":"pending: correct; pending_application_resource FKs resource(uuid) (0023-resource.sql:83) and is a resource lifecycle state. application_resource (in application group) should be here too.","one_thing_or_two":"One thing (charm resource instances), although it holds two stores: file and container image (resource_file_store, resource_image_store).","note":"application_resource currently misplaced in application group."},
+{"group":"provider","tables_total":6,"flagged":[
+{"table":"provider_ip_address","reason":"Provider id of an ip_address; provider prefix is only a naming convention.","evidence":"model/sql/0021-network.sql:250-257 (FK ip_address)","belongs_in":"ip address / link layer device (network)"},
+{"table":"provider_link_layer_device","reason":"Provider id of link_layer_device.","evidence":"model/sql/0021-network.sql:83-90","belongs_in":"link layer device"},
+{"table":"provider_network","reason":"Provider network id, grouped with subnet.","evidence":"model/sql/0009-subnet.sql:25-30","belongs_in":"subnet"},
+{"table":"provider_network_subnet","reason":"Subnet to provider network link.","evidence":"model/sql/0009-subnet.sql:34-43","belongs_in":"subnet"},
+{"table":"provider_space","reason":"Provider id of a space.","evidence":"model/sql/0008-space.sql:6-11","belongs_in":"space"},
+{"table":"provider_subnet","reason":"Provider id of a subnet.","evidence":"model/sql/0009-subnet.sql:11-20","belongs_in":"subnet"}
+],
+"merge_verdict":null,
+"one_thing_or_two":"Not a noun: 'provider' here means provider-assigned identifier, spread over four different entities. No provider page; distribute.","note":"Every table fails the 'noun' test."},
+{"group":"agent (merged by rule into object)","tables_total":3,"flagged":[
+{"table":"agent_binary_store","reason":"See object.","evidence":"model/sql/0030-agent-binary-store.sql:1-13","belongs_in":"agent binary"},
+{"table":"agent_stream","reason":"See object.","evidence":"model/sql/0027-agent-version.sql:4","belongs_in":"model agent version"},
+{"table":"agent_version","reason":"See object.","evidence":"model/sql/0027-agent-version.sql:18","belongs_in":"model agent version"}
+],
+"merge_verdict":"incorrect: agent_version/agent_stream are model version state; agent_binary_store is agent binary catalogue. Separate page 'agent' (version, stream, binaries, with model_agent, machine_agent_version, application_agent, controller_node_agent_version cross-referenced).","one_thing_or_two":"Two: agent version tracking and agent binary storage; and 'agent' is also a word for per-entity agent credentials (application_agent, model_agent).","note":""},
+{"group":"availability (merged by rule into subnet)","tables_total":2,"flagged":[],"merge_verdict":"Acceptable but weak: availability_zone_subnet joins az and subnet (0009-subnet.sql:48-62); availability_zone is also referenced by machine_cloud_instance (0017-machine-cloud-instance.sql:~45 view) so AZ is a standalone provider concept. Prefer own small page or placement in network; merge into subnet is defensible only for availability_zone_subnet.","one_thing_or_two":"One thing (availability zone) but it is not part of subnet.","note":""},
+{"group":"ssh (merged by rule into machine)","tables_total":1,"flagged":[
+{"table":"ssh_connection_request","reason":"Tunnel request to a machine, ephemeral.","evidence":"model/sql/0036-ssh-connection-request.sql:1-12","belongs_in":"ssh page"}
+],
+"merge_verdict":"incorrect: SSH access (connection request, virtual host keys for machine and unit in 0035-ssh.sql, user_public_ssh_key, model_authorized_keys) is a separate noun spanning machines and units.","one_thing_or_two":"One concept (SSH access) spanning machine and unit and user.","note":""},
+{"group":"permission (merged by rule into user)","tables_total":2,"flagged":[
+{"table":"permission","reason":"Permission grants link a user to cloud/controller/model/offer objects; separate access-control noun.","evidence":"controller/sql/0017-user-permission.sql (permission_object_access:~36 joins access type and object type)","belongs_in":"permission / access (own page)"},
+{"table":"permission_object_access","reason":"Lookup of valid (access, object) pairs, not user data.","evidence":"controller/sql/0017-user-permission.sql:36-40","belongs_in":"permission"}
+],
+"merge_verdict":"incorrect: permission is a distinct noun (permission_access_type, permission_object_type are also missing); users are only one subject. Own page, cross-linked to user.","one_thing_or_two":"One thing (permission) but not part of user.","note":"permission_access_type and permission_object_type exist in the same file but are not listed."},
+{"group":"upgrade (merged by rule into controller)","tables_total":3,"flagged":[
+{"table":"upgrade_info","reason":"Controller upgrade state machine, singleton active upgrade.","evidence":"controller/sql/0012-upgrade-info.sql:15-28","belongs_in":"upgrade (own page)"},
+{"table":"upgrade_info_controller_node","reason":"Tracks per-controller-node upgrade progress.","evidence":"controller/sql/0012-upgrade-info.sql; domain/upgrade","belongs_in":"upgrade"},
+{"table":"upgrade_state_type","reason":"Lookup for upgrade_info.","evidence":"controller/sql/0012-upgrade-info.sql:1-13","belongs_in":"upgrade"}
+],
+"merge_verdict":"incorrect: upgrade is a lifecycle process of the controller with its own domain (domain/upgrade, controllerupgrader); it is a separate page, cross-linked from controller, although the subject is the controller so a section on the controller page is defensible.","one_thing_or_two":"One thing (controller upgrade), not part of the controller entity.","note":""}
+]

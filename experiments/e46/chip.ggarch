@@ -1,0 +1,43 @@
+model "S" {
+  nodes {
+    user [type: record, label: "user", ground: "controller:user"] {
+      fields { uuid [label: "uuid", type: "text", pk: true] }
+    }
+    key [type: record, label: "user_public_ssh_key", ground: "controller:user_public_ssh_key"] {
+      fields {
+        id [label: "id", type: "int", pk: true]
+        user_uuid [label: "user_uuid", type: "text", fk: true]
+      }
+    }
+    mk [type: record, label: "model_authorized_keys", ground: "controller:model_authorized_keys"] {
+      fields {
+        user_public_ssh_key_id [label: "user_public_ssh_key_id", type: "int", fk: true]
+        model_uuid [label: "model_uuid", type: "text", fk: true]
+      }
+    }
+    mdl [type: record, label: "model", ground: "controller:model"] {
+      fields { uuid [label: "uuid", type: "text", pk: true] }
+    }
+  }
+
+  edges {
+    key.user_uuid -> user.uuid [type: data]
+    mk.user_public_ssh_key_id -> key.id [type: data]
+    mk.model_uuid -> mdl.uuid [type: data]
+  }
+  style { extends: juju }
+}
+diagram "D" from "S" {
+  select { nodes: user key mk mdl
+           edges: type data
+           labels: hidden
+           routing: orthogonal }
+  positions {
+    key right-of user gap: 80
+    key align-middle user
+    mk right-of key gap: 80
+    mk align-middle key
+    mdl right-of mk gap: 80
+    mdl align-middle mk
+  }
+}

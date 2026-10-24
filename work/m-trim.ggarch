@@ -1,0 +1,162 @@
+// Scaffolded by tools/build_page_schema.py from the 4.1 model DDL and trimmed to
+// the twelve records that the page draws.
+model "MachineSchema" {
+
+  nodes {
+    block_device [type: record, label: "Block\ndevice",
+                 ground: "model:block_device"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        machine_uuid [label: "machine_uuid", type: "text", fk: true]
+        name [label: "name", type: "text", null: true]
+        hardware_id [label: "hardware_id", type: "text", null: true]
+        wwn [label: "wwn", type: "text", null: true]
+        serial_id [label: "serial_id", type: "text", null: true]
+        bus_address [label: "bus_address", type: "text", null: true]
+        size_mib [label: "size_mib", type: "int", null: true]
+        mount_point [label: "mount_point", type: "text", null: true]
+        in_use [label: "in_use", type: "bool", null: true]
+        filesystem_label [label: "filesystem_label", type: "text", null: true]
+        host_filesystem_uuid [label: "host_filesystem_uuid", type: "text", null: true]
+        filesystem_type [label: "filesystem_type", type: "text", null: true]
+        provenance_id [label: "provenance_id", type: "int", fk: true]
+      }
+    }
+
+    instance_tag [type: record, label: "Instance\ntag",
+                 ground: "model:instance_tag"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", fk: true]
+        tag [label: "tag", type: "text"]
+      }
+    }
+
+    machine [type: record, label: "Machine",
+                 ground: "model:machine"] {
+      fields {
+        uuid [label: "uuid", type: "text", pk: true]
+        name [label: "name", type: "text"]
+        net_node_uuid [label: "net_node_uuid", type: "text", fk: true]
+        life_id [label: "life_id", type: "int", fk: true]
+        nonce [label: "nonce", type: "text", null: true]
+        password_hash_algorithm_id [label: "password_hash_algorithm_id", type: "text", fk: true, null: true]
+        password_hash [label: "password_hash", type: "text", null: true]
+        force_destroyed [label: "force_destroyed", type: "bool", null: true]
+        agent_started_at [label: "agent_started_at", type: "datetime", null: true]
+        hostname [label: "hostname", type: "text", null: true]
+        keep_instance [label: "keep_instance", type: "bool", null: true]
+      }
+    }
+
+    machine_agent_presence [type: record, label: "Agent\npresence",
+                 ground: "model:machine_agent_presence"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        last_seen [label: "last_seen", type: "datetime", null: true]
+      }
+    }
+
+    machine_agent_version [type: record, label: "Agent\nversion",
+                 ground: "model:machine_agent_version"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        version [label: "version", type: "text"]
+        architecture_id [label: "architecture_id", type: "int", fk: true]
+      }
+    }
+
+    machine_cloud_instance [type: record, label: "Cloud\ninstance",
+                 ground: "model:machine_cloud_instance"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        life_id [label: "life_id", type: "int", fk: true]
+        instance_id [label: "instance_id", type: "text", null: true]
+        display_name [label: "display_name", type: "text", null: true]
+        arch [label: "arch", type: "text", null: true]
+        availability_zone_uuid [label: "availability_zone_uuid", type: "text", fk: true, null: true]
+        cpu_cores [label: "cpu_cores", type: "int", null: true]
+        cpu_power [label: "cpu_power", type: "int", null: true]
+        mem [label: "mem", type: "int", null: true]
+        root_disk [label: "root_disk", type: "int", null: true]
+        root_disk_source [label: "root_disk_source", type: "text", null: true]
+        virt_type [label: "virt_type", type: "text", null: true]
+      }
+    }
+
+    machine_cloud_instance_status [type: record, label: "Instance\nstatus",
+                 ground: "model:machine_cloud_instance_status"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        status_id [label: "status_id", type: "int", fk: true]
+        message [label: "message", type: "text", null: true]
+        data [label: "data", type: "text", null: true]
+        updated_at [label: "updated_at", type: "datetime", null: true]
+      }
+    }
+
+    machine_parent [type: record, label: "Parent",
+                 ground: "model:machine_parent"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        parent_uuid [label: "parent_uuid", type: "text", fk: true]
+      }
+    }
+
+    machine_placement [type: record, label: "Placement",
+                 ground: "model:machine_placement"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        scope_id [label: "scope_id", type: "int", fk: true]
+        directive [label: "directive", type: "text"]
+      }
+    }
+
+    machine_platform [type: record, label: "Platform",
+                 ground: "model:machine_platform"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", fk: true]
+        os_id [label: "os_id", type: "text", fk: true]
+        channel [label: "channel", type: "text", null: true]
+        architecture_id [label: "architecture_id", type: "int", fk: true]
+      }
+    }
+
+    machine_requires_reboot [type: record, label: "Reboot\nflag",
+                 ground: "model:machine_requires_reboot"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        created_at [label: "created_at", type: "datetime"]
+      }
+    }
+
+    machine_status [type: record, label: "Machine\nstatus",
+                 ground: "model:machine_status"] {
+      fields {
+        machine_uuid [label: "machine_uuid", type: "text", pk: true, fk: true]
+        status_id [label: "status_id", type: "int", fk: true]
+        message [label: "message", type: "text", null: true]
+        data [label: "data", type: "text", null: true]
+        updated_at [label: "updated_at", type: "datetime", null: true]
+      }
+    }
+
+  }
+
+  edges {
+    block_device.machine_uuid -> machine.uuid [type: data]
+    instance_tag.machine_uuid -> machine.uuid [type: data]
+    machine_agent_presence.machine_uuid -> machine.uuid [type: data]
+    machine_agent_version.machine_uuid -> machine.uuid [type: data]
+    machine_cloud_instance.machine_uuid -> machine.uuid [type: data]
+    machine_cloud_instance_status.machine_uuid -> machine_cloud_instance.machine_uuid [type: data]
+    machine_parent.machine_uuid -> machine.uuid [type: data]
+    machine_parent.parent_uuid -> machine.uuid [type: data]
+    machine_placement.machine_uuid -> machine.uuid [type: data]
+    machine_platform.machine_uuid -> machine.uuid [type: data]
+    machine_requires_reboot.machine_uuid -> machine.uuid [type: data]
+    machine_status.machine_uuid -> machine.uuid [type: data]
+  }
+
+  style { extends: juju }
+
+}

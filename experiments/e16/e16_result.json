@@ -1,0 +1,153 @@
+{
+ "ssh-key": {
+  "atoms": 4,
+  "in_code": 2,
+  "in_scope": 2,
+  "scope_files": 39,
+  "cross_mean": 0.0,
+  "not_in_code": [
+   "juju-ssh",
+   "manage-ssh-keys"
+  ],
+  "out_of_scope": [],
+  "in_scope_atoms": [
+   "add-ssh-key",
+   "import-ssh-key"
+  ]
+ },
+ "space": {
+  "atoms": 4,
+  "in_code": 3,
+  "in_scope": 1,
+  "scope_files": 81,
+  "cross_mean": 0.1111111111111111,
+  "not_in_code": [
+   "manage-spaces"
+  ],
+  "out_of_scope": [
+   "--bind",
+   "default-space"
+  ],
+  "in_scope_atoms": [
+   "OpenStack"
+  ]
+ },
+ "subnet": {
+  "atoms": 1,
+  "in_code": 0,
+  "in_scope": 0,
+  "scope_files": 69,
+  "cross_mean": 0.0,
+  "not_in_code": [
+   "manage-subnets"
+  ],
+  "out_of_scope": [],
+  "in_scope_atoms": []
+ },
+ "zone": {
+  "atoms": 3,
+  "in_code": 0,
+  "in_scope": 0,
+  "scope_files": 72,
+  "cross_mean": 0.0,
+  "not_in_code": [
+   "constraint-zones",
+   "list-of-supported-clouds",
+   "placement-directive-zone"
+  ],
+  "out_of_scope": [],
+  "in_scope_atoms": []
+ },
+ "storage": {
+  "atoms": 6,
+  "in_code": 0,
+  "in_scope": 0,
+  "scope_files": 103,
+  "cross_mean": 0.0,
+  "not_in_code": [
+   "list-of-supported-clouds",
+   "manage-storage",
+   "manage-storage-pools",
+   "storage-provider-ebs",
+   "storage-provider-lxd",
+   "storage-provider-maas"
+  ],
+  "out_of_scope": [],
+  "in_scope_atoms": []
+ },
+ "offer": {
+  "atoms": 2,
+  "in_code": 1,
+  "in_scope": 1,
+  "scope_files": 51,
+  "cross_mean": 0.0,
+  "not_in_code": [
+   "manage-offers"
+  ],
+  "out_of_scope": [],
+  "in_scope_atoms": [
+   "cross-model"
+  ]
+ },
+ "action": {
+  "atoms": 13,
+  "in_code": 12,
+  "in_scope": 0,
+  "scope_files": 39,
+  "cross_mean": 0.013888888888888888,
+  "not_in_code": [
+   "manage-actions"
+  ],
+  "out_of_scope": [
+   "JUJU_ACTION_NAME",
+   "JUJU_ACTION_UUID",
+   "action-fail",
+   "action-get",
+   "action-log",
+   "action-set",
+   "config-get",
+   "juju-cli",
+   "prometheus-k8s",
+   "relation-changed",
+   "relation-set",
+   "status-set"
+  ],
+  "in_scope_atoms": []
+ },
+ "_total": {
+  "in_code": 18,
+  "in_scope": 4,
+  "own_frac": 0.2222222222222222,
+  "cross_frac": 0.027777777777777776,
+  "residue_dirs": [
+   [
+    "internal/worker",
+    11
+   ],
+   [
+    "cmd/juju",
+    6
+   ],
+   [
+    "domain/deployment",
+    2
+   ],
+   [
+    "internal/storage",
+    1
+   ],
+   [
+    "domain/application",
+    1
+   ],
+   [
+    "environs",
+    1
+   ],
+   [
+    "core/status",
+    1
+   ]
+  ]
+ }
+}

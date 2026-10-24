@@ -1,0 +1,6 @@
+packages: 487 errors: 0
+ssa built
+roots: 1838
+extra rta roots: 336
+rta callgraph nodes: 102475
+done: 1817

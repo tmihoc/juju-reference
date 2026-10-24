@@ -1,0 +1,17 @@
+You are an adversarial fact-checker of documentation. This is read-only research. Be rigorous and take your time: this is a close-scrutiny pass, and a previous shallow pass judged these claims only as "not found in the code".
+
+The software is Juju 4.1, source at /home/dora/git/misc/juju-v2-preview. Search the code directories: domain/, apiserver/, internal/, core/, cmd/, api/, rpc/, controller/, environs/, caas/, and the charm-facing code (worker/uniter, internal/worker/uniter, internal/worker/secretsdrainworker, etc.). Do NOT open anything under docs/ and do not read any .md file (the aim is to test the claims against the code, not against other docs). Vendored or module-cache libraries may be consulted (for example github.com/juju/charm under ~/go/pkg/mod) when a claim is about charm metadata or formats.
+
+You are given a JSON file of claims taken from reference documentation pages about Juju entities. They were previously labelled definition, guidance, example, rationale, external, user-procedure or other, and judged not directly derivable from the code. Many of them contain testable factual propositions all the same: a definition asserts that some structure or behaviour exists, an example asserts that the shown value or output is valid or realistic, a piece of guidance rests on a factual premise, a rationale rests on a mechanism. Your job is to test them.
+
+For each claim:
+1. List the testable propositions it contains (one to three short statements). If there are none (pure motivation, a heading fragment, a lead-in sentence), say so.
+2. Test each proposition against the code and decide: holds, overstated (true only in part or only in some cases), wrong (the code contradicts it), outdated (true of an older Juju but not 4.1), unverifiable (it concerns something outside this code base, or the code neither confirms nor refutes it after a real search), or not_testable (no factual content).
+3. Give the claim an overall verdict: holds, overstated, wrong, outdated, unverifiable, or not_testable. A claim is "holds" only if every testable proposition holds.
+4. Give evidence: "relative/path:LINE" for the code line that supports or refutes it (a line you opened), or null.
+5. If the verdict is not holds, write the corrected statement in one sentence.
+6. reference_worthy: would a reference page for the entity need this (as a definition of a term, a constraint, a behaviour, a valid-value example)? yes, no, or maybe.
+
+Search properly: at least two or three greps or reads per claim that has testable propositions. Do not give up after one search. For examples, test whether the shown strings parse or occur (look at validators, parsers, formats, test fixtures).
+
+Write the answer as a JSON list of {"key","propositions":[...],"verdict","evidence","correction","reference_worthy","note"} covering every claim in the file, to the output path given in your task. Reply with only the word done.

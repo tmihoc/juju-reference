@@ -1,0 +1,100 @@
+[
+ {
+  "key": "relation:16",
+  "page": "relation",
+  "claim": "The `juju-info` endpoint is the standard mechanism used by general-purpose machine subordinates that need to ride along on every machine of a principal but do not have any application-specific data to exchange.",
+  "prior_kind": "guidance",
+  "prior_note": "usage convention"
+ },
+ {
+  "key": "secret:14",
+  "page": "secret",
+  "claim": "URI vs. label:) I as a user might create a secret with a name that makes sense to me, for example, `my-api-key`.",
+  "prior_kind": "example",
+  "prior_note": "example"
+ },
+ {
+  "key": "machine:2",
+  "page": "machine",
+  "claim": "When you deploy an application on a machine, there is usually one unit per machine.",
+  "prior_kind": "guidance",
+  "prior_note": "usual deployment pattern"
+ },
+ {
+  "key": "relation:18",
+  "page": "relation",
+  "claim": "The convention is for a subordinate to name its own `requires` endpoint `juju-info`, but any name can be used (for example: `info`, `general-info`); it just needs to use interface `juju-info`.",
+  "prior_kind": "guidance",
+  "prior_note": "naming convention"
+ },
+ {
+  "key": "relation:27",
+  "page": "relation",
+  "claim": "A cross-model relation has two sides: the offering side (aka \"offerer\") and the consume side (aka 'saas').",
+  "prior_kind": "definition",
+  "prior_note": "terminology"
+ },
+ {
+  "key": "secret:40",
+  "page": "secret",
+  "claim": "It is available as an opt-in to both machine  and Kubernetes models.",
+  "prior_kind": "other",
+  "prior_note": "opt-in not stated explicitly"
+ },
+ {
+  "key": "secret:48",
+  "page": "secret",
+  "claim": "A minimum configuration must include the `endpoint`, `namespace`, and `ca-cert`.",
+  "prior_kind": "other",
+  "prior_note": "mandatory are endpoint and namespace; ca-cert optional"
+ },
+ {
+  "key": "relation:43",
+  "page": "relation",
+  "claim": "Note that, in peer relations, all permissions related to the remote application are turned inwards and become permissions related to the local application.",
+  "prior_kind": "other",
+  "prior_note": "peer permissions not verified"
+ },
+ {
+  "key": "relation:22",
+  "page": "relation",
+  "claim": "A non-subordinate relation (aka 'regular') is a non-peer relation where the applications are both principal.",
+  "prior_kind": "definition",
+  "prior_note": "term definition"
+ },
+ {
+  "key": "secret:31",
+  "page": "secret",
+  "claim": "The name of a secret backend can be:",
+  "prior_kind": "other",
+  "prior_note": "list lead-in"
+ },
+ {
+  "key": "cloud:9",
+  "page": "cloud",
+  "claim": "A Kubernetes cloud is a cloud backed by an existing Kubernetes cluster.",
+  "prior_kind": "definition",
+  "prior_note": "definition"
+ },
+ {
+  "key": "secret:21",
+  "page": "secret",
+  "claim": "The URI is returned to the caller so they can then use it in subsequent actions (for example, a charm might grant permission to that secret using the URI and then put the URI in relation data).",
+  "prior_kind": "guidance",
+  "prior_note": "usage advice"
+ },
+ {
+  "key": "relation:28",
+  "page": "relation",
+  "claim": "It does not make a difference which side of the relation (provider or requirer) is the offerer and which is the saas - the two are interchangeable.",
+  "prior_kind": "guidance",
+  "prior_note": "interchangeable"
+ },
+ {
+  "key": "relation:1",
+  "page": "relation",
+  "claim": "In Juju, a relation is a connection an application supports by virtue of having a particular endpoint.",
+  "prior_kind": "definition",
+  "prior_note": "term definition"
+ }
+]

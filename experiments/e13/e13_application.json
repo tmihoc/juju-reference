@@ -1,0 +1,50 @@
+[
+ {
+  "id": 1,
+  "claim": "In Juju, an application is a running abstraction of a charm in the Juju model."
+ },
+ {
+  "id": 2,
+  "claim": "It is whatever software is defined by the charm."
+ },
+ {
+  "id": 3,
+  "claim": "This could correspond to a traditional software package but it could also be less or more."
+ },
+ {
+  "id": 4,
+  "claim": "An application is always hosted within a model and consists of one or more units."
+ },
+ {
+  "id": 5,
+  "claim": "An application can have resources, a configuration, the ability to form relations, and actions."
+ },
+ {
+  "id": 6,
+  "claim": "In Juju, an application endpoint is a struct defined in an application's charm's `metadata.yaml` / (since Charmcraft 2.5) `charmcraft.yaml` consisting of"
+ },
+ {
+  "id": 7,
+  "claim": "a role (one of `provides`, `requires` = 'can use', or `peers`), and"
+ },
+ {
+  "id": 8,
+  "claim": "whose purpose is to help define a relation."
+ },
+ {
+  "id": 9,
+  "claim": "For example, the MySQL application deployed from the `mysql` charm has an endpoint called `mysql` with role `provides` and interface `mysql` and this can be used to form  a non-subordinate relation relation with WordPress."
+ },
+ {
+  "id": 10,
+  "claim": "All charms have an implicit (not in their `metadata.yaml` / `charmcraft.yaml`) endpoint with name `juju-info`, interface `juju-info`, and role `provides`."
+ },
+ {
+  "id": 11,
+  "claim": "This endpoint can be used to form subordinate relations with subordinate charms that have an explicit endpoint with interface `juju-info` and role `requires`."
+ },
+ {
+  "id": 12,
+  "claim": "See the-implicit-juju-info-relation-endpoint for details."
+ }
+]

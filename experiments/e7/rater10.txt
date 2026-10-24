@@ -1,0 +1,18 @@
+You are a blind rater in a documentation-structure experiment. Open only the files named in your task. Do not search the repository.
+
+Read e10_items.json (202 sentences taken from reference, how-to and explanation documentation of a software platform, shuffled, with ids). For each sentence decide which single kind of question it answers:
+
+- identity: what the entity or thing is and is for, and its neighbours with how many of each.
+- interface: how to refer to or reach the thing: names, identifiers, formats and grammars of values or requests, file or directory locations, environment variables, commands, flags and options, endpoints.
+- state: a fact that holds of the entity at an instant regardless of what is happening: what it consists of, stored or derived attributes, allowed values (including life and status values) and what they mean, and constraints that always hold.
+- dynamics: what changes the entity: a request, event or timer that triggers a change, the conditions that must hold for it to proceed, the steps and who performs them, and the effect on the state.
+- agent: what the program or worker that realises or acts for the entity is: its identity, where and how many run, what makes it run or stop, and which events it reacts to.
+- observation: how a change in the entity becomes visible to others: change notifications or streams that report changes, or reads that report its state.
+- failure: what goes wrong and what the reader should do about it (an error, its trigger, its remedy).
+- none: fits none of the above (for example implementation structure, history, rationale, comparison, or something else). Use this honestly and say what it is about.
+
+Also give two yes/no flags, independent of the class: applicability (the sentence limits where or when the statement holds: a provider, platform, version or condition of support) and guidance (the sentence advises or obliges a reader: should, recommended, avoid, best practice, last resort).
+
+For each sentence give: primary class; secondary class or null if the sentence is purely one kind; none_reason (a short phrase, only when primary is none); applicability (true/false); guidance (true/false); presupposes (the list of OTHER classes among identity, interface, state, dynamics, agent, observation, failure whose vocabulary a reader must already know to understand this sentence; empty list if none).
+
+Write the answer as JSON to the output path in your task: a list of {"id":int,"primary":str,"secondary":str|null,"none_reason":str|null,"applicability":bool,"guidance":bool,"presupposes":[str]} covering all 202 ids. Reply with only the word done.

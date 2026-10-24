@@ -1,0 +1,570 @@
+[
+ {
+  "id": "A-Q01",
+  "type": "lookup",
+  "question": "How long does kill-controller wait with no change in the state of the models before it gives up on a clean shutdown and destroys them directly, and can I change that?",
+  "ground_truth": "Five minutes by default. The timer restarts whenever the controller status changes, and it can be changed with the -t/--timeout flag.",
+  "key_facts": [
+   "Default timeout is 5 minutes",
+   "The deadline is recomputed from the last status change, so it only fires after 5 minutes without change",
+   "The duration is set with -t or --timeout"
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/controller/kill.go",
+    "line": 73,
+    "quote": "f.Var(newDurationValue(time.Minute*5, &c.timeout), \"t\", \"Timeout before direct destruction\")"
+   },
+   {
+    "file": "cmd/juju/controller/kill.go",
+    "line": 335,
+    "quote": "deadline = lastChange.Add(c.timeout)"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q01"
+ },
+ {
+  "id": "A-Q02",
+  "type": "lookup",
+  "question": "If I bootstrap a controller and put api-port in the --config options to move the API to another port, what happens, and which port does the API use by default (and when does it use a different one)?",
+  "ground_truth": "Bootstrap rejects api-port as not user configurable. The API port is 17070 by default, or 443 when autocert-dns-name is configured.",
+  "key_facts": [
+   "Setting api-port at bootstrap is rejected with an error saying it is not a user configurable item",
+   "Default API port is 17070",
+   "If autocert-dns-name is set the controller's api-port is set to 443"
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/commands/bootstrap.go",
+    "line": 1524,
+    "quote": "is not a user configurable item. The API port is %d, or 443 with %q."
+   },
+   {
+    "file": "controller/config.go",
+    "line": 316,
+    "quote": "DefaultAPIPort int = 17070"
+   },
+   {
+    "file": "cmd/juju/commands/bootstrap.go",
+    "line": 1548,
+    "quote": "controllerConfig[controller.APIPort] = 443"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q02"
+ },
+ {
+  "id": "A-Q03",
+  "type": "lookup",
+  "question": "What file permissions does the Juju client use when it saves its list of known controllers on my machine?",
+  "ground_truth": "The controllers file is written atomically with mode 0600 (owner read/write only).",
+  "key_facts": [
+   "File mode is 0600",
+   "The write uses an atomic write-file helper",
+   "Access to the store is guarded by a lock acquired with a 5 second timeout"
+  ],
+  "evidence": [
+   {
+    "file": "api/jujuclient/controllers.go",
+    "line": 55,
+    "quote": "return utils.AtomicWriteFile(JujuControllersPath(), data, os.FileMode(0600))"
+   },
+   {
+    "file": "api/jujuclient/file.go",
+    "line": 35,
+    "quote": "lockTimeout = 5 * time.Second"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q03"
+ },
+ {
+  "id": "A-Q04",
+  "type": "lookup",
+  "question": "Which access level on the controller is enough for a user to list the controller nodes and their API addresses in a high availability setup?",
+  "ground_truth": "Login access on the controller; superuser is not required. A user without it gets a permission error.",
+  "key_facts": [
+   "The check requires permission.LoginAccess on the controller tag",
+   "Failure returns ErrPerm (permission denied)",
+   "The results are sorted by controller ID"
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/facades/client/highavailability/highavailability.go",
+    "line": 59,
+    "quote": "err := api.authorizer.HasPermission(ctx, permission.LoginAccess, api.controllerTag)"
+   },
+   {
+    "file": "apiserver/facades/client/highavailability/highavailability.go",
+    "line": 81,
+    "quote": "return details[i].ControllerId < details[j].ControllerId"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q04"
+ },
+ {
+  "id": "A-Q05",
+  "type": "lookup",
+  "question": "What is the default port for the controller's embedded SSH jump server, and can I change it afterwards with the controller configuration command?",
+  "ground_truth": "The default is 17022. ssh-server-port is not in the set of controller config keys that may be updated after bootstrap, so changing it is refused ('can not change ... after bootstrap'). It must also differ from the API port.",
+  "key_facts": [
+   "Default ssh-server-port is 17022",
+   "ssh-server-port is absent from the updatable-after-bootstrap list (ssh-max-concurrent-connections is present)",
+   "Config validation rejects an ssh-server-port equal to api-port"
+  ],
+  "evidence": [
+   {
+    "file": "controller/config.go",
+    "line": 274,
+    "quote": "DefaultSSHServerPort = 17022"
+   },
+   {
+    "file": "domain/controllerconfig/service/service.go",
+    "line": 239,
+    "quote": "can not change %q after bootstrap"
+   },
+   {
+    "file": "controller/config.go",
+    "line": 1231,
+    "quote": "ssh-server-port matching api-port"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q05"
+ },
+ {
+  "id": "A-Q06",
+  "type": "mechanism",
+  "question": "When I unregister a controller on my client, what exactly is removed from the local store, and in what order, and does it touch the controller itself?",
+  "ground_truth": "Unregister only removes local data: every controller entry sharing the named controller's UUID is removed (clearing the current-controller setting if it matched), together with their models, accounts, bootstrap configuration and cookie jars; the controllers file itself is rewritten last to avoid dangling entries. The controller is not destroyed.",
+  "key_facts": [
+   "All store entries with the same controller UUID are removed, not just the named one",
+   "Models, accounts, bootstrap config and cookie jars of those controllers are deleted",
+   "The controller list is written last so no dangling entries remain",
+   "The remote controller is not destroyed"
+  ],
+  "evidence": [
+   {
+    "file": "api/jujuclient/file.go",
+    "line": 315,
+    "quote": "// We remove all controllers with the same UUID as the named one."
+   },
+   {
+    "file": "api/jujuclient/file.go",
+    "line": 373,
+    "quote": "// Remove the controller cookie jars."
+   },
+   {
+    "file": "api/jujuclient/file.go",
+    "line": 381,
+    "quote": "// Finally, remove the controllers. This must be done last"
+   },
+   {
+    "file": "cmd/juju/controller/unregister.go",
+    "line": 39,
+    "quote": "This command does not destroy the controller."
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q06"
+ },
+ {
+  "id": "A-Q07",
+  "type": "mechanism",
+  "question": "Once the controller has accepted a destroy request that includes all its hosted models, what does it do with its own model and with the hosted models, and what stops new models appearing meanwhile?",
+  "ground_truth": "Only a controller superuser may call it, and it must be called against the controller model. The controller removal service first sets the controller model dying (so new models cannot sneak in) and returns the hosted model UUIDs; the facade then requests removal of each hosted model in turn, stopping with a persistent-storage error code if a hosted model holds persistent storage.",
+  "key_facts": [
+   "Requires superuser access on the controller",
+   "The controller model is set dying first and the hosted model UUIDs are returned",
+   "Each hosted model is then removed individually",
+   "A hosted model with persistent storage yields CodeHasPersistentStorage"
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 31,
+    "quote": "err := c.authorizer.HasPermission(ctx, permission.SuperuserAccess, names.NewControllerTag(c.controllerUUID))"
+   },
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 98,
+    "quote": "childModelUUIDs, err := removalService.RemoveController(ctx, force, maxWait)"
+   },
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 115,
+    "quote": "return apiservererrors.ParamsErrorf(params.CodeHasPersistentStorage,"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q07"
+ },
+ {
+  "id": "A-Q08",
+  "type": "mechanism",
+  "question": "When I destroy a controller with --release-storage, is the controller model's own storage released too, and at what point does the controller model itself get removed relative to the hosted models?",
+  "ground_truth": "The controller model removal job keeps failing as incomplete while any other model remains in the controller. Only when all hosted models are gone is the controller model removed, and at that point storage is always destroyed (never released) for the controller model, regardless of the user's --destroy-storage/--release-storage choice.",
+  "key_facts": [
+   "The controller model removal job waits until no other models remain",
+   "While waiting it returns RemovalJobIncomplete",
+   "Controller model removal always sets destroyStorage to true",
+   "The user's storage flag does not apply to the controller model"
+  ],
+  "evidence": [
+   {
+    "file": "domain/removal/service/controller.go",
+    "line": 197,
+    "quote": "waiting for hosted models to be removed"
+   },
+   {
+    "file": "domain/removal/service/controller.go",
+    "line": 213,
+    "quote": "destroyStorage := true"
+   },
+   {
+    "file": "domain/removal/service/controller.go",
+    "line": 212,
+    "quote": "so there is no user intent to override."
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q08"
+ },
+ {
+  "id": "A-Q09",
+  "type": "mechanism",
+  "question": "When a controller unit is removed from an HA controller application, what happens to that node's credentials, published addresses and database node record, and when in the unit removal does this happen?",
+  "ground_truth": "Only for the controller application in the controller model. After the unit has left its relation scopes and leadership is revoked, the controller node is marked dying, its API/client/agent/peer addresses, agent version, password, nonce and upgrade info are deleted, and the controller_node row is kept as a dead tombstone with its dqlite node id and bind address cleared, so late workers cannot recreate it.",
+  "key_facts": [
+   "Runs only for the 'controller' application in the controller model",
+   "Happens after the unit has departed its relation scopes so departure hooks can still authenticate",
+   "Address, agent-version, password, nonce and upgrade-info rows are deleted",
+   "The node row stays with life dead and dqlite_node_id/dqlite_bind_address set to NULL"
+  ],
+  "evidence": [
+   {
+    "file": "domain/removal/service/unit.go",
+    "line": 292,
+    "quote": "// A controller unit must remain authenticated until it has departed its"
+   },
+   {
+    "file": "domain/removal/state/controller/controller_node.go",
+    "line": 16,
+    "quote": "as a tombstone so delayed controller workers cannot recreate it."
+   },
+   {
+    "file": "domain/removal/state/controller/controller_node.go",
+    "line": 92,
+    "quote": "    dqlite_node_id = NULL,"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q09"
+ },
+ {
+  "id": "A-Q10",
+  "type": "mechanism",
+  "question": "If an administrator changes query-tracing-enabled on a running controller, what does the controller agent do in response?",
+  "ground_truth": "The agent config updater watches controller config; when query-tracing-enabled, query-tracing-threshold or dqlite-busy-timeout differs from what it holds, it writes the new value into the agent configuration and then returns ErrRestartAgent, so the agent restarts to pick it up.",
+  "key_facts": [
+   "A controller config watcher triggers the check",
+   "Only query-tracing-enabled, query-tracing-threshold and dqlite-busy-timeout are compared",
+   "The new values are written to the agent config",
+   "The worker then returns an error wrapping ErrRestartAgent to restart the agent"
+  ],
+  "evidence": [
+   {
+    "file": "internal/worker/agentconfigupdater/worker.go",
+    "line": 138,
+    "quote": "changeDetected := queryTracingEnabledChanged ||"
+   },
+   {
+    "file": "internal/worker/agentconfigupdater/worker.go",
+    "line": 179,
+    "quote": "jworker.ErrRestartAgent, strings.Join(reason, \", \"))"
+   },
+   {
+    "file": "controller/config.go",
+    "line": 464,
+    "quote": "QueryTracingEnabled,"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q10"
+ },
+ {
+  "id": "A-Q11",
+  "type": "mechanism",
+  "question": "Right after bootstrap, the controller's published API addresses come from the provider and the machine network facts are not yet known. Does the address publisher overwrite them, and what triggers it to recompute addresses?",
+  "ground_truth": "No. If there are controller nodes but client or agent addresses cannot both be discovered, the worker logs 'not publishing incomplete controller API address discovery' and keeps the existing snapshot. Otherwise it recomputes and writes all client, agent and peer projections together as one snapshot whenever the controller nodes, controller config or controller network watchers fire.",
+  "key_facts": [
+   "Incomplete discovery (missing client or agent addresses with nodes present) is not published",
+   "The bootstrap-time snapshot is kept until runtime discovery can replace it",
+   "Three watchers trigger reconcile: controller nodes, controller config, controller network",
+   "All client, agent and peer projections are written as one snapshot"
+  ],
+  "evidence": [
+   {
+    "file": "internal/worker/apiaddresssetter/worker.go",
+    "line": 315,
+    "quote": "not publishing incomplete controller API address discovery"
+   },
+   {
+    "file": "internal/worker/apiaddresssetter/worker.go",
+    "line": 312,
+    "quote": "// Bootstrap publishes provider addresses before machine network facts"
+   },
+   {
+    "file": "internal/worker/apiaddresssetter/worker.go",
+    "line": 151,
+    "quote": "networkWatcher, err := w.config.NetworkService.WatchControllerNetwork(ctx)"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q11"
+ },
+ {
+  "id": "A-Q12",
+  "type": "failure",
+  "question": "juju destroy-controller fails with 'cannot destroy controller \"X\"' and 'The controller has live models'. Why, and what should I run?",
+  "ground_truth": "The controller still has hosted models in the Alive state and --destroy-all-models was not given. Re-run destroy-controller with --destroy-all-models (the message lists the live models).",
+  "key_facts": [
+   "Error text: 'The controller has live models. If you want to destroy all models in the controller, run this command again with the --destroy-all-models option.'",
+   "Cause: at least one hosted model is Alive and the flag was not passed",
+   "Fix: pass --destroy-all-models"
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 437,
+    "quote": "The controller has live models. If you want"
+   },
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 439,
+    "quote": "run this command again with the --destroy-all-models"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q12"
+ },
+ {
+  "id": "A-Q13",
+  "type": "failure",
+  "question": "Destroying a controller fails with 'invalid cloud credential, use --force'. What causes this and how do I get past it?",
+  "ground_truth": "Unless forcing, the server checks that the controller model's cloud credential is valid; if it is not, destroy is refused with that message. Passing --force skips the credential check.",
+  "key_facts": [
+   "Error text: 'invalid cloud credential, use --force'",
+   "Raised when force is not set and the controller model has no valid credential",
+   "--force bypasses the check"
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 171,
+    "quote": "return internalerrors.Errorf(\"invalid cloud credential, use --force\")"
+   },
+   {
+    "file": "apiserver/facades/client/controller/destroy.go",
+    "line": 163,
+    "quote": "notForcing := force == nil || !*force"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q13"
+ },
+ {
+  "id": "A-Q14",
+  "type": "failure",
+  "question": "Running juju controller-config with a yaml file gives 'invalid or read-only controller config values cannot be updated: [...]'. What does it mean and how can I still apply the rest of the file?",
+  "ground_truth": "The file contains keys that are not in the set of controller config attributes that can be changed after bootstrap. Remove them, or pass --ignore-read-only-fields, which drops them with a logged warning ('invalid or read-only controller config values ignored') and applies the remainder.",
+  "key_facts": [
+   "Error text begins 'invalid or read-only controller config values cannot be updated:' followed by the sorted key list",
+   "Cause: keys not in the updatable-after-bootstrap set",
+   "--ignore-read-only-fields turns it into a warning and the other keys are applied"
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/controller/config.go",
+    "line": 246,
+    "quote": "invalid or read-only controller config values cannot be updated: %v"
+   },
+   {
+    "file": "cmd/juju/controller/config.go",
+    "line": 135,
+    "quote": "\"ignore-read-only-fields\", false"
+   },
+   {
+    "file": "cmd/juju/controller/config.go",
+    "line": 249,
+    "quote": "invalid or read-only controller config values ignored: %v"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q14"
+ },
+ {
+  "id": "A-Q15",
+  "type": "unanswerable",
+  "question": "What is the maximum number of models a single Juju controller can host before further model creation is refused?",
+  "ground_truth": "The documentation does not say; the code defines no such per-controller model limit.",
+  "key_facts": [
+   "No model-count limit or quota exists for a controller"
+  ],
+  "evidence": [],
+  "greps": [
+   "max.?models|MaxModels|model.?limit|ModelLimit|model.?quota|models.?per.?controller (no matches in non-test Go code)",
+   "too many models|number of models|model count.*(exceed|limit) (only dqlite-bench and recovery archive comments)",
+   "limit.*number of models (no matches)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q15"
+ },
+ {
+  "id": "A-Q16",
+  "type": "unanswerable",
+  "question": "Can I rename a controller that is already registered in my Juju client, and what command does that?",
+  "ground_truth": "The documentation does not say; no controller rename command, flag or store operation exists (only register --replace, which overwrites details, and unregister).",
+  "key_facts": [
+   "No rename operation exists for controllers in the client store"
+  ],
+  "evidence": [],
+  "greps": [
+   "RenameController|rename.?controller|controller.?rename|rename-controller (no matches)",
+   "rename in api/jujuclient, cmd/juju/controller, cmd/modelcmd (only filesystem Rename helper)",
+   "controller-alias|ControllerAlias in client store (only migration/crossmodel params)",
+   "SetControllerName (only sets which controller a command targets)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q16"
+ },
+ {
+  "id": "B-e44_q2_controller_1",
+  "type": "lookup",
+  "question": "What port does the Juju controller's embedded SSH server listen on by default, and what restrictions apply if I set a different port in the controller configuration?",
+  "ground_truth": "The default SSH server port is 17022 (config key ssh-server-port). A configured value must be a positive integer and must not equal the controller's api-port.",
+  "key_facts": [
+   "Default ssh-server-port is 17022",
+   "The value must be positive (non-positive is rejected as not valid)",
+   "The value must not match api-port"
+  ],
+  "evidence": [
+   {
+    "file": "controller/config.go",
+    "line": 274,
+    "quote": "DefaultSSHServerPort = 17022"
+   },
+   {
+    "file": "controller/config.go",
+    "line": 1228,
+    "quote": "non-positive integer for ssh-server-port"
+   },
+   {
+    "file": "controller/config.go",
+    "line": 1230,
+    "quote": "ssh-server-port matching api-port"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_q2_controller_1"
+ },
+ {
+  "id": "B-e44_q2_controller_2",
+  "type": "mechanism",
+  "question": "When a unit of the controller application is removed from the controller model, what happens to the matching controller node record, and what is deleted versus kept?",
+  "ground_truth": "Only for the controller application in the controller model, the unit's number is used as the controller ID. The node is first marked dying (life 1), then its API/client/agent/peer addresses, reported agent version, password, nonce and upgrade info rows are deleted, and finally it is marked dead (life 2) with its dqlite node ID and bind address set to NULL. The controller_node row itself is retained as a tombstone so delayed controller workers cannot recreate it.",
+  "key_facts": [
+   "Applies only to the controller application in the controller model, using the unit number as controller ID",
+   "Node goes to dying, dependent rows (addresses, agent version, password, nonce, upgrade info) are deleted",
+   "Node is then marked dead with dqlite_node_id and dqlite_bind_address cleared",
+   "The controller_node row is kept as a tombstone"
+  ],
+  "evidence": [
+   {
+    "file": "domain/removal/service/unit.go",
+    "line": 341,
+    "quote": "if applicationName != coreapplication.ControllerApplicationName {"
+   },
+   {
+    "file": "domain/removal/state/controller/controller_node.go",
+    "line": 15,
+    "quote": "The controller node is retained"
+   },
+   {
+    "file": "domain/removal/state/controller/controller_node.go",
+    "line": 91,
+    "quote": "SET life_id = 2,"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_q2_controller_2"
+ },
+ {
+  "id": "B-e44_q2_controller_3",
+  "type": "failure",
+  "question": "I ran `juju destroy-controller` on my controller without any extra flags and it refused with \"The controller has live models\". Why does it do this and how do I proceed?",
+  "ground_truth": "The command checks the hosted models and, if any is still alive and --destroy-all-models was not given, fails with 'cannot destroy controller \"<name>\"' / 'The controller has live models', listing them. Re-run the command with the --destroy-all-models option.",
+  "key_facts": [
+   "Error text: cannot destroy controller \"<name>\" ... The controller has live models",
+   "Cause: hosted models are still alive and --destroy-all-models was not specified",
+   "Fix: run destroy-controller again with --destroy-all-models"
+  ],
+  "evidence": [
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 283,
+    "quote": "if !c.destroyModels {"
+   },
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 437,
+    "quote": "The controller has live models. If you want"
+   },
+   {
+    "file": "cmd/juju/controller/destroy.go",
+    "line": 439,
+    "quote": "run this command again with the --destroy-all-models"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_q2_controller_3"
+ },
+ {
+  "id": "B-e44_q2_controller_4",
+  "type": "unanswerable",
+  "question": "Does Juju keep a history of controller configuration changes, and can I roll the controller configuration back to an earlier revision?",
+  "ground_truth": "The documentation does not say; no controller configuration history or rollback is defined. Controller config is stored as a current key/value table, updates upsert or delete keys in place.",
+  "key_facts": [
+   "No history or revision of controller config is defined",
+   "No rollback operation exists"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE 'config.?history|configHistory|history.*controller.?config|controller.?config.*history' (no matches)",
+   "grep -rniE '(rollback|roll back|revert|undo|previous).{0,30}controller.?config|controller.?config.{0,30}(rollback|revert|undo|previous)' (no matches)",
+   "grep -rniE 'controller_config_(log|audit|snapshot|version)' (no matches)",
+   "grep -rniE 'controller.?config.{0,40}(audit|changelog|changed.?by|updated.?at|modified)' (only unrelated auditconfigupdater worker)"
+  ],
+  "cross_area": false,
+  "orig_id": "e44_q2_controller_4"
+ }
+]

@@ -1,0 +1,38 @@
+[
+ {
+  "id": 1,
+  "claim": "An SSH key is an access  key in the SSH protocol."
+ },
+ {
+  "id": 2,
+  "claim": "In Juju it refers to a way of accessing a machine provisioned by Juju individually."
+ },
+ {
+  "id": 3,
+  "claim": "Juju maintains a per-model cache of public SSH keys."
+ },
+ {
+  "id": 4,
+  "claim": "You can add keys via `juju add-ssh-key` or `juju import-ssh-key`."
+ },
+ {
+  "id": 5,
+  "claim": "Keys are used to authenticate users when they connect to the controller's SSH server."
+ },
+ {
+  "id": 6,
+  "claim": "Each Juju machine provides a user account named 'ubuntu' and this account is used when establishing SSH sessions."
+ },
+ {
+  "id": 7,
+  "claim": "Because this user is effectively the 'root' user (passwordless sudo privileges), the granting of SSH access must be done with due consideration."
+ },
+ {
+  "id": 8,
+  "claim": "To use an SSH key to run commands inside a machine using the `juju ssh` command, the user's public SSH key needs to be added to the containing model and the user needs to have `admin` access to the model."
+ },
+ {
+  "id": 9,
+  "claim": "See juju-ssh for a deeper dive into how SSH connections are established through the Juju controller."
+ }
+]

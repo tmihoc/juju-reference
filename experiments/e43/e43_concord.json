@@ -1,0 +1,53 @@
+{
+ "agree": [
+  "relation",
+  "machine-placement",
+  "unit",
+  "controller",
+  "space",
+  "application-scale",
+  "port",
+  "action",
+  "unit-state",
+  "user",
+  "offer",
+  "machine",
+  "application",
+  "block-command",
+  "secret",
+  "model-defaults",
+  "image-metadata",
+  "cloud",
+  "secret-backend",
+  "cloud-instance",
+  "model",
+  "storage",
+  "credential"
+ ],
+ "split": [
+  "agent-version",
+  "application-endpoint",
+  "subnet",
+  "link-layer-device",
+  "relation-unit",
+  "telemetry",
+  "charm",
+  "resource",
+  "ssh-key",
+  "external-controller"
+ ],
+ "nolevel": [
+  "lease",
+  "removal",
+  "zone",
+  "constraint",
+  "permission",
+  "ssh",
+  "upgrade",
+  "object-store",
+  "annotation",
+  "database",
+  "model-migration",
+  "status"
+ ]
+}

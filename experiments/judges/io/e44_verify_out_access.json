@@ -1,0 +1,804 @@
+[
+ {
+  "id": "A-Q01",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "core/permission/access.go",
+    "line": 193,
+    "ok": true,
+    "note": "case AddModelAccess, AdminAccess in ValidateCloudAccess"
+   },
+   {
+    "file": "core/permission/access.go",
+    "line": 196,
+    "ok": true,
+    "note": "returns \"%q cloud access %w\" NotValid for any other value (incl. empty)"
+   }
+  ],
+  "note": "ValidateCloudAccess accepts only add-model and admin; all other levels return a NotValid error. Single easily found function (also mirrored by permission_object_access SQL rows)."
+ },
+ {
+  "id": "A-Q02",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "apiserver/facades/client/controller/controller.go",
+    "line": 723,
+    "ok": true,
+    "note": "ModifyControllerAccess calls HasPermission(SuperuserAccess, controllerTag)"
+   },
+   {
+    "file": "apiserver/facades/client/controller/controller.go",
+    "line": 731,
+    "ok": true,
+    "note": "per-change Error = ServerError(ErrPerm) when !hasPermission"
+   },
+   {
+    "file": "apiserver/errors/errors.go",
+    "line": 32,
+    "ok": true,
+    "note": "ErrPerm = ConstError(\"permission denied\")"
+   }
+  ],
+  "note": "Superuser required; error is per-result (empty Changes returns early before the check; non-permission HasPermission errors abort the whole call). Login < superuser via EqualOrGreaterControllerAccessThan so login is insufficient."
+ },
+ {
+  "id": "A-Q03",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/crossmodelrelation/state/controller/offer.go",
+    "line": 45,
+    "ok": true,
+    "note": "ownerPermission AccessType Admin"
+   },
+   {
+    "file": "domain/crossmodelrelation/state/controller/offer.go",
+    "line": 67,
+    "ok": true,
+    "note": "everyonePermission AccessType Read, GrantTo everyone@external UUID"
+   },
+   {
+    "file": "domain/crossmodelrelation/state/controller/offer.go",
+    "line": 24,
+    "ok": true,
+    "note": "doc comment of CreateOfferAccess; both inserts inside one db.Txn"
+   }
+  ],
+  "note": "CreateOfferAccess (called from service/offer.go:229 after the model-side offer insert) inserts admin for owner and read for everyone@external inside one controller transaction. Needs state + service file to see the whole flow."
+ },
+ {
+  "id": "A-Q04",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": "True at insertPermission level (AddUserPermission/insert path). Note: via UpdatePermission grant, an existing entry is read first, so equal/lower level gives 'access or greater' (PermissionAccessGreater), not 'permission already exists'."
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/schema/controller/sql/0017-user-permission.sql",
+    "line": 78,
+    "ok": true,
+    "note": "comment before unique index"
+   },
+   {
+    "file": "domain/schema/controller/sql/0017-user-permission.sql",
+    "line": 80,
+    "ok": true,
+    "note": "CREATE UNIQUE INDEX idx_permission_type_to ON permission (grant_on, grant_to)"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 1194,
+    "ok": true,
+    "note": "IsErrConstraintUnique -> PermissionAlreadyExists in insertPermission"
+   },
+   {
+    "file": "domain/access/errors/errors.go",
+    "line": 48,
+    "ok": true,
+    "note": "ConstError(\"permission already exists\")"
+   }
+  ],
+  "note": "Unique index on (grant_on, grant_to) confirmed; grantPermission updates the existing row when a strictly higher level is granted (permission.go ~917-921). 'permission already exists' only surfaces on a raw insert (e.g. AddUserPermission/race), not the normal grant path."
+ },
+ {
+  "id": "A-Q05",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "internal/worker/controlsocket/worker.go",
+    "line": 422,
+    "ok": true,
+    "note": "Key: w.controllerModelUUID.String() with ObjectType Model (line 421)"
+   },
+   {
+    "file": "internal/worker/controlsocket/worker.go",
+    "line": 433,
+    "ok": true,
+    "note": "Access: permission.ReadAccess in AddUserArg.Permission"
+   }
+  ],
+  "note": "addMetricsUser creates the user with AccessSpec{Target: model/controllerModelUUID, Access: read}; idempotent path re-checks level == read. Single function."
+ },
+ {
+  "id": "A-Q06",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 197,
+    "ok": true,
+    "note": "UserNotFound && !args.Subject.IsLocal()"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 198,
+    "ok": true,
+    "note": "addExternalUser inside the same db.Txn as grant/revoke switch"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 384,
+    "ok": true,
+    "note": "AddUser(..., external=true, creator=everyone@external UUID)"
+   }
+  ],
+  "note": "UpdatePermission transaction: getUserUUID (active users only, else UserNotFound); external names get created via addExternalUser (external=true, creator everyone@external), local names return UserNotFound. Same Txn for creation and grant/revoke."
+ },
+ {
+  "id": "A-Q07",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/crossmodelrelation/service/offer.go",
+    "line": 485,
+    "ok": true,
+    "note": "if args.Change == Revoke -> suspendRelation before controllerState.UpdateOfferPermission"
+   },
+   {
+    "file": "domain/crossmodelrelation/service/offer.go",
+    "line": 517,
+    "ok": true,
+    "note": "RevokeAccess() >= consume -> return nil (no suspension)"
+   },
+   {
+    "file": "domain/crossmodelrelation/service/offer.go",
+    "line": 521,
+    "ok": true,
+    "note": "IsUserControllerOrModelAdmin: controller superuser or model admin/superuser on the offer's model"
+   },
+   {
+    "file": "domain/crossmodelrelation/service/offer.go",
+    "line": 539,
+    "ok": true,
+    "note": "reason string \"offer access revoked\" in SuspendOfferConnectionsForUser"
+   }
+  ],
+  "note": "Suspension (model DB) runs first, then permission update (controller DB) in a separate transaction. Revoking consume -> read (<consume) suspends; revoking admin -> consume skips; admins exempt. Needs service + both state files."
+ },
+ {
+  "id": "A-Q08",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/access/state/user.go",
+    "line": 543,
+    "ok": true,
+    "note": "DELETE FROM permission WHERE grant_to"
+   },
+   {
+    "file": "domain/access/state/user.go",
+    "line": 559,
+    "ok": true,
+    "note": "checkPotentiallyOrhpanedModels first in the Txn"
+   },
+   {
+    "file": "domain/access/state/user.go",
+    "line": 494,
+    "ok": true,
+    "note": "error text with count; adds LastModelAdmin"
+   },
+   {
+    "file": "domain/access/state/user.go",
+    "line": 548,
+    "ok": true,
+    "note": "UPDATE user SET removed = true"
+   }
+  ],
+  "note": "RemoveUser Txn: orphan check, then deletes keys/password/activation key/permissions, then sets removed=true. The orphan check queries all models lacking another active admin (not only models the user admins)."
+ },
+ {
+  "id": "A-Q09",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/removal/state/controller/model.go",
+    "line": 298,
+    "ok": true,
+    "note": "// Delete the model permissions. runs after removeBasicModelData and before the model row delete"
+   },
+   {
+    "file": "domain/removal/state/controller/model.go",
+    "line": 282,
+    "ok": true,
+    "note": "alive -> 'cannot delete model %q, model is still alive' + EntityStillAlive"
+   },
+   {
+    "file": "domain/removal/state/controller/model.go",
+    "line": 289,
+    "ok": true,
+    "note": "dying -> 'waiting for model to be dead before deletion' + RemovalJobIncomplete"
+   }
+  ],
+  "note": "DeleteModel state Txn checks life (alive/dying refused), deletes permissions WHERE grant_on = model uuid, then the model row, in one transaction. Service layer (removal/service/model.go:278) also refuses alive/dying earlier."
+ },
+ {
+  "id": "A-Q10",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 288,
+    "ok": true,
+    "note": "doc comment in ReadUserAccessLevelForTarget"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 337,
+    "ok": true,
+    "note": "userActive.Removed || userActive.Disabled -> AccessNotFound"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 363,
+    "ok": true,
+    "note": "external: base everyone@external used if >= own level"
+   }
+  ],
+  "note": "Disabled/removed users return AccessNotFound before everyone@external lookup. External user with no DB row falls through to everyone@external; active external gets the higher (baseExternalAccessGreater is >=). Local user with no row also gets AccessNotFound."
+ },
+ {
+  "id": "A-Q11",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": "Check actually runs for every revoke on a Model target (modelRevoke never returns Admin so 'newAccess != AdminAccess' is always true), and counts admins other than the revoked user."
+   },
+   {
+    "fact_index": 3,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 946,
+    "ok": true,
+    "note": "error text, adds LastModelAdmin"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 934,
+    "ok": true,
+    "note": "p.access_type_id = 3 (admin) with ua.disabled=false, removed=false, ua.uuid <> revoked user"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 958,
+    "ok": true,
+    "note": "condition in revokePermission; always true for models"
+   }
+  ],
+  "note": "Revoke on a model errors if no other active user holds admin. Slight imprecision: it fires on any model revoke (not just admin revoke) when no other active admin exists, even if the revoked user is not admin."
+ },
+ {
+  "id": "A-Q12",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 917,
+    "ok": true,
+    "note": "Errorf(\"user %q already has %q %w\", ..., PermissionAccessGreater)"
+   },
+   {
+    "file": "domain/access/errors/errors.go",
+    "line": 60,
+    "ok": true,
+    "note": "ConstError(\"access or greater\")"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 916,
+    "ok": true,
+    "note": "aSpec.EqualOrGreaterThan(grantAccess)"
+   }
+  ],
+  "note": "grantPermission refuses when the existing level is >= requested (model order read<write<admin). Same error also used for offers (crossmodelrelation/state/controller/offer.go:221)."
+ },
+ {
+  "id": "A-Q13",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "apiserver/facades/client/cloud/cloud.go",
+    "line": 1041,
+    "ok": true,
+    "note": "api.apiUser.String() == arg.UserTag in ModifyCloudAccess"
+   },
+   {
+    "file": "apiserver/facades/client/cloud/cloud.go",
+    "line": 1042,
+    "ok": true,
+    "note": "errors.New(\"cannot change your own cloud access\")"
+   },
+   {
+    "file": "apiserver/facades/client/cloud/cloud.go",
+    "line": 1032,
+    "ok": true,
+    "note": "if !api.isAdmin { HasPermission(AdminAccess, cloudTag) } - self check at 1041 is outside it, so applies to everyone"
+   }
+  ],
+  "note": "isAdmin = controller superuser (set at line ~107); self-check comes after the cloud-tag parse and permission check with no exemption, so superusers also get the error. String comparison of tag against caller's tag."
+ },
+ {
+  "id": "A-Q14",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "grep -rniE '(lapse|auto.?revoke|revoke.?after|expires?_?(at|on|in)|valid_?to|end_?time|not_?after)' domain/access domain/schema/controller/sql core/permission apiserver/facades/client/{modelmanager,controller} cmd/juju/{model,user,controller} (only unrelated hits)",
+   "grep -rniE 'permission.*(duration|timeout|ttl)|(duration|ttl).*permission' domain/access core/permission cmd/juju/model (none)",
+   "grep -rniE 'temporary.*(grant|access|permission)|ephemeral.*(grant|permission)' core/permission domain/access apiserver cmd/juju (none)",
+   "grep -rniE 'validity|until|deadline|schedule' core/permission domain/access/{service,state} cmd/juju/model/grantrevoke*.go (none)"
+  ],
+  "evidence_checked": [],
+  "note": "No expiry/TTL/duration concept for permissions; permission table has only uuid, access_type_id, object_type_id, grant_on, grant_to."
+ },
+ {
+  "id": "A-Q15",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": "Also NoAccess (empty string) exists as the 'none' value, used only as a result, not as a stored deny; permission_object_access SQL table only maps the positive levels."
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "grep -rniE '\\bdeny\\b|denied_access|forbid|negative.?acl|revoke.?override|override.*everyone|exclusion' domain/access core/permission domain/schema/controller/sql apiserver/common (none relevant)",
+   "grep -rniE 'AccessDeny|DenyAccess|\"deny\"|NoAccess.*explicit' core domain apiserver (none)",
+   "grep -rniE 'blocked.?user|ban(ned)?\\b|restrict(ed)?.?user' domain/access core/permission apiserver/common (none)"
+  ],
+  "evidence_checked": [],
+  "note": "No deny level; everyone@external inheritance uses 'higher of' own and base so nothing can override downward."
+ },
+ {
+  "id": "A-Q16",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "grep -rniE 'maxUsers|max_users|too many (users|permissions|grants)|MaxPermissions|maxAccess|userLimit|numberOfUsers' --include=*.go --include=*.sql . (none)",
+   "grep -rniE 'MaxModelUsers|usersPerModel|perModel.*(user|perm)' --include=*.go . (none)",
+   "grep -rniE '(max|limit|cap|quota)[a-z_]*(user|grant|permission|access|acl)' domain/access core/permission domain/schema/controller/sql apiserver/facades/client/modelmanager apiserver/common (none); controller/config.go max-* keys unrelated"
+  ],
+  "evidence_checked": [],
+  "note": "No per-model user/permission count limit anywhere; only unique (grant_on, grant_to)."
+ },
+ {
+  "id": "B-e44_q2_access_1",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "core/permission/access.go",
+    "line": 193,
+    "ok": true,
+    "note": "case AddModelAccess, AdminAccess"
+   },
+   {
+    "file": "domain/schema/controller/sql/0017-user-permission.sql",
+    "line": 50,
+    "ok": true,
+    "note": "(0, 3, 0), -- admin, cloud"
+   },
+   {
+    "file": "domain/schema/controller/sql/0017-user-permission.sql",
+    "line": 51,
+    "ok": true,
+    "note": "(1, 5, 0), -- add-model, cloud"
+   }
+  ],
+  "note": "Both Go validator and the permission_object_access table allow only admin and add-model for clouds."
+ },
+ {
+  "id": "B-e44_q2_access_2",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "core/permission/access.go",
+    "line": 369,
+    "ok": true,
+    "note": "controllerRevoke doc: Superuser gets you Login"
+   },
+   {
+    "file": "core/permission/access.go",
+    "line": 370,
+    "ok": true,
+    "note": "Login gets you NoAccess"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 963,
+    "ok": true,
+    "note": "newAccess == NoAccess -> deletePermission"
+   }
+  ],
+  "note": "revokePermission uses AccessSpec.RevokeAccess() (based on the access named in the request): superuser->login (row updated), login->NoAccess (row deleted). No orphan check for controller targets."
+ },
+ {
+  "id": "B-e44_q2_access_3",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 2,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": null,
+  "new_greps": [],
+  "evidence_checked": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 917,
+    "ok": true,
+    "note": "user %q already has %q %w"
+   },
+   {
+    "file": "domain/access/errors/errors.go",
+    "line": 60,
+    "ok": true,
+    "note": "PermissionAccessGreater = ConstError(\"access or greater\")"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 916,
+    "ok": true,
+    "note": "EqualOrGreaterThan check"
+   }
+  ],
+  "note": "Same as A-Q12: grant refused when existing level >= requested; row left unchanged."
+ },
+ {
+  "id": "B-e44_q2_access_4",
+  "ground_truth_verdict": "true",
+  "key_fact_verdicts": [
+   {
+    "fact_index": 0,
+    "verdict": "true",
+    "corrected": null
+   },
+   {
+    "fact_index": 1,
+    "verdict": "true",
+    "corrected": null
+   }
+  ],
+  "unanswerable_verdict": "confirmed_absent",
+  "new_greps": [
+   "grep -rniE 'permission.*(duration|timeout|ttl)|(duration|ttl).*permission' domain/access core/permission cmd/juju/model (none)",
+   "grep -rniE 'temporary.*(grant|access|permission)|ephemeral.*(grant|permission)' core/permission domain/access apiserver cmd/juju (none)",
+   "grep -rniE 'expir' apiserver/authentication/jwt/*.go (none); grep ALTER TABLE permission domain/schema/controller/sql (none)"
+  ],
+  "evidence_checked": [],
+  "note": "No expiry/TTL/duration anywhere in permission schema, state, service, CLI grant/revoke flags."
+ }
+]

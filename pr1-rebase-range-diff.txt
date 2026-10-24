@@ -1,0 +1,62 @@
+# #23427 rebase: old branch 03ec8ddc55 (base 5498725be0) vs new 28426535f7 (base upstream/4.1 697840de09)
+# '=' identical patch, '!' patch differs (diff of the diffs follows), '<' dropped, '>' added
+
+ 1:  894b32d3cf =  1:  2197e7baa4 docs: add package docs for the agent and test packages
+ 2:  9f09b08a81 =  2:  d935a492df docs: fold the CVE, merge-forward and commit-format pages into the repo files
+ 3:  addf724995 =  3:  c6ee475fa7 docs(howto): move the developer how-tos into the main how-to section
+ 4:  ead4c1eb05 =  4:  b7542a0585 docs(reference): fold the contributor HA page in; move the entity lifecycle page
+ 5:  8a970109ce !  5:  6dc7fc42d5 docs: retire the contributor tree
+    @@ Commit message
+         the build output.
+     
+      ## docs/conf.py ##
+    -@@ docs/conf.py: html_extra_path = ["robots.txt", "sitemapindex.xml"]
+    - redirects = {
+    -     "user/reference/charm/charm-naming-guidelines/": "https://canonical-charmcraft.readthedocs-hosted.com/en/stable/",
+    +@@ docs/conf.py: redirects = {
+          "reference/charm/charm-naming-guidelines/": "https://canonical-charmcraft.readthedocs-hosted.com/en/stable/",
+    +     "user/reference/charm/charm-maturity/": "https://canonical.com/juju/docs/ops/latest/explanation/charm-maturity/",
+    +     "reference/charm/charm-maturity/": "https://canonical.com/juju/docs/ops/latest/explanation/charm-maturity/",
+     +    # The contributor package pages were demoted to Go package docs (doc.go)
+     +    # or point at the upstream worker library docs.
+     +    "contributor/reference/agent": "https://pkg.go.dev/github.com/juju/juju/cmd/jujuagentd/agent",
+    @@ docs/index.md: Tutorial <tutorial/index>
+      
+     
+      ## docs/redirects.txt ##
+    -@@ docs/redirects.txt: reference/juju/juju-architecture explanation/juju-architecture
+    +@@ docs/redirects.txt: explanation/juju-architecture explanation/architecture
+      user/reference/charm/channel/ reference/charm/
+      user/reference/charm/revision/ reference/charm/
+      user/reference/charm/charm-taxonomy/ reference/charm/
+ 6:  cded3fcac8 =  6:  1e31c518c3 docs: add package docs for internal/worker and core/watcher
+ 7:  f5403deb35 =  7:  e43ba9ecb6 docs(howto): slim the worker guide to the cross-package rules
+ 8:  dc3e9201fb =  8:  aa33caf235 docs(reference): drop the entity lifecycle page
+ 9:  239e3d009e =  9:  f8e9fa7bbc docs: avoid cmd import paths in doc.go files outside their binary
+10:  27ae59b7af = 10:  86751597a5 docs(contributing): fix the PR-list recipe and the doc.go example
+11:  0225ea509d = 11:  6b5c5ddbea docs: point the README and the security policy at the current docs site
+12:  4f87bd776e = 12:  98b78158d8 docs: spell out Kubernetes in the doc.go prose; document core/life
+13:  56294363c7 ! 13:  ebec3bfb4b docs: redirect the lifecycle URLs to the core/life package docs
+    @@ Commit message
+     
+      ## docs/conf.py ##
+     @@ docs/conf.py: redirects = {
+    -     "reference/charm/charm-naming-guidelines/": "https://canonical-charmcraft.readthedocs-hosted.com/en/stable/",
+    +     "reference/charm/charm-maturity/": "https://canonical.com/juju/docs/ops/latest/explanation/charm-maturity/",
+          # The contributor package pages were demoted to Go package docs (doc.go)
+          # or point at the upstream worker library docs.
+     -    "contributor/reference/agent": "https://pkg.go.dev/github.com/juju/juju/cmd/jujuagentd/agent",
+14:  bfb8ec30bc <  -:  ---------- docs(reference): add the jujuagentd label to the jujud page
+15:  264c1c3b87 ! 14:  f2013b33da docs(agents): add the unit test suite skeleton to the test conventions
+    @@ Commit message
+         internal/worker/proxyupdater.
+     
+      ## AGENTS.md ##
+    -@@ AGENTS.md: If guidance conflicts, architectural rules take precedence.
+    +@@ AGENTS.md: this index.
+        - Use `c.Assert(err, tc.ErrorIs, MySentinalErr)` instead of `c.Assert(errors.Is(err, MySentinalErr), tc.Equals, true)`.
+        - Use `c.Check(booleanExpr, tc.IsTrue)` instead of `c.Check(booleanExpr, tc.Equals, true)`.
+        - There are more Checkers, look for the most appropriate checker.
+16:  f905071b5e = 15:  5eca2d7d8a docs: address review comments on the watcher and life package docs
+17:  abd3bb7081 = 16:  c38067e2ca docs(howto): make the worker guide positive and concise
+18:  03ec8ddc55 = 17:  28426535f7 docs(howto): lead the worker guide with the ErrDying rule, stated positively

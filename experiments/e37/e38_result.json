@@ -1,0 +1,1164 @@
+{
+ "action": {
+  "structural": [],
+  "behavioural": [
+   "machine",
+   "secret-backend",
+   "unit"
+  ],
+  "union": [
+   "machine",
+   "secret-backend",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "agent-version": {
+  "structural": [],
+  "behavioural": [
+   "action",
+   "application",
+   "charm",
+   "controller",
+   "image-metadata",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "ssh",
+   "unit"
+  ],
+  "union": [
+   "action",
+   "application",
+   "charm",
+   "controller",
+   "image-metadata",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "ssh",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "annotation": {
+  "structural": [],
+  "behavioural": [
+   "machine"
+  ],
+  "union": [
+   "machine"
+  ],
+  "level": "section of machine",
+  "robust_section": true,
+  "strength": "none"
+ },
+ "application": {
+  "structural": [
+   "application-endpoint",
+   "application-scale",
+   "offer",
+   "resource",
+   "secret",
+   "storage",
+   "unit"
+  ],
+  "behavioural": [
+   "action",
+   "agent-version",
+   "annotation",
+   "controller",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "resource",
+   "secret",
+   "space",
+   "unit"
+  ],
+  "union": [
+   "action",
+   "agent-version",
+   "annotation",
+   "application-endpoint",
+   "application-scale",
+   "controller",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "resource",
+   "secret",
+   "space",
+   "storage",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "application-endpoint": {
+  "structural": [
+   "application",
+   "offer",
+   "relation"
+  ],
+  "behavioural": [
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "secret",
+   "space",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "relation",
+   "secret",
+   "space",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "application-scale": {
+  "structural": [],
+  "behavioural": [
+   "application"
+  ],
+  "union": [
+   "application"
+  ],
+  "level": "section of application",
+  "robust_section": true,
+  "strength": "none"
+ },
+ "block-command": {
+  "structural": [],
+  "behavioural": [
+   "action",
+   "controller",
+   "machine",
+   "model",
+   "user"
+  ],
+  "union": [
+   "action",
+   "controller",
+   "machine",
+   "model",
+   "user"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "charm": {
+  "structural": [
+   "action",
+   "annotation",
+   "application",
+   "application-endpoint",
+   "port",
+   "resource",
+   "storage",
+   "unit"
+  ],
+  "behavioural": [
+   "action",
+   "agent-version",
+   "annotation",
+   "application",
+   "block-command",
+   "cloud",
+   "controller",
+   "external-controller",
+   "image-metadata",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "resource",
+   "secret",
+   "secret-backend",
+   "space",
+   "ssh",
+   "ssh-key",
+   "storage",
+   "subnet",
+   "unit",
+   "user"
+  ],
+  "union": [
+   "action",
+   "agent-version",
+   "annotation",
+   "application",
+   "application-endpoint",
+   "block-command",
+   "cloud",
+   "controller",
+   "external-controller",
+   "image-metadata",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "port",
+   "resource",
+   "secret",
+   "secret-backend",
+   "space",
+   "ssh",
+   "ssh-key",
+   "storage",
+   "subnet",
+   "unit",
+   "user"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "cloud": {
+  "structural": [
+   "credential",
+   "model",
+   "model-defaults"
+  ],
+  "behavioural": [
+   "action",
+   "application",
+   "controller",
+   "image-metadata",
+   "machine",
+   "model",
+   "model-migration",
+   "secret",
+   "secret-backend",
+   "ssh",
+   "unit",
+   "user"
+  ],
+  "union": [
+   "action",
+   "application",
+   "controller",
+   "credential",
+   "image-metadata",
+   "machine",
+   "model",
+   "model-defaults",
+   "model-migration",
+   "secret",
+   "secret-backend",
+   "ssh",
+   "unit",
+   "user"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "cloud-instance": {
+  "structural": [],
+  "behavioural": [
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "model-migration",
+   "storage",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "model-migration",
+   "storage",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "constraint": {
+  "structural": [
+   "application",
+   "machine",
+   "model"
+  ],
+  "behavioural": [
+   "application",
+   "machine",
+   "model",
+   "space",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "machine",
+   "model",
+   "space",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "controller": {
+  "structural": [
+   "upgrade"
+  ],
+  "behavioural": [
+   "action",
+   "agent-version",
+   "application",
+   "cloud",
+   "image-metadata",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "secret",
+   "secret-backend",
+   "space",
+   "ssh-key",
+   "unit",
+   "user"
+  ],
+  "union": [
+   "action",
+   "agent-version",
+   "application",
+   "cloud",
+   "image-metadata",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "secret",
+   "secret-backend",
+   "space",
+   "ssh-key",
+   "unit",
+   "upgrade",
+   "user"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "credential": {
+  "structural": [
+   "model"
+  ],
+  "behavioural": [
+   "cloud",
+   "controller",
+   "model",
+   "model-migration",
+   "secret",
+   "secret-backend",
+   "ssh",
+   "unit"
+  ],
+  "union": [
+   "cloud",
+   "controller",
+   "model",
+   "model-migration",
+   "secret",
+   "secret-backend",
+   "ssh",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "database": {
+  "structural": [],
+  "behavioural": [
+   "action",
+   "application",
+   "charm",
+   "machine",
+   "model",
+   "offer",
+   "storage",
+   "unit"
+  ],
+  "union": [
+   "action",
+   "application",
+   "charm",
+   "machine",
+   "model",
+   "offer",
+   "storage",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "external-controller": {
+  "structural": [
+   "model-migration"
+  ],
+  "behavioural": [
+   "application",
+   "controller",
+   "machine",
+   "model-migration"
+  ],
+  "union": [
+   "application",
+   "controller",
+   "machine",
+   "model-migration"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "image-metadata": {
+  "structural": [],
+  "behavioural": [
+   "machine",
+   "model-migration"
+  ],
+  "union": [
+   "machine",
+   "model-migration"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "lease": {
+  "structural": [],
+  "behavioural": [],
+  "union": [],
+  "level": "page",
+  "robust_section": false,
+  "strength": "none"
+ },
+ "link-layer-device": {
+  "structural": [
+   "application",
+   "machine",
+   "storage",
+   "unit"
+  ],
+  "behavioural": [
+   "agent-version",
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "offer",
+   "space",
+   "ssh",
+   "storage",
+   "unit"
+  ],
+  "union": [
+   "agent-version",
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "offer",
+   "space",
+   "ssh",
+   "storage",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "machine": {
+  "structural": [
+   "action",
+   "cloud-instance",
+   "machine-placement",
+   "ssh",
+   "storage"
+  ],
+  "behavioural": [
+   "action",
+   "agent-version",
+   "annotation",
+   "application",
+   "controller",
+   "model",
+   "model-migration",
+   "offer",
+   "space",
+   "ssh",
+   "ssh-key",
+   "storage",
+   "unit"
+  ],
+  "union": [
+   "action",
+   "agent-version",
+   "annotation",
+   "application",
+   "cloud-instance",
+   "controller",
+   "machine-placement",
+   "model",
+   "model-migration",
+   "offer",
+   "space",
+   "ssh",
+   "ssh-key",
+   "storage",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "machine-placement": {
+  "structural": [],
+  "behavioural": [
+   "application",
+   "machine",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "machine",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "model": {
+  "structural": [
+   "model-migration",
+   "secret-backend",
+   "ssh-key",
+   "user"
+  ],
+  "behavioural": [
+   "action",
+   "agent-version",
+   "annotation",
+   "application",
+   "block-command",
+   "charm",
+   "cloud",
+   "controller",
+   "image-metadata",
+   "machine",
+   "model-migration",
+   "offer",
+   "resource",
+   "secret",
+   "secret-backend",
+   "space",
+   "ssh",
+   "ssh-key",
+   "storage",
+   "subnet",
+   "unit",
+   "user"
+  ],
+  "union": [
+   "action",
+   "agent-version",
+   "annotation",
+   "application",
+   "block-command",
+   "charm",
+   "cloud",
+   "controller",
+   "image-metadata",
+   "machine",
+   "model-migration",
+   "offer",
+   "resource",
+   "secret",
+   "secret-backend",
+   "space",
+   "ssh",
+   "ssh-key",
+   "storage",
+   "subnet",
+   "unit",
+   "user"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "model-defaults": {
+  "structural": [],
+  "behavioural": [
+   "model"
+  ],
+  "union": [
+   "model"
+  ],
+  "level": "section of model",
+  "robust_section": true,
+  "strength": "none"
+ },
+ "model-migration": {
+  "structural": [],
+  "behavioural": [
+   "controller",
+   "machine",
+   "model"
+  ],
+  "union": [
+   "controller",
+   "machine",
+   "model"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "object-store": {
+  "structural": [
+   "action",
+   "agent-version",
+   "charm",
+   "resource"
+  ],
+  "behavioural": [
+   "agent-version",
+   "machine",
+   "offer"
+  ],
+  "union": [
+   "action",
+   "agent-version",
+   "charm",
+   "machine",
+   "offer",
+   "resource"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "offer": {
+  "structural": [],
+  "behavioural": [
+   "application",
+   "cloud",
+   "controller",
+   "model",
+   "model-migration",
+   "secret",
+   "unit",
+   "user"
+  ],
+  "union": [
+   "application",
+   "cloud",
+   "controller",
+   "model",
+   "model-migration",
+   "secret",
+   "unit",
+   "user"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "permission": {
+  "structural": [],
+  "behavioural": [
+   "cloud",
+   "controller",
+   "model",
+   "offer",
+   "unit",
+   "user"
+  ],
+  "union": [
+   "cloud",
+   "controller",
+   "model",
+   "offer",
+   "unit",
+   "user"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "port": {
+  "structural": [],
+  "behavioural": [
+   "application",
+   "machine",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "machine",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "relation": {
+  "structural": [
+   "offer",
+   "relation-unit"
+  ],
+  "behavioural": [
+   "application",
+   "charm",
+   "controller",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "secret",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "charm",
+   "controller",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "relation-unit",
+   "secret",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "relation-unit": {
+  "structural": [],
+  "behavioural": [
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "removal": {
+  "structural": [],
+  "behavioural": [
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "offer",
+   "secret",
+   "storage",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "offer",
+   "secret",
+   "storage",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "resource": {
+  "structural": [],
+  "behavioural": [
+   "application",
+   "charm",
+   "machine",
+   "offer",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "charm",
+   "machine",
+   "offer",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "secret": {
+  "structural": [],
+  "behavioural": [
+   "application",
+   "charm",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "secret-backend",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "charm",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "secret-backend",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "secret-backend": {
+  "structural": [],
+  "behavioural": [
+   "model",
+   "model-migration",
+   "secret",
+   "unit"
+  ],
+  "union": [
+   "model",
+   "model-migration",
+   "secret",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "space": {
+  "structural": [
+   "application",
+   "application-endpoint",
+   "constraint",
+   "subnet"
+  ],
+  "behavioural": [
+   "application",
+   "machine",
+   "model",
+   "subnet",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "application-endpoint",
+   "constraint",
+   "machine",
+   "model",
+   "subnet",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "ssh": {
+  "structural": [],
+  "behavioural": [
+   "controller"
+  ],
+  "union": [
+   "controller"
+  ],
+  "level": "section of controller",
+  "robust_section": true,
+  "strength": "none"
+ },
+ "ssh-key": {
+  "structural": [],
+  "behavioural": [
+   "machine",
+   "user"
+  ],
+  "union": [
+   "machine",
+   "user"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "storage": {
+  "structural": [],
+  "behavioural": [
+   "annotation",
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "unit"
+  ],
+  "union": [
+   "annotation",
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "storage-pool": {
+  "structural": [
+   "storage"
+  ],
+  "behavioural": [
+   "application",
+   "machine",
+   "model",
+   "storage",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "machine",
+   "model",
+   "storage",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "subnet": {
+  "structural": [
+   "link-layer-device",
+   "zone"
+  ],
+  "behavioural": [
+   "application",
+   "machine",
+   "model",
+   "offer",
+   "space",
+   "ssh",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "link-layer-device",
+   "machine",
+   "model",
+   "offer",
+   "space",
+   "ssh",
+   "unit",
+   "zone"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "telemetry": {
+  "structural": [],
+  "behavioural": [
+   "machine",
+   "unit"
+  ],
+  "union": [
+   "machine",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "unit": {
+  "structural": [
+   "action",
+   "annotation",
+   "port",
+   "relation-unit",
+   "resource",
+   "secret",
+   "ssh",
+   "storage",
+   "unit-state"
+  ],
+  "behavioural": [
+   "action",
+   "agent-version",
+   "annotation",
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "resource",
+   "secret",
+   "space",
+   "ssh",
+   "storage"
+  ],
+  "union": [
+   "action",
+   "agent-version",
+   "annotation",
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "port",
+   "relation-unit",
+   "resource",
+   "secret",
+   "space",
+   "ssh",
+   "storage",
+   "unit-state"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "unit-state": {
+  "structural": [],
+  "behavioural": [
+   "machine",
+   "offer",
+   "unit"
+  ],
+  "union": [
+   "machine",
+   "offer",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "upgrade": {
+  "structural": [],
+  "behavioural": [
+   "controller",
+   "machine",
+   "model-migration"
+  ],
+  "union": [
+   "controller",
+   "machine",
+   "model-migration"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ },
+ "user": {
+  "structural": [
+   "credential",
+   "permission",
+   "ssh-key"
+  ],
+  "behavioural": [
+   "cloud",
+   "controller",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "secret",
+   "ssh-key"
+  ],
+  "union": [
+   "cloud",
+   "controller",
+   "credential",
+   "machine",
+   "model",
+   "model-migration",
+   "offer",
+   "permission",
+   "secret",
+   "ssh-key"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "structural"
+ },
+ "zone": {
+  "structural": [
+   "cloud-instance"
+  ],
+  "behavioural": [
+   "application",
+   "controller",
+   "machine",
+   "model",
+   "space",
+   "subnet",
+   "unit"
+  ],
+  "union": [
+   "application",
+   "cloud-instance",
+   "controller",
+   "machine",
+   "model",
+   "space",
+   "subnet",
+   "unit"
+  ],
+  "level": "page",
+  "robust_section": false,
+  "strength": "weak(behavioural)"
+ }
+}

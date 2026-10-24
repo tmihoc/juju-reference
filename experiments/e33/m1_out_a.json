@@ -1,0 +1,794 @@
+[
+ {
+  "table": "agent_binary_store",
+  "page": "agent-version",
+  "alt": "object-store",
+  "evidence": "model/sql/0030-agent-binary-store.sql:3"
+ },
+ {
+  "table": "agent_version",
+  "page": "agent-version",
+  "alt": "model",
+  "evidence": "model/sql/0027-agent-version.sql: target version"
+ },
+ {
+  "table": "annotation_application",
+  "page": "annotation",
+  "alt": null,
+  "evidence": "0013-annotations.sql"
+ },
+ {
+  "table": "annotation_charm",
+  "page": "annotation",
+  "alt": null,
+  "evidence": "0013-annotations.sql"
+ },
+ {
+  "table": "annotation_machine",
+  "page": "annotation",
+  "alt": null,
+  "evidence": "0013-annotations.sql"
+ },
+ {
+  "table": "annotation_model",
+  "page": "annotation",
+  "alt": null,
+  "evidence": "0013-annotations.sql"
+ },
+ {
+  "table": "annotation_storage_filesystem",
+  "page": "annotation",
+  "alt": null,
+  "evidence": "0013-annotations.sql"
+ },
+ {
+  "table": "annotation_storage_instance",
+  "page": "annotation",
+  "alt": null,
+  "evidence": "0013-annotations.sql"
+ },
+ {
+  "table": "annotation_storage_volume",
+  "page": "annotation",
+  "alt": null,
+  "evidence": "0013-annotations.sql"
+ },
+ {
+  "table": "annotation_unit",
+  "page": "annotation",
+  "alt": null,
+  "evidence": "0013-annotations.sql"
+ },
+ {
+  "table": "application",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "application_agent",
+  "page": "application",
+  "alt": "unit",
+  "evidence": "application_agent holds app agent password hash (0019:255)"
+ },
+ {
+  "table": "application_channel",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "application_config",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "application_config_hash",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "application_constraint",
+  "page": "constraint",
+  "alt": "application",
+  "evidence": "application constraint link"
+ },
+ {
+  "table": "application_controller",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "application_endpoint",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "application_exposed_endpoint_cidr",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "application_exposed_endpoint_space",
+  "page": "application",
+  "alt": "space",
+  "evidence": "exposed endpoint to space (0019:104)"
+ },
+ {
+  "table": "application_extra_endpoint",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "application_k8s_resources_managed",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "application_platform",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "application_remote_consumer",
+  "page": "offer",
+  "alt": "relation",
+  "evidence": "0034-cross-model-relation.sql remote offerer/consumer proxies"
+ },
+ {
+  "table": "application_remote_offerer",
+  "page": "offer",
+  "alt": "relation",
+  "evidence": "0034-cross-model-relation.sql remote offerer/consumer proxies"
+ },
+ {
+  "table": "application_remote_offerer_relation_macaroon",
+  "page": "offer",
+  "alt": "relation",
+  "evidence": "0034:62 macaroon authenticating relation to offering model"
+ },
+ {
+  "table": "application_remote_offerer_status",
+  "page": "offer",
+  "alt": "relation",
+  "evidence": "0034-cross-model-relation.sql remote offerer/consumer proxies"
+ },
+ {
+  "table": "application_resource",
+  "page": "resource",
+  "alt": "charm",
+  "evidence": "0023-resource.sql:67"
+ },
+ {
+  "table": "application_scale",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "application_setting",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "application_status",
+  "page": "application",
+  "alt": "status",
+  "evidence": "0019-application.sql status table"
+ },
+ {
+  "table": "application_storage_directive",
+  "page": "storage",
+  "alt": "application",
+  "evidence": "0011-storage.sql:89 directive names pool, size, count"
+ },
+ {
+  "table": "application_workload_version",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "autocert_cache",
+  "page": "controller",
+  "alt": "user",
+  "evidence": "controller certs cache: controller/sql/0013-autocert-cache.sql"
+ },
+ {
+  "table": "availability_zone",
+  "page": "zone",
+  "alt": "subnet",
+  "evidence": "0009/0021 availability zone"
+ },
+ {
+  "table": "availability_zone_subnet",
+  "page": "zone",
+  "alt": "subnet",
+  "evidence": "availability_zone_subnet links zone and subnet"
+ },
+ {
+  "table": "bakery_config",
+  "page": "user",
+  "alt": "controller",
+  "evidence": "0020-macaroon.sql: bakery keys for API authentication"
+ },
+ {
+  "table": "block_command",
+  "page": "block-command",
+  "alt": null,
+  "evidence": "0025-command-block.sql"
+ },
+ {
+  "table": "block_device",
+  "page": "storage",
+  "alt": "machine",
+  "evidence": "0010-blockdevice.sql"
+ },
+ {
+  "table": "block_device_link_device",
+  "page": "storage",
+  "alt": "machine",
+  "evidence": "0010-blockdevice.sql"
+ },
+ {
+  "table": "change_log",
+  "page": "database",
+  "alt": null,
+  "evidence": "0001-changelog.sql"
+ },
+ {
+  "table": "change_log_witness",
+  "page": "database",
+  "alt": null,
+  "evidence": "0001-changelog.sql"
+ },
+ {
+  "table": "charm",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_action",
+  "page": "charm",
+  "alt": "action",
+  "evidence": "charm_action declares actions (0015-charm.sql)"
+ },
+ {
+  "table": "charm_category",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_config",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_container",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_container_mount",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_device",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_download_info",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_extra_binding",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_hash",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_manifest_base",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_metadata",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_relation",
+  "page": "charm",
+  "alt": "relation",
+  "evidence": "charm_relation declares endpoints"
+ },
+ {
+  "table": "charm_resource",
+  "page": "charm",
+  "alt": "resource",
+  "evidence": "charm_resource declares resources"
+ },
+ {
+  "table": "charm_storage",
+  "page": "charm",
+  "alt": "storage",
+  "evidence": "charm_storage declares storage"
+ },
+ {
+  "table": "charm_storage_property",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_tag",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_term",
+  "page": "charm",
+  "alt": null,
+  "evidence": "0015-charm.sql"
+ },
+ {
+  "table": "charm_tracing_config",
+  "page": "telemetry",
+  "alt": null,
+  "evidence": "controller/sql/0026-tracing.sql:1 tracing config"
+ },
+ {
+  "table": "cloud",
+  "page": "cloud",
+  "alt": null,
+  "evidence": "controller/sql/0005-cloud.sql"
+ },
+ {
+  "table": "cloud_auth_type",
+  "page": "cloud",
+  "alt": null,
+  "evidence": "controller/sql/0005-cloud.sql"
+ },
+ {
+  "table": "cloud_ca_cert",
+  "page": "cloud",
+  "alt": null,
+  "evidence": "controller/sql/0005-cloud.sql"
+ },
+ {
+  "table": "cloud_credential",
+  "page": "credential",
+  "alt": "cloud",
+  "evidence": "0005-cloud.sql"
+ },
+ {
+  "table": "cloud_credential_attribute",
+  "page": "credential",
+  "alt": "cloud",
+  "evidence": "0005-cloud.sql"
+ },
+ {
+  "table": "cloud_defaults",
+  "page": "model-defaults",
+  "alt": null,
+  "evidence": "0005-cloud.sql defaults per cloud/region"
+ },
+ {
+  "table": "cloud_image_metadata",
+  "page": "image-metadata",
+  "alt": null,
+  "evidence": "0024-cloudimagemetadata.sql"
+ },
+ {
+  "table": "cloud_region",
+  "page": "cloud",
+  "alt": null,
+  "evidence": "controller/sql/0005-cloud.sql"
+ },
+ {
+  "table": "cloud_region_defaults",
+  "page": "model-defaults",
+  "alt": null,
+  "evidence": "0005-cloud.sql defaults per cloud/region"
+ },
+ {
+  "table": "constraint",
+  "page": "constraint",
+  "alt": null,
+  "evidence": "0014-constraint.sql"
+ },
+ {
+  "table": "constraint_space",
+  "page": "constraint",
+  "alt": null,
+  "evidence": "0014-constraint.sql"
+ },
+ {
+  "table": "constraint_tag",
+  "page": "constraint",
+  "alt": null,
+  "evidence": "0014-constraint.sql"
+ },
+ {
+  "table": "constraint_zone",
+  "page": "constraint",
+  "alt": null,
+  "evidence": "0014-constraint.sql"
+ },
+ {
+  "table": "controller",
+  "page": "controller",
+  "alt": null,
+  "evidence": "controller/sql/0004,0008,0010,0009"
+ },
+ {
+  "table": "controller_agent_address",
+  "page": "controller",
+  "alt": null,
+  "evidence": "controller/sql/0004,0008,0010,0009"
+ },
+ {
+  "table": "controller_api_address",
+  "page": "controller",
+  "alt": null,
+  "evidence": "controller/sql/0004,0008,0010,0009"
+ },
+ {
+  "table": "controller_client_address",
+  "page": "controller",
+  "alt": null,
+  "evidence": "controller/sql/0004,0008,0010,0009"
+ },
+ {
+  "table": "controller_config",
+  "page": "controller",
+  "alt": null,
+  "evidence": "controller/sql/0004,0008,0010,0009"
+ },
+ {
+  "table": "controller_node",
+  "page": "controller",
+  "alt": null,
+  "evidence": "controller/sql/0004,0008,0010,0009"
+ },
+ {
+  "table": "controller_node_agent_version",
+  "page": "controller",
+  "alt": "agent-version",
+  "evidence": "0010-controller-node.sql:19"
+ },
+ {
+  "table": "controller_node_nonce",
+  "page": "controller",
+  "alt": null,
+  "evidence": "controller/sql/0004,0008,0010,0009"
+ },
+ {
+  "table": "controller_node_password",
+  "page": "controller",
+  "alt": null,
+  "evidence": "controller/sql/0004,0008,0010,0009"
+ },
+ {
+  "table": "controller_peer_address",
+  "page": "controller",
+  "alt": null,
+  "evidence": "controller/sql/0004,0008,0010,0009"
+ },
+ {
+  "table": "controller_ssh_host_key",
+  "page": "ssh",
+  "alt": null,
+  "evidence": "controller/sql/0029-ssh.sql"
+ },
+ {
+  "table": "controller_ssh_server_port",
+  "page": "ssh",
+  "alt": null,
+  "evidence": "controller/sql/0029-ssh.sql"
+ },
+ {
+  "table": "device_constraint",
+  "page": "constraint",
+  "alt": "application",
+  "evidence": "0019-application.sql:267 device_constraint"
+ },
+ {
+  "table": "device_constraint_attribute",
+  "page": "constraint",
+  "alt": "application",
+  "evidence": "0019-application.sql:267 device_constraint"
+ },
+ {
+  "table": "external_controller",
+  "page": "external-controller",
+  "alt": null,
+  "evidence": "controller/sql/0006-external-controller.sql"
+ },
+ {
+  "table": "external_controller_address",
+  "page": "external-controller",
+  "alt": null,
+  "evidence": "controller/sql/0006-external-controller.sql"
+ },
+ {
+  "table": "external_model",
+  "page": "external-controller",
+  "alt": null,
+  "evidence": "controller/sql/0006-external-controller.sql"
+ },
+ {
+  "table": "flag",
+  "page": "database",
+  "alt": null,
+  "evidence": "0001-changelog.sql"
+ },
+ {
+  "table": "fqdn_address",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "0021-network.sql address tables"
+ },
+ {
+  "table": "hostname_address",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "0021-network.sql address tables"
+ },
+ {
+  "table": "instance_tag",
+  "page": "machine",
+  "alt": "cloud",
+  "evidence": "0017-machine-cloud-instance.sql:54 instance_tag"
+ },
+ {
+  "table": "ip_address",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "0021-network.sql address tables"
+ },
+ {
+  "table": "k8s_pod",
+  "page": "unit",
+  "alt": "application",
+  "evidence": "0020-unit.sql:130 pod per unit"
+ },
+ {
+  "table": "k8s_pod_port",
+  "page": "unit",
+  "alt": "application",
+  "evidence": "0020-unit.sql:130 pod per unit"
+ },
+ {
+  "table": "k8s_pod_status",
+  "page": "unit",
+  "alt": "application",
+  "evidence": "0020-unit.sql:130 pod per unit"
+ },
+ {
+  "table": "k8s_service",
+  "page": "application",
+  "alt": null,
+  "evidence": "0019-application.sql"
+ },
+ {
+  "table": "lease",
+  "page": "lease",
+  "alt": null,
+  "evidence": "controller/sql/0002-lease.sql"
+ },
+ {
+  "table": "lease_pin",
+  "page": "lease",
+  "alt": null,
+  "evidence": "controller/sql/0002-lease.sql"
+ },
+ {
+  "table": "link_layer_device",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "0021-network.sql address tables"
+ },
+ {
+  "table": "link_layer_device_dns_address",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "0021-network.sql address tables"
+ },
+ {
+  "table": "link_layer_device_dns_domain",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "0021-network.sql address tables"
+ },
+ {
+  "table": "link_layer_device_parent",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "0021-network.sql address tables"
+ },
+ {
+  "table": "link_layer_device_route",
+  "page": "link-layer-device",
+  "alt": "subnet",
+  "evidence": "0021-network.sql address tables"
+ },
+ {
+  "table": "log_transfer_progress",
+  "page": "model-migration",
+  "alt": "model",
+  "evidence": "model/sql/0037:6 FK to model, last log time transferred"
+ },
+ {
+  "table": "logging_loki_config",
+  "page": "telemetry",
+  "alt": null,
+  "evidence": "controller/sql/0027-logging.sql:1 Loki endpoint"
+ },
+ {
+  "table": "macaroon_root_key",
+  "page": "user",
+  "alt": "controller",
+  "evidence": "0020-macaroon.sql: bakery keys for API authentication"
+ },
+ {
+  "table": "machine",
+  "page": "machine",
+  "alt": null,
+  "evidence": "0018-machine.sql"
+ },
+ {
+  "table": "machine_agent_presence",
+  "page": "machine",
+  "alt": null,
+  "evidence": "0018-machine.sql"
+ },
+ {
+  "table": "machine_agent_version",
+  "page": "machine",
+  "alt": null,
+  "evidence": "0018-machine.sql"
+ },
+ {
+  "table": "machine_cloud_instance",
+  "page": "machine",
+  "alt": null,
+  "evidence": "0018-machine.sql"
+ },
+ {
+  "table": "machine_cloud_instance_status",
+  "page": "machine",
+  "alt": "status",
+  "evidence": "status of machine/instance"
+ },
+ {
+  "table": "machine_constraint",
+  "page": "constraint",
+  "alt": "machine",
+  "evidence": "machine_constraint link"
+ },
+ {
+  "table": "machine_container_type",
+  "page": "machine",
+  "alt": null,
+  "evidence": "0018-machine.sql"
+ },
+ {
+  "table": "machine_filesystem",
+  "page": "storage",
+  "alt": "machine",
+  "evidence": "0018-machine.sql:172"
+ },
+ {
+  "table": "machine_lxd_profile",
+  "page": "machine",
+  "alt": null,
+  "evidence": "0018-machine.sql"
+ },
+ {
+  "table": "machine_manual",
+  "page": "machine",
+  "alt": null,
+  "evidence": "0018-machine.sql"
+ },
+ {
+  "table": "machine_parent",
+  "page": "machine",
+  "alt": null,
+  "evidence": "0018-machine.sql"
+ },
+ {
+  "table": "machine_placement",
+  "page": "machine",
+  "alt": null,
+  "evidence": "0018-machine.sql"
+ },
+ {
+  "table": "machine_platform",
+  "page": "machine",
+  "alt": null,
+  "evidence": "0018-machine.sql"
+ },
+ {
+  "table": "machine_reprovision",
+  "page": "machine",
+  "alt": null,
+  "evidence": "0018-machine.sql"
+ },
+ {
+  "table": "machine_requires_reboot",
+  "page": "machine",
+  "alt": null,
+  "evidence": "0018-machine.sql"
+ },
+ {
+  "table": "machine_ssh_host_key",
+  "page": "ssh",
+  "alt": "machine",
+  "evidence": "host keys 0018:337, 0035"
+ },
+ {
+  "table": "machine_status",
+  "page": "machine",
+  "alt": "status",
+  "evidence": "status of machine/instance"
+ },
+ {
+  "table": "machine_virtual_ssh_host_key",
+  "page": "ssh",
+  "alt": "machine",
+  "evidence": "host keys 0018:337, 0035"
+ },
+ {
+  "table": "machine_volume",
+  "page": "storage",
+  "alt": "machine",
+  "evidence": "0018-machine.sql:172"
+ },
+ {
+  "table": "model",
+  "page": "model",
+  "alt": "controller",
+  "evidence": "0005-model.sql"
+ },
+ {
+  "table": "model_agent",
+  "page": "model",
+  "alt": "agent-version",
+  "evidence": "0031-model-agent.sql:3"
+ },
+ {
+  "table": "model_authorized_keys",
+  "page": "ssh-key",
+  "alt": "model",
+  "evidence": "controller/sql/0022 model authorises user keys"
+ }
+]

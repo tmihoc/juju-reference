@@ -1,0 +1,20 @@
+You are a blind rater in a documentation-structure experiment. Open only the files named in your task. Do not search the repository.
+
+Read e9_items.json (the statements about software entities, shuffled, with ids; some come from user documentation, some from developer package comments). For each statement decide which single kind of question it answers:
+
+- identity: what the entity is and is for, and its neighbours with how many of each (context needed to place the entity).
+- state: a fact that holds of the entity at an instant regardless of what is happening: what it consists of, stored or derived attributes, allowed values (including life and status values), and constraints that must always hold.
+- observation: how a change in the entity becomes visible to others: change notifications or streams that report changes, or reads that report its state.
+- agent: what the program or worker that realises or acts for the entity is: its identity, where and how many run, what makes it run or stop, and which events it reacts to (not what it does in response).
+- dynamics: what changes the entity: a request, event or timer that triggers a change, the conditions that must hold for it to proceed, the steps and who performs them, and the effect on the state.
+- none: the statement fits none of these (for example it explains implementation structure, history, rationale, or something else). Use this honestly; do not force a fit.
+
+For each statement give:
+- primary: one of the six classes above.
+- secondary: another class if the statement also states something of that other kind, else null.
+- none_reason: one short phrase saying what the statement is about, only when primary is none (else null).
+- presupposes: the list of OTHER classes among identity/state/observation/agent/dynamics whose vocabulary a reader must already know to understand this statement (empty list if none). Do not include the statement's own primary class.
+
+Rules and error conditions take the class of what they constrain: an always-true constraint is state, a condition on proceeding with a change is dynamics.
+
+Write the answer as JSON to the output path in your task: a list of {"id":int,"primary":str,"secondary":str|null,"none_reason":str|null,"presupposes":[str]} covering all ids. Reply with only the word done.

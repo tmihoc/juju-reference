@@ -1,0 +1,182 @@
+{
+ "model": [
+  20,
+  7,
+  48
+ ],
+ "machine": [
+  11,
+  16,
+  47
+ ],
+ "application": [
+  51,
+  34,
+  151
+ ],
+ "network": [
+  17,
+  7,
+  36
+ ],
+ "storage": [
+  15,
+  0,
+  27
+ ],
+ "blockdevice": [
+  0,
+  4,
+  7
+ ],
+ "secret": [
+  8,
+  23,
+  39
+ ],
+ "annotation": [
+  4,
+  0,
+  4
+ ],
+ "constraints": [
+  0,
+  0,
+  0
+ ],
+ "resource": [
+  3,
+  3,
+  19
+ ],
+ "relation": [
+  7,
+  22,
+  39
+ ],
+ "blockcommand": [
+  4,
+  0,
+  5
+ ],
+ "sequence": [
+  0,
+  0,
+  2
+ ],
+ "agentbinary": [
+  0,
+  0,
+  9
+ ],
+ "modelagent": [
+  6,
+  6,
+  26
+ ],
+ "crossmodelrelation": [
+  8,
+  16,
+  47
+ ],
+ "operation": [
+  8,
+  9,
+  19
+ ],
+ "ssh": [
+  2,
+  2,
+  15
+ ],
+ "port": [
+  2,
+  2,
+  8
+ ],
+ "objectstore": [
+  0,
+  0,
+  19
+ ],
+ "removal": [
+  11,
+  13,
+  29
+ ],
+ "lease": [
+  0,
+  0,
+  9
+ ],
+ "cloud": [
+  4,
+  0,
+  5
+ ],
+ "externalcontroller": [
+  2,
+  1,
+  5
+ ],
+ "controllerconfig": [
+  2,
+  1,
+  4
+ ],
+ "controllernode": [
+  2,
+  6,
+  21
+ ],
+ "upgrade": [
+  1,
+  0,
+  12
+ ],
+ "autocert": [
+  0,
+  0,
+  0
+ ],
+ "access": [
+  15,
+  0,
+  33
+ ],
+ "flag": [
+  0,
+  0,
+  2
+ ],
+ "secretbackend": [
+  7,
+  3,
+  20
+ ],
+ "keymanager": [
+  4,
+  0,
+  7
+ ],
+ "cloudimagemetadata": [
+  3,
+  0,
+  5
+ ],
+ "tracing": [
+  0,
+  3,
+  5
+ ],
+ "logging": [
+  0,
+  2,
+  5
+ ],
+ "controller": [
+  2,
+  2,
+  5
+ ]
+}

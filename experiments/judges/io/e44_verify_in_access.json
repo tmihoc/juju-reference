@@ -1,0 +1,576 @@
+[
+ {
+  "id": "A-Q01",
+  "type": "lookup",
+  "question": "Which access levels can be given to a user on a cloud?",
+  "ground_truth": "Only add-model and admin are valid cloud access levels.",
+  "key_facts": [
+   "add-model is a valid cloud access level",
+   "admin is a valid cloud access level",
+   "read, write, consume, login and superuser are rejected for a cloud"
+  ],
+  "evidence": [
+   {
+    "file": "core/permission/access.go",
+    "line": 193,
+    "quote": "case AddModelAccess, AdminAccess:"
+   },
+   {
+    "file": "core/permission/access.go",
+    "line": 196,
+    "quote": "\"%q cloud access %w\""
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q01"
+ },
+ {
+  "id": "A-Q02",
+  "type": "lookup",
+  "question": "What access level does a user need on the controller to grant or revoke another user's controller access, and what does a caller without it get back?",
+  "ground_truth": "Superuser on the controller. Without it, every change in the request fails with the 'permission denied' error.",
+  "key_facts": [
+   "Controller superuser access is required",
+   "Each requested change gets the permission denied error (ErrPerm) when the caller lacks superuser",
+   "Plain login access is not enough"
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/facades/client/controller/controller.go",
+    "line": 723,
+    "quote": "err := c.authorizer.HasPermission(ctx, permission.SuperuserAccess, controllerTag)"
+   },
+   {
+    "file": "apiserver/facades/client/controller/controller.go",
+    "line": 731,
+    "quote": "result.Results[i].Error = apiservererrors.ServerError(apiservererrors.ErrPerm)"
+   },
+   {
+    "file": "apiserver/errors/errors.go",
+    "line": 32,
+    "quote": "errors.ConstError(\"permission denied\")"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q02"
+ },
+ {
+  "id": "A-Q03",
+  "type": "lookup",
+  "question": "When an application offer is created, which access does the offer's owner get, and which access is given to the generic everyone@external user?",
+  "ground_truth": "The owner gets admin on the offer and everyone@external gets read on the offer.",
+  "key_facts": [
+   "Offer owner receives admin access on the offer",
+   "everyone@external receives read access on the offer",
+   "Both permissions are inserted in the same transaction"
+  ],
+  "evidence": [
+   {
+    "file": "domain/crossmodelrelation/state/controller/offer.go",
+    "line": 45,
+    "quote": "AccessType: corepermission.AdminAccess.String(),"
+   },
+   {
+    "file": "domain/crossmodelrelation/state/controller/offer.go",
+    "line": 67,
+    "quote": "AccessType: corepermission.ReadAccess.String(),"
+   },
+   {
+    "file": "domain/crossmodelrelation/state/controller/offer.go",
+    "line": 24,
+    "quote": "// CreateOfferAccess give the offer owner AdminAccess and EveryoneUserName"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q03"
+ },
+ {
+  "id": "A-Q04",
+  "type": "lookup",
+  "question": "Can the same user hold two separate permission entries on one model, for example one for read and one for write?",
+  "ground_truth": "No. Only one permission per target and user is allowed (unique on target + user); a second insert fails with 'permission already exists'. Changing a level updates the existing entry.",
+  "key_facts": [
+   "The permission table has a unique index on (grant_on, grant_to)",
+   "A duplicate create returns the 'permission already exists' error",
+   "Grant of a higher level updates the existing row rather than adding one"
+  ],
+  "evidence": [
+   {
+    "file": "domain/schema/controller/sql/0017-user-permission.sql",
+    "line": 78,
+    "quote": "-- Allow only 1 combination of grant_on and grant_to"
+   },
+   {
+    "file": "domain/schema/controller/sql/0017-user-permission.sql",
+    "line": 80,
+    "quote": "CREATE UNIQUE INDEX idx_permission_type_to"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 1194,
+    "quote": "accesserrors.PermissionAlreadyExists)"
+   },
+   {
+    "file": "domain/access/errors/errors.go",
+    "line": 48,
+    "quote": "ConstError(\"permission already exists\")"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q04"
+ },
+ {
+  "id": "A-Q05",
+  "type": "lookup",
+  "question": "The control socket lets an operator create a metrics user. Which access does that user get, and on what?",
+  "ground_truth": "Read access on the controller model.",
+  "key_facts": [
+   "The access level is read",
+   "The target is the controller model (model object type, controller model UUID)"
+  ],
+  "evidence": [
+   {
+    "file": "internal/worker/controlsocket/worker.go",
+    "line": 422,
+    "quote": "Key:        w.controllerModelUUID.String(),"
+   },
+   {
+    "file": "internal/worker/controlsocket/worker.go",
+    "line": 433,
+    "quote": "Access: permission.ReadAccess,"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q05"
+ },
+ {
+  "id": "A-Q06",
+  "type": "mechanism",
+  "question": "If I grant model access to an external user such as alice@external who has never logged in, does the grant fail because the user does not exist?",
+  "ground_truth": "No. For an external (non-local) user who is not found, the user is created first (marked external, created by everyone@external) and then the permission is granted, in the same transaction. A local user that does not exist fails with user not found.",
+  "key_facts": [
+   "Missing external subject is created automatically during the grant/revoke update",
+   "The new user record is flagged external and its creator is everyone@external",
+   "A missing local user is not created; the update returns user not found",
+   "User creation and permission change happen in one transaction"
+  ],
+  "evidence": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 197,
+    "quote": "if errors.Is(err, accesserrors.UserNotFound) && !args.Subject.IsLocal() {"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 198,
+    "quote": "subjectUUID, err = st.addExternalUser(ctx, tx, args.Subject)"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 384,
+    "quote": "user.UUID(everyoneExternal.UUID)"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q06"
+ },
+ {
+  "id": "A-Q07",
+  "type": "mechanism",
+  "question": "I revoke consume access on an offer from a user who has cross-model relations to that offer. What happens to those relations, and in what order relative to the permission change? Is anyone exempt?",
+  "ground_truth": "Their relations on the offer are suspended first (reason 'offer access revoked'), and only then is the permission lowered to read. Controller superusers and model admins are exempt (no suspension) since they keep consume via admin rights. Suspension only happens when the resulting access is below consume (revoking admin leaves consume, so no suspension).",
+  "key_facts": [
+   "Suspension of the user's relations happens before the permission downgrade",
+   "Reason recorded is 'offer access revoked'",
+   "Controller superuser or model admin users are skipped",
+   "No suspension if the revoke leaves consume or above (e.g. revoking admin)"
+  ],
+  "evidence": [
+   {
+    "file": "domain/crossmodelrelation/service/offer.go",
+    "line": 485,
+    "quote": "if args.Change == permission.Revoke {"
+   },
+   {
+    "file": "domain/crossmodelrelation/service/offer.go",
+    "line": 517,
+    "quote": "if spec.RevokeAccess().EqualOrGreaterOfferAccessThan(permission.ConsumeAccess) {"
+   },
+   {
+    "file": "domain/crossmodelrelation/service/offer.go",
+    "line": 521,
+    "quote": "isAdmin, err := s.controllerState.IsUserControllerOrModelAdmin("
+   },
+   {
+    "file": "domain/crossmodelrelation/service/offer.go",
+    "line": 539,
+    "quote": "\"offer access revoked\","
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q07"
+ },
+ {
+  "id": "A-Q08",
+  "type": "mechanism",
+  "question": "What happens to a user's permissions when that user is removed, and what stops the removal?",
+  "ground_truth": "In the same transaction all of the user's permission rows are deleted and the user is marked removed (not physically deleted). Before that, removal is refused if any model would be left without an admin user, with an error like '<N> model(s) would be left without an admin user'.",
+  "key_facts": [
+   "All permission rows granted to the user are deleted",
+   "The user row is only marked removed=true, keeping provenance",
+   "The orphaned-model check runs first and blocks removal if a model would have no other active admin"
+  ],
+  "evidence": [
+   {
+    "file": "domain/access/state/user.go",
+    "line": 543,
+    "quote": "deletePermStmt, err := st.Prepare(\"DELETE FROM permission WHERE grant_to = $userUUID.uuid\""
+   },
+   {
+    "file": "domain/access/state/user.go",
+    "line": 559,
+    "quote": "if err := st.checkPotentiallyOrhpanedModels(ctx, tx, uuid.String()); err != nil {"
+   },
+   {
+    "file": "domain/access/state/user.go",
+    "line": 494,
+    "quote": "\"%d model(s) would be left without an admin user\""
+   },
+   {
+    "file": "domain/access/state/user.go",
+    "line": 548,
+    "quote": "setRemovedStmt, err := st.Prepare(\"UPDATE user SET removed = true"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q08"
+ },
+ {
+  "id": "A-Q09",
+  "type": "mechanism",
+  "question": "When a model is finally deleted from the controller, what happens to the users' access entries for that model, and can this happen while the model is still alive?",
+  "ground_truth": "The permissions with the model as target are deleted in the same transaction as the model row. Deletion is refused while the model is alive ('cannot delete model ..., model is still alive') and also while dying (must be dead).",
+  "key_facts": [
+   "Model permissions are deleted in the model deletion transaction before the model row",
+   "Deletion errors if the model life is alive",
+   "A dying model must wait to be dead"
+  ],
+  "evidence": [
+   {
+    "file": "domain/removal/state/controller/model.go",
+    "line": 298,
+    "quote": "// Delete the model permissions."
+   },
+   {
+    "file": "domain/removal/state/controller/model.go",
+    "line": 282,
+    "quote": "cannot delete model %q, model is still alive"
+   },
+   {
+    "file": "domain/removal/state/controller/model.go",
+    "line": 289,
+    "quote": "waiting for model to be dead before deletion"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q09"
+ },
+ {
+  "id": "A-Q10",
+  "type": "mechanism",
+  "question": "An external user account has been disabled, while everyone@external still holds login access on the controller. When the system looks up that disabled user's access level on the controller, does it fall back to the everyone@external level?",
+  "ground_truth": "No. A removed or disabled user always gets access-not-found for the target and never falls through to the everyone@external inheritance. (For an active external user with no DB row yet, access is determined by everyone@external; otherwise the higher of own and everyone@external access is used.)",
+  "key_facts": [
+   "Removed or disabled users get AccessNotFound",
+   "They are not allowed to inherit from everyone@external",
+   "For active external users the higher of own and everyone@external level is returned"
+  ],
+  "evidence": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 288,
+    "quote": "// Removed or disabled users always receive accesserrors.AccessNotFound"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 337,
+    "quote": "} else if userActive.Removed || userActive.Disabled {"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 363,
+    "quote": "if !subject.IsLocal() && baseExternalAccessGreater(baseExternalPerms, userAccess) {"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q10"
+ },
+ {
+  "id": "A-Q11",
+  "type": "failure",
+  "question": "I tried to revoke admin access on a model from a user and got an error saying the model would be left without an admin user. Why does that happen?",
+  "ground_truth": "The revoke on a model checks that some other active (not disabled, not removed) user holds admin on the model. If the revoked user is the only admin, the change is refused with 'model would be left without an admin user'. Fix: grant admin to another user first.",
+  "key_facts": [
+   "Error text: model would be left without an admin user",
+   "Cause: no other enabled, non-removed user has admin on that model",
+   "The check is applied to model targets on revoke",
+   "Grant admin to someone else first"
+  ],
+  "evidence": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 946,
+    "quote": "\"model would be left without an admin user\","
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 934,
+    "quote": "AND    p.access_type_id = 3"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 958,
+    "quote": "newAccess != corepermission.AdminAccess {"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q11"
+ },
+ {
+  "id": "A-Q12",
+  "type": "failure",
+  "question": "Granting a user read on a model returned: user \"bob\" already has \"read\" access or greater. What does this mean and what do I do?",
+  "ground_truth": "The grant is refused because bob already holds the requested level or a higher one on that target (levels order read < write < admin on models). Nothing to do; to change access grant a strictly higher level or revoke first.",
+  "key_facts": [
+   "Error text ends with 'access or greater' (PermissionAccessGreater)",
+   "Raised when existing access is equal or greater than the requested grant",
+   "Grant a strictly higher level to change it"
+  ],
+  "evidence": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 917,
+    "quote": "return errors.Errorf(\"user %q already has %q %w\", args.Subject, grantAccess, accesserrors.PermissionAccessGreater)"
+   },
+   {
+    "file": "domain/access/errors/errors.go",
+    "line": 60,
+    "quote": "ConstError(\"access or greater\")"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 916,
+    "quote": "if aSpec.EqualOrGreaterThan(grantAccess) {"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "Q12"
+ },
+ {
+  "id": "A-Q13",
+  "type": "failure",
+  "question": "Changing cloud access for my own user fails with 'cannot change your own cloud access'. When is that raised, and does being a controller superuser avoid it?",
+  "ground_truth": "It is raised when the user tag being changed equals the API caller's own user, in the cloud access modify call. The check happens after the permission check and is not skipped for superusers/cloud admins, so being admin does not avoid it; another admin must make the change.",
+  "key_facts": [
+   "Error is raised when the target user is the caller",
+   "The self-check applies even to admins (it follows the admin check without exemption)",
+   "Another admin has to change the access"
+  ],
+  "evidence": [
+   {
+    "file": "apiserver/facades/client/cloud/cloud.go",
+    "line": 1041,
+    "quote": "if api.apiUser.String() == arg.UserTag {"
+   },
+   {
+    "file": "apiserver/facades/client/cloud/cloud.go",
+    "line": 1042,
+    "quote": "errors.New(\"cannot change your own cloud access\")"
+   },
+   {
+    "file": "apiserver/facades/client/cloud/cloud.go",
+    "line": 1032,
+    "quote": "if !api.isAdmin {"
+   }
+  ],
+  "greps": [],
+  "cross_area": true,
+  "orig_id": "Q13"
+ },
+ {
+  "id": "A-Q14",
+  "type": "unanswerable",
+  "question": "Can I give a user write access to a model for a limited time, for example 24 hours, so that it is revoked automatically?",
+  "ground_truth": "The documentation does not say; no expiry/time-limited grant exists for permissions (a grant stays until revoked).",
+  "key_facts": [
+   "No expiry or duration field exists on permissions"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE \"(grant|permission|access)[a-z_]*(expir|ttl|until)|(expir|ttl)[a-z_]*(grant|permission)\" --include=*.go --include=*.sql .  (only offer macaroon expiry hits)",
+   "grep -rniE \"temporary (access|permission|grant)|time-bound|timebound|grant.*duration|--duration\" cmd/juju/model cmd/juju/user apiserver/facades/client domain/access  (no hits)",
+   "grep -rniE \"valid.?until|lifetime|time.?limit\" domain/access core/permission  (no hits)",
+   "grep -n expir domain/schema/controller/sql/0017-user-permission.sql (no hits)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q14"
+ },
+ {
+  "id": "A-Q15",
+  "type": "unanswerable",
+  "question": "Can I add an explicit deny entry for a user on a model that overrides access they would otherwise inherit from everyone@external?",
+  "ground_truth": "The documentation does not say; there is no deny access level or deny permission.",
+  "key_facts": [
+   "Only positive levels exist (read, write, consume, admin, login, add-model, superuser)"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE \"denyAccess|DenyAccess|deny_access\" --include=*.go --include=*.sql .  (0)",
+   "grep -rniE \"denylist|blocklist|blacklist\" --include=*.go --include=*.sql .  (unrelated hits only)",
+   "grep -rniE \"explicit.?deny|permission_deny|negative permission\" --include=*.go --include=*.sql .  (0)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q15"
+ },
+ {
+  "id": "A-Q16",
+  "type": "unanswerable",
+  "question": "What is the maximum number of users that can be granted access to a single model?",
+  "ground_truth": "The documentation does not say; no limit on the number of users or permissions per model is defined.",
+  "key_facts": [
+   "No per-model user/permission count limit exists"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -rniE \"MaxUsers|max_users|maxModelUsers\" --include=*.go --include=*.sql .  (0)",
+   "grep -rniE \"user limit|too many users|userLimit\" --include=*.go --include=*.sql .  (0)",
+   "grep -rniE \"quota.*user|max.?permissions|max.?grants\" --include=*.go --include=*.sql .  (0)"
+  ],
+  "cross_area": false,
+  "orig_id": "Q16"
+ },
+ {
+  "id": "B-e44_q2_access_1",
+  "type": "lookup",
+  "question": "Which access levels can be granted to a user on a cloud?",
+  "ground_truth": "Only two levels are valid on a cloud: add-model and admin.",
+  "key_facts": [
+   "add-model is a valid cloud access level",
+   "admin is a valid cloud access level",
+   "No other level (read, write, consume, login, superuser) is valid on a cloud"
+  ],
+  "evidence": [
+   {
+    "file": "core/permission/access.go",
+    "line": 193,
+    "quote": "case AddModelAccess, AdminAccess:"
+   },
+   {
+    "file": "domain/schema/controller/sql/0017-user-permission.sql",
+    "line": 50,
+    "quote": "(0, 3, 0), -- admin, cloud"
+   },
+   {
+    "file": "domain/schema/controller/sql/0017-user-permission.sql",
+    "line": 51,
+    "quote": "(1, 5, 0), -- add-model, cloud"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_q2_access_1"
+ },
+ {
+  "id": "B-e44_q2_access_2",
+  "type": "mechanism",
+  "question": "If I revoke the superuser level from a user on the controller, what access do they end up with? And what happens to their access if I then revoke login as well?",
+  "ground_truth": "Revoking superuser on a controller downgrades the user to login. Revoking login then leaves no access, and the user's permission record on the controller is deleted.",
+  "key_facts": [
+   "Revoking superuser on a controller gives login access",
+   "Revoking login on a controller results in no access",
+   "When the resulting access is none, the permission row is deleted rather than updated"
+  ],
+  "evidence": [
+   {
+    "file": "core/permission/access.go",
+    "line": 369,
+    "quote": "// * Superuser gets you Login"
+   },
+   {
+    "file": "core/permission/access.go",
+    "line": 370,
+    "quote": "// * Login gets you NoAccess"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 963,
+    "quote": "if newAccess == corepermission.NoAccess {"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_q2_access_2"
+ },
+ {
+  "id": "B-e44_q2_access_3",
+  "type": "failure",
+  "question": "I ran a grant giving a user read access on a model, and it failed with a message saying the user already has the access \"or greater\". What causes this and what should I do?",
+  "ground_truth": "The error reads: user \"<name>\" already has \"<level>\" access or greater. It occurs when the user's current access level on the target is equal to or greater than the level being granted (e.g. granting read to a user who already has read, write or admin). Nothing needs changing; to give a different level, grant a strictly higher one (or revoke first to lower it).",
+  "key_facts": [
+   "Message format: user \"<name>\" already has \"<level>\" access or greater",
+   "Cause: the user's existing level on that target is equal to or greater than the requested level",
+   "Grant only succeeds if the requested level is strictly higher than the current one (otherwise the existing permission is left unchanged)"
+  ],
+  "evidence": [
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 917,
+    "quote": "\"user %q already has %q %w\", args.Subject, grantAccess"
+   },
+   {
+    "file": "domain/access/errors/errors.go",
+    "line": 60,
+    "quote": "PermissionAccessGreater = errors.ConstError(\"access or greater\")"
+   },
+   {
+    "file": "domain/access/state/permission.go",
+    "line": 916,
+    "quote": "if aSpec.EqualOrGreaterThan(grantAccess) {"
+   }
+  ],
+  "greps": [],
+  "cross_area": false,
+  "orig_id": "e44_q2_access_3"
+ },
+ {
+  "id": "B-e44_q2_access_4",
+  "type": "unanswerable",
+  "question": "Can I grant a user access to a model or offer for a limited time, so that the permission expires automatically after a set duration?",
+  "ground_truth": "The documentation does not say; no expiry, TTL or time-limited permission concept is defined for permissions.",
+  "key_facts": [
+   "No expiry/TTL field exists on permissions",
+   "The documentation does not define time-limited grants"
+  ],
+  "evidence": [],
+  "greps": [
+   "grep -riE 'expir.*(permission|grant|access)|(permission|grant|access).*expir' in domain/access, core/permission, cmd/juju/model, apiserver/facades/client -> no matches",
+   "grep -riE 'temporary access|temporary grant|time-limited|timelimited|grant.{0,20}(ttl|duration|until|valid_until|expires)' over whole code -> only firewall/API port test helpers (unrelated)",
+   "grep -riE '(valid_until|expires_at|expiry|not_after|lease_duration)' in domain/schema/controller/sql -> only lease and macaroon tables, not permission",
+   "grep -riE '(expir|ttl|lifetime|validity|notafter)' in core/permission, domain/access/state/permission.go, cmd/juju/model/grantrevoke*.go -> no matches"
+  ],
+  "cross_area": false,
+  "orig_id": "e44_q2_access_4"
+ }
+]

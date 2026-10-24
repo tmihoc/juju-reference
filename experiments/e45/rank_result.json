@@ -1,0 +1,93 @@
+{
+ "S": [
+  {
+   "page": "model",
+   "tables": 5,
+   "facade_kinds": 3,
+   "facades": 19,
+   "reach": 6
+  },
+  {
+   "page": "cloud",
+   "tables": 4,
+   "facade_kinds": 3,
+   "facades": 7,
+   "reach": 5
+  },
+  {
+   "page": "relation",
+   "tables": 12,
+   "facade_kinds": 3,
+   "facades": 12,
+   "reach": 2
+  },
+  {
+   "page": "secret-backend",
+   "tables": 5,
+   "facade_kinds": 3,
+   "facades": 11,
+   "reach": 0
+  },
+  {
+   "page": "offer",
+   "tables": 4,
+   "facade_kinds": 3,
+   "facades": 11,
+   "reach": 0
+  },
+  {
+   "page": "model-migration",
+   "tables": 6,
+   "facade_kinds": 3,
+   "facades": 6,
+   "reach": 0
+  },
+  {
+   "page": "controller",
+   "tables": 7,
+   "facade_kinds": 2,
+   "facades": 5,
+   "reach": 1
+  },
+  {
+   "page": "action",
+   "tables": 9,
+   "facade_kinds": 2,
+   "facades": 5,
+   "reach": 0
+  },
+  {
+   "page": "resource",
+   "tables": 8,
+   "facade_kinds": 2,
+   "facades": 4,
+   "reach": 0
+  },
+  {
+   "page": "user",
+   "tables": 5,
+   "facade_kinds": 1,
+   "facades": 10,
+   "reach": 3
+  },
+  {
+   "page": "subnet",
+   "tables": 4,
+   "facade_kinds": 0,
+   "facades": 0,
+   "reach": 2
+  }
+ ],
+ "life_tables": 15,
+ "status_lookups": [
+  "k8s_pod_status_value",
+  "machine_cloud_instance_status_value",
+  "machine_status_value",
+  "operation_task_status_value",
+  "relation_status_type",
+  "storage_filesystem_status_value",
+  "storage_volume_status_value",
+  "unit_agent_status_value",
+  "workload_status_value"
+ ]
+}

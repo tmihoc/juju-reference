@@ -1,0 +1,861 @@
+{
+ "pages": [
+  {
+   "page": "action",
+   "kind": "noun",
+   "about": "Running actions and execs: operations, tasks, their parameters, output and status."
+  },
+  {
+   "page": "agent-version",
+   "kind": "noun",
+   "about": "The model target agent version, stream and the agent binary catalogue."
+  },
+  {
+   "page": "annotation",
+   "kind": "facet",
+   "about": "Key-value annotations attached to entities."
+  },
+  {
+   "page": "application",
+   "kind": "noun",
+   "about": "A deployed application: its configuration, endpoints, scale, status and platform."
+  },
+  {
+   "page": "block-command",
+   "kind": "mechanism",
+   "about": "Operation blocks that guard the model."
+  },
+  {
+   "page": "charm",
+   "kind": "noun",
+   "about": "A charm as stored by Juju: metadata, actions, config, resources, storage declarations."
+  },
+  {
+   "page": "cloud",
+   "kind": "noun",
+   "about": "Clouds and their regions, types and certificates."
+  },
+  {
+   "page": "constraint",
+   "kind": "facet",
+   "about": "Machine and application constraints: the stored constraint, spaces, tags, zones."
+  },
+  {
+   "page": "controller",
+   "kind": "noun",
+   "about": "The controller and its nodes: addresses, passwords, configuration, certificates cache."
+  },
+  {
+   "page": "credential",
+   "kind": "noun",
+   "about": "Cloud credentials and their attributes."
+  },
+  {
+   "page": "database",
+   "kind": "substrate",
+   "about": "Database bookkeeping: change log, namespaces, sequences, feature flags."
+  },
+  {
+   "page": "external-controller",
+   "kind": "noun",
+   "about": "Other controllers known for cross-controller relations and migration."
+  },
+  {
+   "page": "image-metadata",
+   "kind": "noun",
+   "about": "Cached cloud image metadata."
+  },
+  {
+   "page": "lease",
+   "kind": "mechanism",
+   "about": "Leases and leadership claims."
+  },
+  {
+   "page": "link-layer-device",
+   "kind": "noun",
+   "about": "Network devices, addresses and the network node of a machine or unit."
+  },
+  {
+   "page": "machine",
+   "kind": "noun",
+   "about": "A machine or container that hosts units: its cloud instance, placement, status and agent."
+  },
+  {
+   "page": "model",
+   "kind": "noun",
+   "about": "A model: its identity, type, configuration, life and agent."
+  },
+  {
+   "page": "model-defaults",
+   "kind": "noun",
+   "about": "Default model configuration per cloud and region."
+  },
+  {
+   "page": "model-migration",
+   "kind": "mechanism",
+   "about": "Moving a model to another controller: phases, targets, progress."
+  },
+  {
+   "page": "object-store",
+   "kind": "noun",
+   "about": "The object store backend, metadata, placement and drain."
+  },
+  {
+   "page": "offer",
+   "kind": "noun",
+   "about": "Cross-model offers and the remote application proxies that consume them."
+  },
+  {
+   "page": "permission",
+   "kind": "noun",
+   "about": "Access levels granted to users on clouds, controllers, models and offers."
+  },
+  {
+   "page": "port",
+   "kind": "noun",
+   "about": "Opened port ranges of units."
+  },
+  {
+   "page": "relation",
+   "kind": "noun",
+   "about": "A relation between application endpoints: its units, settings data bags and status."
+  },
+  {
+   "page": "removal",
+   "kind": "mechanism",
+   "about": "Scheduled removal jobs."
+  },
+  {
+   "page": "resource",
+   "kind": "noun",
+   "about": "Charm resources as attached to applications and units, with their file and image stores."
+  },
+  {
+   "page": "secret",
+   "kind": "noun",
+   "about": "Secrets and their revisions, owners, consumers, permissions and rotation."
+  },
+  {
+   "page": "secret-backend",
+   "kind": "noun",
+   "about": "Where secret content is stored: backend registration, configuration, rotation."
+  },
+  {
+   "page": "space",
+   "kind": "noun",
+   "about": "Network spaces."
+  },
+  {
+   "page": "ssh",
+   "kind": "noun",
+   "about": "SSH access to machines and units: host keys, connection requests, the SSH server port."
+  },
+  {
+   "page": "ssh-key",
+   "kind": "noun",
+   "about": "Public SSH keys users store and the models that authorise them."
+  },
+  {
+   "page": "status",
+   "kind": "facet",
+   "about": "The shared vocabulary of statuses across entities."
+  },
+  {
+   "page": "storage",
+   "kind": "noun",
+   "about": "Charm storage: storage instances, volumes, filesystems, pools, attachments, and block devices."
+  },
+  {
+   "page": "subnet",
+   "kind": "noun",
+   "about": "Subnets and their provider network ids."
+  },
+  {
+   "page": "telemetry",
+   "kind": "noun",
+   "about": "Tracing and logging configuration sent to external systems."
+  },
+  {
+   "page": "unit",
+   "kind": "noun",
+   "about": "A unit of an application: its agent, status, state and resolution."
+  },
+  {
+   "page": "upgrade",
+   "kind": "mechanism",
+   "about": "Controller upgrade state across controller nodes."
+  },
+  {
+   "page": "user",
+   "kind": "noun",
+   "about": "Users, their authentication and last login."
+  },
+  {
+   "page": "zone",
+   "kind": "noun",
+   "about": "Availability zones and their subnets."
+  }
+ ],
+ "tables": [
+  {
+   "table": "agent_binary_store",
+   "schema": "model+controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "agent_version",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "annotation_application",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "annotation_charm",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "annotation_machine",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "annotation_model",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "annotation_storage_filesystem",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "annotation_storage_instance",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "annotation_storage_volume",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "annotation_unit",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_agent",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_channel",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_config",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_config_hash",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_constraint",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_controller",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_endpoint",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_exposed_endpoint_cidr",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_exposed_endpoint_space",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_extra_endpoint",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_k8s_resources_managed",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_platform",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_remote_consumer",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_remote_offerer",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_remote_offerer_relation_macaroon",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_remote_offerer_status",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_resource",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_scale",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_setting",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_status",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_storage_directive",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "application_workload_version",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "autocert_cache",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "availability_zone",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "availability_zone_subnet",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "bakery_config",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "block_command",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "block_device",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "block_device_link_device",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "change_log",
+   "schema": "model+controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "change_log_witness",
+   "schema": "model+controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_action",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_category",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_config",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_container",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_container_mount",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_device",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_download_info",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_extra_binding",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_hash",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_manifest_base",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_metadata",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_relation",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_resource",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_storage",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_storage_property",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_tag",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_term",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "charm_tracing_config",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "cloud",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "cloud_auth_type",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "cloud_ca_cert",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "cloud_credential",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "cloud_credential_attribute",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "cloud_defaults",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "cloud_image_metadata",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "cloud_region",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "cloud_region_defaults",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "constraint",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "constraint_space",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "constraint_tag",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "constraint_zone",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "controller",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "controller_agent_address",
+   "schema": "controller",
+   "new_in_4_1": true
+  },
+  {
+   "table": "controller_api_address",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "controller_client_address",
+   "schema": "controller",
+   "new_in_4_1": true
+  },
+  {
+   "table": "controller_config",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "controller_node",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "controller_node_agent_version",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "controller_node_nonce",
+   "schema": "controller",
+   "new_in_4_1": true
+  },
+  {
+   "table": "controller_node_password",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "controller_peer_address",
+   "schema": "controller",
+   "new_in_4_1": true
+  },
+  {
+   "table": "controller_ssh_host_key",
+   "schema": "controller",
+   "new_in_4_1": true
+  },
+  {
+   "table": "controller_ssh_server_port",
+   "schema": "controller",
+   "new_in_4_1": true
+  },
+  {
+   "table": "device_constraint",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "device_constraint_attribute",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "external_controller",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "external_controller_address",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "external_model",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "flag",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "fqdn_address",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "hostname_address",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "instance_tag",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "ip_address",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "k8s_pod",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "k8s_pod_port",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "k8s_pod_status",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "k8s_service",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "lease",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "lease_pin",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "link_layer_device",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "link_layer_device_dns_address",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "link_layer_device_dns_domain",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "link_layer_device_parent",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "link_layer_device_route",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "log_transfer_progress",
+   "schema": "model",
+   "new_in_4_1": true
+  },
+  {
+   "table": "logging_loki_config",
+   "schema": "controller",
+   "new_in_4_1": true
+  },
+  {
+   "table": "macaroon_root_key",
+   "schema": "controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_agent_presence",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_agent_version",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_cloud_instance",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_cloud_instance_status",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_constraint",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_container_type",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_filesystem",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_lxd_profile",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_manual",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_parent",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_placement",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_platform",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_reprovision",
+   "schema": "model",
+   "new_in_4_1": true
+  },
+  {
+   "table": "machine_requires_reboot",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_ssh_host_key",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_status",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "machine_virtual_ssh_host_key",
+   "schema": "model",
+   "new_in_4_1": true
+  },
+  {
+   "table": "machine_volume",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "model",
+   "schema": "model+controller",
+   "new_in_4_1": false
+  },
+  {
+   "table": "model_agent",
+   "schema": "model",
+   "new_in_4_1": false
+  },
+  {
+   "table": "model_authorized_keys",
+   "schema": "controller",
+   "new_in_4_1": false
+  }
+ ]
+}

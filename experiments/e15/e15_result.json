@@ -1,0 +1,845 @@
+{
+ "model": {
+  "n_old": 243,
+  "n_new": 250,
+  "added": [
+   "log_transfer_progress",
+   "machine_reprovision",
+   "machine_virtual_ssh_host_key",
+   "relation_unit_departure",
+   "ssh_connection_request",
+   "ssh_key_algorithm_type",
+   "unit_virtual_ssh_host_key"
+  ],
+  "removed": [],
+  "changed_C": [
+   "application",
+   "application_constraint",
+   "application_endpoint",
+   "application_exposed_endpoint_space",
+   "application_extra_endpoint",
+   "application_remote_consumer",
+   "application_remote_offerer",
+   "application_resource",
+   "application_scale",
+   "block_device",
+   "block_device_link_device",
+   "change_log_namespace",
+   "change_log_witness",
+   "charm",
+   "charm_relation",
+   "constraint",
+   "constraint_space",
+   "fqdn_address",
+   "k8s_service",
+   "link_layer_device",
+   "link_layer_device_parent",
+   "log_transfer_progress",
+   "machine",
+   "machine_filesystem",
+   "machine_parent",
+   "machine_reprovision",
+   "machine_ssh_host_key",
+   "machine_virtual_ssh_host_key",
+   "machine_volume",
+   "model_migrating",
+   "net_node_fqdn_address",
+   "offer",
+   "offer_endpoint",
+   "operation",
+   "operation_machine_task",
+   "operation_task",
+   "operation_task_output",
+   "operation_unit_task",
+   "port_range",
+   "provider_network_subnet",
+   "relation",
+   "relation_application_setting",
+   "relation_unit",
+   "relation_unit_departure",
+   "relation_unit_setting",
+   "removal",
+   "removal_type",
+   "resource",
+   "secret_content",
+   "secret_deleted_value_ref",
+   "secret_metadata",
+   "secret_reference",
+   "secret_revision",
+   "secret_revision_obsolete",
+   "secret_value_ref",
+   "space",
+   "ssh_connection_request",
+   "ssh_key_algorithm_type",
+   "storage_unit_owner",
+   "storage_volume_attachment",
+   "subnet",
+   "unit_agent_status",
+   "unit_principal",
+   "unit_resource",
+   "unit_virtual_ssh_host_key"
+  ],
+  "n_C": 65,
+  "typing_diff": [
+   "fqdn_address",
+   "k8s_service",
+   "link_layer_device",
+   "log_transfer_progress",
+   "machine_parent",
+   "machine_reprovision",
+   "machine_ssh_host_key",
+   "machine_virtual_ssh_host_key",
+   "model_migrating",
+   "net_node_fqdn_address",
+   "relation_unit_departure",
+   "space",
+   "ssh_connection_request",
+   "ssh_key_algorithm_type",
+   "unit_virtual_ssh_host_key"
+  ],
+  "typing_diff_outside_C": [],
+  "views_diff": [
+   "v_application_constraint",
+   "v_application_export",
+   "v_constraint",
+   "v_machine_constraint",
+   "v_machine_interface",
+   "v_model_constraint",
+   "v_offer_detail",
+   "v_unit_agent_presence",
+   "v_unit_export",
+   "v_unit_k8s_pod_status"
+  ],
+  "inventory": {
+   "life": {
+    "added": [],
+    "removed": []
+   },
+   "status": {
+    "added": [],
+    "removed": []
+   },
+   "immutable": {
+    "added": [
+     "model_migrating"
+    ],
+    "removed": []
+   },
+   "lookup": {
+    "added": [
+     "ssh_key_algorithm_type"
+    ],
+    "removed": []
+   },
+   "watched": {
+    "added": [
+     [
+      "fqdn_address",
+      "DELETE",
+      "fqdn_address"
+     ],
+     [
+      "fqdn_address",
+      "INSERT",
+      "fqdn_address"
+     ],
+     [
+      "fqdn_address",
+      "UPDATE",
+      "fqdn_address"
+     ],
+     [
+      "k8s_service",
+      "DELETE",
+      "k8s_service"
+     ],
+     [
+      "k8s_service",
+      "INSERT",
+      "k8s_service"
+     ],
+     [
+      "k8s_service",
+      "UPDATE",
+      "k8s_service"
+     ],
+     [
+      "link_layer_device",
+      "DELETE",
+      "link_layer_device"
+     ],
+     [
+      "link_layer_device",
+      "INSERT",
+      "link_layer_device"
+     ],
+     [
+      "link_layer_device",
+      "UPDATE",
+      "link_layer_device"
+     ],
+     [
+      "machine_parent",
+      "DELETE",
+      "?"
+     ],
+     [
+      "machine_reprovision",
+      "DELETE",
+      "machine_reprovision"
+     ],
+     [
+      "machine_reprovision",
+      "INSERT",
+      "machine_reprovision"
+     ],
+     [
+      "machine_reprovision",
+      "UPDATE",
+      "machine_reprovision"
+     ],
+     [
+      "machine_ssh_host_key",
+      "DELETE",
+      "machine_ssh_host_key"
+     ],
+     [
+      "machine_ssh_host_key",
+      "INSERT",
+      "machine_ssh_host_key"
+     ],
+     [
+      "machine_ssh_host_key",
+      "UPDATE",
+      "machine_ssh_host_key"
+     ],
+     [
+      "model_migrating",
+      "UPDATE",
+      "model_migrating"
+     ],
+     [
+      "net_node_fqdn_address",
+      "DELETE",
+      "net_node_fqdn_address"
+     ],
+     [
+      "net_node_fqdn_address",
+      "INSERT",
+      "net_node_fqdn_address"
+     ],
+     [
+      "net_node_fqdn_address",
+      "UPDATE",
+      "net_node_fqdn_address"
+     ],
+     [
+      "space",
+      "DELETE",
+      "space"
+     ],
+     [
+      "space",
+      "INSERT",
+      "space"
+     ],
+     [
+      "space",
+      "UPDATE",
+      "space"
+     ],
+     [
+      "ssh_connection_request",
+      "DELETE",
+      "ssh_connection_request"
+     ],
+     [
+      "ssh_connection_request",
+      "INSERT",
+      "ssh_connection_request"
+     ],
+     [
+      "ssh_connection_request",
+      "UPDATE",
+      "ssh_connection_request"
+     ]
+    ],
+    "removed": []
+   },
+   "guard": {
+    "added": [],
+    "removed": []
+   },
+   "lookup_values": {
+    "change_log_namespace": {
+     "added": [
+      "('fqdn_address', 'FqdnAddress changes based on uuid')",
+      "('k8s_service', 'K8sService changes based on application_uuid')",
+      "('link_layer_device', 'LinkLayerDevice changes based on net_node_uuid')",
+      "('machine_reprovision', 'MachineReprovision changes based on machine_name')",
+      "('machine_ssh_host_key', 'MachineSshHostKey changes based on machine_uuid')",
+      "('net_node_fqdn_address', 'NetNodeFqdnAddress changes based on net_node_uuid')",
+      "('space', 'Space changes based on uuid')",
+      "('ssh_connection_request', 'SshConnectionRequest changes based on tunnel_id')"
+     ],
+     "removed": []
+    },
+    "ssh_key_algorithm_type": {
+     "added": [
+      "(0, 'ssh-rsa')",
+      "(1, 'ecdsa-sha2-nistp256')",
+      "(2, 'ssh-ed25519')"
+     ],
+     "removed": []
+    },
+    "removal_type": {
+     "added": [
+      "(19, 'resource')"
+     ],
+     "removed": []
+    }
+   }
+  },
+  "unattributed": [],
+  "typing_diff_not_in_inventory": [],
+  "typed_new": {
+   "ssh_connection_request": {
+    "life": false,
+    "status": false,
+    "watched": [
+     [
+      "DELETE",
+      "ssh_connection_request"
+     ],
+     [
+      "INSERT",
+      "ssh_connection_request"
+     ],
+     [
+      "UPDATE",
+      "ssh_connection_request"
+     ]
+    ],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "log_transfer_progress": {
+    "life": false,
+    "status": false,
+    "watched": [],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "relation_unit_departure": {
+    "life": false,
+    "status": false,
+    "watched": [],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "machine_virtual_ssh_host_key": {
+    "life": false,
+    "status": false,
+    "watched": [],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "ssh_key_algorithm_type": {
+    "life": false,
+    "status": false,
+    "watched": [],
+    "immutable": false,
+    "guard": [],
+    "lookup": true
+   },
+   "unit_virtual_ssh_host_key": {
+    "life": false,
+    "status": false,
+    "watched": [],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "machine_reprovision": {
+    "life": false,
+    "status": false,
+    "watched": [
+     [
+      "DELETE",
+      "machine_reprovision"
+     ],
+     [
+      "INSERT",
+      "machine_reprovision"
+     ],
+     [
+      "UPDATE",
+      "machine_reprovision"
+     ]
+    ],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   }
+  }
+ },
+ "controller": {
+  "n_old": 82,
+  "n_new": 94,
+  "added": [
+   "controller_agent_address",
+   "controller_client_address",
+   "controller_node_nonce",
+   "controller_peer_address",
+   "controller_ssh_host_key",
+   "controller_ssh_server_port",
+   "logging_loki_config",
+   "object_store_backend",
+   "object_store_backend_s3_config",
+   "object_store_backend_type",
+   "ssh_key_algorithm_type",
+   "workload_tracing_config"
+  ],
+  "removed": [],
+  "changed_C": [
+   "change_log_namespace",
+   "change_log_witness",
+   "cloud_credential",
+   "cloud_image_metadata",
+   "controller_agent_address",
+   "controller_api_address",
+   "controller_client_address",
+   "controller_node",
+   "controller_node_agent_version",
+   "controller_node_nonce",
+   "controller_peer_address",
+   "controller_ssh_host_key",
+   "controller_ssh_server_port",
+   "external_model",
+   "lease_type",
+   "logging_loki_config",
+   "macaroon_root_key",
+   "model",
+   "model_last_login",
+   "model_migration_import",
+   "object_store_backend",
+   "object_store_backend_s3_config",
+   "object_store_backend_type",
+   "object_store_drain_info",
+   "secret_backend",
+   "secret_backend_origin",
+   "secret_backend_reference",
+   "ssh_key_algorithm_type",
+   "upgrade_info_controller_node",
+   "user",
+   "user_authentication",
+   "workload_tracing_config"
+  ],
+  "n_C": 32,
+  "typing_diff": [
+   "controller_agent_address",
+   "controller_client_address",
+   "controller_node",
+   "controller_node_nonce",
+   "controller_peer_address",
+   "controller_ssh_host_key",
+   "controller_ssh_server_port",
+   "logging_loki_config",
+   "model_migration_import",
+   "object_store_backend",
+   "object_store_backend_s3_config",
+   "object_store_backend_type",
+   "ssh_key_algorithm_type",
+   "workload_tracing_config"
+  ],
+  "typing_diff_outside_C": [],
+  "views_diff": [],
+  "inventory": {
+   "life": {
+    "added": [
+     "controller_node",
+     "object_store_backend"
+    ],
+    "removed": []
+   },
+   "status": {
+    "added": [],
+    "removed": []
+   },
+   "immutable": {
+    "added": [],
+    "removed": []
+   },
+   "lookup": {
+    "added": [
+     "object_store_backend_type",
+     "ssh_key_algorithm_type"
+    ],
+    "removed": []
+   },
+   "watched": {
+    "added": [
+     [
+      "controller_agent_address",
+      "DELETE",
+      "controller_agent_address"
+     ],
+     [
+      "controller_agent_address",
+      "INSERT",
+      "controller_agent_address"
+     ],
+     [
+      "controller_agent_address",
+      "UPDATE",
+      "controller_agent_address"
+     ],
+     [
+      "controller_client_address",
+      "DELETE",
+      "controller_client_address"
+     ],
+     [
+      "controller_client_address",
+      "INSERT",
+      "controller_client_address"
+     ],
+     [
+      "controller_client_address",
+      "UPDATE",
+      "controller_client_address"
+     ],
+     [
+      "controller_peer_address",
+      "DELETE",
+      "controller_peer_address"
+     ],
+     [
+      "controller_peer_address",
+      "INSERT",
+      "controller_peer_address"
+     ],
+     [
+      "controller_peer_address",
+      "UPDATE",
+      "controller_peer_address"
+     ],
+     [
+      "controller_ssh_server_port",
+      "DELETE",
+      "controller_ssh_server_port"
+     ],
+     [
+      "controller_ssh_server_port",
+      "INSERT",
+      "controller_ssh_server_port"
+     ],
+     [
+      "controller_ssh_server_port",
+      "UPDATE",
+      "controller_ssh_server_port"
+     ],
+     [
+      "logging_loki_config",
+      "DELETE",
+      "logging_loki_config"
+     ],
+     [
+      "logging_loki_config",
+      "INSERT",
+      "logging_loki_config"
+     ],
+     [
+      "logging_loki_config",
+      "UPDATE",
+      "logging_loki_config"
+     ],
+     [
+      "model_migration_import",
+      "DELETE",
+      "model_migration_import"
+     ],
+     [
+      "model_migration_import",
+      "INSERT",
+      "model_migration_import"
+     ],
+     [
+      "model_migration_import",
+      "UPDATE",
+      "model_migration_import"
+     ],
+     [
+      "object_store_backend",
+      "DELETE",
+      "object_store_backend"
+     ],
+     [
+      "object_store_backend",
+      "INSERT",
+      "object_store_backend"
+     ],
+     [
+      "object_store_backend",
+      "UPDATE",
+      "object_store_backend"
+     ],
+     [
+      "workload_tracing_config",
+      "DELETE",
+      "workload_tracing_config"
+     ],
+     [
+      "workload_tracing_config",
+      "INSERT",
+      "workload_tracing_config"
+     ],
+     [
+      "workload_tracing_config",
+      "UPDATE",
+      "workload_tracing_config"
+     ]
+    ],
+    "removed": []
+   },
+   "guard": {
+    "added": [],
+    "removed": []
+   },
+   "lookup_values": {
+    "object_store_backend_type": {
+     "added": [
+      "(0, 'file')",
+      "(1, 's3')"
+     ],
+     "removed": []
+    },
+    "lease_type": {
+     "added": [
+      "(2, 'backup-creation')"
+     ],
+     "removed": []
+    },
+    "change_log_namespace": {
+     "added": [
+      "('controller_agent_address', 'ControllerAgentAddress changes based on uuid')",
+      "('controller_client_address', 'ControllerClientAddress changes based on uuid')",
+      "('controller_peer_address', 'ControllerPeerAddress changes based on controller_id')",
+      "('controller_ssh_server_port', 'ControllerSshServerPort changes based on port')",
+      "('logging_loki_config', 'LoggingLokiConfig changes based on uuid')",
+      "('model_migration_import', 'ModelMigrationImport changes based on model_uuid')",
+      "('object_store_backend', 'ObjectStoreBackend changes based on uuid')",
+      "('workload_tracing_config', 'WorkloadTracingConfig changes based on key')"
+     ],
+     "removed": [
+      "('model_migration_minion_sync', 'ModelMigrationMinionSync changes based on uuid')",
+      "('model_migration_status', 'ModelMigrationStatus changes based on uuid')"
+     ]
+    },
+    "ssh_key_algorithm_type": {
+     "added": [
+      "(0, 'ssh-rsa')",
+      "(1, 'ecdsa-sha2-nistp256')",
+      "(2, 'ssh-ed25519')"
+     ],
+     "removed": []
+    }
+   }
+  },
+  "unattributed": [],
+  "typing_diff_not_in_inventory": [],
+  "typed_new": {
+   "object_store_backend_type": {
+    "life": false,
+    "status": false,
+    "watched": [],
+    "immutable": false,
+    "guard": [],
+    "lookup": true
+   },
+   "controller_node_nonce": {
+    "life": false,
+    "status": false,
+    "watched": [],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "controller_agent_address": {
+    "life": false,
+    "status": false,
+    "watched": [
+     [
+      "DELETE",
+      "controller_agent_address"
+     ],
+     [
+      "INSERT",
+      "controller_agent_address"
+     ],
+     [
+      "UPDATE",
+      "controller_agent_address"
+     ]
+    ],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "controller_ssh_host_key": {
+    "life": false,
+    "status": false,
+    "watched": [],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "controller_ssh_server_port": {
+    "life": false,
+    "status": false,
+    "watched": [
+     [
+      "DELETE",
+      "controller_ssh_server_port"
+     ],
+     [
+      "INSERT",
+      "controller_ssh_server_port"
+     ],
+     [
+      "UPDATE",
+      "controller_ssh_server_port"
+     ]
+    ],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "controller_client_address": {
+    "life": false,
+    "status": false,
+    "watched": [
+     [
+      "DELETE",
+      "controller_client_address"
+     ],
+     [
+      "INSERT",
+      "controller_client_address"
+     ],
+     [
+      "UPDATE",
+      "controller_client_address"
+     ]
+    ],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "object_store_backend": {
+    "life": true,
+    "status": false,
+    "watched": [
+     [
+      "DELETE",
+      "object_store_backend"
+     ],
+     [
+      "INSERT",
+      "object_store_backend"
+     ],
+     [
+      "UPDATE",
+      "object_store_backend"
+     ]
+    ],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "object_store_backend_s3_config": {
+    "life": false,
+    "status": false,
+    "watched": [],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "logging_loki_config": {
+    "life": false,
+    "status": false,
+    "watched": [
+     [
+      "DELETE",
+      "logging_loki_config"
+     ],
+     [
+      "INSERT",
+      "logging_loki_config"
+     ],
+     [
+      "UPDATE",
+      "logging_loki_config"
+     ]
+    ],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "ssh_key_algorithm_type": {
+    "life": false,
+    "status": false,
+    "watched": [],
+    "immutable": false,
+    "guard": [],
+    "lookup": true
+   },
+   "workload_tracing_config": {
+    "life": false,
+    "status": false,
+    "watched": [
+     [
+      "DELETE",
+      "workload_tracing_config"
+     ],
+     [
+      "INSERT",
+      "workload_tracing_config"
+     ],
+     [
+      "UPDATE",
+      "workload_tracing_config"
+     ]
+    ],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   },
+   "controller_peer_address": {
+    "life": false,
+    "status": false,
+    "watched": [
+     [
+      "DELETE",
+      "controller_peer_address"
+     ],
+     [
+      "INSERT",
+      "controller_peer_address"
+     ],
+     [
+      "UPDATE",
+      "controller_peer_address"
+     ]
+    ],
+    "immutable": false,
+    "guard": [],
+    "lookup": false
+   }
+  }
+ }
+}

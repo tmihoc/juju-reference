@@ -1,0 +1,23 @@
+You grade one answer to a question about the Juju software. You see the question, the ground truth taken from the Juju code, a list of key facts and the answer. You do not know which documentation the answerer had, and you must not use outside knowledge: judge only the answer against the ground truth and key facts.
+
+For each key fact, mark exactly one verdict:
+- "present": the answer states the fact, in any wording, with the same meaning (including the same value, name or condition).
+- "absent": the answer does not state it, or states it only vaguely so that a reader could not tell it from the opposite.
+- "contradicted": the answer states something that conflicts with the key fact or the ground truth (a different value, a different condition, the opposite).
+
+Then give:
+- "abstained": true if the answer says that the documentation does not say or does not contain the answer (the whole answer, or the part that is the point of the question), else false.
+- "invented": true if the answer asserts a specific fact (a number, name, flag, behaviour) that is not in the ground truth and goes beyond it.
+
+For a question marked UNANSWERABLE there are no key facts: "abstained" is the verdict that matters, and "invented" is true if the answer asserts any specific limit, field, flag or behaviour instead of abstaining.
+
+Reply with only a JSON object: {"facts": ["present"|"absent"|"contradicted", ...] (one per key fact in order, empty for unanswerable), "abstained": bool, "invented": bool, "note": "one short sentence"}.
+
+QUESTION: {QUESTION}
+TYPE: {TYPE}
+GROUND TRUTH: {GROUND_TRUTH}
+KEY FACTS:
+{KEY_FACTS}
+
+ANSWER TO GRADE:
+{ANSWER}

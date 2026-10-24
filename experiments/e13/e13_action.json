@@ -1,0 +1,78 @@
+[
+ {
+  "id": 1,
+  "claim": "Actions are defined by a  charm to allow a user with the right access level to interact with an application in ways specific to the application."
+ },
+ {
+  "id": 2,
+  "claim": "This may include anything from creating a snapshot of a database, adding a user to a system, dumping debug information, etc."
+ },
+ {
+  "id": 3,
+  "claim": "An action is triggered via the juju-cli and applied to one or more units."
+ },
+ {
+  "id": 4,
+  "claim": "It is run with parameters supplied by the user and records the success/fail status and any results for subsequent perusal."
+ },
+ {
+  "id": 5,
+  "claim": "The default behaviour is that the juju-cli blocks and waits for the action to complete."
+ },
+ {
+  "id": 6,
+  "claim": "This synchronous behaviour allows actions to be easily included in command-line pipelines."
+ },
+ {
+  "id": 7,
+  "claim": "As an action is executing, any progress messages as reported by the action are logged to the terminal."
+ },
+ {
+  "id": 8,
+  "claim": "When the action completes, the result is printed."
+ },
+ {
+  "id": 9,
+  "claim": "An action result is a map of key values, containing data set by the action as it runs, plus the overall exit code of the action process itself, as well as the content of stdout and stderr."
+ },
+ {
+  "id": 10,
+  "claim": "The execution of an action is organised into tasks and operations."
+ },
+ {
+  "id": 11,
+  "claim": "The code used to implement an action can call any hook command as well as the following action commands:"
+ },
+ {
+  "id": 12,
+  "claim": "`action-log`: to report a progress message"
+ },
+ {
+  "id": 13,
+  "claim": "`action-get`: to get the value of a named action parameter as supplied by the user"
+ },
+ {
+  "id": 14,
+  "claim": "`action-set`: to set a value in the action results map"
+ },
+ {
+  "id": 15,
+  "claim": "`action-fail`: to mark the action as failed along with a failure message"
+ },
+ {
+  "id": 16,
+  "claim": "Actions operate in an execution environment similar to a hook."
+ },
+ {
+  "id": 17,
+  "claim": "As such, they're executed with all the generic environment variables plus the following action-specific environment variables:"
+ },
+ {
+  "id": 18,
+  "claim": "`JUJU_ACTION_NAME` holds the name of the action."
+ },
+ {
+  "id": 19,
+  "claim": "`JUJU_ACTION_UUID` holds the UUID of the action."
+ }
+]
