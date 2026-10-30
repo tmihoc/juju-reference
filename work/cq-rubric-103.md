@@ -8,7 +8,7 @@ Status: drafted mid-session 103 (2026-10-30), ratified in chat except where mark
 2. **Surface:** exposed via CLI output, the API wire, status, an operator log line, or DB tooling (`juju dump-db`, `juju-db-repl`, backups).
 3. **Relevance (Grice II, via competency questions):** it answers a recorded question of a named audience, and each question has exactly one owning section.
 
-Filter only — never structure. The axes cut independently: surface-without-question → relocate to the page whose question it answers (the migrating marker: model.md → model-migration.md); question-without-surface → restate at the surfaced level ("how is the leader picked" → "the unit holding the lease"); neither → the code.
+Filter only — never structure. The axes cut independently: surface-without-question → relocate to the page whose question it answers (the migrating marker: model.md → model-migration.md); question-without-surface → restate at the surfaced level ("how is the leader picked" → "the unit holding the lease"); neither → the code. The owner is decided by the reader's question, not by the subject or by where the fact lives in the code; mentioning is not restating — another page may name the fact with a link (context records ride as linked chips), it does not re-describe it.
 
 ## 2. The audiences (verified derivable from the Caller taxonomy)
 
