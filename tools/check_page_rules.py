@@ -3,7 +3,7 @@
 Reports; never edits. usage: check_page_rules.py <page.md> [...]"""
 import re, sys
 
-TITLES = ("database schema", "change streams", "calls", "and model migration", "workers", "credentials", "designations", "agent facades", "agent kinds")
+TITLES = ("database schema", "change streams", "calls", "and model migration", "workers", "credentials", "designations", "agent facades", "agent kinds", "migration phases", "who drives a migration")
 GERUND = re.compile(r"^(Adding|Importing|Listing|Removing|Granting|Revoking|Creating|Updating|Deleting|Reading|Checking|Setting|Getting|Moving|Enabling|Disabling|Showing|Configuring|Migrating|Destroying|Upgrading|Connecting|Finding|Addressing|Reporting|Relaying|Bootstrapping|Making|Provisioning|Retrying|Reprovisioning|Reloading|Renaming|Requesting|Running|Canceling|Cancelling|Pruning|Consuming|Suspending|Entering|Writing|Changing|Registering|Logging|Rotating|Resuming|Claiming|Pinning|Unpinning|Uploading|Downloading|Resetting|Saving|Answering|Draining|Storing)\b")
 BAD = [
     (r"\bis how\b", "opener 'is how': not a definition"),

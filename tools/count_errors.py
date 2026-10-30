@@ -22,12 +22,13 @@ Usage: count_errors.py <worktree> [--rows]
 Counted against the worktree HEAD. The count is anchored to the 4.1 tree
 (/tmp/juju-41-tree); pass that path to count against the anchor tree.
 """
+import os
 import re
 import subprocess
 import sys
 
 # The preview links of pr-description.md (slug order as they appear).
-TABLE = "/home/dora/git/misc/juju-reference/pr-description.md"
+TABLE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "pr-description.md")
 MSG = re.compile(r"\*\*`([^`]+)`\*\*")
 NON_ERRORS = {"file", "oci-image", "store", "upload", "available", "potential"}
 
