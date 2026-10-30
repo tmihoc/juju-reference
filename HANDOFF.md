@@ -17,6 +17,12 @@ Find a stable skeleton for entity reference pages that captures both the similar
 
 
 
+## State at the end of session 105 (final): read this block first
+- **Branch `4.1-docs-illustrate-docs-juju-9635` pushed at `e0870b3265`, even with origin; PR #23661 open on juju/juju (base `e5db99d585`); counts 956/674/204/182; error contract 964/19/0; both builders green; nothing held.** One commit: `e0870b3265`, the ggarch single-model merge (one model `Juju`, 71 views; the six colliding ids are `arch_user`, `arch_cloud`, `arch_controller`, `arch_model`, `arch_application`, `arch_charm`; 142 renders identical before and after with decimals normalized and `PYTHONHASHSEED=0`).
+- **`pr-description.md` is refreshed through session 105** and waits for the user's paste.
+- Open: the PR body paste; the ggarch session-83 items (await the user's pick); the checker's 19 exclusions; the hook-firing chain row; the bot's skill set; review batches. `~/git/ggarch` has uncommitted README and GIF changes from earlier work.
+- The preview server (port 8003, service `preview2`) dies with the session; a stale server on 8003 makes the harness report exit 3 even though the build passed (see NEXT-PROMPT's ritual).
+
 ## State at the end of session 104 (final): read this block first
 - **Branch `4.1-docs-illustrate-docs-juju-9635` pushed at `19f114a545`, even with origin; PR #23661 open on juju/juju (base `e5db99d585`); counts 956/674/204/182; error contract 964/19/0; both builders green; nothing held.** Four commits: `a7be696f38` (19 change-streams openers + model-migration glue), `a02ef6fae0` (Batch 4: external-model refusal into the model page's Migrating models rules, charm.md "an update"; space.md unchanged, its sentence is a foreign-key refusal), `2ca8b7e9e3` (prose em dashes to ` -- `, `versionadded` removed), `19f114a545` (docs/agents: the consolidated paradigm).
 - **The paradigm is now one statement** in `docs/agents/AGENTS.documentation.rules.md` ("Charter" and "The Entity Reference Page Form"); working draft with the bot skill-set table and the stale-claims table: `work/docs-paradigm-draft-104.md`. The landing-pages file is out of scope (the user: set by a stakeholder).
