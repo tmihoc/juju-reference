@@ -24,6 +24,8 @@ Filter only — never structure. The axes cut independently: surface-without-que
 
 The charm developer's set is bounded: Juju's behavior *toward* the charm, not the craft of writing one (that lives in the ops/charmcraft docs, linked via intersphinx).
 
+The change-streams sections are not all the charm developer's — the holder named in each page's opener decides the reader. Where the unit agent holds watchers that fire hooks (unit, relation, link-layer-device, storage, secret — and the model-configuration item wherever it appears), the section answers the charm developer's hook-timing question. Where controller workers hold them (controller, machine, external-controller, offer — the consuming side is a worker whose charm sees the result through relation hooks — application, charm, agent-version, log, telemetry, cloud, controller-upgrade), the section answers the operator's debugging question (what does my controller watch, why did it act) and the tool developer's. The machinery's own streams (database.md) answer the inspector's. The family's invariant is the question's shape — what changes to this entity can a holder follow, and what does each delivery carry — not the reader; the per-page holder attribution in each opener is the relevance justification done in the text.
+
 ## 3. Coverage notes (audit rows)
 
 1. The hook-firing chain (change → watcher → agent → hook) is split across `watcher.md`, `architecture.md`, `hook.md`; unit.md's streams opener gestures at it; no page states it plainly. Audit row; not a blocker.
