@@ -8,7 +8,7 @@ Target: every operation in the reference docs carries its client-visible errors 
 
 ## Work to date (the first increment — done, in PR #23661)
 
-- 960 error entries / 674 distinct messages, attached to 182 of the 204 calls on 33 pages. The entries give client-visible messages, codes, triggers, and remediation, traced to the 4.1 source during drafting and review. The counts describe documented entries, not a complete audit of every client-visible path.
+- 960 error entries / 674 distinct messages, attached to 182 of the 204 calls on 33 pages in the PR preview-link set. This count excludes the changed log page. The entries give client-visible messages, codes, triggers, and remediation, traced to the 4.1 source during drafting and review. The counts describe documented entries, not a complete audit of every client-visible path.
 - The method exists and is repeatable: facade extraction (`tools/extract_facade.py`) → read the code around each method (the extractor misses helper layers) → independent review → verify-then-apply fixes.
 - Composition chains are documented explicitly where they were caught: the wrap segments a message acquires through layers (`saving S3 config: transitioning backend to S3: validating S3 credentials: …`), statuses that differ per route (400/413/415), and verbatim quirks quoted as-is (the code's own `minimum has prefix length is 7` typo).
 - Error tracing surfaced code questions for the developers (in the PR text and the research `TODOS.md`) — errors that look like bugs or API irregularities.
