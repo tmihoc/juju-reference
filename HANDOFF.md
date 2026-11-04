@@ -17,7 +17,15 @@ Find a stable skeleton for entity reference pages that captures both the similar
 
 
 
-## State at the end of session 109 (current)
+## State at the end of session 110 (current)
+
+- **Proposal, not authorization:** `work/story-form-110.md` reconciles conditional story roles with the existing schema/streams/calls/migration form, proposes a home for shared vocabulary and shared behavior, a possible `Secret references` topic with preserved anchors, and fixes for both false universal hook chains and the unsupported `juju dump-db` example. Do not change docs structure or pages until the user authorizes the concrete proposal.
+- **E49:** pre-registered in `structure-discovery-plan.md`; the hook, secret and constraint examples pass the narrow registered competing-placement criterion. They do not decide a unique heading, prove completeness, or establish reader benefit. Traces are static, not a controller run. A bounded surface-inventory plan is in the work artifact; it is not a completed inventory.
+- **New hook finding:** `hook.md:45`, like `:12`, says the cycle always begins with a controller state change, contradicted by the unit agent's `update-status` timer (`internal/worker/uniter/remotestate/watcher.go:515-518,685-688,720-729`; `internal/worker/uniter/resolver.go:388-390`). No fix applied.
+- **Starting state:** documentation worktree clean at `48ef1fca17`, equal to its tracking ref; PR #23661 open, draft, matching head and base `e5db99d585`; selected-page counts 960/674/204/182. Preview restarted, cached dirhtml build succeeded and reference hook returned HTTP 200; preview stops with the session. No fresh latex build, checker or docs commits.
+- **Next:** Wait for explicit authorization for structural/content changes; continue source-grounded paradigm research if requested, and always let pasted review batches preempt. The user has not authorized the surface inventory as a completed claim. The ggarch and bot-skills queues still await the user's pick.
+
+## State at the end of session 109 (historical)
 
 - **User direction:** Derive the paradigm from the role each subject plays in the running system's story, not Go domains or database layout. The inclusion rule and Grice's truth, relevance, quantity, and manner apply to humans and AI. Be rigorous but pragmatic and results-oriented, not a rabbit hole. The previous three-epic/one-PR strategy remains in force below.
 - **No docs-tree edits, commits, or pushes in 109.** Branch and PR head remain `48ef1fca17`; PR #23661 open and draft on 4.1 at `e5db99d585` when checked. Preview stopped at close-out; restart per NEXT-PROMPT. Historical builder and checker results remain those of session 108, not newly run.
