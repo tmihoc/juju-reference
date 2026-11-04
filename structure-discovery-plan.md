@@ -1718,3 +1718,69 @@ The preregistered condition selects C: a charm endpoint declaration, application
 `work/subject-map-112.md` and `work/surface-ledger-112.md` record the subject map, relationships, candidate addresses, conditional entry form, bot implications, surface roots and explicit limitations. The 58 direct alphabetical TOC files are all dispositioned once; nested pages and surface items are not exhaustively accounted for. Distinctions include model command blocks vs permissions, shared operation/tasks vs action definition, and model ingress policy vs application exposure. A controller backup creator path exists in source despite a contrary unconditional statement in the upgrade how-to; no live backup was run. `go run ./cmd/juju help commands` succeeded at the source anchor; a firewall command attempt stopped before its target validation for lack of a registered controller. Fresh dirhtml succeeded with no warnings and latex with two duplicate-target warnings. The result is a usable, incomplete candidate, not a pass for complete surface inventory, verified behavior across providers, or demonstrated human/AI navigation benefit. No docs-page or repo-rule changes were authorized.
 
 Independent review challenged source/coverage claims; the resulting facade leads were source-checked and dispositioned in `work/surface-ledger-112.md`. The reviewers did not run a controller and the map remains incomplete. A proposed how-to line correction was rejected against the PR worktree.
+
+### E53: finish the subject-map coverage gaps from explicit surfaces (session 113; registered before investigation)
+
+**Question.** Which remaining supported or deliberately dynamic surfaces still change the E52 subject map, after the 58 direct reference pages have been reconciled? This continues E52 rather than starting over: nested reference pages, command families, facade/HTTP/control-socket roots, hook-command context, provider/platform cases and unresolved candidate ownership are leads to dispose, not proof of missing pages.
+
+**Method.** Work from explicit registries and linked docs trees, then trace only discriminating source paths. For each lead record: surface root, evidence, subject/relationship affected, candidate address, coverage disposition, and limit. Treat plugins, Charmhub contents, provider capabilities, arbitrary charm code and deployment state as dynamic unless the 4.1 source fixes a built-in contract. Registration alone is insufficient; where a callable path is not traced, state that it remains a lead.
+
+**Slices fixed now.** (A) inventory nested reference pages and nested command/configuration/hook-command docs and compare them with E52's subject addresses; (B) inspect dynamic and registered surface families that E52 left open: HTTP/control-socket roots, facade families with platform or principal restrictions, provider/platform discovery points, and hook/action command availability; (C) resolve only source-discriminable ownership ties among backup, operation/task, model command block, storage pool/instance/attachment, endpoint, telemetry/tracing, object store, image metadata and database inspection. If source evidence cannot decide a physical file or heading, leave a candidate address and name the test that would decide it.
+
+**Checks.** At least one concrete source path per accepted disposition, a direct-docs-tree accounting for nested pages, and explicit labels for static source trace versus runtime exercise. Reject filename-only reconciliation, samples presented as global coverage, and per-field/per-error audits substituted for subject coverage. No docs-page or repository-rule edits are authorized by this investigation.
+
+**Stopping rule for this session.** Complete one bounded pass over nested docs plus two dynamic/registered surface families, update `work/surface-ledger-113.md` and, if the evidence changes it, a delta file for `work/subject-map-112.md`. Do not claim global completeness unless every named surface family above is disposed.
+
+#### E53 bounded result (session 113)
+
+`work/surface-ledger-113.md` and `work/subject-map-delta-113.md` record the bounded pass. Two planned read-only scouts failed before doing work with provider 402 errors, so the pass was done in-session. Nested docs reconciliation found generated CLI command pages (160 files), hook-command pages (39 files), configuration key lists, compute-resource local commands and introspection macros, the Juju compatibility child page and Kubernetes reuse snippets. These are surface inventories and provider-specific fragments, not page-per-file subject inventories.
+
+Dynamic surface tracing added explicit dispositions for HTTP routes, control-socket endpoints, CAAS/model restrictions, hook-command context sensitivity, Kubernetes storage provider behavior, and image metadata. The neutral operation/task address already exists at `docs/reference/script.md`; source still supports the shared operation/task contract for both charm actions and arbitrary exec commands. The unresolved work is cross-link/findability and call-specific differences, not a source-proven missing top-level operation page. No live controller, provider, machine, hook or HTTP request was exercised, and no documentation tree or repository rule was edited.
+
+### E54: generated command surfaces against source registration (session 113; registered before inventory)
+
+**Question.** Do the generated CLI and hook-command reference pages correspond to the 4.1 source registrations closely enough to use them as finite surface inventories for the subject map, and which mismatches are real coverage leads rather than generated-doc artifacts?
+
+**Method.** Build mechanical inventories from the docs worktree and the source anchor. For the CLI, compare `docs/reference/juju-cli/list-of-juju-cli-commands/*.md` with the built-in registration in `cmd/juju/commands/main.go` and the command packages it calls when registration is indirect. For hook commands, compare `docs/reference/hook-command/list-of-hook-commands/*.md` with the command maps in `internal/worker/uniter/runner/jujuc/server.go`. Classify every name as documented+registered, registered+undocumented, documented+not registered, generated index/stub, plugin/local-tool/developer-mode exception, or needs source trace because registration does not prove behavior.
+
+**Checks.** Counts must reconcile to the file lists and source-extracted names. Every mismatch must have a file:line citation or be explicitly marked as a mechanical extraction limit. The result is a surface-inventory ledger only: do not change docs pages, generated command docs, repository rules or source code. Do not claim backend behavior, authorization, live output, model-type support or complete errors from command registration.
+
+**Stopping rule for this session.** Produce `work/surface-inventory-113.md` with the reconciled CLI and hook-command tables and update `work/subject-map-delta-113.md` only for conclusions that change E52/E53.
+
+#### E54 bounded result (session 113)
+
+`work/surface-inventory-113.md` records the generated-docs versus source-registration reconciliation. The generated CLI command docs contain 159 non-index command pages; `go run ./cmd/juju help commands` from the 4.1 anchor returned the same 159 ordinary non-alias commands and 29 aliases that are help-visible but not generated as separate pages. No generated CLI command page lacked a source-visible non-alias command, and no source-visible non-alias command lacked a generated page. Developer-mode `dump` and `dump-db`, plugin lookup and embedded-client whitelists remain conditional/dynamic and are not part of the ordinary generated-command inventory.
+
+The hook-command docs contain 38 non-index command pages and exactly match the 38 command names in the `jujuc` source command maps. This establishes closed name inventories for ordinary CLI commands and hook-command names at the anchor. It does not establish backend behavior, authorization, model-type support, hook-context success, live output or complete errors. `work/subject-map-delta-113.md` was updated with the E54 deltas; no documentation tree, generated docs, repository rules or source code were edited.
+
+### E55: backup command subject ownership and limits (session 113; registered before trace)
+
+**Question.** Given E54 established `create-backup` as an ordinary built-in CLI command surface, what can the subject map say about backup as a reference subject without overclaiming live success, restore behavior or consistency guarantees?
+
+**Method.** Trace the 4.1 source path from generated CLI docs through the client API, HTTP route, authorization, handler, controller-machine worker injection and archive creator. Compare that source path with existing candidate addresses in E52/E53 and the generated `create-backup` docs. Classify backup as a CLI-only command, a controller mechanism, a database/inspection mechanism, or an unresolved cross-subject process based on the actual participants and observable artifact.
+
+**Checks.** Cite exact source lines for command invocation, HTTP route, authorization, creator injection and database/object export. Separate source-traced implementation from live backup success, restore behavior, archive consistency and provider/platform support. No docs-page edits are authorized; a conflict with existing docs is a candidate correction only.
+
+**Stopping rule for this session.** Produce a backup row in `work/surface-inventory-113.md` or a new backup work file, update `work/subject-map-delta-113.md` if ownership is clarified, and record the bounded result here.
+
+#### E55 bounded result (session 113)
+
+`work/backup-subject-113.md` records the source trace. `create-backup` is an ordinary built-in command by E54 and its generated page describes a streamed, locally verified archive. Source tracing shows the command calls `POST /backup`; the API server registers that route with controller-admin authorization; the handler creates and streams an archive and removes it when the request ends; the controller-machine engine supplies the backup creator to the API server only on controller machines; the worker uses a backup-creation lease so only one creation proceeds; and the creator exports controller data, every model namespace and referenced object-store content. Backup is therefore a controller-admin backup mechanism with CLI/HTTP surface and database/object-store archive content, not merely a CLI command and not solely a database page.
+
+The source supports a candidate stable controller/database reference anchor such as `[controller backup]`, linked from `create-backup`, `database`, `object-store` and recovery/upgrade material. It does not prove live backup success, restore availability, provider/platform success or the best physical docs filename. The upgrade how-to's claim that 4.1 `juju create-backup` fails with not implemented conflicts with the traced 4.1 source and generated CLI docs; this remains a candidate docs correction only, not an authorized page edit.
+
+### E56: model command block subject ownership and limits (session 113; registered before trace)
+
+**Question.** Given E52 identified model command blocks as a shared contract with only how-to links, what can the subject map say about their owner, behavior and limits without auditing every blocked command?
+
+**Method.** Trace the 4.1 Block client API, command-line registrations and docs, common block checker, representative callsites for change/remove/destroy checks, and existing reference/how-to links. Classify the contract as model-owned, access-owned, per-command-owned or unresolved based on scope, permissions and effects.
+
+**Checks.** Cite exact source/doc lines for list/switch permission, block types, check order and at least one representative affected call. State what is not audited: all commands, all facades, live controller behavior and every user-facing error. No docs-page edits are authorized.
+
+**Stopping rule for this session.** Produce `work/model-command-blocks-113.md`, update `work/subject-map-delta-113.md` if ownership is clarified, and record the bounded result here.
+
+#### E56 bounded result (session 113)
+
+`work/model-command-blocks-113.md` records the trace. `disable-command`, `enable-command` and `disabled-commands` expose three command-set names (`all`, `destroy-model`, `remove-object`) that map to API block values (`BlockChange`, `BlockDestroy`, `BlockRemove`). The Block facade stores and checks blocks against the current model tag: listing requires model read access and switching requires model write access. The model database stores one optional-message row per block type. The common checker is cumulative: `ChangeAllowed` checks change; `RemoveAllowed` checks remove then change; `DestroyAllowed` checks destroy, remove, then change. Representative calls confirm the shared contract is applied by affected API paths, including model config set, arbitrary exec operation creation, machine destruction and model destruction.
+
+The subject owner is therefore the model, with a stable candidate anchor such as `[model command blocks]`; access pages should only link for the permissions needed to view or switch blocks, and affected command/call sections should link to the shared contract for applicability. This does not prove a complete inventory of all blocked commands/facades, live client rendering, force-option bypass behavior or the final docs heading. A mechanical comparison found two names in the generated command-set prose (`set-application-base`, `sync-agents`) that are not ordinary non-alias commands at the E54 anchor, so the prose list remains a coverage lead rather than exact proof.
