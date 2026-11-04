@@ -20,7 +20,7 @@ Find a stable skeleton for entity reference pages that captures both the similar
 ## State at the end of session 106 (final): read this block first
 - **Branch `4.1-docs-illustrate-docs-juju-9635` pushed at `61331e68c7`, even with origin; PR #23661 open on juju/juju (base `e5db99d585`); counts 956/674/204/182 as of 105 (no docs content changed since).** One commit: `61331e68c7`, the ggarch pin bump to `f313f4bf8b`, which carries the modal slideshow navigation (prev/next, counter, arrow keys, per-slide captions, page synced on close). ggarch `hide-fields` is pushed at `f313f4b`.
 - **The PR body paste is never queued:** the user pastes `pr-description.md` themselves whenever relevant (user, 106).
-- Open: the ggarch session-83 items 1-3 (await the user's pick; work in `~/git/misc/ggarch-scratch`); the checker's 19 exclusions; the hook-firing chain row; the bot's skill set; review batches. `~/git/ggarch` still has uncommitted README and GIF changes from earlier work.
+- Open: the ggarch session-83 items 1-3 (await the user's pick; work in `~/git/misc/ggarch-scratch`); the checker's 19 exclusions; the hook-firing chain row; the bot's skill set; review batches. The README and GIF work from earlier sessions is now committed and pushed as ggarch branch `readme-demo-slide-order` (`9d1b479`); merging it to ggarch `main` is the user's call.
 - The preview (port 8003, service `docs-preview`) dies with the session; the venv has ggarch installed editable from the scratch worktree.
 
 ## State at the end of session 105 (final): read this block first
