@@ -2,6 +2,10 @@
 
 **Proposal only.** Derived from `system-model-115.md`, then compared with the alphabetical glob TOC (`docs/reference/index.md:122-127`), current PR worktree `48ef1fca17`, and selected PR set in `pr-description.md`. This is a per-page *structural disposition*, not a line-by-line truth, error, link or coverage audit. “Retain” means no boundary change proposed from this evidence, not that every statement is verified. “Check links” is a concrete review action, not a claim the link is missing. Explicit approval is required before edits. The 35 selected pages are the defined set; changed `log.md` and other supporting pages are separately identified, not added to the selected-page counter.
 
+**Session 116 supplement:** a supported `juju-db-repl` query exposes machine-associated block-device records to database inspectors, so the disk-observation facet can be included conditionally under `machine`; it is not a demonstrated client inventory list (`disk-inspection-116.md`). The audit trace proposes correcting `log.md:30`'s universal claim and describing configured filtering at its existing audit-log address (`held-out-116.md`). No docs, page structure or rules change is authorized by these observations.
+
+**Authentication supplement:** retain agent authentication at the agent/mechanism address, distinguishing identity-bound agent credentials from user grants; link to target-specific authorization without promising login authorizes every action. Treat autocert as a controller endpoint/cache facet, not a model cloud credential or automatically a new page. The cited controller-database inspection surface does not justify documenting private cached data indiscriminately. These are proposed boundaries, not authorized edits (`authentication-challenge-116.md`).
+
 | Selected reference page | Proposed disposition and specific boundary/issue |
 |---|---|
 | `action` | Retain action declaration/invocation; use neutral task/operation addresses in `script`; verify cross-links and keep action-specific results/conditions with calls. Machine exec is not an action invocation. |
