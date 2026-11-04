@@ -17,6 +17,13 @@ Find a stable skeleton for entity reference pages that captures both the similar
 
 
 
+## State at the end of session 107 (final): read this block first
+- **Branch `4.1-docs-illustrate-docs-juju-9635` pushed at `711a495101`, even with origin; PR #23661 open (base `e5db99d585`); counts 956/674/204/182; error contract 964/12/0; both builders green.** Three commits: `87147331e5` (the checker's exclusions 19 -> 12: six dropped rendered suffixes fixed against their raise sites, machine.md's shorthand spelled out, `EXCLUSIONS` pruned and the access-not-valid reason corrected); `73954b5687` (the hook-firing chain stated in hook.md's lede, linked from watcher.md and architecture.md); `711a495101` (the change-block glosses: six inline definitions -> links to `restrict-commands-on-a-model`).
+- **The duplicate-fact sweep's candidates are all dispositioned:** the constraint merge rules (decided cross-reference, 103) and the migration record set (the 103/104 restructure) verified resolved; the change-block glosses fixed.
+- Open: **the model-defaults batch** (new finding, queue item 2 in NEXT-PROMPT: four defaults-raised errors on model.md's Configuring models belong to model-defaults.md; the tag error's `NewNotValid` wrap is under-documented and the checker cannot see it; counts would go 955/674/204/182 -- needs the user's go); the bot-skills move (`count_errors.py` + `check_page_rules.py` into `docs/scripts/`, hold `extract_facade.py` -- awaits the word); ggarch session-83 items 1-3 (await the user's pick); review batches; fix 15 (router work).
+- The PR body paste, the draft flag, and the review comments remain the user's gates.
+- Machine notes: efficiency note 18 (fresh builder runs need `-c . -D llms_txt_enabled=0`, else 139 false `<meta: >` warnings). The preview (port 8003, service `sphinx-preview-8003`) was killed at close-out; restart per the ritual.
+
 ## State at the end of session 106 (final): read this block first
 - **Branch `4.1-docs-illustrate-docs-juju-9635` pushed at `61331e68c7`, even with origin; PR #23661 open on juju/juju (base `e5db99d585`); counts 956/674/204/182 as of 105 (no docs content changed since).** One commit: `61331e68c7`, the ggarch pin bump to `f313f4bf8b`, which carries the modal slideshow navigation (prev/next, counter, arrow keys, per-slide captions, page synced on close). ggarch `hide-fields` is pushed at `f313f4b`.
 - **The PR body paste is never queued:** the user pastes `pr-description.md` themselves whenever relevant (user, 106).
