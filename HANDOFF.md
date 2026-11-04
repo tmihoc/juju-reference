@@ -17,7 +17,15 @@ Find a stable skeleton for entity reference pages that captures both the similar
 
 
 
-## State at the end of session 110 (current)
+## State at the end of session 111 (current)
+
+- **Bounded surface probe:** `work/surface-probe-111.md` preregistered and traced one client Secrets v2 facade, including registration, reflection, permissions, CAAS and maintenance conditions. All six discovered methods map to existing secret call sections; shared URI/label vocabulary crosses those calls. A real Go registration/reflection probe confirmed the six method names, not live controller behavior. This is not a complete secrets inventory, domain universe, error audit or reader test. Registration was recorded in the work file rather than the mandated plan file; the deviation is explicit.
+- **Call-specific boundary:** Update rejects both URI and label; remove and grant/revoke select URI first if both are present. Remove reports the missing-selector error per item, absent from `secret.md:310-315`; grant/revoke reports a differently worded error for the whole call. Source-traced candidate, not a live test. Do not generalize one shared selector rule across calls.
+- **Potential v1 defect, not runtime-confirmed:** its factory wrapper is not assignable to its registered type, and `root.go:627-635` rejects mismatches after construction. The Go probe confirmed the type mismatch; trace negotiation and invoke a real or realistic facade before assigning impact. No Juju code or docs changed.
+- **State:** docs worktree clean at `48ef1fca17`, matching tracking ref; PR #23661 open/draft at that head, base `e5db99d585`; selected counts 960/674/204/182. The previous preview occupied 8003; verified its cwd, stopped it, restarted a fresh service and confirmed `/reference/secret/` HTTP 200. The readiness regex timed out despite the process listening and serving. Cached dirhtml succeeded; no fresh latex or checker run.
+- **Next:** continue bounded first-principles research with registration in `structure-discovery-plan.md` before probing; reconcile surface discovery without mistaking examples for completeness. Preserve pending `work/story-form-110.md` proposal and obtain explicit authorization before structural or content edits. Pasted review batches preempt research; ggarch and bot skills await the user's pick.
+
+## State at the end of session 110 (historical)
 
 - **Proposal, not authorization:** `work/story-form-110.md` reconciles conditional story roles with the existing schema/streams/calls/migration form, proposes a home for shared vocabulary and shared behavior, a possible `Secret references` topic with preserved anchors, and fixes for both false universal hook chains and the unsupported `juju dump-db` example. Do not change docs structure or pages until the user authorizes the concrete proposal.
 - **E49:** pre-registered in `structure-discovery-plan.md`; the hook, secret and constraint examples pass the narrow registered competing-placement criterion. They do not decide a unique heading, prove completeness, or establish reader benefit. Traces are static, not a controller run. A bounded surface-inventory plan is in the work artifact; it is not a completed inventory.
