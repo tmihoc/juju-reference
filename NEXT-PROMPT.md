@@ -1,23 +1,13 @@
-# Session 117 launch: Juju reference first principles
+# Next session
 
-Read `HANDOFF.md`, the **Current JUJU-10585 delivery plan** at the top of `structure-discovery-plan.md`, and `work/system-model-115.md`, `work/application-disposition-115.md`, `work/disk-inspection-116.md`, `work/held-out-116.md` and `work/authentication-challenge-116.md`; continue the plan. A pasted PR review batch preempts research. Do not wait for one if none has arrived.
+Read `HANDOFF.md`, `method/settled-results.md`, `method/requirement-set.md`, `method/docs-decision-procedure.md` and `TODOS.md`, in that order.
 
-## Start ritual
+**Goal:** a mechanism that, given a development, decides what needs documentation, where, in which category and form, and that we can use to finish JUJU-10585, JUJU-10586 and JUJU-9635. It exists as procedure v2 (untested) and a requirement set with open questions.
 
-1. Restart the docs preview. Check `ss -ltnp 'sport = :8003'`; if an old preview owns the port, verify its cwd is `/home/dora/git/misc/juju-tutorial-diagrams/docs` before stopping it. Start from that directory with `/home/dora/git/misc/docs-venv/bin/sphinx-autobuild --port 8003 --host 127.0.0.1 . _build -c . -d .sphinx/.doctrees -b dirhtml -j auto -D llms_txt_enabled=0 --ignore '_build/*' --ignore '.sphinx/*'`. Confirm the listener and HTTP 200 for a reference page. Give `http://127.0.0.1:8003/<page-path>/` when there is something to view.
-2. Verify the docs worktree `/home/dora/git/misc/juju-tutorial-diagrams`, its tracking ref, PR #23661 via the GitHub API, and the established selected-page counts with `python3 /home/dora/git/misc/juju-reference/tools/count_errors.py /home/dora/git/misc/juju-tutorial-diagrams`. At session 116 start the docs branch was clean at `48ef1fca17`, equal to its tracking ref; the PR was open/draft at that head, base `e5db99d585`, and counts were 960/674/204/182. These are historical observations, not current assertions. Never widen the counter or selected links without the user.
-3. Use the 4.1 source anchor `/tmp/juju-41-tree` at `e5db99d585`; do not touch the main checkout `/home/dora/git/juju`. Source traces are not live controller or provider evidence.
+**Do next:** TODOS item 1 (E84). Register the cases before reading any documentation diff, run procedure v2, compare against the maintainers' edits, and revise only what the failures require.
 
-## Immediate goal
+**Hard gates:** never touch `~/git/juju`; no edits to pages, rules, tools, figures or the checker without approval; ask before every push; never push security-revealing material; do not relaunch the four 402-denied scopes; stage explicit paths only.
 
-Continue the source-grounded model and its application, not a command or filename inventory. The candidate model, semantic addresses, conditional entry roles and 35-page disposition are proposals, not approved changes or proof of global completeness or reader benefit. Competency questions test relevance and coverage, never boundaries, ownership or ordering. Existing pages and how-tos are comparisons, not structural evidence. Preserve the user's causal order.
+**Source:** `git -C ~/git/misc/juju-tutorial-diagrams show e5db99d585:<path>` (no checkout). Docs worktree: `~/git/misc/juju-tutorial-diagrams`.
 
-E59 originally failed its four-of-four threshold. Session 116 later satisfied the disk case's original supported-observation criterion for database inspectors via `juju-db-repl`; the credential/provider consequence remains inconclusive, so E59 as a whole still does not pass. E60's two audit cases pass bounded source checks, but its SSH cases are contaminated by earlier study and cannot count as genuinely held-out. E61's four agent-authentication and controller autocert-cache behavioral cases pass on source traces; prior records mentioned the nouns, and no live login or certificate issuance ran. None establishes global completeness, unique physical files or reader performance. Pre-register new challenges, falsifiers, meaningful thresholds and caveats before inspecting cases. No human raters; if comparing forms, hold content constant.
-
-The `WorkloadModel` agent was denied with a 402 credit error in session 115; report it and do not relaunch or work around it. The current page proposals include correcting `log.md:30`'s universal audit claim, machine disk inspection, and the earlier credential-update, filesystem lifetime, machine task target and hook-chain claims; the shared human/bot guidance proposal reconciles reader questions with source-derived ownership. See the cited artifacts and present concrete page, structure and repository-rule edits for explicit approval before applying them. The checker-script move and ggarch session-83 items 1–3 await the user's word. The user pastes the PR body. Three epics remain distinct in the one integrated PR: JUJU-10585 reference paradigm and defined entity set, JUJU-10586 client-visible error contract and enforcement, JUJU-9635 figures and contributor process. Do not treat counts or checker success as proof of 10585, and do not silently split the PR.
-
-## Publication and close-out
-
-The user instructed: do not push any material revealing security issues unless it is a warning of the sort in the hardening documentation. Ask before every push to origin; never assume authorization. Check both documentation builders when applicable and report only actual runs.
-
-Update `HANDOFF.md`, append to `SESSIONS.md`, overwrite this launch prompt for the next session and archive it unchanged in `prompts/session-<N+1>.md`. Commit the archive records locally, stop the session's preview, and give the user the one-line launch instruction. Record results, failures and caveats; recommend a fresh session when quality warrants it. Do not claim unrun builders, tests or live behavior.
+**Style:** decide and say so; show the trace; report failures as plainly as successes; no option menus.

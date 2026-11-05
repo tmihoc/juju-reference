@@ -1,0 +1,21 @@
+# Session 122 launch: consolidate the reference structure
+
+Read `HANDOFF.md` first and follow its current session-121 section. Read the active JUJU-10585 plan in `structure-discovery-plan.md`, `TODOS.md`, `work/global-skeleton-119.md`, `work/content-planning-algorithm-119.md`, `work/content-planning-slice-relation-120.md`, and `work/operation-task-boundary-121.md`. Pasted PR-review batches preempt other work; do not wait for one if none arrives.
+
+## Start ritual
+
+Check `ss -ltnp 'sport = :8003'`; if a preview owns the port, verify its cwd is `/home/dora/git/misc/juju-tutorial-diagrams/docs` before stopping it. Start from that directory with `/home/dora/git/misc/docs-venv/bin/sphinx-autobuild --port 8003 --host 127.0.0.1 . _build -c . -d .sphinx/.doctrees -b dirhtml -j auto -D llms_txt_enabled=0 --ignore '_build/*' --ignore '.sphinx/*'`; verify listener and HTTP 200 and give the preview URL when useful. Verify docs worktree/tracking ref, PR #23661 via GitHub API, and selected counts with `python3 /home/dora/git/misc/juju-reference/tools/count_errors.py /home/dora/git/misc/juju-tutorial-diagrams`. Session 121 start had docs clean at `48ef1fca17`, equal to the tracking ref; PR open/draft at that head and base `e5db99d585`; counts 960/674/204/182. These are historical observations. Never widen selected counts or PR links. Use source anchor `/tmp/juju-41-tree` at `e5db99d585`; never touch `/home/dora/git/juju`.
+
+## Immediate goal
+
+Consolidate the accumulated first-principles evidence into a concrete, reviewable global structure and disposition, rather than another isolated comparison with existing pages. Produce a **separate proposal** before changing the candidate skeleton: include proposed semantic addresses, their conditional internal forms and links, action/exec shared operation/task and relation/context distinctions, dependencies, traceable evidence, unresolved physical-layout ties, explicit blocked scopes and possible code defects. Reuse the existing global map and per-page dispositions; do not mistake counts or filenames for semantic coverage. Distinguish conditions, request, state, actor and observations. Preserve the user's settled causal order. Competency questions test relevance and coverage, not ownership or ordering. Source may not decide a unique file; state editorial choices and limits. Non-CLI references are client-agnostic; invocation details belong to interfaces.
+
+Preregister predictions, falsifiers, thresholds and caveats in `structure-discovery-plan.md` before any new test; label post hoc work and previously studied examples. If research finds a named uncertainty that could change a boundary, investigate it rather than make an arbitrary decision. No human raters. A finite trace is not proof of completeness or reader benefit.
+
+E70's action/exec shared contract is source-traced, not live execution. The real operation service with synthetic state returned `pending` for an aborted task; the current action page already describes that fallback. The unit agent has a conditional abort-reporting path, while the known cancellation SQL issue may prevent reaching it. Intended behavior remains an unresolved possible code/contract defect, not a prose-only fix. See `TODOS.md` and `work/operation-task-boundary-121.md` for details.
+
+`WorkloadModel`, `HookCommandPages` and `KubernetesCloudAttributes` remain 402-denied: do not relaunch or work around them. Other possible defects and publication questions remain open in `TODOS.md`. Defer page, structure and repository-rule changes until the structure is settled and obtain explicit approval of specific edits; preserve anchors and figures. Checker moves and ggarch items await the user's word. Keep one integrated PR and distinct JUJU-10585, JUJU-10586 and JUJU-9635 criteria. The user pastes the PR body. Ask before every push to origin; never push material revealing security issues except hardening-style warnings.
+
+## Close-out
+
+Record results, limits and actual verification. Check both docs builders when applicable. Update `HANDOFF.md`, append to `SESSIONS.md`, overwrite this prompt for the next session and archive it unchanged in `prompts/session-<N+1>.md`; commit only session archive records locally, stop its preview and give the user the launch instruction. Do not claim unrun builders, tests, live behavior or pushes.

@@ -22,7 +22,5 @@
 - [Page form rules](feedback-page-form-rules.md) — the user's wording and structure rules for entity reference pages; full list in page-recipe.md
 - [Related rules grouping](feedback-related-rules-grouping.md) — group 2+ rules under one 'Related rules:' bullet like errors; applied to model, cloud and SSH key pages; single rules too
 - [Oxford comma](feedback-oxford-comma.md) — always, in docs and everything written
-- [Lightning talk](project-lightning-talk.md) — "1-2-3": three ads in 5 min (data model, ggarch, leadership); notes in juju-reference/talk/NOTES.md
-- [Talk voice](feedback-talk-voice.md) — never write the user's spoken lines; describe slides, logic, props only
 - [No comma-and clauses](feedback-no-comma-and-clauses.md) — split two facts with different subjects; name the relation; "and" is fine for same-kind items
 - [Base case first, no databag](feedback-base-case-first-no-databag.md) — base case first; kinds in the data model; transitions in the operation; say settings, not databag; records and software in separate figures
