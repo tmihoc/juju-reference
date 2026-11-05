@@ -4,7 +4,7 @@ Ordered. Each item names the epic it serves and how to know it is done.
 
 ## Do first: audit the PR with the procedure (JUJU-10585)
 
-1. **Audit the PR's additions**: for the 12 new pages and the larger additions, apply the necessity test (R27), the ownership rules and a source check of every claim. Output keep, trim or move per item, plus a list of fixes. Done when every added page has a recorded justification. This is also the real test of the procedure: revise `method/docs-decision-procedure.md` only where the audit shows it failing, and record each failure.
+1. **Audit the PR against its base (e5db99d585) in refactor mode**, not only its additions. Size: 148 commits; 87 hand-written files, +7,600 and -3,600 lines; 15 pages added, 13 files deleted; about 24 pages with real churn (reference pages lose 1,150 lines to rewrites). Order by lines removed: `secret`, `charm`, `relation`, `user`, `machine`, `telemetry`, `storage`, `constraint`, `database`, `manage-models`, then the 15 added pages. For each, classify removed statements (moved, obsolete, duplicate, dropped), check the added ones (true, necessary, placed), and check every old label and URL. Pilot done: `method/evidence/audit-pilot-metadata.md` (found a candidate regression: the simplestreams data layout is nowhere in the PR's docs). Done when every changed page has a recorded verdict. Revise the procedure only where the audit shows it failing.
 2. **Fix what the audit and E83 found**: the upgrade guide backup section and the SSH follow-ups (`method/evidence/ssh-documentation-decision.md`, residual checks 1 to 5). Needs the user's approval per change.
 3. **Coverage**: reconcile the 35 selected pages with the full reference scope once the Jira acceptance text is available.
 

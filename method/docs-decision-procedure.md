@@ -77,6 +77,25 @@ Source of the templates: the audience table in the paradigm draft (`archive/work
 - **Tie:** layouts equal on all recorded properties (R14).
 - **Open(Qn):** depends on an open question; name it.
 
+## Auditing an existing change (refactor mode)
+
+Use this when the change already exists and the question is whether it is justified: a pull request that adds, moves, rewrites and deletes documentation. The unit is the diff between the base and the change, not the new pages alone.
+
+**Inputs:** the base set (the PR's merge base), the changed set, and the source at the base and at the change.
+
+1. **Classify each changed file:** added, deleted, renamed or moved, or modified. For a modified file, take its removed and added statements from the line diff.
+2. **For every removed statement, find where it went:** the same page reworded, another page (a move), or nowhere. Search the changed set by distinctive terms from the statement, not by page.
+3. **Classify each removed statement:**
+   - **Moved:** it now lives at an owner (R17); check the link or label from its old place.
+   - **Obsolete:** the source at the change contradicts it (Quality). Removal is right; record the evidence.
+   - **Duplicate:** another page owns the same fact (R16). Removal is right if the link exists.
+   - **Dropped:** true, in scope (R7), asked about by an audience, and now stated nowhere. This is a Quantity regression. Action: restore at its owner, corrected against the source where the old text was out of date.
+4. **Classify each added statement:** true (source check), necessary (R27: no equivalent in the base set), and correctly placed (steps 4 and 5 of the procedure). Untrue or unnecessary additions are trimmed or moved.
+5. **Check addresses:** every label, anchor and URL of the base set must resolve in the changed set, or have a redirect (R15). A redirect that lands on a page with a different subject is flagged.
+6. **Output per page:** keep, trim, move, or restore, with the statements concerned, the evidence, and the confidence class. Order the work by lines removed, because removals hide regressions.
+
+The first pilot is `method/evidence/audit-pilot-metadata.md`.
+
 ## What this procedure does not do
 
 - It does not check that a new statement is true. Every added or changed statement is traced to the source afterward (Quality).
@@ -87,6 +106,7 @@ Source of the templates: the audience table in the paradigm draft (`archive/work
 ## Version history
 
 - **v1:** the first version, tested in E83 on six developments. The tests: file-level recall of the developers' hand-written edits 3 of 3; 5 maintainer misses found (3 confirmed by later maintainer edits, 2 by source); 8 of 17 hand-written items over-flagged; missed a standing question (ports), a statement that invokes the changed command, and the generated files that share flags.
+- **v2.1:** adds the refactor mode (auditing an existing change) after the user pointed out that the PR also refactored heavily, and the metadata pilot found a regression that the new pages alone do not show.
 - **v2:** this file. Changes and the failure each answers:
   - Generated set comes from the generator (missed `debug-code.md`, `debug-hooks.md`).
   - Step 1 kinds (Change, Clarification, Removal) and the unaffected rule in step 3 (over-flagged items 5.2, 5.3, 3.2, 4.4).
