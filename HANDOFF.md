@@ -23,7 +23,7 @@ A solid 3-epic PR whose every change cites a finding from a Gricean check, and a
 - The audit of #23661 found real losses and right removals, and two of its restore proposals were corrected by cold runs (`constraint` min and max; `relation` controller-external flags): restoring the old text would add errors.
 - Cold runs from upstream: `status` twice (about 80% agreement on substantive findings; one draft misstated a rule its trace cited correctly), `constraint` and `relation` at `52e983a435`. Three findings per page were verified by the parent; the rest are claims.
 - Placement: the entity grammar decided about half to three quarters of the facts on `relation` and few on `status` and `constraint`. Because the agents were given the grammar, this is not independent convergence.
-- Blind-structure runs (cold run 4: `relation-blind`, `status-blind`) withhold the grammar. See `experiments/cold-run-4/`; check whether they finished, then compare their section lists with the entity grammar. They were still running at close-out.
+- Blind-structure runs (cold run 4: `relation-blind`, `status-blind`) withhold the grammar. See `experiments/cold-run-4/`; check whether they finished, then compare their section lists with the entity grammar. They finished; see `experiments/cold-run-4/compare-structure.md`.
 - The question list has no question that yields `X change streams` (25 PR pages have that section); proposed T11 "how does a client or agent learn that it changed, and what does it receive?" Not yet added.
 - Source check: the traced status and secret files have no diff between `e5db99d585` and `52e983a435`.
 - Public record: the archive repo `tmihoc/juju-reference` is public. One source observation about validation in the constraint path was withheld from it; report it to the maintainers.
@@ -36,7 +36,9 @@ A solid 3-epic PR whose every change cites a finding from a Gricean check, and a
 - Cold agents write only under `experiments/`; they cannot write a file named findings; record those from their report.
 - Do not relaunch the four 402-denied scopes (`WorkloadModel`, `HookCommandPages`, `KubernetesCloudAttributes`, `CrayonEvaluation`).
 
-## Preview servers
+## Scratch worktree and preview servers
+
+`~/git/misc/preview-status` is a detached scratch worktree at `52e983a435` with `reference/status.md` replaced by cold run 1's draft (uncommitted). Remove it with `git worktree remove --force ~/git/misc/preview-status` from the docs worktree when done. Server on 8001 serves it if still running.
 
 Two `sphinx-autobuild` servers were run at close-out: 8001 (new branch, upstream as is) and 8002 (#23661). Stop them if still running: `pkill -f sphinx-autobuild`.
 
