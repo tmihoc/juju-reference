@@ -49,7 +49,7 @@ Source of the templates: the audience table in the paradigm draft (`archive/work
 - **Contradicted:** the statement is now false.
 - **Enumeration extended:** the statement lists the members of a set (values, options, attributes, supported items) and the delta adds, removes or changes a member.
 - **Outcome changed:** following the statement, or relying on its precondition, now gives a different result.
-- **Unaffected:** none of the above. A statement that is merely silent about a new fact is unaffected, because a statement owes the reader only what its own scope claims (Quantity applied to the statement).
+- **Unaffected:** none of the above. A statement that is merely silent about a new fact is unaffected, because a statement owes the reader only what its own scope claims (Quantity applied to the statement). Exception: a statement that a reader takes as exhaustive (a list of values, options or supported items, or "only", "all", "always") is an enumeration, and silence about a new member is then false for a reader who computes the exhaustivity from it (see the addressee model in `review-mode-contract.md`).
 
 **4. Decide per item.**
 
