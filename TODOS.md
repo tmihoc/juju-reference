@@ -23,6 +23,16 @@ Ordered. Each item names the epic it serves and how to know it is done.
 8. **Settle the open questions only when the audit hits them**: Q1 (relevant level, question templates), Q2 (page versus section), Q3 (section grammar), Q8 (unit of a development). No standalone validation study; a further comparison against past developments only if the audit shows the procedure cannot decide.
 9. **Package the mechanism** as an `AGENTS` rule or a skill once the audit has exercised it. Done when it reproduces the E83 and SSH results.
 
+## Block in progress (2026-11-05)
+
+Plan: `experiments/PLAN-unsupervised-1.md`. Done: reviewer-agent design (`method/reviewer-agent.md`), rule ledger (`method/rule-derivation.md`), review-mode contract (`method/review-mode-contract.md`), cold runs on `status` (x2), `constraint` and `relation` with findings, comparison and placement determinacy (`experiments/`), source-drift check against the new tip, lens-list draft. New branch `4.1-docs-reference-principles` in `~/git/misc/juju-reference-principles` (no commits).
+
+Next: (1) trace the claimed findings of the three pages (about 60 are unverified); (2) a second cold run with placements on `relation` for an agreement figure; (3) calibrate the reviewer agent on `status` and one clean page; (4) fix the contract failures listed in the cold-run notes (false-by-enumeration type, defect types for R23, R24 and layout markup, confidence for a self-contradicting source, error class for agent-consumed errors, code open); (5) decide Q5 and Q3 with the placement evidence; (6) corrections to our PR #23661 pages found along the way (audit rows for `constraint` and `relation` now say do not restore the old text as written).
+
+## PR description (needs the user to post)
+
+10. **Collect, per epic, the list of what its lens let the PR cover** (truth, relevance, sufficiency, placement, clarity, errors, figures), for the PR body: how the PR connects to JUJU-9635, JUJU-10585 and JUJU-10586, and why going deep (per-call traces, per-statement source traces, the figure-removal test) is how the PR reached wide. Sources: `method/evidence/audit-pr23661.md`, `experiments/cold-run-*`, the per-call error traces. Draft the lists; the user pastes the body.
+
 ## Needs the user
 
 Jira acceptance text; the four 402-denied scopes; approval of any concrete page, rule, tool or figure change; each push; the PR body; whether to commit the archive records.

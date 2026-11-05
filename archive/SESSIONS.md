@@ -492,3 +492,11 @@
   approved. Recorded the direction in the handoff, live queue and next prompt.
 - Archived the updated next prompt in local commit `38070ee`; pre-existing dirty
   archive records remain uncommitted. No push.
+
+## Session 131 (2026-11-05): audit, review mode, cold runs
+
+- Audited PR #23661 against its base `e5db99d585` in refactor mode (`method/evidence/audit-pr23661.md`): addresses, deleted figures, removed statements for the top pages. Found real losses (status priority order, constraint and relation facts) and right removals (`mount-path`, the key regex, the agent-version troubleshooting).
+- Wrote the review-mode contract, the rules-from-principles ledger and the reviewer-agent design in `method/`. Added the addressee model (including genre expectations), figure rules (redundant, top of section, section scope) and the rules-and-errors hypothesis.
+- Ran cold reviews from upstream with no knowledge of our PR: `status` twice, `constraint` and `relation` at the new tip `52e983a435`. Two independent `status` runs agreed on about 80% of substantive findings; one draft misstated its own trace (the application tie rule). Cold findings in turn corrected two rows of the audit (restoring the old constraint min/max sentence or the relation `--controller-external-*` advice would add errors).
+- Created branch `4.1-docs-reference-principles` (worktree `~/git/misc/juju-reference-principles`) on upstream 4.1 `52e983a435`; no commits.
+- Gates held: no edits to pages, rules, tools or figures; no push; `~/git/juju` untouched (git ran from the docs worktree). Nothing in this archive is committed.
