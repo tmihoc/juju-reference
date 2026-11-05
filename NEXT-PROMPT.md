@@ -11,3 +11,7 @@ Read `HANDOFF.md`, `method/settled-results.md`, `method/requirement-set.md`, `me
 **Source:** `git -C ~/git/misc/juju-tutorial-diagrams show e5db99d585:<path>` (no checkout). Docs worktree: `~/git/misc/juju-tutorial-diagrams`.
 
 **Style:** decide and say so; show the trace; report failures as plainly as successes; no option menus.
+
+**The user's direction (2026-11-05):** the repo is disposable; what matters is a solid 3-epic PR (JUJU-9635, JUJU-10585, JUJU-10586) and, longer term, a Gricean guide and check for the docs as a whole that an AI can use to decide what to document and how. Do not build more method than the PR needs. The mechanism (`method/`) earns its place by auditing the PR and by deciding cases like SSH. Reach clear conclusions; show the trace; say what is unresolved and what would resolve it.
+
+**State at hand-off:** the audit pilot on the deleted `reference/metadata.md` found a candidate regression (the simplestreams data layout, product IDs and directory tree, is nowhere in the PR's docs; the old text is partly out of date, so restore it corrected). The SSH decision keeps `reference/ssh-server.md` and drops the maintainers' explanation page. Two real defects are in `epics/source-questions.md`: the upgrade-guide backup statement and the missing `#action-task-status` anchor. The repo is pushed through the squash commit; later commits are local.
