@@ -1,17 +1,16 @@
 # Next session
 
-Read `HANDOFF.md`, `method/settled-results.md`, `method/requirement-set.md`, `method/docs-decision-procedure.md` and `TODOS.md`, in that order.
+Read `HANDOFF.md`, then `method/review-mode-contract.md`, `method/rule-derivation.md`, `method/reader-model.md` and `TODOS.md`.
 
-**Goal:** a mechanism that, given a development, decides what needs documentation, where, in which category and form, and that we can use to finish JUJU-10585, JUJU-10586 and JUJU-9635. It exists as procedure v2 (untested) and a requirement set with open questions.
+**Goal:** a solid 3-epic PR (JUJU-9635, JUJU-10585, JUJU-10586) on `4.1-docs-reference-principles` (worktree `~/git/misc/juju-reference-principles`, base upstream 4.1 `52e983a435`), where every change cites a finding of the Gricean check, and the check is trustworthy enough to review and improve the PR.
 
-**Do next:** TODOS item 1, the audit of the PR **against its base** in refactor mode (the PR also refactored heavily: check what was removed and moved as well as what was added). Start with the pages that lost the most lines. Report keep, trim, move or restore per page, with evidence, and the fixes needed. Revise the procedure only where the audit shows it failing. Do not start a separate method-validation study.
+**Do next, in order:**
+1. Compare the blind-structure runs in `experiments/cold-run-4/` with the entity grammar. Record which sections fall out of the question list and which do not; add T11 (change streams) if the omission is confirmed.
+2. Flesh out `method/reader-model.md` with the user's real readers and questions; write about eight task scenarios (SRE, charm developer, client developer) and run them as the AI-mediated task test on upstream, #23661 and the cold drafts.
+3. Run the reviewer agent (`method/reviewer-agent.md`) as a subagent on upstream `status` and one clean page; install it only if it finds the known defects with few false alarms.
+4. Trace the unverified findings of the cold runs against source at `52e983a435`; fix the contract gaps listed in the cold-run notes.
+5. Then start the new branch's pages, one finding at a time, with the user's approval of each concrete change.
 
-**Hard gates:** never touch `~/git/juju`; no edits to pages, rules, tools, figures or the checker without approval; ask before every push; never push security-revealing material; do not relaunch the four 402-denied scopes; stage explicit paths only.
+**Gates:** never touch `~/git/juju`; no edits to pages, rules, tools or figures without approval; ask before pushing to juju/juju forks; the archive repo is public, keep security-revealing material out.
 
-**Source:** `git -C ~/git/misc/juju-tutorial-diagrams show e5db99d585:<path>` (no checkout). Docs worktree: `~/git/misc/juju-tutorial-diagrams`.
-
-**Style:** decide and say so; show the trace; report failures as plainly as successes; no option menus.
-
-**The user's direction (2026-11-05):** the repo is disposable; what matters is a solid 3-epic PR (JUJU-9635, JUJU-10585, JUJU-10586) and, longer term, a Gricean guide and check for the docs as a whole that an AI can use to decide what to document and how. Do not build more method than the PR needs. The mechanism (`method/`) earns its place by auditing the PR and by deciding cases like SSH. Reach clear conclusions; show the trace; say what is unresolved and what would resolve it.
-
-**State at hand-off:** the audit pilot on the deleted `reference/metadata.md` found a candidate regression (the simplestreams data layout, product IDs and directory tree, is nowhere in the PR's docs; the old text is partly out of date, so restore it corrected). The SSH decision keeps `reference/ssh-server.md` and drops the maintainers' explanation page. Two real defects are in `epics/source-questions.md`: the upgrade-guide backup statement and the missing `#action-task-status` anchor. The repo is pushed through the squash commit; later commits are local.
+**Style:** speak plainly; decide and say so; show the trace; report failures as plainly as successes; no option menus; answer the question asked before proposing more.
