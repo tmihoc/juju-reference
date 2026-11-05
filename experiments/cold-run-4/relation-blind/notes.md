@@ -16,7 +16,7 @@ Ten headed sections after a lede: Peer relation; Non-peer relation (children: Su
 
 1. core/relation/relation.go:6-9 says the implicit relation has "role requires"; the code adds it with role provider (domain/application/state/metadata.go:471; domain/deployment/charm/meta.go:242-244). Stale code comment.
 2. Scope of the implicit endpoint differs between the state code (global: metadata.go:473) and the bundle verifier (container: domain/deployment/charm/bundledata.go:961-966, but 1298-1303 uses global). The page follows the state code.
-3. Non-leader reads of the local application's settings: the facade comment (apiserver/facades/agent/uniter/service.go:491-496) says leader only, while the hook tool path for non-leaders (relation-get.go:241-263) reads through `ReadRemoteSettings` with no leader check (uniter.go:1976-2024). The draft table states the code path (every unit reads). If the owner says this is a bug, the table row and finding F26 change. This is the only draft statement whose truth depends on an unconfirmed intent.
+[Withheld from this public record: an observation about which units can read an application's own settings, to be raised with the maintainers through the project's normal channel.]
 4. `reservedName` in domain/deployment/charm/meta.go:854-865 is unused for relations (only actions.go:120 calls it); the enforced check is in domain/application/service/metadata.go:518-568.
 
 ## Where the method failed or could not decide
@@ -34,5 +34,5 @@ Ten headed sections after a lede: Peer relation; Non-peer relation (children: Su
 ## Items the parent session should do
 
 - Run the page-rules checker and the docs build (HTML and LaTeX) on draft-relation.md.
-- Ask the application/uniter owner about finding F26 (non-leader local read).
+[Withheld from this public record: an observation about which units can read an application's own settings, to be raised with the maintainers through the project's normal channel.]
 - Decide whether juju-info stays on this page or moves to application.md (tie).

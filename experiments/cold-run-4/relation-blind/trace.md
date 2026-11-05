@@ -141,7 +141,7 @@ Paths are relative to the repository root. "UP" means an upstream doc statement 
 | E3 | Setting a key to an empty value removes it | internal/worker/uniter/runner/jujuc/relation-set.go:193-199; domain/relation/service/relation.go:366-388 | S |
 | E4 | A unit writes its own unit settings | apiserver/facades/agent/uniter/uniter.go:2954-2959 (`rus.Unit != changes.Tag` is ErrPerm) | S |
 | E5 | Application settings are written by the leader | relation-set.go:176-182; domain/unitstate/types.go:316-325; domain/unitstate/service/commithook.go:174-189 | S |
-| E6 | Every unit in the relation reads unit settings and application settings | relation-get.go:241-263 (non-leader own-app reads and all remote reads go to the controller); uniter.go:1976-2024 (`readOneRemoteSettings`: no leader check, unit or application tag) | S for the code path; intent open (finding F26) |
+| [Withheld from this public record: an observation about which units can read an application's own settings, to be raised with the maintainers through the project's normal channel.] |
 | E7 | In a peer relation the only application is the local one | 0024-relation.sql:59-63 | S |
 | E8 | In a non-peer relation the other application's settings are read-only for every unit | E4, E5 (no write path for another application's settings) | I |
 | E9 | Juju writes `ingress-address` and `egress-subnets` in unit settings and drops charm-set values | domain/unitstate/types.go:19-20; commithook.go:430-434; uniter.go:2944-2951 | S |

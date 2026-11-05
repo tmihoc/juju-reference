@@ -27,7 +27,7 @@ Columns: fact (trace ids) | source artifact kind | owner entity | audience quest
 | Status values and meanings (T1 to T7) | Core status constants, SQL | relation | T2 | Status section | Rules: "Types of X" does not apply; one home per fact (goal-state hook page holds a different, per-unit view; open) |
 | Status setter and transitions (T8 to T10) | Status domain code | relation (status) | T2, T10 | Status section | Rules: "A transitions figure only if each arrow is an enforced rule" (the rule is stated in prose, no figure) |
 | Settings levels, non-empty, empty removes (E1 to E3) | SQL, hook tool | relation settings | T1 | Settings section | Rules: "One term for one meaning" (settings, not databag) |
-| Writer and reader per settings kind (E4 to E8) | Hook tool, facade, commit code | relation settings | T11 | Settings section (table) | Rules: "Base case first": table before the exceptions; judged for the non-leader local read (intent open) |
+| [Withheld from this public record: an observation about which units can read an application's own settings, to be raised with the maintainers through the project's normal channel.] |
 | Juju-owned unit keys, archive (E9, E10) | Commit code, SQL | relation settings | T3, T5 | Settings section | Judged: no other page holds them |
 | Hook-tool refusal text `cannot write relation settings` (E11) | Hook tool | hook tool `relation-set` | T3 | Settings section (one sentence) | Judged: R19 would put it at the hook tool page; the sentence stays until that page lists it |
 | Figures (taxonomy, databags) | Upstream docs | none | none | Dropped | Rules: "A figure earns its place only by clarity" (premise open); every fact is stated in prose |
